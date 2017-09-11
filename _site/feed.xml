@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-09-11T00:27:42-07:00</updated><id>http://localhost:4000/</id><title type="html">Mike’s Space</title><subtitle>&quot;Science is like sex: sometimes something useful comes out, but that is not the reason we are doing it.&quot; ― Richard Feynman
+</subtitle><entry><title type="html">Coming soon</title><link href="http://localhost:4000/coming/soon/2017/09/10/coming-soon.html" rel="alternate" type="text/html" title="Coming soon" /><published>2017-09-10T20:29:19-07:00</published><updated>2017-09-10T20:29:19-07:00</updated><id>http://localhost:4000/coming/soon/2017/09/10/coming-soon</id><content type="html" xml:base="http://localhost:4000/coming/soon/2017/09/10/coming-soon.html">&lt;p&gt;Topics coming:&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;ol&gt;
+    &lt;li&gt;Bash tutorial&lt;/li&gt;
+    &lt;li&gt;Amplicon sequencing tutorial&lt;/li&gt;
+    &lt;li&gt;Too much coverage can be a bad thing for assembly&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/blockquote&gt;</content><author><name></name></author><summary type="html">Topics coming: Bash tutorial Amplicon sequencing tutorial Too much coverage can be a bad thing for assembly</summary></entry></feed>
