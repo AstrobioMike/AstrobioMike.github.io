@@ -5,7 +5,7 @@ exclude_from_nav: true
 ---
 
 <h2><i>bash</i> basics</h2>
-Here we are going to cover the very basics of working in the terminal. For quick definitions of what things like *bash* and 'the terminal' are, see [here]({{ site.url }}/bash.html). We'll start at the very beginning with the basic formula for how to run commands, then  move onto how to navigate around your computer with these commands, and end with how to manipulate and create documents. This is probably suitable for those with little to no experience, so if you feel comfortable with these tasks already, consider jumping ahead to one of the sections you're less familiar with. 
+Here we are going to cover the very basics of working in the terminal. For quick definitions of what things like *bash* and 'the terminal' are, see [here]({{ site.url }}/bash.html). We'll start at the very beginning with the basic formula for how to run commands, then  move on to how to navigate around your computer with these commands, and end with how to manipulate and create documents. This is probably suitable for those with little to no experience, so if you feel comfortable with these tasks already, consider jumping ahead to one of the sections you're less familiar with. 
 
 
 <br>
@@ -33,7 +33,7 @@ To run a command in the terminal, you simply need to type the command after the 
 <br>
 And as you can see, after hitting return, a new prompt line appears and the cursor is waiting for the next command. 
 
-The `date` command didn't require anything else, so it worked just fine by itself, but some other commands require what are known as arguments. In these cases the format would be `command` `arguments` (separated by a space). Some arguments are optional, and some are mandatory. Probably the most common type of argument is which file you want to do something to. 
+The `date` command didn't require anything else, so it worked just fine by itself, but some other commands require what are known as arguments. In these cases the format would be `command` `argument` (separated by a space). Some arguments are optional, and some are mandatory. Probably the most common type of argument is telling *bash* which file you want the command to act on. 
 
 For example, the `head` command prints out the first 10 lines of a file to the terminal, so you need to tell it which file you want it to act on. Take for example this regular text file named 'test.txt':
 <center><img src="{{ site.url }}/images/test.txt.png"></center> 
