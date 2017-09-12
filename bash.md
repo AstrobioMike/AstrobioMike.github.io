@@ -40,9 +40,10 @@ So there you have it. In 4 paragraphs you now know as much about these terms as 
   1. [Bash basics](/bash/basics)
   2. [6 commands worth getting to know](/bash/six_commands) 
   3. Sticking things together with pipes and redirectors
-  4. What the hell is a PATH, and how do I get it to do what I want? 
+  4. What the heck is a PATH, and how do I get it to do what I want? 
   5. Primer on installing the tools you need
   6. Simple bash loop structures that can help a lot
+  7. The power of wild cards
 <br>  
 
 > Useful bash one-liners  
