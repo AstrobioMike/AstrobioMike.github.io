@@ -6,7 +6,7 @@ layout: home
 title: Home
 ---
 
-# Welcome!
+<h1>Welcome!</h1
 
 You have somehow found your way to Mike's Space. I am new here too, so at the moment there isn't much here yet. But in time I hope to make this site a useful resource for people who are working their way into bioinformatics. I will be structuring things in a way that I think would have been most helpful to me when I was starting out. The main philosophy is that it's okay to just take bits and pieces from different things without fully understanding the whole of where you're pulling from. For instance, you don't need to spend weeks on python tutorials (that are designed for people who want to become programmers) if you just need one quick script to manipulate a file so you can run whatever tool you're trying to use and then move on to the next part of your research (and possibly not think about python again for months). The plan here is to provide tutorials that are targeted and easy to navigate, and blogs that highlight things I think were important in my earlier development, or are important in my ongoing development.
 
