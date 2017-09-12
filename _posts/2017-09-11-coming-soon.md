@@ -1,11 +1,11 @@
 ---
 layout: post
-title: Coming soon...
+title: Things to look forward to...
 ---
 
 # Tutorials coming To [Bash Central](/bash.html):  
 
-  1. Bash basics - how to jump in
+  1. [Bash basics](/bash/basics) - how to jump in
   2. 10 commands are really all you need to know
   3. Sticking things together with pipes and redirectors
   4. What the hell is a PATH, and how do I get it to do what I want? 
