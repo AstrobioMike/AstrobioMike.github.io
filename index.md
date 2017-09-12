@@ -12,4 +12,6 @@ You have somehow found your way to Mike's Space. I am new here too, so at the mo
 
 For now, you can find out more about me and what I've found to be the most effective way to beat the steep learning curve at the [About](/about/) page, or check out the beginning stages of [*bash* Central](/bash.html) for some baseline information of what exactly *bash* is, or see what I'm working on first for the site in the [Things to look forward to...](/2017/09/11/coming-soon.html) post.
 
-If you're just beginning to wade your way into the bioinformatics world, I hope you find some of the resources here helpful.
+If you're just beginning to wade your way into the bioinformatics world, I hope you find some of the resources here helpful.  
+
+---
