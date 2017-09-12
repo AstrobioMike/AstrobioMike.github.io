@@ -22,4 +22,6 @@ title: Things to look forward to...
 # Posts coming to Amplicon HQ:
 1. Amplicon sequence processing
   - with my 2 cents on what's worth your time and what isn't
-2. Too much coverage can be a bad thing for assembly
+
+# Posts coming to MG Mayhem:
+1. Too much coverage can be a bad thing for assembly
