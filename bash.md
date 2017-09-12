@@ -35,13 +35,15 @@ So there you have it. In 4 paragraphs you now know as much about these terms as 
 
 
 <br> 
-## Tutorials coming soon to *Bash* Central:
-1. Bash basics – how to take the plunge
-2. 10 commands are really all you need to know
-3. Sticking things together with pipes and redirectors
-4. What the hell is a PATH, and how do I get it to do what I want? 
-5. Generic primer on installing a tool you need
+## Posts coming soon:  
+
+  1. [Bash basics](/bash/basics)
+  2. [6 commands worth getting to know](/bash/six_commands) 
+  3. Sticking things together with pipes and redirectors
+  4. What the hell is a PATH, and how do I get it to do what I want? 
+  5. Primer on installing the tools you need
+  6. Simple bash loop structures that can help a lot
 <br>  
-### and some bonus pages:
+
 > Useful bash one-liners  
-> Some real-life examples (Why is this worth it?)
+> Some real-life examples (Why is all this worth it?)  

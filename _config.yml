@@ -15,6 +15,7 @@
 # in the templates via {{ site.myvariable }}.
 title: Mike's Space
 email: Leemd@usc.edu
+author: Mike Lee
 description: >
    A bioinformatics resource for bioinformatics beginners.
 baseurl: "" # the subpath of your site, e.g. /blog
