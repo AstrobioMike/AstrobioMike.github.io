@@ -15,7 +15,7 @@ Here we are going to cover the very basics of working in the terminal. For quick
 
 
 ### <u>Running a command at the prompt</u>
-The terminal prompt by default is typically a dollar sign:
+The terminal prompt by default is typically a line with some information ending with a dollar sign:
 <center><img src="{{ site.url }}/images/blank_prompt.png"></center> 
 <br>
 This line and the terminal itself are both customizable so things may look a little different on yours, but this is where the magic happens. 
