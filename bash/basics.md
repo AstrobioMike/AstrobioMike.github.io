@@ -50,7 +50,7 @@ $ head -n 4 text.txt
 <center><img src="{{ site.url }}/images/test.txt_head4.png"></center>  
 
 <br>
-And that's really it. Those are the fundamentals that govern running virtually any individual command in the terminal. Now that you're familiar with this baseline formula, let's move onto looking at more commands and learn how to navigate around your computer from inside the terminal.  
+And that's really it. Those are the fundamentals that govern running virtually any individual command in the terminal. Now that you're familiar with this baseline formula, let's move on to looking at more commands and learn how to navigate around your computer from inside the terminal.  
 <br>
 
 ---
