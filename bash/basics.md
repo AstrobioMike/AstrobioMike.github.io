@@ -5,7 +5,7 @@ exclude_from_nav: true
 ---
 
 <h2><i>bash</i> basics</h2>
-Here we are going to cover the very basics of working in the terminal. We'll start at the very beginning with the basic formula for how to run commands, then  move onto how to navigate around your computer with these commands, and end with how to manipulate and create documents. This is probably suitable for those with little to no experience, so if you feel comfortable with these tasks already, consider jumping ahead to one of the sections you're less familiar with. 
+Here we are going to cover the very basics of working in the terminal. For quick definitions of what things like *bash* and 'the terminal' are, see [here]({{ site.url }}/bash.html). We'll start at the very beginning with the basic formula for how to run commands, then  move onto how to navigate around your computer with these commands, and end with how to manipulate and create documents. This is probably suitable for those with little to no experience, so if you feel comfortable with these tasks already, consider jumping ahead to one of the sections you're less familiar with. 
 
 
 <br>
