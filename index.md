@@ -15,4 +15,5 @@ For now you can find out more about me and what I've found to be the most effect
 If you're just beginning to wade your way into the bioinformatics world, I hope you find some of the resources here helpful.  
 
 ---
-<br>
+<br>  
+
