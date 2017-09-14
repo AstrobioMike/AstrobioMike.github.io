@@ -31,9 +31,9 @@ This line and the terminal itself are both customizable so things may look a lit
 
 Throughout this tutorial I will be presenting blocks of code that will follow a dollar sign:
 
-{% highlight rouge %}
+```bash
 $
-{% endhighlight %}
+```
 
 That dollar sign just represents your prompt, and shouldn't be typed when replicating the commands being used. 
 
@@ -52,9 +52,12 @@ If I run the 'head' command on this file, the terminal prints out the first 10 l
 <br>
 In this case, providing a file to the 'head' command is required. But this command also has optional arguments. For example, by default it prints out only the first 10 lines, but we tell it to do however many lines we want by adding what's known as a 'flag'. These are often led by a single dash, followed by a character representing which argument you're specifying, followed by the value (or file) you want to give it. Here is an example where we tell the 'head' command we want the first 4 lines of the document, overriding the default 10:
 
-{% highlight rouge %}
+
+```bash
 $ head -n 4 text.txt
-{% endhighlight %}
+```
+
+
 
 <center><img src="{{ site.url }}/images/test.txt_head4.png"></center>  
 
@@ -65,6 +68,16 @@ And that's really it. Those are the fundamentals that govern running virtually a
 ---
 <br>
 ### <u>System structure and moving around your computer within terminal</u>
+
+##### <i>Commands presented in this section</i>
+
+
+|Command     |Function          |
+|:----------:|------------------|
+|`pwd`       |tells you where you are in the computer
+|`ls`        |lists contents of a directory (current if no )
+
+
 Your computer stores files in a hierarchical structure like a tree. You are likely already used to this just by how you would navigate through by clicking on various folders (directories) and finding your way to a file. 
 
 When you are working in the terminal, you are always sitting in some directory. Here is the directory I happen to be working in, with some generic items inside it, as viewed from the Finder window:
