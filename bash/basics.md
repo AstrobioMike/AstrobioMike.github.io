@@ -74,8 +74,8 @@ And that's really it. Those are the fundamentals that govern running virtually a
 
 |Command     |Function          |
 |:----------:|------------------|
-|`pwd`       |tells you where you are in the computer
-|`ls`        |lists contents of a directory (current if no )
+|pwd       |tells you where you are in the computer|
+|ls        |lists contents of a directory (current if no )|
 
 
 Your computer stores files in a hierarchical structure like a tree. You are likely already used to this just by how you would navigate through by clicking on various folders (directories) and finding your way to a file. 
