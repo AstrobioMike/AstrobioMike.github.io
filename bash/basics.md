@@ -75,16 +75,6 @@ And that's really it. Those are the fundamentals that govern running virtually a
 ### <u>System structure and moving around your computer within the terminal</u>
 
 #### <i>Commands presented in this section</i>
-
-|Command     |Function          |
-|:----------:|------------------|
-|`pwd`       |tells you where you are in the computer (print working directory)|
-|`ls`        |lists contents of a directory (list)|
-|`cd`|changes directories|
-
-
-<br>
-
 |Command     |Function          |
 |:----------:|------------------|
 |`pwd`       |tells you where you are in the computer (print working directory)|
