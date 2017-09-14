@@ -5,7 +5,10 @@ exclude_from_nav: true
 ---
 
 <h2><i>bash</i> basics</h2>
-Here we are going to cover the very basics of working in the terminal. For quick definitions of what things like *bash* and 'the terminal' are, see [here]({{ site.url }}/bash.html). We'll start at the very beginning with the basic formula for how to run commands, then move on to how to navigate around your computer from within the terminal, and end with how to manipulate and create documents. This is probably suitable for those with little to no experience, so if you feel comfortable with these tasks already, consider jumping ahead to one of the sections you're less familiar with. To start, let's open up a terminal window. If you have a Mac, this is easy as you can just do a spotlight search for Terminal and you're ready to rock. If you have a PC, I'm afraid this is where the trip ends for you:  
+
+Here we are going to cover the very basics of working in the terminal. For quick definitions of what things like *bash* and 'the terminal' are, see [here]({{ site.url }}/bash.html).
+
+We'll start at the very beginning with the basic formula for how to run commands, then move on to how to navigate around your computer from within the terminal, and end with how to manipulate and create documents. This is probably suitable for those with little to no experience, so if you feel comfortable with these tasks already, consider jumping ahead to one of the sections you're less familiar with. To start, let's open up a terminal window. If you have a Mac, this is easy as you can just do a spotlight search for Terminal and you're ready to rock. If you have a PC, I'm afraid this is where the trip ends for you:  
 <img align="right" src="{{ site.url }}/images/oompa.jpg">  
 <br>
 <br>
@@ -31,9 +34,11 @@ This line and the terminal itself are both customizable so things may look a lit
 
 Throughout this tutorial I will be presenting blocks of code that will follow a dollar sign:
 
+
 ```bash
-$
+$ 
 ```
+
 
 That dollar sign just represents your prompt, and shouldn't be typed when replicating the commands being used. 
 
@@ -67,16 +72,26 @@ And that's really it. Those are the fundamentals that govern running virtually a
 
 ---
 <br>
-### <u>System structure and moving around your computer within terminal</u>
+### <u>System structure and moving around your computer within the terminal</u>
 
-##### <i>Commands presented in this section</i>
-
+#### <i>Commands presented in this section</i>
 
 |Command     |Function          |
 |:----------:|------------------|
-|pwd       |tells you where you are in the computer|
-|ls        |lists contents of a directory (current if no )|
+|`pwd`       |tells you where you are in the computer (print working directory)|
+|`ls`        |lists contents of a directory (list)|
+|`cd`|changes directories|
 
+
+<br>
+
+|Command     |Function          |
+|:----------:|------------------|
+|`pwd`       |tells you where you are in the computer (print working directory)|
+|`ls`        |lists contents of a directory (list)|
+|`cd`|changes directories|
+
+<br> 
 
 Your computer stores files in a hierarchical structure like a tree. You are likely already used to this just by how you would navigate through by clicking on various folders (directories) and finding your way to a file. 
 
