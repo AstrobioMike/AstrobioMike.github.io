@@ -36,4 +36,4 @@ Momper, L.M., Jungbluth, S.P., **Lee, M.D.**, and Amend, J.P. (2017). Energy and
 [http://www.nature.com/ismej/journal/vaop/ncurrent/full/ismej201794a.html](http://www.nature.com/ismej/journal/vaop/ncurrent/full/ismej201794a.html)  
 
 Hutchins, D.A., Fu, F-X., Walworth, N.G., **Lee, M.D.**, Saito, M.A., and Webb, E.A. (2017). Comment on “The complex effects of ocean acidification on the prominent N2-fixing cyanobacterium *Trichodesmium*”. *Science*. doi: 10.1126/science.aao0067  
-[http://science.sciencemag.org/content/356/6337/527](http://science.sciencemag.org/content/356/6337/527)  
+[http://science.sciencemag.org/content/356/6337/527](http://science.sciencemag.org/content/357/6356/eaao0067)  
