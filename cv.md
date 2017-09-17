@@ -14,7 +14,7 @@ permalink: /cv/
 *Leemd@usc.edu*
 <br>
 <br>
-### Selected Publications
+### Select Publications
 
 
 **Lee, M.D.**, Walworth, N.G., Sylvan, J.B., Edwards, K.J., and Orcutt, B.N. (2015). Microbial communities on seafloor basalts at Dorado Outcrop reflect level of alteration and highlight global lithic clades. *Frontiers in Microbiology* 6:1470. doi: 10.3389/fmicb.2015.01470  
@@ -36,4 +36,4 @@ Momper, L.M., Jungbluth, S.P., **Lee, M.D.**, and Amend, J.P. (2017). Energy and
 [http://www.nature.com/ismej/journal/vaop/ncurrent/full/ismej201794a.html](http://www.nature.com/ismej/journal/vaop/ncurrent/full/ismej201794a.html)  
 
 Hutchins, D.A., Fu, F-X., Walworth, N.G., **Lee, M.D.**, Saito, M.A., and Webb, E.A. (2017). Comment on “The complex effects of ocean acidification on the prominent N2-fixing cyanobacterium *Trichodesmium*”. *Science*. doi: 10.1126/science.aao0067  
-[http://science.sciencemag.org/content/356/6337/527](http://science.sciencemag.org/content/357/6356/eaao0067)  
+[http://science.sciencemag.org/content/357/6356/eaao0067.full](http://science.sciencemag.org/content/357/6356/eaao0067.full)
