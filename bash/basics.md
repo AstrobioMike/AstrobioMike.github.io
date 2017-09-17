@@ -49,7 +49,7 @@ And as you can see, after hitting return, a new prompt line appears and the curs
 
 The `date` command didn't require anything else, so it worked just fine by itself, but some other commands require what are known as arguments. In these cases the format would be `command` `argument` (separated by a space). Some arguments are optional, and some are mandatory. Probably the most common type of argument is telling *bash* which file you want to do something to. 
 
-For example, the `head` command prints out the first 10 lines of a file to the terminal, so you need to tell it which file you want it to act on. Take for example this regular text file named 'test.txt':
+For example, the `head` command prints out the first few lines of a file to the terminal, so you need to tell it which file you want it to act on. Take for example this regular text file named 'test.txt':
 <center><img src="{{ site.url }}/images/test.txt.png"></center> 
 <br>
 If I run the 'head' command on this file, the terminal prints out the first 10 lines and then returns to the prompt:
@@ -74,14 +74,13 @@ And that's really it. Those are the fundamentals that govern running virtually a
 <br>
 ### <u>System structure and moving around your computer within the terminal</u>
 
-#### <i>Commands presented in this section</i>
+#### <i>Commands presented in this section:</i>  
+
 |Command     |Function          |
 |:----------:|------------------|
 |`pwd`       |tells you where you are in the computer (print working directory)|
 |`ls`        |lists contents of a directory (list)|
 |`cd`|changes directories|
-
-<br> 
 
 Your computer stores files in a hierarchical structure like a tree. You are likely already used to this just by how you would navigate through by clicking on various folders (directories) and finding your way to a file. 
 
@@ -90,28 +89,45 @@ When you are working in the terminal, you are always sitting in some directory. 
 <center><img src="{{ site.url }}/images/directory_example.png"></center>  
 
 <br>
-In that image you can see we are in a directory called "temp", and inside that directory there is a sub-directory called "another_directory", and two text files. Then at the very bottom there is a line that tells us 'where' we are 'in' the computer: `Macintosh HD/Users/Mike_Lee/Documents/web_content/temp`. That long line of directories telling us where we are is like an address. 
+In that image you can see we are in a directory called "temp", and inside that directory there is a sub-directory called "another_directory" and two text files. Additionally at the very bottom there is a line that tells us 'where' we are in the computer:
+<center><code>Macintosh_HD/Users/Mike_Lee/Documents/web_content/temp</code></center>
+<br>
+This line of directories delimited by forward slashes tells us where we are; it is just like an address. 
 
-When we are working in a terminal we need to know 'where' we are as well (so we can know we are working with the correct files and such). We can get all of the same information in the terminal by using the commands `pwd` (print working directory) and `ls` (list, as in list the contents of the directory we're sitting in):
+When we are working in a terminal we need to know where we are as well. We can get all of the same information in the terminal by using the commands `pwd` (print working directory – to view the address of the directory we are in) and `ls` (list, to list the contents of the directory we're sitting in):
 
 <center><img src="{{ site.url }}/images/terminal_directory_example.png"></center>  
-
-
-
-
-file tree structure, pwd, ls
-<br>  
-
-
-{% highlight rouge %}
-$ for i in `cat samples`; do echo $i; wc -l "$i".txt; done
-{% endhighlight %}
-
-### Moving around  
-cd, special characters for changing directories '~'  '/'  '.'
 <br>
 
-### Probing files
+It is important to be comfortable thinking about where you are in your computer when working in the terminal. One of the most common errors/easiest mistakes to make is to be trying to do something to a file that isn't where you think it is. Let's go back to our example above where we used the `head` command:
+
+<center><img src="{{ site.url }}/images/file_location_error.png"></center>
+<br>
+
+Need to point at other directory, then merge last two sections
+
+
+
+
+
+
+
+special characters for changing directories '~'  '/'  '.' '..'
+<br>
+
+### <u>Probing files</u>
+
+#### <i>Commands presented in this section:</i>  
+
+|Command     |Function          |
+|:----------:|------------------|
+|`head`      |prints the first few lines of a file|
+|`tail`      |prints the last few lines of a file|
+|`less`      |allows you to browse a file (exit with "q" key)|
+| `wc`       |count lines, words, and characters in a file|
+
+
+
 less, head, tail, wc
 <br>
 
@@ -122,4 +138,7 @@ cp, mv, rm, mkdir, rmdir
 ### Making plain text files
 nano, vim, emacs
 
+{% highlight rouge %}
+$ for i in `cat samples`; do echo $i; wc -l "$i".txt; done
+{% endhighlight %}
 
