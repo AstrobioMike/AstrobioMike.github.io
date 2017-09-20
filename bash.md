@@ -3,8 +3,6 @@ layout: page
 title: Bash Central
 ---
 
-> ## I do believe in a god, Josh, and that god is *bash*.  
-
 <br>
 **Shells and Unix and terminals, oh my!**  
 Along with my disclaimers about not being an expert as laid out [here](/about/), I'm not going to try to give you technical explanations of all the underlying infrastructure. I simply don't have a strong enough understanding myself. I've read about all these things in the many O'Reilly books I have; I get curious from time to time and google things and remember stuff (at least what I understand) for a short while afterwards; and I occasionally get to corner someone who really knows their stuff (like [Evan Boylen](https://twitter.com/ebolyen)) and ask them a bunch of questions. But I don't seem to retain many of the details, and while we all want to know everything, we also all need to get the current analysis done so we can get to the rest of our never-ending list of things we're behind on.  
