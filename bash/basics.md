@@ -6,9 +6,11 @@ exclude_from_nav: true
 
 <h2><i>bash</i> basics</h2>
 
-Here we are going to cover the very basics of working in the terminal. For quick definitions of what things like *bash* and 'the terminal' are, see [here]({{ site.url }}/bash.html).
+Here we are going to cover the very basics of working in the terminal. For quick definitions of what things like *bash* and 'the terminal' are, see [here]({{ site.url }}/bash.html).  
 
-We'll start at the very beginning with the basic formula for how to run commands, then move on to how to navigate around your computer from within the terminal, and end with how to manipulate and create documents. This is probably suitable for those with little to no experience, so if you feel comfortable with these tasks already, consider jumping ahead to one of the sections you're less familiar with. To start, let's open up a terminal window. If you have a Mac, this is easy as you can just do a spotlight search for Terminal and you're ready to rock. If you have a PC, I'm afraid this is where the trip ends for you:  
+We'll start at the very beginning with the basic formula for how to run commands, then move on to how to navigate around your computer from within the terminal, and end with how to look at, create, and manipulate plain text documents. This is really designed for those with very little to no experience working at the command line, so if you feel comfortable with these tasks already, consider jumping ahead to one of the sections you're less familiar with.  
+
+To start, let's open up a terminal window. If you have a Mac, this is easy as you can just do a spotlight search for "Terminal" and you're ready to rock. If you have a PC, I'm afraid this is where the trip ends for you:  
 <img align="right" src="{{ site.url }}/images/oompa.jpg">  
 <br>
 <br>
@@ -27,7 +29,7 @@ Okay, not really. Things do get a little more complicated, but there are program
 
 
 ### <u>Running a command at the prompt</u>
-The terminal prompt by default is typically a line with some information ending with a dollar sign:
+The terminal 'prompt' by default is typically a line with some information ending with a dollar sign:
 <center><img src="{{ site.url }}/images/blank_prompt.png"></center> 
 <br>
 This line and the terminal itself are both customizable so things may look a little different on yours, but this is where the magic happens. 
@@ -40,11 +42,17 @@ $
 ```
 
 
-That dollar sign just represents your prompt, and shouldn't be typed when replicating the commands being used. 
+That dollar sign just represents your prompt, and shouldn't be typed when replicating the commands being used.
 
 To run a command in the terminal, you simply need to type the command after the prompt. Some commands don't require any further input and can be executed by hitting the return key. For example, there is a command called `date` that will output the time and date:
-<center><img src="{{ site.url }}/images/terminal_date.png"></center> 
-<br>
+<center><img src="{{ site.url }}/images/terminal_date.png"></center>
+
+<center>  
+
+![Alt text]({{ site.url }}/images/terminal_date.png "date")  
+
+</center>
+
 And as you can see, after hitting return, a new prompt line appears and the cursor is waiting for the next command. 
 
 The `date` command didn't require anything else, so it worked just fine by itself, but some other commands require what are known as arguments. In these cases the format would be `command` `argument` (separated by a space). Some arguments are optional, and some are mandatory. Probably the most common type of argument is telling *bash* which file you want to do something to. 
@@ -104,12 +112,18 @@ It is important to be comfortable thinking about where you are in your computer 
 <center><img src="{{ site.url }}/images/file_location_error.png"></center>
 <br>
 
-Need to point at other directory, then merge last two sections
+Congrats! You've just received your first bash error message (maybe). Intrepreting error messages is an acquired skill, it does take time to get better at it. And by interpreting I really just mean googling things and being able to spot what applies to your situation so you can learn from someone else who's already dealt with the same problem. At one point maybe I'll write a post about error messages, as they are their own beast. Fortunately this one happens to be one of the more straightforward ones. It gives us the command that was used, the file we attempted to call it on, and tells us "No such file or directory". And if we enter the `ls` command just like we did above, we can see the computer is absolutely right (spoiler alert: it usually is). That file does not exist in the current directory. And when you enter a file name without any other information, the computer only looks in the exact directory you are sitting in.  
 
+In this case the file we are looking for is actually in the directory "another_directory", which is a 'subdirectory' to the one we are sitting in as we also see when entering `ls`. Further, if we instead enter:  
 
+```bash
+$ ls another_directory/
+```
 
+We are now providing an argument to the `ls` command, and asking it to list the contents of the directory named "another_directory".
 
-
+<center><img src="{{ site.url }}/images/ls_another_dir.png"></center>
+<br>
 
 
 special characters for changing directories '~'  '/'  '.' '..'
