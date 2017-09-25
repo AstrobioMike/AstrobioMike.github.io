@@ -47,11 +47,7 @@ That dollar sign just represents your prompt, and shouldn't be typed when replic
 To run a command in the terminal, you simply need to type the command after the prompt. Some commands don't require any further input and can be executed by hitting the return key. For example, there is a command called `date` that will output the time and date:
 <center><img src="{{ site.url }}/images/terminal_date.png"></center>
 
-<center>  
-
-![Alt text]({{ site.url }}/images/terminal_date.png "date")  
-
-</center>
+![Alt text]({{ site.url }}/images/terminal_date.png "date")
 
 And as you can see, after hitting return, a new prompt line appears and the cursor is waiting for the next command. 
 
