@@ -1,0 +1,4 @@
+bla bla
+bla bla bla
+line 3 of bla
+this is the last line in this file

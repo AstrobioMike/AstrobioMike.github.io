@@ -35,6 +35,9 @@ For now, copy and paste this block of commands into the terminal window, you can
 
 ```bash
 cd ~
+curl -O https://AstrobioMike.github.io/tutorial_files/bash_basics_temp.tar.gz
+tar -xvf 
+
 mkdir happy_belly_temp
 cd happy_belly_temp
 nano
@@ -59,14 +62,8 @@ $
 That dollar sign just represents your prompt, and shouldn't be typed when replicating the commands being used.
 
 To run a command in the terminal, you simply need to type the command after the prompt. Some commands don't require any further input and can be executed by hitting the return key. For example, there is a command called `date` that will output the time and date:
-<<<<<<< HEAD
 
 <center><img src="{{ site.url }}/images/terminal_date.png"></center>
-=======
-<center><img src="{{ site.url }}/images/terminal_date.png"></center>
-
-![Alt text]({{ site.url }}/images/terminal_date.png "date")
->>>>>>> 048bdf81a01ab4b4b5f5bd7e9574424456d6f9c4
 
 <br>
 And as you can see, after hitting return, a new prompt line appears and the cursor is waiting for the next command. 
