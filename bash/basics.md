@@ -84,7 +84,9 @@ head -n 15 text.txt
 <center><img src="{{ site.url }}/images/test.txt_head.png"></center>  
 
 <br>
-And that's really it. Those are the fundamentals that govern running virtually any individual command in the terminal. Now that you're familiar with this baseline formula, let's move on to looking at some more commands and learn how to navigate around your computer from inside the terminal.  
+And that's really it. Those are the fundamentals that govern running virtually any individual command in the terminal. Many commands have a dizzying amount of options that I (and I presume most others) never fully appreciate or explore. You can pull up a 'manual' for any command by using the command `man` followed by the command you're intersted in. For instance, `man head` would bring up the manual for `head`. Many commands, though not all, also have a help menu of sorts that can usually be accessed by typing the command followed by `-h` or `--help`. I personally most often google for examples of whatever I'm trying to use. But importantly, you don't need to memorize these things. Some things might become second nature depending on how frequently you use them, but the real benefit comes from just knowing what can be done (meaning knowing what tools there are out there), and having a baseline understanding of how to work in the terminal environment. Then when you come across something you need to do, you know what to look for to iron out the details. 
+
+Now that you're familiar with this baseline formula of entering commands, let's move on to looking at some more and learn how to navigate around your computer from inside the terminal.  
 <br>
 
 ---
@@ -195,7 +197,7 @@ Here, simply entering two periods as the destination argument to the `cd` comman
 <center><img src="{{ site.url }}/images/cd_up_shortcut_example.png"></center>
 
 <br>
-Fortunately there are many special characters in *bash*, some of which allow us to navigate around much more easily. Two periods as we just saw refers to the directory just above you. Another special one is simply a lone foreward slash `/`, which we've actually already seen when we provided the absolute path above (e.g. `/Users/Mike_Lee/bash_basics_temp`). What the `/` in the front is actually telling the computer is to start at the "root" directory. This is sort of like the home base of the operating system structure; it is the 'highest' directory level. If you type `ls /`, you will get a list of the directories and files located in the root directory. And if you wanted, you could move yourself into the root directory by entering `cd /`.  
+Fortunately there are many special characters in *bash*, some of which allow us to navigate around much more easily. Two periods as we just saw refers to the directory just above you. Using just a single period specifies your current directory, which will be useful when we look at how to copy and move files around below. Another special one is simply a lone foreward slash `/`, which we've actually already seen when we provided the absolute path above (e.g. `/Users/Mike_Lee/bash_basics_temp`). What the `/` in the front is actually telling the computer is to start at the "root" directory. This is sort of like the home base of the operating system structure; it is the 'highest' directory level. If you type `ls /`, you will get a list of the directories and files located in the root directory. And if you wanted, you could move yourself into the root directory by entering `cd /`.  
 
 Another special character related to location is the `~` symbol. This shortcut points to your "home" directory. A home directory is like a more personal spot on the computer. If you're on a server with multiple users, it would be your own personal location. And even if you're just working on your own computer, you likely login as a specific user when you turn it on. For instance, my home directory is located at `/Users/Mike_Lee`. We can see that if I change into my home directory and run `pwd`:
 
@@ -212,7 +214,7 @@ Having some concept of where you are and how to navigate around the computer via
 
 ---
 <br>
-### <u>Probing files</u>
+### <u>How to look at, make, and manipulate 'plain text files'</u>
 
 #### <i>Commands presented in this section:</i>  
 
@@ -221,23 +223,73 @@ Having some concept of where you are and how to navigate around the computer via
 |`head`      |prints the first few lines of a file|
 |`tail`      |prints the last few lines of a file|
 |`less`      |allows you to browse a file (exit with "q" key)|
-| `wc`       |count lines, words, and characters in a file|
+|`wc`       |count lines, words, and characters in a file|
+|`cp`      |copy a file or directory (use with caution)|
+|`mv`      |mv a file or directory (use with caution)|
+|`rm`      |delete a file or directory (use with caution)|
+|`mkdir`       |create a directory|
+|`rmdir`     |delete a directory|
+|`nano`|create and edit plain text files|
 
+<br>
+The baseline tools of *bash* are mostly useful for what are known as 'plain text files'. And I'm just realizing now that formally defining what a 'plain text file' is isn't all that simple. There are a few definitions you could check out at the [wiki](https://en.wikipedia.org/wiki/Plain_text) if you are interested, but a simple, working defintion might be something like: a text file that doesn't contain any special formatting characters or information and can be properly viewed and edited with any standard text editor. (Feels a little circular, but that's kinda the point.)
 
+Bioinformaticians (and lots of others who get to play with big data) work with plain text files all the time. Common formats are files with extensions like ".txt", ".csv" for comma-separated values, ".tsv" for tab-seperated values. More specialized extensions like ".docx" or ".xlsx" are not plain text files. Delimited files, like ".csv" and ".tsv", are a simple way to store tables as each row is delimited by a newline and each column by whichever delimiter is specified. And it's this simple formula that makes them very easy to work with. In the next section [(6 commands worth getting to know)](/bash/six_commands) you'll see and work with some examples of tables, and see why *bash* is invaluable for manipulating them. But for now just know that the text files we've been looking at so far are plain text files. 
 
-less, head, tail, wc
+#### Ways to probe flat text files
+We've already used a very common tool for peeking at files, the `head` command, and there is also has a corresponding `tail` version that prints the last 10 lines of a file by default:
+
+<center><img src="{{ site.url }}/images/tail_ex.png"></center>
+
+<br>
+Commands like `head` and `tail` are particularly useful when you have a very large file that might take a lot of memory to fully open (and therefore could be sluggish). Usually a file is formatted consistently and often just peeking at the first few lines tells you the structure, so you can then pull out just what you are interested in. Along the same lines when you are trying to parse a large file a certain way, you can just do a subset of it with the `head` command to make sure things are working before running it on the entire file. 
+
+Another useful command for just viewing a file is `less`. This opens a searchable reader that allows you to scroll through the document if you just want to read something over. Our example documents are kind of small for `less` to be useful here, but it would be run as such:
+
+```bash
+less text.txt
+```
+<center><img src="{{ site.url }}/images/less_ex.png"></center>
+
+<br>
+To exit the `less` program you need to press the "q" key. 
+
+The `wc` command is useful for counting how many lines, words, and characters there are in a file (wanting this information comes up more than you'd expect). For example, running it on the "text.txt" file with no options specified gives us all three:
+
+<center><img src="{{ site.url }}/images/wc_ex.png"></center>
 <br>
 
-### Manipulating files
+#### Ways to manipulate files and directories
+The commands `cp` and `mv` (copy and move) have a similar syntax. The command needs to be followed by 2 arguments. The first is the file you want to act on (the source), and the second is where you want it to go (the target). For instance, we can make a copy of the "text.txt" file like this: 
+
+```bash
+cp text.txt text_copy.txt
+```
+And now when we list the files in our directory they are both there: 
+
+<center><img src="{{ site.url }}/images/cp_ex.png"></center>
+
+<br>
+Similarly, we can specify our source or target (first or second arguments) to be somewhere other than our current working directory. Here we are going to make a copy of the file "yet_another_text_file.txt" from the subdirectory "another_directory" in our current working directory. To specify the current working directory as the target location, we can simply provide a single period (`.`):
+
+```bash
+cp another_directory/yet_another_text_file.txt .
+```
+
+<center><img src="{{ site.url }}/images/cp2_ex.png"></center>
+
+<br>
+And now we have a copy of that file in our current working directory. 
+
+Notice that in the first `cp` example we provided a new name also in the target location, ("text_copy.txt"), while in the second example when we used `.` to specify copying to the current working directory it simply copied the file with the same name as the original. 
+
+
 cp, mv, rm, mkdir, rmdir 
 <br>
 
 ### Making plain text files
 nano, vim, emacs
 
-{% highlight rouge %}
-$ for i in `cat samples`; do echo $i; wc -l "$i".txt; done
-{% endhighlight %}
 
 
 ```bash
