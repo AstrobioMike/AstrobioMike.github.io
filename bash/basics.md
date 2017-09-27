@@ -19,14 +19,7 @@ To start, let's open up a terminal window. If you have a Mac, this is easy as yo
 <br>
 
 
-Okay, not really. Things do get a little more complicated, but there are programs you can download to get the appropriate *bash* environment on a PC. Unfortunately I have no experience with that though so you'll have visit the almighty [google](https://www.google.com/search?source=hp&q=running+terminal+on+pc&oq=running+terminal+on+pc&gs_l=psy-ab.3..0i22i30k1l2.4571.9293.0.10104.25.22.0.0.0.0.175.1978.12j9.21.0....0...1.1.64.psy-ab..4.20.1827.0..0j0i131k1j0i10k1j33i22i29i30k1.RZTO4OlOhZk).
-
-
-<br>
-<center><img src="{{ site.url }}/images/under_construction.jpeg"></center>
-<center><h3>UNDER CONSTRUCTION</h3></center>
-<br>
-
+Okay, not really. Things do get a little more complicated, but there are programs you can download to get the appropriate *bash* environment on a PC. Unfortunately I have no experience with that though so you'll have visit the almighty [google](https://www.google.com/search?source=hp&q=running+terminal+on+pc&oq=running+terminal+on+pc&gs_l=psy-ab.3..0i22i30k1l2.4571.9293.0.10104.25.22.0.0.0.0.175.1978.12j9.21.0....0...1.1.64.psy-ab..4.20.1827.0..0j0i131k1j0i10k1j33i22i29i30k1.RZTO4OlOhZk).  
 
 ### <u>First things first!</u>
 For right now, and only for right now, I would like you to blindly copy and paste the commands here into your terminal window to set up the (very tiny) temporary files you'll need if you want to actively follow along below. Just reading through is of course fine, but if you are totally new to this, I'd recommend doing things with me. I promise this will be the only time you are just copying and pasting without an understanding of what you are doing. Besides, by the time you get to the end of this page, you'll be able to completely understand what's going on in here!
@@ -60,7 +53,7 @@ To run a command in the terminal, you simply need to type the command after the 
 <br>
 And as you can see, after hitting return, a new prompt line appears and the cursor is waiting for the next command. 
 
-The `date` command didn't require anything else, so it worked just fine by itself, but some other commands require what are known as arguments. In these cases the format would be `command` `argument` (separated by a space). Some arguments are optional, and some are mandatory. Probably the most common type of argument is telling *bash* which file you want to do something to. 
+The `date` command didn't require anything else, so it worked just fine by itself, but some other commands require what are known as arguments. In these cases the format would be `command` `argument` (separated by a space). **Some arguments are optional, and some are mandatory**. Probably the most common type of argument is telling *bash* which file you want to do something to. 
 
 For example, the `head` command prints out the first few lines of a file to the terminal, so you need to tell it which file you want it to act on. Take for example this regular text file named "text.txt":
 
@@ -72,7 +65,7 @@ You have this file now too, so if we run the `head` command on it, the terminal 
 <center><img src="{{ site.url }}/images/head_example.png"></center> 
 
 <br>
-In this case, providing a file to the `head` command is required; a mandatory 'argument' for this is telling it what file we want it to act on. But this command also has optional arguments. For example, by default it prints out only the first 10 lines, but we can tell it to do however many lines we want by adding what's known as a 'flag'. These are often led by a single dash, followed by a character representing which argument you're specifying, followed by the value (or file) you want to give it. Here is an example where we tell the `head` command we want the first 15 lines of the document, overriding the default 10:
+In this case, providing a file to the `head` command is required; the mandatory argument for this is telling it what file we want it to act on. But this command also has optional arguments. For example, by default it prints out only the first 10 lines, but we can tell it to do however many lines we want by adding what's known as a 'flag'. These are often led by a single dash, followed by a character representing which argument you're specifying, followed by the value (or file) you want to give it. Here is an example where we tell the `head` command we want the first 15 lines of the document, overriding the default 10:
 
 
 ```bash
@@ -214,7 +207,7 @@ Having some concept of where you are and how to navigate around the computer via
 
 ---
 <br>
-### <u>How to look at, make, and manipulate 'plain text files'</u>
+### <u>How to look at, manipulate, and make 'plain text' files</u>
 
 #### <i>Commands presented in this section:</i>  
 
@@ -231,13 +224,13 @@ Having some concept of where you are and how to navigate around the computer via
 |`rmdir`     |delete a directory|
 |`nano`|create and edit plain text files|
 
-<br>
-The baseline tools of *bash* are mostly useful for what are known as 'plain text files'. And I'm just realizing now that formally defining what a 'plain text file' is isn't all that simple. There are a few definitions you could check out at the [wiki](https://en.wikipedia.org/wiki/Plain_text) if you are interested, but a simple, working defintion might be something like: a text file that doesn't contain any special formatting characters or information and can be properly viewed and edited with any standard text editor. (Feels a little circular, but that's kinda the point.)
+#### What is a plain text file?
+The baseline tools of *bash* are mostly useful for what are known as plain text files, also commonly referred to as 'flat' files. And I'm just realizing now that formally defining what a 'plain text file' is isn't all that simple. There are a few definitions you could check out at the [wiki](https://en.wikipedia.org/wiki/Plain_text) if you are interested, but a simple, working defintion might be something like: a text file that doesn't contain any special formatting characters and can be properly viewed and edited with any standard text editor.
 
-Bioinformaticians (and lots of others who get to play with big data) work with plain text files all the time. Common formats are files with extensions like ".txt", ".csv" for comma-separated values, ".tsv" for tab-seperated values. More specialized extensions like ".docx" or ".xlsx" are not plain text files. Delimited files, like ".csv" and ".tsv", are a simple way to store tables as each row is delimited by a newline and each column by whichever delimiter is specified. And it's this simple formula that makes them very easy to work with. In the next section [(6 commands worth getting to know)](/bash/six_commands) you'll see and work with some examples of tables, and see why *bash* is invaluable for manipulating them. But for now just know that the text files we've been looking at so far are plain text files. 
+Bioinformaticians (and lots of others who get to play with big data regularly) work with plain text files so much because not being constrained to any special (arbitary) characteristics means methods for interacting with them can be standardized. So when you learn one command that works on a flat file, it works on all of them the same way. Common formats are files with extensions like ".txt", ".csv" for comma-separated values, ".tsv" for tab-seperated values. More specialized extensions like ".docx" or ".xlsx" are not plain text files. Delimited files, like ".csv" and ".tsv", are a simple way to store tables as each row is delimited by a newline and each column by whichever delimiter is specified. And it's this simple formula that makes them very easy to work with. In the next section [(6 commands worth getting to know)](/bash/six_commands) you'll see and work with some examples of tables, and see why *bash* is invaluable for manipulating them. But for now just know that the text files we've been looking at so far are plain text files. 
 
 #### Ways to probe flat text files
-We've already used a very common tool for peeking at files, the `head` command, and there is also has a corresponding `tail` version that prints the last 10 lines of a file by default:
+We've already used a very common tool for peeking at files, the `head` command. There is also a corresponding `tail` version that prints the last 10 lines of a file by default:
 
 <center><img src="{{ site.url }}/images/tail_ex.png"></center>
 
@@ -260,7 +253,14 @@ The `wc` command is useful for counting how many lines, words, and characters th
 <br>
 
 #### Ways to manipulate files and directories
-The commands `cp` and `mv` (copy and move) have a similar syntax. The command needs to be followed by 2 arguments. The first is the file you want to act on (the source), and the second is where you want it to go (the target). For instance, we can make a copy of the "text.txt" file like this: 
+
+<div class="warning">
+<center>WARNING</center>
+Using commands that do things like create, copy, and move and rename files/directories in the terminal <b>will overwrite</b> files/directories that already exist <b>if they have the same name</b>. And using commands that delete things will by default do so without any warning or confirmation. Caution is required until you get used to working with them – and then forever after.
+</div>
+
+
+The commands `cp` and `mv` (copy and move) both function under a similar syntax. The command entered needs to be followed by 2 **positional arguments**. Positional arguments are arguments that understood by the computer to be something specific based on where they come following the command. In the case of the `cp` and `mv` commands the first positional argument is the file you want to act on (the source), and the second positional argument is where you want it to go (the target). For instance, we can make a copy of the "text.txt" file like this: 
 
 ```bash
 cp text.txt text_copy.txt
@@ -270,7 +270,7 @@ And now when we list the files in our directory they are both there:
 <center><img src="{{ site.url }}/images/cp_ex.png"></center>
 
 <br>
-Similarly, we can specify our source or target (first or second arguments) to be somewhere other than our current working directory. Here we are going to make a copy of the file "yet_another_text_file.txt" from the subdirectory "another_directory" in our current working directory. To specify the current working directory as the target location, we can simply provide a single period (`.`):
+Similarly, we can specify our source or target (first or second arguments) to be somewhere other than our current working directory. Here we are going to make a copy of the file "yet_another_text_file.txt" from the subdirectory "another_directory" and put the copy in our current working directory. To specify the current working directory as the target location, we can simply provide a single period (`.`) as the target:
 
 ```bash
 cp another_directory/yet_another_text_file.txt .
@@ -281,17 +281,113 @@ cp another_directory/yet_another_text_file.txt .
 <br>
 And now we have a copy of that file in our current working directory. 
 
-Notice that in the first `cp` example we provided a new name also in the target location, ("text_copy.txt"), while in the second example when we used `.` to specify copying to the current working directory it simply copied the file with the same name as the original. 
-
-
-cp, mv, rm, mkdir, rmdir 
-<br>
-
-### Making plain text files
-nano, vim, emacs
-
-
+Notice that in the first `cp` example we provided a new name in the target location, ("text_copy.txt"), while in the second example when we used `.` to specify copying to the current working directory it simply copied the file with the same name as the original. If we had wanted to copy to our current location but also give it a new name, we would run it with the desired new name as the target (second argument):
 
 ```bash
-$ for i in `cat samples`; do echo $i; wc -l "$i".txt; done
+cp another_directory/yet_another_text_file.txt yet_another_text_file_copy.txt
 ```
+
+<center><img src="{{ site.url }}/images/cp3_ex.png"></center>
+
+<br>
+Now we have the original copy we made, "yet_another_text_file.txt", and the copy that we renamed, "yet_another_text_file.txt". Note again that if we don't provide a path, relative or absolute, the computer looks in the current working directory.
+
+The `mv` command is used to move files and to rename files. And as mentioned works the same as the `cp` command, requiring a source argument and a target argument that need to be entered in that order. Here we will move a file from here into our subdirectory, and demonstrate how easy it is to accidentally overwrite something.  
+
+Currently our current working directory and our subdirectory contain these files:  
+
+<center><img src="{{ site.url }}/images/ls_both_dir_ex1.png"></center>
+
+<br>
+After we move the "text.txt" file, it is only present in the subdirectory:
+
+```bash
+mv text.txt another_directory/
+```
+
+<center><img src="{{ site.url }}/images/mv_ls_ex.png"></center>
+
+<br>
+Note here, that we didn't provide a file name for the target of the `mv` command, only the location of the subdirectory we wanted to move it into. Just like when we used `cp` to copy a file to our current working directory with a `.` above, this results is keeping the name of the original source file.  
+
+Let's take a quick look again at what's in these two files that are now in the subdirectory:
+
+<center><img src="{{ site.url }}/images/mv_overwrite_ex1.png"></center>
+
+<br>
+And now let's see an example of how easy it is to overwrite a file accidentally by using the `mv` command, but specifying the name of the output to be "yet_another_text_file.txt" (first we are getting a copy of "text.txt" back into our working directory, as we just moved it):
+
+```bash
+cp another_directory/text.txt .
+mv text.txt another_directory/yet_another_text_file.txt
+```
+
+<center><img src="{{ site.url }}/images/mv_overwrite_ex2.png"></center>
+
+<br>
+
+Note how the contents of "yet_another_text_file.txt" have changed. Its original contents would be lost forever if this were the only location the file were saved in. 
+
+To delete files (intentionally) there is the `rm` command (remove). This requires at least one argument specifying the file you want to delete: 
+
+<center><img src="{{ site.url }}/images/mv_overwrite_ex2.png"></center>
+
+<br>
+
+### How to make and delete directories
+
+To create new directory we use the command `mkdir` followed by one argument for the directory name:
+
+```bash
+mkdir our_new_directory
+```
+<center><img src="{{ site.url }}/images/mkdir_ex.png"></center>
+
+<br>
+And similarly, directories can be deleted with `rmdir`:
+
+```bash
+rmdir our_new_directory
+```
+<center><img src="{{ site.url }}/images/rmdir_ex.png"></center>
+
+<br>
+Though if the target directory is not empty, `rmdir` will give you an error as a (rare) safety measure. There are ways to force this action or to use the regular `rm` command on directories that you can find by looking further into the commands and the optional arguments you can provide them.
+
+### Making and editing plain text files
+It is often very useful to be able to generate new plain text files quickly at the command line, or make some changes to an existing one, and there are many ways to do this. One of the many ways involves using a text editor that operates on the command line, and there are several common text editors that fit this bill. I think the easiest to use at first is `nano`. So here we're just going to go over a quick example of that, but you should know there are more and better out there if you're willing to dedicate time to *another* steep learning curve. (I'm still dragging my feet a bit on that one too, so don't feel bad.)  
+
+When we run the command `nano` it will open the program (the "nano" text editor), and our terminal window changes from our regular view, with our prompt that we've seen so far, to a text editor interface. The command itself can be run without any arguments and it will simply open a new file that you can then modify and save before you exit. But I like to start the editor with a file name, which is what the first positional argument is if you give it one:
+
+```bash
+nano test.txt
+```
+<center><img src="{{ site.url }}/images/blank_nano_ex.png"></center>
+
+<br>
+Now our view has changed as we are in the program. You can see in mine there is a header bar telling me which version of "nano" I am in and the name of the file we are working on (I gave it "test.txt"). And there are some keyboard shortcuts listed at the bottom. 
+
+Now we can simply type as we normally would to add a bit of text:  
+
+<center><img src="{{ site.url }}/images/nano_text_ex.png"></center>
+
+<br>
+And then there are a few ways to save and exit. For me, I press `Ctrl + x`, at which point you will be asked if you want to "Save modified buffer?". Here pressing the `y` key signifies yes we want to save. And then it asks what we'd like to name the file, and has our current file name in place already. So long as we don't want to change the name of the file, we can just hit `return`.  
+
+So altogether one way to get out of "nano" and save the file: `Ctrl + x`, `y`, `return`.  
+
+Now we can see that we've made the new file with `ls` and take a peek at it with `head`:
+
+<center><img src="{{ site.url }}/images/nano_head_ex.png"></center>
+
+<br>
+<br>
+
+---
+<br>
+### Congrats on getting through the basics!
+Some of these things may seem trivial as used in these examples here, and I know that can make the effort required to learn to use them harder to come by, but these basics really are the foundation to do everything at the command line. Understanding the general rules of commands, their arguments, and the required syntax will make everything you try to do easier.  
+
+There are a lot of base commands in *bash*, and a dizzying number of optional arguments for most of them. Again, google is our friend. If you end up working in the terminal window enough, you will remember some things, but also you will often do a quick search to remember what the flag is for a specific argument, or how exactly a specific command works. This really isn't about memorization overall.  
+
+Now that you're comfortable with the basics, head on over to [6 commands worth getting to know](/bash/six_commands) for a walkthrough of some of the other commands that I use all the time.

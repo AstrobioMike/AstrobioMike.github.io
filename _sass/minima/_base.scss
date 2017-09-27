@@ -230,6 +230,25 @@ pre {
   border: 1.5px solid darken(#000000,20)
 }
 
+/**
+  * Warning
+  */
+  
+.warning {
+  color: #990000;
+  margin-top: 1.25em;
+  margin-bottom: 1.25em;
+  margin-left: 1.5em;
+  margin-right: 1.5em;
+  font-size: 15px;
+  line-height: 1.25;
+  padding: .5em;
+  text-align: justify;
+  text-indent: 0;
+  background-color: #F0F8FF;
+  border: 1px solid darken(#7f0000,20)
+}
+
 
 /**
  * Tables
