@@ -2,6 +2,7 @@
 layout: default
 title: CV
 permalink: /cv/
+navigation_weight: 4
 ---
 
 ## Michael D. Lee – Science Mercenary

@@ -2,6 +2,7 @@
 layout: page
 title: About
 permalink: /about/
+navigation_weight: 3
 ---
 
 Hi there. My name's Mike. I use the tools of bioinformatics to explore microbial ecology and evolution in all kinds of different systems. I'm currently a PhD student at University of Southern California, and will soon be moving on to NASA's Ames Research Center in Moffet Field, CA as a [Space Biology postdoctoral fellow](https://www.nasa.gov/feature/nasa-alfred-p-sloan-foundation-award-fellowships-to-study-space-station-microbes) where my primary focus will be hunting for molecular evolution in microbes from the International Space Station.  

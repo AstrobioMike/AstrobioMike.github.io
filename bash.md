@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Bash Central
+navigation_weight: 2
 ---
 
 **Shells and Unix and terminals, oh my!**  
