@@ -768,13 +768,13 @@ th, td {
 //         }
     @media #{$large} {
         @include grid(12,2);
-        @include prefix(12,0.3);
-        @include suffix(12,0.25);
+        @include prefix(12,0);
+        @include suffix(12,0);
         h3,
         .bio-photo,
         p,
         .author-social {
-            max-width: 250px;
+            max-width: 150px;
         }
     }
     @media #{$x-large} {
