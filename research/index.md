@@ -1,8 +1,7 @@
 ---
-layout: default
-title: CV
-permalink: /cv/
-navigation_weight: 4
+layout: main
+title: Research
+permalink: /research/
 ---
 
 ## Michael D. Lee – Science Mercenary
@@ -12,8 +11,13 @@ navigation_weight: 4
 *3616 Trousdale Pkwy, AHF 107*  
 *Los Angeles, CA 90089*  
 *732-691-6402*  
-*Leemd@usc.edu*
-<br>
+*Leemd@usc.edu*  
+
+
+
+
+My current research efforts are focused primarily on: photoautotroph-heterotroph interactions of the nitrogen-fixing cyanobacterium *Trichodesmium erythraeum*; investigating molecular mechanisms potentially involved with regulating nitrogen-fixation in *Trichodesmium*; combining metagenomics and pangenomics to characterize the global distributions of *Synechococcus* spp.; and assessing the microbial communities of aquaponics systems.  
+
 <br>
 ### Select Publications
 

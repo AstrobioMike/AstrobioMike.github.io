@@ -2,7 +2,7 @@
  * Reset some basic elements
  */
 body, h1, h2, h3, h4, h5, h6,
-p, blockquote, pre, hr,
+p, pre, hr,
 dl, dd, ol, ul, figure {
   margin: 0;
   padding: 0;
@@ -31,7 +31,7 @@ body {
  * Set `margin-bottom` to maintain vertical rhythm
  */
 h1, h2, h3, h4, h5, h6,
-p, blockquote, pre,
+p, pre,
 ul, ol, dl, figure,
 %vertical-rhythm {
   margin-bottom: $spacing-unit / 2;
@@ -66,7 +66,7 @@ figcaption {
  * Lists
  */
 ul, ol {
-  margin-left: $spacing-unit;
+//   margin-left: $spacing-unit;
 }
 
 li {
@@ -91,11 +91,11 @@ h1, h2, h3, h4, h5, h6 {
  * Links
  */
 a {
-  color: $brand-color;
+  color: #0047b3;
   text-decoration: none;
 
   &:visited {
-    color: darken($brand-color, 15%);
+    color: darken($brand-color, 8%);
   }
 
   &:hover {
@@ -114,20 +114,19 @@ a {
 
 
 /**
- * Blockquotes
+ * Blockquotes - now in typography.scss
  */
-blockquote {
-  color: $grey-color;
-  border-left: 4px solid $grey-color-light;
-  padding-left: $spacing-unit / 2;
-  @include relative-font-size(1.125);
-  letter-spacing: -1px;
-  font-style: italic;
-
-  > :last-child {
-    margin-bottom: 0;
-  }
-}
+// blockquote {
+//   color: #000000;
+//   border-left: 4px solid $grey-color-dark;
+//   padding-left: $spacing-unit / 2;
+//   padding-right: $spacing-unit /2;
+//   @include relative-font-size(1.1);
+// 
+//   > :last-child {
+//     margin-bottom: 0;
+//   }
+// }
 
 
 

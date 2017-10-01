@@ -1,8 +1,8 @@
 ---
 layout: main
-title: 6 commands worth getting to know
+title: What the hell is a PATH, and how do I get it to do what I want?
 categories: [bash, tutorial]
-permalink: /bash/six_commands
+permalink: /bash/modifying_your_path
 ---
 
 
@@ -10,15 +10,3 @@ permalink: /bash/six_commands
 <center><h3>UNDER CONSTRUCTION</h3></center>
 <br>
 <br>
-
-#### <u>grep</u>
-
-#### <u>awk</u>
-
-#### <u>sed</u>  
-
-#### <u>cut</u>
-
-#### <u>paste</u>
-
-#### <u>tr</u>

@@ -1,0 +1,267 @@
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+
+/* 
+   Headings
+   ========================================================================== */
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: $heading-font;
+}
+h1 {
+    @include font-size(32);
+}
+h2 {
+    @include font-size(28);
+}
+h3 {
+    @include font-size(24);
+    font-size: 1.6em;
+    line-height: 1.0833;
+    margin-bottom: 0.5em;
+    margin-top: 1.5em;
+}
+h4 {
+    @include font-size(18);
+  font-size: 1.3em;
+}
+h5 {
+    @include font-size(16);
+}
+h6 {
+    @include font-size(14);
+}
+
+#articlecontent h2 {
+    margin-top: 2em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    padding-left: 0.5em;
+    border-bottom: 1px solid #AAA;
+    background-color: #ecf2f9;
+}
+
+#articlecontent h3 {
+    padding: 0em;
+}
+
+#articlecontent a {
+    color: #444499;
+    text-decoration: none;
+}
+
+#table-of-contents a {
+    color: white;
+}
+
+#articlecontent p {
+    text-align: justify;
+}
+
+
+#articlecontent img {
+    border: 10px solid #EEE;
+    border-radius: 10px;
+}
+
+/* 
+   Links
+   ========================================================================== */
+
+a { 
+    text-decoration: none;
+    color: $link-color; 
+    &:visited { 
+        color: $linkcolorvisited; 
+    }
+    &:hover { 
+        color: $linkcolorhover; 
+    }
+    &:focus { 
+        outline: thin dotted; 
+        color: $linkcolorfocus;
+    }
+    &:hover, 
+    &:active { 
+        outline: 0; 
+    }
+}
+
+/* 
+   Figure captions
+   ========================================================================== */
+
+figcaption {
+    padding-top: 10px;
+    @include font(14);
+    line-height: 1.3;
+    color: lighten($text-color, 10);
+}
+
+/* 
+   Feature image captions
+   ========================================================================== */
+
+.image-credit {
+    @include grid(12,10);
+    @include prefix(12,1);
+    @include suffix(12,1);
+    display: block;
+    text-align: right;
+    @include font(12);
+    line-height: 1.3;
+    font-style: italic;
+    color: lighten($text-color, 30);
+    @media #{$small} {
+        @include grid(12,9);
+        @include prefix(12,0);
+        @include suffix(12,0);
+    }
+    @media #{$x-large} {
+        @include grid(12,8.5);
+    }
+    a {
+        color: lighten($text-color, 30);
+    }
+}
+
+/* 
+   Notices
+   ========================================================================== */
+
+.width-40 {width: 40%;}
+.width-50 {width: 50%;}
+.width-60 {width: 60%;}
+.width-70 {width: 70%;}
+.width-80 {width: 80%;}
+.width-90 {width: 90%;}
+
+.notice {
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+    margin-left: 1.5em;
+    padding: .5em;
+    text-align: justify;
+    text-indent: 0;
+    @include font-rem(14);
+    background-color: #FFFFCC;
+    border: 1px solid darken($body-color,20);
+    @include rounded(3px);
+}
+
+/* 
+   Blockquotes
+   ========================================================================== */
+blockquote{
+  display:block;
+  background-color: #ecf2f9;
+  margin-left: 20px;
+  margin-right: 20px;
+  position: relative;
+  
+  color: #000000;
+  border-left: 6px solid $grey-color-dark;
+  border-right: 2px solid $grey-color-dark;
+  padding-left: 10px;
+  padding-right: 8px;
+  padding-top: 5px;
+  @include relative-font-size(1.1);
+  
+  font-style: italic;
+  
+  /*Box Shadow - (Optional)*/
+  -moz-box-shadow: 2px 2px 15px #ccc;
+  -webkit-box-shadow: 2px 2px 15px #ccc;
+  box-shadow: 2px 2px 15px #ccc;
+}
+
+blockquote::after{
+  /*Reset to make sure*/
+  content: "";
+}
+
+blockquote a{
+  text-decoration: none;
+  background: #eee;
+  cursor: pointer;
+  padding: 0 3px;
+  color: #c76c0c;
+}
+
+blockquote a:hover{
+ color: #666;
+}
+
+blockquote em{
+  font-style: italic;
+}
+
+.blockquote-author {
+    text-align: right;
+    @include relative-font-size(1.2);
+    display: block;
+    padding-right: 75px;
+    padding-bottom: 5px;
+    color: #222;
+    font-style: normal;
+    font: Arial;
+}
+/* 
+   Footnotes
+   ========================================================================== */
+
+.footnotes {
+    ol, li, p {
+        margin-bottom: 0;
+        @include font-rem(14);
+    }
+}
+
+/* 
+   Paragraphs
+   ========================================================================== */
+
+p {
+    margin: 0 0 $indent-var;
+    // sibling indentation
+  @if $paragraph-indent == true {
+    & + p {
+            text-indent: $indent-var;
+            margin-top: -($indent-var);
+
+        }
+    }
+}
+
+/* 
+   Code snippets
+   ========================================================================== */
+
+tt, code, kbd, samp, pre {
+    font-family: $code-font;
+}
+p,
+li { 
+    code {
+        @include font-rem(12);
+        white-space: nowrap;
+        padding: 0 2px;
+        padding-bottom: 1px;
+        background-color: #efefef;
+        border: 1px solid #969696;
+        color: #bf2727;
+        @include rounded(3px);
+    }
+}
+pre {
+    @include font-rem(12);
+    line-height: 1.5;
+    overflow-x: auto;
+    background-color: #efefef;
+    border: 1px solid #969696;
+    margin-bottom: 40px;
+    padding: 10px;
+    border-left: 5px solid #dc5252;
+    border-radius: 5px;
+}

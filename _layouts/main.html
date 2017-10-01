@@ -8,23 +8,15 @@
 
   {% include head.html %}
 
-  <body class="page">
+  <body>
 
     {% include _header.html %}
     {% include _browser-upgrade.html %}
-
 
     
     <div class="wrapper">
       <div class="pull-right">{% include _drop-down-menu.html %}</div>
     </div>
-    
-
-
-    <div class="article-author-side">
-      {% include _left-panel.html %}
-    </div>
-
     
     <main class="page-content" aria-label="Content">
     
@@ -35,24 +27,6 @@
     </header>
 
         {{ content }}
-
-<div class="home">
-
-  <h1 class="page-heading">Recent posts</h1>
-  <ul class="post-list">
-    {% for post in site.posts %}
-      <li>
-        {% assign date_format = site.minima.date_format | default: "%b %-d, %Y" %}
-        <span class="post-meta">{{ post.date | date: date_format }}</span>
-
-        <h2>
-          <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
-        </h2>
-      </li>
-    {% endfor %}
-  </ul>
-
-</div>
 
       </div>
     </main>

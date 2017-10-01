@@ -23,14 +23,62 @@
   &:visited {
     color: $grey-color-dark;
   }
+  &:hover {
+    color: $text-color;
+    text-decoration: none;
+  }
 }
 
 .site-nav {
   float: right;
+  margin-top: 4px;
   line-height: $base-line-height * $base-font-size * 2.25;
-
+    ul {
+        margin: 0;
+        padding: 0;
+        clear: both;
+        list-style-type: none;
+    }
+    li {
+        display: block;
+        list-style-type: none;
+        border-bottom: 1px solid lighten($black,80);
+        border-bottom: 1px solid fade($black,10);
+        @include font-rem(16);
+        &:last-child {
+            border-bottom: 0 solid transparent;
+        }
+        @media #{$small} {
+            display: inline;
+            &:not(:last-child) {
+              margin-right: 25px;
+            }
+            white-space: nowrap;
+            border-bottom: 0 solid transparent;
+        }
+        a { 
+            display: block;
+            padding: 0px 0;
+            decoration: none;
+            color: #0047b3;
+            &:visited {
+            color: darken(#0047b3, 15%);
+            }
+            border-bottom: 0 solid transparent;
+            @include transition(all .2s);
+            @media #{$medium} {
+                display: inline;
+                padding: 0;
+            }
+            @media #{$small} {
+                display: inline;
+                padding: 0;
+            }
+        }
+    }  
   .nav-trigger {
       display: none;
+      
   }
 
   .menu-icon {
@@ -107,13 +155,15 @@
  * Site footer
  */
 .site-footer {
-  border-top: 1px solid $grey-color-light;
+  border-top: 1px solid $grey-color-dark;
   padding: $spacing-unit 0;
 }
 
 .footer-heading {
   @include relative-font-size(1.125);
-  margin-bottom: $spacing-unit / 2;
+  margin-bottom: 10px;
+  color: #595959;
+  text-align: right;
 }
 
 .contact-list,
@@ -123,15 +173,15 @@
 }
 
 .footer-col-wrapper {
-  @include relative-font-size(0.9375);
-  color: $grey-color;
+  @include relative-font-size(.9);
+  color: $grey-color-dark;
   margin-left: -$spacing-unit / 2;
   @extend %clearfix;
 }
 
 .footer-col {
   float: left;
-  margin-bottom: $spacing-unit / 2;
+  margin-bottom: 0px;
   padding-left: $spacing-unit / 2;
 }
 
@@ -178,6 +228,7 @@
  */
 .page-content {
   padding: $spacing-unit 0;
+  text-align: justify;
 }
 
 .page-heading {

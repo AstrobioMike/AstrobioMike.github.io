@@ -2,18 +2,14 @@
 
   <div class="wrapper">
 
-    <h2 class="footer-heading">{{ site.title | escape }}</h2>
+<!--     <h2 class="footer-heading">{{ site.title | escape }}</h2> -->
 
     <div class="footer-col-wrapper">
       <div class="footer-col footer-col-1">
         <ul class="contact-list">
           <li>
-            {% if site.author %}
-              {{ site.author | escape }}
-            {% else %}
-              {{ site.title | escape }}
-            {% endif %}
-            </li>
+            {% include icon-twitter.html username=site.twitter_username %}
+          </li>
             {% if site.email %}
             <li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
             {% endif %}
@@ -24,26 +20,27 @@
         <ul class="social-media-list">
           {% if site.twitter_username %}
           <li>
-            {% include icon-twitter.html username=site.twitter_username %}
+
           </li>
           {% endif %}
           
           {% if site.github_username %}
           <li>
-            {% include icon-github.html username=site.github_username %}
+
           </li>
           {% endif %}
-
-          
-          
         </ul>
       </div>
 
-      <div class="footer-col footer-col-3">
-        <p>{{ site.description | escape }}</p>
+      <div class="footer-col footer-col-3">        
+        <p align="right"><b>{{ site.title | escape }}</b><br>
+        {{ site.description | escape }}</p>
       </div>
     </div>
 
   </div>
-
+<center><span><font size="-1">&copy; {{ site.time | date: '%Y' }} {{ site.author }}. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> and built off of the <a href="https://github.com/jekyll/minima" rel="nofollow">minima</a> template.</font></span></center>
 </footer>
+
+
+

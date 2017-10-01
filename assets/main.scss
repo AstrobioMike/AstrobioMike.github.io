@@ -1,6 +1,30 @@
 ---
-# Only the main Sass file needs front matter (the dashes are enough)
+sitemap: false
 ---
 
-@import "minima";
+/*
+ *
+ *  Minimal Mistakes
+ *
+ *  Designer: Michael Rose
+ *  Twitter: http://twitter.com/mmistakes
+ *
+*/
 
+// Partials
+@import "fancymenu";
+@import "variables";
+@import "grid";
+@import "mixins";
+@import "normalize";
+@import "site";
+@import "typography";
+@import "pygments";
+@import "coderay";
+@import "elements";
+@import "forms";
+@import "page";
+@import "vendor/font-awesome/font-awesome";
+@import "vendor/magnific-popup/magnific-popup";
+@import "minima";
+//@import "vendor/google/fonts";

@@ -1,0 +1,168 @@
+.fancy-hList-div {
+  height: 25px;
+  width: 100%;
+}
+
+.fancy-menu {
+  display: block;
+  position: relative;
+  cursor: pointer;
+}
+
+.fancy-menu a {
+  padding: 5px 0 0;
+}
+.fancy-menu-title {
+  display: block;
+  width: 142px;;
+  height: 20px;
+  padding: 5px 0 0;
+  background: #f3f3f3;
+  text-align: center;
+  color: #444444;
+  font-size: 0.8em;
+  font-weight: bold;
+  transition: 0.3s background-color;
+  font-family: "Helvetica Neue",sans-serif;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+}
+
+.fancy-menu-title:before {
+  content: "";
+  display: block;
+  height: 0;
+  border-top: 5px solid #f3f3f3;
+  border-left: 71px solid transparent;
+  border-right: 71px solid transparent;
+  border-bottom: 0 solid #dddddd;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 101;
+  transition:
+    0.2s 0.2s border-top ease-out,
+    0.3s border-top-color;
+}
+
+.fancy-menu-title:hover { background: #f1f1f1; }
+.fancy-menu-title:hover:before { border-top-color: #444444; }
+
+
+.fancy-menu-title:after {
+  content: "";
+  display: block;
+  height: 0;
+  border-left: 71px solid transparent;
+  border-right: 71px solid transparent;
+  border-bottom: 0 solid #ebebeb;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 101;
+  transition: 0.2s border-bottom ease-in;
+}
+
+.fancy-menu-dropdown {
+  display: block;
+  text-align: center;
+  width: 142px;
+  padding: 3px 0;
+  line-height: 2.7em;
+  position: absolute;
+  background: #ebebeb;
+  z-index: 100;
+  color: #444444;
+  font-size: 0.8em;
+  font-weight: lighter;
+  font-family: "PT Sans Narrow",sans-serif;
+  text-transform: uppercase;
+
+  transition:
+    0.5s padding,
+    0.5s background;
+}
+
+.fancy-menu-dropdown:after {
+  content: "";
+  display: block;
+  height: 0;
+  border-top: 5px solid #ebebeb;
+  border-left: 71px solid transparent;
+  border-right: 71px solid transparent;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 101;
+  transition: 0.5s border-top;
+}
+
+.fancy-menu:not(:hover) > .fancy-menu-dropdown {
+  padding: 4px 0;
+  background: #dddddd;
+  z-index: 99;
+}
+
+.fancy-menu:not(:hover) > .fancy-menu-dropdown:after {
+  border-top-color: #dddddd;
+}
+
+.fancy-menu:not(:hover) > .fancy-menu-title:after {
+  border-bottom-color: #dddddd;
+}
+
+.fancy-hList-div li {
+  list-style-type: none;
+}
+
+.fancy-menu-a {
+  color: #636363;
+  text-decoration: none;
+}
+
+.fancy-menu-dropdown > * {
+  overflow: hidden;
+  height: 30px;
+  padding: 5px 10px;
+  background: rgba(0,0,0,0);
+  white-space: nowrap;
+  transition:
+    0.5s height cubic-bezier(.73,.32,.34,1.5),
+    0.5s padding cubic-bezier(.73,.32,.34,1.5),
+    0.5s margin cubic-bezier(.73,.32,.34,1.5),
+    0.5s 0.2s color,
+    0.2s background-color;
+}
+
+.fancy-menu-dropdown > *:hover {
+  background: rgba(0,0,0,0.1);
+}
+
+.fancy-hList > li:not(:hover) > .fancy-menu-dropdown > * {
+  visibility: hidden;
+  height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin: 0;
+  color: rgba(25,25,25,0);
+  transition:
+    0.5s 0.1s height,
+    0.5s 0.1s padding,
+    0.5s 0.1s margin,
+    0.3s color,
+    0.6s visibility;
+  z-index: 99;
+}
+
+.fancy-hList {
+  padding: 0;
+  margin: 0;
+}
+
+.fancy-hList > * {
+  float: left;
+}
+
+.fancy-hList > * + * {
+  margin-left: 0;
+}

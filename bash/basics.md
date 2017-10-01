@@ -1,10 +1,9 @@
 ---
-layout: page
+layout: main
+title: bash basics
 categories: [bash, tutorial]
-exclude_from_nav: true
+permalink: /bash/basics
 ---
-
-<h2><i>bash</i> basics</h2>
 
 Here we are going to cover the very basics of working in the terminal. For quick definitions of what things like *bash* and 'the terminal' are, see [here]({{ site.url }}/bash.html).  
 
