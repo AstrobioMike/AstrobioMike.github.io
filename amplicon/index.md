@@ -5,6 +5,8 @@ categories: [amplicon]
 permalink: /amplicon/
 ---
 
+{% include _side_tab_amplicon.html %}
+
 <center><h2>Coming soon for <a href="/amplicon/">amplicon analysis</a>:</h2></center>
 
 __Modules:__  

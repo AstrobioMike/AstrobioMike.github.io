@@ -1,24 +1,37 @@
 ---
 layout: main
-title: 6 commands worth getting to know
+title: Six commands worth getting to know
 categories: [bash, tutorial]
 permalink: /bash/six_commands
 ---
 
+{% include _bash_6_commands_toc.html %}
+
+{% include _side_tab_bash.html %}
 
 <center><img src="{{ site.url }}/images/under_construction.jpeg"></center>
 <center><h3>UNDER CONSTRUCTION</h3></center>
 <br>
 <br>
 
-#### <u>grep</u>
+# Coming soon...  
+<br>
+<br>
 
-#### <u>awk</u>
+# grep  
+<br>
 
-#### <u>sed</u>  
+# awk  
+<br>
 
-#### <u>cut</u>
+# sed  
+<br>
 
-#### <u>paste</u>
+# cut  
+<br>
 
-#### <u>tr</u>
+# paste  
+<br>
+
+# tr  
+<br>

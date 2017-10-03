@@ -5,6 +5,8 @@ permalink: /metagenomics/
 categories: [metagenomics]
 ---
 
+{% include _side_tab_metagenomics.html %}
+
 **Where to begin...**  
 
 <center><h2>Coming soon for <a href="/metagenomics/">metagenomics</a>:</h2></center>

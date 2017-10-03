@@ -5,7 +5,11 @@ categories: [bash, tutorial]
 permalink: /bash/basics
 ---
 
-Here we are going to cover the very basics of working in the terminal. For quick definitions of what things like *bash* and 'the terminal' are, see [here]({{ site.url }}/bash.html).  
+{% include _bash_basics_toc.html %}
+
+{% include _side_tab_bash.html %}
+
+Here we are going to cover the very basics of working in the terminal. For quick definitions of what things like *bash* and 'the terminal' are, see [here]({{ site.url }}/bash/).  
 
 We'll start at the very beginning with the basic formula for how to run commands, then move on to how to navigate around your computer from within the terminal, and end with how to look at, create, and manipulate plain text documents. This is really designed for those with very little to no experience working at the command line, so if you feel comfortable with these tasks already, consider jumping ahead to one of the sections you're less familiar with.  
 
@@ -19,8 +23,11 @@ To start, let's open up a terminal window. If you have a Mac, this is easy as yo
 
 
 Okay, not really. Things do get a little more complicated, but there are programs you can download to get the appropriate *bash* environment on a PC. Unfortunately I have no experience with that though so you'll have visit the almighty [google](https://www.google.com/search?source=hp&q=running+terminal+on+pc&oq=running+terminal+on+pc&gs_l=psy-ab.3..0i22i30k1l2.4571.9293.0.10104.25.22.0.0.0.0.175.1978.12j9.21.0....0...1.1.64.psy-ab..4.20.1827.0..0j0i131k1j0i10k1j33i22i29i30k1.RZTO4OlOhZk).  
+<br>
 
-### <u>First things first!</u>
+---
+<br>
+# First things first!
 For right now, and only for right now, I would like you to blindly copy and paste the commands here into your terminal window to set up the (very tiny) temporary files you'll need if you want to actively follow along below. Just reading through is of course fine, but if you are totally new to this, I'd recommend doing things with me. I promise this will be the only time you are just copying and pasting without an understanding of what you are doing. Besides, by the time you get to the end of this page, you'll have a much better understanding of what's going on in here.
 
 For now, copy and paste this block of commands into your terminal window, (you can copy and paste all of them at once), and be sure to hit enter after pasting them to trigger the last command.
@@ -33,10 +40,13 @@ rm bash_basics_temp.tar.gz
 cd bash_basics_temp
 ```
 
-Now, let's get started!
+Now, let's get started!  
+<br>
 
+---
+<br>
 
-### <u>Running a command at the prompt</u>
+# Running a command
 The terminal 'prompt' by default is typically a line with some information ending with a dollar sign:
 
 <center><img src="{{ site.url }}/images/blank_prompt.png"></center>
@@ -83,9 +93,9 @@ Now that you're familiar with this baseline formula of entering commands, let's 
 
 ---
 <br>
-### <u>System structure and moving around your computer within the terminal</u>
+# Moving around
 
-#### <i>Commands presented in this section:</i>  
+<h4><i>Commands presented in this section:</i></h4>
 
 |Command     |Function          |
 |:----------:|------------------|
@@ -206,9 +216,9 @@ Having some concept of where you are and how to navigate around the computer via
 
 ---
 <br>
-### <u>How to look at, manipulate, and make 'plain text' files</u>
+# Working with plain text files and directories
 
-#### <i>Commands presented in this section:</i>  
+<h4><i>Commands presented in this section:</i></h4>
 
 |Command     |Function          |
 |:----------:|------------------|
@@ -223,12 +233,12 @@ Having some concept of where you are and how to navigate around the computer via
 |`rmdir`     |delete a directory|
 |`nano`|create and edit plain text files|
 
-#### What is a plain text file?
+<h4>What is a plain text file?</h4>
 The baseline tools of *bash* are mostly useful for what are known as plain text files, also commonly referred to as 'flat' files. And I'm just realizing now that formally defining what a 'plain text file' is isn't all that simple. There are a few definitions you could check out at the [wiki](https://en.wikipedia.org/wiki/Plain_text) if you are interested, but a simple, working defintion might be something like: a text file that doesn't contain any special formatting characters and can be properly viewed and edited with any standard text editor.
 
 Bioinformaticians (and lots of others who get to play with big data regularly) work with plain text files so much because not being constrained to any special (arbitary) characteristics means methods for interacting with them can be standardized. So when you learn one command that works on a flat file, it works on all of them the same way. Common formats are files with extensions like ".txt", ".csv" for comma-separated values, ".tsv" for tab-seperated values. More specialized extensions like ".docx" or ".xlsx" are not plain text files. Delimited files, like ".csv" and ".tsv", are a simple way to store tables as each row is delimited by a newline and each column by whichever delimiter is specified. And it's this simple formula that makes them very easy to work with. In the next section [(6 commands worth getting to know)](/bash/six_commands) you'll see and work with some examples of tables, and see why *bash* is invaluable for manipulating them. But for now just know that the text files we've been looking at so far are plain text files. 
 
-#### Ways to probe flat text files
+<h4>Ways to probe plain text files</h4>
 We've already used a very common tool for peeking at files, the `head` command. There is also a corresponding `tail` version that prints the last 10 lines of a file by default:
 
 <center><img src="{{ site.url }}/images/tail_ex.png"></center>
@@ -251,7 +261,7 @@ The `wc` command is useful for counting how many lines, words, and characters th
 <center><img src="{{ site.url }}/images/wc_ex.png"></center>
 <br>
 
-#### Ways to manipulate files and directories
+<h4>Ways to manipulate files and directories</h4>
 
 <div class="warning">
 <center>WARNING</center>
@@ -333,7 +343,7 @@ To delete files (intentionally) there is the `rm` command (remove). This require
 
 <br>
 
-### How to make and delete directories
+<h3>How to make and delete directories</h3>
 
 To create new directory we use the command `mkdir` followed by one argument for the directory name:
 
@@ -353,7 +363,7 @@ rmdir our_new_directory
 <br>
 Though if the target directory is not empty, `rmdir` will give you an error as a (rare) safety measure. There are ways to force this action or to use the regular `rm` command on directories that you can find by looking further into the commands and the optional arguments you can provide them.
 
-### Making and editing plain text files
+<h3>Making and editing plain text files</h3>
 It is often very useful to be able to generate new plain text files quickly at the command line, or make some changes to an existing one, and there are many ways to do this. One of the many ways involves using a text editor that operates on the command line, and there are several common text editors that fit this bill. I think the easiest to use at first is `nano`. So here we're just going to go over a quick example of that, but you should know there are more and better out there if you're willing to dedicate time to *another* steep learning curve. (I'm still dragging my feet a bit on that one too, so don't feel bad.)  
 
 When we run the command `nano` it will open the program (the "nano" text editor), and our terminal window changes from our regular view, with our prompt that we've seen so far, to a text editor interface. The command itself can be run without any arguments and it will simply open a new file that you can then modify and save before you exit. But I like to start the editor with a file name, which is what the first positional argument is if you give it one:
@@ -384,7 +394,7 @@ Now we can see that we've made the new file with `ls` and take a peek at it with
 
 ---
 <br>
-### Congrats on getting through the basics!
+<h1>Congrats on getting through the basics!</h1>
 Some of these things may seem trivial as used in these examples here, and I know that can make the effort required to learn to use them harder to come by, but these basics really are the foundation to do everything at the command line. Understanding the general rules of commands, their arguments, and the required syntax will make everything you try to do easier.  
 
 There are a lot of base commands in *bash*, and a dizzying number of optional arguments for most of them. Again, google is our friend. If you end up working in the terminal window enough, you will remember some things, but also you will often do a quick search to remember what the flag is for a specific argument, or how exactly a specific command works. This really isn't about memorization overall.  

@@ -1,20 +1,20 @@
-/* ==========================================================================
-   Page layout
-   ========================================================================== */
+// ==========================================================================
+//    Page layout
+// ==========================================================================
 
 body {
-    background-color: $bodycolor;
-    font-family: $base-font;
-    color: $text-color;
+  background-color: $bodycolor;
+  font-family: $base-font;
+  color: $text-color;
 }
 
 p {
   line-height: 1.5em;
 }
 
-/* 
-   Header
-   ========================================================================== */
+
+//    Header
+// ==========================================================================
 
 thead {
   display: table-header-group;
@@ -220,7 +220,7 @@ th, td {
 }
 
 .pub-highlights {
-    padding-left: 115px;
+  padding-left: 115px;
 }
 
 .pub-highlights a, .pub-highlights a:hover {
@@ -389,7 +389,7 @@ th, td {
   padding: 10px 20px;
 }
 
-/* Site name */
+// Site name
 .site-name {
     @include grid(12,10);
     @include prefix(12,1);
@@ -408,7 +408,7 @@ th, td {
     }
 }
 
-/* Top navigation links */
+// Top navigation links
 .top-navigation {
     @include grid(12,10);
     @include prefix(12,1);
@@ -462,78 +462,78 @@ th, td {
     }
 }
 
-/* Animated lines for mobile nav button */
-// $button-size: 1.5rem;
-// @mixin navicon-line() {
-//     display: inline-block;
-//     width: $button-size;
-//     height: $button-size/7;
-//     // line color
-//     background: $white;
-//     border-radius: $button-size/14;
-//     transition: .3s;
-// }
-// .navicon-lines-button {
-//     padding: $button-size/4 $button-size/2;
-//     transition: .3s;
-//     cursor: pointer;
-//     user-select: none;
-//     border-radius: $button-size/7;
-// }
-// .navicon-lines-button:hover {
-//     opacity: 1;
-// }
-// .navicon-lines-button:active {
-//     transition: 0;
-// }
-// .navicon-lines {
-//     margin-right: 10px;
-//     margin-bottom: $button-size/5;
-//     // create middle line
-//     @include navicon-line;
-//     position: relative;
-//     // create the upper and lower lines as pseudo-elements of the middle line
-//     &:before,
-//     &:after {
-//         @include navicon-line;
-//         position: absolute;
-//         left: 0;
-//         content: '';
-//         -webkit-transform-origin: $button-size/14 center;
-//         transform-origin: $button-size/14 center;
-//     }
-//     &:before { top: $button-size/4; }
-//     &:after { top: -$button-size/4; }
-// }
-// .navicon-lines-button:hover {
-//     opacity: 1;
-//     .navicon-lines {
-//         &:before { top: $button-size/3.5; }
-//         &:after { top: -$button-size/3.5; }
-//     }
-// }
-// .navicon-lines-button.x.active .navicon-lines {
-//     // hide the middle line
-//     background: transparent;
-//     // overlap the lines by setting both their top values to 0
-//     &:before,
-//     &:after {
-//         -webkit-transform-origin: 50% 50%;
-//         transform-origin: 50% 50%;
-//         top: 0;
-//         width: $button-size;
-//     }
-//     // rotate the lines to form the x shape
-//     &:before {
-//         -webkit-transform: rotate3d(0,0,1,45deg);
-//         transform: rotate3d(0,0,1,45deg);
-//     }
-//     &:after {
-//         -webkit-transform: rotate3d(0,0,1,-45deg);
-//         transform: rotate3d(0,0,1,-45deg);
-//     }
-// }
-// Style the toggle menu link and hide it
+// Animated lines for mobile nav button
+$button-size: 1.5rem;
+@mixin navicon-line() {
+    display: inline-block;
+    width: $button-size;
+    height: $button-size/7;
+//     line color
+    background: $white;
+    border-radius: $button-size/14;
+    transition: .3s;
+}
+.navicon-lines-button {
+    padding: $button-size/4 $button-size/2;
+    transition: .3s;
+    cursor: pointer;
+    user-select: none;
+    border-radius: $button-size/7;
+}
+.navicon-lines-button:hover {
+    opacity: 1;
+}
+.navicon-lines-button:active {
+    transition: 0;
+}
+.navicon-lines {
+    margin-right: 10px;
+    margin-bottom: $button-size/5;
+//      create middle line
+    @include navicon-line;
+    position: relative;
+//      create the upper and lower lines as pseudo-elements of the middle line
+    &:before,
+    &:after {
+        @include navicon-line;
+        position: absolute;
+       left: 0;
+       content: '';
+       -webkit-transform-origin: $button-size/14 center;
+       transform-origin: $button-size/14 center;
+    }
+    &:before { top: $button-size/4; }
+    &:after { top: -$button-size/4; }
+}
+.navicon-lines-button:hover {
+    opacity: 1;
+    .navicon-lines {
+      &:before { top: $button-size/3.5; }
+      &:after { top: -$button-size/3.5; }
+    }
+}
+.navicon-lines-button.x.active .navicon-lines {
+//     hide the middle line
+    background: transparent;
+//     overlap the lines by setting both their top values to 0
+    &:before,
+   &:after {
+       -webkit-transform-origin: 50% 50%;
+       transform-origin: 50% 50%;
+       top: 0;
+       width: $button-size;
+    }
+//       rotate the lines to form the x shape
+    &:before {
+      -webkit-transform: rotate3d(0,0,1,45deg);
+      transform: rotate3d(0,0,1,45deg);
+    }
+    &:after {
+      -webkit-transform: rotate3d(0,0,1,-45deg);
+      transform: rotate3d(0,0,1,-45deg);
+    }
+}
+//  Style the toggle menu link and hide it
 .nav .navtoogle {    
     @include font-rem(18);
     font-weight: normal;
@@ -557,16 +557,16 @@ th, td {
     top: 3px;
     line-height: 0;
 }
-// When JavaScript is disabled, we hide the toggle button
+//  When JavaScript is disabled, we hide the toggle button
 .no-js .nav .navtoggle {
     display: none;
 }
-// When JavaScript is disabled, we show the menu
+//   When JavaScript is disabled, we show the menu
 .no-js .nav ul {
     max-height: 30em;
     overflow: hidden;
 }
-// When JavaScript is enabled, we hide the menu
+//  When JavaScript is enabled, we hide the menu
 .js .nav ul {
     max-height: 0;
     overflow: hidden;
@@ -574,8 +574,8 @@ th, td {
         max-height: 30em;
     }
 }
-// Displaying the menu when the user has clicked on the button
-.js .nav .active + ul {        
+//  Displaying the menu when the user has clicked on the button
+.js .nav .active + ul {
     max-height: 30em;
     overflow: hidden;
     -webkit-transition: max-height .4s;
@@ -585,7 +585,7 @@ th, td {
     transition: max-height .4s;
 }
 
-/* Main content */
+// Main content
 #main {
     counter-reset: captions;
     @include container;
@@ -618,7 +618,7 @@ th, td {
   margin-top: 2em;
 }
 
-/* Index listing specific styling */
+// Index listing specific styling
 #index {
     @include container;
     @include grid(12,10);
@@ -656,7 +656,7 @@ th, td {
     }
 }
 
-/* Large feature header image */
+// Large feature header image
 .image-wrap {
     position: relative;
     @include clearfix;
@@ -702,7 +702,7 @@ th, td {
     }
 }
 
-/* Post byline */
+// Post byline
 .byline {
     clear: both;
     font-size: 80%;
@@ -722,7 +722,7 @@ th, td {
     }
 }
 
-/* Default social media links in author sidebar */
+// Default social media links in author sidebar
 .author-social {
   display: none;
   margin-bottom: 5px;
@@ -742,82 +742,172 @@ th, td {
     }
 }
 
-/* Author sidebar */
+// Author sidebar
 .article-author-side {
-//     display: block;
-//     @media #{$small} {
-//         display: block;
-//         @include grid(12,2);
-//         @include prefix(12,1);
-//         @include suffix(12,2);
-//         h3,
-//         p,
-//         .author-social {
-//             display: block;
-//             max-width: 250px;
-//         }
-//         h3 {
-//             margin-top: 10px;
-//             margin-bottom: 10px;
-//         }
-//         p {
-//             margin-bottom: 20px;
-//         }
-//         .author-social {
-//             margin-bottom: 5px;
-//         }
-    @media #{$large} {
-        @include grid(12,2);
-        @include prefix(12,0);
-        @include suffix(12,0);
-        h3,
-        .bio-photo,
-        p,
-        .author-social {
-            max-width: 150px;
-        }
+  @media #{$small} {
+    display: block;
+    @include grid(12,2);
+    @include prefix(12,1);
+    @include suffix(12,2);
+    h3,
+    p,
+    .author-social {
+      display: block;
+      max-width: 250px;
     }
-    @media #{$x-large} {
+    h3 {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+    p {
+      margin-bottom: 20px;
+    }
+    .author-social {
+      margin-bottom: 5px;
+    }
+  }
+  @media #{$large} {
+    @include grid(12,2);
+    @include prefix(12,0.25);
+    @include suffix(12,0.25);
+    h3,
+    .bio-photo,
+    p,
+    .author-social {
+      max-width: 150px;
+    }
+  }
+  @media #{$x-large} {
 
-    }
+  }
 }
-
-/* Post content wrapper */
+// Post content wrapper
 .article-wrap {
     // Dotted line underlines for links
-  margin-top: 2em;
+    margin-top: 2em;
     p > a {
         text-decoration: underline;
     }
 }
 
-/* Table of contents */
+// side-tabs marking which section you're in
+.side-tab-bash {
+  h3 {
+    width: 5%;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    padding-top: 2px;
+    color: #745bab;
+    transform: rotate(90deg);
+    position: fixed;
+    bottom: 3em;
+    left: 0em;
+    margin: 0px;
+    background-color: $grey-color-light;
+    font-variant: small-caps;
+    @include rounded(10px);
+  }
+  a {
+    color: #745bab;
+    &:visited {
+        color: #745bab;
+        }
+    &:hover {
+        color: #745bab;
+        text-decoration: none;
+        }
+    }
+}
+
+.side-tab-amplicon {
+    h3 {
+        width: 15%;
+        padding-left: 5px;
+        padding-right: 5px;
+        padding-bottom: 5px;
+        padding-top: 2px;
+        color: #d64231;
+        transform: rotate(90deg);
+        position: fixed;
+        bottom: 20em;
+        left: 0em;
+        margin: 0px;
+        background-color: $grey-color-light;
+        font-variant: small-caps;
+        @include rounded(10px);
+        }
+    a {
+        color: #d64231;
+        &:visited {
+            color: #d64231;
+            }
+        &:hover {
+            color: #d64231;
+            text-decoration: none;
+            }
+        }
+}
+
+.side-tab-metagenomics {
+    h3 {
+        width: 15%;
+        padding-left: 5px;
+        padding-right: 5px;
+        padding-bottom: 5px;
+        padding-top: 2px;
+        color: #5bab87;
+        transform: rotate(90deg);
+        position: fixed;
+        bottom: 20em;
+        left: 0em;
+        margin: 0px;
+        background-color: $grey-color-light;
+        font-variant: small-caps;
+        @include rounded(10px);
+        }
+    a {
+        color: #5bab87;
+        &:visited {
+            color: #5bab87;
+            }
+        &:hover {
+            color: #5bab87;
+            text-decoration: none;
+            }
+        }
+}
+
+// Table of contents
 .toc {
     max-height: calc(100% - 4em);
     overflow-y: auto;
-    font-size: 95%;
+    font-size: 100%;
+    border: 1px solid #8A8A8A;
+    border-bottom: 1px solid #8A8A8A;
     box-shadow: 6px 12px 34px 7px #909090;
     margin-bottom: 40px;
     background-color: #8A8A8A;
+    @include rounded(5px);
     @media #{$large} {
-        width: 16%;
+        width: 17.2%;
         position: fixed;
         top: 2em;
         right: 2em;
     }
     header {
-        background: #234C71;
-        padding: 5px;
+        background: #ecf2f9;
+        padding: 0px;
+        font: "Arial";
     }
     h3 {
         margin: 0;
-        padding: 5px 10px;
-        color: $white;
-        @include font-rem(16);
-        text-transform: uppercase;
-        &:hover {
-            cursor: pointer;
-        }
+        padding: 5px 5px;
+        color: $grey-color-dark;
+//         @include font-rem(18);
+        font-variant: small-caps;
+        font-style: bold;
+        text-align: center;
     }
     ul {
         margin: 2px 0 0;
@@ -828,7 +918,9 @@ th, td {
         display: block;
         margin: 0 0 1px 0;
         padding: 0;
-        font-family: $heading-font;
+        font-family: "Helvetica Neue";
+        font-variant: small-caps;
+        text-align: center;
         list-style-type: none;
         &:last-child {
             border-bottom-width: 0;
@@ -836,10 +928,10 @@ th, td {
         a {
             padding: 10px;
             display: block;
-            color: $white;
+            @include rounded(5px);
             text-decoration: none;
             background: lighten($black, 30);
-            @include opacity(0.7);
+            @include opacity(0.8);
             @include transition(opacity 0.2s ease-in-out);
             &:hover {
                 @include opacity(1);
@@ -854,7 +946,7 @@ th, td {
     }
 }
 
-/* TOC trigger for collapsing */
+// TOC trigger for collapsing
 #drawer {
     max-height: 100%;
     overflow: hidden;
@@ -863,229 +955,24 @@ th, td {
     }
 }
 
-/* Image grid - not used */
-.image-grid {
-    @include clearfix;
-    list-style: none;
-    margin: 0 0 1em;
-    padding: 0;
-    li {
-        @include grid(12,6);
-        @media #{$micro} {
-            width: 33.333333%;
-        }
-        @media #{$small} {
-            width: 25%;
-        }
-        @media #{$medium} {
-            width: 20%;
-        }
-        @media #{$large} {
-            width: 16.666666666%;
-        }
-    }
-}
-
-/* Recent grid - not used */
-.recent-grid {
-    @include clearfix;
-    list-style: none;
-    margin: 1em 0;
-    li {
-        display: inline;
-        a { 
-            border-bottom: 0 solid transparent;
-            &:hover {
-                border-bottom: 0 solid transparent;
-            }
-        }
-    }
-    img {
-        width: 19%;
-        margin-bottom: 1%;
-    }
-}
-
-/* Social sharing links */
-/* Social media brand buttons */
-.social-share {
-  margin-bottom: 0px + $doc-line-height;
-  margin-bottom: 0rem + ($doc-line-height / $doc-font-size);
-  ul, li {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-  }
-  li {
-      display: inline-block;
-  }
-  $social: 
-  (facebook, $facebook-color),
-  (flickr, $flickr-color),
-  (foursquare, $foursquare-color),
-  (google-plus, $google-plus-color),
-  (instagram, $instagram-color),
-  (linkedin, $linkedin-color),
-  (pinterest, $pinterest-color),
-  (rss, $rss-color),
-  (tumblr, $tumblr-color),
-  (twitter, $twitter-color),
-  (vimeo, $vimeo-color),
-  (youtube, $youtube-color);
-  @each $socialnetwork, $color in $social {
-    .#{$socialnetwork} {
-      background: $color;
-    }    
-  }
-  a {
-      display: block;
-      padding: 8px 20px;
-      text-decoration: none !important;
-      text-transform: uppercase;
-      @include font-rem(14);
-      font-family: $heading-font;
-      font-weight: 700;
-      color: $white;
-      opacity: 0.8;
-      &:hover {
-        opacity: 1;
-      }
-    }
-    span {
-        display: none;
-        @media #{$medium} {
-            display: inline;
-            padding-left: 5px;
-        }
-    }
-    h4 {
-        @include font-rem(14);
-        margin-bottom: 10px;
-        text-transform: uppercase;
-    }
-}
 
 
-/* Footer wrapper */
-.footer-wrap {
-    @include container;
-    @include clearfix;
-    clear: both;
-    padding-bottom: 3em;
-    a,
-    a:active,
-    a:visited,
-    p,
-    h4,
-    h5,
-    h6,
-    span { 
-        @include font-rem(14);
-    }
-    footer {
-        @include grid(12,10);
-        @include prefix(12,1);
-        @include suffix(12,1);
-        @media #{$small} {
-            @include grid(12,6);
-            @include prefix(12,3);
-            @include suffix(12,3);
-        }
-        @media #{$x-large} {
-        }
-    }
-}
-
-/* Related articles list */
-.related-articles {
-    @include grid(12,10);
-    @include prefix(12,1);
-    @include suffix(12,1);
-    margin-bottom: 2em;
-    @media #{$small} {
-        @include grid(12,6);
-        @include prefix(12,3);
-        @include suffix(12,3);
-    }
-    @media #{$x-large} {
-    }
-    h4 {
-        text-transform: uppercase;
-        margin-bottom: 0;
-    }
-    li {
-        margin-bottom: 0;
-    }
-}
-
-/* 
-   Browser upgrade alert
-   ========================================================================== */
+//    Browser upgrade alert
+//    ==========================================================================
 
 .browser-upgrade {
-    background: #000;
-    text-align: center;
-    margin: 0 0 2em 0;
-    padding: 10px;
-    text-align: center;
+  background: #000;
+  text-align: center;
+  margin: 0 0 2em 0;
+  padding: 10px;
+  text-align: center;
+  color: $white;
+  a {
     color: $white;
-    a {
-        color: $white;
-        border-bottom: 1px dotted $white;
-        text-decoration: none;
-        &:hover {
-            border-bottom: 1px solid $white;
-        }
+    border-bottom: 1px dotted $white;
+    text-decoration: none;
+    &:hover {
+      border-bottom: 1px solid $white;
     }
-}
-/* 
-   Google search form
-   ========================================================================== */
-
-#goog-fixurl {
-    ul {
-        list-style: none;
-        margin-left: 0;
-        padding-left: 0;
-        li {
-            list-style-type: none;
-        }
-    }
-}
-#goog-wm-qt {
-    width: auto;
-    margin-right: 10px;
-    margin-bottom: 20px;
-    padding: 8px 20px;
-    display: inline-block;
-    @include font-rem(14);
-    background-color: $white;
-    color: $black;
-    border-width: 2px !important;
-    border-style: solid !important;
-    border-color: lighten($black,50);
-    @include rounded(3px);
-}
-#goog-wm-sb {
-    @extend .btn;
-}
-
-.lbl {
-    display: inline-block;
-    padding: .25em .4em;
-    font-size: 75%;
-    font-weight: 700;
-    line-height: 1;
-    color: #fff;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: bottom;
-    border-radius: .25rem;
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-    box-sizing: inherit;
-}
-
-.altmetric-embed {
-    float: right;
-    margin-top: -3px;
+  }
 }
