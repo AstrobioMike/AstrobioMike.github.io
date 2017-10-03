@@ -16,7 +16,7 @@ __Modules:__
 
 __Posts:__  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • Too much coverage can be a bad thing for assembly
-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • There are many ways to investigate metagenomics data; what's your question for your data? 
 
 <center><img src="{{ site.url }}/images/under_construction.jpeg"></center>
 <center><h3>UNDER CONSTRUCTION</h3></center>
