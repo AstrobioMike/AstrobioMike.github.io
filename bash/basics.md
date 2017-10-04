@@ -231,7 +231,7 @@ Having some concept of where you are and how to navigate around the computer via
 |`rm`      |delete a file or directory (use with caution)|
 |`mkdir`       |create a directory|
 |`rmdir`     |delete a directory|
-|`nano`|create and edit plain text files|
+|`nano`     |create and edit plain text files|
 
 <h4>What is a plain text file?</h4>
 The baseline tools of *bash* are mostly useful for what are known as plain text files, also commonly referred to as 'flat' files. And I'm just realizing now that formally defining what a 'plain text file' is isn't all that simple. There are a few definitions you could check out at the [wiki](https://en.wikipedia.org/wiki/Plain_text) if you are interested, but a simple, working defintion might be something like: a text file that doesn't contain any special formatting characters and can be properly viewed and edited with any standard text editor.

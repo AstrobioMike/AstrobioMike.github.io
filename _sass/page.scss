@@ -793,18 +793,20 @@ $button-size: 1.5rem;
 // side-tabs marking which section you're in
 .side-tab-bash {
   h3 {
-    width: 5%;
+//     width: 5%;
+    overflow-y: auto;
+    overflow-x: auto;
     padding-left: 5px;
     padding-right: 5px;
     padding-bottom: 5px;
     padding-top: 2px;
     color: #745bab;
-    transform: rotate(90deg);
     position: fixed;
-    top: 4em;
-    left: 0em;
+    top: 0.75em;
+    left: 1em;
+    text-align: center;
     margin: 0px;
-    background-color: $grey-color-light;
+    background-color: #ecf2f9;
     font-variant: small-caps;
     @include rounded(10px);
   }
@@ -820,63 +822,151 @@ $button-size: 1.5rem;
     }
 }
 
+// .side-tab-bash {
+//   h3 {
+//     width: 5%;
+//     padding-left: 5px;
+//     padding-right: 5px;
+//     padding-bottom: 5px;
+//     padding-top: 2px;
+//     color: #745bab;
+//     transform: rotate(90deg);
+//     position: fixed;
+//     top: 4em;
+//     left: 0em;
+//     margin: 0px;
+//     background-color: $grey-color-light;
+//     font-variant: small-caps;
+//     @include rounded(10px);
+//   }
+//   a {
+//     color: #745bab;
+//     &:visited {
+//         color: #745bab;
+//         }
+//     &:hover {
+//         color: #745bab;
+//         text-decoration: none;
+//         }
+//     }
+// }
+
+
 .side-tab-amplicon {
+  h3 {
+    @include container;
+    width: 15%;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    padding-top: 2px;
+    color: #d64231;
+    position: fixed;
+    top: 0.75em;
+    left: 1em;
+    text-align: center;
+    margin: 0px;
+    background-color: #ecf2f9;
+    font-variant: small-caps;
+    @include rounded(10px);
+  }
+  a {
+    color: #d64231;
+    &:visited {
+        color: #d64231;
+        }
+    &:hover {
+        color: #d64231;
+        text-decoration: none;
+        }
+    }
+}
+
+// .side-tab-amplicon {
+//     h3 {
+//         width: 15%;
+//         padding-left: 5px;
+//         padding-right: 5px;
+//         padding-bottom: 5px;
+//         padding-top: 2px;
+//         color: #d64231;
+//         transform: rotate(90deg);
+//         position: fixed;
+//         top: 6.5em;
+//         left: 0em;
+//         margin: 0px;
+//         background-color: $grey-color-light;
+//         font-variant: small-caps;
+//         @include rounded(10px);
+//         }
+//     a {
+//         color: #d64231;
+//         &:visited {
+//             color: #d64231;
+//             }
+//         &:hover {
+//             color: #d64231;
+//             text-decoration: none;
+//             }
+//         }
+// }
+
+.side-tab-metagenomics {
     h3 {
-        width: 15%;
+//         width: 12%;
         padding-left: 5px;
         padding-right: 5px;
         padding-bottom: 5px;
         padding-top: 2px;
-        color: #d64231;
-        transform: rotate(90deg);
+        color: #5bab87;
         position: fixed;
-        top: 6.5em;
-        left: 0em;
+        top: 0.75em;
+        left: 1em;
         margin: 0px;
-        background-color: $grey-color-light;
+        background-color: #ecf2f9;
         font-variant: small-caps;
         @include rounded(10px);
         }
     a {
-        color: #d64231;
+        color: #5bab87;
         &:visited {
-            color: #d64231;
+            color: #5bab87;
             }
         &:hover {
-            color: #d64231;
+            color: #5bab87;
             text-decoration: none;
             }
         }
 }
 
-.side-tab-metagenomics {
-    h3 {
-        width: 12%;
-        padding-left: 5px;
-        padding-right: 5px;
-        padding-bottom: 5px;
-        padding-top: 2px;
-        color: #5bab87;
-        transform: rotate(90deg);
-        position: fixed;
-        top: 6em;
-        left: 0em;
-        margin: 0px;
-        background-color: $grey-color-light;
-        font-variant: small-caps;
-        @include rounded(10px);
-        }
-    a {
-        color: #5bab87;
-        &:visited {
-            color: #5bab87;
-            }
-        &:hover {
-            color: #5bab87;
-            text-decoration: none;
-            }
-        }
-}
+// .side-tab-metagenomics {
+//     h3 {
+//         width: 12%;
+//         padding-left: 5px;
+//         padding-right: 5px;
+//         padding-bottom: 5px;
+//         padding-top: 2px;
+//         color: #5bab87;
+//         transform: rotate(90deg);
+//         position: fixed;
+//         top: 6em;
+//         left: 0em;
+//         margin: 0px;
+//         background-color: $grey-color-light;
+//         font-variant: small-caps;
+//         @include rounded(10px);
+//         }
+//     a {
+//         color: #5bab87;
+//         &:visited {
+//             color: #5bab87;
+//             }
+//         &:hover {
+//             color: #5bab87;
+//             text-decoration: none;
+//             }
+//         }
+// }
 
 // Table of contents
 .toc {

@@ -10,7 +10,7 @@ I am definitely the 'biology-to-bioinformatics' type of person. I had never even
 <br>
 
 <center><h3>DISCLAIMERS</h3></center>
-Right off the bat let's make it clear that I plan to cover topics here that I am certainly **not** an expert on, but rather of which I have a working understanding that allows me to do the work I do. For instance, I'm nowhere near fluent in any individual programming language, but I consistently hop between *bash*, R, and python depending on what I'm trying to do. Let's also make it clear there are a million ways to do basically anything, and I most often will probably not be doing things the most efficient way possible; not by choice of course, but because, again, I'm not an expert, and also when something works I usually move onto the next thing rather than optimizing what I can leave alone.  
+Right off the bat let's make it clear that I plan to cover topics here that I am certainly **not** an expert on, but rather of which I have a working understanding that allows me to do the work I do. For instance, I'm nowhere near fluent in any individual programming language, but I consistently hop between *bash*, R, and python depending on what I'm trying to do. Let's also make it clear there are a million ways to do basically anything, and I most often will probably not be doing things the most efficient way possible; not by choice of course, but because, again, I'm not an expert, and also when something works I usually move on to the next thing rather than optimizing what I can leave alone.  
 <br>
 
 <center><h4>tl;dr: I am not a computer scientist 😟 </h4></center>
@@ -23,7 +23,7 @@ I spent months on python and R tutorials. And I enjoyed them and felt like I was
 
 In hindsight I don't think that was a very efficient way to learn. What I found to work most effectively for me was simply diving into my data and perpetually just figuring out the next thing I needed to do. This took me from *bash*, to python, to R pretty regularly – which can definitely be a bit of an intimidating whirlwind at times – but I was always working on *my* data and was still moving along my research (albeit painfully slowly on more than one occasion). This somewhat scattered way of learning allowed me to slowly expand my skillset in many directions at once – and most importantly it was always while developing skills that were by default directly applicable to my work. 
 
-Now I realize that back then if someone had simply said to me: 
+Now, of course I do realize that back then if someone had simply said to me: 
 <blockquote>"Just use all these things you don't understand to do the things you don't know how to do and move on, it'll be great." 
 <div class="blockquote-author"> – Someone not very helpful</div>
 </blockquote>
@@ -31,4 +31,4 @@ Now I realize that back then if someone had simply said to me:
 
 I'd still be just as stuck.
 
-So I want this site to help bridge that gap – to help people to more quickly develop the baseline set of skills needed to do their work. After that point, our sphere of capabilities can expand organically, without there being a technical bottleneck on our science being done. 
+So I want this site to help bridge that gap – to help people to more quickly develop the baseline set of skills needed to do their work. After that point, our sphere of capabilities can expand organically, without there being a technical bottleneck on our science getting done. 
