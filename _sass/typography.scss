@@ -233,35 +233,3 @@ p {
         }
     }
 }
-
-/* 
-   Code snippets
-   ========================================================================== */
-
-tt, code, kbd, samp, pre {
-    font-family: $code-font;
-}
-p,
-li { 
-    code {
-        @include font-rem(12);
-        white-space: nowrap;
-        padding: 0 2px;
-        padding-bottom: 1px;
-        background-color: #efefef;
-        border: 1px solid #969696;
-        color: #bf2727;
-        @include rounded(3px);
-    }
-}
-pre {
-    @include font-rem(12);
-    line-height: 1.5;
-    overflow-x: auto;
-    background-color: #efefef;
-    border: 1px solid #969696;
-    margin-bottom: 40px;
-    padding: 10px;
-    border-left: 5px solid #dc5252;
-    border-radius: 5px;
-}

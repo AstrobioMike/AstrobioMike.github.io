@@ -2,7 +2,7 @@
  * Reset some basic elements
  */
 body, h1, h2, h3, h4, h5, h6,
-p, pre, hr,
+p, hr,
 dl, dd, ol, ul, figure {
   margin: 0;
   padding: 0;
@@ -45,8 +45,14 @@ ul, ol, dl, figure,
 img {
   max-width: 100%;
   vertical-align: middle;
+  -ms-interpolation-mode: bicubic;
+  height: auto;
+  border-width: 0;
 }
 
+svg:not(:root) {
+		overflow: hidden; 
+}
 
 
 /**
@@ -129,20 +135,34 @@ a {
 // }
 
 
-
 /**
  * Code formatting
  */
-pre,
-code {
-  @include relative-font-size(0.9375);
-  border: 1px solid $grey-color-light;
-  border-radius: 3px;
-  background-color: #eef;
+tt, code, kbd, samp, pre {
+  font-family: $code-font;
 }
 
+p,
+li {
+  code {
+    @include relative-font-size(0.9);
+    white-space: nowrap;
+    border: 1px solid $grey-color-dark;
+    border-radius: 3px;
+    padding: 0px 2px;
+//     padding-bottom: 1px;
+    background-color: #efefef;
+    color: #0d10ad;
+    @include rounded(3px);
+  }
+}
+pre,
 code {
-  padding: 1px 5px;
+  @include relative-font-size(0.87);
+  border: 1px solid $grey-color-dark;
+  border-radius: 3px;
+  background-color: #efefef;
+  color: #0d10ad;
 }
 
 pre {
@@ -158,12 +178,13 @@ pre {
 
 
 
+
 /**
  * Wrapper
  */
 .wrapper {
-  max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit} * 2));
-  max-width:         calc(#{$content-width} - (#{$spacing-unit} * 2));
+  max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit} * 1));
+  max-width:         calc(#{$content-width} - (#{$spacing-unit} * 1));
   margin-right: auto;
   margin-left: auto;
   padding-right: $spacing-unit;
@@ -232,21 +253,36 @@ pre {
 /**
   * Warning
   */
-  
+
 .warning {
-  color: #990000;
-  margin-top: 1.25em;
-  margin-bottom: 1.25em;
-  margin-left: 1.5em;
-  margin-right: 1.5em;
-  font-size: 15px;
-  line-height: 1.25;
-  padding: .5em;
-  text-align: justify;
-  text-indent: 0;
-  background-color: #F0F8FF;
-  border: 1px solid darken(#7f0000,20)
+  @include rounded(3px);
+  border: 2px solid #ad0d0d;
+  margin: 20px 10px;
+  padding: 20px 12px 8px 12px;
+  border-radius: 3px;
+  background-repeat: no-repeat;
+  background-position: 12px 12px;
+  color: #ad0d0d;
+  background-color: #FEEFB3;
+  background-image: url("../../images/warning_icon.png");
 }
+    
+
+  
+// .warning {
+//   color: #990000;
+//   margin-top: 1.25em;
+//   margin-bottom: 1.25em;
+//   margin-left: 1.5em;
+//   margin-right: 1.5em;
+//   font-size: 15px;
+//   line-height: 1.25;
+//   padding: .5em;
+//   text-align: justify;
+//   text-indent: 0;
+//   background-color: #F0F8FF;
+//   border: 1px solid darken(#7f0000,20)
+// }
 
 
 /**
@@ -256,9 +292,10 @@ table {
   margin-bottom: $spacing-unit;
   width: 100%;
   text-align: $table-text-align;
-  color: lighten($text-color, 18%);
+  color: $text-color;
+  font-family: monospace;
   border-collapse: collapse;
-  border: 1px solid $grey-color-light;
+  border: 1px solid $grey-color-dark;
   tr {
     &:nth-child(even) {
       background-color: lighten($grey-color-light, 6%);
@@ -269,11 +306,23 @@ table {
   }
   th {
     background-color: lighten($grey-color-light, 3%);
-    border: 1px solid darken($grey-color-light, 4%);
-    border-bottom-color: darken($grey-color-light, 12%);
+    border: 1px solid darken($grey-color-dark, 4%);
+    border-bottom-color: darken($grey-color-dark, 12%);
+    text-align: center;
   }
+  code {
+    @include relative-font-size(0.9);
+    white-space: nowrap;
+    border: 1px solid $grey-color-dark;
+    border-radius: 3px;
+    padding: 0px 2px;
+    background-color: #efefef;
+    color: #0d10ad;
+    @include rounded(3px);
+  }
+
   td {
-    border: 1px solid $grey-color-light;
+    border: 1px solid $grey-color-dark;
   }
 }
 

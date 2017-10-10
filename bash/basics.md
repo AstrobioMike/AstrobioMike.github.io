@@ -49,7 +49,7 @@ Now, let's get started!
 # Running a command
 The terminal 'prompt' by default is typically a line with some information ending with a dollar sign:
 
-<center><img src="{{ site.url }}/images/blank_prompt.png"></center>
+<center><img src="{{ site.url }}/images/blank_prompt.png"></center>  
 
 <br>
 This line and the terminal itself are both customizable so things may look a little different on yours, but this is where the magic happens. 
@@ -62,7 +62,7 @@ To run a command in the terminal, you simply need to type the command after the 
 <br>
 And as you can see, after hitting return, a new prompt line appears and the cursor is waiting for the next command. 
 
-The `date` command didn't require anything else, so it worked just fine by itself, but some other commands require what are known as arguments. In these cases the format would be `command` `argument` (separated by a space). **Some arguments are optional, and some are mandatory**. Probably the most common type of argument is telling *bash* which file you want to do something to. 
+The `date` command didn't require anything else, so it worked just fine by itself, but some other commands require what are known as arguments. In these cases the format would be `command argument` (separated by a space). **Some arguments are optional, and some are mandatory**. Probably the most common type of argument is telling *bash* which file you want to do something to. 
 
 For example, the `head` command prints out the first few lines of a file to the terminal, so you need to tell it which file you want it to act on. Take for example this regular text file named "text.txt":
 
@@ -86,7 +86,7 @@ head -n 15 text.txt
 <center><img src="{{ site.url }}/images/test.txt_head.png"></center>  
 
 <br>
-And that's really it. Those are the fundamentals that govern running virtually any individual command in the terminal. Many commands have a dizzying amount of options that I (and I presume most others) never fully appreciate or explore. You can pull up a 'manual' for any command by using the command `man` followed by the command you're intersted in. For instance, `man head` would bring up the manual for `head` (you can exit the manual by pressing `q`). Many commands, though not all, also have a help menu of sorts that can usually be accessed by typing the command followed by `-h` or `--help`. I personally most often google for examples of whatever I'm trying to use. But importantly, you don't need to memorize these things. Some things might become second nature depending on how frequently you use them, but the real benefit comes from just knowing what can be done (meaning knowing what tools there are out there), and having a baseline understanding of how to work in the terminal environment. Then when you come across something you need to do, you know what to look for to iron out the details. 
+And that's really it. Those are the fundamentals that govern running virtually any individual command in the terminal. Many commands have a dizzying amount of options that I (and I presume most others) never fully appreciate or explore. You can pull up a 'manual' for any command by using the command `man` followed by the command you're intersted in. For instance, `man head` would bring up the manual for `head` (you can exit the manual by pressing `q` ). Many commands, though not all, also have a help menu of sorts that can usually be accessed by typing the command followed by `-h` or `--help`. I personally most often google for examples of whatever I'm trying to use. But importantly, you don't need to memorize these things. Some things might become second nature depending on how frequently you use them, but the real benefit comes from just knowing what can be done (meaning knowing what tools there are out there), and having a baseline understanding of how to work in the terminal environment. Then when you come across something you need to do, you know what to look for to iron out the details. 
 
 Now that you're familiar with this baseline formula of entering commands, let's move on to looking at some more and learn how to navigate around your computer from inside the terminal.  
 <br>
@@ -110,9 +110,7 @@ When you are working in the terminal, you are always sitting in some directory. 
 <center><img src="{{ site.url }}/images/directory_example.png"></center>  
 
 <br>
-At the top of that image you can see we are in a directory called "bash_basics_temp", and inside that directory there is a subdirectory called "another_directory" and two text files. Additionally at the very bottom there is a line that tells us 'where' we are in the computer. Yours will be different, but this is what mine looks like:
-
-<center><code>Macintosh_HD/Users/Mike_Lee/bash_basics_temp</code></center>
+At the top of that image you can see we are in a directory called "bash_basics_temp", and inside that directory there is a subdirectory called "another_directory" and two text files. Additionally at the very bottom there is a line that tells us 'where' we are in the computer. Yours will be different, but this is what mine looks like this: `Macintosh_HD/Users/Mike_Lee/bash_basics_temp`
 
 <br>
 This line of directories, delimited by forward slashes, tells us where we are; it's an address. And in the computer world it's called a 'path'.
@@ -154,7 +152,9 @@ head another_directory/yet_another_text_file.txt
 <center><img src="{{ site.url }}/images/head_other_dir_example.png"></center>
 
 <br>
-There are actually two ways to provide the path to where something is: you can give what is known as the "relative path"; or you can give an "absolute path".  
+As a side note here, don't be distracted a the line wrap in the terminal window (as seen in mine here). Commands you are entering will sometimes get pretty long and will automatically wrap to the next line without interfering with what you're doing.  
+
+Moving on, there are actually two ways to provide the path to where something is: you can give what is known as the **relative path** or you can give an **absolute path**.  
 
 What we did in the example just above is known as a **relative path** because it takes off from where we entered the command. If we were in a location that didn't have the subdirectory "another_directory" in it, then we would have also gotten an error message because the computer again wouldn't be able to find the file we were pointing to.  
 
@@ -168,9 +168,6 @@ Now, instead of calling `head` on "yet_another_text_file.txt" by providing the r
 <center><img src="{{ site.url }}/images/head_abs_path_example.png"></center>
 
 <br>
-Don't be distracted by the line wrap in the terminal window. Commands you are entering will sometimes get pretty long and will automatically wrap to the next line without interfering with what you're doing.  
-
-
 Now that we've covered how to do something to a file in a different location than our current working directory, let's look at how we can also just move ourselves to where that file is. We change directories with the `cd` command. Let's change directories into the subdirectory called "another_directory", check where we are with `pwd`, see if the file we are looking for is actually in the directory with `ls`, and then run `head` on it:
 
 ```
@@ -260,26 +257,36 @@ The `wc` command is useful for counting how many lines, words, and characters th
 
 <center><img src="{{ site.url }}/images/wc_ex.png"></center>
 <br>
+I personally find myself most often using the `wc` command with the optional argument `-l`, which tells it I only want to know the number of lines in a file:
+
+<center><img src="{{ site.url }}/images/wc_line_ex.png"></center>
+<br>
 
 <h4>Ways to manipulate files and directories</h4>
 
 <div class="warning">
-<center>WARNING</center>
+<center><h2>WARNING!</h2></center>
 Using commands that do things like create, copy, and move and rename files/directories in the terminal <b>will overwrite</b> files/directories that already exist <b>if they have the same name</b>. And using commands that delete things will by default do so without any warning or confirmation. Caution is required until you get used to working with them – and then forever after.
 </div>
 
 
-The commands `cp` and `mv` (copy and move) both function under a similar syntax. The command entered needs to be followed by 2 **positional arguments**. Positional arguments are arguments that understood by the computer to be something specific based on where they come following the command. In the case of the `cp` and `mv` commands the first positional argument is the file you want to act on (the source), and the second positional argument is where you want it to go (the target). For instance, we can make a copy of the "text.txt" file like this: 
+The commands `cp` and `mv` (copy and move) both function under a similar syntax. The command entered needs to be followed by 2 **positional arguments**. Positional arguments are arguments that understood by the computer to be something specific based on where they come following the command. In the case of the `cp` and `mv` commands the first positional argument is the file you want to act on (the source), and the second positional argument is where you want it to go (the target). 
+
+Let's take a quick look again at what's in our current working directory with `ls`:
+
+<center><img src="{{ site.url }}/images/ls_ex.png"></center>
+<br>
+We see there are currently 3 items – a directory and two text files. Now, let's make a copy of "text.txt":
 
 ```bash
 cp text.txt text_copy.txt
 ```
-And now when we list the files in our directory they are both there: 
+And now when we list the files in our current working directory they are both there: 
 
 <center><img src="{{ site.url }}/images/cp_ex.png"></center>
 
 <br>
-Similarly, we can specify our source or target (first or second arguments) to be somewhere other than our current working directory. Here we are going to make a copy of the file "yet_another_text_file.txt" from the subdirectory "another_directory" and put the copy in our current working directory. To specify the current working directory as the target location, we can simply provide a single period (`.`) as the target:
+Similarly, we can specify our source or target (first or second arguments) to be somewhere other than our current working directory. Here we are going to make a copy of the file "yet_another_text_file.txt" from the subdirectory "another_directory" and put the copy in our current working directory. To specify the current working directory as the target location, we can simply provide a single period ( `.` ) as the target:
 
 ```bash
 cp another_directory/yet_another_text_file.txt .
@@ -299,16 +306,16 @@ cp another_directory/yet_another_text_file.txt yet_another_text_file_copy.txt
 <center><img src="{{ site.url }}/images/cp3_ex.png"></center>
 
 <br>
-Now we have the original copy we made, "yet_another_text_file.txt", and the copy that we renamed, "yet_another_text_file.txt". Note again that if we don't provide a path, relative or absolute, the computer looks in the current working directory.
+Now we have the original copy we made, "yet_another_text_file.txt", and the copy that we renamed, "yet_another_text_file_copy.txt". Note again that if we don't provide a path, relative or absolute, the computer looks in the current working directory.
 
-The `mv` command is used to move files and to rename files. And as mentioned works the same as the `cp` command, requiring a source argument and a target argument that need to be entered in that order. Here we will move a file from here into our subdirectory, and demonstrate how easy it is to accidentally overwrite something.  
+The `mv` command is used to move files **and** to rename files, and as mentioned it works the same as the `cp` command – requiring a source argument and a target argument that need to be entered in that order. Here we will move a file from our current working directory into our subdirectory, and demonstrate how easy it is to accidentally overwrite something.  
 
 Currently our current working directory and our subdirectory contain these files:  
 
 <center><img src="{{ site.url }}/images/ls_both_dir_ex1.png"></center>
 
 <br>
-After we move the "text.txt" file, it is only present in the subdirectory:
+After we move the "text.txt" file as follows, it is only present in the subdirectory:
 
 ```bash
 mv text.txt another_directory/
@@ -324,7 +331,7 @@ Let's take a quick look again at what's in these two files that are now in the s
 <center><img src="{{ site.url }}/images/mv_overwrite_ex1.png"></center>
 
 <br>
-And now let's see an example of how easy it is to overwrite a file accidentally by using the `mv` command, but specifying the name of the output to be "yet_another_text_file.txt" (first we are getting a copy of "text.txt" back into our working directory, as we just moved it):
+And now let's see an example of how easy it is to overwrite a file accidentally when using the `mv` command, by specifying the name of the output to be "yet_another_text_file.txt" (first we are getting a copy of "text.txt" back into our working directory, as we just moved it):
 
 ```bash
 cp another_directory/text.txt .
@@ -334,12 +341,15 @@ mv text.txt another_directory/yet_another_text_file.txt
 <center><img src="{{ site.url }}/images/mv_overwrite_ex2.png"></center>
 
 <br>
+Note how the contents of "yet_another_text_file.txt" have changed. It is now the same as "text.txt". Its original contents would be lost forever if this were the only location the file were saved in. 
 
-Note how the contents of "yet_another_text_file.txt" have changed. Its original contents would be lost forever if this were the only location the file were saved in. 
+To delete files (intentionally) there is the `rm` command (remove). This requires at least one argument specifying the file you want to delete. For an example, we'll delete the "yet_another_text_file_copy.txt" file:
 
-To delete files (intentionally) there is the `rm` command (remove). This requires at least one argument specifying the file you want to delete: 
+```bash
+rm yet_another_text_file_copy.txt
+```
 
-<center><img src="{{ site.url }}/images/mv_overwrite_ex2.png"></center>
+<center><img src="{{ site.url }}/images/rm_ex.png"></center>
 
 <br>
 
@@ -389,6 +399,24 @@ Now we can see that we've made the new file with `ls` and take a peek at it with
 
 <center><img src="{{ site.url }}/images/nano_head_ex.png"></center>
 
+<br>
+<br>
+
+---
+<br>
+# Tab-completion is your friend!
+
+There is a very important habit you need to develop if you haven't yet, and it is using the `tab` key to complete files and directories at the terminal. You may have noticed there is quite a bit of typing out file names, and spanning multiple directories if what you need to point to is located somewhere other than your current working directory. Fortunately, we don't need to type things out all the way.  
+
+If we are trying to point to a file that's in our current working directory, we can begin typing the filename and then press `tab` to complete it. And this works the same for directories if we are trying to get to a file that is located somewhere else. Whether or not it will complete the file or directory depends on if there is more than one that starts with the same characters as the those you've entered so far.  
+
+Let's look at this example where we want to run `head` on the file "test.txt" like we did above:
+
+<center><img src="{{ site.url }}/images/tab_complete_ex.png"></center>
+<br>
+Here, I typed `head` then the first two letters of the file I wanted "te", then I hit `tab`. At first it just gave me a notification sound and nothing happened (depending on your setup you may not hear a notification sound). But then I pushed it a second time and it revealed all of the possible files I might be trying to specify. In this case that is two: "test.txt" and "text_copy.txt". I then added an "s" and pressed `tab` again, and that time it finished the file name for me as there was no longer any ambiguity about which file I may mean.  
+
+This may seem like a simple convenience at first, and it certainly is, but tab-completion is also incredibly valuable for making sure you aren't entering anything wrong. We silly humans like to make mistakes like crazy. Any time we can take human-error out of the equation, we should. If you spend any time at the terminal you will quickly realize how invaluable it is to tab-complete everywhere you can, as it assures that things are where you think they are (because if something doesn't tab-complete, it means you are in the wrong location).
 <br>
 <br>
 
