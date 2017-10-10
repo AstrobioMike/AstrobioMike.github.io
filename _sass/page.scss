@@ -980,7 +980,7 @@ $button-size: 1.5rem;
     background-color: #8A8A8A;
     @include rounded(5px);
     @media #{$large} {
-        width: 17.2%;
+        width: 15%;
         position: fixed;
         top: 2em;
         right: 2em;

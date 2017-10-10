@@ -213,6 +213,15 @@ Having some concept of where you are and how to navigate around the computer via
 
 ---
 <br>
+# What is a plain text file?
+
+The baseline tools of *bash* are mostly useful for what are known as plain text files, also commonly referred to as 'flat' files. And I'm just realizing now that formally defining what a 'plain text file' is isn't all that simple. There are a few definitions you could check out at the [wiki](https://en.wikipedia.org/wiki/Plain_text) if you are interested, but a simple, working defintion might be something like: a text file that doesn't contain any special formatting characters and can be properly viewed and edited with any standard text editor.
+
+Bioinformaticians (and lots of others who get to play with big data regularly) work with plain text files so much because not being constrained to any special (arbitary) characteristics means methods for interacting with them can be standardized. So when you learn one command that works on a flat file, it works on all of them the same way. Common formats are files with extensions like ".txt", ".csv" for comma-separated values, ".tsv" for tab-seperated values. More specialized extensions like ".docx" or ".xlsx" are not plain text files. Delimited files, like ".csv" and ".tsv", are a simple way to store tables as each row is delimited by a newline and each column by whichever delimiter is specified. And it's this simple formula that makes them very easy to work with. In the next section [(6 commands worth getting to know)](/bash/six_commands) you'll see and work with some examples of tables, and see why *bash* is invaluable for manipulating them. But for now just know that the text files we've been looking at so far are plain text files.  
+<br>
+
+---
+<br>
 # Working with plain text files and directories
 
 <h4><i>Commands presented in this section:</i></h4>
@@ -230,10 +239,6 @@ Having some concept of where you are and how to navigate around the computer via
 |`rmdir`     |delete a directory|
 |`nano`     |create and edit plain text files|
 
-<h4>What is a plain text file?</h4>
-The baseline tools of *bash* are mostly useful for what are known as plain text files, also commonly referred to as 'flat' files. And I'm just realizing now that formally defining what a 'plain text file' is isn't all that simple. There are a few definitions you could check out at the [wiki](https://en.wikipedia.org/wiki/Plain_text) if you are interested, but a simple, working defintion might be something like: a text file that doesn't contain any special formatting characters and can be properly viewed and edited with any standard text editor.
-
-Bioinformaticians (and lots of others who get to play with big data regularly) work with plain text files so much because not being constrained to any special (arbitary) characteristics means methods for interacting with them can be standardized. So when you learn one command that works on a flat file, it works on all of them the same way. Common formats are files with extensions like ".txt", ".csv" for comma-separated values, ".tsv" for tab-seperated values. More specialized extensions like ".docx" or ".xlsx" are not plain text files. Delimited files, like ".csv" and ".tsv", are a simple way to store tables as each row is delimited by a newline and each column by whichever delimiter is specified. And it's this simple formula that makes them very easy to work with. In the next section [(6 commands worth getting to know)](/bash/six_commands) you'll see and work with some examples of tables, and see why *bash* is invaluable for manipulating them. But for now just know that the text files we've been looking at so far are plain text files. 
 
 <h4>Ways to probe plain text files</h4>
 We've already used a very common tool for peeking at files, the `head` command. There is also a corresponding `tail` version that prints the last 10 lines of a file by default:
@@ -425,6 +430,22 @@ This may seem like a simple convenience at first, and it certainly is, but tab-c
 <h1>Congrats on getting through the basics!</h1>
 Some of these things may seem trivial as used in these examples here, and I know that can make the effort required to learn to use them harder to come by, but these basics really are the foundation to do everything at the command line. Understanding the general rules of commands, their arguments, and the required syntax will make everything you try to do easier.  
 
-There are a lot of base commands in *bash*, and a dizzying number of optional arguments for most of them. Again, google is our friend. If you end up working in the terminal window enough, you will remember some things, but also you will often do a quick search to remember what the flag is for a specific argument, or how exactly a specific command works. This really isn't about memorization overall.  
+There are a lot of base commands in *bash*, and a dizzying number of optional arguments for most of them. Again, google is our friend. If you end up working in the terminal window enough, you will remember some things, but also you will often do a quick search to remember what the flag is for a specific argument, or how exactly a specific command works. This really isn't about memorization overall.
 
-Now that you're comfortable with the basics, head on over to [6 commands worth getting to know](/bash/six_commands) for a walkthrough of some of the other commands that I use all the time.
+Remember the set of commands you ran at the beginning to get the files needed for this walkthrough?
+
+```
+cd ~
+curl -O https://AstrobioMike.github.io/tutorial_files/bash_basics_temp.tar.gz
+tar -xvf bash_basics_temp.tar.gz
+rm bash_basics_temp.tar.gz
+cd bash_basics_temp
+```
+
+I promised you'd have a better idea of what's going on in here by the end, so let's break it down.
+
+We start by changing directories to our 'home' location, and we do this with the special character `~`. Then we use two commands you aren't familiar with yet, `curl` and `tar`. We won't get into these here other than to say `curl` allows you to download things from the internet from the command line, and `tar` is a tool for packing and unpacking files and directories. So with the `curl` command we download the files in a compressed format, and then with `tar` and some options we expand them into a directory called "bash_basics_temp". Then all we do is delete the uncompressed files ("bash_basics_temp.tar.gz"), and change directories into "bash_basics_temp".  
+
+As you can see here, while the commands change, the general structure of how to operate in the command line stays the same. This is part of why the learning curve is steep at the start but it gets better. Once you become comfortable with the general framework, everything is gets easier.  
+
+Now that you're comfortable with the basics, head on over to [6 commands worth getting to know](/bash/six_commands) for a walkthrough of some stellar commands I wouldn't want to live without.
