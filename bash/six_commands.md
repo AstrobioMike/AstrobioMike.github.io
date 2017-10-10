@@ -55,7 +55,7 @@ less -S example_gene_annotations.txt
 <center><img src="{{ site.url }}/images/cut_less.png"></center> 
 
 <br>
-Okay, that's a little cleaner. We can see there are some column names in the first row. Don't worry about columns not perfectly lining up, typically the terminal doesn't display things in that fashion (though there are commands that can). Let's look at just the first row using the `head` command and only pulling out 1 line so we can see the column names:
+Okay, that's a little cleaner. We can see there are some column names in the first row. Don't worry about columns not perfectly lining up, typically the terminal doesn't display things in that fashion (though there are commands that can). As a reminder, `q` will get you out of `less`. Let's look at just the first row using the `head` command and only pulling out 1 line so we can see the column names:
 
 <center><img src="{{ site.url }}/images/cut_head_n1.png"></center> 
 
