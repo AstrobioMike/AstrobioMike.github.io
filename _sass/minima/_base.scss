@@ -258,13 +258,14 @@ pre {
   @include rounded(3px);
   border: 2px solid #ad0d0d;
   margin: 20px 10px;
-  padding: 20px 12px 8px 12px;
+  padding: 20px 8px 8px 8px;
   border-radius: 3px;
-  background-repeat: no-repeat;
-  background-position: 12px 12px;
+  background-repeat: no-repeat, no-repeat;
+  background-position: 2% 16%, 98% 16%;
   color: #ad0d0d;
+  text-align: center;
   background-color: #FEEFB3;
-  background-image: url("../../images/warning_icon.png");
+  background-image: url("../../images/warning_icon.png"), url("../../images/warning_icon.png");
 }
     
 

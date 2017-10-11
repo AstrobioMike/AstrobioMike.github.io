@@ -20,4 +20,4 @@ permalink: /bash/why
 # Removing dashes from 900 file names  
 
 <br>
-# Making a barcode file needed for usearch from a mapping file provided by my sequencing center  
+# Making a barcode file needed for usearch (or for sabre) from a mapping file provided by my sequencing center  

@@ -57,6 +57,11 @@ less -S example_gene_annotations.txt
 <br>
 Okay, that's a little cleaner. We can see there are some column names in the first row. Don't worry about columns not perfectly lining up, typically the terminal doesn't display things in that fashion (though there are commands that can). As a reminder, `q` will get you out of `less`. Let's look at just the first row using the `head` command and only pulling out 1 line so we can see the column names:
 
+
+```
+head -n1 example_gene_annotations.txt
+```
+
 <center><img src="{{ site.url }}/images/cut_head_n1.png"></center> 
 
 <br>
@@ -72,31 +77,59 @@ cut -f2 example_gene_annotations.txt
 <br>
 Pretty simple. You can also request multiple fields by listing them separated by commas:
 
+
+```
+cut -f2,4,6 example_gene_annotations.txt
+```
+
 <center><img src="{{ site.url }}/images/cut_246.png"></center> 
 
 <br>
 Or if the columns you want to pull are contiguous, you can provide a range with a `-`:
 
+
+```
+cut -f1-4 example_gene_annotations.txt
+```
+
 <center><img src="{{ site.url }}/images/cut_1_4.png"></center> 
 
 <br>
+I realize this is a little anti-climactic at the moment as we haven't even gone over how we can store any of this yet. 
 
 
+<br>
 
-
-
+---
+<br>
 # grep  
 <br>
+<br>
 
+---
+<br>
 # awk  
 <br>
-
-# sed  
 <br>
 
+---
+<br>
+# sed  
+<br>
+<br>
+
+---
+<br>
 
 # paste  
 <br>
+<br>
 
+---
+<br>
 # tr  
+<br>
+<br>
+
+---
 <br>

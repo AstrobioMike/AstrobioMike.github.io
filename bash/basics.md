@@ -409,6 +409,22 @@ Now we can see that we've made the new file with `ls` and take a peek at it with
 
 ---
 <br>
+# Pipes and redirectors
+Here we're going to quickly touch upon what makes the Unix command-line environment so powerful. A pipe `|`, is used to connect commands. Basically it takes in the output from the previous command and pipes it into the input of the following command. Here is a simple example of this where we are going to list the contents of the current working directory with `ls`, and then count how many items there are by counting the number of lines with `wc -l`:
+
+
+```bash
+ls | wc -l
+```
+
+
+A simple example using `>` is we're going to list the contents of the current working directory with `ls` and redirect it into a file (rather than printing it to the terminal). 
+
+<br>
+<br>
+
+---
+<br>
 # Tab-completion is your friend!
 
 There is a very important habit you need to develop if you haven't yet, and it is using the `tab` key to complete files and directories at the terminal. You may have noticed there is quite a bit of typing out file names, and spanning multiple directories if what you need to point to is located somewhere other than your current working directory. Fortunately, we don't need to type things out all the way.  
