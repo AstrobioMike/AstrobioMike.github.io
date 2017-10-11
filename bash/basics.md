@@ -425,6 +425,13 @@ A simple example using `>` is we're going to list the contents of the current wo
 
 ---
 <br>
+# Wildcards
+
+<br>
+<br>
+
+---
+<br>
 # Tab-completion is your friend!
 
 There is a very important habit you need to develop if you haven't yet, and it is using the `tab` key to complete files and directories at the terminal. You may have noticed there is quite a bit of typing out file names, and spanning multiple directories if what you need to point to is located somewhere other than your current working directory. Fortunately, we don't need to type things out all the way.  
