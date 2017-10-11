@@ -89,7 +89,7 @@ It's good to try to keep a bird's-eye view of what's going on. So here is an ove
 |6|`-otutab`|generate a count table|
 |7|`-sintax`|assign taxonomy to OTUs and/or ASVs|
 
-<h4>1) Merging forward and reverse reads</h4>
+#### Merging forward and reverse reads
 
 Depending on the sequencing facility, when paired-end sequencing was performed you may receive one forward and one reverse fastq file with all samples mixed together, or you may get things already demultiplexed (separate files for each individual sample). In this case our samples have already been demultiplexed and the barcodes have been trimmed off. This means for each of our 20 samples we have a forward (R1) and reverse (R2) reads file:
 
@@ -106,7 +106,7 @@ usearch -fastq_mergepairs *_R1.fq -fastqout all_samples_merged.fq -relabel @
 
 So here the magic of the `*` wild card is grabbing all forward read files for every file that ends in .fq. We didn't need to specify the reverse reads because usearch finds them automatically for us. We specify the output file with the `-fastqout` argument. And the last part, `-relabel @`, tells the program to append the file name the merged sequence originated from to its header. Along with the command finishing we get some overall summary statistics printed to the terminal, such as how many total sequences we had and what proportion of the paired reads successfully merged. Checks like this are needed in order to have some idea of what's going on with your sequences as you move them along. Here almost 90% of them successfully merged, which is pretty good. 
 
-<h4>2) Cutting off the primers</h4>
+#### Cutting off primers
 Due to the degeneracy of primers they tend to introduce non-biological variation. As such it's important to cut them off, particularly if you are going to perform any sort of single-nucleotide resolution clustering. Here we have our primers in a fasta file that looks like this:
 
 <center><img src="{{ site.url }}/images/primers.png"></center>
@@ -130,7 +130,7 @@ This tells us things are as we expect them to be, and we can proceed to trim off
 usearch -fastx_truncate all_samples_merged.fq -stripleft 19 -stripright 20 -fastqout all_merged_no_primers.fq
 ```
 
-<h4>3) Quality filtering</h4>
+#### Quality filtering
 Quality filtering is a critical in reducing the abundance and impact of spurious sequences. There is an intrinsic error rate to all sequencing technology (and polymerases) that will consistently be generating some portion of sequences that vary slightly from their true biological origin, and this can substantially inflate metrics such as richness and diversity. Quality filtering is one of the steps in place to mitigate that problem. In usearch it is done with the `-fastq_filter` command, which uses calculated expected errors to determine if sequences are filtered out or not (the details can be found [here](https://www.drive5.com/usearch/manual/exp_errs.html)).
 
 ```
@@ -139,7 +139,7 @@ usearch -fastq_filter all_merged_no_primers.fq -fastq_maxee 1 -fastaout QCd_merg
 
 The output tells us very few reads were discarded due to poor quality. And note that our output file from this is now a fasta file, as after quality filtering we no longer need to keep track of the quality scores for each sequence anymore. 
 
-<h4>4) Dereplication</h4>
+#### Dereplication
 The dereplication step collapses all identical sequences to one and simply keeps track of how many there were. This serves a couple of purposes. It can save a ton of time in further processing steps because, for instance, you can then just process once a sequence that may appear 10,000 times – rather than processing 10,000 copies of the same exact sequence 10,000 times. And also, further attempts to mitigate the presence of spurious sequences involves merging low-abundance sequences with high-abundance sequences if they are similar enough, which requires knowing the abundance of individual sequences. In usearch this dereplication step is done with the `-fastx_uniques` command:
 
 ```
@@ -148,7 +148,7 @@ usearch -fastx_uniques QCd_merged.fa -sizeout -relabel Uniq -fastaout unique_seq
 
 We can see from this output that of ~188,000 total sequences, ~95,000 of them were unique, and ~84,000 of those appear only one time (singletons). Having relatively so many singletons is common with amplicon data and is a direct consequence of intrinsic sequencing error rates. It is likely the majority of these are simply 1 or 2 bps diverged from a true biological sequence that is present in greater abundance. This is why we try to merge low-abundance sequences with high-abundance ones that are very similar – this is also one of the reasons why clustering sequences into arbitrary OTUs took off as well as it did, to mitigate sequencing error inflating true biological signals). 
 
-<h4>5) Clustering OTUs and/or generating ASVs</h4>
+#### Clustering OTUs and/or generating ASVs
 OTUs refer to 'operational taxonomic units' that are made by grouping sequences into clusters based on similarity. Then for each cluster, a sequence from that cluster is selected to be the representative sequence of that cluster (typically one from the 'center' of that cluster in 'sequence space', or the most abundant from the cluster). In usearch, if you specify 97% OTUs for instance, the program attempts to build OTUs (clusters) such that none of the representative sequences for the OTUs are more similar than 97% to any other.
 
 ASVs on the otherhand refer to 'amplicon sequence variants', which seems to be emerging as the consensus name for sequences derived using single-nucleotide resolution. As the name suggests, single-nucleotide resolution means you can delineate sequences even if they vary by only one base pair. This most often means similarity levels greater than 99% that as such would be lost with any form of OTU clustering. ASVs are believed to represent true biological sequences (with sequencing error for the most part weeded out via abundance-based merging and filtering), and have the advantage of not throwing away resolution by merging similar sequences together. There are several tools available that apply different approaches to do this such as [MED](http://merenlab.org/2014/11/04/med/), [DADA2](https://benjjneb.github.io/dada2/index.html), and usearch's `-unoise3` command. 
@@ -163,7 +163,7 @@ usearch -unoise3 unique_seqs.fa -zotus ASVs.fa -tabbedout unoise3.txt
 
 By default, usearch's `-unoise3` command filters out any that are less abundant than 8, and removes sequences it suspects are chimeric, details of which can be found [here](https://www.biorxiv.org/content/biorxiv/early/2016/09/09/074252.full.pdf). From the output to the terminal we can see we have ~1700 ASVs. In theory, these are true biological sequences recovered from our 20 samples. 
 
-<h4>6) Generating a count table</h4>
+#### Generating a count table
 The count table is what tells us how many times each sequence appears in each sample. It is the end-product of all this processing that we can't wait to get into R. The way the count table is generated in usearch is a bit different than most other approaches. Here, now that usearch has identified what it believes to be true biological sequences, the `-otutab` command is used to attempt to map all of our merged sequences to the ASVs. By default it does this by requiring a merged sequence to be >97% similar to an ASV, and if a sequence crosses that threshold for more than one ASV it is counted for the one it is most similar to only. Incorporating another 97% threshold here may seem a bit confusing at first, but usearch's thinking is that more often than not, the 'true' ASV sequences recovered were more than likely the source of the majority of sequences that are within 3% of them, as the source of this 3% variation is believed to be the result of sequencing and pcr errors. Additionally, it is still fundamentally different to have your ASV units built without similarity clustering, as opposed to 97% OTUs. That said, when I ran through this I decided to bump up the required % similarity to 98.5% when mapping our merged sequences to our ASVs to generate our count table. The downside to this is you will lose some data (as less sequences will map to an ASV), but if you have a decent amount of sequences per sample then you can afford to lose some for the sake of being a bit more conservative. 
 
 Due to a minor glitch in usearch where it doesn't seem to register the headers of the ASV sequences it gave them, we need to run this quick `sed` command before the `-otutab` program:
@@ -178,7 +178,7 @@ Note that the input file is our previous merged sequences file after we trimmed 
 
 <br>
 
-<h4>7) Assigning taxonomy to our ASV sequences</h4>
+#### Assigning taxonomy
 The final step in our sequence processing is to assign taxonomy to our ASV sequences. There are multiple ways to do this as well. I usually run a few different ways and put them all in a table next to each other. Then I can be more somewhat more confident when there is some consistency. Something to keep in mind is taxonomy-assigning software is generally built to be fast. To do this, most rely on kmer frequencies to classify to a reference, rather than alignments. If you begin analyzing your data and some particular OTUs or ASVs emerge as being imporant to the overall story it's a good idea to take that sequence and BLAST it to try to get more information about it. 
 
 Here we will use usearch's `sintax` program with the RDP training set reference fasta available from [here](https://www.drive5.com/usearch/manual/sintax_downloads.html).
@@ -206,6 +206,7 @@ And now we're ready to move onto analysis!
 <br>
 
 # Analysis in R
+#### Set up working environment
 To get started let's open up RStudio, set our current working directory to where we just left our new files, and install the packages we'll need:
 
 ```R
@@ -236,9 +237,15 @@ library("phyloseq")
 library("vegan")
 library("breakaway")
 ```
-
-And now it's time to read in our data.
  
+#### Reading in our data
+
+#### Alpha diversity
+
+#### Beta diversity
+
+#### Taxonomy summary
+
 <br>
 <br>
 

@@ -972,9 +972,8 @@ $button-size: 1.5rem;
 .toc {
     max-height: calc(100% - 4em);
     overflow-y: auto;
-    font-size: 100%;
-    border: 1px solid #8A8A8A;
-    border-bottom: 1px solid #8A8A8A;
+//     border: 0.5px solid #8A8A8A;
+//     border-bottom: 0px solid #8A8A8A;
     box-shadow: 6px 12px 34px 7px #909090;
     margin-bottom: 40px;
     background-color: #8A8A8A;
@@ -988,15 +987,16 @@ $button-size: 1.5rem;
     header {
         background: #ecf2f9;
         padding: 0px;
-        font: "Arial";
     }
     h3 {
         margin: 0;
         padding: 5px 5px;
+        font-size: 130%;
+        font-family: "Helvetica Neue";
         color: $grey-color-dark;
 //         @include font-rem(18);
         font-variant: small-caps;
-        font-style: bold;
+//         font-weight: 500;
         text-align: center;
     }
     ul {
@@ -1009,8 +1009,12 @@ $button-size: 1.5rem;
         margin: 0 0 1px 0;
         padding: 0;
         font-family: "Helvetica Neue";
-        font-variant: small-caps;
-        text-align: center;
+//         font-family: "Avenir Black";
+//         font-variant: small-caps;
+        line-height: 1.05;
+        text-align: left;
+        font-size: 90%;
+        font-weight: 500;
         list-style-type: none;
         &:last-child {
             border-bottom-width: 0;
@@ -1018,19 +1022,30 @@ $button-size: 1.5rem;
         a {
             padding: 10px;
             display: block;
-            @include rounded(5px);
+            color: darken($grey-color-dark, 10);
+//             @include rounded(5px);
             text-decoration: none;
-            background: lighten($black, 30);
-            @include opacity(0.8);
+            background: lighten(#ecf2f9, 3);
+            @include opacity(0.85);
             @include transition(opacity 0.2s ease-in-out);
             &:hover {
                 @include opacity(1);
-            }
+            };
+            &:last-child {
+              border-bottom-width: 0;
+            };
         }
         ul {
             margin: 1px 0 0;
+            &:last-child {
+              border-bottom-width: 0;
+            };
             li a {
                 padding-left: 20px;
+                &:last-child {
+                  border-bottom-width: 0;
+                };
+              
             }
         }
     }
