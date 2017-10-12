@@ -21,11 +21,11 @@
   text-align: center;
   color: #444444;
   font-size: 0.8em;
-  font-weight: bold;
+  font-weight: 600;
   transition: 0.3s background-color;
   font-family: "Helvetica Neue",sans-serif;
   text-transform: uppercase;
-  letter-spacing: -0.5px;
+  letter-spacing: -0.25px;
 }
 
 .fancy-menu-title:before {
@@ -74,7 +74,7 @@
   z-index: 100;
   color: #444444;
   font-size: 0.8em;
-  font-weight: lighter;
+  font-weight: 500;
   font-family: "PT Sans Narrow",sans-serif;
   text-transform: uppercase;
 
