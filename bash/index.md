@@ -42,7 +42,7 @@ So there you have it. In 4 paragraphs you now know as much about these terms as 
 
 __Modules:__  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • [*bash* basics](/bash/basics) (now available)  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • [6 commands worth getting to know](/bash/six_commands) (in progress)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • [6 commands worth getting to know](/bash/six_commands) (in progress)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • [How to install the tools you need](/bash/installing_tools)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • [What the heck is a PATH, and how do I get it to do what I want?](/bash/modifying_your_path)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • [Simple loops can go a long way](/bash/loops_to_help)  
