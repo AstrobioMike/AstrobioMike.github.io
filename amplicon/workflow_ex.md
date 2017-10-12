@@ -9,16 +9,15 @@ permalink: amplicon/workflow_ex
 
 {% include _side_tab_amplicon.html %}
 
-<div class="warning">
-<h2>WARNING!</h2>
-Don't get too lost in the weeds when working with marker-gene data. More often than not the types of detailed questions that will land you in that situation can't be answered with this type of data anyway!</div>
+This module is going to walkthrough one possible workflow for an amplicon dataset from start to finish (if you need a quick primer on some relevant terminology, visit the [amplicon main page]({{ site.url }}/amplicon/)). This will entail processing the raw sequences with [usearch](https://drive5.com/usearch/), and analyzing the output and making some visualizations with [R](https://www.r-project.org/) using some great packages like [*vegan*](https://github.com/vegandevs/vegan), [*phyloseq*](http://joey711.github.io/phyloseq/), and [*breakaway*](https://github.com/adw96/breakaway). 
+<br>
+<br>
+
+---
+<br>
 
 ## Opening caveats
-Most often a marker-gene analysis is the microbial ecologist's first tool in a vast toolkit. It is primarily used as a broad survey of community structure. As the warning notes above, it is easy to get caught spinning your wheels about a sublte component in your processing pipeline that ultimately has a negligible impact compared to the noise we are working through. What I mean by this is, generally speaking, tag data is not the appropriate tool to answer really meticulous questions. It is a tool for comparing baseline *proxies* of metrics about microbial communities. It is a tool of exploration and hypothesis generation, not hypothesis confirmation.  
-
-There are a lot of things to keep in mind regarding what tag sequencing means, what it doesn't mean, what it can tell you, and what it can't. And at some point I'll give my two cents on all of these things in the [Amplicon Thoughts]({{ site.url}}/amplicon/thoughts) post should anyone be interested. But for now, let's go through a dataset.
-
-There are many ways to process amplicon data (if you need a quick primer on some relevant terminology, visit the [Amplicon main page]({{ site.url }}/amplicon/)). Some of the most widely used tools/pipelines include [mothur](https://www.mothur.org/), [usearch](https://drive5.com/usearch/), [Minimum Entropy Decomposition](http://merenlab.org/2014/11/04/med/), [DADA2](https://benjjneb.github.io/dada2/index.html), and [qiime2](https://qiime2.org/) (which employs other tools within it). As usual, there is no one-size-fits-all, there is no 'best'. And actually in my experience if you make similar decisions when processing your sequences (decisions about things like minimum abundance filtering or clustering thresholds), you most often get very similar results regardless of which of these you use (refreshingly). Here I'll be using [usearch](https://drive5.com/usearch/) mostly because of it's ease of deployment; there is no installation required and there are no dependencies. So if you want to actively follow along with this module you can just download it and you're ready to rock. But please keep in mind that nothing here is meant to be authoritative. This is simply one example of one workflow. When working with your own data you should never follow any pipeline blindly.
+There are many ways to process amplicon data. Some of the most widely used tools/pipelines include [mothur](https://www.mothur.org/), [usearch](https://drive5.com/usearch/), [Minimum Entropy Decomposition](http://merenlab.org/2014/11/04/med/), [DADA2](https://benjjneb.github.io/dada2/index.html), and [qiime2](https://qiime2.org/) (which employs other tools within it). As usual, there is no one-size-fits-all; there is no best. And actually in my experience if you make similar decisions when processing your sequences (decisions about things like minimum abundance filtering or clustering thresholds), you will get very similar results regardless of which of these you use (refreshingly). Here I'll be using [usearch](https://drive5.com/usearch/) mostly because of it's ease of deployment; there is no installation required and there are no dependencies. So if you want to actively follow along with this module you can just download it and you're ready to rock. Keep in mind that nothing here is meant to be authoritative. This is simply one example of one workflow. When working with your own data you should of course never follow any pipeline blindly.
 <br>
 <br>
 
@@ -26,10 +25,7 @@ There are many ways to process amplicon data (if you need a quick primer on some
 <br>
 
 # Tools used here
-
-This module is going to walkthrough one possible workflow for an amplicon dataset from start to finish. This will entail processing the raw sequences with [usearch](https://drive5.com/usearch/), and analyzing the output and making some visualizations with [R](https://www.r-project.org/) using some great packages like [*vegan*](https://github.com/vegandevs/vegan), [*phyloseq*](http://joey711.github.io/phyloseq/), and [*breakaway*](https://github.com/adw96/breakaway). 
-
-There is a free, 'light-weight' version of usearch available that you will need to download if you wish to follow along here. To get the free version, go to [https://www.drive5.com/usearch/download.html](https://www.drive5.com/usearch/download.html), and fill out a (very) short form in order to have a download link sent to you. This usually happens virtually instantly in my experience. At the time this page is being put together I'm using usearch v10.0.240 on Mac OSX. As mentioned, we're using usearch here because there is no installation required. So once you receive the email and download the file, you only need to put it somewhere in your [PATH](http://localhost:4000/bash/modifying_your_path) and make sure it is 'executable'. Assuming you're working on a Mac and downloaded the same version as noted above, and it was downloaded into your home downloads directory, this should get the job done:
+There is a free, 'light-weight' version of usearch available that you will need to download if you wish to follow along here. To get the free version, go to [https://www.drive5.com/usearch/download.html](https://www.drive5.com/usearch/download.html), and fill out a (very) short form in order to have a download link sent to you. This usually happens virtually instantly in my experience. At the time this page is being put together I'm using usearch v10.0.240 on Mac OSX. As mentioned, we're using usearch here because there is no installation required. So once you receive the email and download the file, you only need to put it somewhere in your [PATH](http://localhost:4000/bash/modifying_your_path) and make sure it is 'executable'. Assuming you're working on a Mac and you downloaded the same version as noted above into your default download directory, this should get the job done:
 
 
 ```bash

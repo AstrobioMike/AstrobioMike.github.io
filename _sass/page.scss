@@ -793,6 +793,7 @@ $button-size: 1.5rem;
 // side-tabs marking which section you're in
 .side-tab-bash {
   h3 {
+//     @include container;
 //     width: 5%;
     overflow-y: auto;
     overflow-x: auto;

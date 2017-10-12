@@ -410,24 +410,137 @@ Now we can see that we've made the new file with `ls` and take a peek at it with
 ---
 <br>
 # Pipes and redirectors
-Here we're going to quickly touch upon what makes the Unix command-line environment so powerful. A pipe `|`, is used to connect commands. Basically it takes in the output from the previous command and pipes it into the input of the following command. Here is a simple example of this where we are going to list the contents of the current working directory with `ls`, and then count how many items there are by counting the number of lines with `wc -l`:
+<h4><i>Special characters presented in this section:</i></h4>
 
+|Character     |Function          |
+|:----------:|------------------|
+|`|`      |allows stringing together multiple commands, known as a 'pipe'|
+|`>`      |sends output to a file (overwrites target file)|
+|`>>`      |sends output to a file (appends to target file)|
+|`<`       |precedes input|
+
+Here we're going to quickly touch upon what makes the Unix command-line environment so powerful: pipes and redirectors. A pipe ( `|` ) is used to connect commands. Basically it takes in the output from the previous command and pipes it into the input of the following command. 
+
+For a simple example of this, we're going to string together two commands to find out how many items are in our current working directory. You're already familiar with how `ls` will list the contents of your cuurrently working directory:
+
+<center><img src="{{ site.url }}/images/nano_head_ex.png"></center>
+
+<br>
+And we saw that if we use the `wc` command with the optional flag `-l`, it counts the number of lines of the file we specify:
+
+<center><img src="{{ site.url }}/images/wc_lines_pipe.png"></center>
+
+<br>
+If we provide a `|` in between these commands, the output from the first command becomes the input for the second command. In this case that means we're taking the list of contents from our current working directory, and asking `wc -l` to tell us how many there are:
 
 ```bash
 ls | wc -l
 ```
 
+<center><img src="{{ site.url }}/images/pipe_ex.png"></center>
 
-A simple example using `>` is we're going to list the contents of the current working directory with `ls` and redirect it into a file (rather than printing it to the terminal). 
+<br>
+Note this counts subdirectories and files.
 
+Another important character is the greater than sign, `>`. This tells the terminal that you want whatever the standard output is to be redirected into the file you specify (rather than printing it to your terminal window). Here we'll see a simple example of this where we use `ls` again to list the contents of the current working directory, but we'll redirect the output into a file called "directory_contents.txt":
+
+```bash
+ls > directory_contents.txt
+```
+
+<center><img src="{{ site.url }}/images/redirect_ex.png"></center>
+
+<br>
+It's important to remember that the `>` redirector will overwrite the file you are pointing to with whatever you are sending there. If we use two of them instead, `>>`, this will append whatever you're sending to the target file:
+
+<center><img src="{{ site.url }}/images/redir_append.png"></center>
+
+<br>
+Another redirector that you may come across but will likely use less often is the less than sign, `<`. This is placed before what you would like the input to be. We've seen a lot of commands that allow specifying the file or item you want to act on by simply placing it as an argument. Like when running `head directory_contents.txt`, the first positional argument is the file we want to look at. Some commands require you to use `<` to specify the input. An example we'll get more into in [Six commands worth getting to know]({{ site.url }}/bash/six_commands) is the command `tr`, for 'translate'. This will find all instances of a character in a file and change them into another character. 
+
+For an example of this, and how we need the `<` redirector to specify the input file, we'll try to change each lowercase `t` to a capital `T` in the "text_copy.txt" file. Here's what the file looks like to begin with:
+
+<center><img src="{{ site.url }}/images/head_text_copy.png"></center>
+
+<br>
+The syntax of the `tr` command is such that the first positional argument is the character you are looking for in the file, and the second is what you want to change it to. Then to specify what file you want this performed on, we need to place it after the `<` redirector. In our example, this looks like this:
+
+```
+tr t T < text_copy.txt
+```
+
+<center><img src="{{ site.url }}/images/tr_ex.png"></center>
+
+<br>
+Note that if you tried to run this without the redirector by just providing the file you want to act on as a positional argument (as I often do at first), you'd get a usage message for the `tr` command:
+
+<center><img src="{{ site.url }}/images/tr_wrong.png"></center>
+
+<br>
+Lastly, we can see that when running the `tr` command the output is printed to the terminal window. This most often won't be all that useful as you can't do anything else with it then. So here let's redirect that output into a file called "text_copy_cap_T.txt:
+
+```
+tr t T < text_copy.txt > text_copy_cap_T.txt
+```
+
+<center><img src="{{ site.url }}/images/tr_ex_redir_out.png"></center>
+
+<br>
+Those are the basics of pipes and redirectors. They are fundamental to the power of Unix-like working environments. We'll see some actually useful applications of these later, but you get the idea.
 <br>
 <br>
 
 ---
 <br>
 # Wildcards
+<h4><i>Special characters presented in this section:</i></h4>
+
+|Character     |Function          |
+|:----------:|------------------|
+|`*`      |an asterisk represents any character appearing any number of times|
+|`?`      |a question mark represents any character that appears just once|
+
+Wildcards in *bash* are also an essential component to understand if you want to maximize your capabilities at the command-line. Basically a wildcard allows you to specify multiple items at once based on how you use it to identify your targets. The `*` and `?` are the most often used, and we'll get a glimpse of how they work with the `ls` command again.
+
+As we've seen so far, `ls` lists the contents of the current working directory. By default, `ls` assumes you want everything, so when providing no further arguments it prints everything. But we can specify what we want it to operate on by giving it a positional argument. To make this example slightly more meaningful, we'll also provide the `-l` flag to the `ls` command, which will give us some more information about the file. Here we'll specify "yet_another_text_file.txt":
+
+<center><img src="{{ site.url }}/images/ls_l_one_item.png"></center>
 
 <br>
+Now that we get the format when we specify a single file, let's look at it when specifying multiple. Say we want to see all files that start with the word "text". One way to do this is to list out each file name one after the other:
+
+<center><img src="{{ site.url }}/images/ls_ex_test.png"></center>
+
+<br>
+But we can also do this with the `*` wildcard much more easily:
+
+```
+ls -l text*
+```
+
+<center><img src="{{ site.url }}/images/ls_ex_test_star.png"></center>
+
+<br>
+Here, we are giving what's unique about what we are looking for (the "text" beginning), and then with the `*` saying accept anything after that. 
+
+Let's look at this another way where we want to see all files that end with the extention ".txt":
+
+```
+ls -l *.txt
+```
+
+<center><img src="{{ site.url }}/images/ls_ex_star_txt.png"></center>
+
+<br>
+The `?` wildcard can represent any character that appears only one time. To demonstrate this I'm going to make a couple of blank files with the `touch` command. This command basically just creates a blank file if one doesn't exist, or if it does exist, it updates the time stamp of when it was last accessed (check out the [wiki](https://en.wikipedia.org/wiki/Touch_(Unix)) if interested).
+
+<center><img src="{{ site.url }}/images/ls_question_mark_ex.png"></center>
+
+<br>
+In the last command there we can see it acted on files that had only a single character where the `?` wildcard was placed. Here is what the output is like when we use the `*` in the same position:
+
+<center><img src="{{ site.url }}/images/ls_star_mark_ex.png"></center>
+
 <br>
 
 ---

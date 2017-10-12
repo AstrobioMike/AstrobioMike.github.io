@@ -1,8 +1,8 @@
 ---
 layout: main
-title: Opening thoughts
+title: Caveat Central
 categories: [amplicon]
-permalink: /amplicon/thoughts
+permalink: /amplicon/caveats
 ---
 
 {% include _side_tab_amplicon.html %}
@@ -10,4 +10,6 @@ permalink: /amplicon/thoughts
 <center><img src="{{ site.url }}/images/under_construction.jpeg"></center>
 <center><h3>UNDER CONSTRUCTION</h3></center>
 <br>
-<br>
+
+### Coming soon...
+
