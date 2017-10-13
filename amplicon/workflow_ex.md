@@ -347,7 +347,7 @@ euc_dist <- dist(t(vst_trans_count_tab))
 
 <br>
 
-## Taxonomy summary
+## Taxonomic summaries
 <br>
 <br>
 
