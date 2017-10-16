@@ -276,6 +276,54 @@ filt_count_tab <- count_tab[!rownames(count_tab) %in% blank_ASVs, -c(1:4)]
 filt_sample_info_tab<-sample_info_tab[-c(1:4), ]
 ```
 
+## Beta diversity
+Beta diversity involves calculating metrics such as distances or dissimilarities based on pairwise comparisons of samples. Typically the first thing I do when I get a new dataset into R (whether it's tag data, gene expression data, methylation levels, or pretty much anything) is generate some exploratory visualizations like ordinations and hierarchical clusterings. These give you a quick overview of how your samples relate to each other and can be a way to check for problems like batch effects. 
+
+We're going to use Euclidean distances to generate some exploratory visualizations of our samples. Since differences in sampling depths between samples can influence distance/dissimilarity metrics, we first need to somehow normalize across our samples. 
+
+<h4><center>Normalizing for sampling depth</center></h4>
+Common ways to do this involve either subsampling each sample down the the lowest sample's depth, or turning counts into proportions of the total for each sample. However, both of these approaches are generally shunned by people I trust when it comes to such topics (i.e., statisticians). For example, in their 2014 PLOS Computational Biology paper, ["Waste not, want not: why rarefying microbiome data is inadmissible"](http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003531), McMurdie and Holmes argue that a better method of normalizing across samples is to use a variance stabilizing transformation – which fortunately we can do with the [*DESeq2*](https://bioconductor.org/packages/release/bioc/html/DESeq2.html) package.
+
+```R
+  # first we need to make a DESeq2 object
+deseq_counts <- DESeqDataSetFromMatrix(filt_count_tab, colData = filt_sample_info_tab, design = ~type) # we have to include the colData and design arguments because they are required, as they are needed for further downstream processing by DESeq2, but for our purposes they don't matter
+deseq_counts_vst <- varianceStabilizingTransformation(deseq_counts)
+
+  # pulling out our transformed table 
+vst_trans_count_tab <- assay(deseq_counts_vst)
+
+  # and calculating our Euclidean distance matrix
+euc_dist <- dist(t(vst_trans_count_tab))
+```
+
+<h4><center>Hierarchical clustering</center></h4>
+Now that we have our Euclidean distance matrix, let's look at a hierarchical clustering of our samples.
+
+```R
+euc_clust <- hclust(euc_dist, method="ward.D2")
+
+# plot(euc_clust) # hclust objects like this can be plotted as is, but i like to change them to dendrograms for two reasons:
+  # 1) it's easier to color the dendrogram plot by groups
+  # 2) if you want you can rotate clusters with the rotate() function of the dendextend package
+
+euc_dend <- as.dendrogram(euc_clust, hang=0.1)
+dend_cols <- filt_sample_info_tab$col[order.dendrogram(euc_dend)]
+labels_colors(euc_dend) <- dend_cols
+
+plot(euc_dend, ylab="VST Euc. dist.")
+```
+
+<center><img src="{{ site.url }}/images/hclust.png"></center>
+
+<br>
+So from our first peek, the broadest clusters separate the biofilm and water samples from the rocks. And the next tier splits the rocks into two groups, with R8–11 separate from the others. The splitting of the basalts into these two groups actually correlates both with location of collection, and the level of alteration of the basalts. If we look at the figure from the top of the page again, we can see that rocks R8–R11 were all recovered from the southern end of the outrcrop. These 4 also happen to have be all of the glassier type of basalt with thin (~1-2 mm), smooth exteriors (like the one pictured in box C), while all of the rest (R1-R6, and R12) had more highly altered, thick (>1 cm) outer rinds (box B). (R7 was the calcium carbonate, box D).
+
+<h4><center>Ordination</center></h4>
+
+<center><img src="{{ site.url }}/images/pcoa.png"></center>
+
+<br>
+
 ## Alpha diversity
 Alpha diversity entails using summary metrics to describe individual samples, and it is a very tricky thing when working with amplicon data. There are a lot of tools from macro-ecology that have been co-opted into the microbial ecology world that just simply do not work the same. If and when I use any alpha diversity metrics, I mostly consider them useful for relative comparisons of samples from the same experiment. And I am absolutely going to ask some experts (ahem, @SherlockPHolmes and @AmyDWallis) to take a look at this part to be certain I'm not leading anyone astray here. But here are a few things I've done recently (unless I'm later informed this is wrong – then these are examples of what *not* to do).
 
@@ -294,7 +342,7 @@ abline(v=(min(rowSums(t_filt_count_tab))))
 ```
 <center><img src="{{ site.url }}/images/rarefaction.png"></center>
 
-In this plot, all of the rock samples are colored brown, the water samples are blue, the biofilm sample is colored green, and the vertical line represents the sampling depth of the sample with the least amount of sequences. In this case, I think it's a pretty safe conclusion to draw that the rock samples are more diverse than the water samples or the biofilm sample. There also seems to be some correlation with the level of alteration of the basalts. Samples R8, R9, R10, and R11 were all of the glassier type of basalt with thin (~1-2 mm), smooth exteriors (like the one pictured in box C in the figure at the top of this page), while all of the rest (R1-R6, and R12) had more highly altered, thick (>1 cm) outer rinds (like the one in box B above). R7 was the calcium carbonate (box D). 
+In this plot, all of the rock samples are colored brown, the water samples are blue, the biofilm sample is colored green, and the vertical line represents the sampling depth of the sample with the least amount of sequences. In this case, I think it's a pretty safe conclusion to draw that the rock samples are more diverse than the water samples or the biofilm sample (based on where they all cross the vertical line of lowest sampling depth), and that they also have a higher richness. There also seems to be some correlation with the level of alteration of the basalts. Samples R8, R9, R10, and R11 were all of the glassier type of basalt with thin (~1-2 mm), smooth exteriors (like the one pictured in box C in the figure at the top of this page), while all of the rest (R1-R6, and R12) had more highly altered, thick (>1 cm) outer rinds (like the one in box B above). R7 was the calcium carbonate (box D). 
 
 <h4><center>Richness and diversity estimates</center></h4>
 Here we are going to use the [*phyloseq*]() package to plot chao1 richness estimates and shannon diversity using the function `plot_richness()` – which the developers provide some examples of [here](https://joey711.github.io/phyloseq/plot_richness-examples.html). 
@@ -320,41 +368,17 @@ plot_richness(ASV_physeq, x="type", color="type", measures=c("Chao1", "Shannon")
 
 <center><img src="{{ site.url }}/images/plot_richness_by_type.png"></center>
 
-## Beta diversity
-Beta diversity involves metrics derived from pairwise comparisons of samples. We're going to use Euclidean distances to generate some exploratory visualizations of our samples. Since differences in sampling depths between samples can influence distance/dissimilarity metrics, we first need to somehow normalize across our samples. 
-
-<h4><center>Normalizing for sampling depth</center></h4>
-Common ways to do this involve either subsampling each sample down the the lowest sample's depth, or turning counts into proportions of the total for each sample. However, both of these approaches are generally shunned by people I trust when it comes to such topics (i.e., statisticians). For example, in their 2014 PLOS Computational Biology paper, ["Waste not, want not: why rarefying microbiome data is inadmissible"](http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003531), McMurdie and Holmes argue that a better method of normalizing across samples is to use a variance stabilizing transformation – which fortunately we can do with the [*DESeq2*](https://bioconductor.org/packages/release/bioc/html/DESeq2.html) package.
-
-```R
-  # first we need to make a DESeq2 object
-deseq_counts <- DESeqDataSetFromMatrix(filt_count_tab, colData = filt_sample_info_tab, design = ~type) # we have to include the colData and design arguments because they are required, as they are needed for further downstream processing by DESeq2, but for our purposes they don't matter
-deseq_counts_vst <- varianceStabilizingTransformation(deseq_counts)
-
-  # pulling out our transformed table 
-vst_trans_count_tab <- assay(deseq_counts_vst)
-
-  # and calculating our Euclidean distance matrix
-euc_dist <- dist(t(vst_trans_count_tab))
-```
-
-<h4><center>Hierarchical clustering</center></h4>
-
-<br>
-
-
-<h4><center>Ordination</center></h4>
-
-<br>
-
 ## Taxonomic summaries
+
+
+Don't forget the taxonomy called here is done rapidly and by default has to sacrifice some specificity for speed. For the sequences that become important in your story, you should absolutely pull them out and BLAST them, and make phylogenetic trees to get a more robust idea of who they most closely related to. 
 <br>
 <br>
 
 ---
 <br>
 # So what now?
-
+Well, now is when you do the science part. Here's where your questions and the experimental design start to guide how you go further. In this paper for instance we ended up incorporating other seafloor basalt studies to identify what looked to be conserved taxa that showed up everywhere (like sulfur-oxidizing Gammaproteobacterium, *Thioprofundum lithotrophicum*, and we also identified that there seems to be a basalt-hosted Thaumarchaeota distinct from those present in the bottom water samples we analyzed (*Nitrosopumilus* sp.). To see more of how this dataset ended up, check out the results and discussion of the [paper](https://www.frontiersin.org/articles/10.3389/fmicb.2015.01470/full). 
 <br>
 <br>
 
