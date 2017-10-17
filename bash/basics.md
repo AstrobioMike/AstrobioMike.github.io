@@ -523,7 +523,7 @@ ls -l text*
 <br>
 Here, we are giving what's unique about what we are looking for (the "text" beginning), and then with the `*` saying accept anything after that. 
 
-Let's look at this another way where we want to see all files that end with the extention ".txt":
+Let's look at this another way where we want to see all files that end with the extension ".txt":
 
 ```
 ls -l *.txt

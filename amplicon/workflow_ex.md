@@ -9,7 +9,7 @@ permalink: amplicon/workflow_ex
 
 {% include _side_tab_amplicon.html %}
 
-This module is going to walkthrough one possible workflow for an amplicon dataset from start to finish (if you need a quick primer on some relevant terminology, visit the [amplicon main page]({{ site.url }}/amplicon/)). This will entail processing the raw sequences with [usearch](https://drive5.com/usearch/), and analyzing the output and making some visualizations with [R](https://www.r-project.org/) using some great packages like [*vegan*](https://github.com/vegandevs/vegan), [*phyloseq*](http://joey711.github.io/phyloseq/), and [*breakaway*](https://github.com/adw96/breakaway). 
+This module is going to walkthrough one possible workflow for an amplicon dataset from start to finish (if you need a quick primer on some relevant terminology, visit the [amplicon main page]({{ site.url }}/amplicon/)). This will entail processing the raw sequences with [usearch](https://drive5.com/usearch/), and analyzing the output and making some visualizations with [R](https://www.r-project.org/) using some great packages like [*vegan*](https://github.com/vegandevs/vegan) and [*phyloseq*](http://joey711.github.io/phyloseq/).
 <br>
 <br>
 
@@ -25,15 +25,15 @@ There are many ways to process amplicon data. Some of the most widely used tools
 <br>
 
 # Tools used here
-There is a free, 'light-weight' version of usearch available that you will need to download if you wish to follow along here. To get the free version, go to [https://www.drive5.com/usearch/download.html](https://www.drive5.com/usearch/download.html), and fill out a (very) short form in order to have a download link sent to you. This usually happens virtually instantly in my experience. At the time this page is being put together I'm using usearch v10.0.240 on Mac OSX. As mentioned, we're using usearch here because there is no installation required. So once you receive the email and download the file, you only need to put it somewhere in your [PATH](http://localhost:4000/bash/modifying_your_path) and make sure it is 'executable'. Assuming you're working on a Mac and you downloaded the same version as noted above into your default download directory, this should get the job done:
+There is a free, 'light-weight' version of usearch available that you will need to download if you wish to follow along here. To get the free version, go to [https://www.drive5.com/usearch/download.html](https://www.drive5.com/usearch/download.html), and fill out a (very) short form in order to have a download link sent to you. This usually happens virtually instantly in my experience. At the time this page is being put together I'm using usearch v10.0.240 on Mac OSX. As mentioned, we're using usearch here because there is no installation required. So once you receive the email and download the file, you only need to put it somewhere in your [PATH](http://localhost:4000/bash/modifying_your_path) and make sure it is 'executable'. Assuming you're working on a Mac and you downloaded the same version as noted above into your default download directory, this should get the job done (the sudo command will require you to enter your login password for your computer):
 
 
 ```bash
-mv ~/Downloads/usearch10.0.240_i86osx32 /usr/local/bin/usearch
+sudo mv ~/Downloads/usearch10.0.240_i86osx32 /usr/local/bin/usearch
 chmod +x /usr/local/bin/usearch
 ```
 
-The `mv` command above moves the file from the downloads directory into your local bin (which is in your PATH so you'll be able to call usearch from anywhere), and renames it to 'usearch' rather than the longer name with the version info. And the `chmod` command makes it executable, which just means you can run it as a program from the command line. After this is done you should be able to call usearch from any terminal window, and you can test this with `usearch --version`: 
+The `mv` command above moves the file from the downloads directory into your local bin (which is in your PATH so you'll be able to call usearch from anywhere), and renames it to 'usearch' rather than the longer name with the version info. The `sudo` part of that just tells your computer that you have the authority to modify things in that `/usr/local/bin/` directory, which is why you need to enter your password. If you were working on a computer where you didn't have authority to do this, we'd need to put the usearch program somewhere else and add it to our [PATH]({{ site.url }}/bash/modifying_your_path). And the `chmod` command makes it executable, which just means you can run it as a program from the command line. After this is done you should be able to call usearch from any terminal window, and you can test this with `usearch --version`: 
 
 <center><img src="{{ site.url }}/images/usearch_version.png"></center>
 
@@ -212,8 +212,8 @@ setwd("~/amplicon_example_workflow/R_working_dir/")
 
 install.packages("phyloseq")
 install.packages("vegan")
-install.packates("DESeq2")
-install.packates("ggplot2")
+install.packages("DESeq2")
+install.packages("ggplot2")
 ```
 
 If any of those didn't succeed, for whichever caused a problem run the corresponding command below to try installing it a different way:
@@ -236,6 +236,9 @@ library("vegan")
 library("DESeq2")
 library("ggplot2")
 ```
+
+If you have a problem loading any of these libraries, close and then restart R and try loading the library again. If still no luck, try installing the package again and loading the library. 9 times out of 10, restarting R will solve the problem, so hopefully you're not special :) 
+
  
 ## Reading in our data
 Now we're going to read in our counts table, taxonomy table, and a table with information about each sample. 
