@@ -49,7 +49,9 @@ Lastly, I highly, highly, highly recommend installing RStudio if you don't alrea
 
 # The data
 
-We are going to work with a subset of the dataset published [here](https://www.frontiersin.org/articles/10.3389/fmicb.2015.01470/full). We were exploring an underwater mountain ~3 km down at the bottom of the Pacific Ocean that serves as a low-temperature (~5-10°C) hydrothermal venting site. This amplicon dataset was generated from DNA extracted from crushed basalts collected from across the mountain in order to begin characterizing the microbial communities of these deep-sea rocks. It was generated via Illumina MiSeq 2x300 paired-end sequencing using primers targeting the V4 region of the 16S rRNA gene. There are 20 samples total: 4 extraction blanks (nothing added to DNA extraction kit), 2 bottom water samples, 13 rocks, and one biofilm scraped off of a rock. 
+For a quick overview of the example data we'll be using and where it came from, we are going to work with a subset of the dataset published [here](https://www.frontiersin.org/articles/10.3389/fmicb.2015.01470/full). We were exploring an underwater mountain ~3 km down at the bottom of the Pacific Ocean that serves as a low-temperature (~5-10°C) hydrothermal venting site. This amplicon dataset was generated from DNA extracted from crushed basalts collected from across the mountain with the goal being to begin characterizing the microbial communities of these deep-sea rocks. No one had never been here before, so as is often the purpose of marker-gene sequencing like this, this was going to be our first, broad survey. The sequencing was done on the Illumina MiSeq platform with 2x300 paired-end sequencing using primers targeting the V4 region of the 16S rRNA gene. There are 20 samples total: 4 extraction blanks (nothing added to DNA extraction kit), 2 bottom water samples, 13 rocks, and one biofilm scraped off of a rock. None of these details are important for you to remember, it's just to give some overview.  
+
+In the following figure, overlain on the map are the rock sample collection locations, and the panes on the right show examples of the 3 distinct types of rocks collected: 1) basalts with highly altered, thick outer rinds (>1 cm); 2) basalts that were smooth, glassy, thin exteriors (~1-2 mm); and 3) one calcified carbonate.
 
 <center><img src="{{ site.url }}/images/dorado.png"></center>
 
@@ -100,7 +102,7 @@ So our first step is to merge these forward and reverse reads for each sample. T
 usearch -fastq_mergepairs *_R1.fq -fastqout all_samples_merged.fq -relabel @
 ```
 
-So here the magic of the `*` wild card is grabbing all forward read files for every file that ends in .fq. We didn't need to specify the reverse reads because usearch finds them automatically for us. We specify the output file with the `-fastqout` argument. And the last part, `-relabel @`, tells the program to append the file name the merged sequence originated from to its header. Along with the command finishing we get some overall summary statistics printed to the terminal, such as how many total sequences we had and what proportion of the paired reads successfully merged. Checks like this are needed in order to have some idea of what's going on with your sequences as you move them along. Here almost 90% of them successfully merged, which is pretty good. 
+So here the magic of the `*` wild card is grabbing all forward read files for every file that ends in .fq. We didn't need to specify the reverse reads because usearch finds them automatically for us. We specify the output file with the `-fastqout` argument. And the last part, `-relabel @`, tells the program to append the file name the merged sequence originated from to its header. Along with the command finishing we get some overall summary statistics printed to the terminal, such as how many total sequences we had and what proportion of the paired reads successfully merged. Checks like this are needed in order to have some idea of what's going on with your sequences as you move them along. Here almost 90% of them successfully merged, which is pretty good.
 
 ## Cutting off primers
 Due to the degeneracy of primers they tend to introduce non-biological variation. As such it's important to cut them off, particularly if you are going to perform any sort of single-nucleotide resolution clustering. Here we have our primers in a fasta file that looks like this:
@@ -157,7 +159,7 @@ So, to generate our ASVs:
 usearch -unoise3 unique_seqs.fa -zotus ASVs.fa -tabbedout unoise3.txt
 ```
 
-By default, usearch's `-unoise3` command filters out any that are less abundant than 8, and removes sequences it suspects are chimeric, details of which can be found [here](https://www.biorxiv.org/content/biorxiv/early/2016/09/09/074252.full.pdf). From the output to the terminal we can see we have ~1700 ASVs. In theory, these are true biological sequences recovered from our 20 samples. 
+By default, usearch's `-unoise3` command filters out any that are less abundant than 8, and removes sequences it suspects are chimeric, details of which can be found [here](https://www.biorxiv.org/content/biorxiv/early/2016/09/09/074252.full.pdf). From the output to the terminal we can see we have ~1700 ASVs. In theory, these are true biological sequences recovered from our 20 samples.
 
 ## Generating a count table
 The count table is what tells us how many times each sequence appears in each sample. It is the end-product of all this processing that we can't wait to get into R. The way the count table is generated in usearch is a bit different than most other approaches. Here, now that usearch has identified what it believes to be true biological sequences, the `-otutab` command is used to attempt to map all of our merged sequences to the ASVs. By default it does this by requiring a merged sequence to be >97% similar to an ASV, and if a sequence crosses that threshold for more than one ASV it is counted for the one it is most similar to only. Incorporating another 97% threshold here may seem a bit confusing at first, but usearch's thinking is that more often than not, the 'true' ASV sequences recovered were more than likely the source of the majority of sequences that are within 3% of them, as the source of this 3% variation is believed to be the result of sequencing and pcr errors. Additionally, it is still fundamentally different to have your ASV units built without similarity clustering, as opposed to 97% OTUs. That said, when I ran through this I decided to bump up the required % similarity to 98.5% when mapping our merged sequences to our ASVs to generate our count table. The downside to this is you will lose some data (as less sequences will map to an ASV), but if you have a decent amount of sequences per sample then you can afford to lose some for the sake of being a bit more conservative. 
@@ -175,7 +177,7 @@ Note that the input file is our previous merged sequences file after we trimmed 
 <br>
 
 ## Assigning taxonomy
-The final step in our sequence processing is to assign taxonomy to our ASV sequences. There are multiple ways to do this as well. I usually run a few different ways and put them all in a table next to each other. Then I can be more somewhat more confident when there is some consistency. Something to keep in mind is taxonomy-assigning software is generally built to be fast. To do this, most rely on kmer frequencies to classify to a reference, rather than alignments. If you begin analyzing your data and some particular OTUs or ASVs emerge as being imporant to the overall story it's a good idea to take that sequence and BLAST it to try to get more information about it. 
+The final step in our sequence processing is to assign taxonomy to our ASV sequences. There are multiple ways to do this as well. I usually run a few different ways and put them all in a table next to each other, and then I can be more somewhat more confident when there is some consistency. But something important to keep in mind is that taxonomy-assigning software is generally built to be fast. To do this, most rely on kmer frequencies to classify to a reference, rather than alignments. If you begin analyzing your data and some particular OTUs or ASVs emerge as being imporant to the overall story, it's a good idea to take those sequences and BLAST them to try to get more information about it. 
 
 Here we will use usearch's `sintax` program with the RDP training set reference fasta available from [here](https://www.drive5.com/usearch/manual/sintax_downloads.html).
 
@@ -202,7 +204,7 @@ And now we're ready to move onto analysis!
 <br>
 
 # Analysis in R
-This portion assumes you already have some baseline experience with R – meaning we won't be breaking down any syntax or going over any basics of R here (that's presented elsewhere). But even if you don't have any experience with R yet, you'll still be able to follow along here and run everything, you'll just be on your own here as far as figuring out how the code works. A full R script of everything done here is available in the "R_working_dir" subdirectory called "amplicon_example_analysis.R" that can be opened in R if you prefer to follow along with that.
+This portion assumes you already have some baseline experience with R – meaning we won't be breaking down any syntax or going over any basics of R here (that's presented elsewhere). But even if you don't have any experience with R yet, you'll still be able to follow along here and run everything, you'll just be on your own as far as figuring out how the code works. A full R script of everything done here is available in the "R_working_dir" subdirectory called "amplicon_example_analysis.R" that can be opened in R if you prefer to follow along with that rather than copying and pasting commands from here. Either way, this isn't about the R code (right now).
 
 ## Setting up our working environment
 To get started let's open up RStudio. This portion assumes you have some baseline experience with R already. If you don't, you'll still be able to follow along and piece things together set our current working directory to where we just left our new files, and install the packages we'll need:
@@ -241,18 +243,20 @@ If you have a problem loading any of these libraries, close and then restart R a
 
  
 ## Reading in our data
-Now we're going to read in our counts table, taxonomy table, and a table with information about each sample. 
+Now we're going to read in our counts table, our taxonomy table, and a table with information about each sample including temperature of venting fluids at the site of collection ("temp"), the "type" of sample it is, and a qualitative characteristic ("char") of the rocks.
 
 ```R
 count_tab <- read.table("ASV_counts.txt", header=T, row.names=1, check.names=F)
 
 tax_tab <- as.matrix(read.table("ASV_tax.txt", header=T, row.names=1, check.names=F, na.strings="", sep="\t"))
 
-sample_info_tab <- read.table("sample_info.txt", header=T, row.names=1, check.names=F) # column 2 of sample_info_tab tells us what each sample is: 'blank', water, rock, or biofilm
+sample_info_tab <- read.table("sample_info.txt", header=T, row.names=1, check.names=F)
 ```
 
 ## Treatment of "blanks" 
-First we want to deal with our "blanks" (those samples labeled B1-B4). In this case these refer to extraction blanks – meaning when doing the DNA extractions, we ran some extractions alongside the normal ones where we didn't add anything to the kit's starting lysis tubes. These are processed the same as the real samples and sent for sequencing as well. Sequences that show up in the blanks can be the result of over-amplification of contaminant DNA introduced from things like the DNA extraction or sequencing kit reagents, **or** cross-contamination from real samples into the blanks. As such, strictly throwing away any ASV that shows up at all in the blanks (i.e. disregarding that ASV in all samples) is not wise. Imagine an ASV that contains 90,000 out of 100,000 sequences in a true sample, and has 6 sequences out of 20,000 in a blank. In such a case it is almost certain those sequences came to be in the blank due to cross-contamination from the real sample. I've seen similar cases to this in every dataset I've looked at. 
+First we want to deal with our "blanks" (those samples labeled B1-B4). In this case these refer to extraction blanks – meaning when doing the DNA extractions, we ran some extractions alongside the normal ones where we didn't add anything to the kit's starting lysis tubes. These are processed the same as the real samples and sent for sequencing as well. You may or may not have these with your data, if you didn't do it this time, be sure to next time you do an amplicon sequencing run :) 
+
+Sequences that show up in the blanks can be the result of over-amplification of contaminant DNA introduced from things like the DNA extraction or sequencing kit reagents, **or** they can be cross-contamination from real samples into the blanks. As such, strictly throwing away any ASV that shows up at all in the blanks (i.e. disregarding that ASV in all samples) is not wise. Imagine an ASV that contains 90,000 out of 100,000 sequences in a true sample, and has 6 sequences out of 20,000 in a blank. In such a case it is almost certain those sequences came to be in the blank due to cross-contamination from the real sample. I've seen similar cases to this in every dataset I've looked at. 
 
 As with most things, there is no one way or best way to do this. What I do (and did in the [paper](https://www.frontiersin.org/articles/10.3389/fmicb.2015.01470/full) these data come from) is compare normalized totals of the ASVs (or OTUs) in the blanks and in the true samples, and use an arbitrary threshold to decide if it is more likely to be contamination from reagents or more likely to have ended up in the blanks due to cross-contamination from a real sample. The arbitrary threshold I apply is that if the sample-normalized count is more than an order of magnitude greater than the blank-normalized count for a given ASV/OTU, then it is kept – if it is not, then it is thrown out and presumed to have been contamination. Here's what this looks like in this case:
 
@@ -275,8 +279,20 @@ colSums(count_tab[!rownames(count_tab) %in% blank_ASVs, ]) / colSums(count_tab) 
  
   # now that we've used our extraction blanks to remove ASVs that were likely due to contamination, we're going to trim down our count table by removing those sequences and the blank samples from further analysis
 filt_count_tab <- count_tab[!rownames(count_tab) %in% blank_ASVs, -c(1:4)]
-  # and make a filtered sample info table
+  # make a filtered sample info table
 filt_sample_info_tab<-sample_info_tab[-c(1:4), ]
+
+  # and let's add some colors to the sample info table that are specific to sample types and characteristics that we can use when plotting things
+    # we'll color the water samples blue: 
+filt_sample_info_tab$color[filt_sample_info_tab$char == "water"] <- "blue"
+    # the biofilm sample a darkgreen:
+filt_sample_info_tab$color[filt_sample_info_tab$char == "biofilm"] <- "darkgreen"
+    # the basalts with highly altered, thick outer rinds (>1 cm) brown ("chocolate4" is the best brown I can find...):
+filt_sample_info_tab$color[filt_sample_info_tab$char == "altered"] <- "chocolate4"
+    # the basalts with smooth, glassy, thin exteriors black:
+filt_sample_info_tab$color[filt_sample_info_tab$char == "glassy"] <- "black"
+    # and the calcified carbonate sample an ugly yellow:
+filt_sample_info_tab$color[filt_sample_info_tab$char == "carbonate"] <- "darkkhaki"
 ```
 
 ## Beta diversity
@@ -300,7 +316,7 @@ euc_dist <- dist(t(vst_trans_count_tab))
 ```
 
 <h4><center>Hierarchical clustering</center></h4>
-Now that we have our Euclidean distance matrix, let's look at a hierarchical clustering of our samples.
+Now that we have our Euclidean distance matrix, let's make and plot a hierarchical clustering of our samples.
 
 ```R
 euc_clust <- hclust(euc_dist, method="ward.D2")
@@ -310,7 +326,7 @@ euc_clust <- hclust(euc_dist, method="ward.D2")
   # 2) if you want you can rotate clusters with the rotate() function of the dendextend package
 
 euc_dend <- as.dendrogram(euc_clust, hang=0.1)
-dend_cols <- filt_sample_info_tab$col[order.dendrogram(euc_dend)]
+dend_cols <- filt_sample_info_tab$color[order.dendrogram(euc_dend)]
 labels_colors(euc_dend) <- dend_cols
 
 plot(euc_dend, ylab="VST Euc. dist.")
@@ -319,39 +335,59 @@ plot(euc_dend, ylab="VST Euc. dist.")
 <center><img src="{{ site.url }}/images/hclust.png"></center>
 
 <br>
-So from our first peek, the broadest clusters separate the biofilm and water samples from the rocks. And the next tier splits the rocks into two groups, with R8–11 separate from the others. The splitting of the basalts into these two groups actually correlates both with location of collection, and the level of alteration of the basalts. If we look at the figure from the top of the page again, we can see that rocks R8–R11 were all recovered from the southern end of the outrcrop. These 4 also happen to have be all of the glassier type of basalt with thin (~1-2 mm), smooth exteriors (like the one pictured in box C), while all of the rest (R1-R6, and R12) had more highly altered, thick (>1 cm) outer rinds (box B). (R7 was the calcium carbonate, box D).
+So from our first peek, the broadest clusters separate the biofilm and water samples from the rocks. The next tier splits the rocks into two groups, with samples R8–R11 separate from the others (R1-R6, and R12). As we can see from the coloring we added, R8-R11 were all of the glassier type of basalt with thin (~1-2 mm), smooth exteriors, while the rest (R1-R6, and R12) had more highly altered, thick (>1 cm) outer rinds (excluding the oddball carbonate which isn't a basalt, R7). This is starting to suggest that level of alteration of the basalt may be correlated with community structure. If we look at the map figure again, we can also see that level of alteration also co-varies with whether samples were collected from the northern or southern end of the outcrop as all of the more highly altered basalts were collected from the northern end.
+
+<center><img src="{{ site.url }}/images/dorado.png"></center>
+
+<br>
 
 <h4><center>Ordination</center></h4>
+Generally speaking, ordinations provide visualizations of sample-relatedness based on dimension reduction – this is where the 'multidimensional scaling' term (MDS) fits in. The 'dimensions' could be, for instance, whatever you measured in each sample. Principle coordinates analysis (PCoA) is a type of multidimensional scaling is a type of multidimensional scaling that operates on dissimilarities or distances. Here we're going to generate and plot our PCoA with *phyloseq*, because it is very convenient for doing such things. But because we're still doing beta diversity here, we want to use our transformed table. So we're going to make a new *phyloseq* object with our *DESeq2*-transformed table and generate the PCoA from that.
+
+```R
+  # making new phyloseq object with transformed table
+vst_count_phy <- otu_table(vst_trans_count_tab, taxa_are_rows=T)
+vst_physeq <- phyloseq(vst_count_phy, sample_info_tab_phy)
+
+  # generating and visualizing the PCoA with phyloseq
+vst_pcoa <- ordinate(vst_physeq, method="MDS", distance="euclidean")
+eigen_vals <- vst_pcoa$values$Eigenvalues # allows us to scale the axes according to their magnitude of separating apart the samples
+
+
+plot_ordination(vst_physeq, vst_pcoa, color="char") + 
+  labs(col="type") + geom_point(size=1) + 
+  geom_text(aes(label=rownames(filt_sample_info_tab), hjust=0.3, vjust=-0.4)) + 
+  coord_fixed(sqrt(eigen_vals[2]/eigen_vals[1])) + ggtitle("PCoA") + 
+  scale_color_manual(values=unique(filt_sample_info_tab$color[order(filt_sample_info_tab$char)])) + 
+  theme(legend.position="none")
+```
 
 <center><img src="{{ site.url }}/images/pcoa.png"></center>
 
 <br>
+This is just providing us with a different initial overview of how our samples relate to each other. Inferences that are consistent with the hierarchical clustering above can be considered a bit more robust if the same general trend emerges from both approaches. It's important to remember that these are **exploratory visualizations** and do not say anything statistically about our samples. But our initial exploration here shows us the rock microbial communities seem to be more similar to each other than they are to the water samples (which is what I wanted to see, so this was a good start to me), and focusing on just the basalts (brown and black labels), these visualizations both suggest their communities may correlate with level of exterior alteration.
 
 ## Alpha diversity
-Alpha diversity entails using summary metrics to describe individual samples, and it is a very tricky thing when working with amplicon data. There are a lot of tools from macro-ecology that have been co-opted into the microbial ecology world that just simply do not work the same. If and when I use any alpha diversity metrics, I mostly consider them useful for relative comparisons of samples from the same experiment. And I am absolutely going to ask some experts (ahem, @SherlockPHolmes and @AmyDWallis) to take a look at this part to be certain I'm not leading anyone astray here. But here are a few things I've done recently (unless I'm later informed this is wrong – then these are examples of what *not* to do).
+Alpha diversity entails using summary metrics that describe individual samples, and it is a very tricky thing when working with amplicon data. There are a lot of tools from macro-ecology that have been co-opted into the microbial ecology world that just simply do not work the same. If and when I use any alpha diversity metrics, I mostly consider them useful for relative comparisons of samples from the same experiment. And I am absolutely going to ask some experts on the subject (ahem, @SherlockPHolmes and @AmyDWallis) to take a look at this part to be certain I'm not leading anyone astray here. But here are a few things I've done before (unless I'm later informed this is wrong – then these were always meant to be examples of what *not* to do).
 
 <h4><center>Rarefaction curves</center></h4>
-It is not okay to use rarefaction curves to estimate total richness of a sample, or to extrapolate anything from them really, but I believe they can still be useful depending on the data. Let's generate the plot and then we'll see why with this example. We'll be using the `rarecurve()` function from the package [*vegan*](https://github.com/vegandevs/vegan) here. 
+It is not okay to use rarefaction curves to estimate total richness of a sample, or to extrapolate anything from them really, but I believe they can still be useful depending on the data. Let's generate the plot and then we'll see why with this example. We'll be using the `rarecurve()` function from the package [*vegan*](https://github.com/vegandevs/vegan) here. Note that *vegan* expects rows to be samples and observations (our ASVs here) to be columns, which is why we transpose the table in the command with `t()`.
 
 ```R
-  # first adding colors to the sample info table based on sample type
-filt_sample_info_tab$col[filt_sample_info_tab$type == "water"] <- "blue"
-filt_sample_info_tab$col[filt_sample_info_tab$type == "rock"] <- "chocolate4"
-filt_sample_info_tab$col[filt_sample_info_tab$type == "biofilm"] <- "darkgreen"
-
-  # and plotting the rarefaction curves
-rarecurve(t(filt_count_tab), step=100, col=filt_sample_info_tab$col, lwd=2, ylab="ASVs")
-abline(v=(min(rowSums(t_filt_count_tab))))
+rarecurve(t(filt_count_tab), step=100, col=filt_sample_info_tab$color, lwd=2, ylab="ASVs")
+abline(v=(min(rowSums(t(filt_count_tab)))))
 ```
 <center><img src="{{ site.url }}/images/rarefaction.png"></center>
 
-In this plot, all of the rock samples are colored brown, the water samples are blue, the biofilm sample is colored green, and the vertical line represents the sampling depth of the sample with the least amount of sequences. In this case, I think it's a pretty safe conclusion to draw that the rock samples are more diverse than the water samples or the biofilm sample (based on where they all cross the vertical line of lowest sampling depth), and that they also have a higher richness. There also seems to be some correlation with the level of alteration of the basalts. Samples R8, R9, R10, and R11 were all of the glassier type of basalt with thin (~1-2 mm), smooth exteriors (like the one pictured in box C in the figure at the top of this page), while all of the rest (R1-R6, and R12) had more highly altered, thick (>1 cm) outer rinds (like the one in box B above). R7 was the calcium carbonate (box D). 
+In this plot, samples are colored the same way as above, and the black vertical line represents the sampling depth of the sample with the least amount of sequences (a bottom water sample, BW1, in this case). This view suggests that the rock samples (all of them) are more diverse and have a greater richness than the water samples or the biofilm sample (based on where they all cross the vertical line of lowest sampling depth). And again, just focusing on the brown and black lines for the two types of basalts we have, they seem to show similar trends within their respective groups that suggest the more highly altered basalts (brown lines) may host more diverse microbial communities than the glassier basalts (black lines). 
 
 <h4><center>Richness and diversity estimates</center></h4>
-Here we are going to use the [*phyloseq*]() package to plot chao1 richness estimates and shannon diversity using the function `plot_richness()` – which the developers provide some examples of [here](https://joey711.github.io/phyloseq/plot_richness-examples.html). 
+Here we're going to plot Chao1 richness esimates and Shannon diversity values. Chao1 is a richness estimator, "richness" being the total number of distinct units in your sample, "distinct units" being whatever you happen to be measuring (ASVs in our case here). And Shannon's diversity index is a metric of diversity. The term diversity includes "richness" (the total number of your distinct units) and "evenness" (the relative proportions of all of your distinct units).
+
+We are going to go back to using the [*phyloseq*]() package for this to use the function `plot_richness()` – which the developers kindly provide some examples of [here](https://joey711.github.io/phyloseq/plot_richness-examples.html). 
 
 ```R
-  # first we need to create a phyloseq object
+  # first we need to create a phyloseq object using our un-transformed count table
 count_tab_phy <- otu_table(filt_count_tab, taxa_are_rows=T)
 tax_tab_phy <- tax_table(tax_tab)
 sample_info_tab_phy <- sample_data(filt_sample_info_tab)
@@ -359,29 +395,50 @@ sample_info_tab_phy <- sample_data(filt_sample_info_tab)
 ASV_physeq <- phyloseq(count_tab_phy, tax_tab_phy, sample_info_tab_phy)
 
   # and now we can call the plot_richness() function on our phyloseq object
-plot_richness(ASV_physeq, color="type", measures=c("Chao1", "Shannon")) + scale_color_manual(values=c("darkgreen", "chocolate4", "blue"))
+plot_richness(ASV_physeq, color="char", measures=c("Chao1", "Shannon")) + 
+  scale_color_manual(values=unique(filt_sample_info_tab$color[order(filt_sample_info_tab$char)])) +
+  theme(legend.title = element_blank())
 ```
 
 <center><img src="{{ site.url }}/images/plot_richness.png"></center>
 
+Before saying anything about this I'd like to stress again that these are *not* interpretable as "real" numbers of anything (due to the nature of amplicon data), but they can still be useful as relative metrics of comparison. For example, we again see from this that the more highly altered basalts seem to host communities that are more diverse and have a higher richness than the other rocks, and that the water and biofilm samples are less diverse than the rocks. 
+
+And just for another quick example of why *phyloseq* is pretty awesome, let's plot grouping sample types while still coloring by the characteristics column:
+
 ```R
-  # or plot by grouping sample types very easily (phyloseq is pretty awesome)
-plot_richness(ASV_physeq, x="type", color="type", measures=c("Chao1", "Shannon")) + scale_color_manual(values=c("darkgreen", "chocolate4", "blue"))
+plot_richness(ASV_physeq, x="type", color="char", measures=c("Chao1", "Shannon")) + 
+  scale_color_manual(values=unique(filt_sample_info_tab$color[order(filt_sample_info_tab$char)])) +
+  theme(legend.title = element_blank())
 ```
 
 <center><img src="{{ site.url }}/images/plot_richness_by_type.png"></center>
 
 ## Taxonomic summaries
+Don't forget that the taxonomy called here was done rapidly and by default has to sacrifice some specificity for speed. For the sequences that become important in your story, you should absolutely pull them out and BLAST them, and possibly make phylogenetic trees to get a more robust idea of who they are most closely related to. 
+
+Let's start by making some broad summarization figures. *Phyloseq* is also very useful for parsing things down by taxonomy now that we've got all that information in there already.
 
 
-Don't forget the taxonomy called here is done rapidly and by default has to sacrifice some specificity for speed. For the sequences that become important in your story, you should absolutely pull them out and BLAST them, and make phylogenetic trees to get a more robust idea of who they most closely related to. 
+
+## Permutational ANOVA
+
+As we mentioned earlier, we have some information about our samples as well in a table. There are many ways to incorporate this information, but one of the first I typically go to is a permutational ANOVA test to if any of the sample information is predictive of community structure. One way to do this is with the `adonis` function from the *vegan* package. If we look at the help menu for the function, we see this description:
+
+```R
+?adonis
+```
+
+<center><img src="{{ site.url }}/images/adonis_desc.png"></center>
+
+ 
 <br>
 <br>
 
 ---
 <br>
 # So what now?
-Well, now is when you do the science part. Here's where your questions and the experimental design start to guide how you go further. In this paper for instance we ended up incorporating other seafloor basalt studies to identify what looked to be conserved taxa that showed up everywhere (like sulfur-oxidizing Gammaproteobacterium, *Thioprofundum lithotrophicum*, and we also identified that there seems to be a basalt-hosted Thaumarchaeota distinct from those present in the bottom water samples we analyzed (*Nitrosopumilus* sp.). To see more of how this dataset ended up, check out the results and discussion of the [paper](https://www.frontiersin.org/articles/10.3389/fmicb.2015.01470/full). 
+Well, now is when you do the science part. Here's where your questions and the experimental design start to guide how you go further. In this paper for instance we ended up incorporating other seafloor basalt studies to identify what looked to be conserved taxa that showed up everywhere (like a sulfur-oxidizing gammaproteobacterium, *Thioprofundum lithotrophicum*, and we also identified that there seems to be a basalt-hosted Thaumarchaeota distinct from those present in the bottom water samples we analyzed (*Nitrosopumilus* sp.). To see more of how this dataset ended up, check out the results and discussion of the [paper](https://www.frontiersin.org/articles/10.3389/fmicb.2015.01470/full). 
 <br>
 <br>
 
