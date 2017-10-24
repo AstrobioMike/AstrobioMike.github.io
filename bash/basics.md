@@ -22,13 +22,13 @@ To start, let's open up a terminal window. If you have a Mac, this is easy as yo
 <br>
 
 
-Okay, not really. Things do get a little more complicated, but there are programs you can download to get the appropriate *bash* environment on a PC. Unfortunately I have no experience with that though so you'll have visit the almighty [google](https://www.google.com/search?source=hp&q=running+terminal+on+pc&oq=running+terminal+on+pc&gs_l=psy-ab.3..0i22i30k1l2.4571.9293.0.10104.25.22.0.0.0.0.175.1978.12j9.21.0....0...1.1.64.psy-ab..4.20.1827.0..0j0i131k1j0i10k1j33i22i29i30k1.RZTO4OlOhZk).  
+Okay, not really. Things do get a little more complicated, but there is hope! Wonderfully, Windows 10 now has a way to run a perfectly normal *bash* environment. If you have Windows 10, then check out [this site](https://www.howtogeek.com/249966/how-to-install-and-use-the-linux-bash-shell-on-windows-10/) to see how to get set up. If you're on an older Windows OS, there are programs you can download to get the appropriate *bash* environment. I hear a good place to try first is with Cygwin, which you can follow instructions for [here](https://www.howtogeek.com/howto/41382/how-to-use-linux-commands-in-windows-with-cygwin/). 
 <br>
 
 ---
 <br>
 # First things first!
-For right now, and only for right now, I would like you to blindly copy and paste the commands here into your terminal window to set up the (very tiny) temporary files you'll need if you want to actively follow along below. Just reading through is of course fine, but if you are totally new to this, I'd recommend doing things with me. I promise this will be the only time you are just copying and pasting without an understanding of what you are doing. Besides, by the time you get to the end of this page, you'll have a much better understanding of what's going on in here.
+For right now, and only for right now, I would like you to blindly copy and paste the commands here into your terminal window to set up the (very tiny) temporary files you'll need if you want to actively follow along below. Just reading through is of course fine, but if you are totally new to this, I highly recommend doing things with me. I promise this will be the only time you are just copying and pasting without an understanding of what you are doing; we just need some things in place. Besides, by the time you get to the end of this page, you'll have a much better understanding of what's going on here!
 
 For now, copy and paste this block of commands into your terminal window, (you can copy and paste all of them at once), and be sure to hit enter after pasting them to trigger the last command.
 
