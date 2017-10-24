@@ -417,9 +417,134 @@ plot_richness(ASV_physeq, x="type", color="char", measures=c("Chao1", "Shannon")
 ## Taxonomic summaries
 Don't forget that the taxonomy called here was done rapidly and by default has to sacrifice some specificity for speed. For the sequences that become important in your story, you should absolutely pull them out and BLAST them, and possibly make phylogenetic trees to get a more robust idea of who they are most closely related to. 
 
-Let's start by making some broad summarization figures. *Phyloseq* is also very useful for parsing things down by taxonomy now that we've got all that information in there already.
+Here we'll make some broad-level summarization figures. *Phyloseq* is also very useful for parsing things down by taxonomy now that we've got all that information in there already. So I'll be using that where I'm familiar with it, but unfortunately I'm not that familiar with probably about 90% of its functionality. So here you'll see my ugly way of doing things, and then I'm counting on you to shoot me cleaner code so we can update this walkthrough for everyone's benefit 🙂
 
+Let's make a summary of all major taxa proportions across all samples, then summaries for just the water samples and just the rock samples. To start, we need to parse our count matrix by taxonomy.
 
+```R
+  # how you want to break things down will depend on your data and your questions, as usual
+  # for now let's just generate a table of proportions of each phylum, and breakdown the Proteobacteria to classes
+
+phyla_counts_tab <- otu_table(tax_glom(ASV_physeq, taxrank="Phylum")) # using phyloseq to make a count table that has summed all ASVs that were in the same phylum
+phyla_tax_vec <- data.frame(tax_table(tax_glom(ASV_physeq, taxrank="Phylum")))$Phylum # making a vector of phyla names to set as row names
+rownames(phyla_counts_tab) <- as.vector(phyla_tax_vec)
+
+  # we also have to account for sequences that weren't assigned any taxonomy even at the phylum level 
+  # these came into R as 'NAs' in the taxonomy table, but their counts are still in the count table
+  # so we can get that value for each sample by substracting the column sums of this new table (that has everything that had a phylum assigned to it) from the column sums of the starting count table (that has all representative sequences)
+unannotated_tax_counts <- colSums(filt_count_tab) - colSums(phyla_counts_tab)
+  # and we'll add this row to our phylum count table:
+phyla_and_unidentified_counts_tab <- rbind(phyla_counts_tab, "Unannotated"=unannotated_tax_counts)
+
+  # now we'll remove the Proteobacteria, so we can next add them back in broken down by class
+temp_major_taxa_counts_tab <- phyla_and_unidentified_counts_tab[!row.names(phyla_and_unidentified_counts_tab) %in% "Proteobacteria", ]
+
+class_counts_tab <- otu_table(tax_glom(ASV_physeq, taxrank="Class")) # making count table broken down by class (contains classes beyond the Proteobacteria too at this point)
+class_tax_tab <- data.frame(tax_table(tax_glom(ASV_physeq, taxrank="Class"))) # getting a table of these class names
+proteo_classes_vec <- as.vector(class_tax_tab$Class[class_tax_tab$Phylum == "Proteobacteria"]) # making a vector of just the Proteobacteria classes
+
+rownames(class_counts_tab) <- as.vector(class_tax_tab$Class) # changing the row names like above so that they correspond to the taxonomy, rather than an ASV identifier
+proteo_class_counts_tab <- class_counts_tab[row.names(class_counts_tab) %in% proteo_classes_vec, ]
+
+  # there are also likely some some sequences that were resolved to the level of Proteobacteria, but not any further, and therefore would be missing from our class table
+  # we can find the sum of them by subtracting the proteo clas count table from just the Proteobacteria row from the original phylum-level count table
+proteo_no_class_annotated_counts <- phyla_and_unidentified_counts_tab[row.names(phyla_and_unidentified_counts_tab) %in% "Proteobacteria", ] - colSums(proteo_class_counts_tab)
+
+  # now combining the tables:
+major_taxa_counts_tab <- rbind(temp_major_taxa_counts_tab, proteo_class_counts_tab, "Unresolved_Proteobacteria"=proteo_no_class_annotated_counts)
+  # and to check we didn't miss any other sequences, we can compare the column sums to see if they are the same:
+identical(colSums(major_taxa_counts_tab), colSums(filt_count_tab)) # if "TRUE", we know nothing fell through the cracks
+
+  # now we'll generate a proportions table for summarizing:
+major_taxa_proportions_tab <- apply(major_taxa_counts_tab, 2, function(x) x/sum(x)*100)
+
+  # if we check the dimensions of this table at this point
+dim(major_taxa_proportions_tab)
+  # we see there are currently 25 rows, which might be a little busy for a summary figure
+  # many of these taxa make up a very small percentage, so we're going to filter some out
+  # this is a completely arbitrary decision solely to ease visualization and intepretation, entirely up to your data and you
+  # here, we'll only keep rows (taxa) that make up greater than 5% in any individual sample
+temp_filt_major_taxa_proportions_tab <- data.frame(major_taxa_proportions_tab[apply(major_taxa_proportions_tab, 1, max) > 5, ])
+  # checking how many we have that were above this threshold
+dim(temp_filt_major_taxa_proportions_tab) # now we have 13, much more manageable for an overview figure
+
+  # though each of the filtered taxa made up less than 5% alone, together they can be more
+  # so we're going to add a row called "Other" that keeps track of how much we filtered out (which will also keep our totals at 100%)
+filtered_proportions <- colSums(major_taxa_proportions_tab) - colSums(temp_filt_major_taxa_proportions_tab)
+filt_major_taxa_proportions_tab <- rbind(temp_filt_major_taxa_proportions_tab, "Other"=filtered_proportions)
+```
+
+Now that we have a nice proportions table ready to go, let's make some boxplots of each major taxon and color the points by the sample type. We'll use ggplot2 to do this, and for this type of plot it seems to be easiest with tables in [narrow format](https://en.wikipedia.org/wiki/Wide_and_narrow_data#Narrow). We'll see what that means, how to transform the table, and then add some information for the samples to help with plotting. 
+
+```R
+  # first let's make a copy of our table that's safe for manipulating
+filt_major_taxa_proportions_tab_for_plot <- filt_major_taxa_proportions_tab
+  # and add a column of the taxa names so that it is within the table, rather than just as row names
+filt_major_taxa_proportions_tab_for_plot$Major_Taxa <- row.names(filt_major_taxa_proportions_tab_for_plot)
+
+  # now we'll transform the table into narrow, or long, format
+filt_major_taxa_proportions_tab_for_plot.g <- gather(filt_major_taxa_proportions_tab_for_plot, Sample, Proportion, -Major_Taxa)
+  
+  # take a look at the new table and compare it with the old one
+head(filt_major_taxa_proportions_tab_for_plot.g)
+head(filt_major_taxa_proportions_tab_for_plot)
+    # manipulating tables like this is something you may need to do frequently in R
+    
+  # now we want a table with "color" and "characteristics" of each sample to merge into our plotting table so we can use that more easily in our plotting function
+  # here we're making a new table by pulling what we want from the sample information table
+sample_info_for_merge<-data.frame("Sample"=row.names(filt_sample_info_tab), "char"=filt_sample_info_tab$char, "color"=filt_sample_info_tab$color, stringsAsFactors=F)
+  # and here we are merging this table with the plotting table we just made (this is an awesome function!)
+filt_major_taxa_proportions_tab_for_plot.g2 <- merge(filt_major_taxa_proportions_tab_for_plot.g, sample_info_for_merge)
+  
+  # and now we're ready to make our summary boxplots with our wonderfully constructed table
+ggplot(filt_major_taxa_proportions_tab_for_plot.g2, aes(Major_Taxa, Proportion)) +
+  geom_jitter(aes(color=factor(char)), size=2, width=0.15, height=0) +
+  scale_color_manual(values=unique(filt_major_taxa_proportions_tab_for_plot.g2$color[order(filt_major_taxa_proportions_tab_for_plot.g2$char)])) +
+  geom_boxplot(fill=NA, outlier.color=NA) +
+  theme(axis.text.x=element_text(angle=90, vjust=0.4, hjust=1), legend.title=element_blank()) +
+  labs(x="Major Taxa", y="% of 16S rRNA gene copies recovered", title="All samples")
+```
+
+<center><img src="{{ site.url }}/images/boxplot_all_samples.png"></center>
+<br>
+I know, I know. All that work for a not-so-very-impressive figure. Let's keep in mind that this was a very coarse level of resolution as we are using taxonomic classifications at the phylum and class ranks. This is why things may look more similar between the rocks and water than you might expect, and why when looking at the ASV level, like we did with the exploratory visualizations above, we can see more clearly these are distinct communities. But let's look at this for a second anyway. The biofilm sample (green) clearly stands out as it is almost completely dominated by sequences derived from Alphaproteobacteria. Three of the four "glassy" basalts (black dots) seem to have the most Gammaproteobacteria. And Cyanos and Euryarchaeota for the most part only seem to show up in water samples.
+Another way to look at this would be to plot the water and rock samples separately, which might help tighten up some taxa boxplots if they have a different distribution between the two sample types. 
+
+```R
+  # first we need to subset our plotting table to include just the rock samples to plot
+filt_major_taxa_proportions_rocks_only_tab_for_plot.g <- filt_major_taxa_proportions_tab_for_plot.g2[filt_major_taxa_proportions_tab_for_plot.g2$Sample %in% rock_sample_IDs, ]
+  # and then just the water samples
+filt_major_taxa_proportions_water_samples_only_tab_for_plot.g <- filt_major_taxa_proportions_tab_for_plot.g2[filt_major_taxa_proportions_tab_for_plot.g2$Sample %in% bw_sample_IDs, ]
+  
+  # and now we can use the same code as above just with whatever minor alterations we want
+    # rock samples
+ggplot(filt_major_taxa_proportions_rocks_only_tab_for_plot.g, aes(Major_Taxa, Proportion)) +
+  scale_y_continuous(limits=c(0,50)) + # adding a setting for the y axis range so the rock and water plots are on the same scale
+  geom_jitter(aes(color=factor(char)), size=2, width=0.15, height=0) +
+  scale_color_manual(values=unique(filt_major_taxa_proportions_rocks_only_tab_for_plot.g$color[order(filt_major_taxa_proportions_rocks_only_tab_for_plot.g$char)])) +
+  geom_boxplot(fill=NA, outlier.color=NA) +
+  theme(axis.text.x=element_text(angle=90, vjust=0.4, hjust=1), legend.position="top", legend.title=element_blank()) + # moved legend to top 
+  labs(x="Major Taxa", y="% of 16S rRNA gene copies recovered", title="Rock samples only")
+  
+    # water samples
+ggplot(filt_major_taxa_proportions_water_samples_only_tab_for_plot.g, aes(Major_Taxa, Proportion)) +
+  scale_y_continuous(limits=c(0,50)) + # adding a setting for the y axis range so the rock and water plots are on the same scale
+  geom_jitter(aes(color=factor(char)), size=2, width=0.15, height=0) +
+  scale_color_manual(values=unique(filt_major_taxa_proportions_water_samples_only_tab_for_plot.g$color[order(filt_major_taxa_proportions_water_samples_only_tab_for_plot.g$char)])) +
+  geom_boxplot(fill=NA, outlier.color=NA) +
+  theme(axis.text.x=element_text(angle=90, vjust=0.4, hjust=1), legend.position="top", legend.title=element_blank()) + # moved legend to top 
+  labs(x="Major Taxa", y="% of 16S rRNA gene copies recovered", title="Bottom water samples only")
+```
+
+<center><img src="{{ site.url }}/images/boxplots_rock_samples.png"></center>
+<br>
+<center><img src="{{ site.url }}/images/boxplots_water_samples.png"></center>
+<br>
+This shows us more clearly for instance that one of the two water samples had ~30% of its recovered 16S sequences come from Firmicutes, while none of the 13 rock samples had more than 5%. It's good of course to break down your data and look at it in all the different ways you can, this was just to demonstrate one example. 
+
+I'd like to note that the rocks-only plot is similar to [Figure 4 in the original paper](https://www.frontiersin.org/files/Articles/170496/fmicb-06-01470-HTML/image_m/fmicb-06-01470-g004.jpg), made also with rocks only. (Ugh, look at that horrible y-axis label... pffft.) This is a good demonstration of what I noted at the start: that if you make similar decisions in your processing, for what tag data can do, you are going to end up with similar results overall regardless of which tools you use (of all the widely utilized ones I mean of course). The processing for that paper was done entirely within *mothur* using 97% OTU clustering, and this run was done with uclust and single-nucleotide resolution. I haven't linked to other things because so far this is the first rock-only figure we made here, but the same has held true for all visualizations so far.
+
+One thing I'm curious about and would like to probe a little deeper is the Archaea. I mentioned above we found distinct *Nitrosopumilus* spp. OTUs between the rocks and water based on their relative abundance of 16S copies in each. Here those may be split across multiple ASVs, but there should still be a clear difference in their distributions somewhere. So since you're stuck with me driving, let's see if we can find that result here too.
 
 ## Permutational ANOVA
 
@@ -430,8 +555,16 @@ As we mentioned earlier, we have some information about our samples as well in a
 ```
 
 <center><img src="{{ site.url }}/images/adonis_desc.png"></center>
+<br>
+## Differential abundance analysis with DESeq2
+For a multitude of reasons discussed on the [caveat central page]({{ site.url }}/amplicon/caveats) for amplicon sequencing:
 
- 
+<center><b>Recovered 16S rRNA gene copy numbers do not equal organism abundance.</b></center>
+<br>
+That said, recovered 16S rRNA gene copy numbers do represent numbers of recovered 16S rRNA gene copies. So long as you're interpreting them that way, you can perform differential abundance testing to test for which representative sequences have significantly different copy-number counts between samples. One tool that can be used for this is *DESeq2*, which we used above to transform our count table for beta diversity plots. 
+
+
+
 <br>
 <br>
 
