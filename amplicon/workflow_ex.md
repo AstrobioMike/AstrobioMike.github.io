@@ -22,6 +22,13 @@ There are many ways to process amplicon data. Some of the most widely used tools
 <br>
 
 ---
+---
+
+<center><b>Temporary message from Mike</b></center> 
+<center>Sorry if the following images are a bit blurry on your monitor. I am new to this and haven't yet figured out how to make them render properly on all screen sizes/resolutions 😢 <br>
+Any advice from those more savvy with html/css would be very much appreciated 😊</center>
+---
+---
 <br>
 
 # Tools used here
@@ -216,6 +223,7 @@ install.packages("phyloseq")
 install.packages("vegan")
 install.packages("DESeq2")
 install.packages("ggplot2")
+install.packages("dendextend")
 ```
 
 If any of those didn't succeed, for whichever caused a problem run the corresponding command below to try installing it a different way:
@@ -536,10 +544,14 @@ ggplot(filt_major_taxa_proportions_water_samples_only_tab_for_plot.g, aes(Major_
   labs(x="Major Taxa", y="% of 16S rRNA gene copies recovered", title="Bottom water samples only")
 ```
 
+
+
 <center><img src="{{ site.url }}/images/boxplots_rock_samples.png"></center>
 <br>
 <center><img src="{{ site.url }}/images/boxplots_water_samples.png"></center>
 <br>
+
+
 This shows us more clearly for instance that one of the two water samples had ~30% of its recovered 16S sequences come from Firmicutes, while none of the 13 rock samples had more than 5%. It's good of course to break down your data and look at it in all the different ways you can, this was just to demonstrate one example. 
 
 I'd like to note that the rocks-only plot is similar to [Figure 4 in the original paper](https://www.frontiersin.org/files/Articles/170496/fmicb-06-01470-HTML/image_m/fmicb-06-01470-g004.jpg), made also with rocks only. (Ugh, look at that horrible y-axis label... pffft.) This is a good demonstration of what I noted at the start: that if you make similar decisions in your processing, for what tag data can do, you are going to end up with similar results overall regardless of which tools you use (of all the widely utilized ones I mean of course). The processing for that paper was done entirely within *mothur* using 97% OTU clustering, and this run was done with uclust and single-nucleotide resolution. I haven't linked to other things because so far this is the first rock-only figure we made here, but the same has held true for all visualizations so far.
@@ -577,3 +589,6 @@ Well, now is when you do the science part. Here's where your questions and the e
 
 <center><img src="{{ site.url }}/images/under_construction.jpeg"></center>
 <center><h3>UNDER CONSTRUCTION</h3></center>
+
+
+###### MOVE THE ALPHA BETA STUFF THAT NEEDS TO BE SWITCHED

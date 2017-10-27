@@ -40,12 +40,19 @@ rm bash_basics_temp.tar.gz
 cd bash_basics_temp
 ```
 
-Now, let's get started!  
+Now, let's get started!
+<br>
 <br>
 
 ---
-<br>
+---
 
+<center><b>Temporary message from Mike</b></center> 
+<center>Sorry if the following images are a bit blurry on your monitor. I am new to this and haven't yet figured out how to make them render properly on all screen sizes/resolutions 😢 <br>
+Any advice from those more savvy with html/css would be very much appreciated 😊</center>
+---
+---
+<br>
 # Running a command
 The terminal 'prompt' by default is typically a line with some information ending with a dollar sign:
 
