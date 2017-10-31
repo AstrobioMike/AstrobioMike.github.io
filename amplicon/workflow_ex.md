@@ -308,8 +308,6 @@ length(blank_ASVs) # this approach identified about 50 out of ~1550 that are lik
 
   # looking at the percentage of reads retained for each sample after removing these presumed contaminant ASVs shows that the blanks lost almost all of their sequences, while the samples, other than one of the bottom water samples, lost less than 1% of their sequences, as would be hoped
 colSums(count_tab[!rownames(count_tab) %in% blank_ASVs, ]) / colSums(count_tab) * 100
-        B1         B2         B3         B4        BW1        BW2        R10      R11BF        R11        R12        R1A        R1B         R2         R3         R4         R5         R6         R7         R8         R9 
- 0.6298111  0.4008016  0.9153318  2.4038462 65.4151243 99.5216583 99.7387794 99.8166819 99.4470365 99.5028249 99.7501644 99.7146351 99.6506941 99.4810831 99.6432515 99.6186047 99.8327013 99.0976210 99.7623009 99.2768761
  
   # now that we've used our extraction blanks to identify ASVs that were likely due to contamination, we're going to trim down our count table by removing those sequences and the blank samples from further analysis
 filt_count_tab <- count_tab[!rownames(count_tab) %in% blank_ASVs, -c(1:4)]
