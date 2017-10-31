@@ -43,7 +43,7 @@ As explained above, we'll be using [vsearch](https://github.com/torognes/vsearch
 **vsearch**  
 There are instructions to get vsearch up and running [on its github](https://github.com/torognes/vsearch), but these commands should work for you if you're on a Mac and you don't mind downloading it into your bin:
 
-```bash
+```
 cd /usr/local/bin
 wget https://github.com/torognes/vsearch/releases/download/v2.5.1/vsearch-2.5.1-macos-x86_64.tar.gz
 tar -xzvf vsearch-2.5.1-macos-x86_64.tar.gz
@@ -57,7 +57,7 @@ There we changed into our "bin" directory, downloaded the vsearch too, unpacked 
 To get the free, 'lightweight' version of usearch, you need to go to [https://www.drive5.com/usearch/download.html](https://www.drive5.com/usearch/download.html), and fill out a (very) short form in order to have a download link sent to you. This usually happens virtually instantly in my experience. After getting the link and downloading the file, assuming you're working on a Mac and you got the same version as noted above (v10.0.240) into your default download directory, the following commands should get usearch working properly (the sudo command will require you to enter your login password for your computer):
 
 
-```bash
+```
 sudo mv ~/Downloads/usearch10.0.240_i86osx32 /usr/local/bin/usearch
 chmod +x /usr/local/bin/usearch
 ```
