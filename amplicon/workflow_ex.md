@@ -243,6 +243,7 @@ install.packages("ggplot2")
 install.packages("dendextend")
 install.packages("tidyr")
 install.packages("viridis")
+install.packages("reshape")
 ```
 
 Occasionaly you will run into a case where packages don't successfully install via the `install.packages()` function. When this happens, you can often get around that by installing from bioconductor or using devtools like demonstrated below. If any of those didn't succeed, you could try googling with these terms added as well. For example, searching for ["phyloseq bioconductor"](https://www.google.com/search?q=phyloseq+bioconductor&oq=phyloseq+bioconductor&aqs=chrome.0.0j69i60j0.3441j0j7&sourceid=chrome&ie=UTF-8) will bring you to its [bioconductor page](http://bioconductor.org/packages/release/bioc/html/phyloseq.html) which has instructions showing how to install like shown here for *phyloseq* and *DESeq2* if they failed by the above method.
@@ -268,6 +269,7 @@ library("ggplot2")
 library("dendextend")
 library("tidyr")
 library("viridis")
+library("reshape")
 ```
 
 If you have a problem loading any of these libraries, close and then restart R and try loading the library again. If still no luck, try installing the package again and loading the library. 9 times out of 10, restarting R will solve the problem, so hopefully you're not special :) 
