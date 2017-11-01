@@ -45,7 +45,7 @@ There are instructions to get vsearch up and running [on its github](https://git
 
 ```
 cd /usr/local/bin
-wget https://github.com/torognes/vsearch/releases/download/v2.5.1/vsearch-2.5.1-macos-x86_64.tar.gz
+curl -LO https://github.com/torognes/vsearch/releases/download/v2.5.1/vsearch-2.5.1-macos-x86_64.tar.gz
 tar -xzvf vsearch-2.5.1-macos-x86_64.tar.gz
 cp vsearch-2.5.1-macos-x86_64/bin/vsearch .
 rm vsearch-2.5.1-macos-x86_64.tar.gz
@@ -93,7 +93,7 @@ You can download the required dataset and files by copying and pasting the follo
 ```
 cd ~
 curl -O https://AstrobioMike.github.io/tutorial_files/amplicon_example_workflow.tar.gz
-tar -xvf amplicon_example_workflow.tar.gz
+tar -xzvf amplicon_example_workflow.tar.gz
 rm amplicon_example_workflow.tar.gz
 cd amplicon_example_workflow/
 ```
