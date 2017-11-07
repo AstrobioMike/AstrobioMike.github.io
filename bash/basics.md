@@ -117,9 +117,8 @@ When you are working in the terminal, you are always sitting in some directory. 
 <center><img src="{{ site.url }}/images/directory_example.png"></center>  
 
 <br>
-At the top of that image you can see we are in a directory called "bash_basics_temp", and inside that directory there is a subdirectory called "another_directory" and two text files. Additionally at the very bottom there is a line that tells us 'where' we are in the computer. Yours will be different, but this is what mine looks like this: `Macintosh_HD/Users/Mike_Lee/bash_basics_temp`
+At the top of that image you can see we are in a directory called "bash_basics_temp", and inside that directory there is a subdirectory called "another_directory" and two text files. Additionally at the very bottom there is a line that tells us 'where' we are in the computer. Yours will be different, but this is what mine looks like this: `Macintosh_HD/Users/Mike_Lee/bash_basics_temp`.
 
-<br>
 This line of directories, delimited by forward slashes, tells us where we are; it's an address. And in the computer world it's called a 'path'.
 
 When we are working in a terminal we need to be aware of where we are in the computer. We can get all of the same information in the terminal by using the commands `pwd` (print working directory – to view the address of the directory we are in) and `ls` (list, to list the contents of the directory we're sitting in):
@@ -430,7 +429,7 @@ Here we're going to quickly touch upon what makes the Unix command-line environm
 
 For a simple example of this, we're going to string together two commands to find out how many items are in our current working directory. You're already familiar with how `ls` will list the contents of your cuurrently working directory:
 
-<center><img src="{{ site.url }}/images/nano_head_ex.png"></center>
+<center><img src="{{ site.url }}/images/ls_ex2.png"></center>
 
 <br>
 And we saw that if we use the `wc` command with the optional flag `-l`, it counts the number of lines of the file we specify:
@@ -465,7 +464,7 @@ It's important to remember that the `>` redirector will overwrite the file you a
 <br>
 Another redirector that you may come across but will likely use less often is the less than sign, `<`. This is placed before what you would like the input to be. We've seen a lot of commands that allow specifying the file or item you want to act on by simply placing it as an argument. Like when running `head directory_contents.txt`, the first positional argument is the file we want to look at. Some commands require you to use `<` to specify the input. An example we'll get more into in [Six commands worth getting to know]({{ site.url }}/bash/six_commands) is the command `tr`, for 'translate'. This will find all instances of a character in a file and change them into another character. 
 
-For an example of this, and how we need the `<` redirector to specify the input file, we'll try to change each lowercase `t` to a capital `T` in the "text_copy.txt" file. Here's what the file looks like to begin with:
+For an example of this, and how we need the `<` redirector to specify the input file, we'll change each lowercase `t` to a capital `T` in the "text_copy.txt" file. Here's what the file looks like to begin with:
 
 <center><img src="{{ site.url }}/images/head_text_copy.png"></center>
 
@@ -473,7 +472,7 @@ For an example of this, and how we need the `<` redirector to specify the input 
 The syntax of the `tr` command is such that the first positional argument is the character you are looking for in the file, and the second is what you want to change it to. Then to specify what file you want this performed on, we need to place it after the `<` redirector. In our example, this looks like this:
 
 ```
-tr t T < text_copy.txt
+tr "t" "T" < text_copy.txt
 ```
 
 <center><img src="{{ site.url }}/images/tr_ex.png"></center>
@@ -487,7 +486,7 @@ Note that if you tried to run this without the redirector by just providing the 
 Lastly, we can see that when running the `tr` command the output is printed to the terminal window. This most often won't be all that useful as you can't do anything else with it then. So here let's redirect that output into a file called "text_copy_cap_T.txt:
 
 ```
-tr t T < text_copy.txt > text_copy_cap_T.txt
+tr "t" "T" < text_copy.txt > text_copy_cap_T.txt
 ```
 
 <center><img src="{{ site.url }}/images/tr_ex_redir_out.png"></center>
