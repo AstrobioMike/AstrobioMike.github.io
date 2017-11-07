@@ -358,7 +358,7 @@ But occasionally when using `install.packages()` you will get a message like the
 
 <center><img src="{{ site.url }}/images/phyloseq_install_packages.png"></center>
 <br>
-But do not despair! This is usually just a consequence of the package not having been updated to install this particular way, and you can almost always get around it by installing from bioconductor. When you do run into this, you should head right on over to google and search with terms for the package name and bioconductor. 
+But do not despair! This is usually just a consequence of the package not having been updated to install this particular way, and you can almost always get around it by installing from bioconductor. When you do run into this, you should head right on over to google and search with terms for the package name and bioconductor, and you'll most likely find a way to install with `biocLite()`. 
 
 ## biocLite()
 For example, searching for ["phyloseq bioconductor"](https://www.google.com/search?q=bioconductor+phyloseq+R&oq=bioconductor+phyloseq+R&aqs=chrome..69i57j69i60.5566j0j7&sourceid=chrome&ie=UTF-8) returns the [bioconductor homepage of the *phyloseq* package](http://bioconductor.org/packages/release/bioc/html/phyloseq.html) as the top hit. And when you head over there, there are directions to install via bioconductor:
