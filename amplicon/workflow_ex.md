@@ -9,7 +9,9 @@ permalink: amplicon/workflow_ex
 
 {% include _side_tab_amplicon.html %}
 
-This module represents a walkthrough of *one* possible workflow for an amplicon dataset (if you need a quick primer on some relevant terminology, visit the [amplicon main page]({{ site.url }}/amplicon/)). This will entail processing the raw sequences with [vsearch](https://github.com/torognes/vsearch) and [usearch](https://drive5.com/usearch/), and analyzing the output and making some visualizations with [R](https://www.r-project.org/) using some great packages like [*vegan*](https://github.com/vegandevs/vegan) and [*phyloseq*](http://joey711.github.io/phyloseq/).
+This module represents a walkthrough of *one* possible workflow for an amplicon dataset (if you need a quick primer on some relevant terminology, visit the [amplicon main page]({{ site.url }}/amplicon/)). This will entail processing the raw sequences with [vsearch](https://github.com/torognes/vsearch) and [usearch](https://drive5.com/usearch/), and analyzing the output and making some visualizations with [R](https://www.r-project.org/) using some great packages like [*vegan*](https://github.com/vegandevs/vegan) and [*phyloseq*](http://joey711.github.io/phyloseq/).  
+
+If you are new to working at the command line and/or the R environment, you could still walk through this. But I recommend running through the [*bash* basics]({{ site.url }}/bash/basics) and [R basics]({{ site.url }}/R/basics) tutorials first.
 <br>
 <br>
 
@@ -70,9 +72,7 @@ After these steps are done you should be able to call vsearch and usearch from a
 <center><img src="{{ site.url }}/images/u_v_versions.png"></center>
 
 <br>
-If you wish to follow along with the analysis portion in [R](https://www.r-project.org/), then you also need to have a working installation of R on your computer. If you're unsure if you already have R, you can check by typing `R` in a terminal window. If this launches R rather than giving an error message, you should be good to go (enter `q()` to exit the R environment). If you do not have R you can download it from here for Mac: [https://cran.r-project.org/bin/macosx/](https://cran.r-project.org/bin/macosx/). And if you have a relatively newer Mac you will also need to install XQuartz which you can get from here: [https://www.xquartz.org/](https://www.xquartz.org/). 
-
-Lastly, I highly, highly, highly recommend installing RStudio if you don't already have it and use it. RStudio is an interface for R that not only makes everything you will do in R easier and more organized, but it's also invaluable for reproducibility of your analyses as it makes it second-nature to generate and save R scripts of everything you're doing while you do it. You can download an RStudio installer from [here](https://www.rstudio.com/products/rstudio/download/#download).
+If you wish to follow along with the analysis portion in [R](https://www.r-project.org/), then you also of course need to have a working installation of R on your computer. If you'd like more info on this, check out the [R basics]({{ site.url }}/R/basics) section before moving forward. 
 <br>
 <br>
 

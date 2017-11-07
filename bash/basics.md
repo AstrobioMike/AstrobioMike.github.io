@@ -569,6 +569,7 @@ This may seem like a simple convenience at first, and it certainly is, but tab-c
 <br>
 
 ---
+---
 <br>
 <h1>Congrats on getting through the basics!</h1>
 Some of these things may seem trivial as used in these examples here, and I know that can make the effort required to learn to use them harder to come by, but these basics really are the foundation to doing everything at the command line. Understanding the general rules of commands, their arguments, and the required syntax will make everything you try to do easier.  
