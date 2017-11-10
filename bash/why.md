@@ -20,7 +20,7 @@ If you'd like to follow along here, you can get the mock data we'll be working w
 cd ~
 curl -O https://AstrobioMike.github.io/tutorial_files/bash_why_temp.tar.gz
 tar -xvf bash_why_temp.tar.gz
-rm bash_basics_why_temp.tar.gz
+rm bash_why_temp.tar.gz
 cd bash_why_temp
 ```
 
