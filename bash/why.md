@@ -108,12 +108,43 @@ cut -f1,2 mapping.txt | sed '1d' | sed 's/^/>/' | tr "\t" "\n" > mapping.fa
 
 ---
 <br>
-# Example 3 - Converting NCBI taxon IDs to organism lineages  
-Recently some collaborators did some sequening with Nanopore's MinION sequencer. This is a "real-time" sequencer that is trying to be as user-friendly as possible so just about anyone can sequence DNA anywhere. They have a whole workflow setup so you can just stream the data to a server as you sequence and it will run things through a taxonomy classification, BUT it just returns you tables with NCBI taxonomy IDs and no actual organism information. 
 
+# Example 3 - Counting specific amino acids in lots of tables
+Recently my good 'ol buddy Josh Kling was yabbering about some paper as he usually does, but for some odd reason I was actually listening this time. It turns out [this paper by Pittera et al.](https://www.nature.com/articles/ismej2016102) was about the thermostability of some *Synechococcus* proteins. They hypothesized that a particular amino acid (position number 43) would more often be alanine in warmer temperature waters, and glycine in colder temperature waters. Having been working on genomics and pangenomics of Syn, I had mapped metagenomic data from about 100 samples from the [TARA Oceans global sampling project](https://www.embl.de/tara-oceans/start/). So we realized I had the data we needed to test this hypothesis just sitting in the computer. All the information was already in the mapping files, we just needed to pull it out. The first part that made that easy is thanks to [Anvi'o](http://merenlab.org/software/anvio/), as that will parse your mapping files for you and give you nice tables like this that we have in our example_3 working directory:
 
+```
+column -t ANW_141_05M_24055_AA_freqs.txt | less -S
+```
+
+<center><img src="{{ site.url }}/images/aa_counts_ex.png"></center> 
+
+<br>
+To get this we just told Anvi'o which gene we were interested in and it spit out this nice table for that specific gene for every environmental sample we had. This is telling us what the Syn population at a specific sample site uses for amino acids at each position within this gene. In the table, every row is an amino acid position in this one gene, and the columns towards the right tell us the total coverage for that position, and the frequency of each amino acid at that position. 
+
+So we had lots of these tables, because there were 32 reference genomes and each had a copy of the gene. Then there were about 32 samples that had greater than 100X coverage that we looked at. In our example here we're only working with one of these samples, so we have just 32 tables for the 32 copies of genes, but the principle is the same.
+
+Back to the task at hand, we want to know how often Syn uses an alanine at amino acid position 43 vs how often it uses glycine at that position. To answer that we needed to pull the appropriate row from all of these tables, and then sum the "coverage", "Ala", and "Gly" columns for comparison. These are columns 7, 8, and 15, which we can double check like so: 
+
+<center><img src="{{ site.url }}/images/aa_counts_2.png"></center> 
+
+<br>
+Now that we know we have the right columns, here's the fun part:
+
+```
+grep -w "^42" * | cut -f7 | awk '{sum += $1} END {print sum}'
+grep -w "^42" * | cut -f8 | awk '{sum += $1} END {print sum}'
+grep -w "^42" * | cut -f15 | awk '{sum += $1} END {print sum}'
+```
+
+<center><img src="{{ site.url }}/images/aa_counts_results.png"></center> 
+
+<br>
+And we see at this particular site the coverage of this specific amino acid position was 1,670, it was an alanine 1,605 of those times, and a glycine only 30 of those times. And sure enough this was a warmer site and we saw the exact opposite when looking at colder sites. Pretty cool! Props to [Piterra et al.](https://www.nature.com/articles/ismej2016102).
 <br>
 
 ---
 <br>
-# Example 4 - Counting amino acids in thousands of tables
+# Example 4 - Converting NCBI taxon IDs to organism lineages  
+Recently some collaborators did some sequening with Nanopore's MinION sequencer. This is a "real-time" sequencer that is trying to be as user-friendly as possible so just about anyone can sequence DNA anywhere. They have a whole workflow setup so you can just stream the data to a server as you sequence and it will run things through a taxonomy classification, BUT it just returns you tables with NCBI taxonomy IDs and no actual organism information. 
+
+

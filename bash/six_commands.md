@@ -462,6 +462,6 @@ And now we could begin to work on this file as though it weren't an alien.
 ---
 <br>
 # Ok, so where's the advertised gloriousness?
-I know, this is all well and good, and as mentioned at the start I know firsthand that it's really hard to care about these things until you are already using them to make your life easier. But the problem is that it's also kinda hard to get to that point *before* you care enough about using them to learn them. This is the conundrum we face 😕  
+I know, this is all well and good, but again I know firsthand that it's really hard to care about these things until you are already using them to make your life easier. But the problem is that it's also kinda hard to get to that point *before* you care enough about using them to learn them. This is the conundrum we face 😕  
 
 To hopefully help bridge that gap, let's hop over to [Why is this all worth it?]({{ site.url }}/bash/why) for some real-life examples of how I use these things every day.
