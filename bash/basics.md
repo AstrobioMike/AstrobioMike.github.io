@@ -93,7 +93,7 @@ head -n 15 text.txt
 <center><img src="{{ site.url }}/images/test.txt_head.png"></center>  
 
 <br>
-And that's really it. Those are the fundamentals that govern running virtually any individual command in the terminal. Many commands have a dizzying amount of options that I (and I presume most others) never fully appreciate or explore. You can pull up a 'manual' for any command by using the command `man` followed by the command you're intersted in. For instance, `man head` would bring up the manual for `head` (you can exit the manual by pressing `q` ). Many commands, though not all, also have a help menu of sorts that can usually be accessed by typing the command followed by `-h` or `--help`. I personally most often google for examples of whatever I'm trying to use. But importantly, you don't need to memorize these things. Some things might become second nature depending on how frequently you use them, but the real benefit comes from just knowing what can be done (meaning knowing what tools there are out there), and having a baseline understanding of how to work in the terminal environment. Then when you come across something you need to do, you know what to look for to iron out the details. 
+And that's really it. Those are the fundamentals that govern running virtually any individual command in the terminal. Many commands have a dizzying amount of options that I (and I presume most others) never fully appreciate or explore. You can pull up a 'manual' for any command by using the command `man` followed by the command you're intersted in. For instance, `man head` would bring up the manual for `head` (you can exit the manual by pressing `q` ). Many commands, though not all, also have a help menu of sorts that can usually be accessed by typing the command followed by `-h` or `--help`. I personally most often google for examples of whatever I'm trying to use. But importantly, **you don't need to memorize these things**. Some things might become second nature depending on how frequently you use them, but the real benefit comes from just knowing what can be done (meaning knowing what tools are out there), and having a baseline understanding of how to work in the terminal environment. Then when you come across something you need to do, you know what to look for to iron out the details. 
 
 Now that you're familiar with this baseline formula of entering commands, let's move on to looking at some more and learn how to navigate around your computer from inside the terminal.  
 <br>
@@ -117,16 +117,16 @@ When you are working in the terminal, you are always sitting in some directory. 
 <center><img src="{{ site.url }}/images/directory_example.png"></center>  
 
 <br>
-At the top of that image you can see we are in a directory called "bash_basics_temp", and inside that directory there is a subdirectory called "another_directory" and two text files. Additionally at the very bottom there is a line that tells us 'where' we are in the computer. Yours will be different, but this is what mine looks like this: `Macintosh_HD/Users/Mike_Lee/bash_basics_temp`.
+At the top of that image you can see we are in a directory called "bash_basics_temp", and inside that directory there is a subdirectory called "another_directory" and two text files. Additionally at the very bottom there is a line that tells us 'where' we are in the computer. Yours will be different, but this is what mine looks like: `Macintosh_HD/Users/Mike_Lee/bash_basics_temp`.
 
-This line of directories, delimited by forward slashes, tells us where we are; it's an address. And in the computer world it's called a 'path'.
+This line of directories, delimited by forward slashes, tells us where we are; it's an address. And in the computer world it's called a "path".
 
 When we are working in a terminal we need to be aware of where we are in the computer. We can get all of the same information in the terminal by using the commands `pwd` (print working directory – to view the address of the directory we are in) and `ls` (list, to list the contents of the directory we're sitting in):
 
 <center><img src="{{ site.url }}/images/terminal_directory_example.png"></center>  
 
 <br>
-It is important to be comfortable thinking about where you are in your computer when working in the terminal. One of the most common errors/easiest mistakes to make is trying to do something to a file that isn't where you think it is. Let's go back to our example above where we used the `head` command on the "text.txt" file, and then let's try it on another file:
+It is important to be comfortable thinking about where you are in your computer when working in the terminal. One of the most common errors/easiest mistakes to make is trying to do something to a file that isn't where you think it is. Let's go back to our example above where we used the `head` command on the "text.txt" file, and then let's try it on another file, "yet_another_text_file.txt":
 
 ```bash
 head text.txt
@@ -138,7 +138,7 @@ head yet_another_text_file.txt
 <br>
 Here the `head` command works fine on "text.txt", but we get an error message when we call it on "yet_another_text_file.txt". Intrepreting error messages in some cases will be tricky. As usual, google is your friend, and most problems you'll run into will be things others have already talked out somewhere – love you, [stackoverflow](https://stackoverflow.com). Fortunately this error message happens to be one of the more straightforward ones. It gives us the command that was used, the file we attempted to call it on, and tells us "No such file or directory". And if we enter the `ls` command just like we did above, we can see the computer is absolutely right (spoiler alert: it usually is). There is no file in the current directory named "yet_another_text_file.txt". And when you enter a file name without any other information, the computer only looks in the exact directory you are sitting in. We'll see what this means in a second. 
 
-In this case the file we are looking for is actually in the directory "another_directory", which is a 'subdirectory' to the one we are sitting in, which we can also see when entering `ls` with no arguments. Further, if we instead enter:  
+In this case the file we are looking for is actually in the directory "another_directory", which is a 'subdirectory' of the one we are sitting in, which we can also see when entering `ls` with no arguments. Further, if we instead enter:  
 
 ```bash
 ls another_directory/
@@ -149,7 +149,7 @@ We are now providing an argument to the `ls` command, and asking it to list the 
 <center><img src="{{ site.url }}/images/ls_another_dir.png"></center>
 
 <br>
-So we see the file we tried to call `head` on isn't in our current working directory, but is actually in a subdirectory just one layer deeper than we are. We can also call `head` on the file by specifying the path (address) of the file like so:
+So we see the file we tried to call `head` on isn't in our current working directory, but is actually in a subdirectory just one layer deeper than we are. We can also call `head` on the file by specifying the "path" (address) of the file like so:
 
 ```bash
 head another_directory/yet_another_text_file.txt
@@ -164,12 +164,12 @@ Moving on, there are actually two ways to provide the path to where something is
 
 What we did in the example just above is known as a **relative path** because it takes off from where we entered the command. If we were in a location that didn't have the subdirectory "another_directory" in it, then we would have also gotten an error message because the computer again wouldn't be able to find the file we were pointing to.  
 
-We also could provide the **absolute path** however, which isn't relative to our current location because it takes off from a specific location in the computer, rather than taking off from where we call the command. We actually saw our absolute path earlier when we called the `pwd` command:
+We also could provide the **absolute path** however, which isn't relative to our current location because it takes off from a specific location in the computer, rather than taking off from where we call the command. We actually saw our absolute path earlier when we executed the `pwd` command:
 
 <center><img src="{{ site.url }}/images/pwd.png"></center>
 
 <br>
-Now, instead of calling `head` on "yet_another_text_file.txt" by providing the relative PATH as we did last time, we will do it using the absolute path. But remember, what `pwd` just showed us is actually where *we* are, and we need to add the subdirectory "another directory" to the end of it in order to specify where the file actual is. To do this, we can copy and paste the output from `pwd`, and then add `/another_directory/yet_another_text_file.txt` to the end of it. Yours will be different, but this is what mine looks like: 
+Now, instead of calling `head` on "yet_another_text_file.txt" by providing the relative PATH as we did last time, we will do it using the absolute path. But remember, what `pwd` just showed us is actually where *we* are, and we need to add the subdirectory "another_directory" to the end of it in order to specify where the file actual is. To do this, we can copy and paste the output from `pwd`, and then add `/another_directory/yet_another_text_file.txt` to the end of it. Yours will be different, but this is what mine looks like: 
 
 <center><img src="{{ site.url }}/images/head_abs_path_example.png"></center>
 
@@ -575,6 +575,8 @@ Some of these things may seem trivial as used in these examples here, and I know
 
 There are a lot of base commands in *bash*, and a dizzying number of optional arguments for most of them. Again, google is our friend. If you end up working in the terminal window enough, you will remember some things, but also you will often do a quick search to remember what the flag is for a specific argument, or how exactly a specific command works. This really isn't about memorization overall.
 
+<a id="bottom"></a>
+
 Remember the set of commands you ran at the beginning to get the files needed for this walkthrough?
 
 ```
@@ -587,8 +589,10 @@ cd bash_basics_temp
 
 I promised you'd have a better idea of what's going on in here by the end, so let's break it down.
 
-We start by changing directories to our 'home' location, and we do this with the special character `~`. Then we use two commands you aren't familiar with yet, `curl` and `tar`. We won't get into these here other than to say `curl` allows you to download things from the internet from the command line, and `tar` is a tool for packing and unpacking files and directories. So with the `curl` command we download the files in a compressed format, and then with `tar` and some options we expand them into a directory called "bash_basics_temp". Then all we do is delete the uncompressed files ("bash_basics_temp.tar.gz"), and change directories into "bash_basics_temp".  
+We start by changing directories to our "home" location, and we do this with the special character `~`. Then we use two commands you aren't familiar with yet, `curl` and `tar`. We won't get into these here other than to say `curl` allows you to download things from the internet from the command line, and `tar` is a tool for packing and unpacking files and directories. So with the `curl` command we download the files in a compressed format, and then with `tar` and some options we expand them into a directory called "bash_basics_temp". Then all we do is delete the uncompressed files ("bash_basics_temp.tar.gz"), and change directories into "bash_basics_temp".  
 
 As you can see here, while the commands change, the general structure of how to operate in the command line stays the same. This is part of why the learning curve is steep at the start but it gets better. Once you become comfortable with the general framework, everything is gets easier.  
 
 Now that you're comfortable with the basics, head on over to [6 commands worth getting to know](/bash/six_commands) for a walkthrough of some stellar commands I wouldn't want to live without.
+
+
