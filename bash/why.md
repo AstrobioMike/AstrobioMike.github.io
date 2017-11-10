@@ -10,7 +10,7 @@ permalink: /bash/why
 {% include _side_tab_bash.html %}
 
 
-It can be tough to see why these things are useful before you are actually using them regularly, so here I'm going to provide some real-life examples of how I use *bash* everyday. It is assumed you're already comfortable with *bash* and some of the most common commands, but if not, be sure to check out the [basics](/bash/basics) and [six glorious commands](/bash/six_commands). Without already being comfortable with what's covered in those pages, some of these one-liners might look way more complicated than they actually are.  
+It can be tough to see why these things are useful before you are actually using them regularly, so here I'm going to provide some real-life examples of how I use *bash* everyday. It is assumed you're already comfortable with *bash* and some of the most commonly used commands, but if not, be sure to check out the [basics](/bash/basics) and [six glorious commands](/bash/six_commands). Without already being comfortable with what's covered in those pages, some of these one-liners will probably look way more complicated than they actually are.
 <br>
 
 # Getting started  
