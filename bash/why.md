@@ -145,6 +145,31 @@ And we see at this particular site the coverage of this specific amino acid posi
 ---
 <br>
 # Example 4 - Converting NCBI taxon IDs to organism lineages  
-Recently some collaborators did some sequening with Nanopore's MinION sequencer. This is a "real-time" sequencer that is trying to be as user-friendly as possible so just about anyone can sequence DNA anywhere. They have a whole workflow setup so you can just stream the data to a server as you sequence and it will run things through a taxonomy classification, BUT it just returns you tables with NCBI taxonomy IDs and no actual organism information. 
+Recently some collaborators did some sequening with Nanopore's MinION sequencer. This is a "real-time" sequencer that is trying to be as user-friendly as possible so just about anyone can sequence DNA anywhere. They have a whole workflow setup so you can just stream the data to a server as you sequence and it will run things through a taxonomy classifier, BUT for some strange reason it only gives you tables with NCBI taxonomy IDs and no actual organism information. My collaborators were kind of stuck there for a bit and asked me for help.
 
+Fortunately there is a nice tool called [taxonkit](https://github.com/shenwei356/taxonkit) (which is in our working directory) that will convert these IDs to organism lineages like we want, but we first have to parse the output from the MinION workflow, which looks like this:
 
+<center><img src="{{ site.url }}/images/epi2me_start.png"></center> 
+
+<br>
+Mixed in that mess, column 3 has the "taxids" we're looking for. So first we need to cut them out and put them into their own file. 
+
+```
+cut -f3 -d ',' epi2me_tax_out.csv | sed '1d' > taxids.txt
+head taxids.txt
+```
+
+<center><img src="{{ site.url }}/images/epi2me_taxids.png"></center> 
+
+<br>
+And now we can just provide that file to the taxonkit program like such:
+
+```
+./taxonkit lineage taxids.txt -o epi_tax.txt
+```
+
+And a few seconds later, we have our nice, actually useful, taxonomy table:
+
+<center><img src="{{ site.url }}/images/epi2me_tax_tab.png"></center> 
+
+<br>
