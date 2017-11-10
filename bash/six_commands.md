@@ -202,9 +202,9 @@ Here's what we're gonna do:
 1) use `head` to pull just the first row of column names from our original file, like we did above;  
 2) use `cut` on the output of that to get the column names we want, the same we specified to make our subset file (1,3,4,6);  
 3) write that output to a file with the `>` redirector;  
-4) use `cat` to stick our new header file together with our subset file;
-5) use `rm` to delete our header file;
-6) use `mv` to replace our old subset file (the one with no header) with our new subset file (that has our header).
+4) use `cat` to stick our new header file together with our subset file;  
+5) use `rm` to delete our header file;  
+6) use `mv` to replace our old subset file (the one with no header) with our new subset file (that has our header).  
 
 Listing it out like that makes it seem like a lot, but here's what it looks like:
 
@@ -358,53 +358,78 @@ sed 's/NA/<NA>/g' genes_and_identifiers_only.txt
 ---
 <br>
 # awk  
-`awk`, like `sed`, is very expansive. `awk` is the command I go to when I want to do any sort of filtering based on multiple column values, or if I want to do any sort of calculations on columns.
+`awk`, like `sed`, is also very expansive. `awk` is the command I go to when I want to do any sort of filtering based on numeric values, or if I want to do any sort of calculations like sum a column.
 
-The syntax of `awk` can also take a little getting used to. This is one of the commands that whenever I need to use it for something new and even remotely complicated, I usually pull up an old file I have or do some googling to remind myself of how to do whatever I'm trying to figure out (this is normal! it's not about memorizing these things). 
+The syntax of `awk` can also take a little getting used to. This is one of the commands that whenever I need to use it for something new and even remotely complicated, I usually pull up an old file I have or do some googling to remind myself of how to do whatever I'm trying to figure out (this is normal! none of this is about memorizing these things). 
 
-For the first example, let's parse the "aa_lengths.txt" file down to something more specific. Here's what it looks like for a reminder:
+For some examples of `awk`, we're going to work with a typical BLAST output table. Let's take a look at it first with `head`:
 
-<center><img src="{{ site.url }}/images/head_lengths.png"></center> 
+<center><img src="{{ site.url }}/images/head_blast.png"></center> 
 
 <br>
-
-Let's say we want to only pull the genes that are longer than 400 amino acids. Again, here we'll run the code first, and then break down how it works:
+And actually now is a good time to show an example of the `column` command. This will keep columns organized together: 
 
 ```
-awk '$2 > 400' aa_lengths.txt
+column -t example_blast_output.txt
+```
+
+<center><img src="{{ site.url }}/images/head_blast_col.png"></center> 
+
+<br>
+So we see here we have 6 columns: "qseqid" is the query sequence (what we're blasting); "qlen" is the length of the query sequence; "sseqid" is the subject sequence (what our query hit in our blast database we were blasting against); "slen" is subject length; "pident" is percent identity; and "length" is the length of the alignment.
+
+After blasting you usually want to filter the output by some criteria. For the first example, let's just say we only want to keep hits that were greater than 90% identical. For `awk`, we specify which columns we want to act on with a `$` followed by the column number. So in this case, where the percent identity is in column 5 in our blast table, if we provide an expression like this, `$5 > 95`, `awk` will by default print all of the rows that pass this criterion. Let's give it a shot:
+
+```
+awk '$5 > 95' example_blast_output.txt 
 ```
 
 <center><img src="{{ site.url }}/images/awk1.png"></center> 
 
 <br>
+And actually before running that I didn't remember how `awk` was going to treat the text of the first row, but it seems to return that also so we don't have to worry about adding it back in. If it hadn't, we would have done something similar to above to keep our header if we had been writing this output to a new file.
 
-`awk` recognizes columns specified by the `$` sign. So the expression we placed within single quotes here will return any rows where the second column (containing the number of amino acids for each gene) is greater than 400. And actually before running that I wasn't sure how `awk` was going to treat the text of the first row, but it seems to return that also so we don't have to worry about it. If it hadn't, I would have done something similar to above to keep our header if we been writing this output to a new file.
-
-For a second example of `awk`, let's assume we want to sum the length of all the genes (I don't know why we would want that in this case, but there are more practical examples of why you would want to sum a column in the real-life examples coming later). But as an example of how we would sum a column with `awk`, here's how it would be done: 
+We can also do this sort of filtering based on multiple columns by connecting multiple conditions with "and/or" logical operators. An "and" in `awk` is provided with `&&`, and an "or" is provided with `||`. Just for example's sake, let's say we want our 95% ID criterion, but we also want the query length to be greater than 1000:
 
 ```
-awk '{sum += $2} END {print sum}' aa_lengths.txt
+awk '$5 > 95 && $2 > 1000' example_blast_output.txt
 ```
 
 <center><img src="{{ site.url }}/images/awk2.png"></center> 
 
 <br>
-
-Here we've introduce the new concept of telling `awk` when to "END" whatever it is doing. Let's look at what happens when we don't provide that component:
+Percent identity alone doesn't tell us enough information though, as you can have just a tiny portion of a query sequence align to a subject sequence, but still have a high percent identity over that short alignment. So another filtering metric that might typically be incorporated is the alignment length (column 6 here) and the length of the query sequence (column 2 here), to say something like: "only keep the hits that are greater than 95% identical AND have alignments that are greater than 90% of the length of the query sequence. That would look something like this:
 
 ```
-awk '{sum += $2} {print sum}' aa_lengths.txt
+awk '$5 > 95 && $6 > $2*0.9' example_blast_output.txt
 ```
 
 <center><img src="{{ site.url }}/images/awk3.png"></center> 
 
 <br>
-That time it printed the outcome, line-for-line, rather than waiting until it was done with the whole input. This takes some getting used to, but exposure overtime helps with all these things.
+And although there'd be no reason to do so in this case, let's sum a column just to have the example here. Let's assume we want to sum the length of all the alignments (column 6): 
+
+```
+awk '{sum += $6} END {print sum}' example_blast_output.txt
+```
+
+<center><img src="{{ site.url }}/images/awk4.png"></center> 
+
+<br>
+Here we've introduced two new components: 1) squiggly brackets which are there to separate the two actions of adding up the column ("sum" is just a variable name here, it could be anything), vs printing the variable "sum" at the end; and 2) the new concept of telling `awk` when to "END" whatever it is doing, before going onto the next step. Let's look at what happens when we don't provide that "END" component:
+
+```
+awk '{sum += $2} {print sum}' aa_lengths.txt
+```
+
+<center><img src="{{ site.url }}/images/awk5.png"></center> 
+
+<br>
+That time it printed the value of our "sum" variable after it did each line, rather than waiting until it was done with the whole input. Again the syntax of `awk` takes some getting used to, and pretty much everytime I use it I look at an old log file or google things for it. But there are times I wouldn't know what to do without out, like we'll see in the real-life examples we'll get to soon.  
 <br>
 
 ---
 <br>
-
 # tr
 `tr` is for "translate". It is useful for changing single characters to another character, and more often I end up using it to change special characters to other special characters (when `sed` is problematic). 
 
@@ -436,7 +461,7 @@ And now we could begin to work on this file as though it weren't an alien.
 ---
 ---
 <br>
-# Some real-life examples
-So yeah, this is all well and good, but as mentioned above, I know firsthand that it's really hard to care about these things until you are already using them to make your life easier. But the problem is that it's also kinda hard to get to that point *before* you care enough about using them so that you learn to. This is the conundrum.  
+# Ok, so where's the advertised gloriousness?
+I know, this is all well and good, and as mentioned at the start I know firsthand that it's really hard to care about these things until you are already using them to make your life easier. But the problem is that it's also kinda hard to get to that point *before* you care enough about using them to learn them. This is the conundrum we face 😕  
 
-To hopefully help bridge that gap, let's hop over to [Why is this all worth it?]({{ site.url }}/bash/why) for some examples of how I use these things every day 😊
+To hopefully help bridge that gap, let's hop over to [Why is this all worth it?]({{ site.url }}/bash/why) for some real-life examples of how I use these things every day.
