@@ -27,7 +27,7 @@ As with the [*bash* basics]({{ site.url }}/bash/basics) module, if you'd like to
 cd ~
 curl -O https://AstrobioMike.github.io/tutorial_files/bash_six_commands_temp.tar.gz
 tar -xvf bash_six_commands_temp.tar.gz
-rm bash_basics_six_commands_temp.tar.gz
+rm bash_six_commands_temp.tar.gz
 cd bash_six_commands_temp
 ```
 
