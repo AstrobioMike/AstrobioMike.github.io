@@ -11,7 +11,7 @@ permalink: amplicon/workflow_ex
 
 This module represents a walkthrough of *one* possible workflow for an amplicon dataset (if you need a quick primer on some relevant terminology, visit the [amplicon main page]({{ site.url }}/amplicon/)). This will entail processing the raw sequences with [vsearch](https://github.com/torognes/vsearch) and [usearch](https://drive5.com/usearch/), and analyzing the output and making some visualizations with [R](https://www.r-project.org/) using some great packages like [*vegan*](https://github.com/vegandevs/vegan) and [*phyloseq*](http://joey711.github.io/phyloseq/).  
 
-If you are new to working at the command line and/or the R environment, you could still walk through this. But I recommend running through the [*bash* basics]({{ site.url }}/bash/basics) and [R basics]({{ site.url }}/R/basics) tutorials first.
+If you are new to working at the command line and/or the R environment, you could still walk through this, but I recommend running through the [*bash* basics]({{ site.url }}/bash/basics) and [R basics]({{ site.url }}/R/basics) tutorials first.
 <br>
 <br>
 
@@ -20,24 +20,15 @@ If you are new to working at the command line and/or the R environment, you coul
 <br>
 
 ## Opening caveats
-There are many ways to process amplicon data. Some of the most widely used tools/pipelines include [mothur](https://www.mothur.org/), [usearch](https://drive5.com/usearch/), [vsearch](https://github.com/torognes/vsearch), [Minimum Entropy Decomposition](http://merenlab.org/2014/11/04/med/), [DADA2](https://benjjneb.github.io/dada2/index.html), and [qiime2](https://qiime2.org/) (which employs other tools within it). As usual, there is no one-size-fits-all; there is no best. And actually in my experience if you make similar decisions when processing your sequences (decisions about things like minimum abundance filtering or clustering thresholds), you will get very similar results regardless of which of these you use (refreshingly). And in reality, you often end up using various components from different places together. Here I put together this example workflow using [vsearch](https://github.com/torognes/vsearch) and [usearch](https://drive5.com/usearch/). To be clear, this is **not** because I think these tools are better than any others overall. Actually my typical workflow usually involves [mothur](https://www.mothur.org/) for most processing and OTU clustering, and then [MED](http://merenlab.org/2014/11/04/med/) for generating ASVs (Amplicon Sequence Variants – see some definitions [here]({{ site.url }}/amplicon) if you'd like). And if I currently processing a new tag dataset, I'd probably look into trying out [DADA2](https://benjjneb.github.io/dada2/index.html). 
+There are many ways to process amplicon data. Some of the most widely used tools/pipelines include [mothur](https://www.mothur.org/), [usearch](https://drive5.com/usearch/), [vsearch](https://github.com/torognes/vsearch), [Minimum Entropy Decomposition](http://merenlab.org/2014/11/04/med/), [DADA2](https://benjjneb.github.io/dada2/index.html), and [qiime2](https://qiime2.org/) (which employs other tools within it). As usual, there is no one-size-fits-all; there is no best. And actually in my experience if you make similar decisions when processing your sequences (decisions about things like minimum abundance filtering or clustering thresholds), you will get very similar results regardless of which of these you use (refreshingly). And in reality, you often end up using various components from different places together. Here I put together this example workflow using [vsearch](https://github.com/torognes/vsearch) and [usearch](https://drive5.com/usearch/). To be clear, this is **not** because I think these tools are better than any others overall. Actually my typical workflow usually involves [mothur](https://www.mothur.org/) for most processing and OTU clustering, and then [MED](http://merenlab.org/2014/11/04/med/) for generating ASVs (Amplicon Sequence Variants – see some definitions [here]({{ site.url }}/amplicon) if you'd like). And if I were currently processing a new tag dataset, I'd probably look into trying out [DADA2](https://benjjneb.github.io/dada2/index.html). 
 
-That said, I've chosen to use usearch and vsearch here for practical reasons, they are quick, easy to get up and running, and don't produce a million extraordinarily long intermediate files (which can be useful, but maybe overly confusing when just starting out). For a quick background on these two tools we'll be using: [usearch](https://drive5.com/usearch/) was developed by Robert Edgar ([original paper here](https://academic.oup.com/bioinformatics/article-lookup/doi/10.1093/bioinformatics/btq461), but it is not open-source, and the free version has substantial limitations built in – so if you have a large dataset some of the operations cannot be performed without paying for the higher-end version. To make up for these limitations, as a labor of love (and maybe some other emotions), [Torbjørn Rognes et al.](https://peerj.com/articles/2584/) developed [vsearch](https://github.com/torognes/vsearch) to be able to fill the needs of the community that usearch could, while also being completely open-source and freely available. And they have done an incredible job with this. The only reason we're going to still use usearch for some commands is because there are some things that usearch does that vsearch doesn't (which I'll point out when we use them) – this only involves commands where the limitations of the freely available usearch shouldn't be a problem for any dataset. And as I mentioned earlier, it's pretty common to end up hybridizing multiple tools into your own workflow anyway, so this serves as an example of that.
+That said, I've chosen to use usearch and vsearch here for practical reasons – they are quick, easy to get up and running, and don't produce a million extraordinarily long intermediate files (which can be useful, but maybe overly confusing when just starting out). For a quick background on these two tools we'll be using: [usearch](https://drive5.com/usearch/) was developed by Robert Edgar ([original paper here](https://academic.oup.com/bioinformatics/article-lookup/doi/10.1093/bioinformatics/btq461)), but it is not open-source, and the free version has substantial limitations built in – so if you have a large dataset some of the operations cannot be performed without paying for the higher-end version. To make up for these limitations, as a labor of love (and maybe some other emotions), [Torbjørn Rognes et al.](https://peerj.com/articles/2584/) developed [vsearch](https://github.com/torognes/vsearch) to be able to fill the needs of the community that usearch could, while also being completely open-source and freely available. And they have done an incredible job with this. The only reason we're going to still use usearch for some commands is because there are some things that usearch does that vsearch doesn't (which I'll point out when we use them). I think this only involves commands where the limitations of the freely available usearch shouldn't be a problem for any dataset. And as I mentioned earlier, it's pretty common to end up hybridizing multiple tools into your own workflow anyway, so this serves as an example of that.
 
-Keep in mind here that none of this is meant to be authoritative. This is simply one example of one workflow. When working with your own data you should of course never follow any pipeline blindly.
-<br>
-<br>
-
----
----
-
-<center><b>Temporary message from Mike</b></center> 
-<center>Sorry if the following images are a bit blurry on your monitor. I am new to this and haven't yet figured out how to make them render properly on all screen sizes/resolutions 😢 <br>
-Any advice from those more savvy with html/css would be very much appreciated 😊</center>
----
----
+Keep in mind here that none of this is meant to be authoritative. This is simply one example of one workflow. When working with your own data you should of course never follow any pipeline blindly.  
 <br>
 
+---
+<br>
 # Tools used here
 As explained above, we'll be using [vsearch](https://github.com/torognes/vsearch) and [usearch](https://drive5.com/usearch/) here. At the time this page is being put together I'm using vsearch v2.5.1 and usearch v10.0.240 on Mac OSX. 
 
@@ -53,10 +44,10 @@ cp vsearch-2.5.1-macos-x86_64/bin/vsearch .
 rm vsearch-2.5.1-macos-x86_64.tar.gz
 ```
 
-There we changed into our "bin" directory, downloaded the vsearch too, unpacked it, copied the main executable file into our "bin" directory so that it is in our [PATH](http://localhost:4000/bash/modifying_your_path) and we can call it from anywhere, then deleted the compressed downloaded file.  
+There we changed into our "bin" directory, downloaded the vsearch tool, unpacked it, copied the main executable file into our "bin" directory so that it is in our [PATH](http://localhost:4000/bash/modifying_your_path) and we can call it from anywhere, then deleted the compressed downloaded file.  
 
 **usearch**  
-To get the free, 'lightweight' version of usearch, you need to go to [https://www.drive5.com/usearch/download.html](https://www.drive5.com/usearch/download.html), and fill out a (very) short form in order to have a download link sent to you. This usually happens virtually instantly in my experience. After getting the link and downloading the file, assuming you're working on a Mac and you got the same version as noted above (v10.0.240) into your default download directory, the following commands should get usearch working properly (the sudo command will require you to enter your login password for your computer):
+To get the free version of usearch, you need to go to [https://www.drive5.com/usearch/download.html](https://www.drive5.com/usearch/download.html), and fill out a (very) short form in order to have a download link sent to you. This usually happens virtually instantly. After getting the link and downloading the file, assuming you're working on a Mac and you downloaded the same version as noted above (v10.0.240) into your default download directory, the following commands should get usearch working properly (the sudo command will require you to enter your login password for your computer):
 
 
 ```
@@ -228,7 +219,7 @@ And now we're ready to move onto analysis!
 <br>
 
 # Analysis in R
-This portion assumes you already have some baseline experience with R – meaning we won't be breaking down any syntax or going over any basics of R here (that's presented elsewhere). But even if you don't have any experience with R yet, you'll still be able to follow along here and run everything, you'll just be on your own as far as figuring out how the code works. A full R script of everything done here is available in the "R_working_dir" subdirectory called "amplicon_example_analysis.R" that can be opened in RStudio if you prefer to follow along with that rather than copying and pasting commands from here. Either way, this isn't about the R code (right now), it's just about the analysis.
+This portion assumes you already have some baseline experience with R, if you aren't familiar with R at all yet it's probably a good idea to run through the [R basics page](/R/basics). But even if you don't have any experience with R yet, you'll still be able to follow along here and run everything. A full R script of everything done here is available in the "R_working_dir" subdirectory called "amplicon_example_analysis.R" that can be opened in RStudio if you prefer to follow along with that rather than copying and pasting commands from here. Either way, this part isn't really about the R code (right now), it's just about the analysis.
 
 ## Setting up our working environment
 To get started let's open up RStudio. This portion assumes you have some baseline experience with R already. If you don't, you'll still be able to follow along and piece things together set our current working directory to where we just left our new files, and install the packages we'll need (if you have trouble with any of these, there is more info to follow):
@@ -332,6 +323,8 @@ filt_sample_info_tab$color[filt_sample_info_tab$char == "carbonate"] <- "darkkha
 filt_sample_info_tab
 ```
 
+Now with our blank-removed count table in hand, we're ready to move onto some analyses. 
+
 ## Beta diversity
 Beta diversity involves calculating metrics such as distances or dissimilarities based on pairwise comparisons of samples. Typically the first thing I do when I get a new dataset into R (whether it's tag data, gene expression data, methylation levels, or pretty much anything) is generate some exploratory visualizations like ordinations and hierarchical clusterings. These give you a quick overview of how your samples relate to each other and can be a way to check for problems like batch effects. 
 
@@ -409,7 +402,7 @@ This is just providing us with a different overview of how our samples relate to
 Alpha diversity entails using summary metrics that describe individual samples, and it is a very tricky thing when working with amplicon data. There are a lot of tools from macro-ecology that have been co-opted into the microbial ecology world unchecked that unfortunately just simply do not work the same. If and when I use any alpha diversity metrics, I mostly consider them useful for relative comparisons of samples from the same experiment. And I am absolutely going to ask some experts on the subject – ahem, [@AmyDWillis](https://twitter.com/AmyDWillis) :) – to take a look at this part to be certain I'm not leading anyone astray here. But here are a few things I've done before (unless I'm later informed any of this is wrong, then these were always intended to be examples of what *not* to do).
 
 <h4><center>Rarefaction curves</center></h4>
-It is **not** okay to use rarefaction curves to estimate total richness of a sample, or to extrapolate anything from them really, but I believe they can still be useful depending on the data. Let's generate the plot and then we'll see why with this example. We'll be using the `rarecurve()` function from the package [*vegan*](https://github.com/vegandevs/vegan) here. Note that *vegan* expects rows to be samples and observations (our ASVs here) to be columns, which is why we transpose the first table in the command with `t()`.
+It is **not** okay to use rarefaction curves to estimate total richness of a sample, or to extrapolate anything from them really, but they can still be useful depending on the data. Let's generate the plot and then we'll see why with this example. We'll be using the `rarecurve()` function from the package [*vegan*](https://github.com/vegandevs/vegan) here. Note that *vegan* expects rows to be samples and observations (our ASVs here) to be columns, which is why we transpose the first table in the command with `t()`.
 
 ```R
 rarecurve(t(filt_count_tab), step=100, col=filt_sample_info_tab$color, lwd=2, ylab="ASVs")
