@@ -11,9 +11,12 @@ permalink: /bash/basics
 
 Here we are going to cover the very basics of working in the terminal. For quick definitions of what things like *bash* and 'the terminal' are, see [here]({{ site.url }}/bash/).  
 
-We'll start at the very beginning with the basic formula for how to run commands, then move on to how to navigate around your computer from within the terminal, and end with how to look at, create, and manipulate plain text documents. This is really designed for those with very little to no experience working at the command line, so if you feel comfortable with these tasks already, consider jumping ahead to one of the sections you're less familiar with.  
+We'll start at the very beginning with the basic formula for how to run commands, how to navigate around your computer from within the terminal, and how to look at, create, and manipulate plain text documents. Then we'll get a taste of how *bash* becomes more powerful through the use of redirectors and wildcards, and we'll end by driving home the all-too-important practice of tab-completion.  
 
-To start, let's open up a terminal window. If you have a Mac, this is easy as you can just do a spotlight search for "Terminal" and you're ready to rock. If you have a PC, I'm afraid this is where the trip ends for you:  
+This is really designed for those with very little to no experience working at the command line, so if you feel comfortable with these tasks already, consider jumping ahead to one of the sections you're less familiar with, like learning the [six glorious commands](/bash/six_commands) that are worth having in your toolkit, or checking out the ["Why is this all worth it?"](/bash/why) page for some real-life examples of how I use these tools every day.  
+
+To start, let's open up a terminal window. If you have a Mac, this is easy as you can just do a spotlight search for "Terminal" and you're ready to rock. If you have a PC, I'm afraid this is where the trip ends for you 😢  
+
 <img align="right" src="{{ site.url }}/images/oompa.jpg">  
 <br>
 <br>
@@ -22,13 +25,14 @@ To start, let's open up a terminal window. If you have a Mac, this is easy as yo
 <br>
 
 
-Okay, not really. Things do get a little more complicated, but there is hope! Wonderfully, Windows 10 now has a way to run a perfectly normal *bash* environment. If you have Windows 10, then check out [this site](https://www.howtogeek.com/249966/how-to-install-and-use-the-linux-bash-shell-on-windows-10/) to see how to get set up. If you're on an older Windows OS, there are programs you can download to get the appropriate *bash* environment. I hear a good place to try first is with Cygwin, which you can follow instructions for [here](https://www.howtogeek.com/howto/41382/how-to-use-linux-commands-in-windows-with-cygwin/). 
+Okay, not really. Things do get a little more complicated, but there is hope! Wonderfully, Windows 10 now has a way to run a perfectly normal *bash* environment. If you have Windows 10, then check out [this site](https://www.howtogeek.com/249966/how-to-install-and-use-the-linux-bash-shell-on-windows-10/) to see how to get set up. If you're on an older Windows OS, there are programs you can download to get the appropriate *bash* environment, though I don't have any experience with this unfortunately. I hear a good place to try first is with Cygwin, which you can follow instructions for [here](https://www.howtogeek.com/howto/41382/how-to-use-linux-commands-in-windows-with-cygwin/).  
 <br>
 
 ---
+---
 <br>
 # First things first!
-For right now, and only for right now, I would like you to blindly copy and paste the commands here into your terminal window to set up the (very tiny) temporary files you'll need if you want to actively follow along below. Just reading through is of course fine, but if you are totally new to this, I highly recommend doing things with me. I promise this will be the only time you are just copying and pasting without an understanding of what you are doing; we just need some things in place. Besides, by the time you get to the end of this page, you'll have a much better understanding of what's going on here!
+For right now, and only for right now, I would like you to blindly copy and paste the commands here into your terminal window to: 1) make sure we're all working in the same place; and 2) to set up the (very tiny) temporary files you'll need if you want to actively follow along below. Just reading through is of course fine, but if you are totally new to this, I highly recommend doing things with me. I promise this will be the only time you are just copying and pasting without an understanding of what you are doing; we just need some things in place. Besides, by the time you get to the end of this page, you'll have a much better understanding of what's going on here!
 
 For now, copy and paste this block of commands into your terminal window, (you can copy and paste all of them at once), and be sure to hit enter after pasting them to trigger the last command.
 
@@ -44,13 +48,6 @@ Now, let's get started!
 <br>
 <br>
 
----
----
-
-<center><b>Temporary message from Mike</b></center> 
-<center>Sorry if the following images are a bit blurry on your monitor. I am new to this and haven't yet figured out how to make them render properly on all screen sizes/resolutions 😢 <br>
-Any advice from those more savvy with html/css would be very much appreciated 😊</center>
----
 ---
 <br>
 # Running a command

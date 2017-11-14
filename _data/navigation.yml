@@ -1,9 +1,10 @@
 # Site navigation links
 - title: About
   url: /about/
-  
-- title: Blog
-  url: /posts/
+
+#   
+# - title: Blog
+#   url: /posts/
   
 - title: Research
   url: /research/
