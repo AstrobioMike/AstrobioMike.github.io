@@ -9,15 +9,16 @@ permalink: /bash/six_commands
 
 {% include _side_tab_bash.html %}
 
-If you aren't already moderately comfortable with working at the command line, I recommended you run through the [*bash* basics]({{ site.url }}/bash/basics) page first. And if you see something here you aren't familiar with, you will be able to find it there. 
+If you aren't already moderately comfortable with working at the command line, I recommended you run through the [*bash* basics](/bash/basics) page first. And if you see something here you aren't familiar with, you will be able to find it there. 
 
 Here I would like to go a touch beyond the basics and introduce you to six glorious commands of *bash* that are absolutely worth having handy in your toolkit. The problem with a lot of these things is that sometimes it's hard to see why exactly something would be useful at first. And of course before you know that some specific tool exists and how it works, you can't exactly realize all the times it would help you. That's how these commands were for me; I didn't know how useful they were, or how often I would use them, until I was well on my way to using them every day.  
 
-To try to help with that, first we're going to go over what it is exactly that these commands do, and run some simple examples of each with mock files that you can download if you'd like to follow along. These are mostly designed to get you acclimated to just the basic usage of these commands individually, but we will also slowly begin to incorporate [pipes and redirectors]({{ site.url }}/bash/basics#pipes-and-redirectors) to get an idea of how easy and useful it is to stick multiple commands together and write results to a file. Once you're comfortable with these things, we'll go over some more-involved real-life examples of how I use these commands every day to hopefully help bridge the gap between first exposure to these things, to seeing how they're actually useful.
+To try to help with that, first we're going to go over what it is exactly that these commands do, and run some simple examples of each with mock files that you can download if you'd like to follow along. These are mostly designed to get you acclimated to just the basic usage of these commands individually, but we will also slowly begin to incorporate [pipes and redirectors](/bash/basics#pipes-and-redirectors) to get an idea of how easy and useful it is to stick multiple commands together and write results to a file. Once you're comfortable with these things, we'll go over some more-involved real-life examples of how I use these commands every day to hopefully help bridge the gap between first exposure to these things, to seeing how they're actually useful.
 
-I'll note again that basic Unix commands like these are for manipulating [plain text files]({{ site.url }}/bash/basics#whats-a-plain-text-file) only. And also keep in mind that each of these commands is much more expansive than what is presented here, so always explore at will!  
+I'll note again that basic Unix commands like these are for manipulating [plain text files](/bash/basics#whats-a-plain-text-file) only. And also keep in mind that each of these commands is much more expansive than what is presented here, so always explore at will!  
 <br>
 
+---
 ---
 <br>
 # Getting started  

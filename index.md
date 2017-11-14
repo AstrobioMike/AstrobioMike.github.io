@@ -14,9 +14,22 @@ If you're just beginning to wade your way into this enticing ocean of bioinforma
 --- 
 ---
 <br>
-# Recently added
-- The fundamentals of working at the command line: [*bash* basics](/bash/basics)
-- The fundamentals of working in the R environment: [R basics](/R/basics)
-- Baseline *bash* commands worth having in your arsenal: [Six glorious commands](/bash/six_commands)
-- Some real-life examples of how I now use *bash* everyday: [Why is this all worth it?](/bash/why)
-- One example workflow of processing and analyzing a marker-gene dataset: [Amplicon example workflow](/amplicon/workflow_ex)
+# Recently added  
+
+<h4><a href="/bash/" style="color:#745bab"><i>bash</i></a></h4>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • The fundamentals of working at the command line: [*bash* basics](/bash/basics)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • Baseline *bash* commands worth having in your arsenal: [Six glorious commands](/bash/six_commands)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • Some real-life examples of how I now use *bash* everyday: [Why is this all worth it?](/bash/why)  
+<br>
+
+---
+<br>
+<h4><a href="/R/" style="color:#0000cc">R</a></h4>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • The fundamentals of working in the R environment: [R basics](/R/basics)  
+<br>
+
+---
+<br>
+<h4><a href="/amplicon/" style="color:#d64231">Amplicon analysis</a></h4>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • Example worflow of processing and analyzing a marker-gene dataset: [Amplicon example workflow](/amplicon/workflow_ex)

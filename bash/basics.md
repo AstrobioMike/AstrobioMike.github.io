@@ -9,7 +9,7 @@ permalink: /bash/basics
 
 {% include _side_tab_bash.html %}
 
-Here we are going to cover the very basics of working in the terminal. For quick definitions of what things like *bash* and 'the terminal' are, see [here]({{ site.url }}/bash/).  
+Here we are going to cover the very basics of working in the terminal. For quick definitions of what things like *bash* and 'the terminal' are, see [here](/bash/).  
 
 We'll start at the very beginning with the basic formula for how to run commands, how to navigate around your computer from within the terminal, and how to look at, create, and manipulate plain text documents. Then we'll get a taste of how *bash* becomes more powerful through the use of redirectors and wildcards, and we'll end by driving home the all-too-important practice of tab-completion.  
 

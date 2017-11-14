@@ -13,6 +13,9 @@ permalink: /bash/why
 It can be tough to see why these things are useful before you are actually using them regularly, so here I'm going to provide some real-life examples of how I use *bash* everyday. It is assumed you're already comfortable with *bash* and some of the most commonly used commands, but if not, be sure to check out the [basics](/bash/basics) and [six glorious commands](/bash/six_commands). Without already being comfortable with what's covered in those pages, some of these one-liners will probably look way more complicated than they actually are.
 <br>
 
+---
+---
+<br>
 # Getting started  
 If you'd like to follow along here, you can get the mock data we'll be working with by coping and pasting these commands into your terminal. If you're not sure what the following commands are doing and are curious, you can find an explanation [here]({{ site.url }}/bash/basics#bottom).
 
@@ -49,7 +52,7 @@ echo "Hi Mike"
 <center><img src="{{ site.url }}/images/echo.png"></center> 
 
 <br>
-Seems a little useless at first (unless you're lonely, of course 😢 ). But it's utility makes more sense when you use redirectors to send things somewhere else. For example, instead of using `nano` like we've done before to make a new file, we can make our *bash* script with the `echo` command:
+Seems a little useless at first (unless you're lonely, of course 😢 ). But its utility makes more sense when you use redirectors to send things somewhere else. For example, instead of using `nano` like we've done before to make a new file, we can make our *bash* script with the `echo` command:
 
 ```
 echo "ls | head" > test.sh

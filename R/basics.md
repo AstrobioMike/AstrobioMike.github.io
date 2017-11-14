@@ -9,7 +9,7 @@ permalink: /R/basics
 
 {% include _side_tab_R.html %}
 
-This module is designed for those that are either completely new to R, or have some experience but maybe don't feel as solid about some of the fundamentals as they'd like. It will run through the very basics such as setting up your working environment, assigning variables, reading in and writing out data, and installing packages. Some relevant terminology is presented [here]({{ site.url }}/R/index) if you find yourself seeing some words that are unfamilar to you. This page is meant to be solely a quick jump start to get you into and using the R environment. But there is, of course, an incredible amount of functionality we won't be touching on here. Be sure to peruse the extensive [R intro documentation available here](https://cran.r-project.org/doc/manuals/r-release/R-intro.html) when you're starting to get your bearings and want to go further.
+This module is designed for those that are either completely new to R, or have some experience but maybe don't feel as solid about some of the fundamentals as they'd like. It will run through the very basics such as setting up your working environment, assigning variables, reading in and writing out data, and installing packages. Some relevant terminology is presented [here]({{ site.url }}/R/index) if you find yourself seeing some words that are unfamilar to you. This page is just meant to be solely a quick jump-start to get you into and using the R environment. There is, of course, an incredible amount of functionality we won't be touching on here, so be sure to peruse the extensive [R intro documentation available here](https://cran.r-project.org/doc/manuals/r-release/R-intro.html) when you're starting to get your bearings and want to go further, and there are also some great courses available at [DataCamp](https://www.datacamp.com/) worth checking out after you have a solid foundation. 
 <br>
 <br>
 
@@ -20,8 +20,7 @@ This module is designed for those that are either completely new to R, or have s
 # Installation
 It is possible your computer already has R, if you are unsure, you can check by opening a terminal window and typing `R`. If this launches R rather than giving an error message, you should be good to go (enter `q()` to exit the R environment). If you do not have R, you can download it from here for Mac: [https://cran.r-project.org/bin/macosx/](https://cran.r-project.org/bin/macosx/). And if you have a relatively newer Mac, you may also need to install XQuartz which you can get from here: [https://www.xquartz.org/](https://www.xquartz.org/). 
 
-Lastly, I highly, *highly*, **highly** recommend installing RStudio if you don't already have it and use it. RStudio is an interface for R that not only makes everything you will do in R easier and more organized, but it's also invaluable for reproducibility of your analyses as it makes it second-nature to generate and save R scripts of everything you're doing, while you're doing it – which is very helpful when you want to look back and see what worked of the 20 things you just tried 🙂 . You can download an RStudio installer from [here](https://www.rstudio.com/products/rstudio/download/#download).
-
+Lastly, I highly, *highly*, **highly** recommend installing RStudio if you don't already have it and use it. RStudio is an interface for R that not only makes everything you will do in R easier and more organized, but it's also invaluable for reproducibility of your analyses as it makes it second-nature to generate and save R scripts of everything you're doing, while you're doing it – which is very helpful when you want to look back and see what worked of the 20 things you just tried 🙂 . You can download an RStudio installer from [here](https://www.rstudio.com/products/rstudio/download/#download).  
 <br>
 
 ---
@@ -47,7 +46,7 @@ cd R_basics_temp
 ---
 <br>
 # Setting up your working environment
-Just like when working at the command line in *bash*, we need to be aware of "where" we are in our computer when working in R. The `getwd()` and `setwd()` help us do this in R. Commands in R typically take this structure, with the command being followed by parentheses. Inside those parentheses is where the arguments to the command would go if there are any. In the case of `getwd()` no arguments are needed as it is just going to tell you where you currently are. But in the case of `setwd`, we then need to tell it where we want to go. 
+Just like when working at the command line in *bash*, we need to be aware of "where" we are in our computer when working in R. The `getwd()` and `setwd()` help us do this in R. Commands in R typically take this structure, with the command being followed by parentheses. Inside those parentheses is where the arguments to the command would go if there are any. In the case of `getwd()` no arguments are needed as it is just going to tell you where you currently are. But in the case of `setwd()`, we then need to tell it where we want to go. 
 
 ```R
   # check where you are in R by default when it boots up
@@ -149,7 +148,7 @@ Dataframes are two-dimensional tables of rows and columns. Here we can see that 
 ---
 <br>
 # The gloriousness of indexing
-One of the most powerful things about R is how easy it makes it to parse vectors and tables down to whatever you are interested in via what's known as indexing. Here we'll look at a couple of the ways we can specify what we would like to subset, and we'll see these in practice on a larger scale below. 
+One of the most powerful things about R is how easy it makes it to parse vectors and tables down to whatever you are interested in via what's known as "indexing". Here we'll look at a couple of the ways we can specify what we would like to subset, and we'll see these in practice on a larger scale below. 
 
 Looking back at our vector stored in variable y, it contains 3 values: 5, 6, and 7. One way we can subset specific values from this involves using their position in the vector. If we specify the vector name, and then put in brackets the position we are interested in, R will return the values for just that (or those) position(s) we specify.
 

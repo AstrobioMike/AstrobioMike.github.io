@@ -1,11 +1,11 @@
 ---
 layout: main
-title: Simple loops can go a long way
+title: Useful one-liners I always have handy
 categories: [bash, tutorial]
-permalink: /bash/loops_to_help
+permalink: /bash/one_liners
 ---
 
-{% include _bash_loops_toc.html %}
+{% include _bash_PATH_toc.html %}
 
 {% include _side_tab_bash.html %}
 
