@@ -10,11 +10,14 @@ permalink: /bash/
 **Shells and Unix and terminals, oh my!**  
 Along with my disclaimers about not being an expert as laid out [here](/about/#Disclaimers), I'm not going to try to give you technical explanations of all the underlying infrastructure of how working in a terminal environment works. I simply don't have a strong enough understanding myself. I've read about all these things in the many O'Reilly books I have; I get curious from time to time and google things and remember stuff (at least what I understand) for a short while afterwards; and I occasionally get to corner someone who really knows their stuff (like [Evan Boylen](https://twitter.com/ebolyen)) and ask them a bunch of questions. But I don't seem to retain many of the details, and while we all want to know everything, we also all need to get the current analysis done so we can get to the rest of our never-ending list of things we're behind on.  
 <br>
-So if you'd like to get started right away, head on over to [bash basics](/bash/basics) and get started now. You can always revisit these concepts when your curiousity outweighs your motivation to do work. I've also found that (at least for me personally) it's a big help to be able to throttle back the instinct to want to understand everything *right now*. And that it's totally okay (and often better) to just let a deeper understanding grow as we develop our skills in this sort of expanding sphere into all of these different elements. But if you want to read over a few terms you'll hear and see a lot, here I'll give just the layman understanding that I have – with the unspoken agreement between us that, if you were so inclined, just starting at the wiki for any of these things can take you much further. 
-<br>  
+So if you'd like to get started right away, head on over to [bash basics](/bash/basics) and get started now. You can always revisit these concepts when your curiousity outweighs your motivation to do work. I've also found that (at least for me personally) it's a big help to be able to throttle back the instinct to want to understand everything *right now*. And that it's totally okay (and often better) to just let a deeper understanding grow as we develop our skills in this sort of expanding sphere into all of these different elements. But if you want to read over a few terms you'll hear and see a lot, here I'll give just the layman understanding that I have – with the unspoken agreement between us that, if you were so inclined, just starting at the wiki for any of these things can take you much further.  
+<br>
 
 ---  
 <br>
+
+<h3>Some terminology</h3>
+
 **Unix**  
 Unix is a type of operating system, or more precisely, a family of operating systems as the [wikipedia](https://en.wikipedia.org/wiki/Unix) words it. This is why you will hear people say things like "Unix-like", and refer to Unix being on both Mac and Linux computers (they run Unix-like operating systems), but not on PCs (they do not 😞 ). 
 
@@ -32,21 +35,6 @@ This is what runs in a terminal. A shell is your ambassador to your Unix-like op
 ---
 
 <br>
-So there you have it. In 4 paragraphs you now know as much about these terms as I know after 4 years of being in the weeds with them. Hmm, saying it that way I'm not sure if you should feel better or if I should feel worse... 🤔
-<br>  
+So there you have it. In 4 paragraphs you now know as much about these terms as I know after 4 years of being in the weeds with them. Hmm, saying it that way I'm not sure if you should feel better or if I should feel worse... 🤔  
 
----
-
-<br> 
-<center><h2>Coming soon for <a href="/bash/"><i>bash</i></a>:</h2></center>
-
-__Modules:__  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • [*bash* basics](/bash/basics) (now available)  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • [6 commands worth getting to know](/bash/six_commands) (in progress)  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • [How to install the tools you need](/bash/installing_tools)  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • [What the heck is a PATH, and how do I get it to do what I want?](/bash/modifying_your_path)  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • [Simple loops can go a long way](/bash/loops_to_help)  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • Useful *bash* one-liners I always have handy  
-
-__Posts:__  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • Why is this all worth it? (some 'real-life' examples)  
+Either way, head on over to [*bash* basics](/bash/basics) to get started!

@@ -7,19 +7,16 @@ categories: [metagenomics]
 
 {% include _side_tab_metagenomics.html %}
 
-<br>
-
-<center><h2>Coming soon for <a href="/metagenomics/">metagenomics</a>:</h2></center>
-<br>
-
-
-__Modules:__  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • [Where to start? Quality filtering 'raw' reads](/metagenomics/quality_filtering)
-
-__Posts:__  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • Too much coverage can be a bad thing for assembly  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • There are many ways to investigate metagenomics data; what's your question for your data?  
-<br>
-
 <center><img src="{{ site.url }}/images/under_construction.jpeg"></center>
 <center><h3>UNDER CONSTRUCTION</h3></center>
+<br>
+<br>
+
+# Coming soon...
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • [Opening thoughts on metagenomics](/metagenomics/thoughts)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • [Where to start: quality filtering, error correction, and read-depth normalization](/metagenomics/quality_filtering)  
+
+<br>
+
+Feel free to [bug me](https://twitter.com/AstrobioMike) to expedite 😊
+
