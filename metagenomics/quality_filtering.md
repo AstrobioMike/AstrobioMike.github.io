@@ -1,6 +1,6 @@
 ---
 layout: main
-title: Quality filtering
+title: Quality filtering, error correction, and depth normalization
 categories: [metagenomics]
 permalink: /metagenomics/quality_filtering
 ---
