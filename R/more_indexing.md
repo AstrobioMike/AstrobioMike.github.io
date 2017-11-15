@@ -1,6 +1,6 @@
 ---
 layout: main
-title: More indexing with R
+title: Going deeper with indexing
 categories: [R, tutorial]
 permalink: /R/more_indexing
 ---

@@ -33,10 +33,11 @@ Feel free to <a href="https://twitter.com/AstrobioMike">bug me</a> about any of 
 <center><h2><a href="/R/" style="color:#0000cc">R</a></h2></center>
 
 **Available now:**  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • [R basics](/R/basics)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • [R basics](/R/basics)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • [Installing R packages](/R/installing_packages)
 
 **Coming soon:**  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • [More examples of indexing in R](/R/more_indexing)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • [Going deeper with indexing](/R/more_indexing)  
 <br>
 
 ---
