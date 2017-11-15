@@ -28,6 +28,8 @@ There is extensive documentation on R at the CRAN [Introduction to R site](https
 
 **Matrix**
 
+**Indexing**
+
 **Function**
 
 **Package**

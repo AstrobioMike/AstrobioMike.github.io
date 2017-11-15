@@ -9,7 +9,7 @@ permalink: /R/basics
 
 {% include _side_tab_R.html %}
 
-This module is designed for those that are either completely new to R, or have some experience but maybe don't feel as solid about some of the fundamentals as they'd like. It will run through the very basics such as setting up your working environment, assigning variables, reading in and writing out data, and installing packages. Some relevant terminology is presented [here]({{ site.url }}/R/index) if you find yourself seeing some words that are unfamilar to you. This page is just meant to be solely a quick jump-start to get you into and using the R environment. There is, of course, an incredible amount of functionality we won't be touching on here, so be sure to peruse the extensive [R intro documentation available here](https://cran.r-project.org/doc/manuals/r-release/R-intro.html) when you're starting to get your bearings and want to go further, and there are also some great courses available at [DataCamp](https://www.datacamp.com/) worth checking out after you have a solid foundation. 
+This module is designed for those that are either completely new to R, or have some experience but maybe don't feel as solid about some of the fundamentals as they'd like. It will run through the very basics such as setting up your working environment, assigning variables, "indexing" (subsetting data), reading in and writing out data, and installing packages. Some relevant terminology is presented [here](/R/index) if you find yourself seeing some words that are unfamilar to you. This page is meant to be a quick-start to get you into and using the R environment. There is, of course, an incredible amount of functionality we won't be touching on here, so be sure to peruse the extensive [R intro documentation available here](https://cran.r-project.org/doc/manuals/r-release/R-intro.html) when you're starting to get your bearings and want to go further, and there are also some great courses available at [DataCamp](https://www.datacamp.com/) that are worth checking out after you have a solid foundation. 
 <br>
 <br>
 
@@ -20,19 +20,19 @@ This module is designed for those that are either completely new to R, or have s
 # Installation
 It is possible your computer already has R, if you are unsure, you can check by opening a terminal window and typing `R`. If this launches R rather than giving an error message, you should be good to go (enter `q()` to exit the R environment). If you do not have R, you can download it from here for Mac: [https://cran.r-project.org/bin/macosx/](https://cran.r-project.org/bin/macosx/). And if you have a relatively newer Mac, you may also need to install XQuartz which you can get from here: [https://www.xquartz.org/](https://www.xquartz.org/). 
 
-Lastly, I highly, *highly*, **highly** recommend installing RStudio if you don't already have it and use it. RStudio is an interface for R that not only makes everything you will do in R easier and more organized, but it's also invaluable for reproducibility of your analyses as it makes it second-nature to generate and save R scripts of everything you're doing, while you're doing it – which is very helpful when you want to look back and see what worked of the 20 things you just tried 🙂 . You can download an RStudio installer from [here](https://www.rstudio.com/products/rstudio/download/#download).  
+Lastly, I highly, *highly*, **highly** recommend installing the free version of [RStudio](https://www.rstudio.com/) if you don't already have it. RStudio is an interface for R that not only makes everything you will do in R easier and more organized, but it's also invaluable for reproducibility of your analyses as it makes it second-nature to generate and save R scripts of everything you're doing, while you're doing it – which is very helpful when you want to look back and see what worked out of the 20 things you just tried 🙂 . You can download an RStudio installer from [here](https://www.rstudio.com/products/rstudio/download/#download).  
 <br>
 
 ---
 <br>
 # RStudio layout
-RStudio has 4 main panes: 1) console; 2) source; 3) Environment, History, Connections; and 4) Files, Plots, Packages, etc. You can run commands straight in the console, which would be just like using R in a command line environment, but I personally almost never directly enter something there. The source pane acts as a text document from which you can write out all of your commands and call them when you'd like. This is one of the reasons R Studio is great, you're constantly building up your notes file as you work without any added effort needed. If you want to run a command written in the source file, while on the line of the command press `Cmd + Enter`. The Environment/History pane displays all of the variables and data structures you have currently stored. And the last pane, Files/Plots/etc., allows you to peruse your computer in the typical Finder fashion, displays any plots you generate, and serves as your help window. (To get help on a function in R, just place a `?` in front of the function name. For example, try entering `?getwd`.)  
+RStudio has 4 main panes: 1) console; 2) source; 3) Environment, History, Connections; and 4) Files, Plots, Packages, etc. The "console" is where you can run commands just as though you were working in an R environment at a command line, and it is also where results will print out. The "source" pane acts as a sort-of interactive text document within which you can write out and save all of your commands, and then call them when you'd like. This is one of the reasons R Studio is great, you're constantly building up your notes file as you work, without any added effort needed. If you want to run a command written in the source file, while on the line of the command press `Cmd + Enter`. The "Environment/History/Connections" pane displays all of the variables and data structures you currently have stored. And the last pane, "Files/Plots/Packages/etc.", allows you to peruse your computer in the typical Finder fashion, displays any plots you generate, and serves as your help window. To get help on a function in R, just place a `?` in front of the function name, and leave off the trailing `()`. For example, try entering `?getwd`.  
 <br>
 
 ---
 <br>
 # Some practice data
-As with the [bash basics]({{ site.url }}/bash/basics) module, if you'd like to follow along with this tutorial, copy and paste the following commands into your terminal to get set up with a small, temporary working directory that has the files I'll be working with. 
+As with the [bash basics](/bash/basics) module, if you'd like to follow along with this tutorial, copy and paste the following commands into your terminal to get set up with a small, temporary working directory that has the files I'll be working with. (If you're unsure of what these mean, you should run through [that page](/bash/basics) and/or just check out [here](/bash/basics#bottom) for some explanation.)
 
 ```
 cd ~
@@ -51,23 +51,23 @@ Just like when working at the command line in *bash*, we need to be aware of "wh
 ```R
   # check where you are in R by default when it boots up
 getwd()
-  # and let's set our working directory to where we want it to be
+  # and let's set our working directory to where we want it to be (where we put our practice data)
 setwd("~/R_basics_temp/")
 ```
 
-Now that we are in the correct location that contains the files for our tutorial here, let's check that that are actually there. In *bash* this would be done with the `ls` command, for list, here in R we do it with the `list.files() function.
+Now that we are in the correct location that contains the files for our tutorial here, let's check that that are actually there. In *bash* this would be done with the `ls` command, here in R we do it with the `list.files() function.
 
 ```R
 list.files()
 ```
 
-And this should reveal our practice files. Just like when working at the command line, you can "point" to other places in your computer by providing the relative or absolute path to whichever file/directory you're looking for in the same manner as described [here]({{ site.url }}/bash/basics#moving-around).  
+And this should reveal our practice file, "gene_annotations.txt". Just like when working at the command line, in R you can "point" to other places in your computer by providing the relative or absolute path to whichever file/directory you're looking for in the same manner as described [here](/bash/basics#moving-around).  
 <br>
 
 ---
 <br>
 # Basic calculations
-As mentioned, R is just a big calculator at its core. So we can do baseline arithmetic operations like the following examples. (Don't forget if you're entering these in the "source" pane of RStudio, you need to press `Cmd + Enter` to execute the command.)
+As its core, R is just a big calculator. So we can do baseline arithmetic operations like the following examples. (Don't forget if you're entering these in the "source" pane of RStudio, you need to press `Cmd + Enter` to execute the command.)
 
 ```R
 4 + 4
@@ -78,21 +78,24 @@ As mentioned, R is just a big calculator at its core. So we can do baseline arit
 
 <center><img src="{{ site.url }}/images/R_basic.png"></center> 
 <br>
-Just to note, the "[1]" you're seeing to the left of the output is an "index" number. As we go further you'll see why these are useful, but for now just know it's a counter for how many iterms are returned by a command, and that for each row of output it lists the "index" number of the first item of that row.  
+And, just to note, the `[1]` you're seeing to the left of the output is an "index" number. As we go further you'll see why these are useful, but for now just know it's a counter for how many iterms are returned by a command, and that for each row of output it lists the "index" number of the first item of that row – and here we only have 1 row of output.  
 <br>
 
 ---
 <br>
 # Assigning variables
-R acts on objects that are stored in variables. These objects can hold different "classes" of data that determine what they can do and what can be done to them, and we'll get into a little bit as we go. We assign values to variables, and name them, as shown in the following code block. Here we're naming the variable "x", and giving it a value of 4.
+Most of the time R acts on things that are stored in variables; in R, these specific things that are stored in variables are referred to as "objects". These objects can be of different types, and the type of object you are working with, and the type of data within an object, determines what you can and can't do with that object. This should all seem pretty nebulous at first, at least it was for me, so don't worry about it too much right now. We'll cover this a little bit moving forward here, but mostly as you start to spend more time bumping into error messages and googling what's up, you'll find that these concepts pretty quickly come into focus.
+
+In R, we assign values to variables and name them using the assignment operator ( `<-` ) as shown in the following code block. Here we're naming the variable "x" (arbitrarily), and giving it a value of 4. (Feel free to do this in the "console" or in the "source"
+pane.)
 
 ```R
 x <- 4
 ```
 
-When you execute the command, it should print in the console pane, and now in your environment pane you should see there is a variable there called "x" (named arbitrarily). For a note on syntax, it doesn't matter if you put spaces or not between the variable name, the assignment operator ( `<-` ), and the value you're assigning to it. But generally it makes the code easier to read if you do, and it is good practice to make things as easy to read as possible for others who may be looking at it in the future. 
+When you execute the command, it should print in the console pane, and now in your "environment" pane you should see there is a variable there called "x". For a note on syntax, it doesn't matter if you put spaces or not between the variable name, the assignment operator ( `<-` ), and the value you're assigning to it. But generally it makes the code easier to read if you do, and it is good practice to make things as easy to read as possible for the sake others (and yourself) who may be looking at it in the future. 
 
-Now that we have the value 4 stored in the variable "x", we can do stuff with it. Here's some examples doing the same calculations we performed above, but now with our variable.
+Now that we have the value "4" stored in the variable "x", we can use the variable name in functions. Here's some examples doing the same calculations we performed above, but now with our variable.
 
 ```R
 x
@@ -101,9 +104,10 @@ x / 2
 x * x
 2 ^ x
 ```
+
 <center><img src="{{ site.url }}/images/R_var_arith.png"></center> 
 <br>
-We can also check what class of data is contained within this variable with the `class()` function:
+We can also check what type of data is contained within this variable with the `class()` function:
 
 ```R
 class(x)
@@ -116,9 +120,9 @@ word <- "europa"
 class(word)
 ```
 
-Here, the class is "character". It's important to understand why we used quotes here, so let's take a second and look at it. Above, "europa" is a known as a string of characters, and we need to tell that to R by surrounding it in quotes like we did. If we didn't provide the quotes, R would be looking for an object named europa, and it would give us an error saying it wasn't found, give it a shot without the quotes to see. 
+Here, the class is "character". It's important to understand why we used quotes here, so let's take a second and look at it. Above, "europa" is a known as a string of characters, and we need to tell that to R by surrounding it in quotes like we did. If we didn't provide the quotes, R would be looking for a variable named `europa`, and it would give us an error saying it wasn't found, give it a shot without the quotes to see. 
 
-We also can store multiple items into a variable known as a vector. We'll do this here with the `c()` function. This concatenates items together. Here we'll make a vector of numbers:
+We also can store multiple items into a variable. A one-dimensional object holding multiple items that are of the same "type" (e.g. numeric, character) is known as a vector. To put multiple items into one object, we can use the `c()` function, stemming from "concatenate". Here we'll make a vector of numbers:
 
 ```R
 y <- c(5, 6, 7)
@@ -127,9 +131,9 @@ y
 
 <center><img src="{{ site.url }}/images/R_vector.png"></center> 
 <br>
-Note that this is still of class "numeric" by checking with `class(y)`. It's good practice to get used to actively being aware of what class of objects you are working with. 
+Note that this is still of class "numeric" by checking with `class(y)`. It's good practice to get used to actively being aware of what type of objects you are working with. 
 
-Variables also hold tables. Here we're going to make another vector with 3 numbers, and then combine them to make what's known as a dataframe. We'll do this with the `data.frame()` function, creating a variable called "our_table".
+Variables can also hold tables. Here we're going to make another vector with 3 numbers, and then combine it with our previous vector in order to make what's known as a dataframe. We'll do this with the `data.frame()` function, creating a variable called "our_table".
 
 ```R
 z <- c(8, 9, 10)
@@ -142,15 +146,16 @@ class(our_table)
 
 <center><img src="{{ site.url }}/images/R_table.png"></center> 
 <br>
-Dataframes are two-dimensional tables of rows and columns. Here we can see that the default behavior of the `data.frame()` function took our two vectors and put them in a table where each represents one column. Another similar, but distinct, table structure in R is a "matrix". You sometimes find you need to convert a dataframe to a matrix or vice versa depending on what you are trying to do with it. Keep this in mind as one of the things to look at first when you run into an error.  
+Dataframes are two-dimensional objects of rows and columns. Here we can see that the default behavior of the `data.frame()` function took our two vectors and put them in a table where each original vector now represents one column. Another similar, but distinct, table structure in R is a "matrix". You will sometimes find you need to convert a dataframe to a matrix or vice versa depending on what you are trying to do with it. Keep this in mind as one of the things to look at first when you run into an error.  
 <br>
 
 ---
 <br>
-# The gloriousness of indexing
-One of the most powerful things about R is how easy it makes it to parse vectors and tables down to whatever you are interested in via what's known as "indexing". Here we'll look at a couple of the ways we can specify what we would like to subset, and we'll see these in practice on a larger scale below. 
+# The wonderful world of indexing
+One of the most powerful things about R is how easy it makes it to subset vectors and tables down to whatever you are interested in via what's known as "indexing". Here we'll look at a couple of the ways we can specify what we would like to subset, and we'll see these in practice on a larger scale below. 
 
-Looking back at our vector stored in variable y, it contains 3 values: 5, 6, and 7. One way we can subset specific values from this involves using their position in the vector. If we specify the vector name, and then put in brackets the position we are interested in, R will return the values for just that (or those) position(s) we specify.
+## Subsetting by position
+Looking back at our vector stored in variable `y`, it contains 3 values: 5, 6, and 7. These values exist in the object in this order as positions 1, 2, and 3 of the variable `y`. One way we can subset specific values involves using this position information - this position information for each value is that value's "index". If we specify the vector name, and then put in brackets `[ ]` the position(s) we are interested in, R will return the value(s).
 
 ```R
 y # the whole vector
@@ -162,46 +167,94 @@ y[c(1,3)] # specifying items 1 and 3 using the c() function
 
 <center><img src="{{ site.url }}/images/R_vec_index.png"></center> 
 <br>
-Another way to subset by indexing makes use of `TRUE` and `FALSE` values. Meaning, subsetting with brackets will also return only those values that evaluate to `TRUE`. What makes each one `TRUE` or `FALSE` is dependent upon the conditions we set. For instance, let's say we only want the values from our "y" vector that are greater than or equal to 6. The following code returns 6 and 7 to us as it should:
+Ok, so that's how we can subset by saying which positions we want. But in practice we often won't actually know which positions of a vector hold the values we are interested in – meaning we usually won't know the "index" number needed to pull out a specific value. This is where another type of indexing comes into play.
+
+## Subsetting by TRUE and FALSE
+
+Another way to subset via indexing in R makes use of `TRUE` and `FALSE` values. `TRUE` and `FALSE` are special terms in R that are of type "logical". You can see this if you run `class(TRUE)`. Above, we provided R a *numeric* vector within the subsetting brackets: `y[c(1,3)]`. When given a numeric vector like this, R interprets those numbers as which index positions we want to pull out. If we instead place a *logical* vector within the subsetting brackets ( `[ ]` ), R will return only the values corresponding to index positions where our `TRUE/FALSE` vector holds `TRUE`.  
+
+This is definitely a little abstract at first, but it's integral to how more-advanced subsetting is done in R, so it's absolutely worth fighting through the initial head-scratching phase! Let's look at this in practice:
 
 ```R
-y # entire vector is returned
-y[y >= 6] # only the values that meet our criterion of being greater than or equal to 6 are returned
+y # the whole vector
+y[c(FALSE, TRUE, TRUE)] # just the last two values
 ```
 
-<center><img src="{{ site.url }}/images/R_vec_index_TF.png"></center> 
+<center><img src="{{ site.url }}/images/R_vec_index_TF1.png"></center> 
 <br>
-The way I read the expression `y[y >= 6]` in my head is: "Give me all the values of vector 'y', where 'y' is greater than or equal to 6." It's imporant to take a second and think about what's going on under the hood here. Let's see what happens when we just run the conditional part that we put in the brackets.
+We can see here R only returned the last two values of the vector stored in variable `y`, where the `TRUE/FALSE` vector we provided within the subsetting brackets contained the values `TRUE`.  
+
+Of course in this case we still specified exactly what we wanted by making those positions `TRUE` in our subsetting logical vector, and so at this point this isn't any more useful than giving the exact index positions like above. But we actually don't need to explicity provide the `TRUE/FALSE` vector. **Instead, we can provide a *conditional expression* that will resolve to a `TRUE/FALSE` vector.** Conditional expressions involve things like greater than `>`, less than `<`, equal to `==`, greater than or equal to `>=`, and less than or equal to `<=`. To see what this means in practice, let's look at how R handles some conditional expressions:
 
 ```R
-y >= 6
+2 > 1 # FALSE 
+2 > 2 # FALSE
+2 >= 2 # TRUE
 ```
 
 <center><img src="{{ site.url }}/images/R_vec_index_TF2.png"></center> 
 <br>
-This returns a vector of class "logical", which you can check by running `class(y >= 6)`. So what's actually happening when we run `y[y >= 6]` is: 1) is R is looking at each value in the vector – 5, 6, and 7 – and returning a vector that has `TRUE` wherever the condition was met, and `FALSE` wherever it wasn't met; and 2) This T/F vector is what's actually doing the subsetting for us in the command. To R, this is the same as if we were to subset vector 'y' by providing the T/F vector directly, as in this example:
+R returns "logical" values (i.e. `TRUE/FALSE` values) when presented with conditional expressions like this. As such `2 > 1` resolves to `FALSE`, `2 > 2` resolves to `FALSE`, and `2 >= 2` resolves to `TRUE`. Ok, great, let's walk this just a few more steps forward.  
+
+If we provide a vector instead of a single digit, R will check the conditional expression on each item of the vector. Let's see this in action (remember the `c()` function from above to create a vector):
 
 ```R
-y[c(FALSE, TRUE, TRUE)]
+c(5, 6, 7) >= 6 # FALSE, TRUE, TRUE 
 ```
 
 <center><img src="{{ site.url }}/images/R_vec_index_TF3.png"></center> 
 <br>
-One last thing we're going to see here is the `!` character, which inverts the interpretation of `TRUE` and `FALSE`. As we've seen, `y[y >= 6]` will return all values within 'y' that are greater than or equal to six, but if we add in the `!` point, it will return the opposite for us. We can see this just by putting this in front of the portion of the expression that generates the T/F vector:
+Here, R checked if each of the values within the vector (5, 6, and 7) resolved to `TRUE` or `FALSE` based on the conditional `>= 6`, and returned a *logical* vector of `FALSE`, `TRUE`, and `TRUE`. We can also provide a vector stored in a variable and R acts upon it the same way:
 
 ```R
-y >= 6 # returns F, T, T
-!y >= 6 # returns T, F, F
-
-y[y >= 6] # returns 6 and 7
-y[!y >= 6] # returns 5
+y # our vector from above
+y >= 6 # FALSE, TRUE, TRUE
 ```
 
-<center><img src="{{ site.url }}/images/R_vec_index_TF4_not.png"></center> 
+<center><img src="{{ site.url }}/images/R_vec_index_TF4.png"></center> 
 <br>
-We'll see a somewhat more complicated example of using the `!` character to reverse the "logical" vector we are using to index a bit later.  
 
-We can also subset tables in a similar way. Vectors are one-dimensional objects, so when we index them we only need to provide one value. But tables are 2-dimensional objects, so we need to provide another value (one for row, and one for column). The syntax for how this is done is by providing the variable name first followed by the subsetting brackets (as with vectors), but then the first value you enter in the brackets specifies which **rows** you'd like, and the the second value (separated by a comma) specifies which **columns**. Let's look at our table again and then see some examples of this:
+Now, also remember from above that we directly provided a `TRUE/FALSE` vector for our first example of how to subset using a "logical" vector:  
+
+```R
+y # the whole vector
+y[c(FALSE, TRUE, TRUE)] # just the last two values
+```
+
+<center><img src="{{ site.url }}/images/R_vec_index_TF1.png"></center> 
+<br>
+So you might be able to see where this is going now, we can provide that conditional statement `y >= 6` within our subsetting brackets, and we will be pulling out only the positions where the condition resolves to `TRUE`:
+
+```R
+y # the whole vector
+y[y >= 6] # returns just the last two values
+```
+
+<center><img src="{{ site.url }}/images/R_vec_index_TF5.png"></center> 
+<br>
+The way I read the expression `y[y >= 6]` in my head is: "Give me all the values of vector 'y', where 'y' is greater than or equal to 6." This fundamental concept is key to what makes indexing in R so powerful!  
+
+One last thing we're going to introduce here is the `!` character, which inverts the interpretation of `TRUE` and `FALSE`. As we've seen, `y[y >= 6]` will return all values within 'y' that are greater than or equal to 6. But if we add in the `!` point, it will return the opposite for us. We can see this just by putting this in front of the portion of the expression that generates the T/F vector:
+
+```R
+y
+
+y >= 6 # returns FALSE, TRUE, TRUE
+!y >= 6 # returns TRUE, FALSE, FALSE
+
+y[y >= 6] # returns only 6 and 7
+y[!y >= 6] # returns only 5
+```
+
+<center><img src="{{ site.url }}/images/R_vec_index_TF6_not.png"></center> 
+<br>
+The use of the `!` character like this may seem a little unnecessary in the case of strictly numerical conditional expressions like this, but it's very handy for other types of conditional statements. We'll see a somewhat more complicated example below where inverting the `TRUE/FALSE` logical vector is the only way to actually get at what we want.  
+
+If you're still reading this then kudos to you for getting through that! This concept of indexing with logical vectors underlies so many of the ways that we parse down data in R to what we want, and it's going to help immensely if you understand the fundamentals of it. So far we've been dealing with just one-dimensional vectors, but the same rules apply to working with two-dimensional tables.
+
+## Subsetting tables
+
+As we've seen, vectors are one-dimensional objects, so when we want to subset from one we only need to specify details for one coordinate (one for which item(s) we want). But tables are 2-dimensional objects, so we need to provide instructions for handling two coordinates (one for which rows we'd like, and one for which columns). In R, this is still done with the same subsetting brackets ( `[ ]` ), but now providing two values within them. **The first value we enter in the brackets specifies which *rows* you'd like, and the the second value (separated by a comma) specifies which *columns*.** Using the table we made above, "our_table", let's run through some examples of what this looks like:
 
 ```R
   # whole table
@@ -216,7 +269,7 @@ our_table[2, 2]
 our_table[ , 2] # notice when subsetting returns only one column, it returns a vector
 
   # only row 3, but both columns
-our_table[3, ] # notice when subsetting returns one row, but more than one column, it still returns a dataframe, this is important if it is wrapped up in larger code
+our_table[3, ] # notice when subsetting returns one row, but more than one column, it still returns a dataframe, these intricacies will become important when things are wrapped up in more code
 
   # we can force the original way to retain the table structure by adding the optional argument drop=F, like so:
 our_table[ , 2, drop=F]
@@ -234,13 +287,34 @@ our_table[ , "z"]
 
 <center><img src="{{ site.url }}/images/R_tab_index.png"></center> 
 <br>
-Indexing is *much* more expansive than this, but this is a good start. If any of this seems a little abstract at first, don't worry at all, that's normal (at least it was for me). Like everything, exposure and practice with the process will make you comfortable with it very soon. And as you begin working with large tables and combining subsetting metrics you'll quickly begin to see how useful this fundamental system is. We'll have several larger-scale examples below.  
+Indexing in R can seem pretty confusing at first, but it's also one of the things that makes R so awesome. If you're new to working in R and you've gotten through all of this, then you're off to a great start! Like everything, exposure and practice with the process will make you much more comfortable, and as you begin working with large tables and combining subsetting metrics you'll quickly begin to see how useful this fundamental system is.
 <br>
 
 ---
 <br>
 # Reading in and writing out data
-Now let's read in our practice data table. Rather than give you something straightforward, we're going to intentionally run into a couple of the most frequent snags you'll hit when trying to read in data. A common method of reading in tables is the `read.table()` command. To start, let's try reading our gene_annotations.txt table into R with no arguments other than specifying the file name: 
+Most of the time when working with R you're going to want to read in some data, do some stuff to it, and then write out something else to a new file that will then go on to live a wonderous and full life beyond the R environment. Here we're going to cover the basics of reading in and writing out files. 
+
+## Checking out the data in the terminal first
+Before we try to read data into R, it's a *really* good idea to know what we're expecting. Let's get some idea of what our practice "gene_annotations.txt" file looks like in the terminal with some of the skills we picked up from the [*bash* basics](/bash/basics#working-with-plain-text-files-and-directors) page. 
+
+Here's a peek with `less -S gene_annotations.txt`: 
+
+<center><img src="{{ site.url }}/images/terminal_table_less.png"></center> 
+<br>
+From this we can see that it's a tab-delimited file, and that it has a header with column names for each column. Let's take a look just at the column names:
+
+<center><img src="{{ site.url }}/images/R_terminal_colnames.png"></center> 
+<br>
+And another easy thing to check is how many rows we should be expecting:
+
+<center><img src="{{ site.url }}/images/R_terminal_lines.png"></center> 
+<br>
+Ok. So now instead of being blind to what the file holds, we know that it's tab-delimited, it has a header with column names, and it has 8 columns and 84,785 rows (including the header). Awesome. Now let's get it into R! 
+
+## read.table()
+
+Probably the most common method of reading in tables is to use the `read.table()` function. To start, let's try reading our gene_annotations.txt table into R with no arguments other than specifying the file name:
 
 ```R
 gene_annotations_tab <- read.table("gene_annotations.txt")
@@ -248,17 +322,20 @@ gene_annotations_tab <- read.table("gene_annotations.txt")
 
 <center><img src="{{ site.url }}/images/read_table_err.png"></center> 
 <br>
-Yay errors! Many of these may seem a little cryptic at first, but you'll be surprised at how many of them start to make sense pretty quickly with just some time. The important part in this one is the end that says "line 1 did not have 22 elements". This is a sign there is something up with how R is trying to split each line into columns.
+Yay our first error! Many error messages may seem a little cryptic at first, but you'll be surprised at how many of them magically start to make sense over time. The important part in this one is at the end where it says "line 1 did not have 22 elements", and we know from our exploration in the terminal above that our table should have 8 columns. This is a sign there is something up with how R is trying to split each line into columns. 
 
-When there are many things that can vary, (like the settings for how to read in and treat a table), it's important to scan the default parameters of the functions you are using. If we look at the help menu for this command with `?read.table`, we find that the default delimiter ("sep" argument) acts on all white space, which includes tabs AND blank spaces.
+If we take a look at the help menu for this function with `?read.table`, and scan for anything about specifing the delimiter, we can find the argument "sep". And it seems that by default the "sep" argument is set to act on all white space, which includes tabs AND blank spaces:
 
 <center><img src="{{ site.url }}/images/read_table_help_sep.png"></center> 
 <br>
-If we switch back to our terminal and look at our gene_annotations.txt file `less -S gene_annotations.txt`, we see that it is tab-delimited, but there are also spaces within the KO and COG annotation columns. 
+
+If we switch back to our terminal and look at our gene_annotations.txt file again with `less -S gene_annotations.txt`, we see that in addition to it being tab-delimited, there are also spaces within the KO and COG annotation columns. 
 
 <center><img src="{{ site.url }}/images/terminal_table_less.png"></center> 
 <br>
-With the default settings of `read.table()`, R is trying to split columns on blank spaces as well as tabs, this is causing the error we saw as it leads to rows with different numbers of columns. Let's try running the command again, but this time specifying the delimiter should only be tabs (tab characters are specified with an backslash followed by a t: `\t`.
+So `read.table()` by default is making a new column everywhere there is a space, and then coming back to us and saying "Hey, your first line doesn't have all the columns it should have based on the rest of your file. Get lost."
+
+Let's try running the command again, but this time specifying the delimiter should only be tabs (tab characters are specified with an backslash followed by a "t" like so: `\t`.
 
 ```R
 gene_annotations_tab <- read.table("gene_annotations.txt", sep="\t")
@@ -266,21 +343,21 @@ gene_annotations_tab <- read.table("gene_annotations.txt", sep="\t")
 head(gene_annotations_tab) 
 ```
 
-That worked, but we have a header with column names in the first line, but we didn't tell R that so it assigned names (V1, V2, etc.). Let's read it in again but this time specify that there is a header:
+That worked, but it put our column names in the first row and added new column names ("V1", "V2", etc.). Looking at the help menu for `read.table()` some more we find there is an argument for "header", which is by default set to `FALSE`. So let's try again but this time we'll specify that there is a header:
 
 ```R
 gene_annotations_tab <- read.table("gene_annotations.txt", sep="\t", header=TRUE)
   # now let's take a peek at the table with head():
 head(gene_annotations_tab) 
   # and check what our column names are:
-colnames(gene_annotations_tab) # looks good
-  # and let's check out the size of the table:
+colnames(gene_annotations_tab)
+  # and check the size of the table:
 dim(gene_annotations_tab)
 ```
 
 <center><img src="{{ site.url }}/images/read_table_dim.png"></center> 
 <br>
-So our table is 84,784 rows by 8 columns. Notice that since the table doesn't fit all the way across my Console screen, it wraps twice when we viewed it with the `head` command. Also notice that R by default gave it column names that are numbered. This is usually fine, but in this case since our gene_IDs are so similar, we're going to rename the row names to match the gene_ID for each row (to avoid any possible confusion when glancing at the table). We can view and set the row names of our table like with the `row.names()` function. As we saw above, there are a lot of rows here, so we're going to wrap this function with the `head()` function to keep the output manageable.
+So our table is 84,784 rows by 8 columns, which when not counting the header is exactly what we'd expect from our `wc -l` in the terminal. Notice that since the table doesn't fit all the way across my "console" pane it wraps twice when we viewed it with the `head` command. Also notice that R by default gave it row names that are numbered. This is usually fine, but in this case since our gene_IDs are so similar, we're going to rename the row names to match the gene_ID for each row (to avoid any possible confusion when glancing at the table). We can view and set the row names of our table like with the `row.names()` function. As we saw above, there are a lot of rows here, so we're going to wrap this function with the `head()` function to keep the output manageable.
 
 ```R
   # first let's look at what they are currently, going to "wrap
@@ -305,7 +382,7 @@ It's also a good idea to run the `str()` function (structure) on a table when yo
 <br>
 Another default setting of `read.table()` is to convert columns with strings in them (text characters) to factors (categorical text values). Sometimes this is fine, but sometimes it's not what you want. Be sure to pay attention to it. You can change the default behavior of `read.table()` by adding the `stringsAsFactors=FALSE` argument.
 
-Now let's generate a new table so we can practice writing out to a file from R. You may have noticed there are some NAs in our gene_annotations_tab table. These are present in the KEGG and COG annotation and ID columns for those genes which weren't annotated. Let's subset our full table to include only those genes that were annotated by KEGG. R's `is.na()` function can help us subset accordingly by generating a "logical" T/F vector just like we did above with our `y[y >= 6]` example above. This will act on each element in a vector and return `TRUE` if it contains an NA value at the respective position, which we can then use to index the full table as R will only pull out the rows where the value was found to be `TRUE`. However, we don't want the NAs, we want all of those that have KEGG annotations. So we need to invert the "logical" vector with the `!` character also like we saw above. This combines a few concepts, so let's run the code and then break down the syntax.
+Now let's generate a new table so we can practice writing out to a file from R. You may have noticed there are some NAs in our gene_annotations_tab table. These are present in the KEGG and COG annotation and ID columns for those genes which weren't annotated. Let's subset our full table to include only those genes that were annotated by KEGG. R's `is.na()` function can help us subset accordingly by generating a logical `TRUE/FALSE` vector just like we did above with our `y[y >= 6]` example. The `is.na()` function will act on each element in a vector and return `TRUE` if that element contains an NA value at the respective position. And as we saw above, R will then pull out the values wherever the vector hold a `TRUE`. However, we don't want the NAs in this case, we want all of those that have KEGG annotations. So we need to invert the "logical" vector with the `!` character we introduced above. This combines a few concepts, so let's run the code and then break down the syntax.
 
 ```R
 all_KEGG_gene_annotations_tab <- gene_annotations_tab[!is.na(gene_annotations_tab$KO_ID), ]
@@ -320,17 +397,19 @@ dim(all_KEGG_gene_annotations_tab) # 37,319 had KEGG annotations assigned
 
 <center><img src="{{ site.url }}/images/KEGG_only_tab.png"></center> 
 <br>
-Now let's look closely at what's going on in the code we used to generate our subset of only KEGG-annotated genes. We start off with the name of the new table "all_KEGG_gene_annotations_tab", then we have our assignment character `<-` , then the part that is actually specifying what we want from the original table. Same as above we are giving the variable name that holds the table ("gene_annotations_tab"), followed by brackets that enclose which rows we want before the comma, and which columns we want after the comma. We have nothing after the comma so we are taking all columns, but the rows position in these brackets is where the magic is happening. With R it can be sometimes easier to read from the inside and work your way out. So we specific the gene_annotations_tab table, and specifically the column named "KO_ID" by entering that following the `$` . That by itself would print all 84,784 values within that column as a vector. But we have that vector wrapped with the `is.na()` function, which is creating a vector that says `TRUE` wherever the value is equal to NA (which is a special value in R), and `FALSE` wherever the value is not equal to NA. That alone would return us all the rows that have NA in the KO_ID column, but we actually want the opposite of that. So the last part is that we added the `!` character right in front of this expression, which basically inverts the T/F vector and tells the subsetting brackets to take only the rows that do **not** have an NA value for KO_ID, and for those rows take all columns.
+Now let's look closely at what's going on here. We start off with the name of the new table "all_KEGG_gene_annotations_tab", then we have our assignment character `<-` , then the part that is actually specifying what we want from the original table. Same as above we are giving the variable name that holds the table ("gene_annotations_tab"), followed by the subsetting brackets ( `[ ]` ) that enclose which rows we want to subset *before* the comma, and which columns we want to subset *after* the comma. In this case we have nothing after the comma which means we are taking all columns, but the rows position in these brackets is where the magic is happening. With R it can sometimes be easier to read from the inside and work your way out, so looking that way we first specify the column named "KO_ID" of the "gene_annotations_tab" table. If we were to run `gene_annotations_tab$KO_ID` by itself, it would print all 84,784 values within that column as a vector. But here we have that vector wrapped with the `is.na()` function, which is creating a logical vector that says `TRUE` wherever the value is equal to NA (whenever a gene was not annotated by KEGG), and `FALSE` wherever the value is not equal to NA (when a gene was annotated by KEGG). That alone would subset all the rows that have NA in the KO_ID column, but we actually want the opposite of that. So the last part is that we added the `!` character right in front of this expression, which inverts the `TRUE/FALSE` vector and tells the subsetting brackets to take only the rows that do **not** have an NA value for KO_ID – and for those rows take all columns.
 
-Again, if this seems a little abstract and hard to follow at first, no worries at all! It gets better quickly as long as you take the time to try to break it down when you're unsure. 
+Again, if this seems a little abstract and hard to follow at first, no worries at all! It gets better quickly and only becomes more and more glorious 😊
 
-Now, let's write out our new table of only those genes that were annotated by KEGG to a new tab-delimited file called "all_KEGG_annotated_genes.txt". We can do this with the `write.table()` function. If we glance at the help menu for this with `?write.table`, we see that the default delimited seems to be a blank space, so we need to be sure to specify that. But we also don't want to keep our row names anymore, and be default it will write out quotation marks around character strings (like our annotation columns) which we also don't want. So let's add in some additional arguments to make the file to our liking (check the help menu again for details on the ones we've added here).
+## write.table()
+
+Now, let's write out our new table of only those genes that were annotated by KEGG to a new tab-delimited file called "all_KEGG_annotated_genes.txt". We can do this with the `write.table()` function. If we glance at the help menu for this with `?write.table`, we see that the default delimited seems to be a blank space, so we need to be sure to specify that we instead want it to be tab-delimited by providing the argument `sep="\t"`. But we also don't want to keep our row names anymore ( `row.name=F` ), and by default it will write out quotation marks around character strings (like our annotation columns) which we also don't want ( `quote=F` ). So let's add in these additional arguments to make the file to our liking (check the help menu again for details on the ones we've added here).
 
 ```R
-write.table(all_KEGG_gene_annotations_tab, "all_KEGG_annotated_genes.txt", sep="\t", quote=FALSE, row.names=F)
+write.table(all_KEGG_gene_annotations_tab, "all_KEGG_annotated_genes.txt", sep="\t", row.names=F, quote=FALSE)
 ```
 
-And it's good practice to peek at the output in the terminal when you are configuring the options to write something out for the first time to make sure it's doing what you think it's doing.
+And it's good practice to peek at the output in the terminal when you are configuring the options to write something out for the first time to make sure it's doing what you think it's doing:
 
 <center><img src="{{ site.url }}/images/KEGG_only_tab_less.png"></center>
 <br>

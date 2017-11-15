@@ -52,7 +52,7 @@ echo "Hi Mike"
 <center><img src="{{ site.url }}/images/echo.png"></center> 
 
 <br>
-Seems a little useless at first (unless you're lonely, of course 😢 ). But its utility makes more sense when you use redirectors to send things somewhere else. For example, instead of using `nano` like we've done before to make a new file, we can make our *bash* script with the `echo` command:
+Seems a little useless at first (unless you're lonely, of course 😢 ). But its utility makes more sense when you use [redirectors](/bash/basics#pipes-and-redirectors) to send things somewhere else. For example, instead of using `nano` like we've [done before](/bash/basics#nano) to make a new file, we can make our *bash* script with the `echo` command:
 
 ```
 echo "ls | head" > test.sh
