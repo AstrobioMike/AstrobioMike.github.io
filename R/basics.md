@@ -67,7 +67,7 @@ And this should reveal our practice file, "gene_annotations.txt". Just like when
 ---
 <br>
 # Basic calculations
-As its core, R is just a big calculator. So we can do baseline arithmetic operations like the following examples. (Don't forget if you're entering these in the "source" pane of RStudio, you need to press `Cmd + Enter` to execute the command.)
+At its core, R is just a big calculator. So we can do baseline arithmetic operations like the following examples. (Don't forget if you're entering these in the "source" pane of RStudio, you need to press `Cmd + Enter` to execute the command.)
 
 ```R
 4 + 4
@@ -155,7 +155,7 @@ Dataframes are two-dimensional objects of rows and columns. Here we can see that
 One of the most powerful things about R is how easy it makes it to subset vectors and tables down to whatever you are interested in via what's known as "indexing". Here we'll look at a couple of the ways we can specify what we would like to subset, and we'll see these in practice on a larger scale below. 
 
 ## Subsetting by position
-Looking back at our vector stored in variable `y`, it contains 3 values: 5, 6, and 7. These values exist in the object in this order as positions 1, 2, and 3 of the variable `y`. One way we can subset specific values involves using this position information - this position information for each value is that value's "index". If we specify the vector name, and then put in brackets `[ ]` the position(s) we are interested in, R will return the value(s).
+Looking back at our vector stored in variable `y`, it contains 3 values: 5, 6, and 7. These values exist in the object in this order as positions 1, 2, and 3 of the variable `y`. One way we can subset specific values involves using this position information – this position information for each value is known as that value's "index". If we specify the vector name, and then put in brackets `[ ]` the position(s) we are interested in, R will return the value(s).
 
 ```R
 y # the whole vector
