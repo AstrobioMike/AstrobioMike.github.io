@@ -278,7 +278,7 @@ Using commands that do things like create, copy, and move and rename files/direc
 </div>
 
 
-The commands `cp` and `mv` (copy and move) both function under a similar syntax. The command entered needs to be followed by 2 **positional arguments**. Positional arguments are arguments that understood by the computer to be something specific based on where they come following the command. In the case of the `cp` and `mv` commands the first positional argument is the file you want to act on (the source), and the second positional argument is where you want it to go (the target). 
+The commands `cp` and `mv` (copy and move) both function under a similar syntax. The command entered needs to be followed by 2 **positional arguments**. Positional arguments are arguments that are understood by the computer to be something specific based on where they come following the command. In the case of the `cp` and `mv` commands the first positional argument is the file you want to act on (the source), and the second positional argument is where you want it to go (the target). 
 
 Let's take a quick look again at what's in our current working directory with `ls`:
 
