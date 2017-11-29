@@ -1002,6 +1002,7 @@ $button-size: 1.5rem;
 // Table of contents
 .toc {
     max-height: calc(100% - 4em);
+    z-index: 105;
     overflow-y: auto;
     box-shadow: 6px 12px 34px 7px #909090;
     margin-bottom: 40px;
