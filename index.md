@@ -27,6 +27,7 @@ If you're just beginning to wade your way into this enticing ocean of bioinforma
 <br>
 <h4><a href="/R/" style="color:#0000cc">R</a></h4>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • The fundamentals of working in the R environment: [R basics](/R/basics)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • Learn some more about indexing in R: [Going deeper with indexing](/R/more_indexing)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • How to install packages: [Installing R packages](/R/installing_packages)  
 <br>
 

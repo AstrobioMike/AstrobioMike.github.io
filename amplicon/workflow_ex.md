@@ -36,7 +36,7 @@ As explained above, we'll be using [vsearch](https://github.com/torognes/vsearch
 
 
 **vsearch**  
-There are instructions to get vsearch up and running [on its github](https://github.com/torognes/vsearch), but these commands should work for you if you're on a Mac and you don't mind downloading it into your bin:
+There are instructions to get vsearch up and running [on its github](https://github.com/torognes/vsearch), but these commands should work for you if you're on a Mac (if not, you'll have to download a different version following the above link) and you don't mind putting it in your bin:
 
 ```
 cd /usr/local/bin

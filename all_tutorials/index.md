@@ -34,10 +34,11 @@ Feel free to <a href="https://twitter.com/AstrobioMike">bug me</a> about any of 
 
 **Available now:**  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • [R basics](/R/basics)  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • [Installing R packages](/R/installing_packages)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • [Going deeper with indexing](/R/more_indexing)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • [Installing R packages](/R/installing_packages)  
 
 **Coming soon:**  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • [Going deeper with indexing](/R/more_indexing)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • ...  
 <br>
 
 ---
