@@ -700,7 +700,7 @@ plot_ordination(basalt_vst_physeq, basalt_vst_pcoa, color="char") +
 <br>
 
 ## Differential abundance analysis with DESeq2
-For a multitude of reasons discussed on the [caveat central page]({{ site.url }}/amplicon/caveats) for amplicon sequencing:
+For a multitude of reasons discussed on the [caveat central page](/amplicon/caveats) for amplicon sequencing:
 
 <center><b>Recovered 16S rRNA gene copy numbers do not equal organism abundance.</b></center>
 <br>

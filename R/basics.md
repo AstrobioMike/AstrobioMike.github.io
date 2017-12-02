@@ -169,61 +169,9 @@ y[c(1,3)] # specifying items 1 and 3 using the c() function
 <br>
 Ok, so that's how we can subset by saying which positions we want. But in practice we often won't actually know which positions of a vector hold the values we are interested in – meaning we usually won't know the "index" number needed to pull out a specific value. This is where another type of indexing comes into play.
 
-## Subsetting by TRUE and FALSE
+## Subsetting by conditional statements
 
-Another way to subset via indexing in R makes use of `TRUE` and `FALSE` values. `TRUE` and `FALSE` are special terms in R that are of type "logical". You can see this if you run `class(TRUE)`. Above, we provided R a *numeric* vector within the subsetting brackets: `y[c(1,3)]`. When given a numeric vector like this, R interprets those numbers as which index positions we want to pull out. If we instead place a *logical* vector within the subsetting brackets ( `[ ]` ), R will return only the values corresponding to index positions where our `TRUE/FALSE` vector holds `TRUE`.  
-
-This is definitely a little abstract at first, but it's integral to how more-advanced subsetting is done in R, so it's absolutely worth fighting through the initial head-scratching phase! Let's look at this in practice:
-
-```R
-y # the whole vector
-y[c(FALSE, TRUE, TRUE)] # just the last two values
-```
-
-<center><img src="{{ site.url }}/images/R_vec_index_TF1.png"></center> 
-<br>
-We can see here R only returned the last two values of the vector stored in variable `y`, where the `TRUE/FALSE` vector we provided within the subsetting brackets contained the values `TRUE`.  
-
-Of course in this case we still specified exactly what we wanted by making those positions `TRUE` in our subsetting logical vector, and so at this point this isn't any more useful than giving the exact index positions like above. But we actually don't need to explicity provide the `TRUE/FALSE` vector. **Instead, we can provide a *conditional expression* that will resolve to a `TRUE/FALSE` vector.** Conditional expressions involve things like greater than `>`, less than `<`, equal to `==`, greater than or equal to `>=`, and less than or equal to `<=`. To see what this means in practice, let's look at how R handles some conditional expressions:
-
-```R
-2 > 1 # FALSE 
-2 > 2 # FALSE
-2 >= 2 # TRUE
-```
-
-<center><img src="{{ site.url }}/images/R_vec_index_TF2.png"></center> 
-<br>
-R returns "logical" values (i.e. `TRUE/FALSE` values) when presented with conditional expressions like this. As such `2 > 1` resolves to `FALSE`, `2 > 2` resolves to `FALSE`, and `2 >= 2` resolves to `TRUE`. Ok, great, let's walk this just a few more steps forward.  
-
-If we provide a vector instead of a single digit, R will check the conditional expression on each item of the vector. Let's see this in action (remember the `c()` function from above to create a vector):
-
-```R
-c(5, 6, 7) >= 6 # FALSE, TRUE, TRUE 
-```
-
-<center><img src="{{ site.url }}/images/R_vec_index_TF3.png"></center> 
-<br>
-Here, R checked if each of the values within the vector (5, 6, and 7) resolved to `TRUE` or `FALSE` based on the conditional `>= 6`, and returned a *logical* vector of `FALSE`, `TRUE`, and `TRUE`. We can also provide a vector stored in a variable and R acts upon it the same way:
-
-```R
-y # our vector from above
-y >= 6 # FALSE, TRUE, TRUE
-```
-
-<center><img src="{{ site.url }}/images/R_vec_index_TF4.png"></center> 
-<br>
-
-Now, also remember from above that we directly provided a `TRUE/FALSE` vector for our first example of how to subset using a "logical" vector:  
-
-```R
-y # the whole vector
-y[c(FALSE, TRUE, TRUE)] # just the last two values
-```
-
-<center><img src="{{ site.url }}/images/R_vec_index_TF1.png"></center> 
-<br>
-So you might be able to see where this is going now, we can provide that conditional statement `y >= 6` within our subsetting brackets, and we will be pulling out only the positions where the condition resolves to `TRUE`:
+Another way to subset via indexing in R makes use of conditional statements. For example let's say we wanted all values of our vector `y` that were greater than or equal to 6. We can subset those values by putting `y >= 6` within our subsetting brackets like so:
 
 ```R
 y # the whole vector
@@ -232,29 +180,26 @@ y[y >= 6] # returns just the last two values
 
 <center><img src="{{ site.url }}/images/R_vec_index_TF5.png"></center> 
 <br>
-The way I read the expression `y[y >= 6]` in my head is: "Give me all the values of vector 'y', where 'y' is greater than or equal to 6." This fundamental concept is key to what makes indexing in R so powerful!  
+The way I read the expression `y[y >= 6]` in my head is: "Give me all the values of `y` where `y` is greater than or equal to 6." What R is actually doing under the hood here goes a little further into the weeds than would be helpful right now, so for the moment we're going to move on. But understanding fundamentally how subsetting with conditional statements works is extremely powerful and important, so feel free to dive deeper into this when you can by visiting the [going deeper with indexing page](/R/more_indexing).
 
-One last thing we're going to introduce here is the `!` character, which inverts the interpretation of `TRUE` and `FALSE`. As we've seen, `y[y >= 6]` will return all values within 'y' that are greater than or equal to 6. But if we add in the `!` point, it will return the opposite for us. We can see this just by putting this in front of the portion of the expression that generates the T/F vector:
+One last thing we're going to introduce here is the `!` character, which inverts the interpretation of `TRUE` and `FALSE`. As we've seen, `y[y >= 6]` will return all values within 'y' that are greater than or equal to 6. But if we add in the `!` point, it will return the opposite for us:
 
 ```R
-y
-
-y >= 6 # returns FALSE, TRUE, TRUE
-!y >= 6 # returns TRUE, FALSE, FALSE
+y # whole vector
 
 y[y >= 6] # returns only 6 and 7
 y[!y >= 6] # returns only 5
 ```
 
-<center><img src="{{ site.url }}/images/R_vec_index_TF6_not.png"></center> 
+<center><img src="{{ site.url }}/images/R_vec_index_TF6_not1.png"></center> 
 <br>
-The use of the `!` character like this may seem a little unnecessary in the case of strictly numerical conditional expressions like this, but it's very handy for other types of conditional statements. We'll see a somewhat more complicated example below where inverting the `TRUE/FALSE` logical vector is the only way to actually get at what we want.  
+The use of the `!` character like this may seem a little unnecessary in the case of strictly numerical conditional expressions like this, but it's very handy for other types of conditional statements. We'll see a somewhat more complicated example below where inverting the `!` logical vector is the only way to actually get at what we want. As mentioned, we are glancing over the fundamentals of how R handles indexing with conditional statements like this for now, but this underlies so many of the ways that we parse down data in R to what we want, and it's going to help immensely if you understand the fundamentals of it, so be sure to get to [going deeper with indexing](/R/more_indexing) when you can!
 
-If you're still reading this then kudos to you for getting through that! This concept of indexing with logical vectors underlies so many of the ways that we parse down data in R to what we want, and it's going to help immensely if you understand the fundamentals of it. So far we've been dealing with just one-dimensional vectors, but the same rules apply to working with two-dimensional tables.
+So far we've been dealing with just one-dimensional vectors, but the same rules apply to working with two-dimensional tables.
 
 ## Subsetting tables
 
-As we've seen, vectors are one-dimensional objects, so when we want to subset from one we only need to specify details for one coordinate (one for which item(s) we want). But tables are 2-dimensional objects, so we need to provide instructions for handling two coordinates (one for which rows we'd like, and one for which columns). In R, this is still done with the same subsetting brackets ( `[ ]` ), but now providing two values within them. **The first value we enter in the brackets specifies which *rows* you'd like, and the the second value (separated by a comma) specifies which *columns*.** Using the table we made above, "our_table", let's run through some examples of what this looks like:
+As we've seen, vectors are one-dimensional objects, so when we want to subset from one we only need to specify details for one coordinate for which item(s) we want. But tables are 2-dimensional objects, so we need to provide instructions for handling two coordinates (one for which rows we'd like and one for which columns). In R, this is still done with the same subsetting brackets ( `[ ]` ), but now providing two values within them separated by a comma. **The first value we enter in the brackets specifies which *rows* you'd like, and the the second value (separated by a comma) specifies which *columns*.** Using the table we made above, "our_table", let's run through some examples of what this looks like:
 
 ```R
   # whole table
@@ -287,7 +232,7 @@ our_table[ , "z"]
 
 <center><img src="{{ site.url }}/images/R_tab_index.png"></center> 
 <br>
-Indexing in R can seem pretty confusing at first, but it's also one of the things that makes R so awesome. If you're new to working in R and you've gotten through all of this, then you're off to a great start! Like everything, exposure and practice with the process will make you much more comfortable, and as you begin working with large tables and combining subsetting metrics you'll quickly begin to see how useful this fundamental system is.
+Indexing in R can seem pretty confusing at first, especially the logical indexing covered in the [going deeper with indexing page](/R/more_indexing), but it's also one of the things that makes R so awesome. Like everything, exposure and practice with the process will make you much more comfortable, and as you begin working with large tables and combining subsetting metrics you'll quickly begin to see how useful this fundamental system is. 
 <br>
 
 ---
@@ -298,7 +243,7 @@ Most of the time when working with R you're going to want to read in some data, 
 ## Checking out the data in the terminal first
 Before we try to read data into R, it's a *really* good idea to know what we're expecting. Let's get some idea of what our practice "gene_annotations.txt" file looks like in the terminal with some of the skills we picked up from the [*bash* basics](/bash/basics#working-with-plain-text-files-and-directors) page. 
 
-Here's a peek with `less -S gene_annotations.txt`: 
+So go back to your terminal window where you downloaded the practice data for the moment, and let's take a peek with `less -S gene_annotations.txt`: 
 
 <center><img src="{{ site.url }}/images/terminal_table_less.png"></center> 
 <br>
@@ -382,7 +327,11 @@ It's also a good idea to run the `str()` function (structure) on a table when yo
 <br>
 Another default setting of `read.table()` is to convert columns with strings in them (text characters) to factors (categorical text values). Sometimes this is fine, but sometimes it's not what you want. Be sure to pay attention to it. You can change the default behavior of `read.table()` by adding the `stringsAsFactors=FALSE` argument.
 
-Now let's generate a new table so we can practice writing out to a file from R. You may have noticed there are some NAs in our gene_annotations_tab table. These are present in the KEGG and COG annotation and ID columns for those genes which weren't annotated. Let's subset our full table to include only those genes that were annotated by KEGG. R's `is.na()` function can help us subset accordingly by generating a logical `TRUE/FALSE` vector just like we did above with our `y[y >= 6]` example. The `is.na()` function will act on each element in a vector and return `TRUE` if that element contains an NA value at the respective position. And as we saw above, R will then pull out the values wherever the vector hold a `TRUE`. However, we don't want the NAs in this case, we want all of those that have KEGG annotations. So we need to invert the "logical" vector with the `!` character we introduced above. This combines a few concepts, so let's run the code and then break down the syntax.
+<a id="cond_example"></a>
+
+Now let's generate a new table so we can practice writing out to a file from R. You may have noticed there are some NAs in our "gene_annotations_tab" table, which are special values to R. These are present in the KEGG and COG annotation and ID columns as "\<NA\>" for those genes which weren't annotated. Here, let's pretend we want to subset our full table down to include only those genes that *were* annotated by KEGG. R's `is.na()` function can help us do this. The `is.na()` function will return whether or not each item of an object contains an `NA`, but in this case we are interested in those that are *not* `NA`, we want those that actually contain values (KEGG identifiers in this case). So we need to return the opposite of this using the `!` character like we did above with `y[!y >= 6]`.  
+
+This combines a few concepts, so let's run the code and then we'll break it down.
 
 ```R
 all_KEGG_gene_annotations_tab <- gene_annotations_tab[!is.na(gene_annotations_tab$KO_ID), ]
@@ -397,9 +346,9 @@ dim(all_KEGG_gene_annotations_tab) # 37,319 had KEGG annotations assigned
 
 <center><img src="{{ site.url }}/images/KEGG_only_tab.png"></center> 
 <br>
-Now let's look closely at what's going on here. We start off with the name of the new table "all_KEGG_gene_annotations_tab", then we have our assignment character `<-` , then the part that is actually specifying what we want from the original table. Same as above we are giving the variable name that holds the table ("gene_annotations_tab"), followed by the subsetting brackets ( `[ ]` ) that enclose which rows we want to subset *before* the comma, and which columns we want to subset *after* the comma. In this case we have nothing after the comma which means we are taking all columns, but the rows position in these brackets is where the magic is happening. With R it can sometimes be easier to read from the inside and work your way out, so looking that way we first specify the column named "KO_ID" of the "gene_annotations_tab" table. If we were to run `gene_annotations_tab$KO_ID` by itself, it would print all 84,784 values within that column as a vector. But here we have that vector wrapped with the `is.na()` function, which is creating a logical vector that says `TRUE` wherever the value is equal to NA (whenever a gene was not annotated by KEGG), and `FALSE` wherever the value is not equal to NA (when a gene was annotated by KEGG). That alone would subset all the rows that have NA in the KO_ID column, but we actually want the opposite of that. So the last part is that we added the `!` character right in front of this expression, which inverts the `TRUE/FALSE` vector and tells the subsetting brackets to take only the rows that do **not** have an NA value for KO_ID – and for those rows take all columns.
+Let's look closely at what's going on in that first line here. We start off with the name of the new table we're creating "all_KEGG_gene_annotations_tab", then we have our assignment character `<-` , and then the part that is actually specifying what we want from the original table. Same as above we are giving the variable name that holds the table we want to subset from ("gene_annotations_tab"), followed by the subsetting brackets ( `[ ]` ) that enclose 1) which rows we want to subset *before* the comma, and 2) which columns we want to subset *after* the comma. In this case we have nothing after the comma which means we are taking all columns, but the rows position in these brackets is where the magic is happening. With R it can sometimes be easier to read from the inside and work your way out. Looking at it that way, the inner parentheses enclose `gene_annotations_tab$KO_ID`. If we were to run `gene_annotations_tab$KO_ID` by itself, it would print all 84,784 values within that column as a vector. Wrapping that with the function `is.na()` like we're doing here will return whether or not each item is an `NA` or not. This would by itself give us a table of all rows where the column KO_ID had an `NA`. But to get all of those that were annotated by KEGG, we flip this with the `!` character in front of the function.  
 
-Again, if this seems a little abstract and hard to follow at first, no worries at all! It gets better quickly and only becomes more and more glorious 😊
+As mentioned above, there is more going on under the hood here that you can dig into at will at the [going deeper with indexing page](/R/more_indexing) that will help you get a better handle on how R does this. If it seems a little abstract and hard to follow at first, no worries at all! It gets better quickly and only becomes more glorious as you go 🙂
 
 ## write.table()
 
