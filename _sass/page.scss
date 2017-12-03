@@ -942,6 +942,35 @@ $button-size: 1.5rem;
 //         }
 // }
 
+
+.side-tab-genomics {
+    h3 {
+//         width: 12%;
+        padding-left: 5px;
+        padding-right: 5px;
+        padding-bottom: 5px;
+        padding-top: 2px;
+        color: #cc7a00;
+        position: fixed;
+        top: 0.75em;
+        left: 1em;
+        margin: 0px;
+        background-color: #ecf2f9;
+        font-variant: small-caps;
+        @include rounded(10px);
+        }
+    a {
+        color: #5bab87;
+        &:visited {
+            color: #5bab87;
+            }
+        &:hover {
+            color: #5bab87;
+            text-decoration: none;
+            }
+        }
+}
+
 .side-tab-metagenomics {
     h3 {
 //         width: 12%;

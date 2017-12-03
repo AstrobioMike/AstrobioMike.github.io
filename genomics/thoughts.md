@@ -1,13 +1,11 @@
 ---
 layout: main
-title: Quality filtering, error correction, and depth normalization
-categories: [metagenomics]
-permalink: /metagenomics/quality_filtering
+title: Opening thoughts on genomics
+categories: [genomics]
+permalink: /genomics/thoughts
 ---
 
-{% include _mg_quality_filter_toc.html %}
-
-{% include _side_tab_metagenomics.html %}
+{% include _side_tab_genomics.html %}
 
 <br>
 <center><img src="{{ site.url }}/images/under_construction.jpeg"></center>

@@ -7,7 +7,7 @@ permalink: /all_tutorials/
 <center>
 <h4>Here's what's currently available and what's in the works. 
 <br>
-Feel free to <a href="https://twitter.com/AstrobioMike">bug me</a> about any of the "coming soons" to expedite 😊</h4>
+Feel free to <a href="https://twitter.com/AstrobioMike">bug me</a> about any of the "coming soons" to expedite 🙂</h4>
 </center>  
 
 
@@ -54,11 +54,25 @@ Feel free to <a href="https://twitter.com/AstrobioMike">bug me</a> about any of 
 
 ---
 <br>
-<center><h2><a href="/metagenomics/" style="color:#5bab87">Metagenomics</a></h2></center>
+<center><h2><a href="/genomics/" style="color:#5bab87">Genomics</a></h2></center>
 
 **Available now:**  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • Nothing yet 😢
 
 **Coming soon:**  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • [Opening thoughts on metagenomics](/metagenomics/thoughts)  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • [Where to start: quality filtering, error correction, and read-depth normalization](/metagenomics/quality_filtering)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • [Opening thoughts on genomics](/genomics/thoughts)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • [Where to start: quality filtering, error correction, and read-depth normalization](/genomics/where_to_start)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • [*de novo* genome assembly](/genomics/de_novo_assembly)  
+
+[//]: # (<br>)
+
+[//]: # (---)
+[//]: # (<br>)
+[//]: # (<center><h2><a href="/metagenomics/" style="color:#cc7a00">Metagenomics</a></h2></center>)
+
+[//]: # (**Available now:**  )
+[//]: # (&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • Nothing yet 😢)
+
+[//]: # (**Coming soon:**  )
+[//]: # (&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • [Opening thoughts on metagenomics](/metagenomics/thoughts)  )
+[//]: # (&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • [Where to start: quality filtering, error correction, and read-depth normalization](/metagenomics/where_to_start))

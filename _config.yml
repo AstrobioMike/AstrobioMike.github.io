@@ -23,6 +23,9 @@ url: "http://AstrobioMike.github.io" # the base hostname & protocol for your sit
 twitter_username: AstrobioMike
 github_username:  AstrobioMike
 
+# google analytics, setup from these instructions: https://desiredpersona.com/google-analytics-jekyll/
+google_analytics: "UA-110574647-1"
+
 # Build settings
 markdown: kramdown
 plugins:
