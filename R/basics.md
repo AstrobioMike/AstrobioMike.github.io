@@ -182,7 +182,7 @@ y[y >= 6] # returns just the last two values
 <br>
 The way I read the expression `y[y >= 6]` in my head is: "Give me all the values of `y` where `y` is greater than or equal to 6." What R is actually doing under the hood here goes a little further into the weeds than would be helpful right now, so for the moment we're going to move on. But understanding fundamentally how subsetting with conditional statements works is extremely powerful and important, so feel free to dive deeper into this when you can by visiting the [going deeper with indexing page](/R/more_indexing).
 
-One last thing we're going to introduce here is the `!` character, which inverts the interpretation of `TRUE` and `FALSE`. As we've seen, `y[y >= 6]` will return all values within 'y' that are greater than or equal to 6. But if we add in the `!` point, it will return the opposite for us:
+One last thing we're going to introduce here is the `!` character, which inverts the interpretation of conditional expression provided. As we've seen, `y[y >= 6]` will return all values within 'y' that are greater than or equal to 6. But if we add in the `!` point, it will return the opposite for us:
 
 ```R
 y # whole vector
