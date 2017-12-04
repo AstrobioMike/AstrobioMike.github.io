@@ -29,7 +29,7 @@ cd bash_why_temp
 
 <br>
 # Example 1 - Renaming 1,000 files
-So the setup is we have 1,000 files that have names like "Sample-1.fq", "Sample-2.fq", etc., but to use the program we want to use we need the filenames to contain an underscore instead of a dash, like "Sample_1.fq", "Sample_2.fq", etc. Hmm, time to get an undergrad?? Noooo, it's *bash* to the rescue!
+So the setup is we have 1,000 files that have names like "Sample-1.fq", "Sample-2.fq", etc., but to use the program we want to use we need the filenames to contain an underscore instead of a dash, like "Sample_1.fq", "Sample_2.fq", etc. Time for *bash* to the rescue!
 
 Our example_1 directory holds our 1,000 problematic files. 
 
@@ -41,7 +41,7 @@ ls | wc -l
 <center><img src="{{ site.url }}/images/1000_files_head.png"></center> 
 
 <br>
-Here's the approach. We covered in [*bash* basics](/bash/basics) how to rename files with the `mv` command, so we already know we could easily change one file like this: `mv Sample-1.fq Sample_1.fq`. But of course that doesn't scale, and is just as bad as having the undergrad do this in the Finder window. Instead, we are going to make and do this with a *bash* script. A *bash* script isn't anything special, it's just a bunch of individual *bash* commands one line after another. To demonstrate that, let's make a script out of the two commands we just ran when looking at our files.
+Here's the approach. We covered in [*bash* basics](/bash/basics) how to rename files with the `mv` command, so we already know we could easily change one file like this: `mv Sample-1.fq Sample_1.fq`. But of course that doesn't scale, and is just as bad us doing this one at a time in the Finder window. Instead, we are going to make and do this with a *bash* script. A *bash* script isn't anything special, it's just a bunch of individual *bash* commands one line after another. To demonstrate that, let's make a script out of the two commands we just ran when looking at our files.
 
 `echo` is a command that will spit back out whatever you tell it:
 
