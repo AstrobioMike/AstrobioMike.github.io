@@ -18,7 +18,7 @@ When I was starting out, this whole thing about what the "PATH" was and what it 
 # The PATH demystified
 As mentioned in the [*bash* basics walkthrough](/bash/basics), probably the most common mistake at the command line is when you are trying to specify a file or program that isn't where you think it is. For files, we usually point to where the file is (if it's not in our current working directory) using the [*absolute* or *relative* path](/bash/basics#path), where "path" here, in lowercase, just means a sort of address in the computer. But for programs that we use often, we usually want to be able to call them without having to provide the complete path to where the program is located. So a big part of getting specific programs to work properly at the command line is having them in a location on the computer that you can access no matter [where you are](/bash/basics#moving-around).  
 
-The computer automatically checks in a list of pre-defined locations (directories) everytime you are trying to call a certain command – no matter where you are. This is why we can use certain commands like `ls` and `pwd` and such from any directory we happen to be in. This list of designated directories is stored in a special variable called the "PATH" (all caps required). You can see your PATH, and which directories are stored in it, by entering `echo $PATH` at the command line (the `$` is used to call variables in *bash*). Here's a look at mine:
+The computer automatically checks in a list of pre-defined locations (directories) everytime you are trying to call a certain command. This is why we can use certain commands like `ls` and `pwd` and such from any directory we happen to be in. This list of designated directories is stored in a special variable called the "PATH" (all caps required). You can see your PATH, and which directories are stored in it, by entering `echo $PATH` at the command line (the `$` is used to call variables in *bash*). Here's a look at mine:
 
 <center><img src="{{ site.url }}/images/my_PATH.png"></center>
 
@@ -34,7 +34,7 @@ echo $PATH | tr ":" "\n"
 <br>
 This is truncated here, but we can now more clearly see this is a list of directories. All of these places, stored in the *bash* variable called "PATH", are searched whenever I am typing a command in the terminal window. If the command you are trying to use is present in any of the directories listed in your PATH, you don't need to point at its specific location in full (its path, lowercase) when you are trying to use it – which is of course nice for things we use often. 
 
-We can also add things to our PATH. To demonstrate this, and for the sake of installing tools used in other places on this site, we're going to create a new directory in our home location, and then add it to our PATH variable.  
+To make a program available anywhere, we can either place that program in a directory that's already in our PATH, or we can add a new directory to our PATH that contains the program. (Keep in mind that the order in which things appear in your PATH *does* matter. If you have two versions of a program with the same name, whichever shows up first will get called.)  
 <br>
 
 ---

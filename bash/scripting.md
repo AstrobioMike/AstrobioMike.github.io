@@ -1,6 +1,6 @@
 ---
 layout: main
-title: Scripting with *bash*
+title: Writing bash scripts
 categories: [bash, tutorial]
 permalink: /bash/scripting
 ---
