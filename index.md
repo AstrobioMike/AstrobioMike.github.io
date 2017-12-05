@@ -21,6 +21,8 @@ If you're just beginning to wade your way into this enticing ocean of bioinforma
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • The fundamentals of working at the command line: [*bash* basics](/bash/basics)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • Baseline *bash* commands worth having in your arsenal: [Six glorious commands](/bash/six_commands)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • Some real-life examples of how I use *bash* everyday: [Why is this all worth it?](/bash/why)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • Modifying your PATH: [What the heck is a PATH, and how do I get it to do what I want?](/bash/modifying_your_path)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • How to install the tools you need: [Installing tools at the command line](/bash/installing_tools)  
 <br>
 
 ---

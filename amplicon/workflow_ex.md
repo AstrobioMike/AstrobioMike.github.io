@@ -32,39 +32,9 @@ Keep in mind here that none of this is meant to be authoritative. This is simply
 ---
 <br>
 # Tools used here
-As explained above, we'll be using [vsearch](https://github.com/torognes/vsearch) and [usearch](https://drive5.com/usearch/) here. At the time this page is being put together I'm using vsearch v2.5.1 and usearch v10.0.240 on Mac OSX. 
+As explained above, we'll be using [vsearch](https://github.com/torognes/vsearch) and [usearch](https://drive5.com/usearch/) here. At the time this page is being put together I'm using vsearch v2.5.1 and usearch v10.0.240 on Mac OSX. You can follow the installation instructions for how to install these [here](/bash/installing_tools).
+ 
 
-
-**vsearch**  
-There are instructions to get vsearch up and running [on its github](https://github.com/torognes/vsearch), but these commands should work for you if you're on a Mac (if not, you'll have to download a different version following the above link) and you don't mind putting it in your bin:
-
-```
-cd /usr/local/bin
-curl -LO https://github.com/torognes/vsearch/releases/download/v2.5.1/vsearch-2.5.1-macos-x86_64.tar.gz
-tar -xzvf vsearch-2.5.1-macos-x86_64.tar.gz
-cp vsearch-2.5.1-macos-x86_64/bin/vsearch .
-rm vsearch-2.5.1-macos-x86_64.tar.gz
-```
-
-There we changed into our "bin" directory, downloaded the vsearch tool, unpacked it, copied the main executable file into our "bin" directory so that it is in our [PATH](http://localhost:4000/bash/modifying_your_path) and we can call it from anywhere, then deleted the compressed downloaded file.  
-
-**usearch**  
-To get the free version of usearch, you need to go to [https://www.drive5.com/usearch/download.html](https://www.drive5.com/usearch/download.html), and fill out a (very) short form in order to have a download link sent to you. This usually happens virtually instantly. After getting the link and downloading the file, assuming you're working on a Mac and you downloaded the same version as noted above (v10.0.240) into your default download directory, the following commands should get usearch working properly (the sudo command will require you to enter your login password for your computer):
-
-
-```
-sudo mv ~/Downloads/usearch10.0.240_i86osx32 /usr/local/bin/usearch
-chmod +x /usr/local/bin/usearch
-```
-
-Here, the `mv` command above moves the file from the downloads directory into your bin and renames it to 'usearch' rather than the longer name with the version info. The `sudo` part of that just tells your computer that you have the authority to modify things in that `/usr/local/bin/` directory, which is why you need to enter your password. And the `chmod` command makes it executable, which just means you can run it as a program from the command line. 
-
-
-After these steps are done you should be able to call vsearch and usearch from any terminal window and any location. To test this let's open a new terminal window with `Cmd + N`, and you can test each with `vsearch --version` and `usearch --version`: 
-
-<center><img src="{{ site.url }}/images/u_v_versions.png"></center>
-
-<br>
 If you wish to follow along with the analysis portion in [R](https://www.r-project.org/), then you also of course need to have a working installation of R on your computer. If you'd like more info on this, check out the [R basics]({{ site.url }}/R/basics) section before moving forward. 
 <br>
 <br>

@@ -157,6 +157,8 @@ head another_directory/yet_another_text_file.txt
 <br>
 As a side note here, don't be distracted a the line wrap in the terminal window (as seen in mine here). Commands you are entering will sometimes get pretty long and will automatically wrap to the next line without interfering with what you're doing.  
 
+<a id="path"></a>
+
 Moving on, there are actually two ways to provide the path to where something is: you can give what is known as the **relative path** or you can give an **absolute path**.  
 
 What we did in the example just above is known as a **relative path** because it takes off from where we entered the command. If we were in a location that didn't have the subdirectory "another_directory" in it, then we would have also gotten an error message because the computer again wouldn't be able to find the file we were pointing to.  

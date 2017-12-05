@@ -19,11 +19,11 @@ Feel free to <a href="https://twitter.com/AstrobioMike">bug me</a> about any of 
 **Available now:**  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • [*bash* basics](/bash/basics)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • [6 commands worth getting to know](/bash/six_commands)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • [What the heck is a PATH, and how do I get it to do what I want?](/bash/modifying_your_path)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • [How to install the tools you need](/bash/installing_tools)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • [Why is this all worth it? (Some real-life examples)](/bash/why)  
 
 **Coming soon:**  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • [How to install the tools you need](/bash/installing_tools)  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • [What the heck is a PATH, and how do I get it to do what I want?](/bash/modifying_your_path)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • [Simple loops can go a long way](/bash/loops_to_help)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • [Useful *bash* one-liners I always have handy](/bash/one_liners)  
 <br>
