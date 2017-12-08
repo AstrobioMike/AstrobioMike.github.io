@@ -81,6 +81,17 @@ The details of what all of the letters and their positions mean here are a bit f
 
 <br>
 And now the usearch program can be executed (run) without throwing any errors.  
+
+## fastqc
+[Fastqc](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) is a handy and user-friendly tool that will scan your fastq files to generate a broad overview summarizing some useful information, and possibly identify any commonly occurring problems with your data. But as the developers note, its modules are expecting random sequence data, and any warning or failure notices should be interpreted within the context of your experiment.  
+
+A link to download the current version of fastqc for your system can be found [here](https://www.bioinformatics.babraham.ac.uk/projects/download.html#fastqc). And there are pretty good instructions for different platforms provided [here](https://www.bioinformatics.babraham.ac.uk/projects/download.html#fastqc), including possibly needing to update your Java installation. For OSX there is a disk image, or application bundle, available to download. So if you're on a Mac, you can download the "fastqc_v*.dmg" file from the above downloads link, open it to install the program, and then move the resulting "FastQC.app" file (which is actually a directory) into your `~/Applications` directory or into your `~/happy_bin` if you'd like. I haven't gone through this on anyone else's computer, but on mine at least the installation itself adds the executable file to my `/usr/local/bin` so that we can call it from anywhere. Once done, an example usage at the command line to run two fastq files through would like this: 
+
+```bash
+fastqc sample_A.fastq.gz sample_B.fastq.gz
+```
+
+You can list multiple files like this delimited by a space, and the program is capable of dealing with gzipped files. This will produce a .html file for each fastq file you run it on that you can open and analyze.  
 <br>
 
 ---
@@ -88,3 +99,15 @@ And now the usearch program can be executed (run) without throwing any errors.
 <br>
 # More to come
 I'll be adding more examples here for each program we use, and feel free to contact me about any tricky ones you run into that might serve as good examples 🙂
+
+<br>
+## trimmomatic
+
+<br>
+## illumina-utils
+
+<br>
+## SPAdes
+
+<br>
+## bbtools
