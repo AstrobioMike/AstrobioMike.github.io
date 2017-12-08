@@ -57,12 +57,10 @@ Feel free to <a href="https://twitter.com/AstrobioMike">bug me</a> about any of 
 <center><h2><a href="/genomics/" style="color:#5bab87">Genomics</a></h2></center>
 
 **Available now:**  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • Nothing yet 😢
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • [Where to start: quality filtering, error correction, and depth normalization](/genomics/where_to_start)  
 
 **Coming soon:**  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • [Opening thoughts on genomics](/genomics/thoughts)  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • [Where to start: quality filtering, error correction, and read-depth normalization](/genomics/where_to_start)  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • [*de novo* genome assembly](/genomics/de_novo_assembly)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • [*de novo* genome assembly and initial probing](/genomics/de_novo_assembly)  
 
 [//]: # (<br>)
 
