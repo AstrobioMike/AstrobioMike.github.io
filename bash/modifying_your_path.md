@@ -135,7 +135,7 @@ But we can also be anywhere else:
 As noted above, that method only temporarily modifies your PATH, which is sometimes useful. But more often than not you'll want to modify it permanently. To do so we need to edit a special file called `~/.bash_profile` (files with `.` in front of them are "hidden" files). It exists in your home directory (or we will create it if it doesn't yet), and it gets run everytime you open a terminal window. This file and others like it are what allow you to customize your terminal window, with things like setting variables you always want or modifying your prompt, and we'll cover that in [another page](/bash/modifying_your_profile) at some point soon. For now, this is how you would permanently add a directory to your PATH by using `echo` to append the code to the end of that file:
 
 ```bash
-export PATH="$PATH:/Users/Mike_Lee/happy_bin" >> ~/.bash_profile
+echo 'export PATH="$PATH:/Users/Mike_Lee/happy_bin"' >> ~/.bash_profile
 ```
 
 Note that the code is exactly the same as we ran above, but now we're appending it to the `~/.bash_profile`. And since this file gets run each time you open a terminal window, it's the same thing as though you did it yourself everytime you opened a terminal window – except much better. One last note is that since this file is run everytime you open a terminal session, it actually hasn't been run since we just updated it right now, and so your PATH variable hasn't yet been updated to include the directory you just added. So you can either open a new terminal session, or you can run the `source` command on the `~/.bash_profile` file like this: 
