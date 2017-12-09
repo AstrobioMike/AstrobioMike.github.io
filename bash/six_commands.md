@@ -22,7 +22,7 @@ I'll note again that basic Unix commands like these are for manipulating [plain 
 ---
 <br>
 # Getting started  
-As with the [*bash* basics]({{ site.url }}/bash/basics) module, if you'd like to follow along, copy and paste these commands into your terminal to download some small example files to work with and make sure we're all in the same place. If you're not sure what the following commands are doing and are curious, you can find an explanation [here]({{ site.url }}/bash/basics#bottom).
+As with the [*bash* basics]({{ site.url }}/bash/basics) module, if you'd like to follow along, copy and paste these commands into your terminal to download some small example files to work with and make sure we're all in the same place. If you're not sure what the following commands are doing and are curious, you can find an explanation [here](/bash/basics#bottom).
 
 ```
 cd ~
