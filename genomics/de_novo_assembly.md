@@ -172,71 +172,166 @@ Let's just get this out there right off the bat, there is no individual metric t
 ```bash
 quast.py -o quast_B_cep_out -R ref_genomes/BCep_ref.fna -G ref_genomes/BCep_ref.gff -t 5 -l spades_default,spades_kmers_careful,megahit_default,megahit_default_err_corr spades_default_assembly/contigs.fasta spades_kmers_set_careful_assembly/contigs.fasta megahit_default_assembly/final.contigs.fa megahit_default_err_corr_assembly/final.contigs.fa
 ```
-You can find more about the syntax and how to run QUAST [here](http://quast.bioinf.spbau.ru/manual.html). The output directory contains text files of all the information, but also a useful html summary file. Here's a portion of it:
+You can find more about the syntax and how to run QUAST [in its documentation](http://quast.bioinf.spbau.ru/manual.html). The output directory contains text files of all the information, but there is also a useful html summary file. Here's a portion of it:
 
 <center><img src="{{ site.url }}/images/quast_output.png"></center>  
 
 <br>
-The columns are information about each of our 4 genomes and the rows are different metrics. The majority of the rows starting from the top are in relation to the reference we provided, then the last few starting with "# contigs" are reference-independent. In the html, you can highlight the row names to get some help on what they mean, and there is more info in the [manual](http://quast.bioinf.spbau.ru/manual.html) of course. The cells are shaded across the assemblies for each row from red to blue, for worst to best, but this is only a loose guide to help your eye, as differences can be negligible and some rows are more important than others.  
+The columns here hold information about each of our 4 assemblies and the rows are different metrics. The majority of the rows starting from the top are in relation to the reference we provided, then the last few starting with "# contigs" are reference-independent. In the interactive html page, you can highlight the row names to get some help on what they mean, and there is more info in the [manual](http://quast.bioinf.spbau.ru/manual.html) of course. The cells are shaded across the assemblies for each row from red to blue, indicating "worst" to "best", but this is only a loose guide to help your eye, as differences can be negligible or up to interpretation, and some rows are more important than others.  
 
-The first thing to notice is that all of them did pretty well in reconstructing about 98.5% of the reference genome, which I think is pretty damn good, but none of them got 100%. This is to be expected for possibly a few reasons, but most likely it's just because short Illumina reads alone aren't able to assemble repetitive regions that extend longer than the paired-read fragment length. We can also see our assemblies aligned across about 7,550 genes out of the 7,705 that are annotated in the reference genome, and looking at mismatches per 100 kbp we can see we're down around 3-5 SNPs per 100 kbp, which is close enough to be considered mono-clonal in my book. Moving down to the reference-independent section we can see which assemblies cover the most bps with the fewest contigs. This doesn't mean everything either, but fewer contigs does provide more genomic context, giving you greater insight into synteny of genes, which can be very helpful. 
+The first thing to notice is that all of them reconstructed about 98.5% of the reference genome, which I think is pretty damn good, but none of them got 100%. This is to be expected for possibly a few reasons, but most likely it's just because short Illumina reads alone aren't able to assemble repetitive regions that extend longer than the paired-read fragment length. We can also see that our assemblies aligned across about 7,550 genes out of the 7,705 that are annotated in the reference genome, and looking at mismatches per 100 kbp we can see we're down around 3-5 SNVs per 100 kbp, which is close enough to be considered monoclonal in my book (is there a consensus definition for prokaryotes on this?). Moving down to the reference-independent section in the table we can see which assemblies cover the most bps with the fewest contigs. This doesn't mean everything either, but fewer contigs covering the same region does provide more information on synteny, which can be very important. 
 <br>
 ## Read recruitment
-Another metric to assess the quality of an assemble is to see how well the reads that went into the assembly recruit back to it. It's sort of a way of checking to see how much of the data that went in actually ended up getting used. I usually do this for environmental metagenomes, and I'm not sure if it will be as useful when working with an isolate genome like this, but let's see.  
+Another metric to assess the quality of an assemble is to see how well the reads that went into the assembly recruit back to it. It's sort of a way of checking to see how much of the data that went in actually ended up getting used. I usually do this for environmental metagenomes, and it has been informative in some cases there, but here –  with an isolate genome when the few assemblies tested performed pretty similarly – it turns out that they all pretty much recruited reads just as efficiently (with the default settings of [bowtie2 v2.2.5](https://github.com/BenLangmead/bowtie2) at least). So I'm leaving the mention of this in here because it can be helpful with some datasets.  
 
-I most often use [bowtie2](https://github.com/BenLangmead/bowtie2) for my mapping needs. The process involves first generating an index of what will be the reference you are going to recruit reads to, and then running the mapping. I renamed the 4 assembly output fastas for clarity, and ran the mapping with the following commands:
-
-```bash
-bowtie2-build spades_default.fa spades_default.btindex
-bowtie2 -q -x spades_default.btindex -1 ../BCep_R1_paired.fastq.gz -2 ../BCep_R2_paired.fastq.gz -p 25 -S spades_default.sam
-
-bowtie2-build spades_kmers_set_careful_assembly.fa spades_kmers_set_careful_assembly.btindex
-bowtie2 -q -x spades_kmers_set_careful_assembly.btindex -1 ../BCep_R1_paired.fastq.gz -2 ../BCep_R2_paired.fastq.gz -p 25 -S spades_kmers_set_careful_assembly.sam
-
-bowtie2-build megahit_default.fa megahit_default.btindex
-bowtie2 -q -x megahit_default.btindex -1 ../BCep_R1_paired.fastq.gz -2 ../BCep_R2_paired.fastq.gz -p 25 -S megahit_default.sam
-
-bowtie2-build megahit_default_err_corr.fa megahit_default_err_corr.btindex
-bowtie2 -q -x megahit_default_err_corr.btindex -1 ../BCep_R1_paired.fastq.gz -2 ../BCep_R2_paired.fastq.gz -p 25 -S megahit_default_err_corr.sam
-```
-
-And they all recruited pretty much the same. There's also a little bit of apples to oranges due to the error-corrected reads vs non. So this wasn't that helpful here, but I'm going to leave this in because it can be helpful with some datasets.  
-
-There could be more to look into here, but I'm pretty impressed with how well they all did. For the reason of maximizing insight into synteny as mentioned above from the QUAST output, I chose to move forward with the SPAdes assembly done with the `--careful` and specific kmer settings. 
+As far as selecting which of our assemblies to move forward with, since they all performed reasonably well, for the reason of maximizing insight into synteny as mentioned above from the QUAST output, I chose to move forward with the SPAdes assembly done with the `--careful` and specific kmer settings.
 <br>
-## In other cases...
-Again, it's pretty nice here because we have a known reference genome. When that's not that case, it's much harder to be confident you are making the best decisions you can.  Then I might go further down the pipeline with multiple assemblies to see which perform better for certain tasks. For instance, if recovering bins from a metagenomes is the goal, you might want to start that process and see which assembly is better suited for that. As I mentioned above, in some cases I've had better results binning out representative genomes from metagenomic assemblies with seemingly worse overall summary statistics. And if I had just stopped at the assembly summary level, and didn't run all through my binning process as well, I wouldn't have caught that. Or if you're question is more about functional potential of the whole community, and not so much about binning things out, then maybe seeing which assembly gives you better annotations could help you decide. The bottom line is it's difficult, and there is no one answer, but do the best you can!  
+## What about when you don't have a reference?
+Again, it's pretty nice here because we have a known reference genome. When that's not that case, it's much harder to be confident you are making the best decisions you can. Then I might go further down the path of processing and analysis with multiple assemblies. Some might be better than others for your particular questions, and that might not be decipherable with summary statistics.  
+
+For instance, if recovering bins from a metagenomes is the goal, you might want to start that process and see which assembly is better suited for that. As I mentioned above, in some cases I've had better results binning out representative genomes from metagenomic assemblies with seemingly worse overall summary statistics. And if I had just stopped at the assembly summary level, and didn't run all of them through my binning process as well, I wouldn't have caught that. Or if you're question is more about the functional potential of the whole community, or even looking for specific genes in a metagenome, and not so much about binning things out, then maybe seeing which assembly gives you better annotations could help you decide. The bottom line is it's difficult, and there is no one answer, but we do the best we can.  
 <br>
 
 ---
 <br>
 # Analysis
-Now that we have selected the assembly we're going to move forward with, it's time to get to some analysis of it finally! And because of how damn glorious it is is oh so many ways, the first place I probably always start is with [anvi'o](http://merenlab.org/software/anvio/).  
-<br>
-
----
+Now that we/ve selected the assembly we're going to move forward with, we can finaly begin to do some analysis. And because of how damn glorious it is, [anvi'o](http://merenlab.org/software/anvio/) is a great place to start.
 <br>
 ## anvi'o
-It's not easy to explain what makes anvi'o so damn awesome. And after using it pretty regularly for years now, I've resigned myself to the fact I also don't think it's possible to just summarize all the things it can help you do and all the questions it can help you answer, simply because it's too expansive and too flexible. anvi'o can't be caged! So, for the sake of time, I'm not even going to try to explain it right now. But if you work with pretty much anything 'omics, it is worth getting to know it and spending some time looking through the excellent documentation/examples/blog posts over at [merenlab.org](http://merenlab.org/), and the [anvi'o section](http://merenlab.org/software/anvio/) in particular. And for now we'll just go over how I use it when I have a single genome I'm working with, of which the major steps are laid out in the [metagenomic workflow presented here](http://merenlab.org/2016/06/22/anvio-tutorial-v2/) as much of the processing steps are the same.  
+In one sentence, [anvi'o](http://merenlab.org/software/anvio/) is a very powerful and user-friendly data visualization and exploration platform. It's powerful mostly because its developers perpetually aim to make it inherently as expansive and flexible as possible, and it's user-friendly because they actively provide loads of [well-documented workflows, tutorials, and blog posts](http://merenlab.org/software/anvio/), and there is excellent help on how you can [get anvi'o installed here](http://merenlab.org/2016/06/26/installation-v2/).  
 
-The heart of anvi'o operates on a contigs database, and that's what we're going to make first.    
+As with all things in this vein, anvi'o isn't meant to be the "one way" you will do things, but rather it is a great platform for integrating many facets of your data. This integration only facilitates your exploration and can help guide you to where you might want to go deeper, but the underlying infrastructure also contains easily accessible, parsed-down tables and files of information ready for you to investigate specific questions at your whim.  
+
+Here we're going to put our isolate genome assembly into the anvi'o framework. Many of the major steps we are going to be performing are laid out in the [metagenomic workflow presented here](http://merenlab.org/2016/06/22/anvio-tutorial-v2/), as much of the processing is the same.  
+
+First we need to generate what anvi'o calls a [contigs database](http://merenlab.org/2016/06/22/anvio-tutorial-v2/#creating-an-anvio-contigs-database). This contains the contigs from our assembly and information about them. The following script will organize our contigs in an anvi'o-friendly way, generate some basic stats about them, and use the program [Prodigal](https://github.com/hyattpd/Prodigal) to identify [open-reading frames](https://en.wikipedia.org/wiki/Open_reading_frame).
+
+```anvio
+anvi-gen-contigs-database -f spades_kmers_set_careful_assembly.fa -o contigs.db -n B_cepacia_isolate
+```
+
+Now that we have our `contigs.db` that holds our sequences and some basic information about them, we can start adding more. This is one of the places where the flexibility comes into play, but for now we'll move forward with some parts of a general anvi'o workflow, including:
+
+• using the program [HMMER](http://hmmer.org/) with 3 profile hidden Markov models to scan for bacterial single-copy genes [(from Campbell et al. 2013)](http://www.pnas.org/content/110/14/5540.short), archaeal single-copy genes [(from Rinke et al. 2013)](http://www.nature.com/nature/journal/v499/n7459/full/nature12352.html), and bacterial, archaeal, and eukaryotic ribosomal RNAs [(from Tørsten Seemann's Barrnap tool)](https://github.com/tseemann/barrnap) (see the bottom of page 7 [here](http://eddylab.org/software/hmmer3/3.1b2/Userguide.pdf) for a good explanation of what exactly a hidden Markov model is in the realm of sequences)
+
+• using [NCBI COGs](https://www.ncbi.nlm.nih.gov/COG/) to functionally annotate the open-reading frames [Prodigal](https://github.com/hyattpd/Prodigal) predicted with either [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi) or [DIAMOND](https://github.com/bbuchfink/diamond)
+
+• and using a tool called [Centrifuge](https://ccb.jhu.edu/software/centrifuge/manual.shtml#obtaining-centrifuge) taxonomical classification of the found open-reading frames
+
+```bash
+  # HMM searching for single-copy genes and rRNAs
+anvi-run-hmms -c contigs.db -T 20
+
+  # functional annotation with BLASTp against NCBI's COGs
+anvi-run-ncbi-cogs -c contigs.db --num-threads 20 --cog-data-dir ~/happy_bin/anvi_ncbi_cogs/ --search-with blastp
+
+  # exporting Prodigal-identified open-reading frames from anvi'o
+anvi-get-dna-sequences-for-gene-calls -c contigs.db -o gene_calls.fa
+
+  # running then through taxonomic classifier
+centrifuge -f -x ~/happy_bin/centrifuge_db/nt/nt gene_calls.fa -S centrifuge_hits.tsv -p 10 &
+
+  # importing the taxonomy results into our anvi'o contigs database
+anvi-import-taxonomy -c contigs.db -i centrifuge_report.tsv centrifuge_hits.tsv -p centrifuge
+```
+
+Ok, great, so we've got quite a bit of info into our contigs database now. The next thing we want to do is recruit our reads that built our assembly, to our assembly, so we can incorporate coverage information. I did the mapping with [bowtie2](https://github.com/BenLangmead/bowtie2) as mentioned above:
+
+```bash
+  # building bowtie index from our selected assembly fasta file
+bowtie2-build spades_kmers_set_careful_assembly.fa spades_kmers_set_careful_assembly.btindex
+  # mapping our reads
+bowtie2 -q -x spades_kmers_set_careful_assembly.btindex -1 ../BCep_R1_paired.fastq.gz -2 ../BCep_R2_paired.fastq.gz -p 25 -S spades_kmers_set_careful_assembly.sam
+  # converting to a bam file
+samtools view -bS spades_kmers_set_careful_assembly.sam > B_cep_assembly.bam  
+  # sorting and indexing our bam file (can be done with samtools also)
+anvi-init-bam B_cep_assembly.bam -o B_cep.bam
+```
+And we then integrate this mapping information into anvi'o with the `anvi-profile` program. There is a lot going on with this step and a lot of things you can play with, discussed [here](http://merenlab.org/2016/06/22/anvio-tutorial-v2/#anvi-profile), but for our purposes right now it's mostly about giving us coverage information for each contig:
+
+```bash
+anvi-profile -i B_cep.bam -c contigs.db -M 1000 -T 8 --cluster-contigs -o B_cep_profiled/
+```
+And now that that's done, we're ready to take a look at our assembly in anvi'o's interactive mode:
+
+```bash
+anvi-interactive -c contigs.db -p B_cep_profiled/PROFILE.db --title "B. cepacia assembly"
+```
+<br>
+
+<center><img src="{{ site.url }}/images/fresh_anvi.png"></center>  
+
+<br>
+So there is a lot going on here at first glance, especially if you're not yet familiar with how anvi'o organizes things. The interactive interface is extraordinarily expansive and I'd suggest reading about it [here](http://merenlab.org/2016/06/22/anvio-tutorial-v2/#anvi-interactive) and [here](http://merenlab.org/2016/02/27/the-anvio-interactive-interface/) to start, but there's lots more.  
+
+For our purposes here, at the center of the figure is a hierarchical clustering of the contigs from our assembly, here clustered based on tetranucleotide frequency and coverage. So each leaf represents a contig (or a fragment of a contig as each is broken down into a max of ~20,000bps, but for right now I'll just be referring to them as contigs). Then radiating out from the center are layers of information ("Parent", "Taxonomy", "Length", etc.), with each layer displaying information for each contig.  
+
+The first thing that jumps out to me here is the second layer colored light purple, labeled "Taxonomy". There is actually a color for each of contig for whatever taxonomy was assigned to the majority of genes in that particular contig, showing here that the genes in almost the entire assembly were identified as *Burkholderia* – minus the one white bar at ~3:00 o'clock which was not classified as anything. The next thing that stands out is how stable the mean coverage is across all contigs, other than mostly just that same area on the right side, where the 2 identified ribosomal RNAs are found. This is to be expected, because of their highly conserved nature they are difficult to assembly and generally have more non-specific mapping problems. This is great and shows the culture really seems to have been axenic.  
+
+Just for a quick comparison, here is the same typ of figure, but from an enrichment culture:  
+<br>
+
+<center><img src="{{ site.url }}/images/other_anvi.png"></center>  
+
+<br>
+Here the highlighted contigs, labeled "Bin 1", represent the targeted cultivar, demonstrating a nice example of how anvi'o can help you manually curate bins you're trying derive from assemblies.  
+
+Back to our gloriously clean example, we can select all of our contigs and check estimated levels of completion and redundancy based on the single-copy marker genes we scanned for earlier:  
+<br>
+
+<center><img src="{{ site.url }}/images/per_com_anvi.png"></center>  
+
+<br>
+Which shows us based on the [Campbell et al. 2013](http://www.pnas.org/content/110/14/5540.short) bacterial single-copy marker genes, we doing pretty good. But of course this approach doesn't actually add up to 100% completion and 0% redundancy in all organisms (any?), so for comparison's sake, I ran the ATCC 25416 reference genome through the same pipeline and it seems these are just the numbers for this genome based on this marker-gene set:  
+<br>
+
+<center><img src="{{ site.url }}/images/ref_per_com_anvi.png"></center>  
+
+<br>
+Though we still see here this doesn't mean we were able to reconstruct the entire isolate genome, as we are ~150Mbps short, like we saw with the QUAST output above.  
+
+Okay, so we didn't need much manual curation in this case, but it was good to visually inspect the coverage of our assembly to make sure nothing weird was going on. Now we're going to start putting our new isolate genome into some context.  
 <br>
 
 ---
 <br>
-## Annotation
 
 <br>
+<center><img src="{{ site.url }}/images/under_construction.jpeg"></center>
 
----
 <br>
+<h1><center>Under construction...</center></h1>
+<br>
+
+
+
 ## Phylogenomics
+Pull near-relative references to estimate where your newly acquired isolates fit in:
+<br>
+
+<center><img src="{{ site.url }}/images/phylo_syn.png"></center>  
 
 <br>
 
 ---
 <br>
 ## Distributions
+Pull available metagenomes to assess distributions of newly aquired genomic lineages:
+<br>
+
+<center><img src="{{ site.url }}/images/dist_syn.png"></center>  
+
+<br>
+
+---
+<br>
+## Pangenomics
+Combine pangenomics and metagenomics to characterize population variability and ecological delineations:
+<br>
+
+<center><img src="{{ site.url }}/images/pan_syn.png"></center>  
+
+<br>
 
 
 
