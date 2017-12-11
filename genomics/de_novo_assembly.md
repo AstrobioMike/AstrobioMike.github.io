@@ -252,27 +252,19 @@ anvi-get-sequences-for-hmm-hits -c contigs.db --hmm-sources Campbell_et_al --get
 
 And sure enough, pulling the "RecA" sequence from that file and running a BLASTp on it also gives us 100% identical to our *B. cepacia* ATCC 25416 reference (well and a lot of other *Burkholderia* strains since we're at the amino acid level now).  
 
-We can also generate some summary statistics on our assembly, including estimated percent completion and redundancy based on the presence/absence of the single-copy marker genes we scanned for above. We first need to add all of our contigs as a "bin" in a stored "collection", (though I'll be bugging [@merenbay](https://twitter.com/merenbey) about changing things so we don't need to do this shortly, hehe). For now, here are the few steps we can run to summarize our isolate-genome assembly:
+We can also generate some summary statistics on our assembly, including estimated percent completion and redundancy based on the presence/absence of the single-copy marker genes we scanned for above. Here are the two steps needed to summarize our isolate-genome assembly: 
 
 ```bash
-anvi-export-table contigs.db --table splits_basic_info
-
-  # making the file we need
-cut -f1 splits_basic_info.txt | sed '1d' > splits
-for i in `cat splits`; do echo "B_cep"; done > bin
-paste splits bin > collection.txt
-rm splits bin
-
-  # importing and summarizing
-anvi-import-collection -c contigs.db -p B_cep_profiled/PROFILE.db -C B_cepacia collection.txt
-anvi-summarize -c contigs.db -p B_cep_profiled/PROFILE.db -C B_cepacia -o B_cepacia_assembly_summary
+  # this is adding all contigs to a group called "DEFAULT"
+anvi-script-add-default-collection -p B_cep_ref_anvi.bam-ANVIO_PROFILE/PROFILE.db
+  # and here is our summary command
+anvi-summarize -c contigs.db -p B_cep_profiled/PROFILE.db -C DEFAULT -o B_cepacia_assembly_summary/
 ```
 A lot was generated with that, now found in our new directory, "B_cepacia_assembly_summary/", including an interactive html document you can open and explore. If we glance at the "bins_summary.txt" file we can see some summary statistics of our assembled genome, including the completion/redundancy estimates:
 
 <center><img src="{{ site.url }}/images/bin_summary.png"></center>  
 
 <br>
-
 Which shows us, in the second column, the majority of taxonomy calls by [Centrifuge](https://ccb.jhu.edu/software/centrifuge/manual.shtml#obtaining-centrifuge) were actually for the right genus, that's always nice. Also, based on the [Campbell et al. 2013](http://www.pnas.org/content/110/14/5540.short) bacterial single-copy marker genes, our assembly is estimated to be ~99.3% complete with ~1.4% redundancy. But of course this approach doesn't actually add up to 100% completion and 0% redundancy in all organisms (any?), so for comparison's sake, I ran the ATCC 25416 reference genome through the same pipeline (also stored in the downloaded data), and it seems these are just the numbers for this genome based on this marker-gene set:  
 
 <center><img src="{{ site.url }}/images/ref_summary.png"></center>  
