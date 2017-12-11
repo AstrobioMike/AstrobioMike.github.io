@@ -176,7 +176,7 @@ For instance, if recovering bins from a metagenomes is the goal, you might want 
 ---
 <br>
 # Exploring our assembly with anvi'o
-Now that we/ve selected the assembly we're going to move forward with, we can start to take a deeper look at it. And because of how damn glorious it is, [anvi'o](http://merenlab.org/software/anvio/) is a great place to start.  
+Now that we've selected the assembly we're going to move forward with, we can start to take a deeper look at it. And because of how damn glorious it is, [anvi'o](http://merenlab.org/software/anvio/) is a great place to start.  
 
 Trying my best to summarize it in one sentence, [anvi'o](http://merenlab.org/software/anvio/) is a very powerful and user-friendly data visualization and exploration platform. It's powerful mostly because its developers perpetually aim to make it inherently as expansive and flexible as possible, and it's user-friendly because they actively provide and update loads of [well-documented workflows, tutorials, and blog posts](http://merenlab.org/software/anvio/). Basically, if you do anything 'omics-related, I highly recommend getting to know it. There is excellent help on how you can [get anvi'o installed here](http://merenlab.org/2016/06/26/installation-v2/).  
 
