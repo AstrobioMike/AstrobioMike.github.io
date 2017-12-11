@@ -9,25 +9,6 @@ permalink: /genomics/de_novo_assembly
 
 {% include _side_tab_genomics.html %}
 
-<br>
-<center><img src="{{ site.url }}/images/under_construction.jpeg"></center>
-
-<br>
-<h1><center>Under construction...</center></h1>
-<br>
-
----
----
-<br>
-
----
----
-<br>
-
----
----
-<br>
-
 Here we're going to run through some of the things I do when assembling and analyzing a newly sequenced isolate genome. But first, the important part:
 
 <div class="warning">
@@ -194,29 +175,28 @@ For instance, if recovering bins from a metagenomes is the goal, you might want 
 
 ---
 <br>
-# Analysis
-Now that we/ve selected the assembly we're going to move forward with, we can finaly begin to do some analysis. And because of how damn glorious it is, [anvi'o](http://merenlab.org/software/anvio/) is a great place to start.
-<br>
-## anvi'o
-In one sentence, [anvi'o](http://merenlab.org/software/anvio/) is a very powerful and user-friendly data visualization and exploration platform. It's powerful mostly because its developers perpetually aim to make it inherently as expansive and flexible as possible, and it's user-friendly because they actively provide loads of [well-documented workflows, tutorials, and blog posts](http://merenlab.org/software/anvio/), and there is excellent help on how you can [get anvi'o installed here](http://merenlab.org/2016/06/26/installation-v2/).  
+# Exploring our assembly with anvi'o
+Now that we/ve selected the assembly we're going to move forward with, we can start to take a deeper look at it. And because of how damn glorious it is, [anvi'o](http://merenlab.org/software/anvio/) is a great place to start.  
 
-As with all things in this vein, anvi'o isn't meant to be the "one way" you will do things, but rather it is a great platform for integrating many facets of your data. This integration only facilitates your exploration and can help guide you to where you might want to go deeper, but the underlying infrastructure also contains easily accessible, parsed-down tables and files of information ready for you to investigate specific questions at your whim.  
+Trying my best to summarize it in one sentence, [anvi'o](http://merenlab.org/software/anvio/) is a very powerful and user-friendly data visualization and exploration platform. It's powerful mostly because its developers perpetually aim to make it inherently as expansive and flexible as possible, and it's user-friendly because they actively provide and update loads of [well-documented workflows, tutorials, and blog posts](http://merenlab.org/software/anvio/). Basically, if you do anything 'omics-related, I highly recommend getting to know it. There is excellent help on how you can [get anvi'o installed here](http://merenlab.org/2016/06/26/installation-v2/).  
 
-Here we're going to put our isolate genome assembly into the anvi'o framework. Many of the major steps we are going to be performing are laid out in the [metagenomic workflow presented here](http://merenlab.org/2016/06/22/anvio-tutorial-v2/), as much of the processing is the same.  
+As with all things in this vein though, anvi'o isn't meant to be the "one way" you will do things, but rather it is a great platform for integrating many facets of your data. This integration not only facilitates your exploration and can help guide you to where you might want to go deeper, but the underlying infrastructure also contains easily accessible, parsed-down tables and files of information – all waiting for you to investigate specific questions at your whim.  
 
-First we need to generate what anvi'o calls a [contigs database](http://merenlab.org/2016/06/22/anvio-tutorial-v2/#creating-an-anvio-contigs-database). This contains the contigs from our assembly and information about them. The following script will organize our contigs in an anvi'o-friendly way, generate some basic stats about them, and use the program [Prodigal](https://github.com/hyattpd/Prodigal) to identify [open-reading frames](https://en.wikipedia.org/wiki/Open_reading_frame).
+Here we're going to put our isolate-genome assembly into the anvi'o framework and see just a few of the ways it can help us begin to look at our assembled genome (metaphorically and kind of literally). Many of the major steps we are going to be performing here are laid out in the [metagenomic workflow presented here](http://merenlab.org/2016/06/22/anvio-tutorial-v2/), as much of the processing is the same, and I recommend you spend some time reading through that tutorial when you can – whether you have metagenomic data to work with or not. Here, we're just using anvi'o a bit, and really won't be digging things, so please be sure to spend some time looking through [the anvi'o site](http://merenlab.org/software/anvio/) to begin exploring its potential.  
+
+For us to get our assembly anvi'o, first we need to generate what it calls a [contigs database](http://merenlab.org/2016/06/22/anvio-tutorial-v2/#creating-an-anvio-contigs-database). This contains the contigs from our assembly and information about them. The following script will organize our contigs in an anvi'o-friendly way, generate some basic stats about them, and use the program [Prodigal](https://github.com/hyattpd/Prodigal) to identify [open-reading frames](https://en.wikipedia.org/wiki/Open_reading_frame).
 
 ```anvio
 anvi-gen-contigs-database -f spades_kmers_set_careful_assembly.fa -o contigs.db -n B_cepacia_isolate
 ```
 
-Now that we have our `contigs.db` that holds our sequences and some basic information about them, we can start adding more. This is one of the places where the flexibility comes into play, but for now we'll move forward with some parts of a general anvi'o workflow, including:
+Now that we have our `contigs.db` that holds our sequences and some basic information about them, we can start adding more. This is one of the places where the flexibility comes into play, but for now we'll just move forward with some parts of a general anvi'o workflow, including:
 
-• using the program [HMMER](http://hmmer.org/) with 3 profile hidden Markov models to scan for bacterial single-copy genes [(from Campbell et al. 2013)](http://www.pnas.org/content/110/14/5540.short), archaeal single-copy genes [(from Rinke et al. 2013)](http://www.nature.com/nature/journal/v499/n7459/full/nature12352.html), and bacterial, archaeal, and eukaryotic ribosomal RNAs [(from Tørsten Seemann's Barrnap tool)](https://github.com/tseemann/barrnap) (see the bottom of page 7 [here](http://eddylab.org/software/hmmer3/3.1b2/Userguide.pdf) for a good explanation of what exactly a hidden Markov model is in the realm of sequences)
+• using the program [HMMER](http://hmmer.org/) with 3 profile hidden Markov models to scan for: 1) bacterial single-copy genes [(from Campbell et al. 2013)](http://www.pnas.org/content/110/14/5540.short); 2) archaeal single-copy genes [(from Rinke et al. 2013)](http://www.nature.com/nature/journal/v499/n7459/full/nature12352.html); and 3) bacterial, archaeal, and eukaryotic ribosomal RNAs [(from Tørsten Seemann's Barrnap tool)](https://github.com/tseemann/barrnap) (see the bottom of page 7 [here](http://eddylab.org/software/hmmer3/3.1b2/Userguide.pdf) for a good explanation of what exactly a "hidden Markov model" is in the realm of sequence data)
 
 • using [NCBI COGs](https://www.ncbi.nlm.nih.gov/COG/) to functionally annotate the open-reading frames [Prodigal](https://github.com/hyattpd/Prodigal) predicted with either [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi) or [DIAMOND](https://github.com/bbuchfink/diamond)
 
-• and using a tool called [Centrifuge](https://ccb.jhu.edu/software/centrifuge/manual.shtml#obtaining-centrifuge) taxonomical classification of the found open-reading frames
+• and using a tool called [Centrifuge](https://ccb.jhu.edu/software/centrifuge/manual.shtml#obtaining-centrifuge) for taxonomic classification of the found open-reading frames
 
 ```bash
   # HMM searching for single-copy genes and rRNAs
@@ -235,7 +215,7 @@ centrifuge -f -x ~/happy_bin/centrifuge_db/nt/nt gene_calls.fa -S centrifuge_hit
 anvi-import-taxonomy -c contigs.db -i centrifuge_report.tsv centrifuge_hits.tsv -p centrifuge
 ```
 
-Ok, great, so we've got quite a bit of info into our contigs database now. The next thing we want to do is recruit our reads that built our assembly, to our assembly, so we can incorporate coverage information. I did the mapping with [bowtie2](https://github.com/BenLangmead/bowtie2) as mentioned above:
+The last thing we want to add right now is the mapping information from recruiting our reads to the assembly, which I did with [bowtie2](https://github.com/BenLangmead/bowtie2) as mentioned above:
 
 ```bash
   # building bowtie index from our selected assembly fasta file
@@ -247,12 +227,60 @@ samtools view -bS spades_kmers_set_careful_assembly.sam > B_cep_assembly.bam
   # sorting and indexing our bam file (can be done with samtools also)
 anvi-init-bam B_cep_assembly.bam -o B_cep.bam
 ```
-And we then integrate this mapping information into anvi'o with the `anvi-profile` program. There is a lot going on with this step and a lot of things you can play with, discussed [here](http://merenlab.org/2016/06/22/anvio-tutorial-v2/#anvi-profile), but for our purposes right now it's mostly about giving us coverage information for each contig:
+
+We can then integrate this mapping information into anvi'o with the `anvi-profile` program, which generates another type of database anvi'o calls a "profile database". There is a lot going on with this step and a lot of things you can play with, discussed [here](http://merenlab.org/2016/06/22/anvio-tutorial-v2/#anvi-profile), but for our purposes right now it's mostly about giving us coverage information for each contig:
 
 ```bash
 anvi-profile -i B_cep.bam -c contigs.db -M 1000 -T 8 --cluster-contigs -o B_cep_profiled/
 ```
-And now that that's done, we're ready to take a look at our assembly in anvi'o's interactive mode:
+
+Ok, great, so we've just generated and put quite a bit of information about our assembly into our contigs and profile database. And this being anvi'o, it's now very easy to access specifics of that information when we want it (you can see all of the available programs by typing `anvi-` and hitting tab twice).  
+
+For example, one of the commands we just ran, `anvi-run-hmms`, searched for ribosomal RNAs and single-copy genes we might be interested in. We can ask anvi'o to give us hits to those HMMs using the `anvi-get-sequences-for-hmm-hits` (and adding the flag `-h` will tell you all about how to use the program). Let's say we want to see what was identified as ribosomal RNA: 
+
+```bash
+anvi-get-sequences-for-hmm-hits -c contigs.db --hmm-sources Ribosomal_RNAs -o rRNAs.fa
+```
+
+This wrote all of the ribosomal RNA hits to a new file called `rRNAs.fa`, and if we look in that file we see 2 were found, a 16S and a 23S. For our sanity, we can then quickly BLAST them, and in this case be happy because they are both 100% identical to *B. cepacia* ATCC 25416 (it's cool when things are actually working, isn't it?).  
+
+We can similarly pull out all of the single-copy genes our bacterial profile HMM searched, translated into their amino acid sequences:
+
+```bash
+anvi-get-sequences-for-hmm-hits -c contigs.db --hmm-sources Campbell_et_al --get-aa-sequences -o bacterial_SCGs.faa
+```
+
+And sure enough, pulling the "RecA" sequence from that file and running a BLASTp on it also gives us 100% identical to our *B. cepacia* ATCC 25416 reference (well and a lot of other *Burkholderia* strains since we're at the amino acid level now).  
+
+We can also generate some summary statistics on our assembly, including estimated percent completion and redundancy based on the presence/absence of the single-copy marker genes we scanned for above. We first need to add all of our contigs as a "bin" in a stored "collection", (though I'll be bugging [@merenbay](https://twitter.com/merenbey) about changing things so we don't need to do this shortly, hehe). For now, here are the few steps we can run to summarize our isolate-genome assembly:
+
+```bash
+anvi-export-table contigs.db --table splits_basic_info
+
+  # making the file we need
+cut -f1 splits_basic_info.txt | sed '1d' > splits
+for i in `cat splits`; do echo "B_cep"; done > bin
+paste splits bin > collection.txt
+rm splits bin
+
+  # importing and summarizing
+anvi-import-collection -c contigs.db -p B_cep_profiled/PROFILE.db -C B_cepacia collection.txt
+anvi-summarize -c contigs.db -p B_cep_profiled/PROFILE.db -C B_cepacia -o B_cepacia_assembly_summary
+```
+A lot was generated with that, now found in our new directory, "B_cepacia_assembly_summary/", including an interactive html document you can open and explore. If we glance at the "bins_summary.txt" file we can see some summary statistics of our assembled genome, including the completion/redundancy estimates:
+
+<center><img src="{{ site.url }}/images/bin_summary.png"></center>  
+
+<br>
+
+Which shows us, in the second column, the majority of taxonomy calls by [Centrifuge](https://ccb.jhu.edu/software/centrifuge/manual.shtml#obtaining-centrifuge) were actually for the right genus, that's always nice. Also, based on the [Campbell et al. 2013](http://www.pnas.org/content/110/14/5540.short) bacterial single-copy marker genes, our assembly is estimated to be ~99.3% complete with ~1.4% redundancy. But of course this approach doesn't actually add up to 100% completion and 0% redundancy in all organisms (any?), so for comparison's sake, I ran the ATCC 25416 reference genome through the same pipeline (also stored in the downloaded data), and it seems these are just the numbers for this genome based on this marker-gene set:  
+
+<center><img src="{{ site.url }}/images/ref_summary.png"></center>  
+
+<br>
+Though we get the same estimates of completion and redundancy based on this marker-gene set, we see again here this doesn't mean we were able to reconstruct the entire isolate genome, as we are still ~130 Mbps short, like we saw with the QUAST output above.  
+
+But great, things look pretty much as they should so far. We can also visually inspect our assembly, and how the reads that went into it recruit to it. In theory, if all the DNA in the assembly came from the same organisms (i.e. it's a clean assembly), there should be pretty even coverage across the whole thing. So let's finally take a look with `anvi-interactive`. 
 
 ```bash
 anvi-interactive -c contigs.db -p B_cep_profiled/PROFILE.db --title "B. cepacia assembly"
@@ -262,51 +290,30 @@ anvi-interactive -c contigs.db -p B_cep_profiled/PROFILE.db --title "B. cepacia 
 <center><img src="{{ site.url }}/images/fresh_anvi.png"></center>  
 
 <br>
-So there is a lot going on here at first glance, especially if you're not yet familiar with how anvi'o organizes things. The interactive interface is extraordinarily expansive and I'd suggest reading about it [here](http://merenlab.org/2016/06/22/anvio-tutorial-v2/#anvi-interactive) and [here](http://merenlab.org/2016/02/27/the-anvio-interactive-interface/) to start, but there's lots more.  
+So there is a lot going on here at first glance, especially if you're not yet familiar with how anvi'o organizes things. The interactive interface is extraordinarily expansive and I'd suggest reading about it [here](http://merenlab.org/2016/06/22/anvio-tutorial-v2/#anvi-interactive) and [here](http://merenlab.org/2016/02/27/the-anvio-interactive-interface/) to start digging into it some more when you can, but for our purposes here I'll just give a quick crash course.  
 
-For our purposes here, at the center of the figure is a hierarchical clustering of the contigs from our assembly, here clustered based on tetranucleotide frequency and coverage. So each leaf represents a contig (or a fragment of a contig as each is broken down into a max of ~20,000bps, but for right now I'll just be referring to them as contigs). Then radiating out from the center are layers of information ("Parent", "Taxonomy", "Length", etc.), with each layer displaying information for each contig.  
+At the center of the figure is a hierarchical clustering of the contigs from our assembly (here clustered based on tetranucleotide frequency and coverage). So each tip (leaf) represents a contig (or a fragment of a contig as each is actually broken down into a max of ~20,000bps, but for right now I'll just be referring to them as contigs). Then radiating out from the center are layers of information ("Parent", "Taxonomy", "Length", etc.), with each layer displaying information for each contig.  
 
-The first thing that jumps out to me here is the second layer colored light purple, labeled "Taxonomy". There is actually a color for each of contig for whatever taxonomy was assigned to the majority of genes in that particular contig, showing here that the genes in almost the entire assembly were identified as *Burkholderia* – minus the one white bar at ~3:00 o'clock which was not classified as anything. The next thing that stands out is how stable the mean coverage is across all contigs, other than mostly just that same area on the right side, where the 2 identified ribosomal RNAs are found. This is to be expected, because of their highly conserved nature they are difficult to assembly and generally have more non-specific mapping problems. This is great and shows the culture really seems to have been axenic.  
+The first thing that jumps out to me here is the second layer colored light purple, labeled "Taxonomy". There is actually a color for each contig for whatever taxonomy was assigned to the majority of genes in that particular contig. This solid bar all around tells us that the genes in almost the entire assembly were identified as *Burkholderia* – minus the one white bar at ~3:00 o'clock which was not classified as anything. The next thing that stands out is how stable the mean coverage is across all contigs, other than mostly just that same area on the right side, where the 2 identified ribosomal RNAs are found. Some areas are expected to have higher coverage like this, particularly ribosomal RNA for our isolate. According to [IMG](https://img.jgi.doe.gov/cgi-bin/m/main.cgi?section=TaxonDetail&page=taxonDetail&taxon_oid=2509276048), *B. cepacia* ATCC 25416 has 7 16S copies and 9 23S copies, which would complicate assembly if they aren't all identical, and would inflate their coverage compared to the parts of the genome that exist in single copy. Overall this is great and shows the culture really seems to have been axenic.  
 
-Just for a quick comparison, here is the same typ of figure, but from an enrichment culture:  
+Just for a quick comparison, here is the same type of figure, but from an enrichment culture, rather than axenic:  
 <br>
 
 <center><img src="{{ site.url }}/images/other_anvi.png"></center>  
 
 <br>
-Here the highlighted contigs, labeled "Bin 1", represent the targeted cultivar, demonstrating a nice example of how anvi'o can help you manually curate bins you're trying derive from assemblies.  
+Here the highlighted contigs, labeled "Bin 1", represent the targeted cultivar from this sequencing run, demonstrating a nice example of how anvi'o can help you manually curate bins you're trying derive from assemblies.  
 
-Back to our gloriously clean example, we can select all of our contigs and check estimated levels of completion and redundancy based on the single-copy marker genes we scanned for earlier:  
-<br>
+While we didn't need much (any) manual curation in this case, it was still a good idea to visually inspect the coverage of our assembly to make sure nothing weird was going on. And if we wanted we could further explore those parts with higher coverage to find out which parts of the genome seem to exist in greater than 1 copy.  
 
-<center><img src="{{ site.url }}/images/per_com_anvi.png"></center>  
-
-<br>
-Which shows us based on the [Campbell et al. 2013](http://www.pnas.org/content/110/14/5540.short) bacterial single-copy marker genes, we doing pretty good. But of course this approach doesn't actually add up to 100% completion and 0% redundancy in all organisms (any?), so for comparison's sake, I ran the ATCC 25416 reference genome through the same pipeline and it seems these are just the numbers for this genome based on this marker-gene set:  
-<br>
-
-<center><img src="{{ site.url }}/images/ref_per_com_anvi.png"></center>  
-
-<br>
-Though we still see here this doesn't mean we were able to reconstruct the entire isolate genome, as we are ~150Mbps short, like we saw with the QUAST output above.  
-
-Okay, so we didn't need much manual curation in this case, but it was good to visually inspect the coverage of our assembly to make sure nothing weird was going on. Now we're going to start putting our new isolate genome into some context.  
+This was all basically to get a high-quality draft of our isolate genome, that we could feel confident about investigating further. Once you feel comfortable with your assembled genome, you can go a lot of different ways. Going into individual approaches are beyond the scope of this particular page, but here are just a few examples.  
 <br>
 
 ---
 <br>
-
-<br>
-<center><img src="{{ site.url }}/images/under_construction.jpeg"></center>
-
-<br>
-<h1><center>Under construction...</center></h1>
-<br>
-
-
-
+# A few, of many, possible avenues forward...
 ## Phylogenomics
-Pull near-relative references to estimate where your newly acquired isolates fit in:
+Pull available reference genomes of close relatives and build a phylogenomic tree to get a robust estimate of where your newly acquired isolates fit in evolutionarily with what is already known. Not surprisingly, [anvi'o can help you parse this out also](http://merenlab.org/2017/06/07/phylogenomics/). This tree is based on an amino acid alignment of ~1,000 one-to-one orthologs. 
 <br>
 
 <center><img src="{{ site.url }}/images/phylo_syn.png"></center>  
@@ -316,7 +323,7 @@ Pull near-relative references to estimate where your newly acquired isolates fit
 ---
 <br>
 ## Distributions
-Pull available metagenomes to assess distributions of newly aquired genomic lineages:
+Pull available metagenomes from other studies and recruit the reads to a reference library containing your isolate (and its close relatives if it has any) to begin assessing the distributions their genomic lineages. This example is done with ocean samples, but the same principle can be applied to any environments.
 <br>
 
 <center><img src="{{ site.url }}/images/dist_syn.png"></center>  
@@ -326,16 +333,24 @@ Pull available metagenomes to assess distributions of newly aquired genomic line
 ---
 <br>
 ## Pangenomics
-Combine pangenomics and metagenomics to characterize population variability and ecological delineations:
+Start investigating differences in the genetic complement of your new isolate as compared to its known close relatives. And yes, [anvi'o can help with that too](http://merenlab.org/2016/11/08/pangenomics-v2/). This example figure is combining pangenomics (the core of the figure showing the presence or absence of genes within each genome) with metagenomics (distributions of the genomes across samples in the top right corner) to try to associate genomic variability with ecological delineations:
 <br>
 
 <center><img src="{{ site.url }}/images/pan_syn.png"></center>  
 
 <br>
 
+---
+---
+<br>
 
+And so much more! Really, just like at the end of the [amplicon example workflow](/amplicon/workflow_ex), this is where just pure data crunching slows down, and the actual science begins. The above are just some of the ways to get to the point where you can then consider your experimental design and your questions and let them guide where you go next.  
+<br>
+<center>And just to make myself feel better, we'll put this in again 🙂</center>
 
-
+<div class="warning">
+<h2>ATTENTION!</h2>
+This is not an authoritative, exhaustive, or standard workflow for working with a newly sequenced genome! No such thing exists. All genomes, datasets, and goals are different, and new tools are constantly being developed. The point of this page is just to give examples of some of the things you can do, for people who may be completely new to the arena and would benefit from walking through some of these things just for the exposure. Don't let anything here, or anywhere, constrain your science to doing only what others have done!</div>
 
 
 
