@@ -15,7 +15,7 @@ Here we're going to run through some of the things I do when assembling and anal
 <h2>ATTENTION!</h2>
 This is not an authoritative, exhaustive, or standard workflow for working with a newly sequenced genome! No such thing exists. All genomes, datasets, and goals are different, and new tools are constantly being developed. The point of this page is just to give examples of some of the things you can do, for people who may be completely new to the arena and would benefit from walking through some of these things just for the exposure. Don't let anything here, or anywhere, constrain your science to doing only what others have done!</div>
 
-Now that that's out of the way, let's get to it.  
+Now that that's out of the way, let's get to it!  
 <br>
 
 ---
@@ -345,7 +345,7 @@ Start investigating differences in the genetic complement of your new isolate as
 <br>
 
 And so much more! Really, just like at the end of the [amplicon example workflow](/amplicon/workflow_ex), this is where just pure data crunching slows down, and the actual science begins. The above are just some of the ways to get to the point where you can then consider your experimental design and your questions and let them guide where you go next.  
-<br>
+
 <center>And just to make myself feel better, we'll put this in again 🙂</center>
 
 <div class="warning">
