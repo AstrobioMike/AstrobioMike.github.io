@@ -168,7 +168,7 @@ head taxids.txt
 And now we can just provide that file to the taxonkit program like such:
 
 ```
-./taxonkit lineage taxids.txt -o epi_tax.txt
+./taxonkit lineage taxids.txt -o epi_tax.txt --names-file names.dmp --nodes-file nodes.dmp
 ```
 
 And a few seconds later, we have our nice, actually useful, taxonomy table:
