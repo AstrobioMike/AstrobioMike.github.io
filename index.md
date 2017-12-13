@@ -38,4 +38,10 @@ If you're just beginning to wade your way into this enticing ocean of bioinforma
 ---
 <br>
 <h4><a href="/amplicon/" style="color:#d64231">Amplicon analysis</a></h4>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • Example worflow of processing and analyzing a marker-gene dataset: [Amplicon example workflow](/amplicon/workflow_ex)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • Example worflow of processing and analyzing a marker-gene dataset: [Amplicon example workflow](/amplicon/workflow_ex)  
+<br>
+
+---
+<br>
+<h4><a href="/genomics/" style="color:#5bab87">Genomics</a></h4>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • One example workflow for assembling an axenic culture's genome: [*de novo* genome assembly](/genomics/de_novo_assembly)  
