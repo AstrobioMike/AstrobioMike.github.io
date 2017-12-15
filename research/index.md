@@ -37,19 +37,25 @@ My current research efforts are focused primarily on: photoautotroph-heterotroph
 [PDF download](/research/Lee_et_al_2017_AEM.pdf){:target="_blank"}  
 
 Walworth, N.G., Fu, F.-X., Webb, E.A., Saito, M.A., Moran, D., McIlvin, M.R., **Lee, M.D.**, and Hutchins, D.A. (2016). Mechanisms of increased *Trichodesmium* fitness under iron and phosphorus co-limitation in the present and future ocean. *Nature Communications* 7:12081. doi: 10.1038/ncomms12081  
-[http://www.nature.com/articles/ncomms12081](http://www.nature.com/articles/ncomms12081)  
+[http://www.nature.com/articles/ncomms12081](http://www.nature.com/articles/ncomms12081){:target="_blank"}  
+[PDF download](/research/Walworth_et_al_2016_NatCom.pdf){:target="_blank"}  
 
 Ramirez, G.A., Hoffman, C.L., **Lee, M.D.**, Lesniewski, R.A., Barco, R., Garber, A., Toner, B.M., Wheat, C.G., Edwards, K.J., Orcutt, B.N. (2016). Assessing marine microbial induced corrosion monitored in Santa Catalina Island, California. *Frontiers in Microbiology* 7:1679. doi: 10.3389/fmicb.2016.01679  
-[http://journal.frontiersin.org/article/10.3389/fmicb.2016.01679/full](http://journal.frontiersin.org/article/10.3389/fmicb.2016.01679/full)  
+[http://journal.frontiersin.org/article/10.3389/fmicb.2016.01679/full](http://journal.frontiersin.org/article/10.3389/fmicb.2016.01679/full){:target="_blank"}  
+[PDF download](/research/Ramirez_et_al_2016_FrontMicro.pdf){:target="_blank"}  
 
 Walworth, N.G., **Lee, M.D.**, Fu, F.-X., Hutchins, D.A., and Webb, E.A. (2016). Molecular and physiological evidence of genetic assimilation to high CO2 in the marine nitrogen fixer *Trichodesmium*. *PNAS*. doi: 10.1073/pnas.1605202113  
-[http://www.pnas.org/content/113/47/E7367.full](http://www.pnas.org/content/113/47/E7367.full)  
+[http://www.pnas.org/content/113/47/E7367.full](http://www.pnas.org/content/113/47/E7367.full){:target="_blank"}  
+[PDF download](/research/Walworth_et_al_2016_PNAS.pdf){:target="_blank"}  
 
 Momper, L.M., Jungbluth, S.P., **Lee, M.D.**, and Amend, J.P. (2017). Energy and carbon metabolisms in a deep terrestrial subsurface fluid microbial community. *ISMEJ*. doi: 10.1038/ismej.2017.94  
-[http://www.nature.com/ismej/journal/vaop/ncurrent/full/ismej201794a.html](http://www.nature.com/ismej/journal/vaop/ncurrent/full/ismej201794a.html)  
+[https://www.nature.com/articles/ismej201794](https://www.nature.com/articles/ismej201794){:target="_blank"}  
+[PDF download](/research/Momper_et_al_2017_ISME.pdf){:target="_blank"}  
 
 Hutchins, D.A., Fu, F.-X., Walworth, N.G., **Lee, M.D.**, Saito, M.A., and Webb, E.A. (2017). Comment on “The complex effects of ocean acidification on the prominent N2-fixing cyanobacterium *Trichodesmium*”. *Science*. doi: 10.1126/science.aao0067  
-[http://science.sciencemag.org/content/357/6356/eaao0067.full](http://science.sciencemag.org/content/357/6356/eaao0067.full)
+[http://science.sciencemag.org/content/357/6356/eaao0067.full](http://science.sciencemag.org/content/357/6356/eaao0067.full){:target="_blank"}  
+[PDF download](/research/Hutchins_et_al_2017_Science.pdf){:target="_blank"}  
 
 Walworth, N.G., Hutchins, D.A., Dolzhenko, E., **Lee, M.D.**, Fu., F-X., Smith, A.D., and Webb, E.A. (2017). Biogeographic conservation of the cytosine epigenome in the globally important marine, nitrogen-fixing cyanobacterium *Trichodesmium*. *Environmental Microbiology*. doi:10.1111/1462-2920.13934
-[http://onlinelibrary.wiley.com/doi/10.1111/1462-2920.13934/full](http://onlinelibrary.wiley.com/doi/10.1111/1462-2920.13934/full)
+[http://onlinelibrary.wiley.com/doi/10.1111/1462-2920.13934/full](http://onlinelibrary.wiley.com/doi/10.1111/1462-2920.13934/full){:target="_blank"}  
+[PDF download](/research/Walworth_et_al_2017_EnvMicro.pdf){:target="_blank"}
