@@ -31,7 +31,7 @@ My current research efforts are focused primarily on: photoautotroph-heterotroph
 [http://www.nature.com/ismej/journal/v11/n8/full/ismej201749a.html](http://www.nature.com/ismej/journal/v11/n8/full/ismej201749a.html)  
 
 **Lee, M.D.**, Webb, E.A., Walworth, N.G., Fu, F.-X., Held, N.A., Saito, M.A., and Hutchins, D.A. (2017). Transcriptional activities of the microbial consortium living with the marine nitrogen-fixing cyanobacterium *Trichodesmium* reveal potential roles in community-level nitrogen cycling. *Applied and Environmental Microbiology*. doi: 10.1128/AEM.02026-17  
-[http://aem.asm.org/content/early/2017/10/16/AEM.02026-17](http://aem.asm.org/content/early/2017/10/16/AEM.02026-17)
+[http://aem.asm.org/content/84/1/e02026-17](http://aem.asm.org/content/84/1/e02026-17)
 
 Walworth, N.G., Fu, F.-X., Webb, E.A., Saito, M.A., Moran, D., McIlvin, M.R., **Lee, M.D.**, and Hutchins, D.A. (2016). Mechanisms of increased *Trichodesmium* fitness under iron and phosphorus co-limitation in the present and future ocean. *Nature Communications* 7:12081. doi: 10.1038/ncomms12081  
 [http://www.nature.com/articles/ncomms12081](http://www.nature.com/articles/ncomms12081)  
