@@ -25,14 +25,16 @@ My current research efforts are focused primarily on: photoautotroph-heterotroph
 
 
 **Lee, M.D.**, Walworth, N.G., Sylvan, J.B., Edwards, K.J., and Orcutt, B.N. (2015). Microbial communities on seafloor basalts at Dorado Outcrop reflect level of alteration and highlight global lithic clades. *Frontiers in Microbiology* 6:1470. doi: 10.3389/fmicb.2015.01470  
-[http://journal.frontiersin.org/article/10.3389/fmicb.2015.01470/full](http://journal.frontiersin.org/article/10.3389/fmicb.2015.01470/full)  
+[http://journal.frontiersin.org/article/10.3389/fmicb.2015.01470/full](http://journal.frontiersin.org/article/10.3389/fmicb.2015.01470/full){:target="_blank"}  
+[PDF download](/research/Lee_et_al_2015_FrontMicro.pdf){:target="_blank"}  
 
 **Lee, M.D.**, Walworth, N.G., McParland, E.L., Fu, F.-X., Mincer, T.J., Levine, N.M., Hutchins, D.A., and Webb, E.A. (2017). The *Trichodesmium* consortium: conserved heterotrophic co-occurrence and genomic signatures of potential interactions. *ISMEJ*. doi:10.1038/ismej.2017.49  
-[https://www.nature.com/articles/ismej201749](https://www.nature.com/articles/ismej201749)  
+[https://www.nature.com/articles/ismej201749](https://www.nature.com/articles/ismej201749){:target="_blank"}  
+[PDF download](/research/Lee_et_al_2017_ISME.pdf){:target="_blank"}  
 
 **Lee, M.D.**, Webb, E.A., Walworth, N.G., Fu, F.-X., Held, N.A., Saito, M.A., and Hutchins, D.A. (2017). Transcriptional activities of the microbial consortium living with the marine nitrogen-fixing cyanobacterium *Trichodesmium* reveal potential roles in community-level nitrogen cycling. *Applied and Environmental Microbiology*. doi: 10.1128/AEM.02026-17  
-[http://aem.asm.org/content/84/1/e02026-17](http://aem.asm.org/content/84/1/e02026-17)  
-[PDF download](/research/Lee_et_al_2018_AEM.pdf)
+[http://aem.asm.org/content/84/1/e02026-17](http://aem.asm.org/content/84/1/e02026-17){:target="_blank"}  
+[PDF download](/research/Lee_et_al_2017_AEM.pdf){:target="_blank"}  
 
 Walworth, N.G., Fu, F.-X., Webb, E.A., Saito, M.A., Moran, D., McIlvin, M.R., **Lee, M.D.**, and Hutchins, D.A. (2016). Mechanisms of increased *Trichodesmium* fitness under iron and phosphorus co-limitation in the present and future ocean. *Nature Communications* 7:12081. doi: 10.1038/ncomms12081  
 [http://www.nature.com/articles/ncomms12081](http://www.nature.com/articles/ncomms12081)  
