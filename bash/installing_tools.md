@@ -9,20 +9,24 @@ permalink: /bash/installing_tools
 
 {% include _side_tab_bash.html %}
 
-As we've seen in the [basics](/bash/basics), [six glorious commands](/bash/six_commands), and [real-life examples](/bash/why) pages, you can do some amazing things with *bash* as far as manipulating [plain text files](/bash/basics#whats-a-plain-text-file) goes. But that's just the start of things. If you're working towards more bioinformatic-leaning applications, you're certainly also going to need to download and/or install the lots of tools that don't come standard. What's required on our end to get something working properly varies by the tool, and most that are highly used by people have excellent documentation on how to properly download and install them. This page will be an ongoing list of the installation process for any of the tools used on tutorials from this site, and they will hopefully serve as examples to help guide you through installing other things. Many programs have differences between which version we'd need and how we'd install them on our personal computer vs installing on a server. I plan to add a section soon covering those differences.
+<div class="warning">
+<h2>ATTENTION!</h2>
+The installation examples here all download and install things into a directory called <code class="highlighter-rouge" style="padding-left:0.2em;padding-right:0.2em;padding-top:0.1em;padding-bottom:0.1em">~/happy_bin</code>. If you are new to this stuff and want to be able to follow the examples here more closely, be sure to familiarize yourself with <a href="http://astrobiomike.github.io/bash/modifying_your_path">what the PATH is here</a> and to <a href="http://astrobiomike.github.io/bash/installing_tools#a-happy-bin">follow these instructions</a> in order to create that directory and add it to your PATH.</div>
+
+As we've seen in the [basics](/bash/basics){:target="_blank"}, [six glorious commands](/bash/six_commands){:target="_blank"}, and [real-life examples](/bash/why){:target="_blank"} pages, you can do some amazing things with *bash* as far as manipulating [plain text files](/bash/basics#whats-a-plain-text-file){:target="_blank"} goes. But that's just the start of things. If you're working towards more bioinformatic-leaning applications, you're certainly also going to need to download and/or install the lots of tools that don't come standard. What's required on our end to get something working properly varies by the tool, and most that are highly used by people have excellent documentation on how to properly download and install them. This page will be an ongoing list of the installation process for any of the tools used on tutorials from this site, and they will hopefully serve as examples to help guide you through installing other things. Many programs have differences between which version we'd need and how we'd install them on our personal computer vs installing on a server. I plan to add a section soon covering those differences, but for now these are examples for installing on a Mac personal computer and would need to be adjusted for other systems.  
 <br>
 
 ---
 ---
 <br>
 # What's a binary?
-You may have heard or read an expression before referring to whether there is a *binary* or *executable* available for download for a particular program. Programs stored in these formats can just be downloaded and then utilized usually with no other work required – they are already "built" when you download them. This is in contrast to programs that you need to download and then "compile from source" – you need to "build" the program first in order for it to work. As usual there is a give and take here, binaries are easier to grab and get running, but you have more freedom and often access to the newest developments when installing something from its source code. There is a good explanation on [stack exchange](https://unix.stackexchange.com/questions/152346/what-is-the-difference-between-building-from-source-and-using-an-install-package) about some of these differences. The examples here so far are all binaries (as I've been selecting programs like that on purpose for ease of use in tutorials), but I will try to get an example up soon of installing from source.  
+You may have heard or read an expression before referring to whether there is a *binary* or *executable* available for download for a particular program. Programs stored in these formats can just be downloaded and then utilized usually with no other work required – they are already "built" when you download them. This is in contrast to programs that you need to download and then "compile from source" – you need to "build" the program first in order for it to work. As usual there is a give and take here, binaries are easier to grab and get running, but you have more freedom and often access to the newest developments when installing something from its source code. There is a good explanation on [stack exchange](https://unix.stackexchange.com/questions/152346/what-is-the-difference-between-building-from-source-and-using-an-install-package){:target="_blank"} about some of these differences. The examples here so far are all binaries (as I've been selecting programs like that on purpose for ease of use in tutorials), but I will try to get an example up soon of installing from source.  
 <br>
 
 ---
 <br>
-# A happy bin
-Often a big part of getting things to work properly is having them in a location on the computer that you can access no matter [where you are](/bash/basics#moving-around). As we covered [here](/bash/modifying_your_path), a list of directories that are scanned for programs automatically by your computer is stored in the *bash* special variable called "PATH". For the sake of simplicity, any tools we use in tutorials on this site are going to be put in a directory we made and added to our PATH in the [modifying your PATH walkthrough](/bash/modifying_your_path) called `~/happy_bin`. You can check to see if this is in your PATH already like this:
+# First we need a happy bin
+Often a big part of getting things to work properly is having them in a location on the computer that you can access no matter [where you are](/bash/basics#moving-around){:target="_blank"}. As we covered [here](/bash/modifying_your_path){:target="_blank"}, a list of directories that are scanned for programs automatically by your computer is stored in the *bash* special variable called "PATH". For the sake of simplicity, any tools we use in tutorials on this site are going to be put in a directory we made and added to our PATH in the [modifying your PATH walkthrough](/bash/modifying_your_path){:target="_blank"} called `~/happy_bin`. You can check to see if this is in your PATH already like this:
 
 ```bash
 echo $PATH | tr ":" "\n" | grep "happy_bin"
@@ -40,13 +44,13 @@ mkdir ~/happy_bin
 echo 'export PATH="$PATH:/Users/Mike_Lee/happy_bin"' >> ~/.bash_profile
 ```
 
-And if you're unsure of what's going on here, be sure to visit the [modifying your PATH page](/bash/modifying_your_path).  
+And if you're unsure of what's going on here, be sure to visit the [modifying your PATH page](/bash/modifying_your_path){:target="_blank"}.  
 <br>
 
 ---
 <br>
-# Installing tools used here
-Everything we install here we will put in our `~/happy_bin`, feel free to change that location to where you'd like of course, but then you will need to modify any code accordingly.  
+# Installing tools used on this site
+As explained [above](/bash/installing_tools#first-we-need-a-happy-bin){:target="_blank"}, everything we install here will be put in a directory in our home location called `~/happy_bin`, so pay attention to modify any code here accordingly if you want to put things somewhere else (and also pay attention to version numbers, and feel free to change that location to where you'd like of course, but then you will need to modify any code accordingly.  
 
 ## vsearch
 There are instructions to get vsearch up and running [on its github](https://github.com/torognes/vsearch), but these commands should work for you if you're on a Mac **(if you're not, you'll have to download a different version you can find following the above link)**.
@@ -59,7 +63,17 @@ cp vsearch-2.5.1-macos-x86_64/bin/vsearch .
 rm vsearch-2.5.1-macos-x86_64.tar.gz
 ```
 
-Here we changed into our `~/happy_bin` directory, downloaded the vsearch tool with `curl`, unpacked it and unzipped things with `tar`, copied the main executable file into our `~/happy_bin` directory so that it is in our [PATH](/bash/modifying_your_path) and can be called from anywhere, then finally we deleted the compressed downloaded file.  
+Here we changed into our `~/happy_bin` directory, downloaded the vsearch tool with `curl`, unpacked it and unzipped things with `tar`, copied the main executable file into our `~/happy_bin` directory so that it is in our [PATH](/bash/modifying_your_path) and can be called from anywhere, then finally we deleted the compressed downloaded file. Lastly, one way we can quickly test that the program seems to be working as it should be is by checking the version: 
+
+```bash
+vsearch --version
+```
+
+Which should return something like this:
+
+<center><img src="{{ site.url }}/images/checking_vsearch.png"></center>
+
+<br>
 
 ## usearch
 To get the free version of usearch, you first need to go to [https://www.drive5.com/usearch/download.html](https://www.drive5.com/usearch/download.html), and fill out a (very) short form in order to have a download link sent to you. This usually happens virtually instantly. After getting the link and downloading the file, assuming you're working on a Mac and you downloaded the same version as noted above (v10.0.240) into your default download directory, the following commands will move usearch into our `~/happy_bin` directory and change its properties so we can execute it (if you download a different version, adjust the commands accordingly):
@@ -75,23 +89,157 @@ Here we changed into our `~/happy_bin` directory, moved the downloaded file from
 <center><img src="{{ site.url }}/images/ls_l_permission.png"></center>
 
 <br>
-The details of what all of the letters and their positions mean here are a bit further into the weeds than we need to worry about right now, but quickly, an "r" is for readable, a "w" is for writable, and an "x" is for executable. Note that the vsearch executable file has an "x" in the position I highlighted for the usearch file. After running `chmod +x usearch`, the output of `ls -l` looks like this:
+The details of what all of the letters and their positions mean here are a bit further into the weeds than we need to worry about right now, but quickly, an "r" is for readable, a "w" is for writable, and an "x" is for executable. Note that the *vsearch* executable file has an "x" in the position I highlighted for the usearch file. After running `chmod +x usearch`, the output of `ls -l` looks like this:
 
 <center><img src="{{ site.url }}/images/ls_l_permission2.png"></center>
 
 <br>
-And now the usearch program can be executed (run) without throwing any errors.  
+And now the usearch program can be executed (run) without throwing any errors, which we can again check quickly by asking for the version:  
 
+```bash
+usearch --version
+```
+
+<center><img src="{{ site.url }}/images/checking_usearch.png"></center>
+
+<br>
 ## FastQC
 [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) is a handy and user-friendly tool that will scan your fastq files to generate a broad overview summarizing some useful information, and possibly identify any commonly occurring problems with your data. But as the developers note, its modules are expecting random sequence data, and any warning or failure notices should be interpreted within the context of your experiment.  
 
-A link to download the current version of fastqc for your system can be found [here](https://www.bioinformatics.babraham.ac.uk/projects/download.html#fastqc). And there are pretty good instructions for different platforms provided [here](https://www.bioinformatics.babraham.ac.uk/projects/download.html#fastqc), including possibly needing to update your Java installation. For OSX there is a disk image, or application bundle, available to download. So if you're on a Mac, you can download the "fastqc_v*.dmg" file from the above downloads link, open it to install the program, and then move the resulting "FastQC.app" file (which is actually a directory) into your `~/Applications` directory or into your `~/happy_bin` if you'd like. I haven't gone through this on anyone else's computer, but on mine at least the installation itself adds the executable file to my `/usr/local/bin` so that we can call it from anywhere. Once done, an example usage at the command line to run two fastq files through would like this: 
+A link to download the current version of fastqc for your system can be found [here](https://www.bioinformatics.babraham.ac.uk/projects/download.html#fastqc). And there are pretty good instructions for different platforms provided [here](https://www.bioinformatics.babraham.ac.uk/projects/download.html#fastqc), including possibly needing to update your Java installation. For OSX there is a disk image, or application bundle, available to download. So if you're on a Mac, you can download the "fastqc_v*.dmg" file from the above downloads link, open it to install the program, and then move the resulting "FastQC.app" file (which is actually a directory) into your `~/Applications` directory or into your `~/happy_bin` if you'd like. I haven't gone through this on anyone else's computer, but on mine the installation itself seems adds the executable file to my `/usr/local/bin` so that we can call it from anywhere. We can check this again by asking for which version:
+
+```bash
+fastqc --version
+```
+
+<center><img src="{{ site.url }}/images/checking_fastqc.png"></center>
+
+<br>
+And an example usage at the command line to run two fastq files through would look like this: 
 
 ```bash
 fastqc sample_A.fastq.gz sample_B.fastq.gz
 ```
 
-You can list multiple files like this delimited by a space, and the program is capable of dealing with gzipped files. This will produce a .html file for each fastq file you run it on that you can open and analyze.  
+You can list multiple files like this delimited by a space, and the program is capable of dealing with gzipped files. This will produce a .html file for each fastq file you run it on that you can then open and analyze.  
+
+## Trimmomatic
+[Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic) is a pretty flexible tool that lets you trim and/or filter your sequences based on several quality thresholds and some other metrics (e.g. minimum length filtering, or removing adapters). It runs as a java program, so the same binary seems to work across systems. The binary can be downloaded from [this link](http://www.usadellab.org/cms/?page=trimmomatic), and here is one way to do this at the command line to grab the current version at the time I'm putting this together:
+
+```bash
+cd ~/happy_bin
+curl -LO http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/Trimmomatic-0.36.zip
+unzip Trimmomatic-0.36.zip
+rm Trimmomatic-0.36.zip
+```
+
+At this point, [Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic), should be ready to rock, and we can again check quickly by asking for the version: 
+
+```bash
+java -jar ~/happy_bin/Trimmomatic-0.36/trimmomatic-0.36.jar -version
+```
+
+<center><img src="{{ site.url }}/images/checking_trimmomatic.png"></center>
+
+<br>
+I never figured out how to get a .jar to be callable from anywhere without providing the full path like I've done here, so this is just how I run it (always providing the full path). If you're reading this and you do know how to do that, please shoot me a message 🙂  
+
+## illumina-utils
+The [illumina-utils](https://github.com/merenlab/illumina-utils) library provides a suite of tools for working with Illumina paired-end data put out by [merenlab.org](http://merenlab.org/). I most commonly use some of the quality filtering programs they make available. A few paths to installation can be found [here](https://github.com/merenlab/illumina-utils#installing), which are pretty straightforward other than you do need to be working in a python 3 environment. Since the world is amid the switch from python 2 to python 3, this may complicate things for you in some cases. The easiest way around it I've found is working with [virtual environments](/bash/installing_tools#virtual-environments), which I hope to add in soon. For now, since I have a python 3 setup on my computer that I call with `python3`, and a pip for it that I call with `pip3`, I can install this way:
+
+```bash
+pip3 install illumina-utils
+```
+
+You can then see a list of all the programs by typing `iu-` and hitting tab twice:
+
+<center><img src="{{ site.url }}/images/illumina_utils_tab.png"></center>
+
+<br>
+And to be sure things are functioning properly, and the correct version of python is being utilized, we can check for a version:
+
+```bash
+iu-demultiplex --version
+```
+
+<center><img src="{{ site.url }}/images/checking_illumina_utils.png"></center>
+
+<br>
+I hope to get to [virtual environments](/bash/installing_tools#virtual-environments) and [maintaining multiple python versions](/bash/installing_tools#multiple-python-versions) soon, I apologize if I'm leaving you hanging on this for the moment!  
+
+## QUAST
+[QUAST](https://github.com/ablab/quast) is a really nice tool for comparing multiple assemblies, and for metagenome assemblies there is a comparable [MetaQUAST](http://bioinf.spbau.ru/metaquast). Some discussion and example usage can be found [here](/genomics/de_novo_assembly#quast). To install on my personal computer, I followed the instructions laid out [here](http://quast.bioinf.spbau.ru/manual.html#sec1), and, because of the way QUAST compiles things as needed if used, I added its location to my [PATH](/bash/modifying_your_path):
+
+```bash
+cd ~/happy_bin
+curl -LO https://downloads.sourceforge.net/project/quast/quast-4.6.1.tar.gz
+tar -xzvf quast-4.6.1.tar.gz
+rm quast-4.6.1.tar.gz
+cd quast-4.6.1.tar.gz
+sudo ./setup.py install # will need to enter your password, and actually puts the executable in your /usr/local/bin
+cd ~/happy_bin
+```
+
+And testing it's actually callable: 
+
+```bash
+quast.py --version
+```
+
+<center><img src="{{ site.url }}/images/checking_quast.png"></center>
+
+<br>
+
+
+## SPAdes
+[SPAdes](http://cab.spbu.ru/software/spades/) is an assembly program. You can read some of my thoughts on assemblies [here](/genomics/de_novo_assembly#assembly). SPAdes is packaged as a binary, and the developers provide excellent installation instructions [here](http://cab.spbu.ru/files/release3.11.1/manual.html#sec2). This is how I installed the latest release at the time on my local computer:
+
+```bash
+curl -LO http://cab.spbu.ru/files/release3.11.1/SPAdes-3.11.1-Darwin.tar.gz
+tar -xzvf SPAdes-3.11.1-Darwin.tar.gz
+rm SPAdes-3.11.1-Darwin.tar.gz
+```
+
+Since SPAdes comes with many programs, stored in a subdirectory of the SPAdes directory we just untarred, it may be preferable to [add that directory to our PATH](/bash/modifying_your_path), rather than copying all of the programs to our location here. So here we are adding another directory to our PATH:
+
+```bash
+cd SPAdes-3.11.1-Darwin/bin/
+pwd # copying the full path from the output of pwd to paste it into the following command, your location will be different
+echo 'export PATH="$PATH:/Users/Mike_Lee/happy_bin/SPAdes-3.11.1-Darwin/bin"' >> ~/.bash_profile
+source ~/.bash_profile # this file is run when we open a terminal session, since we just changed it we need to open a new one or run the source command on it for our changes to take effect
+
+cd ~/happy_bin
+```
+
+And then checking the installation:
+
+```bash
+spades.py --version
+```
+
+<center><img src="{{ site.url }}/images/checking_spades.png"></center>
+
+<br>
+## MEGAHIT
+[MEGAHIT](https://github.com/voutcn/megahit) is another assembly program that is great on memory requirements and speed. This can be installed from source, or through `git` as noted on the above linked page, but there are also binaries available [here](https://github.com/voutcn/megahit/releases). As there is an extra layer of complexity due to OSX `g++`, noted [here](https://github.com/voutcn/megahit#dependency--installation), I grabbed the latest available binary for Mac OSX, which only seems to be missing one bug fix I haven't happened to run into:
+
+```bash
+curl -LO https://github.com/voutcn/megahit/releases/download/v1.1.1/megahit_v1.1.1_DARWIN_CPUONLY_x86_64-bin.tar.gz
+tar -xzvf megahit_v1.1.1_DARWIN_CPUONLY_x86_64-bin.tar.gz
+rm megahit_v1.1.1_DARWIN_CPUONLY_x86_64-bin.tar.gz
+cp megahit_v1.1.1_DARWIN_CPUONLY_x86_64-bin/megahit* .
+```
+
+And quick testing, all seems to be well:
+
+```bash
+megahit --version
+```
+
+<center><img src="{{ site.url }}/images/checking_megahit.png"></center>
+
+<br>
+
 <br>
 
 ---
@@ -101,18 +249,27 @@ You can list multiple files like this delimited by a space, and the program is c
 I'll be adding more examples here for each program we use, and feel free to contact me about any tricky ones you run into that might serve as good examples 🙂
 
 <br>
-## Trimmomatic
+## Multiple python versions
 
 <br>
-## illumina-utils
+## Virtual environments
 
 <br>
-## SPAdes
+## anvi'o
+
+<br>
+## centrifuge
+
+<br>
+## bowtie2
 
 <br>
 ## bbtools
 
-## anvi'o
+<br>
+## FastTree
 
 <br>
+## RAxML
 
+<br>
