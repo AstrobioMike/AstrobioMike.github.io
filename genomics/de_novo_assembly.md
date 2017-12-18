@@ -9,7 +9,7 @@ permalink: /genomics/de_novo_assembly
 
 {% include _side_tab_genomics.html %}
 
-Here we're going to run through some of the typical steps for taking a newly sequenced isolate genome from raw fastq files through to an assembled, curated genome you can then begin to explore. But first, the important part:
+Here we're going to run through some of the typical steps for taking a newly sequenced isolate genome from raw fastq files through to an assembled, curated genome you can then begin to explore. It's assumed you're already comfortable with working at the command line, but if not, you should probably run through [*bash* basics](/bash/basics) first. Before we get started here:
 
 <div class="warning">
 <h2>ATTENTION!</h2>
@@ -42,24 +42,34 @@ The practice data we're going to use here was provided by colleagues at the [J. 
 
 If you'd like to follow along with this page rather than just reading through, you have a couple of options. I tried subsampling the dataset so that things would be smaller and faster for the purposes of this page, but I couldn't seem to without the assembly suffering too much. By far the most computationally intensive step here is the [error correction step](/genomics/where_to_start#read-error-correction){:target="_blank"}, which ended up being the only one that I ran on a server rather than my personal computer (which is a late 2013 MacBook Pro with 4 CPUs and 8GB of memory). So I've provided the raw reads and the error-corrected reads in one downloadable directory if you'd like to run through the processing yourself (and have the option of skipping past the error-correction step), and I've also provided most of the intermediate and all of the end-result files in another downloadable directory so you can explore any component along the way at will without doing the processing. 
 
-To download the
-
-
-you can copy and paste the following commands into your terminal to download the sequence data we're working with. For reasons discussed just below here, the files are bigger than I'd like, ~1.8 GB.
-
-If you're not sure what this block of code is doing, you can find an explanation [here](/bash/basics#bottom), and since almost all of this work happens at the command line, you should probably already be somewhat comfortable with [the basics of *bash*](/bash/basics). 
+This block of code will get you the files needed to run the entire workflow, including the error-corrected reads (~1 GB):
 
 ```
 cd ~
-curl -O https://AstrobioMike.github.io/tutorial_files/genomics_de_novo_temp.tar.gz
-tar -xvf genomics_de_novo_temp.tar.gz
-rm genomics_de_novo_temp.tar.gz
-cd genomics_de_novo_temp
+mkdir -p genomics_de_novo_temp
+curl -LO https://github.com/AstrobioMike/happy_belly_tutorial_data/raw/master/genomics_de_novo_working_dir.tar.gz
+tar -xvf genomics_de_novo_working_dir.tar.gz
+rm genomics_de_novo_working_dir.tar.gz
+cd genomics_de_novo_working_dir
 ```  
 
-So I've provided the raw reads if you'd like to go from the very beginning, but I've also provided all of the intermediate and end-result files so you can run as much or as little as you'd like, and you can look at as much or as little as you'd like. Basically you have lots of choices regarding how much you'd like to commit yourself here 🙂   
+And this block of code will get you the intermediate and end-result files if you'd like to look through them, or pull from them to run any steps in the middle (~500 MB):
 
-Within the main directory, called `genomics_de_novo_temp`, there are 2 subdirectories: `working_dir` and `downloaded_results`. `working_dir` contains all the required files to run through the page here, including the raw read files, the already-quality-filtered-and-error-corrected reads, the reference genome files, and a `processing_commands.txt` file containing all of the commands used here. This should be the directory you work in if you want the code below to match what will work on your computer. The `downloaded_results` directory contains several subdirectories with all of the intermediate and end-result files. Keep in mind that if you copy and paste any code from below halfway through, you may need to point specifically to the location of the intermediate files that are needed at that step.  
+```
+cd ~
+mkdir -p genomics_de_novo_temp
+curl -LO https://github.com/AstrobioMike/happy_belly_tutorial_data/raw/master/genomics_de_novo_downloaded_results.tar.gz
+tar -xvf genomics_de_novo_downloaded_results.tar.gz
+rm genomics_de_novo_downloaded_results.tar.gz
+cd genomics_de_novo_downloaded_results
+```  
+
+And feel free to pull both of course and explore to your heart's content. Basically, you get to choose how much you'd like to commit yourself here 🙂   
+
+Within the `genomics_de_novo_working_dir` (the first block of code above), 
+
+
+main directory, called `genomics_de_novo_temp`, there are 2 subdirectories: `working_dir` and `downloaded_results`. `working_dir` contains all the required files to run through the page here, including the raw read files, the already-quality-filtered-and-error-corrected reads, the reference genome files, and a `processing_commands.txt` file containing all of the commands used here. This should be the directory you work in if you want the code below to match what will work on your computer. The `downloaded_results` directory contains several subdirectories with all of the intermediate and end-result files. Keep in mind that if you copy and paste any code from below halfway through, you may need to point specifically to the location of the intermediate files that are needed at that step.  
 <br>
 
 ---
