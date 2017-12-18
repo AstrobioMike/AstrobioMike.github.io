@@ -38,7 +38,7 @@ Feel free to <a href="https://twitter.com/AstrobioMike">bug me</a> about any of 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • [Installing R packages](/R/installing_packages)  
 
 **Coming soon:**  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • ...  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ...  
 <br>
 
 ---
@@ -58,9 +58,10 @@ Feel free to <a href="https://twitter.com/AstrobioMike">bug me</a> about any of 
 
 **Available now:**  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • [Where to start: quality filtering, error correction, and depth normalization](/genomics/where_to_start)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • [*de novo* genome assembly](/genomics/de_novo_assembly) 
 
 **Coming soon:**  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • [*de novo* genome assembly and initial probing](/genomics/de_novo_assembly)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ...   
 
 [//]: # (<br>)
 
