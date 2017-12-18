@@ -31,8 +31,6 @@ Throughout this process we'll be using a variety of tools that I've listed here,
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • [QUAST v4.5](https://github.com/ablab/quast){:target="_blank"}  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • [bowtie2 v2.2.5](https://github.com/BenLangmead/bowtie2){:target="_blank"}  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • [anvi'o v3](http://merenlab.org/software/anvio/){:target="_blank"}  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • [FastTree v2.1.10](http://www.microbesonline.org/fasttree/){:target="_blank"}  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • [RAxML v8.2.9](https://github.com/stamatak/standard-RAxML){:target="_blank"}  
 <br>
 
 ---
@@ -42,7 +40,7 @@ The practice data we're going to use here was provided by colleagues at the [J. 
 
 If you'd like to follow along with this page rather than just reading through, you have a couple of options. I tried subsampling the dataset so that things would be smaller and faster for the purposes of this page, but I couldn't seem to without the assembly suffering too much. By far the most computationally intensive step here is the [error correction step](/genomics/where_to_start#read-error-correction){:target="_blank"}, which ended up being the only one that I ran on a server rather than my personal computer (which is a late 2013 MacBook Pro with 4 CPUs and 8GB of memory). So I've provided the raw reads and the error-corrected reads in one downloadable directory if you'd like to run through the processing yourself (and have the option of skipping past the error-correction step), and I've also provided most of the intermediate and all of the end-result files in another downloadable directory so you can explore any component along the way at will without doing the processing. 
 
-This block of code will get you the files needed to run the entire workflow, including the error-corrected reads (~1 GB):
+This first block of code will get you the files needed to run the entire workflow, including the raw reads, the error-corrected reads, the reference genome files, and a `processing_commands.txt` file containing all of the commands used here. This should be the directory you work in if you want the code below to match what will work on your computer. It's about 1 GB:
 
 ```
 cd ~
@@ -53,7 +51,7 @@ rm genomics_de_novo_working_dir.tar.gz
 cd genomics_de_novo_working_dir
 ```  
 
-And this block of code will get you the intermediate and end-result files if you'd like to look through them, or pull from them to run any steps in the middle (~500 MB):
+And this second block of code will get you the a directory called `genomics_de_novo_downloaded_results`. This holds the intermediate and end-result files if you'd like to look through them, or pull from them to run any steps in the middle. But keep in mind if you will need to modify the code below to point to specific locations of things. This one's ~500 MB:
 
 ```
 cd ~
@@ -64,12 +62,7 @@ rm genomics_de_novo_downloaded_results.tar.gz
 cd genomics_de_novo_downloaded_results
 ```  
 
-And feel free to pull both of course and explore to your heart's content. Basically, you get to choose how much you'd like to commit yourself here 🙂   
-
-Within the `genomics_de_novo_working_dir` (the first block of code above), 
-
-
-main directory, called `genomics_de_novo_temp`, there are 2 subdirectories: `working_dir` and `downloaded_results`. `working_dir` contains all the required files to run through the page here, including the raw read files, the already-quality-filtered-and-error-corrected reads, the reference genome files, and a `processing_commands.txt` file containing all of the commands used here. This should be the directory you work in if you want the code below to match what will work on your computer. The `downloaded_results` directory contains several subdirectories with all of the intermediate and end-result files. Keep in mind that if you copy and paste any code from below halfway through, you may need to point specifically to the location of the intermediate files that are needed at that step.  
+And feel free to pull both of course and explore to your heart's content. Basically, you get to choose how much you'd like to commit yourself here 🙂  
 <br>
 
 ---
