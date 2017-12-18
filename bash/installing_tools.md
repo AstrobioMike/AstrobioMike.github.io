@@ -53,7 +53,7 @@ And if you're unsure of what's going on here, be sure to visit the [modifying yo
 As explained [above](/bash/installing_tools#first-we-need-a-happy-bin){:target="_blank"}, everything we install here will be put in a directory in our home location called `~/happy_bin`, so pay attention to modify any code here accordingly if you want to put things somewhere else (and also pay attention to version numbers, and feel free to change that location to where you'd like of course, but then you will need to modify any code accordingly.  
 
 ## vsearch
-There are instructions to get vsearch up and running [on its github](https://github.com/torognes/vsearch), but these commands should work for you if you're on a Mac **(if you're not, you'll have to download a different version you can find following the above link)**.
+There are instructions to get vsearch up and running [on its github](https://github.com/torognes/vsearch){:target="_blank"}, but these commands should work for you if you're on a Mac **(if you're not, you'll have to download a different version you can find following the above link)**.
 
 ```bash
 cd ~/happy_bin
@@ -63,7 +63,7 @@ cp vsearch-2.5.1-macos-x86_64/bin/vsearch .
 rm vsearch-2.5.1-macos-x86_64.tar.gz
 ```
 
-Here we changed into our `~/happy_bin` directory, downloaded the vsearch tool with `curl`, unpacked it and unzipped things with `tar`, copied the main executable file into our `~/happy_bin` directory so that it is in our [PATH](/bash/modifying_your_path) and can be called from anywhere, then finally we deleted the compressed downloaded file. Lastly, one way we can quickly test that the program seems to be working as it should be is by checking the version: 
+Here we changed into our `~/happy_bin` directory, downloaded the vsearch tool with `curl`, unpacked it and unzipped things with `tar`, copied the main executable file into our `~/happy_bin` directory so that it is in our [PATH](/bash/modifying_your_path){:target="_blank"} and can be called from anywhere, then finally we deleted the compressed downloaded file. Lastly, one way we can quickly test that the program seems to be working as it should be is by checking the version: 
 
 ```bash
 vsearch --version
@@ -76,7 +76,7 @@ Which should return something like this:
 <br>
 
 ## usearch
-To get the free version of usearch, you first need to go to [https://www.drive5.com/usearch/download.html](https://www.drive5.com/usearch/download.html), and fill out a (very) short form in order to have a download link sent to you. This usually happens virtually instantly. After getting the link and downloading the file, assuming you're working on a Mac and you downloaded the same version as noted above (v10.0.240) into your default download directory, the following commands will move usearch into our `~/happy_bin` directory and change its properties so we can execute it (if you download a different version, adjust the commands accordingly):
+To get the free version of usearch, you first need to go to [https://www.drive5.com/usearch/download.html](https://www.drive5.com/usearch/download.html){:target="_blank"}, and fill out a (very) short form in order to have a download link sent to you. This usually happens virtually instantly. After getting the link and downloading the file, assuming you're working on a Mac and you downloaded the same version as noted above (v10.0.240) into your default download directory, the following commands will move usearch into our `~/happy_bin` directory and change its properties so we can execute it (if you download a different version, adjust the commands accordingly):
 
 ```bash
 cd ~/happy_bin
@@ -104,9 +104,9 @@ usearch --version
 
 <br>
 ## FastQC
-[FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) is a handy and user-friendly tool that will scan your fastq files to generate a broad overview summarizing some useful information, and possibly identify any commonly occurring problems with your data. But as the developers note, its modules are expecting random sequence data, and any warning or failure notices should be interpreted within the context of your experiment.  
+[FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/){:target="_blank"} is a handy and user-friendly tool that will scan your fastq files to generate a broad overview summarizing some useful information, and possibly identify any commonly occurring problems with your data. But as the developers note, its modules are expecting random sequence data, and any warning or failure notices should be interpreted within the context of your experiment.  
 
-A link to download the current version of fastqc for your system can be found [here](https://www.bioinformatics.babraham.ac.uk/projects/download.html#fastqc). And there are pretty good instructions for different platforms provided [here](https://www.bioinformatics.babraham.ac.uk/projects/download.html#fastqc), including possibly needing to update your Java installation. For OSX there is a disk image, or application bundle, available to download. So if you're on a Mac, you can download the "fastqc_v*.dmg" file from the above downloads link, open it to install the program, and then move the resulting "FastQC.app" file (which is actually a directory) into your `~/Applications` directory or into your `~/happy_bin` if you'd like. I haven't gone through this on anyone else's computer, but on mine the installation itself seems adds the executable file to my `/usr/local/bin` so that we can call it from anywhere. We can check this again by asking for which version:
+A link to download the current version of fastqc for your system can be found [here](https://www.bioinformatics.babraham.ac.uk/projects/download.html#fastqc){:target="_blank"}. And there are pretty good instructions for different platforms provided [here](https://www.bioinformatics.babraham.ac.uk/projects/download.html#fastqc){:target="_blank"}, including possibly needing to update your Java installation. For OSX there is a disk image, or application bundle, available to download. So if you're on a Mac, you can download the "fastqc_v*.dmg" file from the above downloads link, open it to install the program, and then move the resulting "FastQC.app" file (which is actually a directory) into your `~/Applications` directory or into your `~/happy_bin` if you'd like. I haven't gone through this on anyone else's computer, but on mine the installation itself seems adds the executable file to my `/usr/local/bin` so that we can call it from anywhere. We can check this again by asking for which version:
 
 ```bash
 fastqc --version
@@ -124,7 +124,7 @@ fastqc sample_A.fastq.gz sample_B.fastq.gz
 You can list multiple files like this delimited by a space, and the program is capable of dealing with gzipped files. This will produce a .html file for each fastq file you run it on that you can then open and analyze.  
 
 ## Trimmomatic
-[Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic) is a pretty flexible tool that lets you trim and/or filter your sequences based on several quality thresholds and some other metrics (e.g. minimum length filtering, or removing adapters). It runs as a java program, so the same binary seems to work across systems. The binary can be downloaded from [this link](http://www.usadellab.org/cms/?page=trimmomatic), and here is one way to do this at the command line to grab the current version at the time I'm putting this together:
+[Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic){:target="_blank"} is a pretty flexible tool that lets you trim and/or filter your sequences based on several quality thresholds and some other metrics (e.g. minimum length filtering, or removing adapters). It runs as a java program, so the same binary seems to work across systems. The binary can be downloaded from [this link](http://www.usadellab.org/cms/?page=trimmomatic){:target="_blank"}, and here is one way to do this at the command line to grab the current version at the time I'm putting this together:
 
 ```bash
 cd ~/happy_bin
@@ -133,7 +133,7 @@ unzip Trimmomatic-0.36.zip
 rm Trimmomatic-0.36.zip
 ```
 
-At this point, [Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic), should be ready to rock, and we can again check quickly by asking for the version: 
+At this point, [Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic){:target="_blank"}, should be ready to rock, and we can again check quickly by asking for the version: 
 
 ```bash
 java -jar ~/happy_bin/Trimmomatic-0.36/trimmomatic-0.36.jar -version
@@ -145,7 +145,7 @@ java -jar ~/happy_bin/Trimmomatic-0.36/trimmomatic-0.36.jar -version
 I never figured out how to get a .jar to be callable from anywhere without providing the full path like I've done here, so this is just how I run it (always providing the full path). If you're reading this and you do know how to do that, please shoot me a message 🙂  
 
 ## illumina-utils
-The [illumina-utils](https://github.com/merenlab/illumina-utils) library provides a suite of tools for working with Illumina paired-end data put out by [merenlab.org](http://merenlab.org/). I most commonly use some of the quality filtering programs they make available. A few paths to installation can be found [here](https://github.com/merenlab/illumina-utils#installing), which are pretty straightforward other than you do need to be working in a python 3 environment. Since the world is amid the switch from python 2 to python 3, this may complicate things for you in some cases. The easiest way around it I've found is working with [virtual environments](/bash/installing_tools#virtual-environments), which I hope to add in soon. For now, since I have a python 3 setup on my computer that I call with `python3`, and a pip for it that I call with `pip3`, I can install this way:
+The [illumina-utils](https://github.com/merenlab/illumina-utils){:target="_blank"} library provides a suite of tools for working with Illumina paired-end data put out by [merenlab.org](http://merenlab.org/){:target="_blank"}. I most commonly use some of the quality filtering programs they make available. A few paths to installation can be found [here](https://github.com/merenlab/illumina-utils#installing){:target="_blank"}, which are pretty straightforward other than you do need to be working in a python 3 environment. Since the world is amid the switch from python 2 to python 3, this may complicate things for you in some cases. The easiest way around it I've found is working with [virtual environments](/bash/installing_tools#virtual-environments){:target="_blank"}, which I hope to add in soon. For now, since I have a python 3 setup on my computer that I call with `python3`, and a pip for it that I call with `pip3`, I can install this way:
 
 ```bash
 pip3 install illumina-utils
@@ -165,10 +165,10 @@ iu-demultiplex --version
 <center><img src="{{ site.url }}/images/checking_illumina_utils.png"></center>
 
 <br>
-I hope to get to [virtual environments](/bash/installing_tools#virtual-environments) and [maintaining multiple python versions](/bash/installing_tools#multiple-python-versions) soon, I apologize if I'm leaving you hanging on this for the moment!  
+I hope to get to [virtual environments](/bash/installing_tools#virtual-environments){:target="_blank"} and [maintaining multiple python versions](/bash/installing_tools#multiple-python-versions){:target="_blank"} soon, I apologize if I'm leaving you hanging on this for the moment!  
 
 ## QUAST
-[QUAST](https://github.com/ablab/quast) is a really nice tool for comparing multiple assemblies, and for metagenome assemblies there is a comparable [MetaQUAST](http://bioinf.spbau.ru/metaquast). Some discussion and example usage can be found [here](/genomics/de_novo_assembly#quast). To install on my personal computer, I followed the instructions laid out [here](http://quast.bioinf.spbau.ru/manual.html#sec1), and, because of the way QUAST compiles things as needed if used, I added its location to my [PATH](/bash/modifying_your_path):
+[QUAST](https://github.com/ablab/quast){:target="_blank"} is a really nice tool for comparing multiple assemblies, and for metagenome assemblies there is a comparable [MetaQUAST](http://bioinf.spbau.ru/metaquast){:target="_blank"}. Some discussion and example usage can be found [here](/genomics/de_novo_assembly#quast){:target="_blank"}. To install on my personal computer, I followed the instructions laid out [here](http://quast.bioinf.spbau.ru/manual.html#sec1){:target="_blank"}, and, because of the way QUAST compiles things as needed if used, I added its location to my [PATH](/bash/modifying_your_path){:target="_blank"}:
 
 ```bash
 cd ~/happy_bin
@@ -192,7 +192,7 @@ quast.py --version
 
 
 ## SPAdes
-[SPAdes](http://cab.spbu.ru/software/spades/) is an assembly program. You can read some of my thoughts on assemblies [here](/genomics/de_novo_assembly#assembly). SPAdes is packaged as a binary, and the developers provide excellent installation instructions [here](http://cab.spbu.ru/files/release3.11.1/manual.html#sec2). This is how I installed the latest release at the time on my local computer:
+[SPAdes](http://cab.spbu.ru/software/spades/){:target="_blank"} is an assembly program. You can read some of my thoughts on assemblies [here](/genomics/de_novo_assembly#assembly){:target="_blank"}. SPAdes is packaged as a binary, and the developers provide excellent installation instructions [here](http://cab.spbu.ru/files/release3.11.1/manual.html#sec2){:target="_blank"}. This is how I installed the latest release at the time on my local computer:
 
 ```bash
 curl -LO http://cab.spbu.ru/files/release3.11.1/SPAdes-3.11.1-Darwin.tar.gz
@@ -200,7 +200,7 @@ tar -xzvf SPAdes-3.11.1-Darwin.tar.gz
 rm SPAdes-3.11.1-Darwin.tar.gz
 ```
 
-Since SPAdes comes with many programs, stored in a subdirectory of the SPAdes directory we just untarred, it may be preferable to [add that directory to our PATH](/bash/modifying_your_path), rather than copying all of the programs to our location here. So here we are adding another directory to our PATH:
+Since SPAdes comes with many programs, stored in a subdirectory of the SPAdes directory we just untarred, it may be preferable to [add that directory to our PATH](/bash/modifying_your_path){:target="_blank"}, rather than copying all of the programs to our location here. So here we are adding another directory to our PATH:
 
 ```bash
 cd SPAdes-3.11.1-Darwin/bin/
@@ -221,7 +221,7 @@ spades.py --version
 
 <br>
 ## MEGAHIT
-[MEGAHIT](https://github.com/voutcn/megahit) is another assembly program that is great on memory requirements and speed. This can be installed from source, or through `git` as noted on the above linked page, but there are also binaries available [here](https://github.com/voutcn/megahit/releases). As there is an extra layer of complexity due to OSX `g++`, noted [here](https://github.com/voutcn/megahit#dependency--installation), I grabbed the latest available binary for Mac OSX, which only seems to be missing one bug fix I haven't happened to run into:
+[MEGAHIT](https://github.com/voutcn/megahit){:target="_blank"} is another assembly program that is great on memory requirements and speed. This can be installed from source, or through `git` as noted on the above linked page, but there are also binaries available [here](https://github.com/voutcn/megahit/releases){:target="_blank"}. As there is an extra layer of complexity due to OSX `g++`, noted [here](https://github.com/voutcn/megahit#dependency--installation){:target="_blank"}, I grabbed the latest available binary for Mac OSX, which only seems to be missing one bug fix I haven't happened to run into:
 
 ```bash
 curl -LO https://github.com/voutcn/megahit/releases/download/v1.1.1/megahit_v1.1.1_DARWIN_CPUONLY_x86_64-bin.tar.gz
