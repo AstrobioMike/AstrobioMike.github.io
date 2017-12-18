@@ -40,7 +40,12 @@ Throughout this process we'll be using a variety of tools that I've listed here,
 # The data
 The practice data we're going to use here was provided by colleagues at the [J. Craig Venter Institute](http://www.jcvi.org/){:target="_blank"}. In working out the details for a rather large-scale project, which in part involves sequencing a bunch of *Burkholderia* isolates from the ISS and performing de novo genome assemblies, [Aubrie O'Rourke](https://www.linkedin.com/in/aubrie-o-rourke-94975a6a/){:target="_blank"} and her team put an already sequenced isolate – [*Burkholderia cepacia* (ATCC 25416)](https://www.atcc.org/products/all/25416.aspx){:target="_blank"} – through their pipeline in order to test things out and to have something to benchmark their expectations against. The sequencing was done on Illumina's Nextseq platform as paired-end 2x150 bps, with about a 350-bp insert size.  
 
-If you'd like to follow along rather than just reading through, you can copy and paste the following commands into your terminal to download the sequence data we're working with. For reasons discussed just below here, the files are bigger than I'd like, ~1.8 GB.
+If you'd like to follow along with this page rather than just reading through, you have a couple of options. I tried subsampling the dataset so that things would be smaller and faster for the purposes of this page, but I couldn't seem to without the assembly suffering too much. By far the most computationally intensive step here is the [error correction step](/genomics/where_to_start#read-error-correction){:target="_blank"}, which ended up being the only one that I ran on a server rather than my personal computer (which is a late 2013 MacBook Pro with 4 CPUs and 8GB of memory). So I've provided the raw reads and the error-corrected reads in one downloadable directory if you'd like to run through the processing yourself (and have the option of skipping past the error-correction step), and I've also provided most of the intermediate and all of the end-result files in another downloadable directory so you can explore any component along the way at will without doing the processing. 
+
+To download the
+
+
+you can copy and paste the following commands into your terminal to download the sequence data we're working with. For reasons discussed just below here, the files are bigger than I'd like, ~1.8 GB.
 
 If you're not sure what this block of code is doing, you can find an explanation [here](/bash/basics#bottom), and since almost all of this work happens at the command line, you should probably already be somewhat comfortable with [the basics of *bash*](/bash/basics). 
 
@@ -51,8 +56,6 @@ tar -xvf genomics_de_novo_temp.tar.gz
 rm genomics_de_novo_temp.tar.gz
 cd genomics_de_novo_temp
 ```  
-
-I tried subsampling the dataset so that things would be smaller and faster for the purposes of this page, but I couldn't seem to without the assembly suffering too much. By far the most computationally intensive step here is the [error correction step](/genomics/where_to_start#read-error-correction){:target="_blank"}, which ended up being the only one that I ran on a server rather than my personal computer (which is a late 2013 MacBook Pro with 4 cpus and 8GB of memory). The next slowest steps would be the assemblies, which at most took ~10 minutes on my computer.  
 
 So I've provided the raw reads if you'd like to go from the very beginning, but I've also provided all of the intermediate and end-result files so you can run as much or as little as you'd like, and you can look at as much or as little as you'd like. Basically you have lots of choices regarding how much you'd like to commit yourself here 🙂   
 
