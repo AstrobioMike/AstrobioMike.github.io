@@ -40,7 +40,7 @@ Throughout this process we'll be using a variety of tools that I've listed here,
 # The data
 The practice data we're going to use here was provided by colleagues at the [J. Craig Venter Institute](http://www.jcvi.org/){:target="_blank"}. In working out the details for a rather large-scale project, which in part involves sequencing a bunch of *Burkholderia* isolates from the ISS and performing de novo genome assemblies, [Aubrie O'Rourke](https://www.linkedin.com/in/aubrie-o-rourke-94975a6a/){:target="_blank"} and her team put an already sequenced isolate – [*Burkholderia cepacia* (ATCC 25416)](https://www.atcc.org/products/all/25416.aspx){:target="_blank"} – through their pipeline in order to test things out and to have something to benchmark their expectations against. The sequencing was done on Illumina's Nextseq platform as paired-end 2x150 bps, with about a 350-bp insert size.  
 
-If you'd like to follow along rather than just reading through, you can copy and paste the following commands into your terminal to download the sequence data we're working with. For reasons discussed just below here, the files are bigger than I'd like. The compressed download is ~2.6GB, and uncompresssed it is ~3.4GB.  
+If you'd like to follow along rather than just reading through, you can copy and paste the following commands into your terminal to download the sequence data we're working with. For reasons discussed just below here, the files are bigger than I'd like, ~1.8 GB.
 
 If you're not sure what this block of code is doing, you can find an explanation [here](/bash/basics#bottom), and since almost all of this work happens at the command line, you should probably already be somewhat comfortable with [the basics of *bash*](/bash/basics). 
 
