@@ -19,7 +19,7 @@ Okay, so some of the awesome utility of R is how easy it makes it to subset thin
 
 # Subsetting by position
 
-Subsetting by index number (the actual sequential position of a value) is pretty straightforward as we covered [here](/R/basics#subsetting-by-position). Let's make a simple vector to work with and then look at that again: 
+Subsetting by index number (the actual sequential position of a value) is pretty straightforward as we covered [here](/R/basics#subsetting-by-position). Let's make a simple vector to work with and then look at that again for a second: 
 
 ```R
 y <- c(5, 6, 7)
@@ -48,7 +48,7 @@ Ok. So each value in a vector has an index number which is just the order of thi
 <br>
 # Subsetting by conditional statements
 
-We also saw how to subset using a conditional statement like so:
+We also saw how to subset using a conditional statement [here](https://astrobiomike.github.io/R/basics#subsetting-by-conditional-statements), like so:
 
 ```R
 y # the whole vector
@@ -80,16 +80,16 @@ We can see here R only returned the last two values of the vector stored in vari
 Of course in this case we still specified exactly what we wanted by making those positions `TRUE` in our subsetting logical vector, and so at this point this isn't any more useful than giving the exact index positions like above. But we actually don't need to explicity provide the `TRUE/FALSE` vector. **Instead, we can provide a *conditional expression* that will resolve to a `TRUE/FALSE` vector.** Conditional expressions involve things like greater than `>`, less than `<`, equal to `==`, greater than or equal to `>=`, and less than or equal to `<=`. To see what this means in practice, let's look at how R handles some conditional expressions:
 
 ```R
-2 > 1 # FALSE 
+2 > 1 # TRUE 
 2 > 2 # FALSE
 2 >= 2 # TRUE
 ```
 
 <center><img src="{{ site.url }}/images/R_vec_index_TF2.png"></center> 
 <br>
-R returns "logical" values (i.e. `TRUE/FALSE` values) when presented with conditional expressions like this. As such `2 > 1` resolves to `FALSE`, `2 > 2` resolves to `FALSE`, and `2 >= 2` resolves to `TRUE`. Ok, great, let's walk this just a few more steps forward.  
+R returns "logical" values (i.e. `TRUE/FALSE` values) when presented with conditional expressions like this. As such `2 > 1` resolves to `TRUE`, `2 > 2` resolves to `FALSE`, and `2 >= 2` resolves to `TRUE`. Ok, great, let's walk this just a few more steps forward.  
 
-If we provide a vector instead of a single digit, R will check the conditional expression on each item of the vector. Let's see this in action (remember the `c()` function from above to create a vector):
+If we provide a vector for the left side of the conditional statement instead of a single digit like we just did, R will check the conditional expression on each item of the vector. Let's see this in action (remember the `c()` function from above to create a vector):
 
 ```R
 c(5, 6, 7) >= 6 # FALSE, TRUE, TRUE 
@@ -115,7 +115,7 @@ y[c(FALSE, TRUE, TRUE)] # just the last two values
 
 <center><img src="{{ site.url }}/images/R_vec_index_TF1.png"></center> 
 <br>
-So you might be able to see where this is going now, when we provided that conditional statement `y >= 6` within our subsetting brackets, R was doing this and returning only the positions where the condition resolved to `TRUE`:
+So you might be able to see where this is going now; if we instead provide that conditional statement `y >= 6` within our subsetting brackets, R will resolve it to a vector of `TRUE/FALSE` values and then return only the values for positions where the condition resolves to `TRUE`:
 
 ```R
 y # the whole vector
@@ -126,7 +126,7 @@ y[y >= 6] # returns just the last two values
 <br>
 The way I read the expression `y[y >= 6]` in my head is: "Give me all the values of vector 'y', where 'y' is greater than or equal to 6." This fundamental concept is key to what makes indexing in R so powerful!  
 
-One last thing we're going to introduce here is the `!` character, which inverts the interpretation of `TRUE` and `FALSE`. As we've seen, `y[y >= 6]` will return all values within 'y' that are greater than or equal to 6. But if we add in the `!` point, it will return the opposite for us. We can see this just by putting this in front of the portion of the expression that generates the T/F vector:
+One last thing we're going to introduce here is the `!` character, which inverts the interpretation of `TRUE` and `FALSE`. As we've seen, `y[y >= 6]` will return all values within 'y' that are greater than or equal to 6. But if we add in the `!`, it will return the opposite for us. We can see this just by putting it in front of the conditional expression that generates the `TRUE/FALSE` vector:
 
 ```R
 y
