@@ -9,7 +9,7 @@ permalink: /R/more_indexing
 
 {% include _side_tab_R.html %}
 
-Okay, so some of the awesome utility of R is how easy it makes it to subset things down to whatever you want. The basics of this were covered [here](/R/basics#the-wonderful-world-of-indexing) (and if you're new to R be sure to run through the [basics](/R/basics) before this), but now we're going to go a bit deeper into the weeds of how exactly subsetting by [conditional statements](/R/basics#subsetting-by-conditional-statements) works. Having a better grasp of what R's doing under the hood will greatly improve your abilities to write and make use of more complicated subsetting expressions.
+Okay, so some of the awesome utility of R is how easy it makes it to subset things down to whatever you want. The fundamentals of this were covered [here](/R/basics#the-wonderful-world-of-indexing) (and if you're completely new to R be sure to run through the [basics](/R/basics) before this), but now we're going to go a bit deeper into the weeds of how exactly subsetting by [conditional statements](/R/basics#subsetting-by-conditional-statements) works. Having a better grasp of what R's doing under the hood will greatly improve your abilities to write and make use of more complicated subsetting expressions.
 <br>
 <br>
 
