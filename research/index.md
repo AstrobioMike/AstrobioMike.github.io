@@ -35,8 +35,11 @@ My current research efforts are focused primarily on: photoautotroph-heterotroph
 [http://journal.frontiersin.org/article/10.3389/fmicb.2015.01470/full](http://journal.frontiersin.org/article/10.3389/fmicb.2015.01470/full){:target="_blank"}  
 [PDF download](/research/Lee_et_al_2015_FrontMicro.pdf){:target="_blank"}  
 
+Walworth, N.G., **Lee, M.D.**, Suffridge, C., Qu, P., Fu., F-X., Saito, M.A., Webb, E.A., Sañudo-Wilhelmy, S.A., and Hutchins, D.A (2017). Functional genomics and phylogenetic evidence suggest genus-wide cobalamin production by the globally distributed marine nitrogen fixer Trichodesmium. *Frontiers in Microbiology*. doi: 10.3389/fmicb.2018.00189  
+[https://www.frontiersin.org/articles/10.3389/fmicb.2018.00189/abstract](https://www.frontiersin.org/articles/10.3389/fmicb.2018.00189/abstract){:target="_blank"}
+
 Walworth, N.G., Fu., F-X., **Lee, M.D.**, Cai, X., Saito, M.A., Webb, E.A., and Hutchins, D.A (2017). Nutrient co-limited *Trichodesmium* as nitrogen source or sink in a future ocean. *Applied and Environmental Microbiology*. doi: 10.1128/AEM.02137-17  
-[http://aem.asm.org/content/early/2017/11/20/AEM.02137-17.abstract){:target="_blank"}  
+[http://aem.asm.org/content/early/2017/11/20/AEM.02137-17.abstract](http://aem.asm.org/content/early/2017/11/20/AEM.02137-17.abstract){:target="_blank"}  
 [PDF download](/research/Walworth_et_al_2017_AEM.pdf){:target="_blank"}  
 
 Hutchins, D.A., Fu, F.-X., Walworth, N.G., **Lee, M.D.**, Saito, M.A., and Webb, E.A. (2017). Comment on “The complex effects of ocean acidification on the prominent N2-fixing cyanobacterium *Trichodesmium*”. *Science*. doi: 10.1126/science.aao0067  
