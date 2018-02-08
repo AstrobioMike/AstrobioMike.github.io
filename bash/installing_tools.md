@@ -26,7 +26,7 @@ You may have heard or read an expression before referring to whether there is a 
 ---
 <br>
 # First we need a happy bin
-Often a big part of getting things to work properly is having them in a location on the computer that you can access no matter [where you are](/bash/basics#moving-around){:target="_blank"}. As we covered [here](/bash/modifying_your_path){:target="_blank"}, a list of directories that are scanned for programs automatically by your computer is stored in the *bash* special variable called "PATH". For the sake of simplicity, any tools we use in tutorials on this site are going to be put in a directory we made and added to our PATH in the [modifying your PATH walkthrough](/bash/modifying_your_path){:target="_blank"} called `~/happy_bin`. You can check to see if this is in your PATH already like this:
+Often a big part of getting things to work properly is having them in a location on the computer that you can access no matter [where you are](/bash/basics#moving-around){:target="_blank"}. As we covered [here](/bash/modifying_your_path){:target="_blank"}, a list of directories that are scanned for programs automatically by your computer is stored in the *bash* special variable called "PATH". For the sake of simplicity, many tools we use in tutorials on this site are going to be put in a directory we made and added to our PATH in the [modifying your PATH walkthrough](/bash/modifying_your_path){:target="_blank"} called `~/happy_bin`. You can check to see if this is in your PATH already like this:
 
 ```bash
 echo $PATH | tr ":" "\n" | grep "happy_bin"
@@ -50,7 +50,34 @@ And if you're unsure of what's going on here, be sure to visit the [modifying yo
 ---
 <br>
 # Installing tools used on this site
-As explained [above](/bash/installing_tools#first-we-need-a-happy-bin){:target="_blank"}, everything we install here will be put in a directory in our home location called `~/happy_bin`, so pay attention to modify any code here accordingly if you want to put things somewhere else (and also pay attention to version numbers, and feel free to change that location to where you'd like of course, but then you will need to modify any code accordingly.  
+As explained [above](/bash/installing_tools#first-we-need-a-happy-bin){:target="_blank"}, most things we install here will be put in a directory in our home location called `~/happy_bin`, so pay attention to modify any code here accordingly if you want to put things somewhere else. For some things that have installation scripts that install somewhere else, and don't seem to cause any problems,  
+<br>
+
+## NCBI's E-utilities
+If you're dancing in the bioinformatics world, at some point you will no doubt find yourself wanting to download a massive amount of gene sequences or reference genomes from the glorious [NCBI](https://www.ncbi.nlm.nih.gov/){:target="_blank"}. One of the ways you can download things in bulk from the command line is using their [Entrez Direct E-utilities](https://www.ncbi.nlm.nih.gov/books/NBK179288/){:target="_blank"}. That link has the following installation instructions, which I've been able to execute successfully on both a Mac and on a Linux server, but for the PC folk out there the site also says it will run fine under Cygwin's UNIX-like environment.  
+
+Copying and pasting these commands into your terminal should do the trick:
+
+```bash
+cd ~
+/bin/bash
+perl -MNet::FTP -e \
+  '$ftp = new Net::FTP("ftp.ncbi.nlm.nih.gov", Passive => 1);
+   $ftp->login; $ftp->binary;
+   $ftp->get("/entrez/entrezdirect/edirect.tar.gz");'
+gunzip -c edirect.tar.gz | tar xf -
+rm edirect.tar.gz
+builtin exit
+export PATH=${PATH}:$HOME/edirect >& /dev/null || setenv PATH "${PATH}:$HOME/edirect"
+./edirect/setup.sh
+```
+
+This downloads and installs E-utils. The last step may take a minute or two, and when it's done it might tell you a command you need to run in order to add the appropriate directory to your [PATH](/bash/modifying_your_PATH){:target="_blank"}. Mine looked something like this, `echo 'export PATH=${PATH}:/Users/Mike_Lee/edirect' >> ~/.bashrc`, but yours will be different. Just copy and paste that command into the terminal, open a new terminal window or run `source ~/.bashrc` (or `source ~/.bash_profile` if it had you add it to that file). Then you're ready to test out that all is well by running `esearch -help`, and you should hopefully see something like this:
+
+<center><img src="{{ site.url }}/images/checking_ncbi_eutils.png"></center>
+
+<br>
+And you can find some examples of how to pull reference sequences [here](/bash/ncbi_eutils){:target="_blank"}.  
 
 ## vsearch
 There are instructions to get vsearch up and running [on its github](https://github.com/torognes/vsearch){:target="_blank"}, but these commands should work for you if you're on a Mac **(if you're not, you'll have to download a different version you can find following the above link)**.
