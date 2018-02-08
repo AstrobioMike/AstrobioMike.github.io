@@ -11,7 +11,7 @@ permalink: /bash/ncbi_eutils
 
 [NCBI](https://www.ncbi.nlm.nih.gov/){:target="_blank"} is pretty damn awesome. But the first few times I wanted to download a massive amount of reference sequences I found myself struggling a bit. If that has happened to you, then hopefully this page helps out. NCBI's [Entrez Direct E-utilities](https://www.ncbi.nlm.nih.gov/books/NBK179288/){:target="_blank"} offers one avenue to be able to download data in bulk at the command-line. If you don't have it yet, that link above provides installation instructions and/or you can walkthrough the process [here](/bash/installing_tools#ncbis-e-utilities){:target="_blank"}.  
 
-I don't use this toolset much, and I don't have a strong grasp on everything it does or how to do everything I'd want to do with it. For now, here is an example of pulling amino acid sequences en masse. Make sure to look over the full functionality [here](https://www.ncbi.nlm.nih.gov/books/NBK25499/){:target="_blank"} sometime.  
+I don't use this toolset much, and I don't have a strong grasp on everything it does or how to do everything I'd want to do with it. As discussed at the bottom of this page, hopefully people more well versed with it will jump in and help add to this 🙂 For now, here is an example of pulling amino acid sequences en masse, but make sure to look over the full functionality [here](https://www.ncbi.nlm.nih.gov/books/NBK25499/){:target="_blank"} sometime.  
 
 ## The efetch command
 The `efetch` command let's you pull all kinds of data from NCBI. If you run `efetch -help`, you can look at lots of parameters and types of info you can pull. Here, to get an idea of how the command works, let's just pull one amino acid sequence for an alkaline phosphatase:
