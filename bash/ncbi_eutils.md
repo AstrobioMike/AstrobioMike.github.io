@@ -1,6 +1,6 @@
 ---
 layout: main
-title: Downloading from NCBI with E-Utils
+title: Downloading from NCBI with Entrez Direct E-Utils
 categories: [bash, tutorial]
 permalink: /bash/ncbi_eutils
 ---
@@ -11,10 +11,10 @@ permalink: /bash/ncbi_eutils
 
 [NCBI](https://www.ncbi.nlm.nih.gov/){:target="_blank"} is pretty damn awesome. But the first few times I wanted to download a massive amount of reference sequences I found myself struggling a bit. If that has happened to you, then hopefully this page helps out. NCBI's [Entrez Direct E-utilities](https://www.ncbi.nlm.nih.gov/books/NBK179288/){:target="_blank"} offers one avenue to be able to download data in bulk at the command-line. If you don't have it yet, that link above provides installation instructions and/or you can walkthrough the process [here](/bash/installing_tools#ncbis-e-utilities){:target="_blank"}.  
 
-I don't use this toolset much, so will only be showing an example of pulling gene sequences for now. Make sure to look over the full functionality [here](https://www.ncbi.nlm.nih.gov/books/NBK25499/){:target="_blank"} sometime.  
+I don't use this toolset much, and I don't have a strong grasp on everything it does or how to do everything I'd want to do with it. For now, here is an example of pulling amino acid sequences en masse. Make sure to look over the full functionality [here](https://www.ncbi.nlm.nih.gov/books/NBK25499/){:target="_blank"} sometime.  
 
 ## The efetch command
-The `efetch` command let's you pull all kinds of data from NCBI. If you run `efetch -help`, you can look at lots of parameters and types of info you can pull. Here, to get an idea of how the command works, let's just pull one amino acid coding sequence with one accession number for an alkaline phosphatase:
+The `efetch` command let's you pull all kinds of data from NCBI. If you run `efetch -help`, you can look at lots of parameters and types of info you can pull. Here, to get an idea of how the command works, let's just pull one amino acid sequence for an alkaline phosphatase:
 
 ```bash
 efetch -db protein -format fasta -id AEE52072.1
@@ -33,13 +33,13 @@ The efetch command can also take multiple IDs separated by commas. Here's an exa
 efetch -db protein -format fasta -id AEE52072.1,ADV47642.1 > my_seqs.faa
 ```
 
-In practice of course we can download one or two from the site though, and we're only using this because we want a lot. Unfortunately you can't provide the `-id` argument a file of accession numbers, and even if you were to actively enter them on the command line, the [Entrez site notes](https://www.ncbi.nlm.nih.gov/books/NBK179288/#chapter6.Automation){:target="_blank"} that you shouldn't do more than blocks of 200 at a time due to server limitations. So next let's look at first how to generate a large list of accession numbers, and then how to solve all our problems with the magic of *bash* :)
+In practice of course we can download one or two from the site though, and we're only using this because we want a lot. While unfortunately you can't provide the `-id` argument a file of accession numbers, and even if you were to actively enter them on the command line, the [Entrez site notes](https://www.ncbi.nlm.nih.gov/books/NBK179288/#chapter6.Automation){:target="_blank"} that you shouldn't do more than blocks of 200 at a time due to server limitations. So next let's look at one way to generate a large list of desired accessions, and then we'll see one way that the magic of *bash* can solve all our problems again 🙂
 
 ## Pulling lots of sequences
 For an example, let's imagine we want all the amino acid sequences of the *phoD*-type alkaline phosphatases available in [RefSeq](https://www.ncbi.nlm.nih.gov/refseq/){:target="_blank"} for bacteria (because Euks are too hard). While this is focused on amino acid coding sequences, the same principles apply if you wanted to pull different information. The only things that would change would be how you search your accessions and which options you specify for `efetch`.   
 
 ### Generating accessions list
-As we just saw, to use `efetch` at the command line we first need to generate a list of accession numbers (or gene IDs). This can be done at the command line too with the `esearch` command, but I personally just do it on their web page. Here are the steps I just took to get the desired accessions for bacterial *phoD*-type amino acid sequences:  
+As we just saw, to use `efetch` at the command line we first need to generate a list of accession numbers (or gene IDs). This can be done at the command line too with the `esearch` command, but I don't know how to use that yet. So far I've personally just done this on their web page. Here are the steps I just took to get the desired accessions for bacterial *phoD*-type amino acid sequences:  
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • went to [NCBI](https://www.ncbi.nlm.nih.gov/){:target="_blank"}  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • changed the search database from "All Databases" to "Protein"  
@@ -120,4 +120,8 @@ And after running the script, which took about 15 seconds for these 1,025 sequen
 ---
 ---
 <br>
-I hope this was helpful. As mentioned above, to pull different types of data you would need to run your search appropriately to get the desired accessions, and then you'd need to change the options of `efetch`, like which `-db` and which `-format`. 
+
+## Help me improve this page!
+I hope this was helpful. As mentioned above, to pull different types of data you would need to run your search appropriately to get the desired accessions, and then you'd need to change the options of `efetch`, like which `-db` and which `-format`. This is pretty straightforward for genomes, but there are a lot of intricacies I haven't had to work out yet (and therefore haven't worked out yet; necessity is a hell of a force for innovation – to paraphrase lots of people). For instance I ran into difficulty trying to make an example pulling nucleotide sequences from RefSeq protein accessions. I think part of the problem is I don't have my head fully wrapped around how the different databases are connected. If I could pin that down, then I could get to the issue of trying to pull the start and stop coordinates and be golden, I think... 🤔
+
+As usual, what I've shown above is probably far from being the most efficient way to do this. So if you have insight into doing things better please let me know via email or [twitter](twitter.com/astrobiomike){:target="_blank"}, and especially please reach out if you can help with how to pull nucleotide seqs from RefSeq protein accessions. Then we can update this for everyone 🙂
