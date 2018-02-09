@@ -9,11 +9,46 @@ permalink: /bash/ncbi_eutils
 
 {% include _side_tab_bash.html %}
 
-[NCBI](https://www.ncbi.nlm.nih.gov/){:target="_blank"} is pretty damn awesome. But the first few times I wanted to download a massive amount of reference sequences I found myself struggling a bit. If that has happened to you, then hopefully this page helps out. NCBI's [Entrez Direct E-utilities](https://www.ncbi.nlm.nih.gov/books/NBK179288/){:target="_blank"} offers one avenue to be able to download data in bulk at the command-line. If you don't have it yet, that link above provides installation instructions and/or you can walkthrough the process [here](/bash/installing_tools#ncbis-e-utilities){:target="_blank"}.  
+[NCBI](https://www.ncbi.nlm.nih.gov/){:target="_blank"} is pretty damn awesome. But the first few times I wanted to download a massive amount of reference sequences I found myself struggling a bit. If that has happened to you, then hopefully this page helps out. NCBI's [Entrez Direct E-utilities](https://www.ncbi.nlm.nih.gov/books/NBK179288/){:target="_blank"} offers one avenue to be able to download data in bulk at the command-line, but it can take a bit of *bash* dancing. I initially wrote this demonstrating one of the ways to do that dance, and you can still find that under the [Entrez section](/bash/ncbi_eutils#entrez) at the bottom of this page because it shows some basic *bash* tricks that are helpful in other situations. But wonderfully, after sharing the page, [@asherichia](https://twitter.com/asherichia){:target="_blank"} sent me a link to [@kaiblin](https://twitter.com/kaiblin){:target="_blank"}'s [github page](https://github.com/kblin){:target="_blank"}, where he and some others have put together two amazing tools for downloading data from NCBI. So now, I've just added two simplified examples of downloading genomes and proteins to the top of the page here demonstrating how to use their tools (even though they are very straightforward to use, and their repository [README](https://github.com/kblin/ncbi-genome-download){:target="_blank"} shows a bunch of helpful examples). Both of these tools can be installed easily via `pip` at the command line, i.e. `pip install ncbi-genome-download` and `pip install ncbi-acc-download` (if you're doing it on a server and hit a permissions error, adding the `--user` flag to `pip` usually works).  
+<br>
 
-I don't use this toolset much, and I don't have a strong grasp on everything it can do, but I do use it to pull proteins and genomes from time to time. As discussed at the bottom of this page, hopefully people more well versed with it will jump in and help add to this 🙂  
+---
+---
+<br>
+# ncbi-genome-download
+Their script to download genomes, `ncbi-genome-download`, goes through NCBI's [ftp server](ftp://ftp.ncbi.nlm.nih.gov/){:target="_blank"}, and can be found [here](https://github.com/kblin/ncbi-genome-download){:target="_blank"}. They have quite a few options available to specify what you want that you can view with `ncbi-genome-download -h`, and there are examples you can look over at the [github repository](https://github.com/kblin/ncbi-genome-download){:target="_blank"}. For a quick example here, I'm going to pull fasta files for all [RefSeq](https://www.ncbi.nlm.nih.gov/refseq/){:target="_blank"} *Alteromonas* reference genomes labeled as "complete" – [see here](https://www.ncbi.nlm.nih.gov/assembly/help/#glossary){:target="_blank"} for definitions of RefSeq assembly levels – just because I have a softspot for *Alteromonas*:
 
-For now, here is an example of pulling amino acid sequences en masse, but make sure to look over the full functionality [here](https://www.ncbi.nlm.nih.gov/books/NBK25499/){:target="_blank"} sometime.  
+```bash
+ncbi-genome-download bacteria -g Alteromonas -l complete -F fasta -o Alteromonas_refseq_genomes
+```
+
+Here I'm specifying the positional argument of `bacteria` to tell it which group, then the genus with the `-g` flag, the assembly level with the `-l` flag, the format of the output with the `-F` flag, and the output directory with the `-o` flag. On my personal MacBook Pro this took a mere 40 seconds to download 30 genomes. Pretty sweet!  
+<br>
+
+---
+<br>
+# ncbi-acc-download
+The script they provide to download data by accession number, `ncbi-acc-download`, can be found [here](https://github.com/kblin/ncbi-acc-download){:target="_blank"} and uses [Entrez](https://www.ncbi.nlm.nih.gov/books/NBK184582/){:target="_blank"}. Other than accession numbers, which are supplied as a positional argument, you can tell the script whether you want nucleotides or proteins via the `-m` flag. The nucleotide option returns results in [GenBank format](https://www.ncbi.nlm.nih.gov/Sitemap/samplerecord.html){:target="_blank"}, and the protein option returns results in fasta format. Here's the syntax to pull a single protein sequence: 
+
+```bash
+ncbi-acc-download -m protein WP_015663423.1
+```
+
+If we wanted to grab multiple accessions, they can be supplied as a comma-delimited list:
+
+```bash
+ncbi-acc-download -m protein WP_015663423.1,WP_006575543.1,WP_009965426.1
+```
+
+And if you have a ton of these accessions in a single-column file, you can see one way to convert that to a comma-separated list in the [formatting for bulk download section](/bash/ncbi_eutils#formatting-for-bulk-download) below.  
+
+Thanks again to [@asherichia](https://twitter.com/asherichia){:target="_blank"} for pointing me towards these two very helpful tools on [@kaiblin](https://twitter.com/kaiblin){:target="_blank"}'s [github page](https://github.com/kblin){:target="_blank"}!  
+<br>
+
+---
+<br> 
+# Entrez
+I don't use this toolset for much more than pulling proteins and genomes from time to time, so I don't have a strong grasp on everything it can do. And now that I know about the helper download tools from [@kaiblin](https://twitter.com/kaiblin){:target="_blank"}'s [github page](https://github.com/kblin){:target="_blank"} demonstrated above, I will probably use it even less. But as mentioned there are some basic *bash* lines in here that may be helpful in other scenarios, so I figured I'd keep this example up of pulling amino acid sequences en masse. If you want to go further with using Entrez at the command line, make sure to look over the full functionality [here](https://www.ncbi.nlm.nih.gov/books/NBK25499/){:target="_blank"}.  
 
 ## The efetch command
 The `efetch` command let's you pull all kinds of data from NCBI. If you run `efetch -help`, you can look at lots of parameters and types of info you can pull. Here, to get an idea of how the command works, let's just pull one amino acid sequence for an alkaline phosphatase:
@@ -42,7 +77,7 @@ The other thing we have to address is that the [Entrez site notes](https://www.n
 ## Pulling lots of sequences
 For an example, let's imagine we want all the amino acid sequences of the *phoD*-type alkaline phosphatases available in [RefSeq](https://www.ncbi.nlm.nih.gov/refseq/){:target="_blank"} for bacteria (because Euks are too hard). While this is focused on amino acid coding sequences, the same principles apply if you wanted to pull different information. The only things that would change would be how you search your accessions and which options you specify for `efetch`.   
 
-### Generating accessions list
+## Generating accessions list
 As we just saw, to use `efetch` at the command line we first need to generate a list of accession numbers (or gene IDs). This can be done at the command line too with the `esearch` command, but I don't know how to use that yet. So far I've personally just done this on their web page. Here are the steps I just took to get the desired accessions for bacterial *phoD*-type amino acid sequences:  
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • went to [NCBI](https://www.ncbi.nlm.nih.gov/){:target="_blank"}  
@@ -63,7 +98,7 @@ For the sake of this example we don't need that many, so I'm going to cut that d
 head -n 1025 sequence.seq > wanted_accessions.txt
 ```
 
-### Formatting for bulk download
+## Formatting for bulk download
 Here we're going to do things without `epost` first. Remember from the example above that `efetch` can take multiple accessions separated by commas. To see how we can format our accessions list properly, first let's use *bash* to build up an `efetch` command that will run on just the first 10 seqs:
 
 ```bash
@@ -133,8 +168,7 @@ for block in `ls temp_block_*`; do epost -input $block -db protein | efetch -for
 ---
 ---
 <br>
+# Help improve this page!
+Much to my appreciation and to the benefit all, this page has already been helped along by great tips from [@ctskennerton](https://twitter.com/ctskennerton){:target="_blank"} and [@asherichia](https://twitter.com/asherichia){:target="_blank"}. We all have so many random, little tips and tricks and tools that we've arrived at that maybe others just simply haven't come across yet. It's great to be able to share them and hopefully save others some time!  
 
-## Help me improve this page!
-I hope this was helpful. As mentioned above, to pull different types of data you would need to run your search appropriately to get the desired accessions, and then you'd need to change the options of `efetch`, like which `-db` and which `-format`. This is pretty straightforward for genomes, but there are a lot of intricacies I haven't had to work out yet (and therefore haven't worked out yet; necessity is a hell of a force for innovation – to paraphrase lots of people). For instance I ran into difficulty trying to make an example pulling nucleotide sequences from RefSeq protein accessions. I think part of the problem is I don't have my head fully wrapped around how the different databases are connected. If I could pin that down, then I could get to the issue of trying to pull the start and stop coordinates and be golden, I think... 🤔
-
-As usual, what I've shown above is probably far from being the most efficient way to do this. So if you have insight into doing things better please let me know via email or [twitter](twitter.com/astrobiomike){:target="_blank"}, and especially please reach out if you can help with how to pull nucleotide seqs from RefSeq protein accessions. Then we can update this for everyone 🙂
+So if you have insight into doing things better please let me know via email or [twitter](twitter.com/astrobiomike){:target="_blank"} and we can continue to update this for everyone 🙂
