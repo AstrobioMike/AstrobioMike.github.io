@@ -35,7 +35,9 @@ The efetch command can also take multiple IDs separated by commas. Here's an exa
 efetch -db protein -format fasta -id AEE52072.1,ADV47642.1 > my_seqs.faa
 ```
 
-In practice of course we can download one or two from the site though, and we're only using this because we want a lot. While unfortunately you can't provide the `-id` argument a file of accession numbers, and even if you were to actively enter them on the command line, the [Entrez site notes](https://www.ncbi.nlm.nih.gov/books/NBK179288/#chapter6.Automation){:target="_blank"} that you shouldn't do more than blocks of 200 at a time due to server limitations. So next let's look at one way to generate a large list of desired accessions, and then we'll see one way that the magic of *bash* can solve all our problems again 🙂
+In practice of course we can download one or two from the site though, and we're only using this because we want a lot. While unfortunately you can't provide the `-id` argument of `efetch` a file of accession numbers, we can easily do a little *bash* workaround that we'll see. Additionally, [@ctskennerton](https://twitter.com/ctskennerton){:target="_blank"} pointed out to me that you *can* in fact provide a regular one-column file of accession numbers to the `epost` command (which basically queues up accessions to then be acted on), and then pipe the output of that into the `efetch` command. This is pretty sweet as it's a bit cleaner than the workaround I initially used, but it doesn't seem to work with a lot of accessions. When I tested things it worked fine for me on ~1,000 protein seqs, but I got "request timed out" errors when trying to run it on ~10,000 sequences. So I've kept the initial *bash* workaround in here and added the `epost | efetch` way too. If you're doing this regularly with a manageable number of references to pull, then doing it the cleaner way shouldn't be a problem. Thanks to [@ctskennerton](https://twitter.com/ctskennerton){:target="_blank"} for the tip! 
+
+The other thing we have to address is that the [Entrez site notes](https://www.ncbi.nlm.nih.gov/books/NBK179288/#chapter6.Automation){:target="_blank"} that you shouldn't do more than blocks of 200 at a time due to server limitations. So we'll also go over how to chop up a large file into a bunch of little ones and run things in a loop with the magic of *bash*. But first, let's look at one way to generate a large list of desired accessions.
 
 ## Pulling lots of sequences
 For an example, let's imagine we want all the amino acid sequences of the *phoD*-type alkaline phosphatases available in [RefSeq](https://www.ncbi.nlm.nih.gov/refseq/){:target="_blank"} for bacteria (because Euks are too hard). While this is focused on amino acid coding sequences, the same principles apply if you wanted to pull different information. The only things that would change would be how you search your accessions and which options you specify for `efetch`.   
@@ -62,7 +64,7 @@ head -n 1025 sequence.seq > wanted_accessions.txt
 ```
 
 ### Formatting for bulk download
-Remember from the example above that `efetch` can take multiple accessions separated by commas. To see how we can format our accessions list properly, first let's use *bash* to build up an `efetch` command that will run on just the first 10 seqs:
+Here we're going to do things without `epost` first. Remember from the example above that `efetch` can take multiple accessions separated by commas. To see how we can format our accessions list properly, first let's use *bash* to build up an `efetch` command that will run on just the first 10 seqs:
 
 ```bash
 head wanted_accessions.txt | tr "\n" "," | sed 's/,$//' > ten_formatted.txt
@@ -116,6 +118,15 @@ And here's what the newly created "pull_more_phoD_seqs.sh" file looks like (in `
 And after running the script, which took about 15 seconds for these 1,025 sequences, we have our references 🙂 
 
 <center><img src="{{ site.url }}/images/eutils_efetch8.png"></center>
+
+<br> 
+And as mentioned above, while you can't provide the `efetch` command with a regular single-column file of accession numbers, you can provide that to the `epost` command, and then pipe that into `efetch`. In that case you wouldn't need to run the step generating the *bash* script. Also as I mentioned above though, in my quick tests this worked with the subset of ~1,000 protein sequences, but I got timed-out errors when trying to run it on 10,000. So it might depend on how much you're trying to pull, but here's how that command would look with just one file of accessions, and then if you were to loop through the blocks of 200 like we made above:
+
+```bash
+epost -input 10_accessions -db protein | efetch -format fasta > 10_accessions.faa
+
+for block in `ls temp_block_*`; do epost -input $block -db protein | efetch -format fasta; done > out.faa
+```
 
 <br>
 
