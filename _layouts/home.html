@@ -13,36 +13,35 @@
     {% include _header.html %}
     {% include _browser-upgrade.html %}
 
-
-
+    <section id="home">
+      <div class="intro-header_landing">
+  
+        <div class="container_landing">
     
-    <div class="wrapper">
-      <div class="pull-right">{% include _drop-down-menu.html %}</div>
-    </div>
-    
-
-
-<!-- 
-
-    <div class="article-author-side">
-      {% include _left-panel.html %}
-    </div>
-
- -->
-
-    
-    <main class="page-content" aria-label="Content">
-    
-      <div class="wrapper">
-
-    <header class="post-header">
-      <h1 class="post-title">{{ page.title | escape }}</h1>
-    </header>
-
-        {{ content }}
-
+          <div class="row_landing">
+            <div class="col-lg-12_landing">
+              <div class="intro-message_landing">
+                <h1>Welcome!<br></h1>
+                <h3><br></h3>
+                <h3>This site aims to be a useful resource for bioinformatics beginners.<br>
+                <br>
+                Feel free to jump right in with the section most relevant to you,<br>
+                and if you're not sure, then the place to start is definitely <i>bash</i></h3>
+                <h6><br></h6>
+                
+                <ul class="list-inline intro-link-buttons">                  
+                    <li><a href="/bash/" class="btn btn-default btn-lg"> <span class="network-name_landing" style="">BASH (command line)</span></a></li>
+                    <li><a href="/R/" class="btn btn-default btn-lg"> <span class="network-name_landing">R</span></a></li>
+                    <li><a href="/amplicon/" class="btn btn-default btn-lg"> <span class="network-name_landing">Amplicon analysis</span></a></li>
+                    <li><a href="/genomics/" class="btn btn-default btn-lg"> <span class="network-name_landing">Genomics</span></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+      
+        </div>
       </div>
-    </main>
+    </section>
 
     {% include footer.html %}
 

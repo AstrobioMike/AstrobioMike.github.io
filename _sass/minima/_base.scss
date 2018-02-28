@@ -328,3 +328,195 @@ table {
 a.active {
   color: #ffe000;
 }
+
+.landing_page_image {
+  position: relative;
+  text-align: center;
+  color: #ecf2f9;
+}
+
+.landing_page_text_centered {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  text-shadow: 4px 4px 6px rgba(0,0,0,0.9);
+  font-size: 5em;
+  font-weight: 800;
+//   box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.25);
+//   padding: ($spacing-unit);
+//   @include rounded(5px);
+}
+
+section {
+  display: block;
+}
+
+.intro-header_landing {
+    padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
+    padding-bottom: 50px;
+    text-align: center;
+    color: #f8f8f8;
+    background: url(/images/landing_page_background_darker.jpg) no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+}
+
+.container_landing {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.row_landing {
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.col-lg-12_landing {
+  position: relative;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.intro-message_landing {
+    position: relative;
+    padding-top: 20%;
+    padding-bottom: 20%;
+}
+
+.intro-message_landing > h1 {
+    margin: 0;
+    text-shadow: 4px 4px 6px rgba(0,0,0,0.6);
+    font-size: 5em;
+}
+
+hr {
+  height: 0;
+  -webkit-box-sizing: content-box;
+     -moz-box-sizing: content-box;
+          box-sizing: content-box;
+}
+
+.intro-divider_landing {
+    position: relative;
+    width: 50%;
+    border-top: 1px solid #f8f8f8;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+
+.intro-message_landing > h3 {
+    text-shadow: 3px 3px 4px rgba(0,0,0,0.6);
+    font-size: 2em;
+    letter-spacing: 1px;
+}
+
+@media(max-width:767px) {
+    .intro-message_landing {
+        padding-bottom: 15%;
+    }
+
+    .intro-message_landing > h1 {
+        font-size: 3em;
+    }
+    
+    .intro-message_landing > h3 {
+        font-size: 1em;
+    }
+
+    ul.intro-link-buttons > li {
+        display: block;
+        margin-bottom: 20px;
+        padding: 0;
+    }
+
+    ul.intro-link-buttons > li:last-child {
+        margin-bottom: 0;
+    }
+
+    .intro-divider_landing {
+        width: 100%;
+    }
+}
+
+.network-name_landing {
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 2px;
+}
+
+.content-section-a {
+    padding: 50px 0;
+    background-color: #f8f8f8;
+}
+
+.content-section-b {
+    padding: 50px 0;
+    border-top: 1px solid #e7e7e7;
+    border-bottom: 1px solid #e7e7e7;
+}
+
+.section-heading {
+    margin-bottom: 30px;
+}
+
+.section-heading-spacer {
+    float: left;
+    width: 200px;
+    border-top: 3px solid #e7e7e7;
+}
+
+
+
+.list-unstyled {
+  padding-left: 0;
+  list-style: none;
+}
+
+.list-inline {
+  padding-left: 0;
+  margin-left: -5px;
+  list-style: none;
+}
+.list-inline > li {
+  display: inline-block;
+  padding-right: 5px;
+  padding-left: 5px;
+}
+
+
+.btn {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  background-image: none;
+  border: 1px solid #f8f8f8;
+  border-radius: 2px;
+}
+
+.btn-lg,
+.btn-group-lg > .btn {
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 6px;
+}
