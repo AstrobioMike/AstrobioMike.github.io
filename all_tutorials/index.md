@@ -22,6 +22,7 @@ Feel free to <a href="https://twitter.com/AstrobioMike">bug me</a> about any of 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • [What the heck is a PATH, and how do I get it to do what I want?](/bash/modifying_your_path)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • [How to install the tools you need](/bash/installing_tools)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • [Why is this all worth it? (Some real-life examples)](/bash/why)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • [Downloading data from NCBI](/bash/ncbi_eutils)  
 
 **Coming soon:**  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • [Simple loops can go a long way](/bash/loops_to_help)  
