@@ -1,17 +1,17 @@
 <header class="site-header" role="banner">
 
-  <div class="wrapper">
+  <div class="nav-wrapper">
     <a class="site-title" href="{{ "/" | relative_url }}">{{ site.title | escape }}</a>
-      <nav class="site-nav">
-        <div class="trigger">
+    <nav class="site-nav">
+      <div class="trigger">
         <ul>
           {% for link in site.data.navigation %}
-            {% assign domain = site.url %}
+          {% assign domain = site.url %}
 				    <li><a href="{{ domain }}{{ link.url }}" {% if link.style %}style="{{ link.style }}"{% endif %} {% if link.url contains 'http' %}target="_blank"{% endif %}>{{ link.title }}</a></li>
 				  {% endfor %}
         </ul>
-		  </nav>
-	  </div>
-  </div>
-  
+      </div>
+		</nav>
+	</div>
+
 </header>
