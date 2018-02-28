@@ -1,6 +1,6 @@
 ---
 layout: main
-title: Downloading from NCBI with Entrez Direct E-Utils
+title: Downloading from NCBI
 categories: [bash, tutorial]
 permalink: /bash/ncbi_eutils
 ---

@@ -18,24 +18,26 @@ There is extensive documentation on R at the CRAN [Introduction to R site](https
 
 <h3>Some terminology</h3>
 
-**Variable**
+**Variable**  
+A variable is something you define that stores data within it.
 
-**Object**
+**Object**  
+An object is a data structure that has specific, known attributes to it that allow you to manipulate it more easily. 
 
 **Vector**  
+A one-dimensional structure holding more than one item.
 
 **Data frame**  
+A two-dimensional table that can hold different types of data, like categorical, qualitative values and continuous, numerical values in the same table.
 
-**Matrix**
+**Matrix**  
+A two-dimensional table that holds only the same type of data.
 
-**Indexing**
+**Indexing**  
+A way of subsetting R objects down to whatever you want. There is plenty to get yourself comfortable with indexing in R [here](/R/basics#the-wonderful-world-of-indexing) and [here](/R/more_indexing). 
 
-**Function**
+**Function**  
+A function is a collection of code that performs a desired task. For example, the function `sum()` adds up all of the components of something and gives the sum back to us. 
 
-**Package**
-
-
-<br>
-
-<center><img src="{{ site.url }}/images/under_construction.jpeg"></center>
-<center><h3>UNDER CONSTRUCTION</h3></center>
+**Package (Library)**  
+A package (also called library) is a collection of functions. We will often want to use functions already written and shared by wonderful people that are not a part of what comes standard with R, and [downloading and installing packages](/R/installing_packages) makes this easy for us to do.

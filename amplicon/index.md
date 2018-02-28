@@ -22,37 +22,25 @@ There are a lot of things to keep in mind regarding what tag sequencing means, w
 <br>
 
 <h3>Some terminology</h3>
+As with most things, trying to pin down precise, one-answer definitions can be difficult sometimes. This is because language is fluid and we are constantly trying to find better ways to communicate more efficiently and with more clarity. That's a good thing, but it can add to the confusion when first trying to find your footing in a new area. Here are some terms you might hear and what they mean most often in my experience (though there can certainly be other interpretations).
 
-**Amplicon/tag/marker-gene**
+**Amplicon**  
+The resulting sequence of a targeted amplification of genetic material. Targeted meaning primers were used 
+
+**Marker gene**  
+A gene that can be useful for delineating organisms, like a fingerprint.
 
 **OTU**  
+Operational Taxonomic Unit. OTUs are an artificial, arbitrary construct useful for grouping sequences together into units to help us summarize and analyze things, and they also intended to help deal with  sequencing error intrinsic to the technology.
 
 **ASV**  
+Amplicon Sequence Variant. Resulting sequences from newer processing methodologies that attempt to take into account sequencing error rates and are believed to represent true biological sequences. The case for moving towards using ASVs over OTUs is made very well in [this paper](https://www.nature.com/articles/ismej2017119) by [@bejcal](https://twitter.com/bejcal), [@joey711](https://twitter.com/joey711), and [@SherlockpHolmes](https://twitter.com/SherlockpHolmes).
 
-**Demultiplex**
+**Tag sequencing**  
+In my opinion, the most useful and most often used meaning of "tag sequencing" is when you are using primers that target something specific, like a marker gene. So the opposite of shotgun sequencing which uses random hexamer or nonamer primers. But on rare occassions I have heard this used to mean barcoding samples.
 
-**Single-end vs Paired-end**
+**Barcodes**  
+Barcodes refer to the sequences ligated to your individual samples' genetic material before they get all mixed together to be sequenced together. These barcodes are then unique to each sample, so you can afterwards identify which sequences came from which samples.
 
-**Primers**
-
-**Barcodes**
-
-**fastq and fasta**
-
-**Denoising**
-
-**Singletons**
-
-**Abundance filtering**
-
-**Dereplication**
-
-**Read depth**
-
-
-
- 
-<br>
-
-<center><img src="{{ site.url }}/images/under_construction.jpeg"></center>
-<center><h3>UNDER CONSTRUCTION</h3></center>
+**Demultiplex**  
+Demultiplexing refers to the step in processing amplicon sequence data where you'd use the barcode information in order to know which sequences came from which samples after they had all been sequenced together.
