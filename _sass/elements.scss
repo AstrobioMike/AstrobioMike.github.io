@@ -91,6 +91,46 @@ svg:not(:root) {
   }
 }
 
+.btn_home {
+  display: inline-block;
+  padding: 6px 12px 6px 12px;
+  margin-bottom: 0;
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  background-color: $black;
+  border: 2px solid $white;
+  border-radius: 10px;
+//   @include rounded(10px);
+  color: $white;
+  &:visited {
+    color: $white;
+  }
+  &:hover {
+    background-color: $white;
+    color: $black;
+    border: 2px solid $black;
+    text-decoration: none;
+  }
+}
+
+.btn-lg_home,
+.btn-group-lg_home > .btn_home {
+  padding: 6px 16px 8px 16px;
+  font-size: 20px;
+  line-height: 1.33;
+  border-radius: 10px;
+}
+
+
 /* Success button */
 
 .btn-success {
