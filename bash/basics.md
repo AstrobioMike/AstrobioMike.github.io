@@ -15,15 +15,8 @@ We'll start at the very beginning with the basic formula for how to run commands
 
 This is really designed for those with very little to no experience working at the command line, so if you feel comfortable with these tasks already, consider jumping ahead to one of the sections you're less familiar with, like learning the [six glorious commands](/bash/six_commands) that are worth having in your toolkit, or checking out the ["Why is this all worth it?"](/bash/why) page for some real-life examples of how I use these tools every day.  
 
-To start, let's open up a terminal window. If you have a Mac, this is easy as you can just do a spotlight search for "Terminal" and you're ready to rock. If you have a PC, I'm afraid this is where the trip ends for you 😢  
-
-<img align="right" src="{{ site.url }}/images/oompa.jpg">  
-<br>
-<br>
-<br>
-<br>
-<br>
-
+<img style="float: right; margin-left: 15px; margin-top: 5px" width="13%" src="{{ site.url }}/images/oompa.jpg">
+To start, let's open up a terminal window. If you have a Mac, this is easy as you can just do a spotlight search for "Terminal" and you're ready to rock. If you have a PC, I'm afraid this is where the trip ends for you 😢   
 
 Okay, not really. Things do get a little more complicated, but there is hope! Wonderfully, Windows 10 now has a way to run a perfectly normal *bash* environment. If you have Windows 10, then check out [this site](https://www.howtogeek.com/249966/how-to-install-and-use-the-linux-bash-shell-on-windows-10/) to see how to get set up. If you're on an older Windows OS, there are programs you can download to get the appropriate *bash* environment, though I don't have any experience with this unfortunately. I hear a good place to try first is with Cygwin, which you can follow instructions for [here](https://www.howtogeek.com/howto/41382/how-to-use-linux-commands-in-windows-with-cygwin/).  
 <br>
