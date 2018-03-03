@@ -21,7 +21,7 @@ My current research efforts are focused primarily on: photoautotroph-heterotroph
 ---
 <br>
 
-### Select Publications
+### Publications
 
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1128/AEM.02026-17"></div>  
 
