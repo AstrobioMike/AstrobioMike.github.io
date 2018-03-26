@@ -4,7 +4,7 @@ title: Research
 permalink: /research/
 ---
 <script type='text/javascript' src='https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js'></script>
-## Michael D. Lee – Science Mercenary
+## Michael D. Lee, Ph.D. – Science Mercenary
 
 *__University of Southern California__*  
 *Marine Biology and Biological Oceanography*  
