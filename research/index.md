@@ -5,10 +5,11 @@ permalink: /research/
 ---
 <script type='text/javascript' src='https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js'></script>
 
-<img style="float: right; margin-left: 15px; margin-top: 5px" width="23%" src="{{ site.url }}/images/rock_MLee.jpg">
+<img style="float: right; margin-left: 15px; margin-top: 5px" width="25%" src="{{ site.url }}/images/rock_MLee.jpg">
 
 ## Michael D. Lee, PhD – Science Mercenary
 
+<br>
 *__University of Southern California__*  
 *Marine Biology and Biological Oceanography*  
 *3616 Trousdale Pkwy, AHF 107*  
