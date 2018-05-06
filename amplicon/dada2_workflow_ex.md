@@ -9,12 +9,6 @@ permalink: amplicon/dada2_workflow_ex
 
 {% include _side_tab_amplicon.html %}
 
-<br>
-<center><img src="{{ site.url }}/images/under_construction.jpeg"></center>
-<center><h3>UNDER CONSTRUCTION</h3></center>
-<br>
-<br>
-
 [DADA2](https://benjjneb.github.io/dada2/index.html){:target="_blank"} is a relatively new processing workflow for recovering single-nucleotide resolved Amplicon Sequence Variants (ASVs) from amplicon data – if you're unfamiliar with ASVs, you can read more about ASVs vs OTUs in the [opening caveats](/amplicon/dada2_workflow_ex#opening-caveats) section that follows. Developed and maintained by [@bejcal](https://twitter.com/bejcal){:target="_blank"} et al., DADA2 leverages sequencing quality and abundance information to a greater extent than previously developed tools in order to generate an error model based on your actual data. It then uses this error model to do its best to infer the true biological sequences that generated your data. The original paper can be found [here](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4927377/){:target="_blank"}, and the DADA2 R package site is [here](https://benjjneb.github.io/dada2/index.html){:target="_blank"}. The DADA2 team already has a great tutorial available [here](https://benjjneb.github.io/dada2/tutorial.html){:target="_blank"}, and I learned my way around DADA2 by following that and reading through the [manual](https://www.bioconductor.org/packages/3.3/bioc/manuals/dada2/man/dada2.pdf){:target="_blank"}. While the overall workflow presented here is the same, I've added 2 main things (in addition to all of my rambling of course): 1) example code for how to generate the standard output files of amplicon processing from the final R objects that DADA2 creates (i.e. a fasta of ASVs, a count table, and a taxonomy table); and 2) a [section](/amplicon/dada2_workflow_ex#16s-and-18s-mixed-together) for people working with 16S and 18S sequences mixed together. 
 <br>
 <br>
@@ -50,11 +44,11 @@ In the following figure, overlain on the map are the rock sample collection loca
 <center><img src="{{ site.url }}/images/dorado.png"></center>
 
 <br>
-You can download the required dataset and files by copying and pasting the following commands into your terminal. For speed purposes we're only going to work with about 10% of the full dataset. Altogether the uncompressed size of the working directory is < 300MB.
+You can download the required dataset and files by copying and pasting the following commands into your terminal. For speed purposes we're only going to work with about 10% of the full dataset. Altogether the uncompressed size of the working directory is ~300MB.
 
 ```
 cd ~
-curl -O https://AstrobioMike.github.io/tutorial_files/dada2_amplicon_ex_workflow.tar.gz
+curl -L -o dada2_amplicon_ex_workflow.tar.gz https://ndownloader.figshare.com/files/11331515
 tar -xzvf dada2_amplicon_ex_workflow.tar.gz
 rm dada2_amplicon_ex_workflow.tar.gz
 cd dada2_amplicon_ex_workflow/
@@ -67,19 +61,19 @@ Now, let's get started!
 ---
 <br>
 
-# Preprocessing
+# Processing overview
 It's good to try to keep a bird's-eye view of what's going on. So here is an overview of the main processing steps we'll be performing with [bbtools](https://jgi.doe.gov/data-and-tools/bbtools/){:target="_blank"} and [DADA2](https://benjjneb.github.io/dada2/index.html){:target="_blank"}. Don't worry if anything seems unclear right now, we will discuss each at each step.
 
 ||Command|What we're doing|
 |:--:|:--------:|----------|
-|1|`bbduk.sh`/`filterAndTrim()`|removing primers and quality trimming/filtering|
+|1|`bbduk.sh`/`filterAndTrim()`|remove primers and quality trim/filter|
 |2|`learnErrors()`|generate an error model of our data|
 |3|`derepFastq`|dereplicate sequences|
-|4|`dada()`|infer ASVs|
-|4|`mergePairs()`|merge forward and reverse reads to further refine ASVs|
-|5|`makeSequenceTable()`|generate a count table|
-|6|`removeBimeraDenovo()`|screening for and remove chimeras|
-|7|`assignTaxonomy()`|assign taxonomy|
+|4|`dada()`|infer ASVs on both forward and reverse reads independently|
+|5|`mergePairs()`|merge forward and reverse reads to further refine ASVs|
+|6|`makeSequenceTable()`|generate a count table|
+|7|`removeBimeraDenovo()`|screen for and remove chimeras|
+|8|`assignTaxonomy()`|assign taxonomy|
 
 And at the end of this we'll do some R magic to generate regular [flat files](/bash/basics#whats-a-plain-text-file){:target="_blank"} for the standard desired outputs: a fasta file of our ASVs, a count table, and a taxonomy table.  
 
@@ -91,7 +85,7 @@ ls *_R1.fq | cut -f1 -d "_" > samples
 
 If you're not comfortable with that line, consider running through the [bash basics](/bash/basics){:target="_blank"} and/or [six glorious commands](/bash/six_commands){:target="_blank"} pages before going further here 🙂  
 
-## Removing primers and filtering by length
+# Removing primers
 To start, we need to remove the primers from all of these (the primers used for this run are in the "primers.fa" file in our working directory), and here we're going to use [bbduk](https://jgi.doe.gov/data-and-tools/bbtools/bb-tools-user-guide/bbduk-guide/){:target="_blank"} to do that, but we'll need to run it on each sample individually. So we're going to use a wonderful little bash loop to do that.  
 
 First, here's what the command would look like on an individual sample: 
@@ -198,7 +192,7 @@ filtered_out
 # R9_sub_R1_trimmed.fq.gz        8968      7662
 ```
 
-DADA2 also holds a handy quality plotting function to let you visual how your reads are doing, `plotQualityProfile()`. By running that on our variable that holds all of our forward and reverse filtered reads, we can easily generate plots for all of them or a subset of them if wanted:
+DADA2 also holds a handy quality plotting function to let you visualize how your reads are doing, `plotQualityProfile()`. By running that on our variable that holds all of our forward and reverse filtered reads, we can easily generate plots for all of them or a subset of them if wanted:
 
 ```R
 plotQualityProfile(filtered_forward_reads)
@@ -206,47 +200,212 @@ plotQualityProfile(filtered_reverse_reads)
 plotQualityProfile(filtered_reverse_reads[17:20])
 ```
 
+The forward reads look pretty great, but the tail end of the reverse reads consistently drops in quality below 30 by about the 200th base and to a median of about 20–25 by the end (chemistry gets tired 😞). Here's the output of last 4 samples' reverse reads:
+
 <center><img src="{{ site.url }}/images/dada2_first_filter.png"></center>
-<br>
-The forward reads look pretty great, but the tail end of the reverse reads consistently drops in quality below 30 by about the 200th base and to a median of about 20–25 by the end (chemistry gets tired 😞). In [Phred](https://en.wikipedia.org/wiki/Phred_quality_score){:target="_blank"} talk the difference between a quality score of 40 and a quality score of 20 is an expected error rate of 1 in 10,000 to 1 in 100. So since we have full overlap with these primers and the sequencing performed (515f-806r, 2x300), we can be pretty conservative and trim these up a bit more. I'm going to cut the forward reads at 250 and the reverse reads at 200 in this case: 
+
+In [Phred](https://en.wikipedia.org/wiki/Phred_quality_score){:target="_blank"} talk the difference between a quality score of 40 and a quality score of 20 is an expected error rate of 1 in 10,000 to 1 in 100. In this case, since we have full overlap with these primers and the sequencing performed (515f-806r, 2x300), we can be pretty conservative and trim these up a bit more. I'm going to cut the forward reads at 250 and the reverse reads at 200 – roughly where both sets reach a median quality of 30 – and then see how things look: 
 
 ```R
-  # note that while we're making a new R object, we are providing the same 
-  # output files for the reads given by our variables in here, so we are 
-  # overwriting the actual output files
 filtered_out2 <- filterAndTrim(forward_reads, filtered_forward_reads, reverse_reads, filtered_reverse_reads, maxEE=c(2,2), rm.phix=TRUE, multithread=TRUE, minLen=175, truncLen=c(250,200))
+  # note that while we're making a new R object, we are providing the same output files 
+  # for the reads given by our variables in here, so we are overwriting the actual output files
 
 plotQualityProfile(filtered_reverse_reads[17:20])
 ```  
 
 <center><img src="{{ site.url }}/images/dada2_second_filter.png"></center>
-<br>
+
 Now we're lookin' good.
 
 ## Generate an error model of our data
-Next
+Next up is generating our error model by learning the specific error-signature of our dataset. I mentioned above what expected error rates correspond to a couple [Phred](https://en.wikipedia.org/wiki/Phred_quality_score){:target="_blank"} quality scores, but each sequencing run, even when all goes well, will have its own subtle variations to this. This step tries to assess that for both the forward and reverse reads.
+It can be one of the more computationally intensive steps of the workflow, for this dataset on my laptop (2013 MacBook Pro) these each took about 5 minutes. 
+```R
+err_forward_reads <- learnErrors(filtered_forward_reads, multithread=TRUE)
+err_reverse_reads <- learnErrors(filtered_reverse_reads, multithread=TRUE)
+```
+
+The developers have incorporated a plotting function to visualize how well the estimated error rates match up with the observed:
+
+```R
+plotErrors(err_forward_reads, nominalQ=TRUE)
+plotErrors(err_reverse_reads, nominalQ=TRUE)
+```
+
+The forward and reverse didn't look too different, here's the output of the reverse:
+
+<center><img src="{{ site.url }}/images/dada2_err_plot.png"></center>
+<br>
+[@bejcal](https://twitter.com/bejcal){:target="_blank"} goes into how to assess this a bit [here](https://benjjneb.github.io/dada2/tutorial.html#learn-the-error-rates){:target="_blank"}. The red line is what is expected based on the quality score, the black line represents the estimate, and the black dots represent the observed. This is one of those cases where this isn't a binary thing like "yes, things are good" or "no, they're not". I imagine over time and seeing outputs like this for multiple datasets you get a better feeling of what to expect and what should be more cause for alarm (as was the case for me with interpreting and making decisions based on quality-score plots like those [fastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/){:target="_blank"} produces). But generally speaking, you want the observed (black dots) to track well with the estimated (black line). [@bejcal](https://twitter.com/bejcal){:target="_blank"} notes [here](https://benjjneb.github.io/dada2/tutorial.html#learn-the-error-rates){:target="_blank"} that you can try to improve this by increasing the number of bases the function is using (default 100 million).
 
 ## Dereplication
+Dereplication is a common step in many amplicon processing workflows. Instead of keeping 100 identical sequences and doing all downstream processing to all 100, you can keep/process one of them, and just attach the number 100 to it. When DADA2 dereplicates sequences, it also generates a new quality-score profile of each unique sequence based on the average quality scores of each base of all of the sequences that were replicates of it. 
 
+```R
+derep_forward <- derepFastq(filtered_forward_reads, verbose=TRUE)
+names(derep_forward) <- samples # the sample names in these objects are initially the file names of the samples, this sets them to the sample names for the rest of the workflow
+derep_reverse <- derepFastq(filtered_reverse_reads, verbose=TRUE)
+names(derep_reverse) <- samples
+```
 
 ## Inferring ASVs
+Here's where DADA2 gets to do what it was born to do, that is to do its best to infer true biological sequences. It does this by incorporating the consensus quality profiles and abundances of each unique sequence, and then figuring out if it's more likely to be of biological origin or more likely to be spurious. You can read more about the details of this in [the paper](https://www.nature.com/articles/nmeth.3869#methods){:target="_blank"} of course or looking through [the site](https://benjjneb.github.io/dada2/index.html){:target="_blank"}. This step can be run on individual samples, which is the least computationally intensive manner, or on all samples together, which increases the function's ability to resolve low-abundance ASVs. Imagine Sample A has 10,000 copies of sequence Z, and Sample B has 1 copy of sequence Z. Sequence Z would likely be filtered out of Sample B even though it was a "true" singleton among perhaps thousands of spurious singletons we needed to remove. Because running all samples together on large datasets can become impractical very quickly, the developers also added a way to try to combine the best of both worlds they refer to as pseudo-pooling, which is demonstrated very nicely [here](https://benjjneb.github.io/dada2/pseudo.html#Pseudo-pooling){:target="_blank"}. This basically provides a way to tell Sample B from the above example that sequence Z is legit. But it's noted at the end of the [pseudo-pooling page](https://benjjneb.github.io/dada2/pseudo.html#Pseudo-pooling){:target="_blank"} that this is not always the best way to go, and it may depend on your experimental design which is likely more appropriate for your data – as usual. There are no one-size-fits-all solutions in bioinformatics! But that's exactly what makes it so damn fun 🙂
 
+```R
+dada_forward <- dada(derep_forward, err=err_forward_reads, multithread=TRUE, pool="pseudo")
+dada_reverse <- dada(derep_reverse, err=err_reverse_reads, multithread=TRUE, pool="pseudo")
+```
 
 ## Merge forward and reverse reads
+Now DADA2 merges the forward and reverse ASVs to reconstruct our full target amplicon requiring the overlapping region to be identical between the two. By default it requires that at least 12 bps overlap, but in our case the overlap should be much greater. If you remember above we trimmed the forward reads to 250 and the reverse to 200, and our primers were 515f–806r. After cutting off the primers we're expecting a typical amplicon size of around 260 bases, so our typicaly overlap should be up around 190. That's estimated based on *E. coli* 16S rRNA gene positions and very back-of-the-envelope-esque of course, so to allow for true biological variation and such I'm going ot set the minimum overlap for this dataset for 170. I'm also setting the trimOverhang option to `TRUE` in case any of our reads go passed their opposite primers (which I wouldn't expect based on our trimming, but is possible due to the region and sequencing method).
 
+```R
+merged_amplicons <- mergePairs(dada_forward, derep_forward, dada_reverse, derep_reverse, trimOverhang=TRUE, minOverlap=170)
+
+  # this object holds a lot of information that may be the first place you'd want to look if you want to start poking under the hood
+class(merged_amplicons) # list
+length(merged_amplicons) # 20, one for each of our samples
+names(merged_amplicons) # the names() function gives us the name of each element of the list 
+
+class(merged_amplicons$B1) # each element of the list is a dataframe that can be accessed and manipulated like any ordinary dataframe
+
+names(merged_amplicons$B1) # the names() function on a dataframe gives you the column names
+# "sequence"  "abundance" "forward"   "reverse"   "nmatch"    "nmismatch" "nindel"    "prefer"    "accept"
+```
 
 ## Generate a count table
+Now we can generate a count table with the `makeSequenceTable()` function:
 
+```R
+seqtab <- makeSequenceTable(merged_amplicons)
+class(seqtab) # matrix
+dim(seqtab) # 20 2567
+```
+
+We can see from the dimensions of the "seqtab" matrix that we have 2,567 ASVs in this case. But it's not very friendly to look at in this form because the actual sequences are our rownames. But we'll make a more traditional count table in a couple steps.
+
+## Chimera identification
+DADA2 identifies likely chimeras by aligning each sequence with those that were recovered in greater abundance and then seeing if there are any sequences that can be made exactly by mixing left and right portions of two of the more-abundant ones. These are then removed:
+
+```R
+seqtab.nochim <- removeBimeraDenovo(seqtab, multithread=T, verbose=T) # Identified 21 bimeras out of 2567 input sequences.
+
+  # though we only lost 21 sequences, we don't know if they held a lot in terms of abundance, this is one quick way to look at that
+sum(seqtab.nochim)/sum(seqtab) # 0.9925714
+```
+
+## Overview of counts throughout
+The developers' [DADA2 tutorial](https://benjjneb.github.io/dada2/tutorial.html){:target="_blank"} provides an example of nice, quick way to pull out how many reads were dropped at various points of the pipeline. This can serve as a jumping off point if you're left with too few to help point you towards where you should start digging. 
+
+```R
+  # set a little function
+getN <- function(x) sum(getUniques(x))
+
+  # making a little table
+summary_tab <- data.frame(row.names=samples, dada2_input=filtered_out[,1], filtered=filtered_out[,2], dada_f=sapply(dada_forward, getN), dada_r=sapply(dada_reverse, getN), merged=sapply(merged_amplicons, getN), nonchim=rowSums(seqtab.nochim), total_perc_reads_lost=round(rowSums(seqtab.nochim)/filtered_out[,1]*100, 1))
+
+summary_tab
+
+#       dada2_input filtered dada_f dada_r merged nonchim total_perc_reads_lost
+# B1           1637     1412   1491   1498   1460    1460                  89.2
+# B2            589      472    535    534    533     533                  90.5
+# B3            505      431    465    466    465     465                  92.1
+# B4            508      447    453    457    446     446                  87.8
+# BW1          2304     1989   2109   2122   2076    2076                  90.1
+# BW2          6151     5320   5335   5433   4859    4859                  79.0
+# R10         11792    10140  10266  10465   9574    9403                  79.7
+# R11BF        9210     7928   7648   7879   7120    6981                  75.8
+# R11          9273     8204   8159   8276   7743    7506                  80.9
+# R12         16057    13839  12921  13449  11159   11091                  69.1
+# R1A         12453    10503  10110  10419   9041    9017                  72.4
+# R1B         16438    14069  13513  13964  11699   11653                  70.9
+# R2          17670    15001  14715  15177  13054   12995                  73.5
+# R3          17950    15214  14864  15333  13145   13082                  72.9
+# R4          19100    16321  16703  16940  15278   15212                  79.6
+# R5          18745    16146  15502  16080  13544   13455                  71.8
+# R6          15183    12891  12618  12973  11034   11023                  72.6
+# R7           8181     6939   6782   6982   5931    5919                  72.4
+# R8          12622    10843  10882  11062  10174   10051                  79.6
+# R9           8968     7664   7649   7825   7146    7099                  79.2
+```
 
 ## Assigning taxonomy
+DADA2 incorporates a function that assigns taxonomy using the [RDP's kmer-based method](https://rdp.cme.msu.edu/classifier/classifier.jsp){:target="_blank"}, original paper [here](http://www.ncbi.nlm.nih.gov/pubmed/17586664){:target="_blank"}. There are some DADA2-formatted databases available [here](https://benjjneb.github.io/dada2/training.html){:target="_blank"}, which is where the silva one came from that is in our working directory called here, but you can use whatever database you'd like following the formatting specified at the bottom of that page. This step took maybe 10 minutes on my laptop. 
 
+```R
+taxa <- assignTaxonomy(seqtab.nochim, "silva_nr_v132_train_set.fa.gz", multithread=T, tryRC=T)
+```
 
 # Extracting the standard goods from R
+The typical standard outputs from amplicon processing are a fasta file, a count table, and a taxonomy table. So here's how you can generate those files from your DADA2 objects in R:
 
+```R
+  # giving our seq headers more manageable names (ASV_1, ASV_2...)
+asv_seqs <- colnames(seqtab.nochim)
+asv_headers <- vector(dim(seqtab.nochim)[2], mode="character")
+
+for (i in 1:dim(seqtab.nochim)[2]) {
+  asv_headers[i] <- paste(">ASV", i, sep="_")
+}
+
+  # making and writing out a fasta of our final ASV seqs:
+asv_fasta <- c(rbind(asv_headers, asv_seqs))
+write(asv_fasta, "ASVs.fa")
+
+  # count table:
+asv_tab <- t(seqtab.nochim)
+row.names(asv_tab) <- sub(">", "", asv_headers)
+write.table(asv_tab, "ASVs_counts.txt", sep="\t", quote=F)
+
+  # tax table:
+asv_tax <- taxa
+row.names(asv_tax) <- sub(">", "", asv_headers)
+write.table(asv_tax, "ASVs_taxonomy.txt", sep="\t", quote=F)
+```
+
+And now if we look back at our terminal, we can see the fruits of our labor are no longer confined to the R universe:
+
+<center><img src="{{ site.url }}/images/dada2_outfiles.png"></center>
+<br>
+You can find examples and corresponding code of some of the things you might want to do with these files in the [analysis section](/amplicon/workflow_ex#analysis-in-r){:target="_blank"} of the [usearch/vsearch tutorial](/amplicon/workflow_ex){:target="_blank"}.
 
 # 16S and 18S mixed together?
-So I spent a decent amount of time with Josh trying to figure out how we could filter the dada2 mergePairs() objects to figure out which failed-to-merge sequences failed because they were likely not overlapping (and therefore anticipated to be 18S which we wanted to keep) vs those that just failed to merge because of sequencing error (things we wanted to still throw away). And you can get in quite the rabbit hole about this looking at nmismatches and nmatches and such, but ultimately that seemed to be something that would be very dataset dependent (I couldn't mentally tease out how much varying diversity would affect what were good cutoffs even for the same primers). So ultimately I bailed on trying to come up with a general way to do it that way, and decided to parse the reads before putting them into dada2. So here's how I went about this: 1) blast all reads to pr2 database (magicblast can take paired fastq files, which is pretty sweet, so I used that); 2) filter the blast output based on %ID and % of query sequence aligned (of both reads); 3) split the starting fastq files into 16S and 18S; 4) process both separately in dada2 and merge them at the end :) 
+So if you're using primers [like these that capture 16S and 18S pretty well](https://onlinelibrary.wiley.com/doi/abs/10.1111/1462-2920.13023){:target="_blank"} and then writing cool papers [like this one](https://www.nature.com/articles/nmicrobiol20165){:target="_blank"}, then you might be wondering if/how you can do this while taking advantage of all the awesomeness that is DADA2. The 18S amplified fragments are typically too long to have any overlap occur with the 2x250bp sequencing that is often performed with these "V4V5" primers, so one method that has been employed was to just work with those that didn't successfully merge. So starting from within DADA2, I considered playing with the `mergePairs()` step and messing with the "justConcatenate" flag. The problem is that you also need to account for those that fail the merge just because of poor quality. So my good buddy [Josh](https://twitter.com/KlingJoshua){:target="_blank"} and I spent a few hours trying to figure out how we could filter the merged objects to figure out which failed-to-merge sequences failed because they were likely not overlapping (and therefore anticipated to be 18S which we wanted to keep) vs those that just failed to merge because of sequencing error (things we wanted to still throw away). And you can end up in quite the rabbit hole about this looking at nmismatches and nmatches and such, but ultimately it seemed like even if we found optimal parameters for one dataset, it would likely be very different for the next one. 
+
+So I decided to bail on that approach and wanted to see if there was a reasonable way to parse the reads into 16S and 18S before putting them into DADA2. Here's what I came up with that so far has worked well:
+
+||Command|What we're doing|
+|:--:|:--------:|----------|
+|1|`magicblast`|blast all reads to the [PR2 database](https://figshare.com/articles/PR2_rRNA_gene_database/3803709){:target="_blank"}, magicblast is built for this 🙂|
+|2|`Filtering magicblast output`|based on % ID and % of query sequence aligned (of both reads)|
+|3|`Splitting 16S/18S reads`|based on the magicblast filtering|
+|4|`Processing both in DADA2`|processing independently and merging at the end|
+
+## 16S/18S example data
+For an example of this process, we're going to work with a couple of samples from [the paper](https://www.nature.com/articles/nmicrobiol20165){:target="_blank"} I mentioned above by [David Needham](https://twitter.com/animalkewls){:target="_blank"} and [Jed Fuhrman](https://twitter.com/JedFuhrman){:target="_blank"}. If you'd like to follow along, you can download a small directory with the code and data with these commands:
+
+UNDER CONSTRUCTION
 
 
+```bash
+for sample in $(ls *_1.fastq.gz | cut -f1 -d "_"); do echo $sample; done > samples
+
+for sample in $(cat samples); do bbduk.sh in="$sample"_1.fastq.gz in2="$sample"_2.fastq.gz out="$sample"_1_trimmed.fq.gz out2="$sample"_2_trimmed.fq.gz literal=GTGCCAGCMGCCGCGGTAA,CCGYCAATTYMTTTRAGTTT k=10 ordered=t mink=2 hdist=1 ktrim=l rcomp=t minlength=220; done
+
+makeblastdb -in pr2_seqs_with_tax_headers.fa -dbtype nucl -parse_seqids -out pr2_magicblast_db
+
+for sample in $(cat samples); do echo "$sample"; magicblast -db pr2_magicblast_db -query "$sample"_1_trimmed.fq.gz -query_mate "$sample"_2_trimmed.fq.gz -infmt fastq -out "$sample"_mblast_out.txt -outfmt tabular -num_threads 2 -splice F -no_unaligned; done
+
+for sample in $(cat samples); do echo $sample; cut -f1,2,3,7,8,16 "$sample"_mblast_out.txt | sed '1d' | sed '1d' | sed 's/# Fields: //' | tr " " "_" | awk -v OFS='\t' 'NR==1 {$7="%_query_aln"; print $0} NR>1 { print $0, ($5-$4)/$6*100 }' > "$sample"_mblast_out_mod.txt; done
+```
+
+## Magicblast
+
+## Filtering magicblast output
+
+## Splitting starting fastq files into 16S/18S
+
+## Processing both in DADA2 and merging at the end
 
 
