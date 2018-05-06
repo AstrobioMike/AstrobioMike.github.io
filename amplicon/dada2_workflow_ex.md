@@ -385,13 +385,18 @@ So I decided to bail on that approach and wanted to see if there was a reasonabl
 ## 16S/18S example data
 For an example of this process, we're going to work with a couple of samples from [the paper](https://www.nature.com/articles/nmicrobiol20165){:target="_blank"} I mentioned above by [David Needham](https://twitter.com/animalkewls){:target="_blank"} and [Jed Fuhrman](https://twitter.com/JedFuhrman){:target="_blank"}. If you'd like to follow along, you can download a small directory with the code and data with these commands:
 
-UNDER CONSTRUCTION
+<br>
+<br>
+<center><img src="{{ site.url }}/images/under_construction.jpeg"></center>
+<center><h3>UNDER CONSTRUCTION</h3></center>
+<br>
+<br>
 
 
 ```bash
 for sample in $(ls *_1.fastq.gz | cut -f1 -d "_"); do echo $sample; done > samples
 
-for sample in $(cat samples); do bbduk.sh in="$sample"_1.fastq.gz in2="$sample"_2.fastq.gz out="$sample"_1_trimmed.fq.gz out2="$sample"_2_trimmed.fq.gz literal=GTGCCAGCMGCCGCGGTAA,CCGYCAATTYMTTTRAGTTT k=10 ordered=t mink=2 hdist=1 ktrim=l rcomp=t minlength=220; done
+for sample in $(cat samples); do bbduk.sh in="$sample"_1.fastq.gz in2="$sample"_2.fastq.gz out="$sample"_1_trimmed.fq.gz out2="$sample"_2_trimmed.fq.gz literal=GTGCCAGCMGCCGCGGTAA,CCGYCAATTYMTTTRAGTTT k=10 ordered=t mink=2 ktrim=l rcomp=t minlength=220; done
 
 makeblastdb -in pr2_seqs_with_tax_headers.fa -dbtype nucl -parse_seqids -out pr2_magicblast_db
 
