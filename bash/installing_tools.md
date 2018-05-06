@@ -171,6 +171,49 @@ java -jar ~/happy_bin/Trimmomatic-0.36/trimmomatic-0.36.jar -version
 <br>
 I never figured out how to get a .jar to be callable from anywhere without providing the full path like I've done here, so this is just how I run it (always providing the full path). If you're reading this and you do know how to do that, please shoot me a message 🙂  
 
+## sabre 
+
+[sabre](https://github.com/najoshi/sabre){:target="_blank"} is an awesomely simple and quick tool for demultiplexing your samples and trimming off the barcodes. The installation seems to run smoothly wherever I've tried it, and the usage examples on their [github](https://github.com/najoshi/sabre){:target="_blank"} are very straightforward. Here's how I installed it on my mac:
+
+```bash
+cd ~/happy_bin
+curl -LO https://github.com/najoshi/sabre/archive/master.zip
+unzip master.zip
+cd sabre-master
+make
+cp sabre ../
+cd ../
+sabre # should print help menu
+```
+
+## bbtools
+[Brian Bushnell](https://twitter.com/BBToolsBio){:target="_blank"} has made a very handy set of tools called [bbtools](https://jgi.doe.gov/data-and-tools/bbtools/){:target="_blank"} (also called bbmap). Installation instructions from the developer are available [here](https://jgi.doe.gov/data-and-tools/bbtools/bb-tools-user-guide/installation-guide/){:target="_blank"}, but here are steps I used to install it on my MacOS in our `~/happy_bin`:
+
+```bash
+cd ~/happy_bin
+curl -L https://sourceforge.net/projects/bbmap/files/latest/download -o bbtools.tar.gz
+tar -xzvf bbtools.tar.gz
+```
+
+Since bbtools comes with many programs, stored within the directory we just untarred, it may be preferable to [add that directory to our PATH](/bash/modifying_your_path){:target="_blank"}, rather than copying all of the programs to our location here. So here we are adding another directory to our PATH:
+
+```bash
+cd bbmap/
+pwd # copying the full path from the output of pwd to paste it into the following command, your location will be different
+echo 'export PATH="$PATH:/Users/Mike_Lee/happy_bin/bbmap"' >> ~/.bash_profile
+source ~/.bash_profile # this file is run when we open a terminal session, since we just changed it we need to open a new one or run the `source` command on it for our changes to take effect
+
+cd ~/happy_bin
+```
+
+And then checking the installation using one of the programs:
+
+```bash
+bbduk.sh --version
+```
+
+If this finds the program and tells you the version (even if there are some memory messages in there), then you're good to go!  
+
 ## illumina-utils
 The [illumina-utils](https://github.com/merenlab/illumina-utils){:target="_blank"} library provides a suite of tools for working with Illumina paired-end data put out by [merenlab.org](http://merenlab.org/){:target="_blank"}. I most commonly use some of the quality filtering programs they make available. A few paths to installation can be found [here](https://github.com/merenlab/illumina-utils#installing){:target="_blank"}, which are pretty straightforward other than you do need to be working in a python 3 environment. Since the world is amid the switch from python 2 to python 3, this may complicate things for you in some cases. The easiest way around it I've found is working with [virtual environments](/bash/installing_tools#virtual-environments){:target="_blank"}, which I hope to add in soon. For now, since I have a python 3 setup on my computer that I call with `python3`, and a pip for it that I call with `pip3`, I can install this way:
 
@@ -289,9 +332,6 @@ I'll be adding more examples here for each program we use, and feel free to cont
 
 <br>
 ## bowtie2
-
-<br>
-## bbtools
 
 <br>
 ## FastTree
