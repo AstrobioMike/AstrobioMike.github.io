@@ -312,6 +312,13 @@ $button-size: 1.5rem;
   @extend %clearfix;
 }
 
+.footer-col-wrapper-center {
+  @include relative-font-size(.9);
+  color: $grey-color-dark;
+  margin-left: -$spacing-unit / 2;
+  @extend %clearfix;
+}
+
 .footer-col {
   float: left;
   margin-bottom: 0px;
