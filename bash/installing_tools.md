@@ -294,6 +294,7 @@ spades.py --version
 [MEGAHIT](https://github.com/voutcn/megahit){:target="_blank"} is another assembly program that is great on memory requirements and speed. This can be installed from source, or through `git` as noted on the above linked page, but there are also binaries available [here](https://github.com/voutcn/megahit/releases){:target="_blank"}. As there is an extra layer of complexity due to OSX `g++`, noted [here](https://github.com/voutcn/megahit#dependency--installation){:target="_blank"}, I grabbed the latest available binary for Mac OSX, which only seems to be missing one bug fix I haven't happened to run into:
 
 ```bash
+cd ~/happy_bin
 curl -LO https://github.com/voutcn/megahit/releases/download/v1.1.1/megahit_v1.1.1_DARWIN_CPUONLY_x86_64-bin.tar.gz
 tar -xzvf megahit_v1.1.1_DARWIN_CPUONLY_x86_64-bin.tar.gz
 rm megahit_v1.1.1_DARWIN_CPUONLY_x86_64-bin.tar.gz
@@ -307,6 +308,18 @@ megahit --version
 ```
 
 <center><img src="{{ site.url }}/images/checking_megahit.png"></center>
+## Magic-BLAST
+[NCBI's Magic-BLAST](https://ncbi.github.io/magicblast/){:target="_blank"} is a tool based on general [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi){:target="_blank"} principles but built to deal with high-throughput data, like Illumina reads, considers paired-reads, and can deal with fastq files. It has binaries available for mac, linux, and windows which can be downloaded [here](ftp://ftp.ncbi.nlm.nih.gov/blast/executables/magicblast/LATEST){:target="_blank"}. Here's how I grabbed it:
+
+```bash
+cd ~/happy_bin
+curl -LO ftp://ftp.ncbi.nlm.nih.gov/blast/executables/magicblast/LATEST/ncbi-magicblast-1.3.0-x64-macosx.tar.gz
+tar -xzvf ncbi-magicblast-1.3.0-x64-macosx.tar.gz
+rm ncbi-magicblast-1.3.0-x64-macosx.tar.gz
+cp ncbi-magicblast-1.3.0/bin/* . # moving the executables to our ~/happy_bin so they are in our PATH
+
+magicblast -version # for me, magicblast: 1.3.0
+```
 
 <br>
 
