@@ -376,11 +376,11 @@ So if you're using primers [like these that capture 16S and 18S pretty well](htt
 
 So I decided to bail on that approach and wanted to see if there was a reasonable, and efficient way to parse the reads into 16S and 18S before putting them into DADA2. Here's what I came up with that so far has worked well:
 
-||Command|What we're doing|
+||Step|What we're doing|
 |:--:|:--------:|----------|
-|1|`Magic-BLAST`|blast all reads to the [PR2 database](https://figshare.com/articles/PR2_rRNA_gene_database/3803709){:target="_blank"}, Magic-BLAST is built for this 🙂|
+|1|`Magic-BLAST`|blast all reads to the [PR2 database](https://figshare.com/articles/PR2_rRNA_gene_database/3803709){:target="_blank"}|
 |2|`Filtering Magic-BLAST output`|based on % ID and % of query sequence aligned (of both reads)|
-|3|`Splitting 16S/18S reads`|based on the magicblast filtering|
+|3|`Splitting 16S/18S reads`|based on the Magic-BLAST filtering|
 |4|`Processing both in DADA2`|processing independently and merging at the end|
 
 ## 16S/18S example data
@@ -433,7 +433,7 @@ for sample in $(cat samples); do echo "$sample"; magicblast -db pr2_magicblast_d
 On these 2 samples on my laptop (2013 MacBook Pro), these finished in about 1 minute each. 
 
 
-## Filtering magicblast output
+## Filtering Magic-BLAST output
 In messing with how to filter this output to be most useful, I ended on requiring (for both forward and reverse reads) greater than 35% of the query to be aligned at greater than 90% ID. If only one read passed these criteria, the fragment they originated from was considered not to be a successful hit to the [PR2 database](https://figshare.com/articles/PR2_rRNA_gene_database/3803709){:target="_blank"}. This seemed to work really well on these samples, but if you're trying this on your own data, I encourage you to mess with the filtering parameters. 
 
 Here I am trimming down the MagicBLAST out tables and adding a new column that has the percent of the query that aligned, then 
