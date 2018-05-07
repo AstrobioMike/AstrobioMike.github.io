@@ -308,6 +308,7 @@ megahit --version
 ```
 
 <center><img src="{{ site.url }}/images/checking_megahit.png"></center>
+<br>
 ## Magic-BLAST
 [NCBI's Magic-BLAST](https://ncbi.github.io/magicblast/){:target="_blank"} is a tool based on general [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi){:target="_blank"} principles but built to deal with high-throughput data, like Illumina reads, considers paired-reads, and can deal with fastq files. It has binaries available for mac, linux, and windows which can be downloaded [here](ftp://ftp.ncbi.nlm.nih.gov/blast/executables/magicblast/LATEST){:target="_blank"}. Here's how I grabbed it:
 
