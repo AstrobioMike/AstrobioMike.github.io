@@ -48,7 +48,7 @@ You can download the required dataset and files by copying and pasting the follo
 
 ```
 cd ~
-curl -L -o dada2_amplicon_ex_workflow.tar.gz https://ndownloader.figshare.com/files/11331515
+curl -L -o dada2_amplicon_ex_workflow.tar.gz https://ndownloader.figshare.com/files/11342996
 tar -xzvf dada2_amplicon_ex_workflow.tar.gz
 rm dada2_amplicon_ex_workflow.tar.gz
 cd dada2_amplicon_ex_workflow/
@@ -384,11 +384,11 @@ So I decided to bail on that approach and wanted to see if there was a reasonabl
 |4|`Processing both in DADA2`|processing independently and merging at the end|
 
 ## 16S/18S example data
-For an example of this process, we're going to work with a couple of samples from [the paper](https://www.nature.com/articles/nmicrobiol20165){:target="_blank"} I mentioned above by [David Needham](https://twitter.com/animalkewls){:target="_blank"} and [Jed Fuhrman](https://twitter.com/JedFuhrman){:target="_blank"}. If you'd like to follow along, you can download a small directory containing the data, the [PR2](https://figshare.com/articles/PR2_rRNA_gene_database/3803709){:target="_blank"} database fasta initially downloaded, and the code that follows with these commands:
+For an example of this process, we're going to work with a couple of samples from [the paper](https://www.nature.com/articles/nmicrobiol20165){:target="_blank"} I mentioned above by [David Needham](https://twitter.com/animalkewls){:target="_blank"} and [Jed Fuhrman](https://twitter.com/JedFuhrman){:target="_blank"}. If you'd like to follow along, you can download a small directory containing the data, the [PR2](https://figshare.com/articles/PR2_rRNA_gene_database/3803709){:target="_blank"} database tsv file initially downloaded, and the code that follows with these commands:
 
 ```bash
 cd ~
-curl -L -o dada2_16S_18S_ex.tar.gz https://ndownloader.figshare.com/files/xxxxxxxx
+curl -L -o dada2_16S_18S_ex.tar.gz https://ndownloader.figshare.com/files/11342984
 tar -xzvf dada2_16S_18S_ex.tar.gz
 rm dada2_16S_18S_ex.tar.gz
 cd dada2_16S_18S_ex
@@ -406,7 +406,6 @@ It has binaries available for mac, linux, and windows, and didn't give me any sn
 I used the [PR2](https://figshare.com/articles/PR2_rRNA_gene_database/3803709){:target="_blank"} database to generate our blast database. I initially downloaded the "65.2 MB pr2_version_4.10.0_merged.tsv.gz" available [here](https://github.com/vaulot/pr2_database/releases){:target="_blank"} to start with, and formatted it into a fasta with the headers of each sequence containing the "pr2_main_id" and full taxonomy with the bash script in our directory called "formatting_pr2_fasta.sh".
 
 ```bash
-curl -LO https://github.com/vaulot/pr2_database/releases/download/4.10.0/pr2_version_4.10.0_merged.tsv.gz
 gunzip pr2_version_4.10.0_merged.tsv.gz
 bash formatting_pr2_fasta.sh
 ```
