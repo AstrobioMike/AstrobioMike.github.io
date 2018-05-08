@@ -421,7 +421,7 @@ Now we can see that we've made the new file with `ls` and take a peek at it with
 
 Here we're going to quickly touch upon what makes the Unix command-line environment so powerful: pipes and redirectors. A pipe ( `|` ) is used to connect commands. Basically it takes in the output from the previous command and pipes it into the input of the following command. 
 
-For a simple example of this, we're going to string together two commands to find out how many items are in our current working directory. You're already familiar with how `ls` will list the contents of your cuurrently working directory:
+For a simple example of this, we're going to string together two commands to find out how many items are in our current working directory. You're already familiar with how `ls` will list the contents of your current working directory:
 
 <center><img src="{{ site.url }}/images/ls_ex2.png"></center>
 
