@@ -39,7 +39,7 @@ Feel free to <a href="https://twitter.com/AstrobioMike">bug me</a> about any of 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • [Installing R packages](/R/installing_packages)  
 
 **Coming soon:**  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Let me know what would help you!  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [Let me know what would help you!](https://twitter.com/AstrobioMike){:target="_blank"}  
 <br>
 
 ---
@@ -63,7 +63,7 @@ Feel free to <a href="https://twitter.com/AstrobioMike">bug me</a> about any of 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • [*de novo* genome assembly](/genomics/de_novo_assembly) 
 
 **Coming soon:**  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Let me know what would help you!   
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [Let me know what would help you!](https://twitter.com/AstrobioMike){:target="_blank"}    
 
 [//]: # (<br>)
 
