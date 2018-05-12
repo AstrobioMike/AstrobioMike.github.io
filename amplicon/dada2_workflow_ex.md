@@ -386,7 +386,7 @@ For an example of this process, we're going to work with a couple of samples fro
 
 ```bash
 cd ~
-curl -L -o dada2_16S_18S_ex.tar.gz https://ndownloader.figshare.com/files/11342984
+curl -L -o dada2_16S_18S_ex.tar.gz https://ndownloader.figshare.com/files/11444432
 tar -xzvf dada2_16S_18S_ex.tar.gz
 rm dada2_16S_18S_ex.tar.gz
 cd dada2_16S_18S_ex
