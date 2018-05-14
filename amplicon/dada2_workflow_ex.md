@@ -386,7 +386,7 @@ For an example of this process, we're going to work with a couple of samples fro
 
 ```bash
 cd ~
-curl -L -o dada2_16S_18S_ex.tar.gz https://ndownloader.figshare.com/files/11444432
+curl -L -o dada2_16S_18S_ex.tar.gz https://ndownloader.figshare.com/files/11450138
 tar -xzvf dada2_16S_18S_ex.tar.gz
 rm dada2_16S_18S_ex.tar.gz
 cd dada2_16S_18S_ex
@@ -408,7 +408,7 @@ gunzip pr2_version_4.10.0_merged.tsv.gz
 bash formatting_pr2_fasta.sh
 ```
 
-I found cutting off the primers before blasting made it easier to distinguish between 16S and 18S, which makes sense as the primer regions hit both because they are so well conserved. So here using [bbduk](https://jgi.doe.gov/data-and-tools/bbtools/bb-tools-user-guide/bbduk-guide/){:target="_blank"} to trim the primers (see [above](http://localhost:4000/amplicon/dada2_workflow_ex#removing-primers) for more details on the command/options:
+I found cutting off the primers before blasting made it easier to distinguish between 16S and 18S, which makes sense as the primer regions hit both because they are so well conserved. So here using [bbduk](https://jgi.doe.gov/data-and-tools/bbtools/bb-tools-user-guide/bbduk-guide/){:target="_blank"} to trim the primers (see [above](http://localhost:4000/amplicon/dada2_workflow_ex#removing-primers) for more details on the command/options):
 
 ```bash
   # first making a "samples" file with sample names to iterate through
@@ -508,14 +508,14 @@ merged_18S <- mergePairs(dada_forward_18S, derep_forward_18S, dada_reverse_18S, 
 
 
 seqtab_18S <- makeSequenceTable(merged_18S)
-dim(seqtab_18S)[2] # 570
-sum(seqtab_18S) # 4858
+dim(seqtab_18S)[2] # 547
+sum(seqtab_18S) # 4980
 
 seqtab.nochim_18S <- removeBimeraDenovo(seqtab_18S, method="consensus", multithread=T, verbose=T)
 
-dim(seqtab.nochim_18S)[2] # 322
+dim(seqtab.nochim_18S)[2] # 323
 
-sum(seqtab.nochim_18S)/sum(seqtab_18S) # 0.86
+sum(seqtab.nochim_18S)/sum(seqtab_18S) # 0.88
 
 taxa_18S <- assignTaxonomy(seqtab.nochim_18S, "silva_nr_v132_train_set.fa.gz", multithread=T, tryRC=T)
 
@@ -524,9 +524,9 @@ getN <- function(x) sum(getUniques(x))
 track_18S <- data.frame(row.names=samples, dada2_input=filtered_out_18S[,1], filtered=filtered_out_18S[,2], denoised=sapply(dada_forward_18S, getN), merged=sapply(merged_18S, getN), table=rowSums(seqtab_18S), no_chimeras=rowSums(seqtab.nochim_18S), "perc_reads_survived"=round(rowSums(seqtab.nochim_18S)/filtered_out_18S[,1]*100, 1))
 track_18S
 
-#             dada2_input filtered denoised merged table no_chimeras perc_reads_survived
-# ERR1018543        6525     4002     3727   3629  3629        3076                47.1
-# ERR1018546        2421     1513     1276   1229  1229        1095                45.2
+#            dada2_input filtered denoised merged table no_chimeras perc_reads_survived
+# ERR1018543        6657     4117     3842   3729  3729        3199                48.1
+# ERR1018546        2447     1530     1285   1251  1251        1182                48.3
 
 ## making and writing out standard output files:
 # giving our seq headers more manageable names (ASV_1, ASV_2...)
@@ -596,12 +596,12 @@ rm(temp_merged_16S)
 merged_16S <- mergePairs(dada_forward_16S, derep_forward_16S, dada_reverse_16S, derep_reverse_16S, minOverlap=65)
 
 seqtab_16S <- makeSequenceTable(merged_16S)
-dim(seqtab_16S)[2] # 818
-sum(seqtab_16S) # 35,282
+dim(seqtab_16S)[2] # 816
+sum(seqtab_16S) # 35,268
 
 seqtab.nochim_16S <- removeBimeraDenovo(seqtab_16S, method="consensus", multithread=T, verbose=T)
 
-dim(seqtab.nochim_16S)[2] # 495
+dim(seqtab.nochim_16S)[2] # 494
 
 sum(seqtab.nochim_16S)/sum(seqtab_16S) # 0.78
 
@@ -613,9 +613,9 @@ getN <- function(x) sum(getUniques(x))
 track_16S <- data.frame(row.names=samples, dada2_input=filtered_out_16S[,1], filtered=filtered_out_16S[,2], denoised=sapply(dada_forward_16S, getN), merged=sapply(merged_16S, getN), table=rowSums(seqtab_16S), no_chimeras=rowSums(seqtab.nochim_16S), "perc_reads_survived"=round(rowSums(seqtab.nochim_16S)/filtered_out_16S[,1]*100, 1))
 track_16S
 
-#             dada2_input filtered denoised merged table no_chimeras perc_reads_survived
-# ERR1018543       30135    21594    20993  15563 15563       12324                40.9
-# ERR1018546       33381    25166    24647  19719 19719       15221                45.6
+#            dada2_input filtered denoised merged table no_chimeras perc_reads_survived
+# ERR1018543       30003    21490    20882  15574 15574       12334                41.1
+# ERR1018546       33355    25153    24611  19694 19694       15202                45.6
 
 ## making and writing out standard output files:
 # giving our seq headers more manageable names (ASV_1, ASV_2...)
@@ -644,8 +644,8 @@ write.table(asv_tax_16S, "16S_ASVs_taxonomy.txt", sep="\t", quote=F)
 #### combining the 16S and 18S tables ####
 class(seqtab.nochim_16S) 
 class(seqtab.nochim_18S)
-dim(seqtab.nochim_16S)[2] # 495
-dim(seqtab.nochim_18S)[2] # 322
+dim(seqtab.nochim_16S)[2] # 494
+dim(seqtab.nochim_18S)[2] # 323
 
 head(colnames(seqtab.nochim_18S)) # the sequences are column names in these tables (matrices)
 head(rownames(seqtab.nochim_18S)) # and the samples are the rows
