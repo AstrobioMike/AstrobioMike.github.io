@@ -17,7 +17,7 @@ Right off the bat let's make it clear that I plan to cover topics here that I am
 <br>
 
 ## Okay, so now that I've explained I'm not the best at any of this, why am I bothering you?
-Utlimately, I am going to try to provide the sort of help here that I think would have helped me, and in a way I would have understood when I was just starting. At the heart of this philosophy is that it's *okay* to learn just enough of something to be able to do what you need to do, and that you don't need to master everything you come across. It is hard to keep that in check sometimes, and this can become a problem because Time is not usually our friend.  
+Ultimately, I am going to try to provide the sort of help here that I think would have helped me, and in a way I would have understood when I was just starting. At the heart of this philosophy is that it's *okay* to learn just enough of something to be able to do what you need to do, and that you don't need to master everything you come across. It is hard to keep that in check sometimes, and this can become a problem because Time is not usually our friend.  
 
 For an example of what I mean by this, when I was beginning to learn but wasn't even sure what I should be trying to learn, I spent months on python and R tutorials. And I enjoyed them and felt like I was learning. But the problem was that virtually none of it directly translated into what I wanted (and needed) to do for my research. So while it was good for me and could only help in the long run, it was a lot of time spent *not* moving my research forward. And because there was no immediate application of these new skills to my work, there was also no reinforcement of what I was learning anyway, and therefore very little retention. 
 
