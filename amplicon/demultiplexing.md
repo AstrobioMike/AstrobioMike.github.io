@@ -25,7 +25,7 @@ There are many freely available tools to perform demultiplexing. Here I'll demon
 <br>
 
 # The data
-You certainly don't need to download this example data, but just in case you wanted to, you can from here:
+You certainly don't need to download this example data, but just in case you wanted to, you can from here (it's tiny, 30 Mb):
 
 ```
 cd ~
