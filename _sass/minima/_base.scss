@@ -266,6 +266,18 @@ pre {
   border: 1.5px solid darken(#000000,20)
 }
 
+.my_notice {
+  @include rounded(3px);
+  margin: 20px 10px;
+  padding: 20px 8px 8px 8px;
+  border-radius: 3px;
+  text-align: center;
+  text-indent: 0;
+  background-color: #ecf2f9;
+  border: 1.5px solid darken(#ecf2f9,30);
+  color: #282828
+}
+
 /**
   * Warning
   */
