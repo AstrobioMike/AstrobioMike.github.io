@@ -53,9 +53,11 @@ Here all we really care about for demultiplexing are this first and second colum
 awk -v OFS="\t" ' NR > 1 {print $2, $1"_R1.fq", $1"_R2.fq"} ' 100914ML515F-mapping.txt > sabre_formatted_barcode_file.txt
 ```
 
+Here we are using `awk` to skip the first row of headers with `NR > 1`, and then print the columns as we specify them (appending to the sample names "_R1.fq" and "_R2.fq", and in the order we specify them, to a new file that is tab-delimited – set with the `OFS="\t"`: 
+
 <center><img src="{{ site.url }}/images/demux_sabre_formatted_head.png"></center>
 <br>
-If that `awk` command doesn't make any sense to you and being able to use bash to manipulate files like this would be useful to your work, then I highly recommend running through the [bash basics](/bash/basics){:target="_blank"} and [six glorious commands](/bash/six_commands){:target="_blank"} pages to get a better grip on things 🙂  
+If that `awk` command doesn't make any sense to you and being able to use bash to manipulate files like this would be useful to your work, then I highly recommend running through the [bash basics](/bash/basics){:target="_blank"} and [six glorious commands](/bash/six_commands){:target="_blank"} pages to get a better grasp on things 🙂  
 <br>
 
 ---
