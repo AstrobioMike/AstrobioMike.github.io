@@ -47,6 +47,7 @@ Feel free to <a href="https://twitter.com/AstrobioMike">bug me</a> about any of 
 <center><h2><a href="/amplicon/" style="color:#d64231">Amplicon analysis</a></h2></center>
 
 **Available now:**  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • [Demultiplexing example](/amplicon/demultiplexing)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • [An example workflow from processing at the command line with usearch/vsearch to analyzing in R](/amplicon/workflow_ex)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • [An example workflow processing with DADA2 in R](/amplicon/dada2_workflow_ex)
 
