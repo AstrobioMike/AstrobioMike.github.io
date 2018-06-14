@@ -19,7 +19,7 @@ author: Mike Lee
 description: >
    Hoping to help level out the steep learning curve
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://AstrobioMike.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://AstrobioMike.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: AstrobioMike
 github_username:  AstrobioMike
 
