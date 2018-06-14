@@ -1100,6 +1100,9 @@ $button-size: 1.5rem;
               border-bottom-width: 0;
             };
         }
+        a.header-active {
+            background-color: #deebf9;
+        }
         ul {
             margin: 1px 0 0;
             &:last-child {
