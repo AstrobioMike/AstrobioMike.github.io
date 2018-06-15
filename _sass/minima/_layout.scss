@@ -28,15 +28,15 @@
     text-decoration: none;
   }
   
-  @media(max-width:500px) {
+  @media(max-width:750px) {
     font-size: 1.5em;
   }
 }
 
 .site-nav {
-  float: right;
-  margin-top: 4px;
-  line-height: $base-line-height * $base-font-size * 2.25;
+    float: right;
+    margin-top: 4px;
+    line-height: $base-line-height * $base-font-size * 2.25;
     ul {
         margin: 0;
         padding: 0;
@@ -44,29 +44,18 @@
         list-style-type: none;
     }
     li {
-        display: block;
+        display: inline;
         list-style-type: none;
-        border-bottom: 1px solid lighten($black,80);
-        border-bottom: 1px solid fade($black,10);
         @include font-rem(16);
-        &:last-child {
-            border-bottom: 0 solid transparent;
-        }
-        @media #{$small} {
-            display: inline;
-            &:not(:last-child) {
-              margin-right: 25px;
-            }
-            white-space: nowrap;
-            border-bottom: 0 solid transparent;
+        &:not(:last-child) {
+            margin-right: 25px;
         }
         a { 
-            display: none;
             padding: 0px 0;
             decoration: none;
             color: #0047b3;
             &:visited {
-            color: darken(#0047b3, 15%);
+                color: darken(#0047b3, 15%);
             }
             border-bottom: 0 solid transparent;
             @include transition(all .2s);
