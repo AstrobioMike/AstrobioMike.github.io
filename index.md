@@ -1,5 +1,5 @@
 ---
 layout: home
-excerpt: "Welcome to Happy Belly Bioinformatics"
-title: Happy Belly Bioinformatics
+excerpt: "Hoping to help level out the steep learning curve."
+title: Bioinformatics for Biologists
 ---
