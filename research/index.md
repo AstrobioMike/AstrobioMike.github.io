@@ -10,10 +10,10 @@ permalink: /research/
 ## Michael D. Lee, PhD – Science Mercenary
 
 <br>
-**Contact Info**  
 *Email:* Leemd@usc.edu  
 *Phone:* 732-691-6402  
 {% include icon-twitter.html username=site.twitter_username %}  
+{% include _orcid.html %}  
 
 **Current position**  
 *NASA Space Biology Postdoctoral Fellow*
@@ -47,6 +47,11 @@ My current research efforts are focused primarily on: photoautotroph-heterotroph
 
 **Lee, M.D.**, Walworth, N.G., Sylvan, J.B., Edwards, K.J., and Orcutt, B.N. (2015). [Microbial communities on seafloor basalts at Dorado Outcrop reflect level of alteration and highlight global lithic clades](https://doi.org/10.3389/fmicb.2015.01470){:target="_blank"}. *Frontiers in Microbiology*.  
 [PDF download](/research/Lee_et_al_2015_FrontMicro.pdf){:target="_blank"}  
+
+<div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.3389/fmicb.2018.01534"></div>  
+
+**Lee, M.D.**, Kling, J.D., Araya, R., and Ceh, J. (2018). [Jellyfish life stages shape associated microbial communities, while a core microbiome is maintained across all](https://www.frontiersin.org/articles/10.3389/fmicb.2018.01534/abstract){:target="_blank"}. *Frontiers in Microbiology*.  
+[PDF download – preprint currently](Lee_et_al_2018_Front_Micro.pdf){:target="_blank"}  
 
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.3389/fmicb.2018.00189"></div>  
 
