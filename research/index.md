@@ -50,8 +50,8 @@ My current research efforts are focused primarily on: photoautotroph-heterotroph
 
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.3389/fmicb.2018.01534"></div>  
 
-**Lee, M.D.**, Kling, J.D., Araya, R., and Ceh, J. (2018). [Jellyfish life stages shape associated microbial communities, while a core microbiome is maintained across all](https://www.frontiersin.org/articles/10.3389/fmicb.2018.01534/abstract){:target="_blank"}. *Frontiers in Microbiology*.  
-[PDF download – preprint currently](Lee_et_al_2018_Front_Micro.pdf){:target="_blank"}  
+**Lee, M.D.**, Kling, J.D., Araya, R., and Ceh, J. (2018). [Jellyfish life stages shape associated microbial communities, while a core microbiome is maintained across all](https://www.frontiersin.org/articles/10.3389/fmicb.2018.01534/full){:target="_blank"}. *Frontiers in Microbiology*.  
+[PDF download](Lee_et_al_2018_Front_Micro.pdf){:target="_blank"}  
 
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.3389/fmicb.2018.00189"></div>  
 
