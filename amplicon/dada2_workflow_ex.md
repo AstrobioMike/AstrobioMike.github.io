@@ -49,7 +49,7 @@ You can download the required dataset and files by copying and pasting the follo
 ```
 cd ~
 curl -L -o dada2_amplicon_ex_workflow.tar.gz https://ndownloader.figshare.com/files/11342996
-tar -xzvf dada2_amplicon_ex_workflow.tar.gz
+tar -xvf dada2_amplicon_ex_workflow.tar.gz
 rm dada2_amplicon_ex_workflow.tar.gz
 cd dada2_amplicon_ex_workflow/
 ```
