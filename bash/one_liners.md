@@ -44,9 +44,10 @@ $ tr "\r" "\n" < paired_dists.csv > paired_dists_fixed.csv
 $ head -n1 pr2_version_4.10.0_merged.tsv | tr "\t" "\n" | cat -n
 
 
-  ############# use sed to print from line X to end of file (here from line 2) ##############
-$ sed -n "2,$(wc -l test.txt | cut -f1 -d " ")p" test.txt
-
+  ############# print from line "x" to end of file (here from line 2 to leave off a header) 
+  		# thanks to Xabier Vázquez-Campos for showing me the "+" usage with `tail` as I was doing this ridiculously convoluted before that :) 
+$ tail -n +2 test.txt
+  
 
   ############# delete blank lines with mac (darwin) sed:
 $ sed '/^$/d' in.txt
