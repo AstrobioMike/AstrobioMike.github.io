@@ -1,6 +1,6 @@
 ---
 layout: main
-title: Simple loops can go a long way
+title: Loops are powerful
 categories: [bash, tutorial]
 permalink: /bash/loops_to_help
 ---
