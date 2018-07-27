@@ -123,11 +123,6 @@ Note that when we provided the `-u` flag to the `date` command (to get the comma
 
 Your computer stores files in a hierarchical structure like a tree. You are likely already used to this just by how you would navigate through by clicking on various folders (directories) and finding your way to a file or program. 
 
-<center><a href="https://raw.githubusercontent.com/AstrobioMike/Misc/master/file_system_structure.png"><img src="https://raw.githubusercontent.com/AstrobioMike/Misc/master/file_system_structure.png" width="500" height="551"></a></center>
-
-
-https://github.com/AstrobioMike/Misc/raw/master/file_system_structure.png
-
 <center><a href="https://raw.githubusercontent.com/AstrobioMike/AstrobioMike.github.io/master/images/file_system_structure.png"><img src="https://raw.githubusercontent.com/AstrobioMike/AstrobioMike.github.io/master/images/file_system_structure.png" width="500" height="551"></a></center>
 
 
