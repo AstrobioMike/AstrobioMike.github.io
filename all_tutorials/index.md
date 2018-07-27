@@ -65,16 +65,3 @@ Feel free to <a href="https://twitter.com/AstrobioMike">bug me</a> about any of 
 
 **Coming soon:**  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [Let me know what would help you!](https://twitter.com/AstrobioMike){:target="_blank"}    
-
-[//]: # (<br>)
-
-[//]: # (---)
-[//]: # (<br>)
-[//]: # (<center><h2><a href="/metagenomics/" style="color:#cc7a00">Metagenomics</a></h2></center>)
-
-[//]: # (**Available now:**  )
-[//]: # (&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • Nothing yet 😢)
-
-[//]: # (**Coming soon:**  )
-[//]: # (&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • [Opening thoughts on metagenomics](/metagenomics/thoughts)  )
-[//]: # (&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • [Where to start: quality filtering, error correction, and read-depth normalization](/metagenomics/where_to_start))

@@ -2,7 +2,7 @@
 layout: main
 title: Introduction to Unix
 categories: [bash, tutorial]
-permalink: /stamps2018/unix
+permalink: /stamps2018/unix_intro
 ---
 
 {% include _unix_toc.html %}
