@@ -165,10 +165,11 @@ blockquote{
   border-right: 2px solid $grey-color-dark;
   padding-left: 10px;
   padding-right: 8px;
-  padding-top: 5px;
+  padding-top: 10px;
+  padding-bottom: 1px;
   @include relative-font-size(1.1);
   
-  font-style: italic;
+  /*font-style: italic;*/
   
   /*Box Shadow - (Optional)*/
   -moz-box-shadow: 2px 2px 15px #ccc;
