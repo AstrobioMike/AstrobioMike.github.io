@@ -5,4 +5,4 @@ permalink: /stamps2018/
 ---
 
 
-[Introduction to Unix](/stamps2018/unix/intro)
+[Introduction to Unix](/stamps2018/unix/intro.md)
