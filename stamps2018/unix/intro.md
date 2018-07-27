@@ -121,7 +121,9 @@ Note that when we provided the `-u` flag to the `date` command (to get the comma
 
 # File-system structure and moving around
 
-Your computer stores files in a hierarchical structure like a tree. You are likely already used to this just by how you would navigate through by clicking on various folders (directories) and finding your way to a file or program. 
+Your computer stores files in a hierarchical structure. You are likely already used to navigating through this stucture by clicking on various folders (aka directories) in a Windows Explorer window or a Mac Finder window. Just like you need to select the appropriate files in the appropriate locations there, you need to be aware of where you are when working at the command line.
+
+Here is an image of an example file-system structure:
 
 <center><a href="https://raw.githubusercontent.com/AstrobioMike/AstrobioMike.github.io/master/images/file_system_structure.png"><img src="https://raw.githubusercontent.com/AstrobioMike/AstrobioMike.github.io/master/images/file_system_structure.png" width="500" height="551"></a></center>
 
