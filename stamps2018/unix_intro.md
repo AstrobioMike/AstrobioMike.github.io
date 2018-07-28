@@ -21,15 +21,13 @@ permalink: /stamps2018/unix_intro
 <br>
 
 # Some terminology
-[comment]: <> (Some terms we hear a lot, that in common talk are often used interchangeably. These are not authoritative definitions. This is just how I've come to think of them through exposure and communication with others.)
 
-- "**Unix**" – Unix is a type of operating system, or more precisely, a family of operating systems as the [wiki](https://en.wikipedia.org/wiki/Unix) words it. This is why you will hear people say things like “Unix-like”, and refer to Unix being on both Mac and Linux computers (they run Unix-like operating systems).
-
-- “**command line**” or “**terminal**” – a text-based environment capable of taking input and providing output.
-
-- “**shell**” – what runs in a terminal. The shell is your ambassador to your operating system so you can tell it very specific things; the shell translates our language into the computer’s language and then back again so we can understand the output.
-
-- “**bash**” – a specific type of shell (by far the most common these days). This describes the programming language your shell understands.
+| Term     | What it is          |
+|:-------------:|------------------|
+| **`Unix`** | a family of operating systems |
+| **`command line`** | a text-based environment capable of taking input and providing output |
+| **`shell`** | ambassador to the operating system; translates between us and the computer |
+| **`bash`** | a specific type of shell, bash is the most common programming language used at a Unix command-line |
 
 <br>
 
@@ -39,6 +37,7 @@ permalink: /stamps2018/unix_intro
 # Why learn the command line?
 
 *  enables use of non-GUI (Graphical User Interface) tools
+*  perform operations on large files quickly
 *  reproducibility
 *  automation of repetitive tasks
 	*  need to rename 1,000 files?
@@ -46,6 +45,11 @@ permalink: /stamps2018/unix_intro
 *  enables use of higher-powered computers elsewhere (server/cloud)
 *  it's the foundation for most of bioinformatics
 
+> **The conundrum**  
+> A) There is quite a bit of a learning curve, so it takes some time to get to the point where the command line becomes useful and powerful.  
+> B) It's hard to know how it will be useful and powerful before you get to that point.  
+> C) It's hard to have the motivation and make the time to learn it before you know it's useful and powerful.  
+> <center><b>This is our struggle.</b></center>
 
 <br>
 
@@ -70,8 +74,6 @@ cd unix_intro
 <br>
 
 # Running commands
-
-## General structure of commands
 
 The general syntax of a command is as follows: `command argument`. **Spaces are special!** The command line uses spaces to know how to properly break apart things. 
 
@@ -119,9 +121,9 @@ Note that when we provided the `-u` flag to the `date` command (to get the comma
 ---
 <br>
 
-# File-system structure and moving around
+# The Unix file-system structure
 
-Your computer stores files in a hierarchical structure. You are likely already used to navigating through this stucture by clicking on various folders (aka directories) in a Windows Explorer window or a Mac Finder window. Just like you need to select the appropriate files in the appropriate locations there, you need to be aware of where you are when working at the command line.
+Your computer stores file locations in a hierarchical structure. You are likely already used to navigating through this stucture by clicking on various folders (aka directories) in a Windows Explorer window or a Mac Finder window. Just like you need to select the appropriate files in the appropriate locations there, you need to do the same when working at the command line. What these means in practice is that each file and directory has its own "address", and that address is called it's "**path**". 
 
 Here is an image of an example file-system structure:
 
@@ -129,68 +131,75 @@ Here is an image of an example file-system structure:
 
 
 <br>
-At the top of that image you can see we are in a directory called "bash_basics_temp", and inside that directory there is a subdirectory called "another_directory" and two text files. Additionally at the very bottom there is a line that tells us 'where' we are in the computer. Yours will be different, but this is what mine looks like: `Macintosh_HD/Users/Mike_Lee/bash_basics_temp`.
+There are two special locations in all Unix-based systems: the "**root**" location and the "**home**" location. "Root" is where the address system of the computer starts; "home" is where the current user's location starts.
 
-This line of directories, delimited by forward slashes, tells us where we are; it's an address. And in the computer world it's called a "path".
+We tell the command line where files and directories are located by providing their address, their "path". If we use the `pwd` command, we can find out what the path is for the directory we are sitting in. Whatever directory we are currently sitting in is called the "current working directory". And if we use the `ls` command, we can see what directories and files are in the current directory we are sitting in.
 
-When we are working in a terminal we need to be aware of where we are in the computer. We can get all of the same information in the terminal by using the commands `pwd` (print working directory – to view the address of the directory we are in) and `ls` (list, to list the contents of the directory we're sitting in):
+```
+pwd
+ls
+``` 
 
-<center><img src="{{ site.url }}/images/terminal_directory_example.png"></center>  
+## Absolute vs relative path
+There are two ways to specify the path of the file we want to do something to: the absolute path and the relative path. 
 
-<br>
-It is important to be comfortable thinking about where you are in your computer when working in the terminal. One of the most common errors/easiest mistakes to make is trying to do something to a file that isn't where you think it is. Let's go back to our example above where we used the `head` command on the "text.txt" file, and then let's try it on another file, "yet_another_text_file.txt":
+* An **absolute path** is an address that starts from an explicitly specified location: either the "root" `/` or the "home" `~/` location. (When using the "root" as the start of the absolute path, it is referred to as the "full path".)
+* A **relative path** is an address that starts from wherever you are currently sitting.
+
+For example, let's look again at the `head` command we ran above:
+
+```bash
+head text.txt
+```
+
+What we are actually doing here is using a **relative path** to specify where the "text.txt" file is located. This is because the command line automatically looks in the current working directory for a file or directory if you don't specify anything else about it's location. 
+
+We can also run the same command on the same file using the **absolute path**. Here is doing so starting from the "home" `~/` location. 
+
+```bash
+head ~/unix_intro/text.txt
+```
+
+> **Quick Practice**  
+> Use `pwd` again to see the full path of your current working directory, and then try running the `head` command on the "text.txt" file by specifing the full path.
+
+
+It is important to be comfortable thinking about where you are in your computer when working at the command line. One of the most common errors/easiest mistakes to make is trying to do something to a file that isn't where you think it is. Let's run `head` on the "text.txt" file again, and then let's try it on another file: "yet\_another\_text\_file.txt":
 
 ```bash
 head text.txt
 head yet_another_text_file.txt
 ```
 
-<center><img src="{{ site.url }}/images/file_location_error.png"></center>
+Here the `head` command works fine on "text.txt", but we get an error message when we call it on "yet\_another\_text\_file.txt" telling us no such file or directory. If we run the `ls` command to list the contents of the current working directory, we can see the computer is absolutely right – spoiler alert: it usually is – and there is no file here named "yet\_another\_text\_file.txt". 
 
-<br>
-Here the `head` command works fine on "text.txt", but we get an error message when we call it on "yet_another_text_file.txt". Intrepreting error messages in some cases will be tricky. As usual, google is your friend, and most problems you'll run into will be things others have already talked out somewhere – love you, [stackoverflow](https://stackoverflow.com). Fortunately this error message happens to be one of the more straightforward ones. It gives us the command that was used, the file we attempted to call it on, and tells us "No such file or directory". And if we enter the `ls` command just like we did above, we can see the computer is absolutely right (spoiler alert: it usually is). There is no file in the current directory named "yet_another_text_file.txt". And when you enter a file name without any other information, the computer only looks in the exact directory you are sitting in. We'll see what this means in a second. 
+The `ls` command by default operates on the current working directory if we don't specify any location, but we can tell it to list the contents of a specific directory by providing it as a positional argument: 
 
-In this case the file we are looking for is actually in the directory "another_directory", which is a 'subdirectory' of the one we are sitting in, which we can also see when entering `ls` with no arguments. Further, if we instead enter:  
-
-```bash
-ls another_directory/
+```
+ls another_directory
 ```
 
-We are now providing an argument to the `ls` command, and asking it to list the contents of the directory named "another_directory".
-
-<center><img src="{{ site.url }}/images/ls_another_dir.png"></center>
-
-<br>
-So we see the file we tried to call `head` on isn't in our current working directory, but is actually in a subdirectory just one layer deeper than we are. We can also call `head` on the file by specifying the "path" (address) of the file like so:
+We can see the file we were looking for is located in the "subdirectory" called "another\_directory". Here is how we can run `head` on "yet\_another\_text\_file.txt" by specifying the **relative path**:
 
 ```bash
 head another_directory/yet_another_text_file.txt
 ```
 
-<center><img src="{{ site.url }}/images/head_other_dir_example.png"></center>
+If we had been using **tab-completion**, we would not have made that mistake.
 
+### BONUS ROUND: Tab-completion is your friend!
+Tab-completion is a huge time-saver, but even more importantly it is a perpetual sanity-check that helps prevent mistakes. 
+
+If we are trying to point to a file or directory that's in our current working directory, we can begin typing the file or directory name and then press `tab` to complete it. If there is only one possible way to finish what we've started typing, it will complete it for us. If there is more than one possible way to finish what we've started typing, it will complete as far as it can, and then hitting `tab` twice will show the possible options. And most importantly, if tab-complete does not do either of those things, then we are either confused about where we are, or we're confused about where the file or directory is that we're trying to do something to – this is invaluable.
+
+> **Quick Practice**  
+> Try out tab-complete! Run `ls` first to see what's in our current working directory again. Then type `head te` and then press `tab`. Since "text.txt" is the only possibility, that finishes for us and we can now press `enter` to run our command. Now try `head ano` and press `tab`. This should finish up to "another_" but then stop. This is because there isn't just one unique way to finish what we've provided. If you quickly press `tab` twice, it will show the possibilities. If we add a `t`, so `head another_t` and press `tab` again, now it will complete up to the extension. Add another `t` and press `tab` and it will finish completely for us. 
+
+<center><b>Use tab-completion whenever you can!!</b></center>
 <br>
-As a side note here, don't be distracted a the line wrap in the terminal window (as seen in mine here). Commands you are entering will sometimes get pretty long and will automatically wrap to the next line without interfering with what you're doing.  
 
-<a id="path"></a>
-
-## Absolute vs relative path
-
-Moving on, there are actually two ways to provide the path to where something is: you can give what is known as the **absolute path** or you can give an **relative path**.  
-
-What we did in the example just above is known as a **relative path** because it takes off from where we entered the command. If we were in a location that didn't have the subdirectory "another_directory" in it, then we would have also gotten an error message because the computer again wouldn't be able to find the file we were pointing to.  
-
-We also could provide the **absolute path** however, which isn't relative to our current location because it takes off from a specific location in the computer, rather than taking off from where we call the command. We actually saw our absolute path earlier when we executed the `pwd` command:
-
-<center><img src="{{ site.url }}/images/pwd.png"></center>
-
-<br>
-Now, instead of calling `head` on "yet_another_text_file.txt" by providing the relative PATH as we did last time, we will do it using the absolute path. But remember, what `pwd` just showed us is actually where *we* are, and we need to add the subdirectory "another_directory" to the end of it in order to specify where the file actual is. To do this, we can copy and paste the output from `pwd`, and then add `/another_directory/yet_another_text_file.txt` to the end of it. Yours will be different, but this is what mine looks like: 
-
-<center><img src="{{ site.url }}/images/head_abs_path_example.png"></center>
-
-<br>
-Now that we've covered how to do something to a file in a different location than our current working directory, let's look at how we can also just move ourselves to where that file is. We change directories with the `cd` command. Let's change directories into the subdirectory called "another_directory", check where we are with `pwd`, see if the file we are looking for is actually in the directory with `ls`, and then run `head` on it:
+## Moving around
+We can also move into the directory containing the file we want to work with by using the `cd` command (**c**hange **d**irectories). The `cd` command takes a positional argument that is the path (address) of the directory you want to change into. This can be a relative path or an absolute path. So here we'll use the relative path of the subdirectory, "another_directory", to change into it:
 
 ```
 cd another_directory/
@@ -199,73 +208,246 @@ ls
 head yet_another_text_file.txt
 ```
 
-<center><img src="{{ site.url }}/images/cd_pwd_ls_head_example.png"></center>
-
-<br>
-Great. But now how do we get back 'up' to the directory above us? One way would be to provide the absolute path of where we would like to go, which for me would look like this: 
-```
-cd /Users/Mike_Lee/bash_basics_temp
-``` 
-
-But that would get old fast. A better way to do it involves using special characters:
+Great. But now how do we get back 'up' to the directory above us? One way would be to provide an absolute path, like `cd ~/unix_intro/`, but there is also a handy shortcut. `../` is a relative path that specifies "up" one level – one directory – from wherever we currently are. So we can provide that as the positional argument to `cd` to get back to where we started, and then double check with `pwd` to show where we are and `ls` to list what's here:
 
 ```
-cd ..
+cd ../
+pwd
+ls
 ```
 
-Here, simply entering two periods as the destination argument to the `cd` command tells the computer we want to go 'up' one level:
+> **Note on `cd`**  
+> If you run the `cd` command with no arguments, it will use your home `~/` location as the default. So entering `cd` by itself will function the same as `cd ~/`. 
 
-<center><img src="{{ site.url }}/images/cd_up_shortcut_example.png"></center>
+Moving around the computer like this may feel a bit cumbersome at first, but after spending a little time with it and getting used to tab-completion you'll soon find yourself slightly frustrated when you have to scroll through a bunch of files and click on something by eye with a mouse or trackpad in a Finder window 🙂
 
-<br>
-Fortunately there are many special characters in *bash*, some of which allow us to navigate around much more easily. Two periods as we just saw refers to the directory just above you. Using just a single period specifies your current directory, which will be useful when we look at how to copy and move files around below. Another special one is simply a lone foreward slash `/`, which we've actually already seen when we provided the absolute path above (e.g. `/Users/Mike_Lee/bash_basics_temp`). What the `/` in the front is actually telling the computer is to start at the "root" directory. This is sort of like the home base of the operating system structure; it is the 'highest' directory level. If you type `ls /`, you will get a list of the directories and files located in the root directory. And if you wanted, you could move yourself into the root directory by entering `cd /`.  
-
-Another special character related to location is the `~` symbol. This shortcut points to your "home" directory. A home directory is like a more personal spot on the computer. If you're on a server with multiple users, it would be your own personal location. And even if you're just working on your own computer, you likely login as a specific user when you turn it on. For instance, my home directory is located at `/Users/Mike_Lee`. We can see that if I change into my home directory and run `pwd`:
-
-<center><img src="{{ site.url }}/images/home_dir.png"></center>
+> **Quick Practice**  
+Try to get used to regularly thinking about "where" you are in the computer when working at the command line. Let's take a quick trip. First run `pwd` so we remember where we are. Then let's change directories into our computer's root directory `cd /` and find our way back using tab-completion.
 
 <br>
-Another extremely useful one for the `cd` command is simply a dash (`-`). This will change you back to the last directory you were in:
 
-<center><img src="{{ site.url }}/images/change_dir_back.png"></center>
-
+---
 <br>
-Having some concept of where you are and how to navigate around the computer via the terminal window alone is an essential skill that you'll develop very quickly. If you'd like, at first you can practice by also having a Finder window open and try 'clicking' around to the same places you are moving through with *bash* commands to help you visualize the structure.  
 
-<h4><i>Commands presented in this section:</i></h4>
+<h4><i>Terms presented in the previous section:</i></h4>
+
+| Term     | What it is          |
+|:----------:|------------------|
+| **`path`** | the address system the computer uses |
+| **`root`** | where the address system of the computer starts, **`/`** |
+| **`home`** | where the current user's location starts, **`~/`**|
+| **`absolute path`** | an address that starts from a specified location, i.e. root, or home |
+| **`relative path`** | an address that starts from wherever you are sitting |
+| **`tab-completion`** | our best friend |
+
+
+<h4><i>Commands presented in the previous section:</i></h4>
 
 |Command     |Function          |
 |:----------:|------------------|
-|`pwd`       |tells you where you are in the computer (print working directory)|
-|`ls`        |lists contents of a directory (list)|
-|`cd`| changes directories |
+|**`pwd`**       |tells you where you are in the computer (**p**rint **w**orking **d**irectory)|
+|**`ls`**        |lists contents of a directory (**l**i**s**t)|
+|**`cd`**| **c**hange **d**irectories |
 
-<h4><i>Special characters presented in this section:</i></h4>
+
+<h4><i>Special characters presented in the previous section:</i></h4>
 
 |Characters     | Meaning          |
 |:----------:|------------------|
-|`.`       | the current working directory |
-|`../`        |specifies a directory one level "above" the current working directory|
-|`~`| your "home" location |
-| `/` | your computer's "root" location |
-
+| **`/`** | the computer's root location |
+| **`~/`** | the user's home location |
+| **`../`** |specifies a directory one level "above" the current working directory|
 
 <br>
 
 ---
 <br>
-# What's a plain text file?
 
-The baseline tools of *bash* are mostly useful for what are known as plain text files, also commonly referred to as 'flat' files. And I'm just realizing now that formally defining what a 'plain text file' is isn't all that simple. There are a few definitions you could check out at the [wiki](https://en.wikipedia.org/wiki/Plain_text) if you are interested, but a simple, working defintion might be something like: a text file that doesn't contain any special formatting characters and can be properly viewed and edited with any standard text editor.
+# Working with plain-text files and directories
+The most common command line tools are mostly only useful for operating on what are known as **plain-text files** – also referred to as "flat files". There are a few definitions you can check out at the [wiki](https://en.wikipedia.org/wiki/Plain_text){:target="_blank"} if you'd like, but a good-enough working definition of what a plain-text file is might be something like: a text file that doesn't contain any special formatting characters or information, and that can be properly viewed and edited with any standard text editor. 
 
-Bioinformaticians (and lots of others who get to play with big data regularly) work with plain text files so much because not being constrained to any special (arbitary) characteristics means methods for interacting with them can be standardized. So when you learn one command that works on a flat file, it works on all of them the same way. Common formats are files with extensions like ".txt", ".csv" for comma-separated values, ".tsv" for tab-seperated values. More specialized extensions like ".docx" or ".xlsx" are not plain text files. Delimited files, like ".csv" and ".tsv", are a simple way to store tables as each row is delimited by a newline and each column by whichever delimiter is specified. And it's this simple formula that makes them very easy to work with. In the next section [(6 commands worth getting to know)](/bash/six_commands) you'll see and work with some examples of tables, and see why *bash* is invaluable for manipulating them. But for now just know that the text files we've been looking at so far are plain text files.  
+Common types of flat-text files are those ending with extensions like ".txt", ".tsv" for **t**ab-**s**eparated **v**alues, or ".csv" for **c**omma **s**eparated **v**alues. Some examples of common file types that are *not* flat-text files would be ".docx", ".pdf", or ".xlsx". This is because those types contain special types of compression and formatting information that are only interpretable by the programs that work with them.
+
+> **Note on file extensions**  
+> File extensions do not actually do anything to the file format. They are *mostly* there just for our convenience/organization – "mostly" because some programs require a specific extension to be present for it to interact with a file. 
+> 
+> The command `file` will tell you what type of file something is. Run `file excel_file.xlsx` and then `file another_text_file.xlsx`. The "excel\_file.xlsx" is actually an Excel file and has all kinds of special formatting for Excel that only makes sense to Excel. But "another\_text\_file.xlsx" is just a plain-text file that happens to have the extention ".xlsx". Try running `head` on each of these files.  
+
+<br>
+## Ways to probe plain-text files
+We've already used a very common tool for peeking at files, the `head` command. There is also `tail`, which prints the last 10 lines of a file by default:
+
+```
+head text.txt
+tail text.txt
+```
+
+Commands like `head` and `tail` are useful when you are working at the command line and you want to get an idea about the structure of a file. This is especially helpful if a file is particularly large, as `head` will just print the first ten lines and stop. This means it will be just as instantaneous whether the file is 10KB or 10GB. 
+
+Another useful command for just viewing a file is `less`. This opens a searchable read-only program that allows you to scroll through the document: 
+
+```bash
+less text.txt
+```
+
+To exit the `less` program you need to press the "q" key. 
+
+The `wc` command is useful for counting how many lines, words, and characters there are in a file: 
+
+```bash
+wc text.txt
+```
+
+Adding the optional flag `-l` will print just how many lines are in a file: 
+
+```bash
+wc -l text.txt
+```
+
+<br>
+## Ways to manipulate files and directories
+
+<div class="warning">
+<center><h2>WARNING!</h2></center>
+<b>Using commands that do things like create, copy, and move files at the command line will overwrite files if they have the same name. And using commands that delete things will do so permanently. Use caution while getting used to things – and then forever after</b> 🙂
+</div>
+
+
+The commands `cp` and `mv` (**c**o**p**y and **m**o**v**e) have the same basic structure. They both require two positional arguments – the first is the file you want to act on, and the second is where you want it to go (this includes the name you want to give it). 
+
+To see how this works, let's make a copy of the "text.txt" file:
+
+```
+ls
+cp text.txt text_copy.txt
+ls
+```
+
+Remember we are actually providing a *relative path* when we provide the file names here. So to make make a copy of the "text.txt" file and put it somewhere else, like in our subdirectory "another\_directory", we would change the second positional argument:
+
+```
+ls another_directory/
+cp text.txt another_directory/text_copy.txt
+ls another_directory/
+```
+
+If we want to copy something from somewhere else to our current working directory, we can use another special character, a period – `.`. The period specifies the current working directory – just like `../` specifies one directory above us.
+
+```
+ls
+cp another_directory/yet_another_text_file.txt .
+ls
+```
+
+And now we have a copy of that file in our current working directory. 
+
+Notice that in the first `cp` example we provided a new name in the target location, ("text_copy.txt"), but here when we used `.` to specify copying to the current working directory it simply copied the file with the same name as the original. This would be a time when an accidental overwrite could occur. 
+
+The `mv` command is used to move files **and** to rename them if wanted. Remember that the path of a file actually includes its name. Here we will move a file from our current working directory into our subdirectory. At the moment our current working directory and our subdirectory contain these files:  
+
+```
+ls
+ls another_directory/
+```
+
+Let's move "another\_text\_file.xlsx" into the subdirectory:
+
+```bash
+mv another_text_file.xlsx another_directory/
+ls
+ls another_directory/
+```
+
+Notice that we didn't provide a file name for the second positional argument of the `mv` command (where we were sending it). Just like when we used `cp` to copy a file to our current working directory with `.` above, this keeps the name of the original file.  
+
+Remember that "another\_text\_file.xlsx" was actually a text file and not a ".xlsx". Let's rename it so that it has a ".txt" extension:
+
+```
+ls another_directory/
+mv another_directory/another_text_file.xlsx another_directory/another_text_file.txt
+ls another_directory/
+```
+
+Notice here that we did this from a different directory using a relative path to specify the starting file and the ending file. 
+
+Now we'll see an example of how easy it can be to accidentally overwrite a file:
+
+```
+head text.txt
+tail text.txt
+wc -l text.txt
+
+head another_directory/yet_another_text_file.txt
+wc -l another_directory/yet_another_text_file.txt
+```
+
+```
+cp another_directory/yet_another_text_file.txt text.txt
+```
+
+```
+head text.txt
+tail text.txt
+wc -l text.txt
+
+head another_directory/yet_another_text_file.txt
+wc -l another_directory/yet_another_text_file.txt
+```
+
+And our original "text.txt" file is gone forever 😬
+
+To delete files (intentionally) there is the `rm` command (**r**e**m**ove). This requires at least one argument specifying the file you want to delete. But again, caution is warranted. There will be no confirmation or retrieval from a waste bin afterwards.
+
+```
+ls
+rm text.txt
+ls
+```
+
+You can make a new directory with the command `mkdir`:
+
+```bash
+ls
+mkdir our_new_directory
+ls
+```
+
+And similarly, directories can be deleted with `rmdir`:
+
+```bash
+rmdir our_new_directory/
+ls
+```
+
+Things are a little more forgiving when trying to delete a directory. If the directory is not empty, `rmdir` will give you an error. 
+
+```bash
+rmdir another_directory/
+```
+
+<br>
+## Making and editing plain text files
+It is often very useful to be able to generate new plain-text files quickly at the command line, or make some changes to an existing one. One way to do this is using a text editor that operates on the command line. Here we're going to look at a program called `nano`.
+
+When we run the command `nano` it will open a text editor in our terminal window. If we give it a file name as a positional argument, it will open that file if it exists, or it will create it if it doesn't. Here we'll make a new file:
+
+```bash
+nano sample_names.txt
+```
+
+Now we can type as usual. Afterwards, to save the file and exit we need to use some of the keyboard shortcuts listed on the bottom. "Write Out" will save our file, and the `^O` represents hitting `ctrl + o` (doesn't need to be a capital "O"). This will ask you to either enter or confirm the file name, we can just press `enter`. Then to exit we can press `ctrl + x`. And now our new file is in our current working directory:
+
+```
+ls
+head sample_names.txt
+```
+
 <br>
 
 ---
 <br>
-# Working with plain text files and directories
 
-<h4><i>Commands presented in this section:</i></h4>
+<h4><i>Commands presented in the previous section:</i></h4>
 
 |Command     |Function          |
 |:----------:|------------------|
@@ -277,271 +459,73 @@ Bioinformaticians (and lots of others who get to play with big data regularly) w
 |`mv`      |mv a file or directory (use with caution)|
 |`rm`      |delete a file or directory (use with caution)|
 |`mkdir`       |create a directory|
-|`rmdir`     |delete a directory|
-|`nano`     |create and edit plain text files|
+|`rmdir`     |delete an empty directory|
+|`nano`     |create and edit plain text files at the command line|
 
-
-<h4>Ways to probe plain text files</h4>
-We've already used a very common tool for peeking at files, the `head` command. There is also a corresponding `tail` version that prints the last 10 lines of a file by default:
-
-<center><img src="{{ site.url }}/images/tail_ex.png"></center>
-
-<br>
-Commands like `head` and `tail` are particularly useful when you have a very large file that might take a lot of memory to fully open (and therefore could be sluggish). Usually a file is formatted consistently and often just peeking at the first few lines tells you the structure, so you can then pull out just what you are interested in. Along the same lines when you are trying to parse a large file a certain way, you can just do a subset of it with the `head` command to make sure things are working before running it on the entire file. 
-
-Another useful command for just viewing a file is `less`. This opens a searchable reader that allows you to scroll through the document if you just want to read something over. Our example documents are kind of small for `less` to be useful here, but it would be run as such:
-
-```bash
-less text.txt
-```
-<center><img src="{{ site.url }}/images/less_ex.png"></center>
-
-<br>
-To exit the `less` program you need to press the "q" key. 
-
-The `wc` command is useful for counting how many lines, words, and characters there are in a file (wanting this information comes up more than you'd expect). For example, running it on the "text.txt" file with no options specified gives us all three:
-
-<center><img src="{{ site.url }}/images/wc_ex.png"></center>
-<br>
-I personally find myself most often using the `wc` command with the optional argument `-l`, which tells it I only want to know the number of lines in a file:
-
-<center><img src="{{ site.url }}/images/wc_line_ex.png"></center>
-<br>
-
-<h4>Ways to manipulate files and directories</h4>
-
-<div class="warning">
-<center><h2>WARNING!</h2></center>
-Using commands that do things like create, copy, and move and rename files/directories in the terminal <b>will overwrite</b> files/directories that already exist <b>if they have the same name</b>. And using commands that delete things will by default do so without any warning or confirmation. Caution is required until you get used to working with them – and then forever after.
-</div>
-
-
-The commands `cp` and `mv` (copy and move) both function under a similar syntax. The command entered needs to be followed by 2 **positional arguments**. Positional arguments are arguments that are understood by the computer to be something specific based on where they come following the command. In the case of the `cp` and `mv` commands the first positional argument is the file you want to act on (the source), and the second positional argument is where you want it to go (the target). 
-
-Let's take a quick look again at what's in our current working directory with `ls`:
-
-<center><img src="{{ site.url }}/images/ls_ex.png"></center>
-<br>
-We see there are currently 3 items – a directory and two text files. Now, let's make a copy of "text.txt":
-
-```bash
-cp text.txt text_copy.txt
-```
-And now when we list the files in our current working directory they are both there: 
-
-<center><img src="{{ site.url }}/images/cp_ex.png"></center>
-
-<br>
-Similarly, we can specify our source or target (first or second arguments) to be somewhere other than our current working directory. Here we are going to make a copy of the file "yet_another_text_file.txt" from the subdirectory "another_directory" and put the copy in our current working directory. To specify the current working directory as the target location, we can simply provide a single period ( `.` ) as the target:
-
-```bash
-cp another_directory/yet_another_text_file.txt .
-```
-
-<center><img src="{{ site.url }}/images/cp2_ex.png"></center>
-
-<br>
-And now we have a copy of that file in our current working directory. 
-
-Notice that in the first `cp` example we provided a new name in the target location, ("text_copy.txt"), while in the second example when we used `.` to specify copying to the current working directory it simply copied the file with the same name as the original. If we had wanted to copy to our current location but also give it a new name, we would run it with the desired new name as the target (second argument):
-
-```bash
-cp another_directory/yet_another_text_file.txt yet_another_text_file_copy.txt
-```
-
-<center><img src="{{ site.url }}/images/cp3_ex.png"></center>
-
-<br>
-Now we have the original copy we made, "yet_another_text_file.txt", and the copy that we renamed, "yet_another_text_file_copy.txt". Note again that if we don't provide a path, relative or absolute, the computer looks in the current working directory.
-
-The `mv` command is used to move files **and** to rename files, and as mentioned it works the same as the `cp` command – requiring a source argument and a target argument that need to be entered in that order. Here we will move a file from our current working directory into our subdirectory, and demonstrate how easy it is to accidentally overwrite something.  
-
-Currently our current working directory and our subdirectory contain these files:  
-
-<center><img src="{{ site.url }}/images/ls_both_dir_ex1.png"></center>
-
-<br>
-After we move the "text.txt" file as follows, it is only present in the subdirectory:
-
-```bash
-mv text.txt another_directory/
-```
-
-<center><img src="{{ site.url }}/images/mv_ls_ex.png"></center>
-
-<br>
-Note here, that we didn't provide a file name for the target of the `mv` command, only the location of the subdirectory we wanted to move it into. Just like when we used `cp` to copy a file to our current working directory with a `.` above, this results is keeping the name of the original source file.  
-
-Let's take a quick look again at what's in these two files that are now in the subdirectory:
-
-<center><img src="{{ site.url }}/images/mv_overwrite_ex1.png"></center>
-
-<br>
-And now let's see an example of how easy it is to overwrite a file accidentally when using the `mv` command, by specifying the name of the output to be "yet_another_text_file.txt" (first we are getting a copy of "text.txt" back into our working directory, as we just moved it):
-
-```bash
-cp another_directory/text.txt .
-mv text.txt another_directory/yet_another_text_file.txt
-```
-
-<center><img src="{{ site.url }}/images/mv_overwrite_ex2.png"></center>
-
-<br>
-Note how the contents of "yet_another_text_file.txt" have changed. It is now the same as "text.txt". Its original contents would be lost forever if this were the only location the file were saved in. 
-
-To delete files (intentionally) there is the `rm` command (remove). This requires at least one argument specifying the file you want to delete. For an example, we'll delete the "yet_another_text_file_copy.txt" file:
-
-```bash
-rm yet_another_text_file_copy.txt
-```
-
-<center><img src="{{ site.url }}/images/rm_ex.png"></center>
-
-<br>
-
-<h3>How to make and delete directories</h3>
-
-To create new directory we use the command `mkdir` followed by one argument for the directory name:
-
-```bash
-mkdir our_new_directory
-```
-<center><img src="{{ site.url }}/images/mkdir_ex.png"></center>
-
-<br>
-And similarly, directories can be deleted with `rmdir`:
-
-```bash
-rmdir our_new_directory
-```
-<center><img src="{{ site.url }}/images/rmdir_ex.png"></center>
-
-<br>
-Though if the target directory is not empty, `rmdir` will give you an error as a (rare) safety measure. There are ways to force this action or to use the regular `rm` command on directories that you can find by looking further into the commands and the optional arguments you can provide them.
-
-<a id="nano"></a>
-
-<h3>Making and editing plain text files</h3>
-It is often very useful to be able to generate new plain text files quickly at the command line, or make some changes to an existing one, and there are many ways to do this. One of the many ways involves using a text editor that operates on the command line, and there are several common text editors that fit this bill. I think the easiest to use at first is `nano`. So here we're just going to go over a quick example of that, but you should know there are more and better out there if you're willing to dedicate time to *another* steep learning curve. (I'm still dragging my feet a bit on that one too, so don't feel bad.)  
-
-When we run the command `nano` it will open the program (the "nano" text editor), and our terminal window changes from our regular view, with our prompt that we've seen so far, to a text editor interface. The command itself can be run without any arguments and it will simply open a new file that you can then modify and save before you exit. But I like to start the editor with a file name, which is what the first positional argument is if you give it one:
-
-```bash
-nano test.txt
-```
-<center><img src="{{ site.url }}/images/blank_nano_ex.png"></center>
-
-<br>
-Now our view has changed as we are in the program. You can see in mine there is a header bar telling me which version of "nano" I am in and the name of the file we are working on (I gave it "test.txt"). And there are some keyboard shortcuts listed at the bottom. 
-
-Now we can simply type as we normally would to add a bit of text:  
-
-<center><img src="{{ site.url }}/images/nano_text_ex.png"></center>
-
-<br>
-And then there are a few ways to save and exit. For me, I press `Ctrl + x`, at which point you will be asked if you want to "Save modified buffer?". Here pressing the `y` key signifies yes we want to save. And then it asks what we'd like to name the file, and has our current file name in place already. So long as we don't want to change the name of the file, we can just hit `return`.  
-
-So altogether one way to get out of "nano" and save the file: `Ctrl + x`, `y`, `return`.  
-
-Now we can see that we've made the new file with `ls` and take a peek at it with `head`:
-
-<center><img src="{{ site.url }}/images/nano_head_ex.png"></center>
-
-<br>
 <br>
 
 ---
 <br>
+
 # Pipes and redirectors
-<h4><i>Special characters presented in this section:</i></h4>
 
-|Character     |Function          |
-|:----------:|------------------|
-|`|`      |allows stringing together multiple commands, known as a 'pipe'|
-|`>`      |sends output to a file (overwrites target file)|
-|`>>`      |sends output to a file (appends to target file)|
-|`<`       |precedes input|
+Now we're going take our first look at what makes the Unix command-line environment so powerful: pipes and redirectors! 
 
-Here we're going to quickly touch upon what makes the Unix command-line environment so powerful: pipes and redirectors. A pipe ( `|` ) is used to connect commands. Basically it takes in the output from the previous command and pipes it into the input of the following command. 
+A pipe `|` is used to connect multiple commands. It takes in the output from the previous command and pipes it into the input of the following command. Let's look at an example. 
 
-For a simple example of this, we're going to string together two commands to find out how many items are in our current working directory. You're already familiar with how `ls` will list the contents of your current working directory:
+`ls` as we've seen lists the files and directories in our current working directory:
 
-<center><img src="{{ site.url }}/images/ls_ex2.png"></center>
+```
+ls
+```
 
-<br>
-And we saw that if we use the `wc` command with the optional flag `-l`, it counts the number of lines of the file we specify:
+If we pipe `|` that command into `wc -l`, instead of printing the output from `ls`, it will go into `wc -l` which will print out items there are:
 
-<center><img src="{{ site.url }}/images/wc_lines_pipe.png"></center>
-
-<br>
-If we provide a `|` in between these commands, the output from the first command becomes the input for the second command. In this case that means we're taking the list of contents from our current working directory, and asking `wc -l` to tell us how many there are:
-
-```bash
+```
 ls | wc -l
 ```
 
-<center><img src="{{ site.url }}/images/pipe_ex.png"></center>
+Another important operator is the greater than sign, `>`. This tells the command line to "redirect" the output to a file rather than just printing it to the screen. For an example of this we will write the output of `ls` to a new file called "directory_contents.txt":
 
-<br>
-Note this counts subdirectories and files.
-
-Another important character is the greater than sign, `>`. This tells the terminal that you want whatever the standard output is to be redirected into the file you specify (rather than printing it to your terminal window). Here we'll see a simple example of this where we use `ls` again to list the contents of the current working directory, but we'll redirect the output into a file called "directory_contents.txt":
-
-```bash
+```
 ls > directory_contents.txt
 ```
 
-<center><img src="{{ site.url }}/images/redirect_ex.png"></center>
-
-<br>
-It's important to remember that the `>` redirector will overwrite the file you are pointing to with whatever you are sending there. If we use two of them instead, `>>`, this will append whatever you're sending to the target file:
-
-<center><img src="{{ site.url }}/images/redir_append.png"></center>
-
-<br>
-Another redirector that you may come across but will likely use less often is the less than sign, `<`. This is placed before what you would like the input to be. We've seen a lot of commands that allow specifying the file or item you want to act on by simply placing it as an argument. Like when running `head directory_contents.txt`, the first positional argument is the file we want to look at. Some commands require you to use `<` to specify the input. An example we'll get more into in [Six commands worth getting to know]({{ site.url }}/bash/six_commands) is the command `tr`, for 'translate'. This will find all instances of a character in a file and change them into another character. 
-
-For an example of this, and how we need the `<` redirector to specify the input file, we'll change each lowercase `t` to a capital `T` in the "text_copy.txt" file. Here's what the file looks like to begin with:
-
-<center><img src="{{ site.url }}/images/head_text_copy.png"></center>
-
-<br>
-The syntax of the `tr` command is such that the first positional argument is the character you are looking for in the file, and the second is what you want to change it to. Then to specify what file you want this performed on, we need to place it after the `<` redirector. In our example, this looks like this:
+Notice that nothing printed to the screen this time. If we run `ls` we'll see the file we just created is there. 
 
 ```
-tr "t" "T" < text_copy.txt
+ls
+head directory_contents.txt
 ```
 
-<center><img src="{{ site.url }}/images/tr_ex.png"></center>
-
-<br>
-Note that if you tried to run this without the redirector by just providing the file you want to act on as a positional argument (as I often do at first), you'd get a usage message for the `tr` command:
-
-<center><img src="{{ site.url }}/images/tr_wrong.png"></center>
-
-<br>
-Lastly, we can see that when running the `tr` command the output is printed to the terminal window. This most often won't be all that useful as you can't do anything else with it then. So here let's redirect that output into a file called "text_copy_cap_T.txt:
+It's important to remember that the `>` redirector will overwrite the file you are pointing to if it already exists. If we use two of them instead, `>>`, this will append whatever you're sending to the target file:
 
 ```
-tr "t" "T" < text_copy.txt > text_copy_cap_T.txt
+ls >> directory_contents.txt
+head directory_contents.txt
 ```
 
-<center><img src="{{ site.url }}/images/tr_ex_redir_out.png"></center>
+Okay, so far that isn't all that impressive. But this basic, "modular" structure really is what makes the Unix command-line rock. We'll get to more practical uses/examples later with [six glorious commands](/bash/six_commands) and [why is this all worth it?](/bash/why).
 
-<br>
-Those are the basics of pipes and redirectors. They are fundamental to the power of Unix-like working environments. We'll see some actually useful applications of these later, but you get the idea.
-<br>
 <br>
 
 ---
 <br>
-# Wildcards
-<h4><i>Special characters presented in this section:</i></h4>
 
-|Character     |Function          |
+<h4><i>Special characters presented in the previous section:</i></h4>
+
+|Characters     |Function          |
 |:----------:|------------------|
-|`*`      |an asterisk represents any character appearing any number of times|
-|`?`      |a question mark represents any character that appears just once|
+|`|`      | a "pipe" allows stringing together multiple commands |
+|`>`      |sends output to a file (**overwrites** target file)|
+|`>>`      |sends output to a file (appends to target file)|
+
+<br>
+
+---
+<br>
+
+# Wildcards
 
 Wildcards in *bash* are also an essential component to understand if you want to maximize your capabilities at the command-line. Basically a wildcard allows you to specify multiple items at once based on how you use it to identify your targets. The `*` and `?` are the most often used, and we'll get a glimpse of how they work with the `ls` command again.
 
@@ -588,20 +572,14 @@ In the last command there we can see it acted on files that had only a single ch
 
 ---
 <br>
-# Tab-completion is your friend!
 
-There is a very important habit you need to develop if you haven't yet, and it is using the `tab` key to complete files and directories at the terminal. You may have noticed there is quite a bit of typing out file names, and spanning multiple directories if what you need to point to is located somewhere other than your current working directory. Fortunately, we don't need to type things out all the way.  
+<h4><i>Special characters presented in the previous section:</i></h4>
 
-If we are trying to point to a file that's in our current working directory, we can begin typing the filename and then press `tab` to complete it. And this works the same for directories if we are trying to get to a file that is located somewhere else. Whether or not it will complete the file or directory depends on if there is more than one that starts with the same characters as the those you've entered so far.  
+|Character     |Function          |
+|:----------:|------------------|
+|`*`      |an asterisk represents any character appearing any number of times|
+|`?`      |a question mark represents any character that appears just once|
 
-Let's look at this example where we want to run `head` on the file "test.txt" like we did above:
-
-<center><img src="{{ site.url }}/images/tab_complete_ex.png"></center>
-<br>
-Here, I typed `head` then the first two letters of the file I wanted "te", then I hit `tab`. At first it just gave me a notification sound and nothing happened (depending on your setup you may not hear a notification sound). But then I pushed it a second time and it revealed all of the possible files I might be trying to specify. In this case that is two: "test.txt" and "text_copy.txt". I then added an "s" and pressed `tab` again, and that time it finished the file name for me as there was no longer any ambiguity about which file I may mean.  
-
-This may seem like a simple convenience at first, and it certainly is, but tab-completion is also incredibly valuable for making sure you aren't entering anything wrong. We silly humans like to make mistakes like crazy. Any time we can take human-error out of the equation, we should. If you spend any time at the terminal you will quickly realize how invaluable it is to tab-complete everywhere you can, as it assures that things are where you think they are (because if something doesn't tab-complete, it means you are in the wrong location).
-<br>
 <br>
 
 ---

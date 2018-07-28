@@ -150,14 +150,18 @@ figcaption {
     @include rounded(3px);
 }
 
+
+
 /* 
    Blockquotes
    ========================================================================== */
-blockquote{
+blockquote {
   display:block;
   background-color: #ecf2f9;
   margin-left: 20px;
   margin-right: 20px;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
   position: relative;
   
   color: #000000;
@@ -167,14 +171,14 @@ blockquote{
   padding-right: 8px;
   padding-top: 10px;
   padding-bottom: 1px;
-  @include relative-font-size(1.1);
+  /*@include relative-font-size(1.1);*/
   
   /*font-style: italic;*/
   
   /*Box Shadow - (Optional)*/
-  -moz-box-shadow: 2px 2px 15px #ccc;
-  -webkit-box-shadow: 2px 2px 15px #ccc;
-  box-shadow: 2px 2px 15px #ccc;
+  -moz-box-shadow: 2px 2px 5px #ccc;
+  -webkit-box-shadow: 2px 2px 5px #ccc;
+  box-shadow: 2px 2px 5px #ccc;
 }
 
 blockquote::after{
