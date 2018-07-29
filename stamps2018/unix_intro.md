@@ -657,6 +657,10 @@ As you can see here, while the commands change, the general structure of how to 
 
 As mentioned, you can dig into some extremely useful commands on the [6 glorious commands page](/bash/six_commands), and see some more complicated examples in the [why is this all worth it?](/bash/why) page.
 
+<br>
+
+---
+<br>
 
 # All commands presented here
 
