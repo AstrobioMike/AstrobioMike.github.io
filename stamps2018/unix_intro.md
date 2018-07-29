@@ -14,8 +14,8 @@ permalink: /stamps2018/unix_intro
 *  Viewing, creating, and manipulating "plain-text" documents
 *  Pipes and redirectors
 *  Intro to wildcards
-
-> **Most importantly, none of this is about memorization. It sounds counterintuitive but the details aren't important. If you understand the foundational rules and concepts, then you are equipped to figure out whatever you need to do whenever you need to do it!** 
+>
+> **Most importantly, none of this is about memorization. It sounds counterintuitive but the minute details aren't important. If you understand the foundational rules and concepts, then you are equipped to figure out whatever you need to do whenever you need to do it!** 
 
 <br>
 
@@ -582,8 +582,6 @@ ls sample_1?.fq
 <br>
 <h1>Congrats on getting through the basics!</h1>
 
-There are a lot of base commands in *bash*, and a dizzying number of optional arguments for most of them. Again, google is our friend. If you end up working in the terminal window enough, you will remember some things, but also you will often do a quick search to remember what the flag is for a specific argument, or how exactly a specific command works. This really isn't about memorization.
-
 Remember the set of commands you ran at the beginning:
 
 ```
@@ -600,7 +598,6 @@ cd unix_intro
 > * **`tar`** – this is a tool for packing and unpacking directories; the `-x` flag unpacks the files; the `-z` flag unzips the files; `-v` is for **v**erbose, so it prints out information as it goes; and `-f` is to specify the file name
 > Now that we have a new directory with our practice data, we can delete the compressed file with `rm` and move into our practice directory with `cd`
 
-
-As you can see here, while the commands change, the general structure of how to operate in the command line stays the same. So although the learning curve is steep at the start, once you become comfortable with the general framework, everything is gets easier!  
+As you can see here, while the commands change, the general structure of how to operate in the command line stays the same. There are a lot of base commands in *bash*, and a dizzying number of optional arguments for most of them – google is our friend. If you end up working at the command line frequently, you will remember some things, but also you will often do a quick search to remember what the flag is for a specific argument, or how exactly a specific command works. Again, this really isn't about memorization.
 
 You can dig into some extremely useful commands on the [6 glorious commands page](/bash/six_commands), and see some more complicated examples in the [why is this all worth it?](/bash/why) page.
