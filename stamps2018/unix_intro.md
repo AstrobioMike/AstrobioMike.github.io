@@ -15,7 +15,10 @@ permalink: /stamps2018/unix_intro
 *  Pipes and redirectors
 *  Intro to wildcards
 >
-> **Most importantly, none of this is about memorization. It sounds counterintuitive but the minute details aren't important. If you understand the foundational rules and concepts, then you are equipped to figure out whatever you need to do whenever you need to do it!** 
+> **Most importantly, none of this is about memorization. It may seem counterintuitive, but the minute details aren't important. What matters is starting to build a mental framework of the foundational rules and concepts. That equips us to figure out the things we need to do, when we need to do them!** 
+
+<br>
+<center><a href="{{ site.url }}/images/mike_philosophy.png"><img src="{{ site.url }}/images/mike_philosophy.png"></a></center>
 
 <br>
 
