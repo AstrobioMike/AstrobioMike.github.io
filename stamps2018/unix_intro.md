@@ -8,12 +8,14 @@ permalink: /stamps2018/unix_intro
 {% include _unix_toc.html %}
 
 > **Things covered here**  
-*  Why familiarity with the command line is important
+*  Why familiarity with the command line is valuable
 *  Running commands and general syntax
 *  File-system structure and how to navigate
 *  Viewing, creating, and manipulating "plain-text" documents
 *  Pipes and redirectors
 *  Intro to wildcards
+
+> **Most importantly, none of this is about memorization. It sounds counterintuitive but the details aren't important. If you understand the foundational rules and concepts, then you are equipped to figure out whatever you need to do whenever you need to do it!** 
 
 <br>
 
@@ -26,8 +28,8 @@ permalink: /stamps2018/unix_intro
 |:-------------:|------------------|
 | **`Unix`** | a family of operating systems |
 | **`command line`** | a text-based environment capable of taking input and providing output |
-| **`shell`** | ambassador to the operating system; translates between us and the computer |
-| **`bash`** | a specific type of shell, bash is the most common programming language used at a Unix command-line |
+| **`shell`** | our ambassador to the operating system; this translates between us and the computer |
+| **`bash`** | the most common programming language used at a Unix command-line |
 
 <br>
 
@@ -37,19 +39,13 @@ permalink: /stamps2018/unix_intro
 # Why learn the command line?
 
 *  enables use of non-GUI (Graphical User Interface) tools
-*  perform operations on large files quickly
+*  quickly perform operations on large files
 *  reproducibility
 *  automation of repetitive tasks
 	*  need to rename 1,000 files?
-	*  need to assemble 300 genomes?
 *  enables use of higher-powered computers elsewhere (server/cloud)
 *  it's the foundation for most of bioinformatics
 
-> **The conundrum**  
-> A) There is quite a bit of a learning curve, so it takes some time to get to the point where the command line becomes useful and powerful.  
-> B) It's hard to know how it will be useful and powerful before you get to that point.  
-> C) It's hard to have the motivation and make the time to learn it before you know it's useful and powerful.  
-> <center><b>This is our struggle.</b></center>
 
 <br>
 
@@ -63,7 +59,7 @@ For right now, and only for right now, I would like you to blindly copy and past
 ```
 cd ~
 curl -O https://AstrobioMike.github.io/tutorial_files/unix_intro.tar.gz
-tar -xvf unix_intro.tar.gz
+tar -xzvf unix_intro.tar.gz
 rm unix_intro.tar.gz
 cd unix_intro
 ```
@@ -527,46 +523,45 @@ Okay, so far that isn't all that impressive. But this basic, "modular" structure
 
 # Wildcards
 
-Wildcards in *bash* are also an essential component to understand if you want to maximize your capabilities at the command-line. Basically a wildcard allows you to specify multiple items at once based on how you use it to identify your targets. The `*` and `?` are the most often used, and we'll get a glimpse of how they work with the `ls` command again.
+Wildcards as used at the command line are special characters that enable us to specify multiple items very easily. The `*` and `?` are probably the most often used, and we'll get a glimpse of how they work with the `ls` command.
 
-As we've seen so far, `ls` lists the contents of the current working directory. By default, `ls` assumes you want everything, so when providing no further arguments it prints everything. But we can specify what we want it to operate on by giving it a positional argument. To make this example slightly more meaningful, we'll also provide the `-l` flag to the `ls` command, which will give us some more information about the file. Here we'll specify "yet_another_text_file.txt":
+As we've seen so far, `ls` lists the contents of the current working directory. By default, `ls` assumes you want everything. But we can be more specific about what we're interested in by giving it a positional argument that narrows things down. 
 
-<center><img src="{{ site.url }}/images/ls_l_one_item.png"></center>
+There are a few different types of files in our current working directory: some directories; a few ".txt" files; and an ".xlsx" file. 
 
-<br>
-Now that we get the format when we specify a single file, let's look at it when specifying multiple. Say we want to see all files that start with the word "text". One way to do this is to list out each file name one after the other:
-
-<center><img src="{{ site.url }}/images/ls_ex_test.png"></center>
-
-<br>
-But we can also do this with the `*` wildcard much more easily:
+Let's say we only wanted to see the ".txt" files. The `*` wildcard can help us with that. What the `*` means at the command line (generally) is anything, any number of times. Here's an example:
 
 ```
-ls -l text*
+ls
+ls *.txt
 ```
 
-<center><img src="{{ site.url }}/images/ls_ex_test_star.png"></center>
-
-<br>
-Here, we are giving what's unique about what we are looking for (the "text" beginning), and then with the `*` saying accept anything after that. 
-
-Let's look at this another way where we want to see all files that end with the extension ".txt":
+For a more practical example, let's change directories into our "example_files" directory and look at what's in there:
 
 ```
-ls -l *.txt
+cd example_files/
+ls
 ```
 
-<center><img src="{{ site.url }}/images/ls_ex_star_txt.png"></center>
+Looks like a lot of files, let's see how many:
 
-<br>
-The `?` wildcard can represent any character that appears only one time. To demonstrate this I'm going to make a couple of blank files with the `touch` command. This command basically just creates a blank file if one doesn't exist, or if it does exist, it updates the time stamp of when it was last accessed (check out the [wiki](https://en.wikipedia.org/wiki/Touch_(Unix)) if interested).
+```
+ls | wc -l
+```
 
-<center><img src="{{ site.url }}/images/ls_question_mark_ex.png"></center>
+We can see ".txt", ".log", and ".fq" files, let's say we wanted to move all the fastq files into their own directory:
 
-<br>
-In the last command there we can see it acted on files that had only a single character where the `?` wildcard was placed. Here is what the output is like when we use the `*` in the same position:
+```
+mkdir fastq_files
+ls *.fq
+mv *.fq fastq_files/
+```
 
-<center><img src="{{ site.url }}/images/ls_star_mark_ex.png"></center>
+In this context the `?` wildcard can represent any character that appears only one time. Say we only wanted the fastq files for samples 10-19, we wouldn't be able to do that with the `*` wildcard alone, but we could with the `?`:
+
+```
+ls sample_1?.fq
+```
 
 <br>
 
@@ -586,29 +581,26 @@ In the last command there we can see it acted on files that had only a single ch
 ---
 <br>
 <h1>Congrats on getting through the basics!</h1>
-Some of these things may seem trivial as used in these examples here, and I know that can make the effort required to learn to use them harder to come by, but these basics really are the foundation to doing everything at the command line. Understanding the general rules of commands, their arguments, and the required syntax will make everything you try to do easier.  
 
-There are a lot of base commands in *bash*, and a dizzying number of optional arguments for most of them. Again, google is our friend. If you end up working in the terminal window enough, you will remember some things, but also you will often do a quick search to remember what the flag is for a specific argument, or how exactly a specific command works. This really isn't about memorization overall.
+There are a lot of base commands in *bash*, and a dizzying number of optional arguments for most of them. Again, google is our friend. If you end up working in the terminal window enough, you will remember some things, but also you will often do a quick search to remember what the flag is for a specific argument, or how exactly a specific command works. This really isn't about memorization.
 
-<a id="bottom"></a>
-
-Remember the set of commands you ran at the beginning to get the files needed for this walkthrough?
+Remember the set of commands you ran at the beginning:
 
 ```
 cd ~
-curl -O https://AstrobioMike.github.io/tutorial_files/bash_basics_temp.tar.gz
-tar -xvf bash_basics_temp.tar.gz
-rm bash_basics_temp.tar.gz
-cd bash_basics_temp
+curl -O https://AstrobioMike.github.io/tutorial_files/unix_intro.tar.gz
+tar -xzvf unix_intro.tar.gz
+rm unix_intro.tar.gz
+cd unix_intro
 ```
 
-I promised you'd have a better idea of what's going on in here by the end, so let's break it down.
-
-We start by changing directories to our "home" location, and we do this with the special character `~`. Then we use two commands you aren't familiar with yet, `curl` and `tar`. We won't get into these here other than to say `curl` allows you to download things from the internet from the command line, and `tar` is a tool for packing and unpacking files and directories. So with the `curl` command we download the files in a compressed format, and then with `tar` and some options we expand them into a directory called "bash_basics_temp". Then all we do is delete the uncompressed files ("bash_basics_temp.tar.gz"), and change directories into "bash_basics_temp".  
-
-As you can see here, while the commands change, the general structure of how to operate in the command line stays the same. This is part of why the learning curve is steep at the start but it gets better. Once you become comfortable with the general framework, everything is gets easier.  
-
-Now that you're comfortable with the basics, head on over to [6 commands worth getting to know](/bash/six_commands) for a walkthrough of some stellar commands I wouldn't want to live without.
+> **Code breakdown**  
+> * **`cd ~`** – this changed us to our "home" directory to make sure everyone was starting in the same location  
+> * **`curl`** – this is a command to download files from the internet; the `-O` flag says to keep the same name as the source file; and the link is a positional argument
+> * **`tar`** – this is a tool for packing and unpacking directories; the `-x` flag unpacks the files; the `-z` flag unzips the files; `-v` is for **v**erbose, so it prints out information as it goes; and `-f` is to specify the file name
+> Now that we have a new directory with our practice data, we can delete the compressed file with `rm` and move into our practice directory with `cd`
 
 
+As you can see here, while the commands change, the general structure of how to operate in the command line stays the same. So although the learning curve is steep at the start, once you become comfortable with the general framework, everything is gets easier!  
 
+You can dig into some extremely useful commands on the [6 glorious commands page](/bash/six_commands), and see some more complicated examples in the [why is this all worth it?](/bash/why) page.
