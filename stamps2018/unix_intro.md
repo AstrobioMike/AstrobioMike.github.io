@@ -12,10 +12,11 @@ permalink: /stamps2018/unix_intro
 *  Running commands and general syntax
 *  File-system structure and how to navigate
 *  Viewing, creating, and manipulating "plain-text" documents
-*  Pipes and redirectors
+*  Intro to pipes and redirectors
 *  Intro to wildcards
->
-> **Most importantly, none of this is about memorization. It may seem counterintuitive, but the minute details aren't important. What matters is starting to build a mental framework of the foundational rules and concepts. That equips us to figure out the things we need to do, when we need to do them!** 
+
+<br>
+**Most importantly, none of this is about memorization. It may seem counterintuitive, but the minute details aren't important. What matters is starting to build a mental framework of the foundational rules and concepts. That equips us to figure out the things we need to do, when we need to do them!** 
 
 <br>
 <center><a href="{{ site.url }}/images/mike_philosophy.png"><img src="{{ site.url }}/images/mike_philosophy.png"></a></center>
@@ -32,23 +33,58 @@ permalink: /stamps2018/unix_intro
 | **`Unix`** | a family of operating systems |
 | **`command line`** | a text-based environment capable of taking input and providing output |
 | **`shell`** | our ambassador to the operating system; this translates between us and the computer |
-| **`bash`** | the most common programming language used at a Unix command-line |
+| **`bash`** | the most common programming language used at a Unix command-line |  
+
+<br>
+
+# Why learn the command line?
+
+*  it's the foundation for most of bioinformatics
+*  enables use of non-GUI (Graphical User Interface) tools
+*  quickly perform operations on large files
+*  reproducibility
+*  automation of repetitive tasks
+	*  need to rename 1,000 files?
+*  enables use of higher-powered computers elsewhere (server/cloud)  
 
 <br>
 
 ---
 <br>
 
-# Why learn the command line?
+# Connect to the MBL server
+We are going to be doing most of our work during the course on the MBL server. So before we get started, we are going to login there. So open your computer's command-line environment and let's login following these instructions.
 
-*  enables use of non-GUI (Graphical User Interface) tools
-*  quickly perform operations on large files
-*  reproducibility
-*  automation of repetitive tasks
-	*  need to rename 1,000 files?
-*  enables use of higher-powered computers elsewhere (server/cloud)
-*  it's the foundation for most of bioinformatics
+On your badge, you have a username and password. That will be your account for the course. 
 
+To connect, we'll use **ssh**, a command that let's us establish a secure connnection. At the command line type the following, but replace "\<USERNAME\>" with your username:
+
+```
+ssh <USERNAME>@class.mbl.edu
+```
+
+Don't include the brackets. For example, if your username were "mlee", like mine is, the command would look like `ssh mlee@class.mbl.edu`. 
+
+The first time you log in you will get a message about security. Type "yes", and press `enter`. 
+
+Then it will ask you for your password. Type the password listed on your badge and press `enter`; the cursor will not respond, but it is still being entered as you type.
+
+So far, we just logged into what is called a 'gateway'. We won't be doing our work here though, we're going to take one more step and log into specific servers so we don't overload the computing resources. 
+
+On your badge you also have something that says a class and a number, e.g. "class-03". That specifies which server you should be working on. So now we want to `ssh` into that specific server.  so enter the following, but change the "\<??>\" to your specific class number:
+
+```
+ssh class-<??>
+``` 
+
+Again, don't include the brackets. For example, if your class number is "class-03", the command would look like: `ssh class-03`.
+
+Then if it asks for you password again, enter it the same way as above and press `enter`.
+
+Now you're logged into the server that you'll use for much of the course.
+
+> **NOTE**  
+> These login instructions are also stored [here](https://github.com/mblstamps/stamps2018/wiki/Installation#connecting-to-the-mbl-servers), so you can reference them as needed in the coming days. Be sure to let us know if you have any trouble!
 
 <br>
 
@@ -74,15 +110,16 @@ cd unix_intro
 
 # Running commands
 
-The general syntax of a command is as follows: `command argument`. **Spaces are special!** The command line uses spaces to know how to properly break apart things. 
+The general syntax of a command is as follows: `command argument`. **Spaces are special!** The command line uses spaces to know how to properly break things apart. This is why it's not ideal to have filenames that contain spacesit's better to use underscores, `_` – e.g., "draft_v3.txt" is preferred over "draft v3.txt". 
 
-Arguments (often also referred to as "flags" or "options") can be **optional** or **required** based on the command. 
+Arguments (also referred to as "flags" or "options") can be **optional** or **required** based on the command being used. 
 
-`date` is a command that prints out the date and time. It does not require any arguments:
+`date` is a command that prints out the date and time. This particular command does not require any arguments:
 
 ```bash
 date
 ```
+
 But you can provide optional arguments to `date`. Here we are adding the `-u` argument to tell it to report UTC time instead of local (the "default"): 
 
 ```bash
@@ -142,7 +179,7 @@ ls
 ## Absolute vs relative path
 There are two ways to specify the path of the file we want to do something to: the absolute path and the relative path. 
 
-* An **absolute path** is an address that starts from an explicitly specified location: either the "root" `/` or the "home" `~/` location. (When using the "root" as the start of the absolute path, it is referred to as the "full path".)
+* An **absolute path** is an address that starts from an explicitly specified location: either the "root" `/` or the "home" `~/` location. (Note: When using the "root" as the start of the absolute path, it is referred to as the "full path".)
 * A **relative path** is an address that starts from wherever you are currently sitting.
 
 For example, let's look again at the `head` command we ran above:
@@ -151,7 +188,7 @@ For example, let's look again at the `head` command we ran above:
 head text.txt
 ```
 
-What we are actually doing here is using a **relative path** to specify where the "text.txt" file is located. This is because the command line automatically looks in the current working directory for a file or directory if you don't specify anything else about it's location. 
+What we are actually doing here is using a **relative path** to specify where the "text.txt" file is located. This is because the command line automatically looks in the current working directory for a file or directory if you don't specify anything else about it's location. (Note: The address of a file, it's "path", includes the file name also, it doesn't stop at the folder that holds it.)
 
 We can also run the same command on the same file using the **absolute path**. Here is doing so starting from the "home" `~/` location. 
 
@@ -351,7 +388,7 @@ ls another_directory/
 
 Let's move "another\_text\_file.xlsx" into the subdirectory:
 
-```bash
+```
 mv another_text_file.xlsx another_directory/
 ls
 ls another_directory/
@@ -405,7 +442,7 @@ ls
 
 You can make a new directory with the command `mkdir`:
 
-```bash
+```
 ls
 mkdir our_new_directory
 ls
@@ -413,7 +450,7 @@ ls
 
 And similarly, directories can be deleted with `rmdir`:
 
-```bash
+```
 rmdir our_new_directory/
 ls
 ```
@@ -425,7 +462,7 @@ rmdir another_directory/
 ```
 
 <br>
-## Making and editing plain text files
+## Making and editing plain-text files
 It is often very useful to be able to generate new plain-text files quickly at the command line, or make some changes to an existing one. One way to do this is using a text editor that operates on the command line. Here we're going to look at a program called `nano`.
 
 When we run the command `nano` it will open a text editor in our terminal window. If we give it a file name as a positional argument, it will open that file if it exists, or it will create it if it doesn't. Here we'll make a new file:
@@ -450,16 +487,16 @@ head sample_names.txt
 
 |Command     |Function          |
 |:----------:|------------------|
-|`head`      |prints the first few lines of a file|
-|`tail`      |prints the last few lines of a file|
-|`less`      |allows you to browse a file (exit with "q" key)|
-|`wc`       |count lines, words, and characters in a file|
-|`cp`      |copy a file or directory (use with caution)|
-|`mv`      |mv a file or directory (use with caution)|
-|`rm`      |delete a file or directory (use with caution)|
-|`mkdir`       |create a directory|
-|`rmdir`     |delete an empty directory|
-|`nano`     |create and edit plain text files at the command line|
+|**`head`**      |prints the first few lines of a file|
+|**`tail`**      |prints the last few lines of a file|
+|**`less`**      |allows you to browse a file (exit with "q" key)|
+|**`wc`**       |count lines, words, and characters in a file|
+|**`cp`**      |copy a file or directory (use with caution)|
+|**`mv`**      |mv a file or directory (use with caution)|
+|**`rm`**      |delete a file or directory (use with caution)|
+|**`mkdir`**       |create a directory|
+|**`rmdir`**     |delete an empty directory|
+|**`nano`**     |create and edit plain text files at the command line|
 
 <br>
 
@@ -470,7 +507,7 @@ head sample_names.txt
 
 Now we're going take our first look at what makes the Unix command-line environment so powerful: pipes and redirectors! 
 
-A pipe `|` is used to connect multiple commands. It takes in the output from the previous command and pipes it into the input of the following command. Let's look at an example. 
+A pipe `|` is used to connect multiple commands. It takes the output from the previous command and "pipes" it into the input of the following command. Let's look at an example. 
 
 `ls` as we've seen lists the files and directories in our current working directory:
 
@@ -478,13 +515,25 @@ A pipe `|` is used to connect multiple commands. It takes in the output from the
 ls
 ```
 
-If we pipe `|` that command into `wc -l`, instead of printing the output from `ls`, it will go into `wc -l` which will print out items there are:
+If we pipe `|` that command into `wc -l`, instead of printing the output from `ls`, it will go into `wc -l` which will print out how many items there are:
 
 ```
 ls | wc -l
 ```
 
-Another important operator is the greater than sign, `>`. This tells the command line to "redirect" the output to a file rather than just printing it to the screen. For an example of this we will write the output of `ls` to a new file called "directory_contents.txt":
+For another example, let's look at what's in the subdirectory, "example_files":
+
+```
+ls example_files/
+```
+
+That prints out a lot of stuff, if we just wanted to get a quick view, we could pipe `|` that output into `head`:
+
+```
+ls example_files/ | head
+```
+
+Another important operator is the greater than sign, `>`. This tells the command line to "redirect" the output to a file, rather than just printing it to the screen as we've seen so far. For an example of this we will write the output of `ls` to a new file called "directory_contents.txt":
 
 ```
 ls > directory_contents.txt
@@ -497,14 +546,14 @@ ls
 head directory_contents.txt
 ```
 
-It's important to remember that the `>` redirector will overwrite the file you are pointing to if it already exists. If we use two of them instead, `>>`, this will append whatever you're sending to the target file:
+**It's important to remember that the `>` redirector will overwrite the file you are pointing to if it already exists.** If we use two of them instead, `>>`, this will append to the target file, rather than overwrite it:
 
 ```
 ls >> directory_contents.txt
 head directory_contents.txt
 ```
 
-Okay, so far that isn't all that impressive. But this basic, "modular" structure really is what makes the Unix command-line rock. We'll get to more practical uses/examples later with [six glorious commands](/bash/six_commands) and [why is this all worth it?](/bash/why).
+Okay, so far that isn't all that impressive. But this basic, "modular" structure really is what makes the Unix command-line rock. There are more practical uses/examples on the [six glorious commands](/bash/six_commands) and [why is this all worth it?](/bash/why) pages – which we could possibly do later as a group or you can do anytime you'd like.
 
 <br>
 
@@ -515,9 +564,9 @@ Okay, so far that isn't all that impressive. But this basic, "modular" structure
 
 |Characters     |Function          |
 |:----------:|------------------|
-|`|`      | a "pipe" allows stringing together multiple commands |
-|`>`      |sends output to a file (**overwrites** target file)|
-|`>>`      |sends output to a file (appends to target file)|
+|**`|`**      | a "pipe" allows stringing together multiple commands |
+|**`>`**      |sends output to a file (**overwrites** target file)|
+|**`>>`**      |sends output to a file (appends to target file)|
 
 <br>
 
@@ -526,20 +575,20 @@ Okay, so far that isn't all that impressive. But this basic, "modular" structure
 
 # Wildcards
 
-Wildcards as used at the command line are special characters that enable us to specify multiple items very easily. The `*` and `?` are probably the most often used, and we'll get a glimpse of how they work with the `ls` command.
+Wildcards as used at the command line are special characters that enable us to specify multiple items very easily. The `*` and `?` are probably the most commonly used, and we'll get a glimpse of how they work with the `ls` command.
 
 As we've seen so far, `ls` lists the contents of the current working directory. By default, `ls` assumes you want everything. But we can be more specific about what we're interested in by giving it a positional argument that narrows things down. 
 
-There are a few different types of files in our current working directory: some directories; a few ".txt" files; and an ".xlsx" file. 
+There are a few different types of files in our current working directory: some subdirectories; a few ".txt" files; and a ".xlsx" file. 
 
-Let's say we only wanted to see the ".txt" files. The `*` wildcard can help us with that. What the `*` means at the command line (generally) is anything, any number of times. Here's an example:
+Let's say we only wanted to see the ".txt" files. The `*` wildcard can help us with that. At the command line, (generally), the `*` means anything, any number of times. Here's an example:
 
 ```
 ls
 ls *.txt
 ```
 
-For a more practical example, let's change directories into our "example_files" directory and look at what's in there:
+For a more practical example, let's change directories into our "example_files" directory and look at what's in there again:
 
 ```
 cd example_files/
@@ -560,10 +609,13 @@ ls *.fq
 mv *.fq fastq_files/
 ```
 
-In this context the `?` wildcard can represent any character that appears only one time. Say we only wanted the fastq files for samples 10-19, we wouldn't be able to do that with the `*` wildcard alone, but we could with the `?`:
+> **Note**  
+> Using `ls` with a wildcard is very good practice before actually running a command. It is a way of checking that you are specifying exactly what you think you are specifying. 
+
+At the command line, (generally) the `?` wildcard represents any character that appears only one time. Say we only wanted the log files for samples 10-19. We wouldn't be able to do that with the `*` wildcard alone, but we could with the `?`:
 
 ```
-ls sample_1?.fq
+ls sample_1?.log
 ```
 
 <br>
@@ -575,8 +627,8 @@ ls sample_1?.fq
 
 |Character     |Function          |
 |:----------:|------------------|
-|`*`      |an asterisk represents any character appearing any number of times|
-|`?`      |a question mark represents any character that appears just once|
+|**`*`**      |an asterisk represents any character appearing any number of times|
+|**`?`**      |a question mark represents any character that appears just once|
 
 <br>
 
@@ -585,7 +637,7 @@ ls sample_1?.fq
 <br>
 <h1>Congrats on getting through the basics!</h1>
 
-Remember the set of commands you ran at the beginning:
+Let's look back at the set of commands we ran at the beginning:
 
 ```
 cd ~
@@ -601,6 +653,57 @@ cd unix_intro
 > * **`tar`** – this is a tool for packing and unpacking directories; the `-x` flag unpacks the files; the `-z` flag unzips the files; `-v` is for **v**erbose, so it prints out information as it goes; and `-f` is to specify the file name
 > Now that we have a new directory with our practice data, we can delete the compressed file with `rm` and move into our practice directory with `cd`
 
-As you can see here, while the commands change, the general structure of how to operate in the command line stays the same. There are a lot of base commands in *bash*, and a dizzying number of optional arguments for most of them – google is our friend. If you end up working at the command line frequently, you will remember some things, but also you will often do a quick search to remember what the flag is for a specific argument, or how exactly a specific command works. Again, this really isn't about memorization.
+As you can see here, while the commands change, the general structure of how to operate at the command line stays the same. There are a lot of base commands in *bash*, and a dizzying number of optional arguments for most of them – google is our friend, and `man` will open a manual for many commands in the terminal window. If you end up working at the command line frequently, you will remember some things, but also you will often do a quick search to remember what the flag is for a specific argument, or how exactly a specific command works. Again, this really isn't about memorization.
 
-You can dig into some extremely useful commands on the [6 glorious commands page](/bash/six_commands), and see some more complicated examples in the [why is this all worth it?](/bash/why) page.
+As mentioned, you can dig into some extremely useful commands on the [6 glorious commands page](/bash/six_commands), and see some more complicated examples in the [why is this all worth it?](/bash/why) page.
+
+
+# All commands presented here
+
+|Command     |Function          |
+|:----------:|------------------|
+|**`date`**   | prints the time and date |
+|**`pwd`**       |prints where you are in the computer (**p**rint **w**orking **d**irectory)|
+|**`ls`**        |lists contents of a directory (**l**i**s**t)|
+|**`cd`**| **c**hange **d**irectories |
+|**`head`**      |prints the first few lines of a file|
+|**`tail`**      |prints the last few lines of a file|
+|**`less`**      |allows you to browse a file (exit with "q" key)|
+|**`wc`**       |count lines, words, and characters in a file|
+|**`cp`**      |copy a file or directory (use with caution)|
+|**`mv`**      |mv a file or directory (use with caution)|
+|**`rm`**      |delete a file or directory (use with caution)|
+|**`mkdir`**       |create a directory|
+|**`rmdir`**     |delete an empty directory|
+|**`nano`**     |create and edit plain text files at the command line|
+
+
+# All terms presented here
+
+| Term     | What it is          |
+|:----------:|------------------|
+| **`Unix`** | a family of operating systems |
+| **`command line`** | a text-based environment capable of taking input and providing output |
+| **`shell`** | our ambassador to the operating system; this translates between us and the computer |
+| **`bash`** | the most common programming language used at a Unix command-line | 
+| **`path`** | the address system the computer uses |
+| **`root`** | where the address system of the computer starts, **`/`** |
+| **`home`** | where the current user's location starts, **`~/`**|
+| **`absolute path`** | an address that starts from a specified location, i.e. root, or home |
+| **`relative path`** | an address that starts from wherever you are sitting |
+| **`tab-completion`** | our best friend |
+
+
+# All special characters presented here
+
+|Characters     | Meaning          |
+|:----------:|------------------|
+| **`/`** | the computer's root location |
+| **`~/`** | the user's home location |
+| **`../`** |specifies a directory one level "above" the current working directory|
+| **`.`** |specifies the current working directory|
+|**`|`**      | a "pipe" allows stringing together multiple commands |
+|**`>`**      |sends output to a file (**overwrites** target file)|
+|**`>>`**      |sends output to a file (appends to target file)|
+|**`*`**      |an asterisk represents any character appearing any number of times|
+|**`?`**      |a question mark represents any character that appears just once|
