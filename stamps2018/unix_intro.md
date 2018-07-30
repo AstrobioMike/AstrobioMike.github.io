@@ -74,6 +74,9 @@ The first time you log in you will get a message about security. Type "yes", and
 
 Then it will ask you for your password. Type the password listed on your badge and press `enter`; the cursor will not respond, but it is still being entered as you type.
 
+> **Pro tip**  
+> If you have a crazy password, you can type it somewhere you can read it. Then copy and paste it.
+
 **Step 2**  
 So far, we just logged into what is called a 'gateway'. We won't be doing our work here though, we're going to take one more step and log into specific servers so we don't overload the computing resources. 
 
