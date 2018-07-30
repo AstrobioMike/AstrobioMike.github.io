@@ -57,7 +57,12 @@ We are going to be doing most of our work during the course on the MBL server. S
 
 On your badge, you have a username and password. That will be your account for the course. 
 
-To connect, we'll use **ssh**, a command that let's us establish a secure connnection. At the command line type the following, but replace "\<USERNAME\>" with your username:
+To connect, we'll use **ssh**, a command that let's us establish a secure connnection. 
+
+> **If you are on the MBL-GUEST or eduroam WiFi network, start with Step 1, and then go to Step 2. If you are on the MBL-REGISTERED WiFi network, skip Step 1 and start at Step 2.**
+
+**Step 1**  
+At the command line type the following, but replace "\<USERNAME\>" with your username:
 
 ```
 ssh <USERNAME>@class.mbl.edu
@@ -69,15 +74,16 @@ The first time you log in you will get a message about security. Type "yes", and
 
 Then it will ask you for your password. Type the password listed on your badge and press `enter`; the cursor will not respond, but it is still being entered as you type.
 
+**Step 2**  
 So far, we just logged into what is called a 'gateway'. We won't be doing our work here though, we're going to take one more step and log into specific servers so we don't overload the computing resources. 
 
-On your badge you also have something that says a class and a number, e.g. "class-03". That specifies which server you should be working on. So now we want to `ssh` into that specific server.  so enter the following, but change the "\<??>\" to your specific class number:
+On your badge you also have something that says a class and a number, e.g. "class-09". That specifies which server you should be working on. So now we want to `ssh` into that specific server.  so enter the following, again change the "\<USERNAME\>" to your username, and change the "\<??>\" to your specific class number:
 
 ```
-ssh class-<??>
+ssh <USERNAME>@class-<??>
 ``` 
 
-Again, don't include the brackets. For example, if your class number is "class-03", the command would look like: `ssh class-03`.
+Again, don't include the brackets. For example, if my class number is "class-09", the command would look like: `ssh mlee@class-09`.
 
 Then if it asks for you password again, enter it the same way as above and press `enter`.
 
