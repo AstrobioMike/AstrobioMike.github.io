@@ -1,6 +1,6 @@
 ---
 layout: main
-title: Unix
+title: Bash
 categories: [bash]
 permalink: /bash/
 ---
@@ -37,4 +37,4 @@ This is what runs in a terminal. A shell is your ambassador to your Unix-like op
 <br>
 So there you have it. In 4 paragraphs you now know as much about these terms as I know after 4 years of being in the weeds with them. Hmm, saying it that way I'm not sure if you should feel better or if I should feel worse... 🤔  
 
-Either way, head on over to [*bash* basics](/bash/basics) to get started!
+Either way, head on over to [bash basics](/bash/basics) to get started!

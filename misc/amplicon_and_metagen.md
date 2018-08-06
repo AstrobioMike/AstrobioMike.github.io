@@ -142,7 +142,7 @@ ___
 
 <h3><b>Metagenomics</b></h3>
 
-As you might guess, this is not as straightforward as the amplicon data tutorials as there are many more things to do with metagenomics data. But here are some places to start. 
+As you might guess, this is not as straightforward as the amplicon data tutorials as there are many more things to do with metagenomics data. But here are some places to start. If you know of others that are helpful please pass along so we can add them here 🙂
 
 - Mike's recovering genomes from metagenomes [tutorial](https://astrobiomike.github.io/metagenomics/metagen_anvio)
 
