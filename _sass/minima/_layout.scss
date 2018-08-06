@@ -37,6 +37,7 @@
     float: right;
     margin-top: 4px;
     line-height: $base-line-height * $base-font-size * 2.25;
+    font-size: $base-font-size * 0.5;
     ul {
         margin: 0;
         padding: 0;
@@ -48,7 +49,7 @@
         list-style-type: none;
         @include font-rem(16);
         &:not(:last-child) {
-            margin-right: 25px;
+            margin-right: 20px;
         }
         a { 
             padding: 0px 0;
