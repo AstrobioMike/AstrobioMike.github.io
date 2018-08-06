@@ -6,7 +6,7 @@ permalink: /misc/amplicon_and_metagen
 
 {% include _amp_and_meta_toc.html %}
 
-This is a process-oriented, rather than a tool/command line-oriented, summary. Here is presented a broad-level overview of amplicon sequencing and metagenomics as approaches for microbial ecology, discussing some things each is useful and _not_ useful for, and then outlining some general workflows for each. They are just two more tools of investigation and should be thought of as steps in the process of science rather than end-points (like all tools of science). They are most often applied as tools exploration and hypothesis generation. 
+This page presents a broad-level overview of amplicon sequencing and metagenomics as approaches for microbial ecology, discussing some things each is useful for, and _not_ useful for, and then outlining some general workflows for each. These are just two more tools of investigation and should be thought of as steps in the process of science rather than end-points (like all tools of science). They are most often applied for exploration and hypothesis generation. 
 
 > "Why are you doing 16S sequencing? That doesn't tell you anything about function."  
 > 
@@ -19,10 +19,10 @@ This is a process-oriented, rather than a tool/command line-oriented, summary. H
 ___
 <br>
 
-**Amplicon sequencing**
+**Amplicon sequencing**  
 Amplicon sequencing of marker-genes (e.g. 16S, 18S, ITS) involves using specific primers that target a specific fragment of a specific gene. It is one of the first tools in the microbial ecologist's toolkit. It is most often a broad-level survey of community composition used to generate hypotheses based on differences between samples (***based on recovered gene-copy numbers, not abundance of organisms***).
 
-**Metagenomics**
+**Metagenomics**  
 Shotgun metagenomic sequencing provides a way to access *all* the DNA of a mixed community. It uses random primers rather than targeted primers and therefore suffers much less from pcr bias. (It still suffers things such as cell-lysis rates dependent on the extraction method used.)
 
 <br>
@@ -30,7 +30,7 @@ Shotgun metagenomic sequencing provides a way to access *all* the DNA of a mixed
 ___
 <br>
 
-# Some uses and ***not***-uses of each
+# Some capabilities of each
 <br>
 
 ## Amplicon
@@ -38,7 +38,7 @@ ___
     * one *metric* of community composition
         * recovered gene copies ≠ counts of organisms (see below in the "not useful for" section)
         * you're getting a snapshot  of, e.g. "16S gene fragment copy numbers recovered"
-    * can track changes in community structure in response to a treatment and/or across environmental gradients
+    * can track changes in community structure (as interpreted by recovered gene copy numbers) in response to a treatment and/or across environmental gradients/time, etc.
     * can provide strong support for further investigation, particularly single-nucleotide resolution methods
         * e.g. *Trichodesmium–Alteromonas* story ([paper here](https://www.nature.com/articles/ismej201749))
     * relatively cheap and less processing power/time required in comparison to metagenomics  
@@ -81,9 +81,9 @@ ___
 
 <br>
 
-#### A Note on ASVs vs OTUs  
+#### A Note on OTUs vs ASVs  
 
-All sequencing technologies make mistakes, and (to a much lesser extent), polymerases make mistakes as well. These mistakes artificially increase the number of unique sequences in a sample, a lot. Clustering similar sequences together (generating OTUs) emerged is one way to mitigate error and summarize data, though often at the cost of resolution. This [paper](https://www.nature.com/articles/ismej2017119) nicely lays out the following summarized points:  
+All sequencing technologies make mistakes, and (to a much lesser extent), polymerases make mistakes as well. These mistakes artificially increase the number of unique sequences in a sample, a lot. Clustering similar sequences together (generating OTUs) emerged is one way to mitigate error and summarize data, though often at the cost of resolution. The field is moving towards using solely ASVs, and there is pretty good reasoning for this. This [paper](https://www.nature.com/articles/ismej2017119) nicely lays out the case for that, and the following points attempt to summarize it:  
 
 * OTUs (operational taxonomic units)
     1. cluster sequences into groups based on percent similarity
@@ -107,6 +107,7 @@ All sequencing technologies make mistakes, and (to a much lesser extent), polyme
 
 <center><a href="https://ndownloader.figshare.com/files/12715133"><img src="{{ site.url }}/images/metagenomics_overview.png" title="Click to download pdf version"></a></center>
 
+<br>
 <br>
 **Simplified example of recovering genomes from metagenomes**
 
@@ -145,4 +146,4 @@ As you might guess, this is not as straightforward as the amplicon data tutorial
 
 - Mike's recovering genomes from metagenomes [tutorial](https://astrobiomike.github.io/metagenomics/metagen_anvio)
 
-- A nice workflow leading up to and including recovering genomes can be found [here](http://merenlab.org/tutorials/infant-gut/) at the [anvi'o site](http://merenlab.org/software/anvio/) (along with other very informative/helpful tutorials and blogs).
+- A nice workflow leading up to and including recovering genomes can be found [here](http://merenlab.org/tutorials/infant-gut/) at the [anvi'o site](http://merenlab.org/software/anvio/) (along with other very informative/helpful tutorials and blogs)
