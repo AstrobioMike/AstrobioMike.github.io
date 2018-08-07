@@ -295,10 +295,14 @@ $button-size: 1.5rem;
   margin-left: 0;
 }
 
+.contact-list {
+  margin: 0px;
+  padding: 0px;
+}
+
 .footer-col-wrapper {
   @include relative-font-size(.9);
   color: $grey-color-dark;
-  margin-left: -$spacing-unit / 2;
   @extend %clearfix;
 }
 
@@ -310,26 +314,20 @@ $button-size: 1.5rem;
 }
 
 .footer-col {
-  float: left;
   margin-bottom: 0px;
-  padding-left: $spacing-unit / 2;
 }
 
 .footer-col-1 {
-  width: -webkit-calc(35% - (#{$spacing-unit} / 2));
-  width:         calc(35% - (#{$spacing-unit} / 2));
-}
-
-.footer-col-2 {
-  width: -webkit-calc(20% - (#{$spacing-unit} / 2));
-  width:         calc(20% - (#{$spacing-unit} / 2));
+  float: left;
+  display: inline-block;
 }
 
 .footer-col-3 {
-  width: -webkit-calc(45% - (#{$spacing-unit} / 2));
-  width:         calc(45% - (#{$spacing-unit} / 2));
+  float: right;
+  display: inline-block;
 }
 
+/*
 @include media-query($on-laptop) {
   .footer-col-1,
   .footer-col-2 {
@@ -350,7 +348,7 @@ $button-size: 1.5rem;
     width:         calc(100% - (#{$spacing-unit} / 2));
   }
 }
-
+*/
 
 
 /**
@@ -430,6 +428,15 @@ $button-size: 1.5rem;
     }
   }
 }
+
+
+/**
+ *  Misc
+ */
+
+.clear {
+  clear: both;
+} 
 
 
 
