@@ -37,7 +37,7 @@ ___
 ## Amplicon
 * **Useful for:**
 
-    * one *metri* of community composition
+    * one *metric* of community composition
         * can say something about relative abundance of gene copies recovered (recovered gene copies ≠ counts of organisms)
         * gives a snapshot of, e.g., "16S gene-fragment copies recovered"
     * can track changes in community structure (as interpreted by recovered gene copy numbers) in response to a treatment and/or across environmental gradients/time, etc.
