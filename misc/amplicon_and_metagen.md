@@ -87,7 +87,7 @@ ___
 
 #### A Note on OTUs vs ASVs  
 
-All sequencing technologies make mistakes, and (to a much lesser extent), polymerases make mistakes as well. These mistakes artificially increase the number of unique sequences in a sample, a lot. Clustering similar sequences together (generating OTUs) emerged as one way to mitigate error and summarize data, though often at the cost of resolution. The field is moving towards using solely ASVs, and there is pretty good reasoning for this. This [paper](https://www.nature.com/articles/ismej2017119) nicely lays out the case for that, and the following points attempt to summarize it:  
+All sequencing technologies make mistakes, and (to a much lesser extent), polymerases make mistakes as well. These mistakes artificially increase the number of unique sequences in a sample, a lot. Clustering similar sequences together (generating OTUs) emerged as one way to mitigate error and summarize data – though at the cost of resolution. The field is moving towards using solely ASVs, and there is pretty good reasoning for this. This [paper](https://www.nature.com/articles/ismej2017119) nicely lays out the case for that, and the following points attempt to summarize it:  
 
 * OTUs (operational taxonomic units)
     1. cluster sequences into groups based on percent similarity
