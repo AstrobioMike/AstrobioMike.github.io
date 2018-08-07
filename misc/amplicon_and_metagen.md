@@ -40,7 +40,7 @@ ___
         * you're getting a snapshot  of, e.g. "16S gene fragment copy numbers recovered"
     * can track changes in community structure (as interpreted by recovered gene copy numbers) in response to a treatment and/or across environmental gradients/time, etc.
     * can provide strong support for further investigation, particularly single-nucleotide resolution methods
-        * e.g. *Trichodesmium–Alteromonas* story ([paper here](https://www.nature.com/articles/ismej201749))
+        * e.g. *Trichodesmium–Alteromonas* story ([starting paper here](https://www.nature.com/articles/ismej201749){:target="_blank"})
     * relatively cheap and less processing power/time required in comparison to metagenomics  
 <br>
 * **_Not_ useful for:**
@@ -77,7 +77,9 @@ ___
 
 ## Amplicon overview
 
-<center><a href="https://ndownloader.figshare.com/files/12367181"><img src="{{ site.url }}/images/amplicon_overview.png" title="Click to download pdf version"></a></center>
+<center><a href="{{ site.url }}/images/amplicon_overview.png"><img src="{{ site.url }}/images/amplicon_overview.png"></a></center>
+
+<p align="right"><a href="https://ndownloader.figshare.com/files/12367181">PDF download</a></p>
 
 <br>
 
@@ -105,7 +107,9 @@ All sequencing technologies make mistakes, and (to a much lesser extent), polyme
 <br>
 ## Metagenomics overview
 
-<center><a href="https://ndownloader.figshare.com/files/12715133"><img src="{{ site.url }}/images/metagenomics_overview.png" title="Click to download pdf version"></a></center>
+<center><a href="{{ site.url }}/images/metagenomics_overview.png"><img src="{{ site.url }}/images/metagenomics_overview.png"></a></center>
+
+<p align="right"><a href="https://ndownloader.figshare.com/files/12715133">PDF download</a></p>
 
 <br>
 <br>
