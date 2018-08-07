@@ -6,7 +6,8 @@ permalink: /misc/amplicon_and_metagen
 
 {% include _amp_and_meta_toc.html %}
 
-This page presents a broad-level overview of amplicon sequencing and metagenomics as approaches for microbial ecology, discussing some things each is useful for, and _not_ useful for, and then outlining some general workflows for each. These are just two more tools of investigation and should be thought of as steps in the process of science rather than end-points (like all tools of science). They are most often applied for exploration and hypothesis generation. 
+This page presents a broad-level overview of amplicon sequencing and metagenomics as approaches for microbial ecology and outlines some generic workflows for each listing some relevant tools. Both of these methods are just two more tools of investigation and should be thought of as steps in the process of science rather than end-points (like all tools of science). They are most often applied for exploration and hypothesis generation. 
+
 
 > "Why are you doing 16S sequencing? That doesn't tell you anything about function."  
 > 
@@ -20,10 +21,10 @@ ___
 <br>
 
 **Amplicon sequencing**  
-Amplicon sequencing of marker-genes (e.g. 16S, 18S, ITS) involves using specific primers that target a specific fragment of a specific gene. It is one of the first tools in the microbial ecologist's toolkit. It is most often a broad-level survey of community composition used to generate hypotheses based on differences between samples (***based on recovered gene-copy numbers, not abundance of organisms***).
+Amplicon sequencing of marker-genes (e.g. 16S, 18S, ITS) involves using specific primers that target a specific gene or gene fragment. It is one of the first tools in the microbial ecologist's toolkit. It is most often a broad-level survey of community composition used to generate hypotheses based on differences between samples (***differences based on recovered gene-copy numbers, not abundance of organisms***).
 
 **Metagenomics**  
-Shotgun metagenomic sequencing provides a way to access *all* the DNA of a mixed community. It uses random primers rather than targeted primers and therefore suffers much less from pcr bias. (It still suffers things such as cell-lysis rates dependent on the extraction method used.)
+Shotgun metagenomic sequencing provides a way to access *all* the DNA of a mixed community. It uses random rather than targeted primers and therefore suffers much less from pcr bias. (It still suffers from other things such as cell-lysis rates which can be dependent on organism cell walls and the extraction method used.)
 
 <br>
 
