@@ -35,14 +35,15 @@ ___
 
 ## Amplicon
 * **Useful for:**
-    * one *metric* of community composition
-        * recovered gene copies ≠ counts of organisms (see below in the "not useful for" section)
-        * you're getting a snapshot  of, e.g. "16S gene fragment copy numbers recovered"
+
+    * one *metri* of community composition
+        * can say something about relative abundance of gene copies recovered (recovered gene copies ≠ counts of organisms)
+        * gives a snapshot of, e.g., "16S gene-fragment copies recovered"
     * can track changes in community structure (as interpreted by recovered gene copy numbers) in response to a treatment and/or across environmental gradients/time, etc.
     * can provide strong support for further investigation, particularly single-nucleotide resolution methods
-        * e.g. *Trichodesmium–Alteromonas* story ([starting paper here](https://www.nature.com/articles/ismej201749){:target="_blank"})
-    * relatively cheap and less processing power/time required in comparison to metagenomics  
+        * e.g. *Trichodesmium–Alteromonas* story ([starting paper here](https://www.nature.com/articles/ismej201749){:target="_blank"})  
 <br>
+
 * **_Not_ useful for:**
     * abundance of organisms (or relative abundance of organisms)
         * recovered gene copies ≠ counts of organisms
@@ -79,7 +80,7 @@ ___
 
 <center><a href="{{ site.url }}/images/amplicon_overview.png"><img src="{{ site.url }}/images/amplicon_overview.png"></a></center>
 
-<p align="right"><a href="https://ndownloader.figshare.com/files/12367181">PDF download</a></p>
+<p align="right"><a href="https://ndownloader.figshare.com/files/12732065">PDF download</a></p>
 
 <br>
 
@@ -109,17 +110,8 @@ All sequencing technologies make mistakes, and (to a much lesser extent), polyme
 
 <center><a href="{{ site.url }}/images/metagenomics_overview.png"><img src="{{ site.url }}/images/metagenomics_overview.png"></a></center>
 
-<p align="right"><a href="https://ndownloader.figshare.com/files/12715133">PDF download</a></p>
+<p align="right"><a href="https://ndownloader.figshare.com/files/12732062">PDF download</a></p>
 
-<br>
-<br>
-**Simplified example of recovering genomes from metagenomes**
-
-<center><a href="{{ site.url }}/images/gen_from_metagen_slide.png"><img src="{{ site.url }}/images/gen_from_metagen_slide.png"></a></center>
-
-<center>
-You can download the <a href="https://ndownloader.figshare.com/files/12367211">keynote slide here</a> and a <a href="https://ndownloader.figshare.com/files/12367226">powerpoint version here</a> if you'd like to use or edit 🙂  
-</center>
 
 <br>
 
@@ -144,10 +136,17 @@ ___
     * qiime provides an environment that employs other processing tools (like those above) and also provides convenient visualization capabilities and an excellent infrastructure for tracking everything you've done
     * they have [extensive documentation](https://docs.qiime2.org/2018.6/) and an [amplicon tutorial here](https://docs.qiime2.org/2018.6/tutorials/moving-pictures/)
 
+<br>
+
+---
+<br>
+
 <h3><b>Metagenomics</b></h3>
 
 As you might guess, this is not as straightforward as the amplicon data tutorials as there are many more things to do with metagenomics data. But here are some places to start. If you know of others that are helpful please pass along so we can add them here 🙂
 
 - Mike's recovering genomes from metagenomes [tutorial](https://astrobiomike.github.io/metagenomics/metagen_anvio)
+	- [Here is a simplified example of how we recover genomes from metagenomes](/images/gen_from_metagen_slide.png); you can download a <a href="https://ndownloader.figshare.com/files/12367211">keynote slide here</a> and a <a href="https://ndownloader.figshare.com/files/12367226">powerpoint version here</a> if you'd like to use or edit 🙂  
+
 
 - A nice workflow leading up to and including recovering genomes can be found [here](http://merenlab.org/tutorials/infant-gut/) at the [anvi'o site](http://merenlab.org/software/anvio/) (along with other very informative/helpful tutorials and blogs)
