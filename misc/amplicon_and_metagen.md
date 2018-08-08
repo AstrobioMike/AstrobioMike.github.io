@@ -11,7 +11,7 @@ This page presents a broad-level overview of amplicon sequencing and metagenomic
 
 > "Why are you doing 16S sequencing? That doesn't tell you anything about function."  
 > 
-> "Why are you measuring nitrogen-fixation rates via acetylene reduction? That doesn't tell you anything about the biochemistry doing it."  
+> "Why are you measuring nitrogen-fixation rates? That doesn't tell you anything about the biochemistry doing it."  
 > 
 > **Don't assess the utility of a tool based on something it's not supposed to do anyway.**
 
