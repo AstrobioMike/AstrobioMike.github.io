@@ -1,0 +1,2 @@
+bundle update github-pages
+
