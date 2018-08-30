@@ -10,6 +10,9 @@ permalink: /bash/one_liners
 {% include _side_tab_bash.html %}
 
 Here's a collection of *bash* one-liners I have stored in a text document on my desktop. I've added things to it over time that I either didn't use often enough to have memorized, or that solved some problem for me that was particularly frustrating and so I saved the code there for posterity purposes.  
+
+I have started [this repository]() which holds a lot of these that I use all the time in more user-friendly scripts. I'll get back to dealing with this mess later :)  
+
 <br>
 
 ---
@@ -22,8 +25,6 @@ Here's a collection of *bash* one-liners I have stored in a text document on my 
 <br>
 <br>
 
-
-I'll explain these more soon :)
 
 ```bash
   ############# removing added linewraps from fasta files:
