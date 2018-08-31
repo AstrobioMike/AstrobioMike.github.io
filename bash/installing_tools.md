@@ -28,7 +28,7 @@ You may have heard or read an expression before referring to whether there is a 
 # First we need a happy bin
 Often a big part of getting things to work properly is having them in a location on the computer that you can access no matter [where you are](/bash/basics#moving-around){:target="_blank"}. As we covered [here](/bash/modifying_your_path){:target="_blank"}, a list of directories that are scanned for programs automatically by your computer is stored in the *bash* special variable called "PATH". For the sake of simplicity, many tools we use in tutorials on this site are going to be put in a directory we made and added to our PATH in the [modifying your PATH walkthrough](/bash/modifying_your_path){:target="_blank"} called `~/happy_bin`. You can check to see if this is in your PATH already like this:
 
-```bash
+```
 echo $PATH | tr ":" "\n" | grep "happy_bin"
 ```
 
@@ -39,7 +39,7 @@ If this returns something like this:
 <br>
 You're good to go. If nothing was returned, then you can create this directory and add it to your PATH like such:
 
-```bash
+```
 mkdir ~/happy_bin
 echo 'export PATH="$PATH:/Users/Mike_Lee/happy_bin"' >> ~/.bash_profile
 ```
@@ -50,15 +50,38 @@ And if you're unsure of what's going on here, be sure to visit the [modifying yo
 ---
 <br>
 # Installing tools used on this site
-As explained [above](/bash/installing_tools#first-we-need-a-happy-bin){:target="_blank"}, most things we install here will be put in a directory in our home location called `~/happy_bin`, so pay attention to modify any code here accordingly if you want to put things somewhere else. For some things that have installation scripts that install somewhere else, and don't seem to cause any problems,  
+As explained [above](/bash/installing_tools#first-we-need-a-happy-bin){:target="_blank"}, most things we install here will be put in a directory in our home location called `~/happy_bin`, so pay attention to modify any code here accordingly if you want to put things somewhere else. If you're unfamiliar with what's going on in any of these code blocks below, and want to be more familiar, run through the [bash basics](/bash/basics){:target="_blank"} and [modifying your PATH](/bash/modifying_your_path){:target="_blank"} pages sometime 🙂  
 <br>
+
+## My BioInformatics Tools (bit)
+These are a collection of [one-liners](/bash/one-liners){:target="_blank"} and short scripts I use frequently enough that it's been worth it for me to have them instantly available anywhere. So I thought I'd share them too. This includes things like: removing those annoying line wraps from fasta files that keep you from doing things like `grep`-ing sequences of interest by header; quickly counting the number of bases or amino acids in a file; calculating GC; pulling out sequences by their coordinates; splitting a fasta file based on headers; and other such things that are just handy to have handy. These are stored in the [git repository here](https://github.com/AstrobioMike/bioinf_tools){:target="_blank"}, and some require the python package BioPython, and some require pybedtools. 
+
+```
+cd ~/happy_bin/
+wget https://github.com/AstrobioMike/bioinf_tools/archive/master.zip
+unzip master.zip
+mv bioinf_tools-master bioinf_tools
+echo 'export PATH="$PATH:~/happy_bin/bioinf_tools"' >> ~/.bash_profile
+source ~/.bash_profile
+```
+
+Now trying `bit-count-bases` by itself should reveal the help menu, and typing `bit-` followed by hitting tab twice should reveal all available commands.  
+
+Some of these require the python packages [BioPython](https://biopython.org/wiki/Download){:target="_blank"} and [pybedtools](https://pypi.org/project/pybedtools/){:target="_blank"} (as marked at [the github repo](https://github.com/AstrobioMike/bioinf_tools){:target="_blank"}). Fortunately we can use [pip](https://pip.pypa.io/en/stable/){:target="_blank"} (a python package manager) to install these, because pip is awesome. 
+
+```
+pip install biopython
+pip install pybedtools
+```
+
+In the unlikely case you are using a python2 version < 2.7.9 or a python3 version < 3.4, then you may not have pip. But there are helpful instructions for getting it at the [pip installation page](https://pip.pypa.io/en/stable/installing/){:target="_blank"}. 
 
 ## NCBI's E-utilities
 If you're dancing in the bioinformatics world, at some point you will no doubt find yourself wanting to download a massive amount of gene sequences or reference genomes from the glorious [NCBI](https://www.ncbi.nlm.nih.gov/){:target="_blank"}. One of the ways you can download things in bulk from the command line is using their [Entrez Direct E-utilities](https://www.ncbi.nlm.nih.gov/books/NBK179288/){:target="_blank"}. That link has the following installation instructions, which I've been able to execute successfully on both a Mac and on a Linux server, but for the PC folk out there the site also says it will run fine under Cygwin's UNIX-like environment.  
 
 Copying and pasting these commands into your terminal should do the trick:
 
-```bash
+```
 cd ~
 /bin/bash
 perl -MNet::FTP -e \
@@ -82,7 +105,7 @@ And you can find some examples of how to pull reference sequences [here](/bash/n
 ## vsearch
 There are instructions to get vsearch up and running [on its github](https://github.com/torognes/vsearch){:target="_blank"}, but these commands should work for you if you're on a Mac **(if you're not, you'll have to download a different version you can find following the above link)**.
 
-```bash
+```
 cd ~/happy_bin
 curl -LO https://github.com/torognes/vsearch/releases/download/v2.5.1/vsearch-2.5.1-macos-x86_64.tar.gz
 tar -xzvf vsearch-2.5.1-macos-x86_64.tar.gz
@@ -92,7 +115,7 @@ rm vsearch-2.5.1-macos-x86_64.tar.gz
 
 Here we changed into our `~/happy_bin` directory, downloaded the vsearch tool with `curl`, unpacked it and unzipped things with `tar`, copied the main executable file into our `~/happy_bin` directory so that it is in our [PATH](/bash/modifying_your_path){:target="_blank"} and can be called from anywhere, then finally we deleted the compressed downloaded file. Lastly, one way we can quickly test that the program seems to be working as it should be is by checking the version: 
 
-```bash
+```
 vsearch --version
 ```
 
@@ -105,7 +128,7 @@ Which should return something like this:
 ## usearch
 To get the free version of usearch, you first need to go to [https://www.drive5.com/usearch/download.html](https://www.drive5.com/usearch/download.html){:target="_blank"}, and fill out a (very) short form in order to have a download link sent to you. This usually happens virtually instantly. After getting the link and downloading the file, assuming you're working on a Mac and you downloaded the same version as noted above (v10.0.240) into your default download directory, the following commands will move usearch into our `~/happy_bin` directory and change its properties so we can execute it (if you download a different version, adjust the commands accordingly):
 
-```bash
+```
 cd ~/happy_bin
 mv ~/Downloads/usearch10.0.240_i86osx32 usearch
 chmod +x usearch
@@ -123,7 +146,7 @@ The details of what all of the letters and their positions mean here are a bit f
 <br>
 And now the usearch program can be executed (run) without throwing any errors, which we can again check quickly by asking for the version:  
 
-```bash
+```
 usearch --version
 ```
 
@@ -135,7 +158,7 @@ usearch --version
 
 A link to download the current version of fastqc for your system can be found [here](https://www.bioinformatics.babraham.ac.uk/projects/download.html#fastqc){:target="_blank"}. And there are pretty good instructions for different platforms provided [here](https://www.bioinformatics.babraham.ac.uk/projects/download.html#fastqc){:target="_blank"}, including possibly needing to update your Java installation. For OSX there is a disk image, or application bundle, available to download. So if you're on a Mac, you can download the "fastqc_v*.dmg" file from the above downloads link, open it to install the program, and then move the resulting "FastQC.app" file (which is actually a directory) into your `~/Applications` directory or into your `~/happy_bin` if you'd like. I haven't gone through this on anyone else's computer, but on mine the installation itself seems adds the executable file to my `/usr/local/bin` so that we can call it from anywhere. We can check this again by asking for which version:
 
-```bash
+```
 fastqc --version
 ```
 
@@ -144,7 +167,7 @@ fastqc --version
 <br>
 And an example usage at the command line to run two fastq files through would look like this: 
 
-```bash
+```
 fastqc sample_A.fastq.gz sample_B.fastq.gz
 ```
 
@@ -153,7 +176,7 @@ You can list multiple files like this delimited by a space, and the program is c
 ## Trimmomatic
 [Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic){:target="_blank"} is a pretty flexible tool that lets you trim and/or filter your sequences based on several quality thresholds and some other metrics (e.g. minimum length filtering, or removing adapters). It runs as a java program, so the same binary seems to work across systems. The binary can be downloaded from [this link](http://www.usadellab.org/cms/?page=trimmomatic){:target="_blank"}, and here is one way to do this at the command line to grab the current version at the time I'm putting this together:
 
-```bash
+```
 cd ~/happy_bin
 curl -LO http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/Trimmomatic-0.36.zip
 unzip Trimmomatic-0.36.zip
@@ -162,7 +185,7 @@ rm Trimmomatic-0.36.zip
 
 At this point, [Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic){:target="_blank"}, should be ready to rock, and we can again check quickly by asking for the version: 
 
-```bash
+```
 java -jar ~/happy_bin/Trimmomatic-0.36/trimmomatic-0.36.jar -version
 ```
 
@@ -175,7 +198,7 @@ I never figured out how to get a .jar to be callable from anywhere without provi
 
 [sabre](https://github.com/najoshi/sabre){:target="_blank"} is an awesomely simple and quick tool for demultiplexing your samples and trimming off the barcodes. The installation seems to run smoothly wherever I've tried it, and the usage examples on their [github](https://github.com/najoshi/sabre){:target="_blank"} are very straightforward. Here's how I installed it on my mac:
 
-```bash
+```
 cd ~/happy_bin
 curl -LO https://github.com/najoshi/sabre/archive/master.zip
 unzip master.zip
@@ -189,7 +212,7 @@ sabre # should print help menu
 ## bbtools
 [Brian Bushnell](https://twitter.com/BBToolsBio){:target="_blank"} has made a very handy set of tools called [bbtools](https://jgi.doe.gov/data-and-tools/bbtools/){:target="_blank"} (also called bbmap). Installation instructions from the developer are available [here](https://jgi.doe.gov/data-and-tools/bbtools/bb-tools-user-guide/installation-guide/){:target="_blank"}, but here are steps I used to install it on my MacOS in our `~/happy_bin`:
 
-```bash
+```
 cd ~/happy_bin
 curl -L https://sourceforge.net/projects/bbmap/files/latest/download -o bbtools.tar.gz
 tar -xzvf bbtools.tar.gz
@@ -197,7 +220,7 @@ tar -xzvf bbtools.tar.gz
 
 Since bbtools comes with many programs, stored within the directory we just untarred, it may be preferable to [add that directory to our PATH](/bash/modifying_your_path){:target="_blank"}, rather than copying all of the programs to our location here. So here we are adding another directory to our PATH:
 
-```bash
+```
 cd bbmap/
 pwd # copying the full path from the output of pwd to paste it into the following command, your location will be different
 echo 'export PATH="$PATH:/Users/Mike_Lee/happy_bin/bbmap"' >> ~/.bash_profile
@@ -208,7 +231,7 @@ cd ~/happy_bin
 
 And then checking the installation using one of the programs:
 
-```bash
+```
 bbduk.sh --version
 ```
 
@@ -217,7 +240,7 @@ If this finds the program and tells you the version (even if there are some memo
 ## illumina-utils
 The [illumina-utils](https://github.com/merenlab/illumina-utils){:target="_blank"} library provides a suite of tools for working with Illumina paired-end data put out by [merenlab.org](http://merenlab.org/){:target="_blank"}. I most commonly use some of the quality filtering programs they make available. A few paths to installation can be found [here](https://github.com/merenlab/illumina-utils#installing){:target="_blank"}, which are pretty straightforward other than you do need to be working in a python 3 environment. Since the world is amid the switch from python 2 to python 3, this may complicate things for you in some cases. The easiest way around it I've found is working with [virtual environments](/bash/installing_tools#virtual-environments){:target="_blank"}, which I hope to add in soon. For now, since I have a python 3 setup on my computer that I call with `python3`, and a pip for it that I call with `pip3`, I can install this way:
 
-```bash
+```
 pip3 install illumina-utils
 ```
 
@@ -228,7 +251,7 @@ You can then see a list of all the programs by typing `iu-` and hitting tab twic
 <br>
 And to be sure things are functioning properly, and the correct version of python is being utilized, we can check for a version:
 
-```bash
+```
 iu-demultiplex --version
 ```
 
@@ -240,7 +263,7 @@ I hope to get to [virtual environments](/bash/installing_tools#virtual-environme
 ## QUAST
 [QUAST](https://github.com/ablab/quast){:target="_blank"} is a really nice tool for comparing multiple assemblies, and for metagenome assemblies there is a comparable [MetaQUAST](http://bioinf.spbau.ru/metaquast){:target="_blank"}. Some discussion and example usage can be found [here](/genomics/de_novo_assembly#quast){:target="_blank"}. To install on my personal computer, I followed the instructions laid out [here](http://quast.bioinf.spbau.ru/manual.html#sec1){:target="_blank"}, and, because of the way QUAST compiles things as needed if used, I added its location to my [PATH](/bash/modifying_your_path){:target="_blank"}:
 
-```bash
+```
 cd ~/happy_bin
 curl -LO https://downloads.sourceforge.net/project/quast/quast-4.6.1.tar.gz
 tar -xzvf quast-4.6.1.tar.gz
@@ -252,7 +275,7 @@ cd ~/happy_bin
 
 And testing it's actually callable: 
 
-```bash
+```
 quast.py --version
 ```
 
@@ -264,7 +287,7 @@ quast.py --version
 ## SPAdes
 [SPAdes](http://cab.spbu.ru/software/spades/){:target="_blank"} is an assembly program. You can read some of my thoughts on assemblies [here](/genomics/de_novo_assembly#assembly){:target="_blank"}. SPAdes is packaged as a binary, and the developers provide excellent installation instructions [here](http://cab.spbu.ru/files/release3.11.1/manual.html#sec2){:target="_blank"}. This is how I installed the latest release at the time on my local computer:
 
-```bash
+```
 curl -LO http://cab.spbu.ru/files/release3.11.1/SPAdes-3.11.1-Darwin.tar.gz
 tar -xzvf SPAdes-3.11.1-Darwin.tar.gz
 rm SPAdes-3.11.1-Darwin.tar.gz
@@ -272,7 +295,7 @@ rm SPAdes-3.11.1-Darwin.tar.gz
 
 Since SPAdes comes with many programs, stored in a subdirectory of the SPAdes directory we just untarred, it may be preferable to [add that directory to our PATH](/bash/modifying_your_path){:target="_blank"}, rather than copying all of the programs to our location here. So here we are adding another directory to our PATH:
 
-```bash
+```
 cd SPAdes-3.11.1-Darwin/bin/
 pwd # copying the full path from the output of pwd to paste it into the following command, your location will be different
 echo 'export PATH="$PATH:/Users/Mike_Lee/happy_bin/SPAdes-3.11.1-Darwin/bin"' >> ~/.bash_profile
@@ -283,7 +306,7 @@ cd ~/happy_bin
 
 And then checking the installation:
 
-```bash
+```
 spades.py --version
 ```
 
@@ -293,7 +316,7 @@ spades.py --version
 ## MEGAHIT
 [MEGAHIT](https://github.com/voutcn/megahit){:target="_blank"} is another assembly program that is great on memory requirements and speed. This can be installed from source, or through `git` as noted on the above linked page, but there are also binaries available [here](https://github.com/voutcn/megahit/releases){:target="_blank"}. As there is an extra layer of complexity due to OSX `g++`, noted [here](https://github.com/voutcn/megahit#dependency--installation){:target="_blank"}, I grabbed the latest available binary for Mac OSX, which only seems to be missing one bug fix I haven't happened to run into:
 
-```bash
+```
 cd ~/happy_bin
 curl -LO https://github.com/voutcn/megahit/releases/download/v1.1.1/megahit_v1.1.1_DARWIN_CPUONLY_x86_64-bin.tar.gz
 tar -xzvf megahit_v1.1.1_DARWIN_CPUONLY_x86_64-bin.tar.gz
@@ -303,7 +326,7 @@ cp megahit_v1.1.1_DARWIN_CPUONLY_x86_64-bin/megahit* .
 
 And quick testing, all seems to be well:
 
-```bash
+```
 megahit --version
 ```
 
@@ -312,7 +335,7 @@ megahit --version
 ## Magic-BLAST
 [NCBI's Magic-BLAST](https://ncbi.github.io/magicblast/){:target="_blank"} is a tool based on general [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi){:target="_blank"} principles but built to deal with high-throughput data, like Illumina reads, considers paired-reads, and can deal with fastq files. It has binaries available for mac, linux, and windows which can be downloaded [here](ftp://ftp.ncbi.nlm.nih.gov/blast/executables/magicblast/LATEST){:target="_blank"}. Here's how I grabbed it:
 
-```bash
+```
 cd ~/happy_bin
 curl -LO ftp://ftp.ncbi.nlm.nih.gov/blast/executables/magicblast/LATEST/ncbi-magicblast-1.3.0-x64-macosx.tar.gz
 tar -xzvf ncbi-magicblast-1.3.0-x64-macosx.tar.gz
@@ -321,9 +344,6 @@ cp ncbi-magicblast-1.3.0/bin/* . # moving the executables to our ~/happy_bin so 
 
 magicblast -version # for me, magicblast: 1.3.0
 ```
-
-<br>
-
 <br>
 
 ---
