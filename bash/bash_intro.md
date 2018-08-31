@@ -1,11 +1,11 @@
 ---
 layout: main
-title: Introduction to Unix
+title: Introduction to Bash
 categories: [bash, tutorial]
-permalink: /stamps2018/unix_intro
+permalink: /bash/basics
 ---
 
-{% include _unix_toc.html %}
+{% include _bash_intro_toc.html %}
 
 > **Things covered here**  
 *  Why familiarity with the command line is valuable
@@ -52,48 +52,10 @@ permalink: /stamps2018/unix_intro
 ---
 <br>
 
-# Connect to the MBL server
-We are going to be doing most of our work during the course on the MBL server. So before we get started, we are going to login there. So open your computer's command-line environment and let's login following these instructions.
+# Getting a bash environment
+Before we get started, we need a terminal to work in. In the context of the loose definitions laid out above, a terminal is the common term for a Unix-like command-line environment. 
 
-On your badge, you have a username and password. That will be your account for the course. 
-
-To connect, we'll use **ssh**, a command that let's us establish a secure connnection. 
-
-> **If you are on the MBL-GUEST or eduroam WiFi network, start with Step 1, and then go to Step 2. If you are on the MBL-REGISTERED WiFi network, skip Step 1 and start at Step 2.**
-
-**Step 1**  
-At the command line type the following, but replace "\<USERNAME\>" with your username:
-
-```
-ssh <USERNAME>@class.mbl.edu
-```
-
-Don't include the brackets. For example, if your username were "mlee", like mine is, the command would look like `ssh mlee@class.mbl.edu`. 
-
-The first time you log in you will get a message about security. Type "yes", and press `enter`. 
-
-Then it will ask you for your password. Type the password listed on your badge and press `enter`; the cursor will not respond, but it is still being entered as you type.
-
-> **Pro tip**  
-> If you have a crazy password, you can type it somewhere you can read it. Then copy and paste it.
-
-**Step 2**  
-So far, we just logged into what is called a 'gateway'. We won't be doing our work here though, we're going to take one more step and log into specific servers so we don't overload the computing resources. 
-
-On your badge you also have something that says a class and a number, e.g. "class-09". That specifies which server you should be working on. So now we want to `ssh` into that specific server.  so enter the following, again change the "\<USERNAME\>" to your username, and change the "\<??>\" to your specific class number:
-
-```
-ssh <USERNAME>@class-<??>
-``` 
-
-Again, don't include the brackets. For example, if my class number is "class-09", the command would look like: `ssh mlee@class-09`.
-
-Then if it asks for you password again, enter it the same way as above and press `enter`.
-
-Now you're logged into the server that you'll use for much of the course.
-
-> **NOTE**  
-> These login instructions are also stored [here](https://github.com/mblstamps/stamps2018/wiki/Installation#connecting-to-the-mbl-servers), so you can reference them as needed in the coming days. Be sure to let us know if you have any trouble!
+If you are working on a Mac or Linux computer, this is already taken care of for you. If you are working on a Windows computer, you will need to [set up a working command-line environment](/bash/#getting-a-bash-environment){:target="_blank"}.
 
 <br>
 

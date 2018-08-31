@@ -2,23 +2,23 @@
 layout: main
 title: bash basics
 categories: [bash, tutorial]
-permalink: /bash/basics
+permalink: /bash/basics_orig
 ---
 
 {% include _bash_basics_toc.html %}
 
 {% include _side_tab_bash.html %}
 
-Here we are going to cover the very basics of working in the terminal. For quick definitions of what things like *bash* and 'the terminal' are, see [here](/bash/).  
+Here we are going to cover the very basics of working in the terminal. For quick definitions of what things like *bash* and 'the terminal' are, see [here](/bash/){:target="_blank"}.  
 
 We'll start at the very beginning with the basic formula for how to run commands, how to navigate around your computer from within the terminal, and how to look at, create, and manipulate plain text documents. Then we'll get a taste of how *bash* becomes more powerful through the use of redirectors and wildcards, and we'll end by driving home the all-too-important practice of tab-completion.  
 
-This is really designed for those with very little to no experience working at the command line, so if you feel comfortable with these tasks already, consider jumping ahead to one of the sections you're less familiar with, like learning the [six glorious commands](/bash/six_commands) that are worth having in your toolkit, or checking out the ["Why is this all worth it?"](/bash/why) page for some real-life examples of how I use these tools every day.  
+This is really designed for those with very little to no experience working at the command line, so if you feel comfortable with these tasks already, consider jumping ahead to one of the sections you're less familiar with, like learning the [six glorious commands](/bash/six_commands){:target="_blank"} that are worth having in your toolkit, or checking out the ["Why is this all worth it?"](/bash/why){:target="_blank"} page for some real-life examples of how I use these tools every day.  
 
 <img style="float: right; margin-left: 15px; margin-top: 5px" width="13%" src="{{ site.url }}/images/oompa.jpg">
 To start, let's open up a terminal window. If you have a Mac, this is easy as you can just do a spotlight search for "Terminal" and you're ready to rock. If you have a PC, I'm afraid this is where the trip ends for you 😢   
 
-Okay, not really. Things do get a little more complicated, but there is hope! Wonderfully, Windows 10 now has a way to run a perfectly normal *bash* environment. If you have Windows 10, then check out [this site](https://www.howtogeek.com/249966/how-to-install-and-use-the-linux-bash-shell-on-windows-10/) to see how to get set up. If you're on an older Windows OS, there are programs you can download to get the appropriate *bash* environment, though I don't have any experience with this unfortunately. I hear a good place to try first is with Cygwin, which you can follow instructions for [here](https://www.howtogeek.com/howto/41382/how-to-use-linux-commands-in-windows-with-cygwin/).  
+Okay, not really. Things do get a little more complicated, but there is hope! Wonderfully, Windows 10 now has a way to run a perfectly normal *bash* environment. If you have Windows 10, then check out [this site](https://www.howtogeek.com/249966/how-to-install-and-use-the-linux-bash-shell-on-windows-10/){:target="_blank"} to see how to get set up. If you're on an older Windows OS, there are programs you can download to get the appropriate *bash* environment, though I don't have any experience with this unfortunately. I hear a good place to try first is with Cygwin, which you can follow instructions for [here](https://www.howtogeek.com/howto/41382/how-to-use-linux-commands-in-windows-with-cygwin/){:target="_blank"}.  
 <br>
 
 ---

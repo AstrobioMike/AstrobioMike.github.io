@@ -54,7 +54,7 @@ As explained [above](/bash/installing_tools#first-we-need-a-happy-bin){:target="
 <br>
 
 ## My BioInformatics Tools (bit)
-These are a collection of [one-liners](/bash/one-liners){:target="_blank"} and short scripts I use frequently enough that it's been worth it for me to have them instantly available anywhere. So I thought I'd share them too. This includes things like: removing those annoying line wraps from fasta files that keep you from doing things like `grep`-ing sequences of interest by header; quickly counting the number of bases or amino acids in a file; calculating GC; pulling out sequences by their coordinates; splitting a fasta file based on headers; and other such things that are just handy to have handy. These are stored in the [git repository here](https://github.com/AstrobioMike/bioinf_tools){:target="_blank"}, and some require the python package BioPython, and some require pybedtools. 
+These are a collection of [one-liners](/bash/one_liners){:target="_blank"} and short scripts I use frequently enough that it's been worth it for me to have them instantly available anywhere. So I thought I'd share them too. This includes things like: removing those annoying line wraps from fasta files that keep you from doing things like `grep`-ing sequences of interest by header; quickly counting the number of bases or amino acids in a file; calculating GC; pulling out sequences by their coordinates; splitting a fasta file based on headers; and other such things that are just handy to have handy. These are stored in the [git repository here](https://github.com/AstrobioMike/bioinf_tools){:target="_blank"}, and some require the python package BioPython, and some require pybedtools. 
 
 ```
 cd ~/happy_bin/

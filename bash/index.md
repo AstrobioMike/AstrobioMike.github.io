@@ -1,40 +1,64 @@
 ---
 layout: main
-title: Bash
+title: Bash Home
 categories: [bash]
-permalink: /bash/
+permalink: /bash/index
 ---
 
 {% include _side_tab_bash.html %}
 
-**Shells and Unix and terminals, oh my!**  
-Along with my disclaimers about not being an expert as laid out [here](/about/#Disclaimers), I'm not going to try to give you technical explanations of all the underlying infrastructure of how working in a terminal environment works. I simply don't have a strong enough understanding myself. I've read about all these things in the many O'Reilly books I have; I get curious from time to time and google things and remember stuff (at least what I understand) for a short while afterwards; and I occasionally get to corner someone who really knows their stuff (like [Evan Boylen](https://twitter.com/ebolyen)) and ask them a bunch of questions. But I don't seem to retain many of the details, and while we all want to know everything, we also all need to get the current analysis done so we can get to the rest of our never-ending list of things we're behind on.  
+{% include _bash_home_toc.html %}
+
+The good stuff is in the dropdown menu under "BASH" above, if you're new to this glorious arena, make sure you have a , start with [the intro to bash](/bash/basics){:target="_blank"} 🙂
+
 <br>
-So if you'd like to get started right away, head on over to [Unix basics](/bash/basics) and get started now. You can always revisit these concepts when your curiousity outweighs your motivation to do work. I've also found that (at least for me personally) it's a big help to be able to throttle back the instinct to want to understand everything *right now*. And that it's totally okay (and often better) to just let a deeper understanding grow as we develop our skills in this sort of expanding sphere into all of these different elements. But if you want to read over a few terms you'll hear and see a lot, here I'll give just the layman understanding that I have – with the unspoken agreement between us that, if you were so inclined, just starting at the wiki for any of these things can take you much further.  
-<br>
-
----  
-<br>
-
-<h3>Some terminology</h3>
-
-**Unix**  
-Unix is a type of operating system, or more precisely, a family of operating systems as the [wikipedia](https://en.wikipedia.org/wiki/Unix) words it. This is why you will hear people say things like "Unix-like", and refer to Unix being on both Mac and Linux computers (they run Unix-like operating systems), but not on PCs (they do not 😞 ). 
-
-**Terminal**  
-A terminal is just a text-based, command-line environment where you give input and get output. It's a place where you can talk to your operating system through what is known as a *shell*. You indirectly interact with your operating system all the time, like when you open the internet, or are editing figures, etc., but through a terminal you have much more freedom. For instance, in a typical graphical-user-interface program like we use all the time, you can only ask the computer to do explicitly pre-defined tasks. Whereas in the terminal, you can ask much more personal questions and have much more interesting conversations with your operating system. Seriously though, the real value of this is that it results in your having more capabilities to do what *you* need to do, because you're no longer limited to doing only things that have been precisely laid out before. 
-
-**Shell**  
-This is what runs in a terminal. A shell is your ambassador to your Unix-like operating system. It allows you to interface with the system you are working on by taking what you want, translating it into something the operating system understands, and then translating the output back into something you can understand. There are multiple types of shells (*bash*, *sh*, *ksh*, *csh*, bla bla bla, and lots more), but by far the most common these days is *bash*. 
-
-
-***Bash***  
-*Bash* is currently the default shell in most environments you will work in, which is great. There are, however, multiple version of *bash*, which means if you regularly work on different systems (say your own computer as well as on various servers), even though you will likely be working in *bash* on all of them, you will still occasionally run into minor differences in syntax that you'll have to navigate from time to time. Fortunately these are usually easily solved with minimal googlation effort as everyone else has hit those exact same snags before. 
-<br>  
 
 ---
+<br>
+# Some terminology
+
+| Term     | What it is          |
+|:-------------:|------------------|
+| **`Unix`** | a family of operating systems |
+| **`command line`** | a text-based environment capable of taking input and providing output |
+| **`shell`** | our ambassador to the operating system; this translates between us and the computer |
+| **`bash`** | the most common programming language used at a Unix command-line |
 
 <br>
-So there you have it. In 4 paragraphs you now know as much about these terms as I know after 4 years of being in the weeds with them. Hmm, saying it that way I'm not sure if you should feel better or if I should feel worse... 🤔  
 
-Either way, head on over to [bash basics](/bash/basics) to get started!
+---
+<br>
+
+# Why learn the command line?
+
+*  it's the foundation for most of bioinformatics
+*  enables use of non-GUI (Graphical User Interface) tools
+*  quickly perform operations on large files
+*  reproducibility
+*  automation of repetitive tasks
+	*  need to rename 1,000 files?
+*  enables use of higher-powered computers elsewhere (server/cloud)  
+
+<br>
+
+---
+<br>
+# Getting a bash environment
+Before we get started, we need a terminal to work in. In the context of the loose definitions laid out above, a terminal is the common term for a Unix-like command-line environment. 
+
+If you are working on a Mac or Linux computer, this is already taken care of for you and you can just do a spotlight search for "terminal". If you are working on a Windows computer, you will need to set up a working command-line environment.
+
+* If your operating system is Windows 10 or later, the operating system includes a way to run a command-line environment. You can follow the helpful steps outlined [here](https://www.howtogeek.com/249966/how-to-install-and-use-the-linux-bash-shell-on-windows-10/){:target="_blank"} to get set up.
+
+* If you have an earlier Windows operating system, there are a few options. I've seen good results using [Git for Windows](https://gitforwindows.org/){:target="_blank"}, so if you're open to suggestions of what to try, I'd say start with that. To give that a shot you can follow these instructions (updating if there is a newer version available).  
+  * Download the "Git-2.18.0-32-bit.exe" file from the Git for Windows [download page](https://github.com/git-for-windows/git/releases/tag/v2.18.0.windows.1){:target="_blank"}.  
+  * After it is finished downloading, run the installer by opening the file and proceed through the installation:  
+    * installing in the default folder location is fine
+    * for "Which components should be installed?", make sure the following boxes are checked: "On the Desktop"; "Git Bash Here"; "Git GUI Here"; "Associate .git* configuration files with the default text editor"; and "Associate .sh files to be run with Bash"
+    * the shortcuts default location is fine
+    * change the default Git editor to "Nano"
+    * on the "Adjusting your PATH environment" screen, select "Use Git from Git Bash only"
+    * just click "Next" on the remaining configuration windows, and "Install" at the final one
+  * When the installation is finished, you should be able to open a terminal window by launching Git Bash from your desktop. 
+
+Now, head on over to [the intro to bash](/bash/basics){:target="_blank"} to get started!
