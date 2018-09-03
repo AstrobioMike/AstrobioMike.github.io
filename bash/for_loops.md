@@ -2,7 +2,7 @@
 layout: main
 title: The wonderful world of loops
 categories: [bash, tutorial]
-permalink: /bash/loops_to_help
+permalink: /bash/for_loops
 ---
 
 {% include _bash_loops_toc.html %}
@@ -256,6 +256,7 @@ do
   
     # setting new variable that is the count of sequences in each fasta file
   num_seqs=$(grep -c ">" "$sample"/"$sample".fa)
+  
   echo "  $sample" has "$num_seqs" sequences # print out the count of sequences for each as we go for the heck of it
   
   printf "$sample\t$num_seqs\n" >> seqs_per_sample.tsv
@@ -265,11 +266,14 @@ do
 done
 ```
 
+Just like at the start of the loop, where we say `$(cat samples)`, in the middle of the loop when we say `$(grep -c ">" "$sample"/"$sample".fa)`, bash carries out that operation first, and then stores the output value in the new variable we are creating `num_seqs`. Then we're using the `printf` function as it has more formatting capabilities than `echo`, and enables us to easily insert a tab character (`\t`) in between the sample name and the count of sequences on each line we are writing to the file. (Unlike `echo`, `printf` doesn't by default add a newline character (`\n`) at the end, which is why we added that too.)
+
 Now we have a new tab-delimited table that tells us how many sequences are in each sample:
 
 ```
 head seqs_per_sample.tsv
 ```
+
 <br>
 
 ___

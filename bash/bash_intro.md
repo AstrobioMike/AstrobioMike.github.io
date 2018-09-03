@@ -16,9 +16,9 @@ permalink: /bash/basics
 *  Intro to wildcards
 
 <br>
-**Most importantly, none of this is about memorization. It may seem counterintuitive, but the minute details aren't important. What matters is starting to build a mental framework of the foundational rules and concepts. That equips us to figure out the things we need to do, when we need to do them!** 
+**Keep in mind, none of this is about memorization. It may seem counterintuitive, but the minute details aren't important. What matters is starting to build a mental framework of the foundational rules and concepts. That equips us to figure out the things we need to do, when we need to do them!** 
 
-<br>
+<center>Here's a high-resolution timelapse of my ongoing journey:</center>
 <center><img src="{{ site.url }}/images/mike_philosophy.png" title="Don't worry about every little detail!"></center>
 
 <br>
@@ -69,10 +69,10 @@ For right now, and only for right now, I would like you to blindly copy and past
 
 ```
 cd ~
-curl -O https://AstrobioMike.github.io/tutorial_files/unix_intro.tar.gz
-tar -xzvf unix_intro.tar.gz
-rm unix_intro.tar.gz
-cd unix_intro
+curl -O https://AstrobioMike.github.io/tutorial_files/bash_intro.tar.gz
+tar -xzvf bash_intro.tar.gz
+rm bash_intro.tar.gz
+cd bash_intro
 ```
 
 <br>
@@ -165,7 +165,7 @@ What we are actually doing here is using a **relative path** to specify where th
 We can also run the same command on the same file using the **absolute path**. Here is doing so starting from the "home" `~/` location. 
 
 ```bash
-head ~/unix_intro/text.txt
+head ~/bash_intro/text.txt
 ```
 
 > **Quick Practice**  
@@ -216,7 +216,7 @@ ls
 head yet_another_text_file.txt
 ```
 
-Great. But now how do we get back 'up' to the directory above us? One way would be to provide an absolute path, like `cd ~/unix_intro/`, but there is also a handy shortcut. `../` is a relative path that specifies "up" one level – one directory – from wherever we currently are. So we can provide that as the positional argument to `cd` to get back to where we started, and then double check with `pwd` to show where we are and `ls` to list what's here:
+Great. But now how do we get back 'up' to the directory above us? One way would be to provide an absolute path, like `cd ~/bash_intro/`, but there is also a handy shortcut. `../` is a relative path that specifies "up" one level – one directory – from wherever we currently are. So we can provide that as the positional argument to `cd` to get back to where we started, and then double check with `pwd` to show where we are and `ls` to list what's here:
 
 ```
 cd ../
@@ -613,10 +613,10 @@ Let's look back at the set of commands we ran at the beginning:
 
 ```
 cd ~
-curl -O https://AstrobioMike.github.io/tutorial_files/unix_intro.tar.gz
-tar -xzvf unix_intro.tar.gz
-rm unix_intro.tar.gz
-cd unix_intro
+curl -O https://AstrobioMike.github.io/tutorial_files/bash_intro.tar.gz
+tar -xzvf bash_intro.tar.gz
+rm bash_intro.tar.gz
+cd bash_intro
 ```
 
 > **Code breakdown**  
