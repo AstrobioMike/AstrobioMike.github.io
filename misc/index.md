@@ -11,6 +11,8 @@ Here is a collection of some documents I've put together for elsewhere 🙂
 </b></center>  
 <br>
 
+---
+<br>
 
 # STAMPS 2018
 The [STAMPS](https://stamps.mbl.edu/index.php/Main_Page) course (Strategies and Techniques for Analyzing Microbial Population Structures) at the Marine Biological Laboratory in Woods Hole, MA, USA.

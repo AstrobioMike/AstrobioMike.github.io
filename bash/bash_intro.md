@@ -27,6 +27,7 @@ permalink: /bash/basics
 <br>
 
 # Some terminology
+First, here are some terms that are often used semi-interchangeably.  
 
 | Term     | What it is          |
 |:-------------:|------------------|

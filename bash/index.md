@@ -1,6 +1,6 @@
 ---
 layout: main
-title: Bash Home
+title: Bash home
 categories: [bash]
 permalink: /bash/index
 ---
@@ -9,14 +9,23 @@ permalink: /bash/index
 
 {% include _bash_home_toc.html %}
 
-The good stuff is in the dropdown menu under "BASH" above, if you're new to this glorious arena, make sure you have a , start with [the intro to bash](/bash/basics){:target="_blank"} 🙂
+Bash is the most common programming language in a Unix-like environment these days (see the table below for some quick terminology). Here are the currently available bash pages. If you're completely new to this wonderful language, it's a good idea to start with [the intro to bash here](/bash/basics){:target="_blank"}. And if you need help getting a bash environment up and running on your computer, see the [help below](/bash/#getting-a-bash-environment) 🙂
+
+# Bash pages
+* [Intro to bash](/bash/basics)
+* [Six glorious commands](/bash/six_commands)
+* [What the heck is my PATH, and how do I get it to do what I want?](/bash/modifying_your_path)
+* [Installing tools](/bash/installing_tools)
+* [The wonderful world of loops](/bash/loops_to_help)
+* [Why is this all worth it?](/bash/why)
+* [Downloading from NCBI](/bash/ncbi_eutils)
+* [Other great resources](/bash/other_resources)
 
 <br>
 
 ---
 <br>
 # Some terminology
-
 | Term     | What it is          |
 |:-------------:|------------------|
 | **`Unix`** | a family of operating systems |
@@ -28,15 +37,13 @@ The good stuff is in the dropdown menu under "BASH" above, if you're new to this
 
 ---
 <br>
-
 # Why learn the command line?
 
 *  it's the foundation for most of bioinformatics
 *  enables use of non-GUI (Graphical User Interface) tools
-*  quickly perform operations on large files
+*  can quickly perform operations on large files
 *  reproducibility
 *  automation of repetitive tasks
-	*  need to rename 1,000 files?
 *  enables use of higher-powered computers elsewhere (server/cloud)  
 
 <br>
