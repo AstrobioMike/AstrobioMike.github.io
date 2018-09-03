@@ -9,9 +9,9 @@ permalink: /bash/for_loops
 
 {% include _side_tab_bash.html %}
 
-Loops are extremely powerful in all programming languages. They are what let us write out a command or operation once, and have it run on all of our samples or files or whatever we want to act on. Not only is this powerful, but it also helps with keeping our code more concise and readable, and it helps elmininate some more of our mortal enemy (human error). Again, this is because we only need to write out what we want to do once and it will then be done the same way to all. There are multiple types of loops, but here we are going to cover what is probably the most common type: the for loop. If you are new to the command line, this will be much easier to follow if you've run through the [intro to bash](/bash/basics){:target="_blank"} first. 
+Loops are extremely powerful in all programming languages. They are what let us write out a command or operation once, and have it run on all of our samples or files or whatever we want to act on. Not only is this powerful, but it also helps with keeping our code more concise and readable, and it helps elmininate some more of our mortal enemy (human error). Again, this is because we only need to write out what we want to do once and it will then be done the same way to all. There are multiple types of loops, but here we are going to cover what is probably the most common type: the for loop.  
 
-To get into loops, we quickly first need to more explicitly introduce bash variables.  
+If you are new to the command line, this will be much easier to follow if you've run through the [intro to bash](/bash/basics){:target="_blank"} first. To get into loops, we quickly first need to more explicitly introduce bash variables.  
 <br>
 
 # Variables in bash
