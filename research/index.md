@@ -9,8 +9,9 @@ permalink: /research/
 
 ## Michael D. Lee, PhD – Science Mercenary
 
-<br>
-*Email:* Leemd@usc.edu  
+#### Bioinformatician exploring microbial ecology and evolution
+
+*Email:* Mike.Lee(AT)nasa.gov  
 *Phone:* 732-691-6402  
 {% include icon-twitter.html username=site.twitter_username %}  
 {% include _orcid.html %}  
@@ -19,12 +20,12 @@ permalink: /research/
 *NASA Space Biology Postdoctoral Fellow*
 
 **Affiliations**  
-[*University of Southern California*](https://www.usc.edu/){:target="_blank"}  
 [*NASA*](https://www.nasa.gov/){:target="_blank"}  
 [*JCVI*](https://www.jcvi.org/){:target="_blank"}  
+[*University of Southern California*](https://www.usc.edu/){:target="_blank"}  
 
 
-My current research efforts are focused primarily on: photoautotroph-heterotroph interactions of the nitrogen-fixing cyanobacterium *Trichodesmium erythraeum*; investigating molecular mechanisms potentially involved with regulating nitrogen-fixation in *Trichodesmium*; combining metagenomics and pangenomics to characterize the global distributions of *Synechococcus* spp.; assessing the microbial communities of aquaponics systems; and investigating microbial molecular evolution aboard the International Space Station 👽  
+My current research efforts are focused primarily on: photoautotroph-heterotroph interactions of the nitrogen-fixing cyanobacterium *Trichodesmium erythraeum*; combining metagenomics and pangenomics to characterize the global distributions of *Synechococcus* spp.; and investigating microbial molecular evolution aboard the International Space Station 👽  
 <br>
 
 ---
