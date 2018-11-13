@@ -11,8 +11,8 @@ permalink: /research/
 
 #### Bioinformatician exploring microbial ecology and evolution
 
-*Email:* Mike.Lee(AT)nasa.gov  
-*Phone:* 732-691-6402  
+*Email:*   Mike.Lee(AT)nasa(DOT)gov  
+*Phone:*   732-691-6402  
 {% include icon-twitter.html username=site.twitter_username %}  
 {% include _orcid.html %}  
 
@@ -24,8 +24,11 @@ permalink: /research/
 [*JCVI*](https://www.jcvi.org/){:target="_blank"}  
 [*University of Southern California*](https://www.usc.edu/){:target="_blank"}  
 
+**Research summary**  
+I use the tools of bioinformatics to look at microbial ecology and evolution in all kinds of cool systems. My current research efforts are focused primarily on: photoautotroph-heterotroph interactions of the nitrogen-fixing cyanobacterium *Trichodesmium erythraeum*; combining metagenomics and pangenomics to characterize the global distributions of *Synechococcus* spp.; and investigating microbial molecular evolution aboard the International Space Station 👽  
 
-My current research efforts are focused primarily on: photoautotroph-heterotroph interactions of the nitrogen-fixing cyanobacterium *Trichodesmium erythraeum*; combining metagenomics and pangenomics to characterize the global distributions of *Synechococcus* spp.; and investigating microbial molecular evolution aboard the International Space Station 👽  
+**CV**  
+[Lee_CV_9_2018.pdf](/research/Lee_CV_9_2018.pdf){:target="_blank"}  
 <br>
 
 ---
