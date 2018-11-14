@@ -28,7 +28,7 @@ permalink: /research/
 I use the tools of bioinformatics to look at microbial ecology and evolution in all kinds of cool systems. My current research efforts are focused primarily on: photoautotroph-heterotroph interactions of the nitrogen-fixing cyanobacterium *Trichodesmium erythraeum*; combining metagenomics and pangenomics to characterize the global distributions of *Synechococcus* spp.; and investigating microbial molecular evolution aboard the International Space Station 👽  
 
 **CV**  
-[Lee_CV_9_2018.pdf](/research/Lee_CV_9_2018.pdf){:target="_blank"}  
+[Lee_CV_11_2018.pdf](/research/Lee_CV_11_2018.pdf){:target="_blank"}  
 <br>
 
 ---
