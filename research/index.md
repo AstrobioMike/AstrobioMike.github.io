@@ -37,6 +37,12 @@ I use the tools of bioinformatics to look at microbial ecology and evolution in 
 
 ### Publications
 
+<div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1101/512491"></div>  
+
+**Lee, M.D.** (2019). [GToTree: a user-friendly workflow for phylogenomics](https://www.biorxiv.org/content/early/2019/01/06/512491){:target="_blank"}. Currently available as a *bioRxiv* preprint. Software lives [here](https://github.com/AstrobioMike/GToTree){:target="_blank"}; documentation lives [here](https://github.com/AstrobioMike/GToTree/wiki){:target="_blank"}.  
+[PDF download](/research/Lee_GToTree_2019_biorxiv_v3.pdf){:target="_blank"}
+
+
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1128/AEM.02026-17"></div>  
 
 **Lee, M.D.**, Webb, E.A., Walworth, N.G., Fu, F.-X., Held, N.A., Saito, M.A., and Hutchins, D.A. (2017). [Transcriptional activities of the microbial consortium living with the marine nitrogen-fixing cyanobacterium *Trichodesmium* reveal potential roles in community-level nitrogen cycling](https://doi.org/10.1128/AEM.02026-17){:target="_blank"}. *Applied and Environmental Microbiology*.  
