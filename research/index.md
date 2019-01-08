@@ -39,7 +39,7 @@ I use the tools of bioinformatics to look at microbial ecology and evolution in 
 
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1101/512491"></div>  
 
-**Lee, M.D.** (2019). [GToTree: a user-friendly workflow for phylogenomics](https://www.biorxiv.org/content/early/2019/01/06/512491){:target="_blank"}. Currently available as a *bioRxiv* preprint. Software lives [here](https://github.com/AstrobioMike/GToTree){:target="_blank"}; documentation lives [here](https://github.com/AstrobioMike/GToTree/wiki){:target="_blank"}.  
+**Lee, M.D.** (2019). [GToTree: a user-friendly workflow for phylogenomics](https://www.biorxiv.org/content/early/2019/01/06/512491){:target="_blank"}. Currently in review but available as a *bioRxiv* preprint. Software lives [here](https://github.com/AstrobioMike/GToTree){:target="_blank"}; documentation lives [here](https://github.com/AstrobioMike/GToTree/wiki){:target="_blank"}.  
 [PDF download](/research/Lee_GToTree_2019_biorxiv_v3.pdf){:target="_blank"}
 
 
