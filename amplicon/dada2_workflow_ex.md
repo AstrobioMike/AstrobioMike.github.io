@@ -303,7 +303,7 @@ The developers' [DADA2 tutorial](https://benjjneb.github.io/dada2/tutorial.html)
 getN <- function(x) sum(getUniques(x))
 
   # making a little table
-summary_tab <- data.frame(row.names=samples, dada2_input=filtered_out[,1], filtered=filtered_out[,2], dada_f=sapply(dada_forward, getN), dada_r=sapply(dada_reverse, getN), merged=sapply(merged_amplicons, getN), nonchim=rowSums(seqtab.nochim), total_perc_reads_lost=round(rowSums(seqtab.nochim)/filtered_out[,1]*100, 1))
+summary_tab <- data.frame(row.names=samples, dada2_input=filtered_out[,1], filtered=filtered_out[,2], dada_f=sapply(dada_forward, getN), dada_r=sapply(dada_reverse, getN), merged=sapply(merged_amplicons, getN), nonchim=rowSums(seqtab.nochim), final_perc_reads_retained=round(rowSums(seqtab.nochim)/filtered_out[,1]*100, 1))
 
 summary_tab
 #       dada2_input filtered dada_f dada_r merged nonchim total_perc_reads_lost
