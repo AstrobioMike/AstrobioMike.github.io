@@ -42,6 +42,10 @@ I use the tools of bioinformatics to look at microbial ecology and evolution in 
 **Lee, M.D.** (2019). [GToTree: a user-friendly workflow for phylogenomics](https://www.biorxiv.org/content/early/2019/01/06/512491){:target="_blank"}. Currently in review but available as a *bioRxiv* preprint. Software lives [here](https://github.com/AstrobioMike/GToTree){:target="_blank"}; documentation lives [here](https://github.com/AstrobioMike/GToTree/wiki){:target="_blank"}.  
 [PDF download](/research/Lee_GToTree_2019_biorxiv_v3.pdf){:target="_blank"}
 
+<div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1111/1462-2920.14552"></div>  
+
+**Lee, M.D.**, Ahlgren, N.A., Kling, J. D., Walworth, N.G., Rocap, G., Saito, M.A., Hutchins, D.A., and Webb, E.A. (2019). [Marine *Synechococcus* isolates representing globally abundant genomic lineages demonstrate a unique evolutionary path of genome reduction without a decrease in GC content](https://doi.org/10.1111/1462-2920.14552){:target="_blank"}. *Environmental Microbiology*.  
+**PDF download coming soon** 
 
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1128/AEM.02026-17"></div>  
 
