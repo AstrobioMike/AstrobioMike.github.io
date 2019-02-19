@@ -1,8 +1,8 @@
 ---
 layout: main
-title: Introduction to Bash
+title: Introduction to Bash (in Binder)
 categories: [bash, tutorial]
-permalink: /bash/bash_intro
+permalink: /bash/bash_intro_binder
 ---
 
 {% include _bash_intro_toc.html %}
@@ -16,6 +16,8 @@ permalink: /bash/bash_intro
 *  Intro to wildcards
 
 <br>
+
+# Important note!
 **Keep in mind, none of this is about memorization. It may seem counterintuitive, but the minute details aren't important. What matters is starting to build a mental framework of the foundational rules and concepts. That equips us to figure out the things we need to do, when we need to do them!** 
 
 <center>Here's a high-resolution timelapse of my ongoing journey:</center>
@@ -31,10 +33,10 @@ First, here are some terms that are often used semi-interchangeably.
 
 | Term     | What it is          |
 |:-------------:|------------------|
-| **`Unix`** | a family of operating systems |
-| **`command line`** | a text-based environment capable of taking input and providing output |
-| **`shell`** | our ambassador to the operating system; this translates between us and the computer |
+| **`command line`** | a text-based environment capable of taking input and providing output |  
+| **`Unix`** | a family of operating systems |  
 | **`bash`** | the most common programming language used at a Unix command-line |  
+| **`shell`** | our ambassador to the operating system; this translates between us and the computer |  
 
 <br>
 
@@ -53,38 +55,34 @@ First, here are some terms that are often used semi-interchangeably.
 ---
 <br>
 
-# Getting a bash environment
-Before we get started, we need a terminal to work in. In the context of the loose definitions laid out above, a terminal is the common term for a Unix-like command-line environment. 
+# Accessing our command-line environment
+Before we get started, we need a terminal to work in. For this page, I have created a "Binder" for us to work in. [Binder](https://mybinder.org/){:target="_blank"} is an incredible project with incredible people behind hit. I'm still very new to it, but the general idea is it makes it easier to setup and share specific working environments in support of open science. What this means for us here is that we can just click this little badge – [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/AstrobioMike/binder-bash-intro/master?urlpath=lab){:target="_blank"} – and it'll open the proper bash environment with all our needed example files in a web-browser ready to rock... how awesome is that?!? So yeah, click it already! 
 
-If you are working on a Mac or Linux computer, this is already taken care of for you. If you are working on a Windows computer, you will need to [set up a working command-line environment](/bash/#getting-a-bash-environment){:target="_blank"}.
+When that page finishes loading (it may take a couple minutes), you will see a screen like this (minus the blue arrows):
 
+<center><img src="{{ site.url }}/images/binder-app-launch.png"></center>
 <br>
 
----
+Now click the **folder icon** at the top-left (that the smaller blue arrow points to above) and then click the "**Terminal**" icon at the bottom, and we'll be in our appropriate command-line environment:
+
+<center><img src="{{ site.url }}/images/binder-terminal.png"></center>
 <br>
 
-# Practice data!
-For right now, and only for right now, I would like you to blindly copy and paste the following commands into your terminal window. This is so that we're all working in the same place with the same files. **I promise this will be the only time I ask you to do this.** At the end of this page, we'll revisit this and break it down :) 
+This is our "command line", where we will be typing all of our commands 🙂
 
-
-```
-cd ~
-curl -O https://AstrobioMike.github.io/tutorial_files/bash_intro.tar.gz
-tar -xzvf bash_intro.tar.gz
-rm bash_intro.tar.gz
-cd bash_intro
-```
-
+**Note:** If you want to get a bash environment of your own going on your computer, see [this page](/bash/getting_bash_env){:target="_blank"} for some help.  
 <br>
+
+<h2><b><center>Now, let's get started!</center></b></h2>
 
 ---
 <br>
 
 # Running commands
 
-The general syntax of a command is as follows: `command argument`. **Spaces are special!** The command line uses spaces to know how to properly break things apart. This is why it's not ideal to have filenames that contain spacesit's better to use underscores, `_` – e.g., "draft_v3.txt" is preferred over "draft v3.txt". 
+The general syntax working at the command line goes like this: `command argument`. **Spaces are special!** The command line uses spaces to know how to properly break things apart. This is why it's not ideal to have filenames that contain spaces, but rather it's better to use dashes, `-`, or underscores, `_` – e.g., "draft_v3.txt" is preferred over "draft v3.txt". 
 
-Arguments (also referred to as "flags" or "options") can be **optional** or **required** based on the command being used. 
+Arguments (can also be referred to as "flags" or "options") can be **optional** or **required** based on the command being used. Let's see what this looks like:
 
 `date` is a command that prints out the date and time. This particular command does not require any arguments:
 
@@ -107,22 +105,22 @@ date-u
 Some commands require arguments and won't work without them. `head` is a command that prints the first lines of a file, so it **requires** us to provide the file we want it to act on: 
 
 ```bash
-head text.txt
+head file_A.txt
 ```
 
-Here "text.txt" is the **required** argument, and in this case it is also what's known as a **positional** argument. This is because we aren't identifying what it is with a preceding flag or anything. We are just listing it after the command, and the `head` command knows what to do with it. But this depends on how the command was written. Sometimes you need to specify the input file to a command (e.g. some commands will use the `-i` flag, but it's often other things as well).
+Here "file\_A.txt" is the **required** argument, and in this case it is also what's known as a **positional** argument. This is because we aren't identifying what it is with a preceding flag or anything. We are just listing it after the command, and the `head` command knows what to do with it. But this depends on how the command was written. Sometimes you need to specify the input file to a command (e.g. some commands will use the `-i` flag, but it's often other things as well).
 
 If we ran `head` with no file to act on, it would get stuck. We know the terminal is still doing something (or trying to in this case) because our "prompt" hasn't returned. You can cancel an operation by pressing the "control" key and the "c" key simultaneously (`ctrl + c`). 
 
 There are also optional arguments for the `head` command. The default for `head` is to print the first 10 lines of a file. We can change that by specifying the `-n` flag, followed by how many lines we want:
 
 ```bash
-head -n 5 text.txt
+head -n 5 file_A.txt
 ```
 
-Note that when we provided the `-u` flag to the `date` command (to get the command to print UTC time instead of local), we didn't need to provide any arguments to that particular flag (it's just on/off). But with the `-n` flag to `head`, we are specifying the number of lines we want to print out, so we have to provide a number in this case.
+Note that when we provided the `-u` flag to the `date` command (to get the command to print UTC time instead of local), we didn't need to provide any arguments to that particular flag (it's just on or off). But with the `-n` flag to `head`, we are specifying the number of lines we want to print out, so we have to provide a number in this case.
 
-> This is the framework for how all things work at the command line! Multiple commands can be strung together, and some commands can have many options, inputs, and outputs and can grow to be quite long, but this general framework is underlying it all. **Becoming familiar with the baseline rules is important, memorizing particular commands and options is not!**
+> This is the framework for how all things work at the command line! Multiple commands can be strung together, and some commands can have many options, inputs, and outputs and can grow to be quite long, but this general framework is underlying it all. **Becoming familiar with these baseline rules is important, memorizing particular commands and options is not!**
 
 <br>
 
@@ -139,7 +137,7 @@ Here is an image of an example file-system structure:
 
 
 <br>
-There are two special locations in all Unix-based systems: the "**root**" location and the "**home**" location. "Root" is where the address system of the computer starts; "home" is where the current user's location starts.
+There are two special locations in all Unix-based systems: the "**root**" location and the current user's "**home**" location. "Root" is where the address system of the computer starts; "home" is where the current user's location starts.
 
 We tell the command line where files and directories are located by providing their address, their "path". If we use the `pwd` command, we can find out what the path is for the directory we are sitting in. Whatever directory we are currently sitting in is called the "current working directory". And if we use the `ls` command, we can see what directories and files are in the current directory we are sitting in.
 
@@ -157,29 +155,31 @@ There are two ways to specify the path of the file we want to do something to: t
 For example, let's look again at the `head` command we ran above:
 
 ```bash
-head text.txt
+head file_A.txt
 ```
 
-What we are actually doing here is using a **relative path** to specify where the "text.txt" file is located. This is because the command line automatically looks in the current working directory for a file or directory if you don't specify anything else about it's location. (Note: The address of a file, it's "path", includes the file name also, it doesn't stop at the folder that holds it.)
+What we are actually doing here is using a **relative path** to specify where the "file\_A.txt" file is located. This is because the command line automatically looks in the current working directory for a file or directory if you don't specify anything else about it's location. (**Note:** The address of a file, it's "path", *includes the file name also*, it doesn't stop at the folder that holds it.)
 
 We can also run the same command on the same file using the **absolute path**. Here is doing so starting from the "home" `~/` location. 
 
 ```bash
-head ~/bash_intro/text.txt
+head ~/bash_intro/file_A.txt
 ```
 
-> **Quick Practice**  
-> Use `pwd` again to see the full path of your current working directory, and then try running the `head` command on the "text.txt" file by specifing the full path.
-
-
-It is important to be comfortable thinking about where you are in your computer when working at the command line. One of the most common errors/easiest mistakes to make is trying to do something to a file that isn't where you think it is. Let's run `head` on the "text.txt" file again, and then let's try it on another file: "yet\_another\_text\_file.txt":
+And, for the sake of completeness, we can also run the same command on the same file using the **full path**, which starts from the "root" `/` location:
 
 ```bash
-head text.txt
-head yet_another_text_file.txt
+head /home/jovyan/bash_intro/file_A.txt
 ```
 
-Here the `head` command works fine on "text.txt", but we get an error message when we call it on "yet\_another\_text\_file.txt" telling us no such file or directory. If we run the `ls` command to list the contents of the current working directory, we can see the computer is absolutely right – spoiler alert: it usually is – and there is no file here named "yet\_another\_text\_file.txt". 
+These three ways all point to the same file. It is important to be comfortable thinking about *where* you are in your computer when working at the command line. One of the most common errors/easiest mistakes to make is trying to do something to a file that isn't where you think it is. Let's run `head` on the "file\_A.txt" file again, and then let's try it on another file: "file\_E.txt":
+
+```bash
+head file_A.txt
+head file_E.txt
+```
+
+Here the `head` command works fine on "file\_A.txt", but we get an error message when we call it on "file\_E.txt" telling us no such file or directory. If we run the `ls` command to list the contents of the current working directory, we can see the computer is absolutely right – spoiler alert: it usually is – and there is no file here named "file\_E.txt". 
 
 The `ls` command by default operates on the current working directory if we don't specify any location, but we can tell it to list the contents of a specific directory by providing it as a positional argument: 
 
@@ -187,10 +187,10 @@ The `ls` command by default operates on the current working directory if we don'
 ls another_directory
 ```
 
-We can see the file we were looking for is located in the "subdirectory" called "another\_directory". Here is how we can run `head` on "yet\_another\_text\_file.txt" by specifying the **relative path**:
+We can see the file we were looking for is located in the "subdirectory" called "another\_directory". Here is how we can run `head` on "file\_E.txt" by specifying the **relative path**:
 
 ```bash
-head another_directory/yet_another_text_file.txt
+head another_directory/file_E.txt
 ```
 
 If we had been using **tab-completion**, we would not have made that mistake.
@@ -201,7 +201,7 @@ Tab-completion is a huge time-saver, but even more importantly it is a perpetual
 If we are trying to point to a file or directory that's in our current working directory, we can begin typing the file or directory name and then press `tab` to complete it. If there is only one possible way to finish what we've started typing, it will complete it for us. If there is more than one possible way to finish what we've started typing, it will complete as far as it can, and then hitting `tab` twice will show the possible options. And most importantly, if tab-complete does not do either of those things, then we are either confused about where we are, or we're confused about where the file or directory is that we're trying to do something to – this is invaluable.
 
 > **Quick Practice**  
-> Try out tab-complete! Run `ls` first to see what's in our current working directory again. Then type `head te` and then press `tab`. Since "text.txt" is the only possibility, that finishes for us and we can now press `enter` to run our command. Now try `head ano` and press `tab`. This should finish up to "another_" but then stop. This is because there isn't just one unique way to finish what we've provided. If you quickly press `tab` twice, it will show the possibilities. If we add a `t`, so `head another_t` and press `tab` again, now it will complete up to the extension. Add another `t` and press `tab` and it will finish completely for us. 
+> Try out tab-complete! Run `ls` first to see what's in our current working directory again. Then type `head fi` and then press `tab`. This will auto-complete out as far as it can, which in this case is up to "file\_", because there are multiple possibilities still at that point. If we press `tab` twice here, it will print out all of the possibilities for us. And if we enter "A" and press `tab` again, it will finish completing "file\_A.txt" as that is the only remaining possibility, and we can now press `enter` to run our command. 
 
 <center><b>Use tab-completion whenever you can!!</b></center>
 <br>
@@ -213,13 +213,13 @@ We can also move into the directory containing the file we want to work with by 
 cd another_directory/
 pwd
 ls
-head yet_another_text_file.txt
+head file_E.txt
 ```
 
-Great. But now how do we get back 'up' to the directory above us? One way would be to provide an absolute path, like `cd ~/bash_intro/`, but there is also a handy shortcut. `../` is a relative path that specifies "up" one level – one directory – from wherever we currently are. So we can provide that as the positional argument to `cd` to get back to where we started, and then double check with `pwd` to show where we are and `ls` to list what's here:
+Great. But now how do we get back 'up' to the directory above us? One way would be to provide an absolute path, like `cd ~/bash_intro/`, but there is also a handy shortcut. `..` is a relative path that specifies "up" one level – one directory – from wherever we currently are. So we can provide that as the positional argument to `cd` to get back to where we started, and then double check with `pwd` to show where we are and `ls` to list what's here:
 
 ```
-cd ../
+cd ..
 pwd
 ls
 ```
@@ -272,44 +272,44 @@ Try to get used to regularly thinking about "where" you are in the computer when
 <br>
 
 # Working with plain-text files and directories
-The most common command line tools are mostly only useful for operating on what are known as **plain-text files** – also referred to as "flat files". There are a few definitions you can check out at the [wiki](https://en.wikipedia.org/wiki/Plain_text){:target="_blank"} if you'd like, but a good-enough working definition of what a plain-text file is might be something like: a text file that doesn't contain any special formatting characters or information, and that can be properly viewed and edited with any standard text editor. 
+The most common command-line tools are mostly only useful for operating on what are known as **plain-text files** – also referred to as "flat files". There are a few definitions you can check out at the [wiki](https://en.wikipedia.org/wiki/Plain_text){:target="_blank"} if you'd like, but a good-enough working definition of what a plain-text file is might be something like: a text file that doesn't contain any special formatting characters or information, and that can be properly viewed and edited with any standard text editor. 
 
 Common types of flat-text files are those ending with extensions like ".txt", ".tsv" for **t**ab-**s**eparated **v**alues, or ".csv" for **c**omma **s**eparated **v**alues. Some examples of common file types that are *not* flat-text files would be ".docx", ".pdf", or ".xlsx". This is because those types contain special types of compression and formatting information that are only interpretable by the programs that work with them.
 
 > **Note on file extensions**  
-> File extensions do not actually do anything to the file format. They are *mostly* there just for our convenience/organization – "mostly" because some programs require a specific extension to be present for it to interact with a file. 
+> File extensions do not actually do anything to the file format. They are *mostly* there just for our convenience/organization – "mostly" because some programs require a specific extension to be present for them to even try interacting with a file. 
 > 
-> The command `file` will tell you what type of file something is. Run `file excel_file.xlsx` and then `file another_text_file.xlsx`. The "excel\_file.xlsx" is actually an Excel file and has all kinds of special formatting for Excel that only makes sense to Excel. But "another\_text\_file.xlsx" is just a plain-text file that happens to have the extention ".xlsx". Try running `head` on each of these files.  
+> The command `file` will tell you what type of file something is. Run `file file_D.xlsx` and then `file file_C.xlsx`. The "file\_D.xlsx" is actually an Excel file and has all kinds of special formatting for Excel that only makes sense to Excel. But "file\_C.xlsx" is just a plain-text file that happens to have the extention ".xlsx". Try running `head` on each of these files.  
 
 <br>
 ## Ways to probe plain-text files
 We've already used a very common tool for peeking at files, the `head` command. There is also `tail`, which prints the last 10 lines of a file by default:
 
 ```
-head text.txt
-tail text.txt
+head file_A.txt
+tail file_A.txt
 ```
 
 Commands like `head` and `tail` are useful when you are working at the command line and you want to get an idea about the structure of a file. This is especially helpful if a file is particularly large, as `head` will just print the first ten lines and stop. This means it will be just as instantaneous whether the file is 10KB or 10GB. 
 
-Another useful command for just viewing a file is `less`. This opens a searchable read-only program that allows you to scroll through the document: 
+Another useful command for just viewing a file is `less`. This opens a searchable, read-only program that allows you to scroll through the document: 
 
 ```bash
-less text.txt
+less file_A.txt
 ```
 
-To exit the `less` program you need to press the "q" key. 
+To exit the `less` program you need to press the "**q**" key. 
 
 The `wc` command is useful for counting how many lines, words, and characters there are in a file: 
 
 ```bash
-wc text.txt
+wc file_A.txt
 ```
 
 Adding the optional flag `-l` will print just how many lines are in a file: 
 
 ```bash
-wc -l text.txt
+wc -l file_A.txt
 ```
 
 <br>
@@ -323,56 +323,56 @@ wc -l text.txt
 
 The commands `cp` and `mv` (**c**o**p**y and **m**o**v**e) have the same basic structure. They both require two positional arguments – the first is the file you want to act on, and the second is where you want it to go (this includes the name you want to give it). 
 
-To see how this works, let's make a copy of the "text.txt" file:
+To see how this works, let's make a copy of the "file\_A.txt" file:
 
 ```
 ls
-cp text.txt text_copy.txt
+cp file_A.txt file_A_copy.txt
 ls
 ```
 
-Remember we are actually providing a *relative path* when we provide the file names here. So to make make a copy of the "text.txt" file and put it somewhere else, like in our subdirectory "another\_directory", we would change the second positional argument:
+Remember we are actually providing a *relative path* when we provide the file names here. So to make make a copy of "file\_A.txt" and put it somewhere else, like in our subdirectory "another\_directory", we would change the second positional argument:
 
 ```
 ls another_directory/
-cp text.txt another_directory/text_copy.txt
+cp file_A.txt another_directory/file_A_copy.txt
 ls another_directory/
 ```
 
-If we want to copy something from somewhere else to our current working directory, we can use another special character, a period – `.`. The period specifies the current working directory – just like `../` specifies one directory above us.
+If we want to copy something from somewhere else *to our current working directory*, we can use another special character, a period – `.`. The period specifies the current working directory – just like `..` specifies one directory above us.
 
 ```
 ls
-cp another_directory/yet_another_text_file.txt .
+cp another_directory/file_E.txt .
 ls
 ```
 
 And now we have a copy of that file in our current working directory. 
 
-Notice that in the first `cp` example we provided a new name in the target location, ("text_copy.txt"), but here when we used `.` to specify copying to the current working directory it simply copied the file with the same name as the original. This would be a time when an accidental overwrite could occur. 
+Notice that in the first `cp` example we provided a new name in the target location, ("file\_A\_copy.txt"), but here when we used `.` to specify copying to the current working directory it simply copied the file with the same name as the original. *If that file name already existed in this directory, it would be overwritten*. 
 
-The `mv` command is used to move files **and** to rename them if wanted. Remember that the path of a file actually includes its name. Here we will move a file from our current working directory into our subdirectory. At the moment our current working directory and our subdirectory contain these files:  
+The `mv` command is used to move files **and** to rename them if wanted. Remember that the *path* (address/location) of a file actually includes its name. Here we will move a file from our current working directory into our subdirectory. At the moment our current working directory and our subdirectory contain these files:  
 
 ```
 ls
 ls another_directory/
 ```
 
-Let's move "another\_text\_file.xlsx" into the subdirectory:
+Let's move "file\_C.xlsx" into the subdirectory:
 
 ```
-mv another_text_file.xlsx another_directory/
+mv file_C.xlsx another_directory/
 ls
 ls another_directory/
 ```
 
-Notice that we didn't provide a file name for the second positional argument of the `mv` command (where we were sending it). Just like when we used `cp` to copy a file to our current working directory with `.` above, this keeps the name of the original file.  
+Notice that we didn't provide a file name for the second positional argument of the `mv` command (where we were sending it). Just like when we used `cp` to copy a file to our current working directory with `.` above, this keeps the name of the original file if you don't specify anything.  
 
-Remember that "another\_text\_file.xlsx" was actually a text file and not a ".xlsx". Let's rename it so that it has a ".txt" extension:
+Remember that "file\_C.xlsx" was actually a text file and not an Excel file, check it with `file another_directory/file_C.xlsx`. Let's rename it so that it has a ".txt" extension:
 
 ```
 ls another_directory/
-mv another_directory/another_text_file.xlsx another_directory/another_text_file.txt
+mv another_directory/file_C.xlsx another_directory/file_C.txt
 ls another_directory/
 ```
 
@@ -381,34 +381,34 @@ Notice here that we did this from a different directory using a relative path to
 Now we'll see an example of how easy it can be to accidentally overwrite a file:
 
 ```
-head text.txt
-tail text.txt
-wc -l text.txt
+head file_A.txt
+tail file_A.txt
+wc -l file_A.txt
 
-head another_directory/yet_another_text_file.txt
-wc -l another_directory/yet_another_text_file.txt
+head another_directory/file_E.txt
+wc -l another_directory/file_E.txt
 ```
 
 ```
-cp another_directory/yet_another_text_file.txt text.txt
+cp another_directory/file_E.txt file_A.txt
 ```
 
 ```
-head text.txt
-tail text.txt
-wc -l text.txt
+head file_A.txt
+tail file_A.txt
+wc -l file_A.txt
 
-head another_directory/yet_another_text_file.txt
-wc -l another_directory/yet_another_text_file.txt
+head another_directory/file_E.txt
+wc -l another_directory/file_E.txt
 ```
 
-And our original "text.txt" file is gone forever 😬
+And our original "file\_A.txt" file would be gone forever 😬 if we hadn't made a copy of it earlier. 
 
 To delete files (intentionally) there is the `rm` command (**r**e**m**ove). This requires at least one argument specifying the file you want to delete. But again, caution is warranted. There will be no confirmation or retrieval from a waste bin afterwards.
 
 ```
 ls
-rm text.txt
+rm file_A.txt
 ls
 ```
 
@@ -442,6 +442,12 @@ When we run the command `nano` it will open a text editor in our terminal window
 ```bash
 nano sample_names.txt
 ```
+
+And when we press `enter`, this is what our environment changes to:
+
+<center><img src="{{ site.url }}/images/binder-nano.png"></center>
+<br>
+
 
 Now we can type as usual. Afterwards, to save the file and exit we need to use some of the keyboard shortcuts listed on the bottom. "Write Out" will save our file, and the `^O` represents hitting `ctrl + o` (doesn't need to be a capital "O"). This will ask you to either enter or confirm the file name, we can just press `enter`. Then to exit we can press `ctrl + x`. And now our new file is in our current working directory:
 
@@ -525,7 +531,7 @@ ls >> directory_contents.txt
 head directory_contents.txt
 ```
 
-Okay, so far that isn't all that impressive. But this basic, "modular" structure really is what makes the Unix command-line rock. There are more practical uses/examples on the [six glorious commands](/bash/six_commands) and [why is this all worth it?](/bash/why) pages – which we could possibly do later as a group or you can do anytime you'd like.
+Okay, so far that isn't all that impressive. But this basic, modular structure really is what makes the Unix command-line rock. There is one more topic we need to cover before starting to look at some more "real-life" examples, and that is **wild cards**. 
 
 <br>
 
@@ -608,26 +614,9 @@ ls sample_1?.log
 ---
 <br>
 <h1>Congrats on getting through the basics!</h1>
+While the commands change, the general structure of how to operate at the command line stays the same. There are a lot of base commands in *bash*, and a dizzying number of optional arguments for most of them – as usual, google is our friend. If you end up working at the command line frequently, you will remember some things, but also you will often do a quick search to remember what the flag is for a specific argument, or how exactly a specific command works. Again, this really isn't about memorization.
 
-Let's look back at the set of commands we ran at the beginning:
-
-```
-cd ~
-curl -O https://AstrobioMike.github.io/tutorial_files/bash_intro.tar.gz
-tar -xzvf bash_intro.tar.gz
-rm bash_intro.tar.gz
-cd bash_intro
-```
-
-> **Code breakdown**  
-> * **`cd ~`** – this changed us to our "home" directory to make sure everyone was starting in the same location  
-> * **`curl`** – this is a command to download files from the internet; the `-O` flag says to keep the same name as the source file; and the link is a positional argument
-> * **`tar`** – this is a tool for packing and unpacking directories; the `-x` flag unpacks the files; the `-z` flag unzips the files; `-v` is for **v**erbose, so it prints out information as it goes; and `-f` is to specify the file name
-> Now that we have a new directory with our practice data, we can delete the compressed file with `rm` and move into our practice directory with `cd`
-
-As you can see here, while the commands change, the general structure of how to operate at the command line stays the same. There are a lot of base commands in *bash*, and a dizzying number of optional arguments for most of them – google is our friend, and `man` will open a manual for many commands in the terminal window. If you end up working at the command line frequently, you will remember some things, but also you will often do a quick search to remember what the flag is for a specific argument, or how exactly a specific command works. Again, this really isn't about memorization.
-
-As mentioned, you can dig into some extremely useful commands on the [6 glorious commands page](/bash/six_commands), and see some more complicated examples in the [why is this all worth it?](/bash/why) page.
+You can dig into some extremely useful commands on the [6 glorious commands page](/bash/six_commands), and see some more complicated examples in the [why is this all worth it?](/bash/why) page.
 
 <br>
 
@@ -676,7 +665,7 @@ As mentioned, you can dig into some extremely useful commands on the [6 glorious
 |:----------:|------------------|
 | **`/`** | the computer's root location |
 | **`~/`** | the user's home location |
-| **`../`** |specifies a directory one level "above" the current working directory|
+| **`..`** |specifies a directory one level "above" the current working directory|
 | **`.`** |specifies the current working directory|
 |**`|`**      | a "pipe" allows stringing together multiple commands |
 |**`>`**      |sends output to a file (**overwrites** target file)|
