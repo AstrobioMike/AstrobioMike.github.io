@@ -213,8 +213,8 @@ Occasionaly you will run into a case where packages don't successfully install v
 
 ```R
 source("https://bioconductor.org/biocLite.R")
-biocLite("phyloseq")
-biocLite("DESeq2")
+BiocManager::install("phyloseq")
+BiocManager::install("DESeq2")
 
 	# and here is an example using devtools:
 install.packages("devtools")
@@ -235,7 +235,18 @@ library("viridis")
 library("reshape")
 ```
 
-If you have a problem loading any of these libraries, close and then restart R and try loading the library again. If still no luck, try installing the package again and loading the library. 9 times out of 10, restarting R will solve the problem, so hopefully you're not special :) 
+If you have a problem loading any of these libraries, close and then restart R and try loading the library again. If still no luck, try installing the package again and loading the library. 9 times out of 10, restarting R will solve the problem. Here are the versions used last time this page was updated:
+
+```R
+packageVersion("phyloseq") # 1.26.1
+packageVersion("vegan") # 2.5.4
+packageVersion("DESeq2") # 1.22.2
+packageVersion("ggplot2") # 3.1.0
+packageVersion("dendextend") # 1.9.0
+packageVersion("tidyr") # 0.8.3
+packageVersion("viridis") # 0.5.1
+packageVersion("reshape") # 0.8.8
+```
 
  
 ## Reading in our data
@@ -433,28 +444,35 @@ Let's make a summary of all major taxa proportions across all samples, then summ
   # for now let's just generate a table of proportions of each phylum, and breakdown the Proteobacteria to classes
 
 phyla_counts_tab <- otu_table(tax_glom(ASV_physeq, taxrank="Phylum")) # using phyloseq to make a count table that has summed all ASVs that were in the same phylum
-phyla_tax_vec <- data.frame(tax_table(tax_glom(ASV_physeq, taxrank="Phylum")))$Phylum # making a vector of phyla names to set as row names
+phyla_tax_vec <- as.vector(tax_table(tax_glom(ASV_physeq, taxrank="Phylum"))[,2]) # making a vector of phyla names to set as row names
+
 rownames(phyla_counts_tab) <- as.vector(phyla_tax_vec)
 
   # we also have to account for sequences that weren't assigned any taxonomy even at the phylum level 
   # these came into R as 'NAs' in the taxonomy table, but their counts are still in the count table
   # so we can get that value for each sample by substracting the column sums of this new table (that has everything that had a phylum assigned to it) from the column sums of the starting count table (that has all representative sequences)
-unannotated_tax_counts <- colSums(filt_count_tab) - colSums(phyla_counts_tab)
+unclassified_tax_counts <- colSums(filt_count_tab) - colSums(phyla_counts_tab)
   # and we'll add this row to our phylum count table:
-phyla_and_unidentified_counts_tab <- rbind(phyla_counts_tab, "Unannotated"=unannotated_tax_counts)
+phyla_and_unidentified_counts_tab <- rbind(phyla_counts_tab, "Unclassified"=unclassified_tax_counts)
 
   # now we'll remove the Proteobacteria, so we can next add them back in broken down by class
 temp_major_taxa_counts_tab <- phyla_and_unidentified_counts_tab[!row.names(phyla_and_unidentified_counts_tab) %in% "Proteobacteria", ]
 
 class_counts_tab <- otu_table(tax_glom(ASV_physeq, taxrank="Class")) # making count table broken down by class (contains classes beyond the Proteobacteria too at this point)
-class_tax_tab <- data.frame(tax_table(tax_glom(ASV_physeq, taxrank="Class"))) # getting a table of these class names
-proteo_classes_vec <- as.vector(class_tax_tab$Class[class_tax_tab$Phylum == "Proteobacteria"]) # making a vector of just the Proteobacteria classes
+
+class_tax_phy_tab <- tax_table(tax_glom(ASV_physeq, taxrank="Class")) # making a table that holds the phylum and class level info
+phy_tmp_vec <- class_tax_phy_tab[,2]
+class_tmp_vec <- class_tax_phy_tab[,3]
+rows_tmp <- row.names(class_tax_phy_tab)
+class_tax_tab <- data.frame("Phylum"=phy_tmp_vec, "Class"=class_tmp_vec, row.names = rows_tmp)
+proteo_classes_vec <- as.vector(class_tax_tab[class_tax_tab$Phylum == "Proteobacteria", "Class"]) # making a vector of just the Proteobacteria classes
+
 
 rownames(class_counts_tab) <- as.vector(class_tax_tab$Class) # changing the row names like above so that they correspond to the taxonomy, rather than an ASV identifier
-proteo_class_counts_tab <- class_counts_tab[row.names(class_counts_tab) %in% proteo_classes_vec, ]
+proteo_class_counts_tab <- class_counts_tab[row.names(class_counts_tab) %in% proteo_classes_vec, ] # making a table of the counts of the Proteobacterial classes
 
   # there are also likely some some sequences that were resolved to the level of Proteobacteria, but not any further, and therefore would be missing from our class table
-  # we can find the sum of them by subtracting the proteo clas count table from just the Proteobacteria row from the original phylum-level count table
+  # we can find the sum of them by subtracting the proteo class count table from just the Proteobacteria row from the original phylum-level count table
 proteo_no_class_annotated_counts <- phyla_and_unidentified_counts_tab[row.names(phyla_and_unidentified_counts_tab) %in% "Proteobacteria", ] - colSums(proteo_class_counts_tab)
 
   # now combining the tables:
@@ -486,10 +504,10 @@ Now that we have a nice proportions table ready to go, we can make some figures 
 ```R
   # first let's make a copy of our table that's safe for manipulating
 filt_major_taxa_proportions_tab_for_plot <- filt_major_taxa_proportions_tab
-  # and add a column of the taxa names so that it is within the table, rather than just as row names
+  # and add a column of the taxa names so that it is within the table, rather than just as row names (this makes working with ggplot easier)
 filt_major_taxa_proportions_tab_for_plot$Major_Taxa <- row.names(filt_major_taxa_proportions_tab_for_plot)
 
-  # now we'll transform the table into narrow, or long, format
+  # now we'll transform the table into narrow, or long, format (also makes plotting easier)
 filt_major_taxa_proportions_tab_for_plot.g <- gather(filt_major_taxa_proportions_tab_for_plot, Sample, Proportion, -Major_Taxa)
   
   # take a look at the new table and compare it with the old one
@@ -620,8 +638,8 @@ As we saw earlier, we have some information about our samples in our sample info
 
 ```R
 anova(betadisper(euc_dist, filt_sample_info_tab$type)) # 0.006
-  # looking by sample type, we get a significant result, this tells us that there is a difference between group dispersion
-  # this means that we can't trust the results of an adonis (permutational anova) test on this, because the assumption of homogenous within-group disperion is not met
+  # looking by sample type, we get a significant result, this tells us that there is a difference between group dispersions
+  # this means that we can't trust the results of an adonis (permutational anova) test on this, because the assumption of homogenous within-group disperions is not met
   # this isn't all that surprising considering how different the water and biofilm samples are from the rocks 
   # what's more interesting is "Do the rocks differ based on their level of exterior alteration?"
   # so let's try this just looking at just the basalt rocks, based on their characteristics of glassy and altered
@@ -637,7 +655,7 @@ basalt_sample_info_tab <- filt_sample_info_tab[row.names(filt_sample_info_tab) %
 
   # running betadisper on just these based on level of alteration as shown in the images above:
 anova(betadisper(basalt_euc_dist, basalt_sample_info_tab$char)) # 0.17
-  # and now we get a result that doesn't find a significant difference in the dispersion of the two groups we're considering, the glassy vs more highly altered basalts
+  # and now we get a result that doesn't find a significant difference between the dispersions of the two groups we're considering, the glassy vs more highly altered basalts
   # so we can now test if the groups host different communities with adonis, having met this assumption
 adonis(basalt_euc_dist~basalt_sample_info_tab$char) # 0.005
   # and with a significance level of 0.005, this gives us our first statistical evidence that there is actually a difference in microbial communities hosted by the more highly altered basalts as compared to the glassier less altered basalts, pretty cool!
@@ -716,10 +734,10 @@ sigtab_deseq_altered_vs_glassy_with_tax <- cbind(as(sigtab_res_deseq_altered_vs_
   # and now let's sort that table by the baseMean column
 sigtab_deseq_altered_vs_glassy_with_tax[order(sigtab_deseq_altered_vs_glassy_with_tax$baseMean, decreasing=T), ]
 
-  # it will likely not be the same for yours, but for me this puts ASV_2 at the top, which is identified as a Nitrospira that was in 4-fold greater abundance in the glassy basalts than in the more highly altered basalts (log2FoldChange = -2.383517)
+  # this puts a Nitrospira at the top that was in 4-fold greater abundance in the glassy basalts than in the more highly altered basalts (log2FoldChange = -2.383517)
 ```
 
-If you glance through the taxonomy of our significant table here, you'll see a lot have the same designations. It's possible this is one of those cases where the single-nucleotide resolution approach more inhibits your cause than helps it. You can imagine that with organisms having multiple copies of the 16S rRNA gene, that aren't necessarily identical, this could be muddying what you're looking for here by splitting the signal up and weaking it. Another way to look at this would be to sum the ASVs by the same genus designations, or to go back and cluster them into some form of OTU – in which case you'd still be using the ASV units, but then clustering them at some arbitrary level to see if that reveals anything intersting.
+If you glance through the taxonomy of our significant table here, you'll see a lot have the same designations. It's possible this is one of those cases where the single-nucleotide resolution approach more inhibits your cause than helps it. You can imagine that with organisms having multiple copies of the 16S rRNA gene, that aren't necessarily identical, this could be muddying what you're looking for here by splitting the signal up and weaking it. Another way to look at this would be to sum the ASVs by the same genus designations, or to go back and cluster them into some form of OTU (after identifying ASVs)– in which case you'd still be using the ASV units, but then clustering them at some arbitrary level to see if that level of resolution is more revealing for the system you're looking at. 
 <br>
 <br>
 
