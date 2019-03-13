@@ -27,7 +27,7 @@ Keep in mind here that just as was the case with the [usearch/vsearch example wo
 <br>
 
 # Tools used here
-So here we'll be using [DADA2](https://benjjneb.github.io/dada2/index.html){:target="_blank"} as our main processing tool. Additionally we'll be using [Brian Bushnell's](https://twitter.com/BBToolsBio){:target="_blank"} very handy [bbtools](https://jgi.doe.gov/data-and-tools/bbtools/){:target="_blank"}, specifically [bbduk](https://jgi.doe.gov/data-and-tools/bbtools/bb-tools-user-guide/bbduk-guide/){:target="_blank"}, to remove our primers. DADA2 is available as an [R](https://www.r-project.org/){:target="_blank"} package, with installation instructions provided by the developers [here](https://benjjneb.github.io/dada2/dada-installation.html){:target="_blank"}. If your experience is like mine, it shouldn't give you any trouble if installing on your computer, but you may run into some issues when trying to install on a server where you don't have authorization to do whatever you'd like (a huge thanks to [@phantomBugs](https://twitter.com/phantomBugs){:target="_blank"} for all his help when I was bugging him about that 🙂). If you'd like to use [bbtools](https://jgi.doe.gov/data-and-tools/bbtools/){:target="_blank"}, you can find installation instructions for it from the developers [here](https://jgi.doe.gov/data-and-tools/bbtools/bb-tools-user-guide/installation-guide/) and another example installation [here](/bash/installing_tools#bbtools){:target="_blank"}.
+So here we'll be using [DADA2](https://benjjneb.github.io/dada2/index.html){:target="_blank"} as our main processing tool. Additionally we'll be using [cutadapt](https://cutadapt.readthedocs.io/en/stable/index.html){:target="_blank"} to remove our primers. DADA2 is available as an [R](https://www.r-project.org/){:target="_blank"} package, with installation instructions provided by the developers [here](https://benjjneb.github.io/dada2/dada-installation.html){:target="_blank"}. If your experience is like mine, it shouldn't give you any trouble if installing on your computer, but you may run into some issues when trying to install on a server where you don't have authorization to do whatever you'd like (a huge thanks to [@phantomBugs](https://twitter.com/phantomBugs){:target="_blank"} for all his help when I was bugging him about that 🙂). If you'd like to use [cutadapt](https://cutadapt.readthedocs.io/en/stable/index.html){:target="_blank"}, you can find installation instructions for it from the developers [here](https://cutadapt.readthedocs.io/en/stable/installation.html){:target="_blank"}.
  
 And since dada2 is an R package, you also of course need to have a working installation of R on your computer. If you'd like more info on this, check out the [R basics](/R/basics){:target="_blank"} section before moving forward. 
 <br>
@@ -62,11 +62,11 @@ Now, let's get started!
 <br>
 
 # Processing overview
-It's good to try to keep a bird's-eye view of what's going on. So here is an overview of the main processing steps we'll be performing with [bbtools](https://jgi.doe.gov/data-and-tools/bbtools/){:target="_blank"} and [DADA2](https://benjjneb.github.io/dada2/index.html){:target="_blank"}. Don't worry if anything seems unclear right now, we will discuss each at each step.
+It's good to try to keep a bird's-eye view of what's going on. So here is an overview of the main processing steps we'll be performing with [cutadapt](https://cutadapt.readthedocs.io/en/stable/index.html){:target="_blank"} and [DADA2](https://benjjneb.github.io/dada2/index.html){:target="_blank"}. Don't worry if anything seems unclear right now, we will discuss each at each step.
 
 ||Command|What we're doing|
 |:--:|:--------:|----------|
-|1|`bbduk.sh`/`filterAndTrim()`|remove primers and quality trim/filter|
+|1|`cutadapt`/`filterAndTrim()`|remove primers and quality trim/filter|
 |2|`learnErrors()`|generate an error model of our data|
 |3|`derepFastq`|dereplicate sequences|
 |4|`dada()`|infer ASVs on both forward and reverse reads independently|
@@ -86,41 +86,116 @@ ls *_R1.fq | cut -f1 -d "_" > samples
 If you're not comfortable with that line, consider running through the [bash basics](/bash/basics){:target="_blank"} and/or [six glorious commands](/bash/six_commands){:target="_blank"} pages before going further here 🙂  
 
 # Removing primers
-To start, we need to remove the primers from all of these (the primers used for this run are in the "primers.fa" file in our working directory), and here we're going to use [bbduk](https://jgi.doe.gov/data-and-tools/bbtools/bb-tools-user-guide/bbduk-guide/){:target="_blank"} to do that, but we'll need to run it on each sample individually. So we're going to use a wonderful little bash loop to do that.  
+To start, we need to remove the primers from all of these (the primers used for this run are in the "primers.fa" file in our working directory), and here we're going to use [cutadapt](https://cutadapt.readthedocs.io/en/stable/index.html){:target="_blank"} to do that, but we would need to run it on each sample individually. So instead we're going to use a wonderful little bash loop to do that.  
 
-First, here's what the command would look like on an individual sample: 
-
-```bash
-bbduk.sh in=B1_sub_R1.fq in2=B1_sub_R2.fq \
-out=B1_sub_R1_trimmed.fq.gz out2=B1_sub_R2_trimmed.fq.gz \
-literal=GTGCCAGCMGCCGCGGTAA,GGACTACHVGGGTWTCTAAT k=10 ordered=t mink=2 \
-ktrim=l rcomp=f minlength=220 maxlength=280 tbo tpe
-```
-
-There's a lot of info about bbduk at the [guide](https://jgi.doe.gov/data-and-tools/bbtools/bb-tools-user-guide/bbduk-guide/) for it, and it has an extensive help menu you can access by running it with no arguments, `bbduk.sh`, but here's what we've specified above. The in/out in2/out2 are for the forward and reverse reads. We've provided the forward and reverse primers to the `literal` flag, this will create all of the versions of these primers that are represented by the degenerate bases (e.g. M,V, etc.) and search for all possibilities. `k=10` is setting the kmer size we want to search for – the default is 23 for the version I was using ("Last modified April 12, 2018"), but our primers are 19 and 21 bps long, so we need to use a smaller word size. `ordered=t` just keeps the reads in the same order as we gave them to the program. `mink=2` specifies the smallest word size it will check against either edge of a read. `ktrim=l` tells the program to trim everything to the left of the identified primers. `rcomp=f` states *not* to look for the reverse complement – since the reads (300 bps) are longer than the targeted fragment (~290 bps) in this case, both primers are typically on both reads, so if we look for the reverse complements too we would be trimming to the left of them and dumping the whole read). Min and max length were based roughly on 10% smaller and bigger than would be expected after trimming the primers (so this sort of thing is based on your amplicon size and what you're looking to do). `tbo`, which trims primers based on overlap, and `tpe`, which trims forward and reverse reads to the same length, were helpful here because, again, in this case our reads are longer than our amplicons.
-
-Back to our loop, here is how we can run it on all our samples at once, and since we have a lot of samples here, I'm [redirecting](http://localhost:4000/bash/basics#pipes-and-redirectors) the "stderr" (what's printing the stats for each sample) to a file so we can more easily view and keep track of if we're losing a ton of sequences by having that information stored somwhere – instead of just plastered to the terminal window. If you ran the above command on the single sample, first do `rm B1_sub_R*.gz`. 
+First, here's what the command would look like on an individual sample (don't worry about running this, we're just going to dissect it for now): 
 
 ```bash
-for sample in $(cat samples); \
-do echo "On sample: $sample"; bbduk.sh in="$sample"_sub_R1.fq in2="$sample"_sub_R2.fq \
-out="$sample"_sub_R1_trimmed.fq.gz out2="$sample"_sub_R2_trimmed.fq.gz \
-literal=GTGCCAGCMGCCGCGGTAA,GGACTACHVGGGTWTCTAAT k=10 ordered=t mink=2 \
-ktrim=l rcomp=f minlength=220 maxlength=280 tbo tpe; \
-done 2> bbduk_primer_trimming_stats.txt
+cutadapt -a GTGCCAGCMGCCGCGGTAA...ATTAGAWACCCBDGTAGTCC \
+-A GGACTACHVGGGTWTCTAAT...TTACCGCGGCKGCTGGCAC \
+-m 215 -M 285 \
+-o B1_sub_R1_trimmed.fq -p B1_sub_R2_trimmed.fq \
+B1_sub_R1.fq B1_sub_R2.fq
 ```
 
-I'm not going to break down the loop here as we have other fish to fry, but if this looks confusing to you, then check out the pages on bash [basics](/bash/basics){:target="_blank"} and [loops](/bash/loops_to_help){:target="_blank"}. While odd-looking at first, little command-line loops are extremely powerful, and trust me, you can learn to leverage that power more quickly than you'd think!  
+Cutadapt does a lot of different things, and there is excellent documentation at their [site](https://cutadapt.readthedocs.io/en/stable/index.html). Specifically what we're specifying here I learned about from their ["Trimming (amplicon-) primers from both ends of paired-end reads" page](https://cutadapt.readthedocs.io/en/stable/recipes.html#trimming-amplicon-primers-from-both-ends-of-paired-end-reads) (See? I told you they had awesome documentation). Because our paired reads in this case were sequenced longer than the span of the target amplicon, we will typically have both primers in each forward and reverse read. Cutadapt handles "linked" adapters perfectly for such a case. We are specifying the primers for the forward read with the `-a` flag, giving it the forward primer (in normal orientation), three dots (required by cutadapt to know they are "linked" and not actually right next to each other), then the reverse complement of the reverse primer (I found this [excellent site](http://arep.med.harvard.edu/labgc/adnan/projects/Utilities/revcomp.html) for converting to reverse complement **while treating degenerate bases properly**). Then for the reverse reads, specified with the `-A` flag, we give it the reverse primer (in normal 5'-3' orientation), three dots, and then the reverse complement of the forward primer. The minimum read length (set with `-m`) and max (set with `-M`) were based roughly on 10% smaller and bigger than would be expected after trimming the primers (so this sort of thing depends on your amplicon size and what you're looking to do). Then `-o` specifies the output of the forwards reads, `-p` specifies the output of the reverse reads, and the input forward and reverse are provided as positional arguments in that order. 
 
-Here's a little one-liner to look at what fraction of reads were thrown away due to missing or imperfect primers:
+You don't need to run that single example, because we're going to run them all in our loop below, but here's the before-and-after view of just that sample: 
 
 ```bash
-paste samples <(grep "Total Removed:" bbduk_primer_trimming_stats.txt | cut -f2)
+### R1 BEFORE TRIMMING PRIMERS
+head -n 2 B1_sub_R1.fq
+# @M02542:42:000000000-ABVHU:1:1101:8823:2303 1:N:0:3
+# GTGCCAGCAGCCGCGGTAATACGTAGGGTGCGAGCGTTAATCGGAATTACTGGGCGTAAAGCGTGCGCAGGCGGTCTTGT
+# AAGACAGAGGTGAAATCCCTGGGCTCAACCTAGGAATGGCCTTTGTGACTGCAAGGCTGGAGTGCGGCAGAGGGGGATGG
+# AATTCCGCGTGTAGCAGTGAAATGCGTAGATATGCGGAGGAACACCGATGGCGAAGGCAGTCCCCTGGGCCTGCACTGAC
+# GCTCATGCACGAAAGCGTGGGGAGCAAACAGGATTAGATACCCGGGTAGTCC
+
+### R1 AFTER TRIMMING PRIMERS
+head -n 2 B1_sub_R1_trimmed.fq
+# @M02542:42:000000000-ABVHU:1:1101:8823:2303 1:N:0:3
+# TACGTAGGGTGCGAGCGTTAATCGGAATTACTGGGCGTAAAGCGTGCGCAGGCGGTCTTGTAAGACAGAGGTGAAATCCC
+# TGGGCTCAACCTAGGAATGGCCTTTGTGACTGCAAGGCTGGAGTGCGGCAGAGGGGGATGGAATTCCGCGTGTAGCAGTG
+# AAATGCGTAGATATGCGGAGGAACACCGATGGCGAAGGCAGTCCCCTGGGCCTGCACTGACGCTCATGCACGAAAGCGTG
+# GGGAGCAAACAGG
+
+
+### R2 BEFORE TRIMMING PRIMERS
+head -n 2 B1_sub_R2.fq
+# @M02542:42:000000000-ABVHU:1:1101:8823:2303 2:N:0:3
+# GGACTACCCGGGTATCTAATCCTGTTTGCTCCCCACGCTTTCGTGCATGAGCGTCAGTGCAGGCCCAGGGGACTGCCTTC
+# GCCATCGGTGTTCCTCCGCATATCTACGCATTTCACTGCTACACGCGGAATTCCATCCCCCTCTGCCGCACTCCAGCCTT
+# GCAGTCACAAAGGCCATTCCTAGGTTGAGCCCAGGGATTTCACCTCTGTCTTACAAGACCGCCTGCGCACGCTTTACGCC
+# CAGTAATTCCGATTAACGCTCGCACCCTACGTATTACCGCGGCTGCTGGCACTCACACTC
+
+
+### R2 AFTER TRIMMING PRIMERS
+head -n 2 B1_sub_R2_trimmed.fq
+# @M02542:42:000000000-ABVHU:1:1101:8823:2303 2:N:0:3
+# CCTGTTTGCTCCCCACGCTTTCGTGCATGAGCGTCAGTGCAGGCCCAGGGGACTGCCTTCGCCATCGGTGTTCCTCCGCA
+# TATCTACGCATTTCACTGCTACACGCGGAATTCCATCCCCCTCTGCCGCACTCCAGCCTTGCAGTCACAAAGGCCATTCC
+# TAGGTTGAGCCCAGGGATTTCACCTCTGTCTTACAAGACCGCCTGCGCACGCTTTACGCCCAGTAATTCCGATTAACGCT
+# CGCACCCTACGTA
 ```
 
-<center><img src="{{ site.url }}/images/dada2_primer_trim.png"></center>
-<br>
-And this is showing us the fraction of reads lost in each sample, which doesn't really go over 4% in this case. With primers removed, we're now ready to jump into R and start using DADA2. 
+It's important to notice that not only is the forward primer (`GTGCCAGCAGCCGCGGTAA`) trimmed off of the forward read at the start of it, but also that the reverse complement of the reverse primer (`ATTAGATACCCGGGTAGTCC`) is trimmed off of the end of it. Same goes for the R2 reads. 
+
+**A huge thanks to [@saerobe](https://twitter.com/saerobe) for catching a mistake in here before where it was *not* trimming off the reverse primers properly!**
+
+
+Now, back to our loop, here is how we can run it on all our samples at once, and since we have a lot of samples here, I'm [redirecting](http://localhost:4000/bash/basics#pipes-and-redirectors) the "stdout" (what's printing the stats for each sample) to a file so we can more easily view and keep track of if we're losing a ton of sequences by having that information stored somewhere – instead of just plastered to the terminal window. We're also going to take advantage of another convenience of cutadapt – by adding the extension `.gz` to the output file names, it will compress them for us.  
+
+
+```bash
+for sample in $(cat samples);
+do
+
+    echo "On sample: $sample";
+    
+    cutadapt -a GTGCCAGCMGCCGCGGTAA...ATTAGAWACCCBDGTAGTCC \
+    -A GGACTACHVGGGTWTCTAAT...TTACCGCGGCKGCTGGCAC \
+    -m 215 -M 285 \
+    -o ${sample}_sub_R1_trimmed.fq.gz -p ${sample}_sub_R2_trimmed.fq.gz \
+    ${sample}_sub_R1.fq ${sample}_sub_R2.fq \
+    >> cutadapt_primer_trimming_stats.txt;
+
+done
+```
+
+We're not going to break down the loop here as we have other fish to fry, but if this looks confusing to you, then check out the pages on [bash basics](/bash/basics){:target="_blank"} and [the wonderful world of loops](/bash/for_loops){:target="_blank"}. While odd-looking at first, little command-line loops are extremely powerful, and trust me, you can learn to leverage that power more quickly than you'd think!  
+
+You can look through the output of the cutadapt stats file we made to get an idea of how things went. Here's a little one-liner to look at what fraction of reads were retained in each sample (column 2) and what fraction of bps were retained in each sample (column 3):
+
+```bash
+paste samples <(grep "passing" cutadapt_primer_trimming_stats.txt | cut -f3 -d "(" | tr -d ")") <(grep "filtered" cutadapt_primer_trimming_stats.txt | cut -f3 -d "(" | tr -d ")")
+```
+
+```bash
+# B1     97.1%  83.5%
+# B2     97.1%  83.8%
+# B3     96.0%  82.9%
+# B4     97.1%  83.7%
+# BW1    96.7%  83.2%
+# BW2    95.4%  82.3%
+# R10    93.7%  80.9%
+# R11BF  92.3%  79.7%
+# R11    94.6%  81.7%
+# R12    95.1%  82.1%
+# R1A    94.2%  81.3%
+# R1B    94.8%  81.9%
+# R2     95.0%  82.0%
+# R3     94.8%  81.8%
+# R4     96.0%  82.8%
+# R5     94.5%  81.6%
+# R6     93.8%  81.0%
+# R7     95.4%  82.3%
+# R8     94.2%  81.3%
+# R9     93.5%  80.7%
+```
+
+We would expect to lose around 13-14% of bps just for cutting off the primers, and the remainder of lost bps would be from the relatively low percent of those reads totally removed (~92-97% across the samples). 
+
+With primers removed, we're now ready to jump into R and start using DADA2! 
 
 # Processing with DADA2 in R
 Just as with the bash component above, this portion assumes you have some baseline experience with R already. If you aren't familiar with R at all yet it's probably a good iea to run through the [R basics page](/R/basics){:target="_blank"} first. But even if you don't have any experience with R yet, you'll still be able to follow along here and run everything if you'd like. A full R script of everything done here is available in the "R_working_dir" subdirectory called "dada2_example.R" that can be opened in RStudio if you prefer to follow along with that rather than copying and pasting commands from here. Either way, this part really isn't about the R code (right now), it's more about the processing.  
@@ -130,7 +205,7 @@ To get started let's open up RStudio and take care of a few things. If you need 
 
 ```R
 library(dada2)
-packageVersion("dada2") # 1.8.0
+packageVersion("dada2") # 1.10.0
 
 setwd("~/dada2_amplicon_ex_workflow")
 
@@ -185,26 +260,26 @@ dim(filtered_out) # 20 2
 
 filtered_out
 #                            reads.in reads.out
-# B1_sub_R1_trimmed.fq.gz        1637      1533
-# B2_sub_R1_trimmed.fq.gz         589       541
-# B3_sub_R1_trimmed.fq.gz         505       472
-# B4_sub_R1_trimmed.fq.gz         508       485
-# BW1_sub_R1_trimmed.fq.gz       2304      2153
-# BW2_sub_R1_trimmed.fq.gz       6151      5744
-# R10_sub_R1_trimmed.fq.gz      11792     11024
-# R11_sub_R1_trimmed.fq.gz       9210      8538
-# R11BF_sub_R1_trimmed.fq.gz     9273      8687
-# R12_sub_R1_trimmed.fq.gz      16057     14973
-# R1A_sub_R1_trimmed.fq.gz      12453     11442
-# R1B_sub_R1_trimmed.fq.gz      16438     15301
-# R2_sub_R1_trimmed.fq.gz       17670     16351
-# R3_sub_R1_trimmed.fq.gz       17950     16654
-# R4_sub_R1_trimmed.fq.gz       19100     17797
-# R5_sub_R1_trimmed.fq.gz       18745     17522
-# R6_sub_R1_trimmed.fq.gz       15183     14097
-# R7_sub_R1_trimmed.fq.gz        8181      7610
-# R8_sub_R1_trimmed.fq.gz       12622     11781
-# R9_sub_R1_trimmed.fq.gz        8968      8331
+# B1_sub_R1_trimmed.fq.gz        1622      1504
+# B2_sub_R1_trimmed.fq.gz         594       532
+# B3_sub_R1_trimmed.fq.gz         506       459
+# B4_sub_R1_trimmed.fq.gz         509       477
+# BW1_sub_R1_trimmed.fq.gz       2301      2112
+# BW2_sub_R1_trimmed.fq.gz       6070      5566
+# R10_sub_R1_trimmed.fq.gz      11407     10466
+# R11_sub_R1_trimmed.fq.gz       9044      8216
+# R11BF_sub_R1_trimmed.fq.gz     8785      8144
+# R12_sub_R1_trimmed.fq.gz      15814     14498
+# R1A_sub_R1_trimmed.fq.gz      12221     10978
+# R1B_sub_R1_trimmed.fq.gz      16238     14762
+# R2_sub_R1_trimmed.fq.gz       17375     15771
+# R3_sub_R1_trimmed.fq.gz       17669     16055
+# R4_sub_R1_trimmed.fq.gz       19064     17373
+# R5_sub_R1_trimmed.fq.gz       18359     16824
+# R6_sub_R1_trimmed.fq.gz       14768     13445
+# R7_sub_R1_trimmed.fq.gz        8082      7394
+# R8_sub_R1_trimmed.fq.gz       12344     11285
+# R9_sub_R1_trimmed.fq.gz        8705      7919
 ```
 
 Now let's take a look at our filtered reads:
@@ -250,7 +325,7 @@ names(derep_reverse) <- samples
 ```
 
 ## Inferring ASVs
-Here's where DADA2 gets to do what it was born to do, that is to do its best to infer true biological sequences. It does this by incorporating the consensus quality profiles and abundances of each unique sequence, and then figuring out if each sequence more likely to be of biological origin or more likely to be spurious. You can read more about the details of this in [the paper](https://www.nature.com/articles/nmeth.3869#methods){:target="_blank"} of course or looking through [the site](https://benjjneb.github.io/dada2/index.html){:target="_blank"}. This step can be run on individual samples, which is the least computationally intensive manner, or on all samples together, which increases the function's ability to resolve low-abundance ASVs. Imagine Sample A has 10,000 copies of sequence Z, and Sample B has 1 copy of sequence Z. Sequence Z would likely be filtered out of Sample B even though it was a "true" singleton among perhaps thousands of spurious singletons we needed to remove. Because running all samples together on large datasets can become impractical very quickly, the developers also added a way to try to combine the best of both worlds they refer to as pseudo-pooling, which is demonstrated very nicely [here](https://benjjneb.github.io/dada2/pseudo.html#Pseudo-pooling){:target="_blank"}. This basically provides a way to tell Sample B from the above example that sequence Z is legit. But it's noted at the end of the [pseudo-pooling page](https://benjjneb.github.io/dada2/pseudo.html#Pseudo-pooling){:target="_blank"} that this is not always the best way to go, and it may depend on your experimental design which is likely more appropriate for your data – as usual. There are no one-size-fits-all solutions in bioinformatics! But that's exactly what makes it so damn fun 🙂
+Here's where DADA2 gets to do what it was born to do, that is to do its best to infer true biological sequences. It does this by incorporating the consensus quality profiles and abundances of each unique sequence, and then figuring out if each sequence is more likely to be of biological origin or more likely to be spurious. You can read more about the details of this in [the paper](https://www.nature.com/articles/nmeth.3869#methods){:target="_blank"} of course or looking through [the DADA2 site](https://benjjneb.github.io/dada2/index.html){:target="_blank"}. This step can be run on individual samples, which is the least computationally intensive manner, or on all samples together, which increases the function's ability to resolve low-abundance ASVs. Imagine Sample A has 10,000 copies of sequence Z, and Sample B has 1 copy of sequence Z. Sequence Z would likely be filtered out of Sample B even though it was a "true" singleton among perhaps thousands of spurious singletons we needed to remove. Because running all samples together on large datasets can become impractical very quickly, the developers also added a way to try to combine the best of both worlds they refer to as pseudo-pooling, which is demonstrated very nicely [here](https://benjjneb.github.io/dada2/pseudo.html#Pseudo-pooling){:target="_blank"}. This basically provides a way to tell Sample B from the above example that sequence Z is legit. But it's noted at the end of the [pseudo-pooling page](https://benjjneb.github.io/dada2/pseudo.html#Pseudo-pooling){:target="_blank"} that this is not always the best way to go, and it may depend on your experimental design which is likely more appropriate for your data – as usual. There are no one-size-fits-all solutions in bioinformatics! But that's exactly what makes it so damn fun 🙂
 
 ```R
 dada_forward <- dada(derep_forward, err=err_forward_reads, multithread=TRUE, pool="pseudo")
@@ -258,7 +333,7 @@ dada_reverse <- dada(derep_reverse, err=err_reverse_reads, multithread=TRUE, poo
 ```
 
 ## Merge forward and reverse reads
-Now DADA2 merges the forward and reverse ASVs to reconstruct our full target amplicon requiring the overlapping region to be identical between the two. By default it requires that at least 12 bps overlap, but in our case the overlap should be much greater. If you remember above we trimmed the forward reads to 250 and the reverse to 200, and our primers were 515f–806r. After cutting off the primers we're expecting a typical amplicon size of around 260 bases, so our typicaly overlap should be up around 190. That's estimated based on *E. coli* 16S rRNA gene positions and very back-of-the-envelope-esque of course, so to allow for true biological variation and such I'm going ot set the minimum overlap for this dataset for 170. I'm also setting the trimOverhang option to `TRUE` in case any of our reads go passed their opposite primers (which I wouldn't expect based on our trimming, but is possible due to the region and sequencing method).
+Now DADA2 merges the forward and reverse ASVs to reconstruct our full target amplicon requiring the overlapping region to be identical between the two. By default it requires that at least 12 bps overlap, but in our case the overlap should be much greater. If you remember above we trimmed the forward reads to 250 and the reverse to 200, and our primers were 515f–806r. After cutting off the primers we're expecting a typical amplicon size of around 260 bases, so our typical overlap should be up around 190. That's estimated based on *E. coli* 16S rRNA gene positions and very back-of-the-envelope-esque of course, so to allow for true biological variation and such I'm going ot set the minimum overlap for this dataset for 170. I'm also setting the trimOverhang option to `TRUE` in case any of our reads go passed their opposite primers (which I wouldn't expect based on our trimming, but is possible due to the region and sequencing method).
 
 ```R
 merged_amplicons <- mergePairs(dada_forward, derep_forward, dada_reverse, derep_reverse, trimOverhang=TRUE, minOverlap=170)
@@ -280,23 +355,23 @@ Now we can generate a count table with the `makeSequenceTable()` function:
 ```R
 seqtab <- makeSequenceTable(merged_amplicons)
 class(seqtab) # matrix
-dim(seqtab) # 20 2567
+dim(seqtab) # 20 2525
 ```
 
-We can see from the dimensions of the "seqtab" matrix that we have 2,567 ASVs in this case. But it's not very friendly to look at in this form because the actual sequences are our rownames. But we'll make a more traditional count table in a couple steps.
+We can see from the dimensions of the "seqtab" matrix that we have 2,567 ASVs in this case. But it's not very friendly to look at in its current form because the actual sequences are our rownames - so we'll make a more traditional count table in a couple steps.
 
 ## Chimera identification
-DADA2 identifies likely chimeras by aligning each sequence with those that were recovered in greater abundance and then seeing if there are any sequences that can be made exactly by mixing left and right portions of two of the more-abundant ones. These are then removed:
+DADA2 identifies likely chimeras by aligning each sequence with those that were recovered in greater abundance and then seeing if there are any lower-abundance sequences that can be made exactly by mixing left and right portions of two of the more-abundant ones. These are then removed:
 
 ```R
-seqtab.nochim <- removeBimeraDenovo(seqtab, multithread=T, verbose=T) # Identified 21 bimeras out of 2567 input sequences.
+seqtab.nochim <- removeBimeraDenovo(seqtab, multithread=T, verbose=T) # Identified 19 bimeras out of 2525 input sequences.
 
-  # though we only lost 21 sequences, we don't know if they held a lot in terms of abundance, this is one quick way to look at that
-sum(seqtab.nochim)/sum(seqtab) # 0.9925714
+  # though we only lost 19 sequences, we don't know if they held a lot in terms of abundance, this is one quick way to look at that
+sum(seqtab.nochim)/sum(seqtab) # 0.9927576 # good, we barely lost any in terms of abundance
 ```
 
 ## Overview of counts throughout
-The developers' [DADA2 tutorial](https://benjjneb.github.io/dada2/tutorial.html){:target="_blank"} provides an example of nice, quick way to pull out how many reads were dropped at various points of the pipeline. This can serve as a jumping off point if you're left with too few to help point you towards where you should start digging. 
+The developers' [DADA2 tutorial](https://benjjneb.github.io/dada2/tutorial.html){:target="_blank"} provides an example of a nice, quick way to pull out how many reads were dropped at various points of the pipeline. This can serve as a jumping off point if you're left with too few to help point you towards where you should start digging. Here's a slightly modified version: 
 
 ```R
   # set a little function
@@ -307,30 +382,30 @@ summary_tab <- data.frame(row.names=samples, dada2_input=filtered_out[,1], filte
 
 summary_tab
 #       dada2_input filtered dada_f dada_r merged nonchim total_perc_reads_lost
-# B1           1637     1533   1491   1498   1460    1460                  89.2
-# B2            589      541    535    534    533     533                  90.5
-# B3            505      472    465    466    465     465                  92.1
-# B4            508      485    453    457    446     446                  87.8
-# BW1          2304     2153   2109   2122   2076    2076                  90.1
-# BW2          6151     5744   5335   5433   4859    4859                  79.0
-# R10         11792    11024  10266  10465   9574    9403                  79.7
-# R11BF        9210     8538   7648   7879   7120    6981                  75.8
-# R11          9273     8687   8159   8276   7743    7506                  80.9
-# R12         16057    14973  12921  13449  11159   11091                  69.1
-# R1A         12453    11442  10110  10419   9041    9017                  72.4
-# R1B         16438    15301  13513  13964  11699   11653                  70.9
-# R2          17670    16351  14715  15177  13054   12995                  73.5
-# R3          17950    16654  14864  15333  13145   13082                  72.9
-# R4          19100    17797  16703  16940  15278   15212                  79.6
-# R5          18745    17522  15502  16080  13544   13455                  71.8
-# R6          15183    14097  12618  12973  11034   11023                  72.6
-# R7           8181     7610   6782   6982   5931    5919                  72.4
-# R8          12622    11781  10882  11062  10174   10051                  79.6
-# R9           8968     8331   7649   7825   7146    7099                  79.2
+# B1           1622     1504   1464   1472   1463    1463                  90.2
+# B2            594      532    526    527    526     526                  88.6
+# B3            506      459    452    453    452     452                  89.3
+# B4            509      477    442    449    441     441                  86.6
+# BW1          2301     2112   2069   2085   2057    2057                  89.4
+# BW2          6070     5566   5169   5268   4754    4754                  78.3
+# R10         11407    10466   9772   9916   9076    8913                  78.1
+# R11BF        9044     8216   7348   7586   6807    6690                  74.0
+# R11          8785     8144   7660   7754   7261    7053                  80.3
+# R12         15814    14498  12481  13003  10784   10718                  67.8
+# R1A         12221    10978   9648   9969   8634    8610                  70.5
+# R1B         16238    14762  13009  13474  11252   11208                  69.0
+# R2          17375    15771  14131  14604  12546   12488                  71.9
+# R3          17669    16055  14300  14758  12616   12556                  71.1
+# R4          19064    17373  16285  16545  14857   14791                  77.6
+# R5          18359    16824  14884  15423  13005   12918                  70.4
+# R6          14768    13445  12032  12399  10566   10555                  71.5
+# R7           8082     7394   6579   6784   5659    5647                  69.9
+# R8          12344    11285  10409  10600   9687    9567                  77.5
+# R9           8705     7919   7279   7452   6816    6771                  77.8
 ```
 
 ## Assigning taxonomy
-DADA2 incorporates a function that assigns taxonomy using the [RDP's kmer-based method](https://rdp.cme.msu.edu/classifier/classifier.jsp){:target="_blank"}, original paper [here](http://www.ncbi.nlm.nih.gov/pubmed/17586664){:target="_blank"}. There are some DADA2-formatted databases available [here](https://benjjneb.github.io/dada2/training.html){:target="_blank"}, which is where the silva one came from that is in our working directory called here, but you can use whatever database you'd like following the formatting specified at the bottom of that page. This step took maybe 10 minutes on my laptop. 
+DADA2 incorporates a function that assigns taxonomy using the [RDP's kmer-based method](https://rdp.cme.msu.edu/classifier/classifier.jsp){:target="_blank"}, original paper [here](http://www.ncbi.nlm.nih.gov/pubmed/17586664){:target="_blank"}. There are some DADA2-formatted databases available [here](https://benjjneb.github.io/dada2/training.html){:target="_blank"}, which is where the silva one came from that is in our current working directory, but you can use whatever database you'd like following the formatting specified at the bottom of that page. This step took maybe 10 minutes on my laptop. 
 
 ```R
 taxa <- assignTaxonomy(seqtab.nochim, "silva_nr_v132_train_set.fa.gz", multithread=T, tryRC=T)

@@ -28,7 +28,7 @@ permalink: /research/
 I use the tools of bioinformatics to look at microbial ecology and evolution in all kinds of cool systems. My current research efforts are focused primarily on: photoautotroph-heterotroph interactions of the nitrogen-fixing cyanobacterium *Trichodesmium erythraeum*; combining metagenomics and pangenomics to characterize the global distributions of *Synechococcus* spp.; and investigating microbial molecular evolution aboard the International Space Station 👽  
 
 **CV**  
-[Lee_CV_11_2018.pdf](/research/Lee_CV_11_2018.pdf){:target="_blank"}  
+[Lee_CV_2019.pdf](/research/Lee_CV_March_2019.pdf){:target="_blank"}  
 <br>
 
 ---
@@ -45,9 +45,9 @@ I use the tools of bioinformatics to look at microbial ecology and evolution in 
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1111/1462-2920.14552"></div>  
 
 **Lee, M.D.**, Ahlgren, N.A., Kling, J. D., Walworth, N.G., Rocap, G., Saito, M.A., Hutchins, D.A., and Webb, E.A. (2019). [Marine *Synechococcus* isolates representing globally abundant genomic lineages demonstrate a unique evolutionary path of genome reduction without a decrease in GC content](https://doi.org/10.1111/1462-2920.14552){:target="_blank"}. *Environmental Microbiology*.  
-**PDF download coming soon** 
+[PDF download](/research/Lee_et_al_2019_EnvMicro.pdf){:target="_blank"}
 
-<div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1128/AEM.02026-17"></div>  
+<div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1111/1462-2920.14552"></div>  
 
 **Lee, M.D.**, Webb, E.A., Walworth, N.G., Fu, F.-X., Held, N.A., Saito, M.A., and Hutchins, D.A. (2017). [Transcriptional activities of the microbial consortium living with the marine nitrogen-fixing cyanobacterium *Trichodesmium* reveal potential roles in community-level nitrogen cycling](https://doi.org/10.1128/AEM.02026-17){:target="_blank"}. *Applied and Environmental Microbiology*.  
 [PDF download](/research/Lee_et_al_2017_AEM.pdf){:target="_blank"}  
