@@ -39,8 +39,9 @@ I use the tools of bioinformatics to look at microbial ecology and evolution in 
 
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1101/512491"></div>  
 
-**Lee, M.D.** (2019). [GToTree: a user-friendly workflow for phylogenomics](https://www.biorxiv.org/content/early/2019/01/06/512491){:target="_blank"}. **Accepted/in press in the journal *Bioinformatics*.** Currently available as a [*bioRxiv* preprint](https://www.biorxiv.org/content/early/2019/01/06/512491). Software lives [here](https://github.com/AstrobioMike/GToTree){:target="_blank"}; documentation lives [here](https://github.com/AstrobioMike/GToTree/wiki){:target="_blank"}.  
-[PDF download](/research/Lee_GToTree_2019_biorxiv_v3.pdf){:target="_blank"}
+**Lee, M.D.** (2019). [GToTree: a user-friendly workflow for phylogenomics](https://doi.org/10.1093/bioinformatics/btz188){:target="_blank"}. *Bioinformatics*  
+[PDF download](/research/Lee_GToTree_2019_bioinf.pdf){:target="_blank"}  
+Software lives [here](https://github.com/AstrobioMike/GToTree){:target="_blank"}; documentation lives [here](https://github.com/AstrobioMike/GToTree/wiki){:target="_blank"}.  
 
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1111/1462-2920.14552"></div>  
 
