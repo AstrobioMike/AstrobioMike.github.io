@@ -430,12 +430,12 @@ write(asv_fasta, "ASVs.fa")
   # count table:
 asv_tab <- t(seqtab.nochim)
 row.names(asv_tab) <- sub(">", "", asv_headers)
-write.table(asv_tab, "ASVs_counts.txt", sep="\t", quote=F)
+write.table(asv_tab, "ASVs_counts.txt", sep="\t", quote=F, col.names=NA)
 
   # tax table:
 asv_tax <- taxa
 row.names(asv_tax) <- sub(">", "", asv_headers)
-write.table(asv_tax, "ASVs_taxonomy.txt", sep="\t", quote=F)
+write.table(asv_tax, "ASVs_taxonomy.txt", sep="\t", quote=F, col.names=NA)
 ```
 
 And now if we look back at our terminal, we can see the fruits of our labor are no longer confined to the R universe:
