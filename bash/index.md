@@ -7,7 +7,7 @@ permalink: /bash/index
 
 {% include _side_tab_bash.html %}
 
-Bash is the most common programming language in a Unix-like environment these days. There is a table of some quick terminology on the [introduction to bash page](/bash/bash_intro){:target="_blank"}, which is definitely the place to start if you're completely new to this wonderful language. And if you would like some help getting a bash environment up and running on your computer, check out [this page](/bash/getting_bash_env) 🙂
+Bash is the most common programming language in a Unix-like environment these days. More importantly, **bash is very likely the most foundational skillset you can learn for bioinformatics** (and much more). There is a [table of some quick terminology](/bash/bash_intro#some-terminology){:target="_blank"} for some help in what is meant by terms like "bash" and "Unix" on the [introduction to bash page](/bash/bash_intro#some-terminology){:target="_blank"}, which is definitely the place to start if you're completely new to this wonderful language. And if you would like some help getting a bash environment up and running on your computer, check out [this page](/bash/getting_bash_env) 🙂
 
 
 <br>
