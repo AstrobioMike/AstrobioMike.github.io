@@ -7,7 +7,7 @@ permalink: /bash/index
 
 {% include _side_tab_bash.html %}
 
-Bash is the most common programming language in a Unix-like environment these days. There is a table of some quick terminology on the [introduction to bash page](/bash/basics){:target="_blank"}, which is definitely the place to start if you're completely new to this wonderful language. And if you would like some help getting a bash environment up and running on your computer, check out [this page](/bash/getting_bash_env) 🙂
+Bash is the most common programming language in a Unix-like environment these days. There is a table of some quick terminology on the [introduction to bash page](/bash/bash_intro){:target="_blank"}, which is definitely the place to start if you're completely new to this wonderful language. And if you would like some help getting a bash environment up and running on your computer, check out [this page](/bash/getting_bash_env) 🙂
 
 
 <br>
@@ -29,7 +29,7 @@ Bash is the most common programming language in a Unix-like environment these da
 <br>
 # All bash pages
 * [Getting a bash environment](/bash/getting_bash_env)
-* [Intro to bash](/bash/basics)
+* [Intro to bash](/bash/bash_intro)
 * [Six glorious commands](/bash/six_commands)
 * [The wonderful world of loops](/bash/for_loops)
 * [Why is this all worth it?](/bash/why)
