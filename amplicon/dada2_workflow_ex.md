@@ -75,7 +75,7 @@ It's good to try to keep a bird's-eye view of what's going on. So here is an ove
 |7|`removeBimeraDenovo()`|screen for and remove chimeras|
 |8|`assignTaxonomy()`|assign taxonomy|
 
-And at the end of this we'll do some R magic to generate regular [flat files](/bash/basics#whats-a-plain-text-file){:target="_blank"} for the standard desired outputs: a fasta file of our ASVs, a count table, and a taxonomy table.  
+And at the end of this we'll do some R magic to generate regular [flat files](/bash/bash_intro#working-with-plain-text-files-and-directories){:target="_blank"} for the standard desired outputs: a fasta file of our ASVs, a count table, and a taxonomy table.  
 
 In our working directory there are 20 samples with forward (R1) and reverse (R2) reads with per-base-call quality information, so 40 fastq files (.fq). I typically like to have a file with all the sample names to use for various things throughout, so here's making that file based on how these sample names are formatted:
 
@@ -83,7 +83,7 @@ In our working directory there are 20 samples with forward (R1) and reverse (R2)
 ls *_R1.fq | cut -f1 -d "_" > samples
 ```
 
-If you're not comfortable with that line, consider running through the [bash basics](/bash/basics){:target="_blank"} and/or [six glorious commands](/bash/six_commands){:target="_blank"} pages before going further here 🙂  
+If you're not comfortable with that line, consider running through the [bash basics](/bash/bash_intro){:target="_blank"} and/or [six glorious commands](/bash/six_commands){:target="_blank"} pages before going further here 🙂  
 
 # Removing primers
 To start, we need to remove the primers from all of these (the primers used for this run are in the "primers.fa" file in our working directory), and here we're going to use [cutadapt](https://cutadapt.readthedocs.io/en/stable/index.html){:target="_blank"} to do that, but we would need to run it on each sample individually. So instead we're going to use a wonderful little bash loop to do that.  
@@ -143,7 +143,7 @@ It's important to notice that not only is the forward primer (`GTGCCAGCAGCCGCGGT
 **A huge thanks to [@saerobe](https://twitter.com/saerobe) for catching a mistake in here before where it was *not* trimming off the reverse primers properly!**
 
 
-Now, back to our loop, here is how we can run it on all our samples at once, and since we have a lot of samples here, I'm [redirecting](http://localhost:4000/bash/basics#pipes-and-redirectors) the "stdout" (what's printing the stats for each sample) to a file so we can more easily view and keep track of if we're losing a ton of sequences by having that information stored somewhere – instead of just plastered to the terminal window. We're also going to take advantage of another convenience of cutadapt – by adding the extension `.gz` to the output file names, it will compress them for us.  
+Now, back to our loop, here is how we can run it on all our samples at once, and since we have a lot of samples here, I'm [redirecting](http://localhost:4000/bash/bash_intro#pipes-and-redirectors){:target="_blank"} the "stdout" (what's printing the stats for each sample) to a file so we can more easily view and keep track of if we're losing a ton of sequences by having that information stored somewhere – instead of just plastered to the terminal window. We're also going to take advantage of another convenience of cutadapt – by adding the extension `.gz` to the output file names, it will compress them for us.  
 
 
 ```bash
@@ -162,7 +162,7 @@ do
 done
 ```
 
-We're not going to break down the loop here as we have other fish to fry, but if this looks confusing to you, then check out the pages on [bash basics](/bash/basics){:target="_blank"} and [the wonderful world of loops](/bash/for_loops){:target="_blank"}. While odd-looking at first, little command-line loops are extremely powerful, and trust me, you can learn to leverage that power more quickly than you'd think!  
+We're not going to break down the loop here as we have other fish to fry, but if this looks confusing to you, then check out the pages on [bash basics](/bash/bash_intro){:target="_blank"} and [the wonderful world of loops](/bash/for_loops){:target="_blank"}. While odd-looking at first, little command-line loops are extremely powerful, and trust me, you can learn to leverage that power more quickly than you'd think!  
 
 You can look through the output of the cutadapt stats file we made to get an idea of how things went. Here's a little one-liner to look at what fraction of reads were retained in each sample (column 2) and what fraction of bps were retained in each sample (column 3):
 
