@@ -507,9 +507,9 @@ head sample_names.txt
 
 Now we're going take our first look at some of the things that make the Unix command-line environment so powerful: pipes and redirectors! 
 
-A pipe `|` is used to connect multiple commands. It takes the output from the previous command and "pipes" it into the input of the following command. Let's look at an example. 
+>**A pipe `|` is used to connect multiple commands. It takes the output from the previous command and "pipes" it into the input of the following command.**  
 
-`ls` as we've seen lists the files and directories in our current working directory:
+Let's look at an example. `ls` as we've seen lists the files and directories in our current working directory:
 
 ```
 ls
@@ -527,13 +527,21 @@ For another example, let's look at what's in the subdirectory, "example_files":
 ls example_files/
 ```
 
-That prints out a lot of stuff, if we just wanted to get a quick view, we could pipe `|` that output into `head`:
+That prints out a lot of stuff, if we just wanted to get a quick view, we could pipe `|` that output into `tail` for example (which prints the last lines of a file):
 
 ```
-ls example_files/ | head
+ls example_files/ | tail
 ```
 
-Another important operator is the greater than sign, `>`. This tells the command line to "redirect" the output to a file, rather than just printing it to the screen as we've seen so far. For an example of this we will write the output of `ls` to a new file called "directory_contents.txt":
+And again, if we want to know how many files are actually there, we can pipe `|` the output of `ls` into `wc -l`:
+
+```
+ls example_files/ | wc -l
+```
+
+>**Another important character is the greater than sign, `>`. This tells the command line to "redirect" the output to a file, rather than just printing it to the screen as we've seen so far.**  
+
+For an example of this we will write the output of `ls` to a new file called "directory_contents.txt":
 
 ```
 ls > directory_contents.txt
@@ -549,11 +557,13 @@ head directory_contents.txt
 **It's important to remember that the `>` redirector will overwrite the file you are pointing to if it already exists.** If we use two of them instead, `>>`, this will *append* to the target file, rather than overwrite it:
 
 ```
+wc -l directory_contents.txt
 ls >> directory_contents.txt
 head directory_contents.txt
+wc -l directory_contents.txt
 ```
 
-Okay, so far that isn't all that impressive. But this basic, modular structure really is what makes the Unix command-line rock. There is one more topic we need to cover before starting to look at some more "real-life" examples, and that is **wild cards**. 
+Okay, so far that isn't all that impressive. But this basic, modular structure really is what makes the Unix command-line powerful. There is one more topic we need to cover before starting to look at some more "real-life" examples, and that is **wild cards**. 
 
 <br>
 
@@ -581,7 +591,7 @@ As we've seen so far, `ls` lists the contents of the current working directory. 
 
 There are a few different types of files in our current working directory: some subdirectories; a few ".txt" files; and a ".xlsx" file. 
 
-Let's say we only wanted to see the ".txt" files. The `*` wildcard can help us with that. At the command line, (generally), the `*` means anything, any number of times. Here's an example:
+Let's say we only wanted to look for files in the current directory that end with the extension ".txt". The `*` wildcard can help us with that. At the command line, (generally), the `*` means any character, any number of times. Here's an example:
 
 ```
 ls
@@ -595,13 +605,19 @@ cd example_files/
 ls
 ```
 
-Looks like a lot of files, let's see how many:
+Looks like a lot of files, let's see how many again:
 
 ```
 ls | wc -l
 ```
 
-We can see ".txt", ".log", and ".fq" files, let's say we wanted to move all the fastq files into their own directory:
+We can see ".txt", ".log", and ".fq" files. ".fq" is a common extension for the "fastq" format, which holds sequences and their quality information. Let's see how many ".fq" files there are: 
+
+```
+ls *.fq | wc -l
+```
+
+Now let's say we wanted to move all the fastq files into their own directory:
 
 ```
 mkdir fastq_files
@@ -610,13 +626,21 @@ mv *.fq fastq_files/
 ```
 
 > **Note**  
-> Using `ls` with a wildcard is very good practice before actually running a command. It is a way of checking that you are specifying exactly what you think you are specifying. 
+> When using wildcards, running `ls` first like done here is good practice before actually running a command. It is a way of checking that you are specifying exactly what you think you are specifying. 
 
-At the command line, (generally) the `?` wildcard represents any character that appears only one time. Say we only wanted the log files for samples 10-19. We wouldn't be able to do that with the `*` wildcard alone, but we could with the `?`:
+At the command line, (generally) the `?` wildcard represents *any* character that appears *only one time*. Say we only wanted the log files for samples 10-19. We wouldn't be able to do that with the `*` wildcard alone, but we could with the `?`:
 
 ```
 ls sample_1?.log
 ```
+
+Wildcards can be combined too. Like if we wanted to get all the ".log" and ".txt" files for samples 10-19, we could run:
+
+```
+ls *_1?.*
+```
+
+Using wildcards at the command line like this is another powerful, fundamental skill. And it is invaluable if you want to work with with a lot of files at once. 
 
 <br>
 
