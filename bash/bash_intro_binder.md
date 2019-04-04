@@ -8,6 +8,7 @@ permalink: /bash/bash_intro_binder
 {% include _bash_intro_toc.html %}
 
 > **Things covered here**  
+*  Some quick terms
 *  Why familiarity with the command line is valuable
 *  Running commands and general syntax
 *  File-system structure and how to navigate
@@ -44,10 +45,9 @@ First, here are some terms that are often used semi-interchangeably.
 
 *  it's the foundation for most of bioinformatics
 *  enables use of non-GUI (Graphical User Interface) tools
-*  quickly perform operations on large files
 *  reproducibility
-*  automation of repetitive tasks
-	*  need to rename 1,000 files?
+*  quickly perform operations on large files (without reading into *memory*)
+*  automation of repetitive tasks (need to rename 1,000 files?)
 *  enables use of higher-powered computers elsewhere (server/cloud)  
 
 <br>
@@ -71,6 +71,25 @@ Now click the **folder icon** at the top-left (that the smaller blue arrow point
 This is our "command line", where we will be typing all of our commands 🙂
 
 **Note:** If you want to get a bash environment of your own going on your computer, see [this page](/bash/getting_bash_env){:target="_blank"} for some help.  
+<br>
+
+---
+<br>
+
+**If you don't want to use binder**, but want to follow along with this page, then for right now, and only for right now, I would like you to blindly copy and paste the following commands into your terminal window. This is so that we are working in the same place with the same files.  
+
+<center><b>SKIP THESE COMMANDS IF YOU ARE WORKING IN THE BINDER ENVIRONMENT SHOWN IN THE PICTURE ABOVE</b></center>
+
+```
+cd ~
+curl -LO https://github.com/AstrobioMike/AstrobioMike.github.io/raw/master/misc/bash_intro.tar.gz
+tar -xzvf bash_intro.tar.gz
+rm bash_intro.tar.gz
+cd bash_intro
+```
+
+Don't forget to press enter to execute the last command (usually that doesn't copy over).  
+
 <br>
 
 <h2><b><center>Now, let's get started!</center></b></h2>
@@ -129,7 +148,7 @@ Note that when we provided the `-u` flag to the `date` command (to get the comma
 
 # The Unix file-system structure
 
-Your computer stores file locations in a hierarchical structure. You are likely already used to navigating through this stucture by clicking on various folders (aka directories) in a Windows Explorer window or a Mac Finder window. Just like you need to select the appropriate files in the appropriate locations there, you need to do the same when working at the command line. What these means in practice is that each file and directory has its own "address", and that address is called it's "**path**". 
+Your computer stores file locations in a hierarchical structure. You are likely already used to navigating through this stucture by clicking on various folders (aka directories) in a Windows Explorer window or a Mac Finder window. Just like you need to select the appropriate files in the appropriate locations there, you need to do the same when working at the command line. What this means in practice is that each file and directory has its own "address", and that address is called its "**path**". 
 
 Here is an image of an example file-system structure:
 
@@ -139,7 +158,7 @@ Here is an image of an example file-system structure:
 <br>
 There are two special locations in all Unix-based systems: the "**root**" location and the current user's "**home**" location. "Root" is where the address system of the computer starts; "home" is where the current user's location starts.
 
-We tell the command line where files and directories are located by providing their address, their "path". If we use the `pwd` command, we can find out what the path is for the directory we are sitting in. Whatever directory we are currently sitting in is called the "current working directory". And if we use the `ls` command, we can see what directories and files are in the current directory we are sitting in.
+We tell the command line where files and directories are located by providing their address, their "path". If we use the `pwd` command (**p**rint **w**orking **d**irectory), we can find out what the path is for the directory we are sitting in. Whatever directory we are currently sitting in is called the "current working directory". And if we use the `ls` command, we can see what directories and files are in the current directory we are sitting in.
 
 ```
 pwd
@@ -207,7 +226,7 @@ If we are trying to point to a file or directory that's in our current working d
 <br>
 
 ## Moving around
-We can also move into the directory containing the file we want to work with by using the `cd` command (**c**hange **d**irectories). The `cd` command takes a positional argument that is the path (address) of the directory you want to change into. This can be a relative path or an absolute path. So here we'll use the relative path of the subdirectory, "another_directory", to change into it:
+We can also move into the directory containing the file we want to work with by using the `cd` command (**c**hange **d**irectory). The `cd` command takes a positional argument that is the path (address) of the directory you want to change into. This can be a relative path or an absolute path. So here we'll use the relative path of the subdirectory, "another_directory", to change into it:
 
 ```
 cd another_directory/
@@ -253,6 +272,8 @@ Try to get used to regularly thinking about "where" you are in the computer when
 
 |Command     |Function          |
 |:----------:|------------------|
+|**`date`**| prints out information about the current date and time |
+|**`head`**| prints out the first lines of a file |
 |**`pwd`**       |tells you where you are in the computer (**p**rint **w**orking **d**irectory)|
 |**`ls`**        |lists contents of a directory (**l**i**s**t)|
 |**`cd`**| **c**hange **d**irectories |
@@ -274,12 +295,12 @@ Try to get used to regularly thinking about "where" you are in the computer when
 # Working with plain-text files and directories
 The most common command-line tools are mostly only useful for operating on what are known as **plain-text files** – also referred to as "flat files". There are a few definitions you can check out at the [wiki](https://en.wikipedia.org/wiki/Plain_text){:target="_blank"} if you'd like, but a good-enough working definition of what a plain-text file is might be something like: a text file that doesn't contain any special formatting characters or information, and that can be properly viewed and edited with any standard text editor. 
 
-Common types of flat-text files are those ending with extensions like ".txt", ".tsv" for **t**ab-**s**eparated **v**alues, or ".csv" for **c**omma **s**eparated **v**alues. Some examples of common file types that are *not* flat-text files would be ".docx", ".pdf", or ".xlsx". This is because those types contain special types of compression and formatting information that are only interpretable by the programs that work with them.
+Common types of flat-text files are those ending with extensions like ".txt", ".tsv" for **t**ab-**s**eparated **v**alues, or ".csv" for **c**omma **s**eparated **v**alues. Some examples of common file types that are *not* flat-text files would be ".docx", ".pdf", or ".xlsx". This is because those types contain special types of compression and formatting information that are only interpretable by programs specifically designed to work with them.
 
 > **Note on file extensions**  
 > File extensions do not actually do anything to the file format. They are *mostly* there just for our convenience/organization – "mostly" because some programs require a specific extension to be present for them to even try interacting with a file. 
 > 
-> The command `file` will tell you what type of file something is. Run `file file_D.xlsx` and then `file file_C.xlsx`. The "file\_D.xlsx" is actually an Excel file and has all kinds of special formatting for Excel that only makes sense to Excel. But "file\_C.xlsx" is just a plain-text file that happens to have the extention ".xlsx". Try running `head` on each of these files.  
+> The command `file` will tell you what type of file something is. Run `file file_D.xlsx` and then `file file_C.xlsx`. The "file\_D.xlsx" is actually an Excel file and has all kinds of special formatting for Excel that only makes sense to Excel. But "file\_C.xlsx" is just a plain-text file that happens to have the extention ".xlsx". Try running `head` on each of these files. (If your terminal is stuck after you run `head file\_D.xlsx` – which you can tell because your prompt doesn't return – remember you can cancel an operation by pressing `ctrl + c`.)
 
 <br>
 ## Ways to probe plain-text files
@@ -306,7 +327,7 @@ The `wc` command is useful for counting how many lines, words, and characters th
 wc file_A.txt
 ```
 
-Adding the optional flag `-l` will print just how many lines are in a file: 
+Adding the optional flag `-l` will print just how many lines are in a file (this is more useful than you might first think): 
 
 ```bash
 wc -l file_A.txt
@@ -321,7 +342,7 @@ wc -l file_A.txt
 </div>
 
 
-The commands `cp` and `mv` (**c**o**p**y and **m**o**v**e) have the same basic structure. They both require two positional arguments – the first is the file you want to act on, and the second is where you want it to go (this includes the name you want to give it). 
+The commands `cp` and `mv` (**c**o**p**y and **m**o**v**e) have the same basic structure. They both require two positional arguments – the first is the file you want to act on, and the second is where you want it to go (*this includes the name you want to give it*). 
 
 To see how this works, let's make a copy of the "file\_A.txt" file:
 
@@ -351,7 +372,7 @@ And now we have a copy of that file in our current working directory.
 
 Notice that in the first `cp` example we provided a new name in the target location, ("file\_A\_copy.txt"), but here when we used `.` to specify copying to the current working directory it simply copied the file with the same name as the original. *If that file name already existed in this directory, it would be overwritten*. 
 
-The `mv` command is used to move files **and** to rename them if wanted. Remember that the *path* (address/location) of a file actually includes its name. Here we will move a file from our current working directory into our subdirectory. At the moment our current working directory and our subdirectory contain these files:  
+The `mv` command is used to move files **and** to rename them if wanted. Remember that the *path* (address/location) of a file *actually includes its name*, so in this sense, "moving" a file is actually the same thing as "renaming" it. Here we will move a file from our current working directory into our subdirectory. At the moment our current working directory and our subdirectory contain these files:  
 
 ```
 ls
@@ -395,14 +416,12 @@ cp another_directory/file_E.txt file_A.txt
 
 ```
 head file_A.txt
-tail file_A.txt
 wc -l file_A.txt
 
 head another_directory/file_E.txt
-wc -l another_directory/file_E.txt
 ```
 
-And our original "file\_A.txt" file would be gone forever 😬 if we hadn't made a copy of it earlier. 
+And our original "file\_A.txt" file is now gone forever 😬 (well it would be if we hadn't made a copy of it earlier). 
 
 To delete files (intentionally) there is the `rm` command (**r**e**m**ove). This requires at least one argument specifying the file you want to delete. But again, caution is warranted. There will be no confirmation or retrieval from a waste bin afterwards.
 
@@ -412,7 +431,7 @@ rm file_A.txt
 ls
 ```
 
-You can make a new directory with the command `mkdir`:
+You can make a new directory with the command `mkdir` (for **m**a**k**e **dir**ectory):
 
 ```
 ls
@@ -420,7 +439,7 @@ mkdir our_new_directory
 ls
 ```
 
-And similarly, directories can be deleted with `rmdir`:
+And similarly, directories can be deleted with `rmdir` (for **r**e**m**ove **dir**ectory):
 
 ```
 rmdir our_new_directory/
@@ -435,7 +454,7 @@ rmdir another_directory/
 
 <br>
 ## Making and editing plain-text files
-It is often very useful to be able to generate new plain-text files quickly at the command line, or make some changes to an existing one. One way to do this is using a text editor that operates on the command line. Here we're going to look at a program called `nano`.
+It is often very useful to be able to generate new plain-text files quickly at the command line, or make some changes to an existing one. One way to do this is using a text editor that operates at the command line. Here we're going to look at one program that does this called `nano`.
 
 When we run the command `nano` it will open a text editor in our terminal window. If we give it a file name as a positional argument, it will open that file if it exists, or it will create it if it doesn't. Here we'll make a new file:
 
@@ -455,6 +474,9 @@ Now we can type as usual. Afterwards, to save the file and exit we need to use s
 ls
 head sample_names.txt
 ```
+
+<br>
+**NOTE:** Quickly [googling](https://www.google.com/search?ei=-SWlXOvuIaLy5gLP246oDQ&q=how+to+exit+nano&oq=how+to+exit+nano&gs_l=psy-ab.3..0l6.4168.5652..5979...0.0..0.146.1920.0j16......0....1..gws-wiz.......0i71j0i67j0i131.47VbE_2LDhI){:target="_blank"} how to get out of things like `nano` the first 15 times you use them is 100% normal!
 
 <br>
 
@@ -483,7 +505,7 @@ head sample_names.txt
 
 # Pipes and redirectors
 
-Now we're going take our first look at what makes the Unix command-line environment so powerful: pipes and redirectors! 
+Now we're going take our first look at some of the things that make the Unix command-line environment so powerful: pipes and redirectors! 
 
 A pipe `|` is used to connect multiple commands. It takes the output from the previous command and "pipes" it into the input of the following command. Let's look at an example. 
 
@@ -524,7 +546,7 @@ ls
 head directory_contents.txt
 ```
 
-**It's important to remember that the `>` redirector will overwrite the file you are pointing to if it already exists.** If we use two of them instead, `>>`, this will append to the target file, rather than overwrite it:
+**It's important to remember that the `>` redirector will overwrite the file you are pointing to if it already exists.** If we use two of them instead, `>>`, this will *append* to the target file, rather than overwrite it:
 
 ```
 ls >> directory_contents.txt
