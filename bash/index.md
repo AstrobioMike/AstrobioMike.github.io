@@ -18,10 +18,10 @@ Bash is the most common programming language in a Unix-like environment these da
 
 *  it's the foundation for most of bioinformatics
 *  enables use of non-GUI (Graphical User Interface) tools
-*  can quickly perform operations on large files
 *  reproducibility
-*  automation of repetitive tasks
-*  enables use of higher-powered computers elsewhere (server/cloud) 
+*  quickly perform operations on large files (without reading into memory)
+*  automation of repetitive tasks (need to rename 1,000 files?)
+*  enables use of higher-powered computers elsewhere (server/cloud)   
 
 <br>
 

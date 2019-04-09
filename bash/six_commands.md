@@ -9,20 +9,20 @@ permalink: /bash/six_commands
 
 {% include _side_tab_bash.html %}
 
-If you aren't already moderately comfortable with working at the command line, I recommended you run through the [*bash* basics](/bash/basics) page first. And if you see something here you aren't familiar with, you will be able to find it there. 
+If you aren't already moderately comfortable with working at the command line, I recommended you run through the [*bash* basics](/bash/bash_intro){:target="_blank"} page first. And if you see something here you aren't familiar with, you will be able to find it there. 
 
 Here I would like to go a touch beyond the basics and introduce you to six glorious commands of *bash* that are absolutely worth having handy in your toolkit. The problem with a lot of these things is that sometimes it's hard to see why exactly something would be useful at first. And of course before you know that some specific tool exists and how it works, you can't exactly realize all the times it would help you. That's how these commands were for me; I didn't know how useful they were, or how often I would use them, until I was well on my way to using them every day.  
 
-To try to help with that, first we're going to go over what it is exactly that these commands do, and run some simple examples of each with mock files that you can download if you'd like to follow along. These are mostly designed to get you acclimated to just the basic usage of these commands individually, but we will also slowly begin to incorporate [pipes and redirectors](/bash/basics#pipes-and-redirectors) to get an idea of how easy and useful it is to stick multiple commands together and write results to a file. Once you're comfortable with these things, we'll go over some more-involved [real-life examples](/bash/why) of how I use these commands every day – to hopefully help bridge the gap between first exposure to these things, to seeing how they're actually useful.
+To try to help with that, first we're going to go over what it is exactly that these commands do, and run some simple examples of each with mock files that you can download if you'd like to follow along. These are mostly designed to get you acclimated to just the basic usage of these commands individually, but we will also slowly begin to incorporate [pipes and redirectors](/bash/bash_intro#pipes-and-redirectors){:target="_blank"} to get an idea of how easy and useful it is to stick multiple commands together and write results to a file. Once you're comfortable with these things, we'll go over some more-involved [real-life examples](/bash/why){:target="_blank"} of how I use these commands every day – to hopefully help bridge the gap between first exposure to these things, to seeing how they're actually useful.
 
-I'll note again that basic Unix commands like these are for manipulating [plain text files](/bash/basics#whats-a-plain-text-file) only. And also keep in mind that each of these commands is much more expansive than what is presented here, so always explore at will!  
+I'll note again that basic Unix commands like these are for manipulating [plain text files](/bash/bash_intro#working-with-plain-text-files-and-directories){:target="_blank"} only. And also keep in mind that each of these commands is much more expansive than what is presented here, so always explore at will!  
 <br>
 
 ---
 ---
 <br>
 # Getting started  
-As with the [*bash* basics]({{ site.url }}/bash/basics) module, if you'd like to follow along, copy and paste these commands into your terminal to download some small example files to work with and make sure we're all in the same place. If you're not sure what the following commands are doing and are curious, you can find an explanation [here](/bash/basics#bottom).
+As with the [*bash* basics](/bash/bash_intro){:target="_blank"} module, if you'd like to follow along, copy and paste these commands into your terminal to download some small example files to work with and make sure we're all in the same place. If you're not sure what the following commands are doing and are curious, you can find an explanation [here](/bash/bash_intro#bottom){:target="_blank"}.
 
 ```
 cd ~
@@ -74,7 +74,7 @@ wc -l example_gene_annotations.txt
 <center><img src="{{ site.url }}/images/cut_num_lines.png"></center> 
 
 <br>
-Now that we know something about the file we're working with, let's get to manipulating it. As we get into these commands, we'll also begin writing results out to files with the `>` redirector and stringing multiple commands together with the `|` character. If you need a refresher on these, swing by the [pipes and redirectors]({{ site.url }}/bash/basics#pipes-and-redirectors) section of the [*bash* basics]({{ site.url }}/bash/basics) module.  
+Now that we know something about the file we're working with, let's get to manipulating it. As we get into these commands, we'll also begin writing results out to files with the `>` redirector and stringing multiple commands together with the `|` character. If you need a refresher on these, swing by the [pipes and redirectors](/bash/bash_intro#pipes-and-redirectors){:target="_blank"} section of the [*bash* basics](/bash/bash_intro){:target="_blank"} module.  
 <br>
 
 ---
@@ -142,7 +142,7 @@ Try running the same `cut` command on this comma-delimited file, only without sp
 ---
 <br>
 # grep  
-`grep` is a pattern recognition tool. Apparently it stands for "Global Regular Expression Print", as I just learned from google. In its default usage, `grep` will search for whatever string of characters you ask for, in whichever file(s) you specify, and then return the entire lines that contain that string of characters. For one example of how this works, we're going to search our example gene annotation file for something. As we've seen, this file has [KEGG](http://www.genome.jp/kegg/) and [COG](https://www.ncbi.nlm.nih.gov/COG/) annotations. For the moment, let's pretend we're interested in genes that encode for epoxyqueuosine reductase. We know from above that one of our columns holds KEGG identifiers, and if we search KEGG for this gene we find that there are two in the KEGG database with identifiers [K09765](http://www.genome.jp/dbget-bin/www_bget?ko:K09765) and [K18979](http://www.genome.jp/dbget-bin/www_bget?ko:K18979). So let's try to pull them out of our file with `grep`:
+`grep` is a pattern recognition tool. Apparently it stands for "Global Regular Expression Print", as I just learned from google. In its default usage, `grep` will search for whatever string of characters you ask for, in whichever file(s) you specify, and then return the entire lines that contain that string of characters. For one example of how this works, we're going to search our example gene annotation file for something. As we've seen, this file has [KEGG](http://www.genome.jp/kegg/){:target="_blank"} and [COG](https://www.ncbi.nlm.nih.gov/COG/){:target="_blank"} annotations. For the moment, let's pretend we're interested in genes that encode for epoxyqueuosine reductase. We know from above that one of our columns holds KEGG identifiers, and if we search KEGG for this gene we find that there are two in the KEGG database with identifiers [K09765](http://www.genome.jp/dbget-bin/www_bget?ko:K09765){:target="_blank"} and [K18979](http://www.genome.jp/dbget-bin/www_bget?ko:K18979){:target="_blank"}. So let's try to pull them out of our file with `grep`:
 
 ```
 grep "K09765" example_gene_annotations.txt
@@ -252,7 +252,7 @@ grep -c "gene_ID" example_gene_annotations.txt
 <br>
 And by this returning "1", we can be confident we're not accidently grabbing any extra lines we didn't mean to get. 
 
-Many commands in *bash* support what are known as "regular expressions". We've already gotten a little taste of this in the [wildcards]({{ site.url }}/bash/basics#wildcards) section of [bash basics]({{ site.url }}/bash/basics), but as you find yourself wondering if and how you can search for more complicated patters with `grep`, you may want to start googling and learning more about *bash* regular expressions.  
+Many commands in *bash* support what are known as "regular expressions". We've already gotten a little taste of this in the [wildcards](/bash/bash_intro#wildcards){:target="_blank"} section of [bash basics](/bash/bash_intro){:target="_blank"}, but as you find yourself wondering if and how you can search for more complicated patters with `grep`, you may want to start googling and learning more about *bash* regular expressions.  
 <br>
 
 ---
@@ -462,7 +462,7 @@ And now we could begin to work on this file as though it weren't an alien.
 ---
 ---
 <br>
-# Ok, so where's the advertised gloriousness?
+<h1>Ok, so where's the advertised gloriousness?</h1>
 I know, this is all well and good, but again I know firsthand that it's really hard to care about these things until you are already using them to make your life easier. But the problem is that it's also kinda hard to get to that point *before* you care enough about using them to learn them. This is the conundrum we face 😕  
 
-To hopefully help bridge that gap, let's hop over to [Why is this all worth it?]({{ site.url }}/bash/why) for some real-life examples of how I use these things every day.
+To hopefully help bridge that gap, let's hop over to [Why is this all worth it?](/bash/why){:target="_blank"} for some real-life examples of how I use these things every day.

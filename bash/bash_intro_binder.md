@@ -1,13 +1,13 @@
 ---
 layout: main
-title: Introduction to Bash (in Binder)
+title: Introduction to Bash
 categories: [bash, tutorial]
 permalink: /bash/bash_intro_binder
 ---
 
 {% include _bash_intro_toc.html %}
 
-> **Things covered here**  
+> **Things covered here:**  
 *  Some quick terms
 *  Why familiarity with the command line is valuable
 *  Running commands and general syntax
@@ -19,10 +19,13 @@ permalink: /bash/bash_intro_binder
 <br>
 
 # Important note!
-**Keep in mind, none of this is about memorization. It may seem counterintuitive, but the minute details aren't important. What matters is starting to build a mental framework of the foundational rules and concepts. That equips us to figure out the things we need to do, when we need to do them!** 
+**Keep in mind, none of this is about memorization. It may seem counterintuitive, but the little details aren't important. What matters is starting to build a mental framework of the foundational rules and concepts. That equips us to figure out the things we need to do, when we need to do them!** 
 
 <center>Here's a high-resolution timelapse of my ongoing journey:</center>
 <center><img src="{{ site.url }}/images/mike_philosophy.png" title="Don't worry about every little detail!"></center>
+
+<br>
+>Whether you're going through this page with someone in-person or you're going through it by yourself, you'll see that it's written to be completely self-contained. Meaning just about everything I would say in person is also written here in a very conversational format. This is so at any point in time you can return to this and find something again. So don't let the large amount of information and details feel overwhelming if it starts too, it is definitely a lot when this is all new. But you don't need to learn it all perfectly in one pass, I certainly didn't. And maybe you won't have the time or need to try appling these skills for a while after going through this. But getting some exposure to these concepts now will help when that point comes, because you'll already know that you *can* figure it out when you need to. And then you can come back to this page to look at some things to help refresh your memory and get you started 🙂
 
 <br>
 
@@ -30,14 +33,14 @@ permalink: /bash/bash_intro_binder
 <br>
 
 # Some terminology
-First, here are some terms that are often used semi-interchangeably.  
+First, here are some terms that are often used interchangeably.  
 
 | Term     | What it is          |
 |:-------------:|------------------|
 | **`command line`** | a text-based environment capable of taking input and providing output |  
 | **`Unix`** | a family of operating systems |  
 | **`bash`** | the most common programming language used at a Unix command-line |  
-| **`shell`** | our ambassador to the operating system; this translates between us and the computer |  
+| **`shell`** | what we use to talk to the computer; anything where you are pointing and clicking with a mouse is a **G**raphical **U**ser **I**nterface (**GUI**) shell; something with text only is a **C**ommand **L**ine **I**nterface (**CLI**) shell |  
 
 <br>
 
@@ -46,8 +49,8 @@ First, here are some terms that are often used semi-interchangeably.
 *  it's the foundation for most of bioinformatics
 *  enables use of non-GUI (Graphical User Interface) tools
 *  reproducibility
-*  quickly perform operations on large files (without reading into *memory*)
-*  automation of repetitive tasks (need to rename 1,000 files?)
+*  quickly perform operations on large files (without reading into memory)
+*  automation of repetitive tasks (need to rename 1,000 files, or process 1,000 samples the same way?)
 *  enables use of higher-powered computers elsewhere (server/cloud)  
 
 <br>
@@ -76,7 +79,7 @@ This is our "command line", where we will be typing all of our commands 🙂
 ---
 <br>
 
-**If you don't want to use binder**, but want to follow along with this page, then for right now, and only for right now, I would like you to blindly copy and paste the following commands into your terminal window. This is so that we are working in the same place with the same files.  
+**If you are not using the binder environment**, but want to follow along with this page, then for right now, and only for right now, I would like you to blindly copy and paste the following commands into your terminal window. This is so that we are working in the same place with the same files.  
 
 <center><b>SKIP THESE COMMANDS IF YOU ARE WORKING IN THE BINDER ENVIRONMENT SHOWN IN THE PICTURE ABOVE</b></center>
 
@@ -101,7 +104,7 @@ Don't forget to press enter to execute the last command (usually that doesn't co
 
 The general syntax working at the command line goes like this: `command argument`. **Spaces are special!** The command line uses spaces to know how to properly break things apart. This is why it's not ideal to have filenames that contain spaces, but rather it's better to use dashes, `-`, or underscores, `_` – e.g., "draft_v3.txt" is preferred over "draft v3.txt". 
 
-Arguments (can also be referred to as "flags" or "options") can be **optional** or **required** based on the command being used. Let's see what this looks like:
+Arguments (which can also be referred to as "flags" or "options") can be **optional** or **required** based on the command being used. Let's see what this looks like:
 
 `date` is a command that prints out the date and time. This particular command does not require any arguments:
 
@@ -109,13 +112,19 @@ Arguments (can also be referred to as "flags" or "options") can be **optional** 
 date
 ```
 
-But you can provide optional arguments to `date`. Here we are adding the `-u` argument to tell it to report UTC time instead of local (the "default"): 
+When we run `date` with no arguments, it uses default settings, like assuming we want to know the time in our local time zone. But we can provide optional arguments to `date`. Optional arguments most often require putting a dash `-` in front of them in order for the program to interpret them properly. Here we are adding the `-u` argument to tell it to report UTC time instead of the local time (which is the "default"): 
 
 ```bash
 date -u
 ```
 
-If we tried to enter this without the "space" separating `date` and the argument `-u`, the computer won't know how to break apart the command:
+Note that if we try to run it without the dash `-`, we get an error:
+
+```bash
+date u
+```
+
+Also note that if we try to enter this without the "space" separating `date` and the optional argument `-u`, the computer won't know how to break apart the command and we get a different error:
 
 ```bash
 date-u
@@ -148,7 +157,7 @@ Note that when we provided the `-u` flag to the `date` command (to get the comma
 
 # The Unix file-system structure
 
-Your computer stores file locations in a hierarchical structure. You are likely already used to navigating through this stucture by clicking on various folders (aka directories) in a Windows Explorer window or a Mac Finder window. Just like you need to select the appropriate files in the appropriate locations there, you need to do the same when working at the command line. What this means in practice is that each file and directory has its own "address", and that address is called its "**path**". 
+Your computer stores file locations in a hierarchical structure. You are likely already used to navigating through this stucture by clicking on various folders (also known as directories) in a Windows Explorer window or a Mac Finder window. Just like you need to select the appropriate files in the appropriate locations there, you need to do the same when working at the command line. What this means in practice is that each file and directory has its own "address", and that address is called its "**path**". 
 
 Here is an image of an example file-system structure:
 
@@ -158,7 +167,7 @@ Here is an image of an example file-system structure:
 <br>
 There are two special locations in all Unix-based systems: the "**root**" location and the current user's "**home**" location. "Root" is where the address system of the computer starts; "home" is where the current user's location starts.
 
-We tell the command line where files and directories are located by providing their address, their "path". If we use the `pwd` command (**p**rint **w**orking **d**irectory), we can find out what the path is for the directory we are sitting in. Whatever directory we are currently sitting in is called the "current working directory". And if we use the `ls` command, we can see what directories and files are in the current directory we are sitting in.
+We tell the command line where files and directories are located by providing their address, their "path". If we use the `pwd` command (**p**rint **w**orking **d**irectory), we can find out what the path is for the directory we are sitting in. Whatever directory we are currently sitting in is called the "current working directory". And if we use the `ls` command (**l**i**s**t), we can see what directories and files are in the current directory we are sitting in.
 
 ```
 pwd
@@ -166,9 +175,9 @@ ls
 ``` 
 
 ## Absolute vs relative path
-There are two ways to specify the path of the file we want to do something to: the absolute path and the relative path. 
+There are two ways to specify the path (address) of the file we want to do something to: the absolute path and the relative path. 
 
-* An **absolute path** is an address that starts from an explicitly specified location: either the "root" `/` or the "home" `~/` location. (Note: When using the "root" as the start of the absolute path, it is referred to as the "full path".)
+* An **absolute path** is an address that starts from an explicitly specified location: either the "root" `/` or the "home" `~/` location. 
 * A **relative path** is an address that starts from wherever you are currently sitting.
 
 For example, let's look again at the `head` command we ran above:
@@ -177,7 +186,7 @@ For example, let's look again at the `head` command we ran above:
 head file_A.txt
 ```
 
-What we are actually doing here is using a **relative path** to specify where the "file\_A.txt" file is located. This is because the command line automatically looks in the current working directory for a file or directory if you don't specify anything else about it's location. (**Note:** The address of a file, it's "path", *includes the file name also*, it doesn't stop at the folder that holds it.)
+**What we are actually doing here is using a relative path to specify where the "file\_A.txt" file is located.** This is because the command line automatically looks in the current working directory if you don't specify anything else about its location. 
 
 We can also run the same command on the same file using the **absolute path**. Here is doing so starting from the "home" `~/` location. 
 
@@ -185,13 +194,17 @@ We can also run the same command on the same file using the **absolute path**. H
 head ~/bash_intro/file_A.txt
 ```
 
-And, for the sake of completeness, we can also run the same command on the same file using the **full path**, which starts from the "root" `/` location:
+And here is doing so startin from the "root" `/` location, providing the **full path**:
 
 ```bash
 head /home/jovyan/bash_intro/file_A.txt
 ```
 
-These three ways all point to the same file. It is important to be comfortable thinking about *where* you are in your computer when working at the command line. One of the most common errors/easiest mistakes to make is trying to do something to a file that isn't where you think it is. Let's run `head` on the "file\_A.txt" file again, and then let's try it on another file: "file\_E.txt":
+These three ways all point to the same file. But the first way, `head file_A.txt`, will only work if we are entering it while sitting in the directory that holds that file. 
+
+>**Note:** The address of a file, its "path", includes the file name also, it doesn't stop at the directory that holds it.
+
+It is important to be comfortable thinking about *where* you are in your computer when working at the command line. **One of the most common errors/easiest mistakes to make is trying to do something to a file that isn't where you think it is.** Let's run `head` on the "file\_A.txt" file again, and then let's try it on another file: "file\_E.txt":
 
 ```bash
 head file_A.txt
@@ -200,13 +213,13 @@ head file_E.txt
 
 Here the `head` command works fine on "file\_A.txt", but we get an error message when we call it on "file\_E.txt" telling us no such file or directory. If we run the `ls` command to list the contents of the current working directory, we can see the computer is absolutely right – spoiler alert: it usually is – and there is no file here named "file\_E.txt". 
 
-The `ls` command by default operates on the current working directory if we don't specify any location, but we can tell it to list the contents of a specific directory by providing it as a positional argument: 
+The `ls` command by default operates on the current working directory if we don't specify any location, but we can tell it to list the contents of a different directory by providing it as a positional argument: 
 
 ```
 ls another_directory
 ```
 
-We can see the file we were looking for is located in the "subdirectory" called "another\_directory". Here is how we can run `head` on "file\_E.txt" by specifying the **relative path**:
+We can see the file we were looking for is located in the subdirectory called "another\_directory". Here is how we can run `head` on "file\_E.txt" by specifying the **relative path**:
 
 ```bash
 head another_directory/file_E.txt
@@ -220,7 +233,7 @@ Tab-completion is a huge time-saver, but even more importantly it is a perpetual
 If we are trying to point to a file or directory that's in our current working directory, we can begin typing the file or directory name and then press `tab` to complete it. If there is only one possible way to finish what we've started typing, it will complete it for us. If there is more than one possible way to finish what we've started typing, it will complete as far as it can, and then hitting `tab` twice will show the possible options. And most importantly, if tab-complete does not do either of those things, then we are either confused about where we are, or we're confused about where the file or directory is that we're trying to do something to – this is invaluable.
 
 > **Quick Practice**  
-> Try out tab-complete! Run `ls` first to see what's in our current working directory again. Then type `head fi` and then press `tab`. This will auto-complete out as far as it can, which in this case is up to "file\_", because there are multiple possibilities still at that point. If we press `tab` twice here, it will print out all of the possibilities for us. And if we enter "A" and press `tab` again, it will finish completing "file\_A.txt" as that is the only remaining possibility, and we can now press `enter` to run our command. 
+> Try out tab-complete! Run `ls` first to see what's in our current working directory again. Then type `head f` and then press `tab`. This will auto-complete out as far as it can, which in this case is up to "file\_", because there are multiple possibilities still at that point. If we press `tab` twice here, it will print out all of the possibilities for us. And if we enter "A" and press `tab` again, it will finish completing "file\_A.txt" as that is the only remaining possibility, and we can now press `enter` to run our command. 
 
 <center><b>Use tab-completion whenever you can!!</b></center>
 <br>
@@ -260,7 +273,7 @@ Try to get used to regularly thinking about "where" you are in the computer when
 
 | Term     | What it is          |
 |:----------:|------------------|
-| **`path`** | the address system the computer uses |
+| **`path`** | the address system the computer uses to keep track of files and directories |
 | **`root`** | where the address system of the computer starts, **`/`** |
 | **`home`** | where the current user's location starts, **`~/`**|
 | **`absolute path`** | an address that starts from a specified location, i.e. root, or home |
@@ -295,10 +308,10 @@ Try to get used to regularly thinking about "where" you are in the computer when
 # Working with plain-text files and directories
 The most common command-line tools are mostly only useful for operating on what are known as **plain-text files** – also referred to as "flat files". There are a few definitions you can check out at the [wiki](https://en.wikipedia.org/wiki/Plain_text){:target="_blank"} if you'd like, but a good-enough working definition of what a plain-text file is might be something like: a text file that doesn't contain any special formatting characters or information, and that can be properly viewed and edited with any standard text editor. 
 
-Common types of flat-text files are those ending with extensions like ".txt", ".tsv" for **t**ab-**s**eparated **v**alues, or ".csv" for **c**omma **s**eparated **v**alues. Some examples of common file types that are *not* flat-text files would be ".docx", ".pdf", or ".xlsx". This is because those types contain special types of compression and formatting information that are only interpretable by programs specifically designed to work with them.
+Common types of flat-text files are those ending with extensions like ".txt", ".tsv" for **t**ab-**s**eparated **v**alues, or ".csv" for **c**omma **s**eparated **v**alues. Some examples of common file types that are *not* flat-text files would be ".docx", ".pdf", or ".xlsx". This is because those file formats contain special types of compression and formatting information that are only interpretable by programs specifically designed to work with them. 
 
 > **Note on file extensions**  
-> File extensions do not actually do anything to the file format. They are *mostly* there just for our convenience/organization – "mostly" because some programs require a specific extension to be present for them to even try interacting with a file. 
+> File extensions themselves do not actually do anything to the file format. They are *mostly* there just for our convenience/organization – I say "mostly" because some programs require a specific extension to be present for them to even try interacting with a file. But this has nothing to do with the file contents, just that the program won't let you interact with it unless it has a specific extension.
 > 
 > The command `file` will tell you what type of file something is. Run `file file_D.xlsx` and then `file file_C.xlsx`. The "file\_D.xlsx" is actually an Excel file and has all kinds of special formatting for Excel that only makes sense to Excel. But "file\_C.xlsx" is just a plain-text file that happens to have the extention ".xlsx". Try running `head` on each of these files. (If your terminal is stuck after you run `head file\_D.xlsx` – which you can tell because your prompt doesn't return – remember you can cancel an operation by pressing `ctrl + c`.)
 
@@ -344,7 +357,7 @@ wc -l file_A.txt
 
 The commands `cp` and `mv` (**c**o**p**y and **m**o**v**e) have the same basic structure. They both require two positional arguments – the first is the file you want to act on, and the second is where you want it to go (*this includes the name you want to give it*). 
 
-To see how this works, let's make a copy of the "file\_A.txt" file:
+To see how this works, let's make a copy of "file\_A.txt":
 
 ```
 ls
@@ -360,7 +373,7 @@ cp file_A.txt another_directory/file_A_copy.txt
 ls another_directory/
 ```
 
-If we want to copy something from somewhere else *to our current working directory*, we can use another special character, a period – `.`. The period specifies the current working directory – just like `..` specifies one directory above us.
+If we want to copy something from somewhere else *to our current working directory*, we can use another special character, a period `.`, which specifies the current working directory – just like `..` which specifies one directory above us.
 
 ```
 ls
@@ -372,7 +385,7 @@ And now we have a copy of that file in our current working directory.
 
 Notice that in the first `cp` example we provided a new name in the target location, ("file\_A\_copy.txt"), but here when we used `.` to specify copying to the current working directory it simply copied the file with the same name as the original. *If that file name already existed in this directory, it would be overwritten*. 
 
-The `mv` command is used to move files **and** to rename them if wanted. Remember that the *path* (address/location) of a file *actually includes its name*, so in this sense, "moving" a file is actually the same thing as "renaming" it. Here we will move a file from our current working directory into our subdirectory. At the moment our current working directory and our subdirectory contain these files:  
+The `mv` command is used to move files **and** to rename them if wanted. That might sound a little weird at first, but not if you remember that the *path* (address/location) of a file *actually includes its name*. So in this sense, "moving" a file is actually the same thing as "renaming" it. Here we will move a file from our current working directory into our subdirectory. At the moment our current working directory and our subdirectory contain these files:  
 
 ```
 ls

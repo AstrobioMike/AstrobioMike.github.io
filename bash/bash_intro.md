@@ -607,6 +607,7 @@ ls sample_1?.log
 ---
 ---
 <br>
+<a id="bottom"></a>
 <h1>Congrats on getting through the basics!</h1>
 
 Let's look back at the set of commands we ran at the beginning:

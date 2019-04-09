@@ -10,14 +10,14 @@ permalink: /bash/why
 {% include _side_tab_bash.html %}
 
 
-It can be tough to see why these things are useful before you are actually using them regularly, so here I'm going to provide some real-life examples of how I use *bash* everyday. It is assumed you're already comfortable with *bash* and some of the most commonly used commands, but if not, be sure to check out the [basics](/bash/basics) and [six glorious commands](/bash/six_commands). Without already being comfortable with what's covered in those pages, some of these one-liners will probably look way more complicated than they actually are.
+It can be tough to see why these things are useful before you are actually using them regularly, so here I'm going to provide some real-life examples of how I use *bash* everyday. It is assumed you're already comfortable with *bash* and some of the most commonly used commands, but if not, be sure to check out the [basics](/bash/bash_intro){:target="_blank"} and [six glorious commands](/bash/six_commands){:target="_blank"}. Without already being comfortable with what's covered in those pages, some of these one-liners will probably look way more complicated than they actually are.
 <br>
 
 ---
 ---
 <br>
 # Getting started  
-If you'd like to follow along here, you can get the mock data we'll be working with by coping and pasting these commands into your terminal. If you're not sure what the following commands are doing and are curious, you can find an explanation [here]({{ site.url }}/bash/basics#bottom).
+If you'd like to follow along here, you can get the mock data we'll be working with by coping and pasting these commands into your terminal. If you're not sure what the following commands are doing and are curious, you can find an explanation [here](/bash/bash_intro#bottom){:target="_blank"}.
 
 ```
 cd ~
@@ -41,7 +41,7 @@ ls | wc -l
 <center><img src="{{ site.url }}/images/1000_files_head.png"></center> 
 
 <br>
-Here's the approach. We covered in [*bash* basics](/bash/basics) how to rename files with the `mv` command, so we already know we could easily change one file like this: `mv Sample-1.fq Sample_1.fq`. But of course that doesn't scale, and is just as bad us doing this one at a time in the Finder window. Instead, we are going to make and do this with a *bash* script. A *bash* script isn't anything special, it's just a bunch of individual *bash* commands one line after another. To demonstrate that, let's make a script out of the two commands we just ran when looking at our files.
+Here's the approach. We covered in [*bash* basics](/bash/bash_intro){:target="_blank"} how to rename files with the `mv` command, so we already know we could easily change one file like this: `mv Sample-1.fq Sample_1.fq`. But of course that doesn't scale, and is just as bad us doing this one at a time in the Finder window. Instead, we are going to make and do this with a *bash* script. A *bash* script isn't anything special, it's just a bunch of individual *bash* commands one line after another. To demonstrate that, let's make a script out of the two commands we just ran when looking at our files.
 
 `echo` is a command that will spit back out whatever you tell it:
 
@@ -52,7 +52,7 @@ echo "Hi Mike"
 <center><img src="{{ site.url }}/images/echo.png"></center> 
 
 <br>
-Seems a little useless at first (unless you're lonely, of course 😢 ). But its utility makes more sense when you use [redirectors](/bash/basics#pipes-and-redirectors) to send things somewhere else. For example, instead of using `nano` like we've [done before](/bash/basics#nano) to make a new file, we can make our *bash* script with the `echo` command:
+Seems a little useless at first (unless you're lonely, of course 😢 ). But its utility makes more sense when you use [redirectors](/bash/bash_intro#pipes-and-redirectors){:target="_blank"} to send things somewhere else. For example, instead of using `nano` like we've [done before](/bash/bash_intro#making-and-editing-plain-text-files){:target="_blank"} to make a new file, we can make our *bash* script with the `echo` command:
 
 ```
 echo "ls | head" > test.sh
@@ -113,7 +113,7 @@ cut -f1,2 mapping.txt | sed '1d' | sed 's/^/>/' | tr "\t" "\n" > mapping.fa
 <br>
 
 # Example 3 - Counting specific amino acids in lots of tables
-Recently my good 'ol buddy Josh Kling was yabbering about some paper as he usually does, but for some odd reason I was actually listening this time. It turns out [this paper by Pittera et al.](https://www.nature.com/articles/ismej2016102) was about the thermostability of some *Synechococcus* proteins. They hypothesized that a particular amino acid (position number 43) would more often be alanine in warmer temperature waters, and glycine in colder temperature waters. Having been working on genomics and pangenomics of Syn, I had mapped metagenomic data from about 100 samples from the [TARA Oceans global sampling project](https://www.embl.de/tara-oceans/start/). So we realized I had the data we needed to test this hypothesis just sitting in the computer. All the information was already in the mapping files, we just needed to pull it out. The first part that made that easy is thanks to [Anvi'o](http://merenlab.org/software/anvio/), as that will parse your mapping files for you and give you nice tables like this that we have in our example_3 working directory:
+Recently my good 'ol buddy Josh Kling was yabbering about some paper as he usually does, but for some odd reason I was actually listening this time. It turns out [this paper by Pittera et al.](https://www.nature.com/articles/ismej2016102){:target="_blank"} was about the thermostability of some *Synechococcus* proteins. They hypothesized that a particular amino acid (position number 43) would more often be alanine in warmer temperature waters, and glycine in colder temperature waters. Having been working on genomics and pangenomics of Syn, I had mapped metagenomic data from about 100 samples from the [TARA Oceans global sampling project](https://www.embl.de/tara-oceans/start/){:target="_blank"}. So we realized I had the data we needed to test this hypothesis just sitting in the computer. All the information was already in the mapping files, we just needed to pull it out. The first part that made that easy is thanks to [Anvi'o](http://merenlab.org/software/anvio/){:target="_blank"}, as that will parse your mapping files for you and give you nice tables like this that we have in our example_3 working directory:
 
 ```
 column -t ANW_141_05M_24055_AA_freqs.txt | less -S
@@ -142,7 +142,7 @@ grep -w "^42" * | cut -f15 | awk '{sum += $1} END {print sum}'
 <center><img src="{{ site.url }}/images/aa_counts_results.png"></center> 
 
 <br>
-And we see at this particular site the coverage of this specific amino acid position was 1,670, it was an alanine 1,605 of those times, and a glycine only 30 of those times. And sure enough this was a warmer site and we saw the exact opposite when looking at colder sites. Pretty cool! Props to [Piterra et al.](https://www.nature.com/articles/ismej2016102).
+And we see at this particular site the coverage of this specific amino acid position was 1,670, it was an alanine 1,605 of those times, and a glycine only 30 of those times. And sure enough this was a warmer site and we saw the exact opposite when looking at colder sites. Pretty cool! Props to [Piterra et al.](https://www.nature.com/articles/ismej2016102){:target="_blank"}.
 <br>
 
 ---
@@ -150,7 +150,7 @@ And we see at this particular site the coverage of this specific amino acid posi
 # Example 4 - Converting NCBI taxon IDs to organism lineages  
 Recently some collaborators did some sequening with Nanopore's MinION sequencer. This is a "real-time" sequencer that is trying to be as user-friendly as possible so just about anyone can sequence DNA anywhere. They have a whole workflow setup so you can just stream the data to a server as you sequence and it will run things through a taxonomy classifier, BUT for some strange reason it only gives you tables with NCBI taxonomy IDs and no actual organism information. My collaborators were kind of stuck there for a bit and asked me for help.
 
-Fortunately there is a nice tool called [taxonkit](https://github.com/shenwei356/taxonkit) (which is in our working directory) that will convert these IDs to organism lineages like we want, but we first have to parse the output from the MinION workflow, which looks like this:
+Fortunately there is a nice tool called [taxonkit](https://github.com/shenwei356/taxonkit){:target="_blank"} (which is in our working directory) that will convert these IDs to organism lineages like we want, but we first have to parse the output from the MinION workflow, which looks like this:
 
 <center><img src="{{ site.url }}/images/epi2me_start.png"></center> 
 
