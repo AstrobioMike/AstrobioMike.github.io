@@ -19,7 +19,10 @@ permalink: /bash/bash_intro
 **Keep in mind, none of this is about memorization. It may seem counterintuitive, but the minute details aren't important. What matters is starting to build a mental framework of the foundational rules and concepts. That equips us to figure out the things we need to do, when we need to do them!** 
 
 <center>Here's a high-resolution timelapse of my ongoing journey:</center>
-<center><img src="{{ site.url }}/images/mike_philosophy.png" title="Don't worry about every little detail!"></center>
+<center><img src="{{ site.url }}/images/mike_philosophy2.png" title="Don't worry about every little detail!"></center>
+
+<br>
+>Whether you're going through this page with someone in-person or you're going through it by yourself, you'll see that it's written to be completely self-contained. Meaning just about everything I would say in person is also written here in a very conversational format. This is so at any point in time you can return to this and find something again. So don't let the large amount of information and details feel overwhelming if it starts too, it is definitely a lot when this is all new. But you don't need to learn it all perfectly in one pass, I certainly didn't. And maybe you won't have the time or need to try appling these skills for a while after going through this. But getting some exposure to these concepts now will help when that point comes, because you'll already know that you *can* figure it out when you need to. And then you can come back to this page to look at some things to help refresh your memory and get you started 🙂
 
 <br>
 
