@@ -356,7 +356,7 @@ cp file_A.txt file_A_copy.txt
 ls
 ```
 
-Remember we are actually providing a *relative path* when we provide the file names here. So to make make a copy of "file\_A.txt" and put it somewhere else, like in our subdirectory "another\_directory", we would change the second positional argument:
+Remember we are actually providing a *relative path* when we provide the file names here. So to make a copy of "file\_A.txt" and put it somewhere else, like in our subdirectory "another\_directory", we would change the second positional argument:
 
 ```
 ls another_directory/
@@ -531,17 +531,13 @@ For another example, let's look at what's in the subdirectory, "example_files":
 ls example_files/
 ```
 
-That prints out a lot of stuff, if we just wanted to get a quick view, we could pipe `|` that output into `tail` for example (which prints the last lines of a file):
-
-```
-ls example_files/ | tail
-```
-
-And again, if we want to know how many files are actually there, we can pipe `|` the output of `ls` into `wc -l`:
+That prints out a lot of stuff, let's see how many things are in that directory: 
 
 ```
 ls example_files/ | wc -l
 ```
+
+We'll get back to making sense of that when we get to *wildcards* in the next section.  
 
 >**Another important character is the greater than sign, `>`. This tells the command line to "redirect" the output to a file, rather than just printing it to the screen as we've seen so far.**  
 
@@ -563,7 +559,6 @@ head directory_contents.txt
 ```
 wc -l directory_contents.txt
 ls >> directory_contents.txt
-head directory_contents.txt
 wc -l directory_contents.txt
 ```
 
