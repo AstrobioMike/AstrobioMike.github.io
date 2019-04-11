@@ -188,19 +188,13 @@ head file_A.txt
 
 **What we are actually doing here is using a relative path to specify where the "file\_A.txt" file is located.** This is because the command line automatically looks in the current working directory if you don't specify anything else about its location. 
 
-We can also run the same command on the same file using the **absolute path**. Here is doing so starting from the "home" `~/` location. 
-
-```bash
-head ~/bash_intro/file_A.txt
-```
-
-And here is doing so startin from the "root" `/` location, providing the **full path**:
+We can also run the same command on the same file using the **absolute path**:
 
 ```bash
 head /home/jovyan/bash_intro/file_A.txt
 ```
 
-These three ways all point to the same file. But the first way, `head file_A.txt`, will only work if we are entering it while sitting in the directory that holds that file. 
+These both point to the same file. But the first way, `head file_A.txt`, will only work if we are entering it while sitting in the directory that holds that file, while the second way with the absolute path will work no matter where we happen to be "sitting" in the computer. 
 
 >**Note:** The address of a file, its "path", includes the file name also, it doesn't stop at the directory that holds it.
 
