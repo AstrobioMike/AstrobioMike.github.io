@@ -250,9 +250,6 @@ pwd
 ls
 ```
 
-> **Note on `cd`**  
-> If you run the `cd` command with no arguments, it will use your home `~/` location as the default. So entering `cd` by itself will function the same as `cd ~/`. 
-
 Moving around the computer like this may feel a bit cumbersome at first, but after spending a little time with it and getting used to tab-completion you'll soon find yourself slightly frustrated when you have to scroll through a bunch of files and click on something by eye with a mouse or trackpad in a Finder window 🙂
 
 > **Quick Practice**  
