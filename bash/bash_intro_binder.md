@@ -242,7 +242,7 @@ ls
 head file_E.txt
 ```
 
-Great. But now how do we get back 'up' to the directory above us? One way would be to provide an absolute path, like `cd ~/bash_intro/`, but there is also a handy shortcut. `..` is a relative path that specifies "up" one level – one directory – from wherever we currently are. So we can provide that as the positional argument to `cd` to get back to where we started, and then double check with `pwd` to show where we are and `ls` to list what's here:
+Great. But now how do we get back 'up' to the directory above us? One way would be to provide an absolute path, like `cd /home/jovyan/bash_intro/`, but there is also a handy shortcut. `..` is a relative path that specifies "up" one level – one directory – from wherever we currently are. So we can provide that as the positional argument to `cd` to get back to where we started, and then double check with `pwd` to show where we are and `ls` to list what's here:
 
 ```
 cd ..
