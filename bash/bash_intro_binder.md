@@ -194,7 +194,7 @@ We can also run the same command on the same file using the **absolute path**:
 head /home/jovyan/bash_intro/file_A.txt
 ```
 
-These both point to the same file. But the first way, `head file_A.txt`, will only work if we are entering it while sitting in the directory that holds that file, while the second way with the absolute path will work no matter where we happen to be "sitting" in the computer. 
+These both point to the same file. But the first way, `head file_A.txt`, will only work if we are entering it while "sitting" in the directory that holds that file, while the second way with the absolute path will work no matter where we happen to be sitting in the computer. 
 
 >**Note:** The address of a file, its "path", includes the file name also, it doesn't stop at the directory that holds it.
 
