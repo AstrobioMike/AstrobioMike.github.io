@@ -1,6 +1,6 @@
 ---
 layout: main
-title: Six commands worth getting to know
+title: Six glorious commands worth getting to know
 categories: [bash, tutorial]
 permalink: /bash/six_commands
 ---
