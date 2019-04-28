@@ -9,7 +9,7 @@ permalink: amplicon/dada2_workflow_ex
 
 {% include _side_tab_amplicon.html %}
 
-[DADA2](https://benjjneb.github.io/dada2/index.html){:target="_blank"} is a relatively new processing workflow for recovering single-nucleotide resolved Amplicon Sequence Variants (ASVs) from amplicon data – if you're unfamiliar with ASVs, you can read more about ASVs vs OTUs in the [opening caveats](/amplicon/dada2_workflow_ex#opening-caveats) section that follows. Developed and maintained by [@bejcal](https://twitter.com/bejcal){:target="_blank"} et al., DADA2 leverages sequencing quality and abundance information to a greater extent than previously developed tools and generates an error model based on your actual data. It then uses this error model to do its best to infer the true biological sequences that generated your data. The original paper can be found [here](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4927377/){:target="_blank"}, and the DADA2 R package site is [here](https://benjjneb.github.io/dada2/index.html){:target="_blank"}. The DADA2 team already has a great tutorial available [here](https://benjjneb.github.io/dada2/tutorial.html){:target="_blank"}, and I learned my way around DADA2 by following that and reading through the [manual](https://www.bioconductor.org/packages/3.3/bioc/manuals/dada2/man/dada2.pdf){:target="_blank"}. And while the overall workflow presented here is the same, I've added 3 main things: 1) example code for how to generate the standard output files of amplicon processing from the final R objects that DADA2 creates (i.e. a fasta of ASVs, a count table, and a taxonomy table); 2) a [section](/amplicon/dada2_workflow_ex#16s-and-18s-mixed-together) for people working with 16S and 18S sequences mixed together; and 3) heavier annotation in the style of this site hopefully helpful for newcomers to bioinformatics of course 🙂
+[DADA2](https://benjjneb.github.io/dada2/index.html){:target="_blank"} is a relatively new processing workflow for recovering single-nucleotide resolved Amplicon Sequence Variants (ASVs) from amplicon data – if you're unfamiliar with ASVs, you can read more about ASVs vs OTUs in the [opening caveats](/amplicon/dada2_workflow_ex#opening-caveats) section that follows. Developed and maintained by [@bejcal](https://twitter.com/bejcal){:target="_blank"} et al., DADA2 leverages sequencing quality and abundance information to a greater extent than previously developed tools. It generates an error model based on your actual data, and then uses this error model to do its best to infer the original, true biological sequences that generated your data. The paper can be found [here](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4927377/){:target="_blank"}, and the DADA2 R package can be found here [here](https://benjjneb.github.io/dada2/index.html){:target="_blank"}. The DADA2 team already has a great tutorial available [here](https://benjjneb.github.io/dada2/tutorial.html){:target="_blank"}, and I learned my way around DADA2 by following that and reading through the [manual](https://www.bioconductor.org/packages/3.3/bioc/manuals/dada2/man/dada2.pdf){:target="_blank"}. While the overall workflow presented here is the same, I've added 3 main things: 1) example code for how to generate the standard output files of amplicon processing from the final R objects that DADA2 creates (i.e. a fasta of ASVs, a count table, and a taxonomy table); 2) a [section](/amplicon/dada2_workflow_ex#16s-and-18s-mixed-together) for people working with 16S and 18S sequences mixed together; and 3) in the style/purpose of this site, heavier annotation in many places to hopefully be helpful for newcomers to bioinformatics of course 🙂
 <br>
 <br>
 
@@ -18,9 +18,9 @@ permalink: amplicon/dada2_workflow_ex
 <br>
 
 ## Opening caveats
-There are many ways to process amplicon data. Some of the most widely used tools/pipelines include [mothur](https://www.mothur.org/){:target="_blank"}, [usearch](https://drive5.com/usearch/){:target="_blank"}, [vsearch](https://github.com/torognes/vsearch){:target="_blank"}, [Minimum Entropy Decomposition](http://merenlab.org/2014/11/04/med/){:target="_blank"}, [DADA2](https://benjjneb.github.io/dada2/index.html){:target="_blank"}, and [qiime2](https://qiime2.org/){:target="_blank"} (which employs other tools within it). If you are looking solely at a broad level, you will likely get very similar results regardless of which tool you use so long as you make similar decisions when processing your sequences (e.g. decisions about things like minimum abundance filtering). But there is a movement in the community away from the traditional OTU approach and on to single-nucleotide-resolving methods that generate what are called ASVs (amplicon sequence variants). And the reasoning for this is pretty sound, as recently laid out very nicely by [Callahan et al. here](https://www.nature.com/articles/ismej2017119){:target="_blank"}, but the intricacies of the differences may seem a little nebulous at first if you're not used to thinking about these things yet. If you are new to this, know that most of the experts on these things would recommend using a method that resolves ASVs. It may be the case that you'd like a broader level of resolution than that, but it is still best to first generate ASVs and then you can always "back out" your resolution with clustering at some threshold or binning sequences by taxonomy or whatever. This is to say that clustering OTUs isn't inherently a problem, it's how those OTUs are generated that could bring you into the fray. 
+There are many ways to process amplicon data. Some of the most widely used tools/pipelines include [mothur](https://www.mothur.org/){:target="_blank"}, [usearch](https://drive5.com/usearch/){:target="_blank"}, [vsearch](https://github.com/torognes/vsearch){:target="_blank"}, [Minimum Entropy Decomposition](http://merenlab.org/2014/11/04/med/){:target="_blank"}, [DADA2](https://benjjneb.github.io/dada2/index.html){:target="_blank"}, and [qiime2](https://qiime2.org/){:target="_blank"} (which employs other tools within it). If you are looking solely at a broad level, you will likely get very similar results regardless of which tool you use so long as you make similar decisions when processing your sequences (e.g. decisions about things like minimum abundance filtering), so don't get too lost in the weeds of trying to find the "best" tool for processing amplicon data. That said, there is a movement in the community away from the traditional OTU approach and on to single-nucleotide-resolving methods that generate what are called ASVs (amplicon sequence variants). And the reasoning for this is pretty sound, as recently laid out very nicely by [Callahan et al. here](https://www.nature.com/articles/ismej2017119){:target="_blank"}, but the intricacies of the differences may seem a little nebulous at first if you're not used to thinking about these things yet. **If you are new to this, know that most of the experts on these things would absolutely recommend using a method that resolves ASVs over a more traditional OTU approach (like 97% or 99% OTU clustering).** It may be the case that you'd like a broader level of resolution than what initial ASVs will give, but it is still best to first generate ASVs and then you can always "back out" your resolution with clustering at some threshold or binning sequences by taxonomy or whatever. This is because the underlying unit, the inferred ASV, is most often more biologically meaningful and a more useful unit beyond the current dataset than the units produced by traditional OTU clustering methods. 
 
-Keep in mind here that just as was the case with the [usearch/vsearch example workflow](/amplicon/workflow_ex){:target="_blank"}, none of this is meant to be authoritative. This is simply one example of one workflow. When working with your own data you should of course never follow any pipeline blindly.  
+Keep in mind here that as with everything on this site, none of this is meant to be authoritative. This is simply one example of one workflow. When working with your own data you should of course never follow any pipeline blindly, and pay attention to differences in your data vs the tutorial dataset you are using. These differences can often require changes to parameters that can be important.  
 <br>
 
 ---
@@ -29,7 +29,7 @@ Keep in mind here that just as was the case with the [usearch/vsearch example wo
 # Tools used here
 So here we'll be using [DADA2](https://benjjneb.github.io/dada2/index.html){:target="_blank"} as our main processing tool. Additionally we'll be using [cutadapt](https://cutadapt.readthedocs.io/en/stable/index.html){:target="_blank"} to remove our primers. DADA2 is available as an [R](https://www.r-project.org/){:target="_blank"} package, with installation instructions provided by the developers [here](https://benjjneb.github.io/dada2/dada-installation.html){:target="_blank"}. If your experience is like mine, it shouldn't give you any trouble if installing on your computer, but you may run into some issues when trying to install on a server where you don't have authorization to do whatever you'd like (a huge thanks to [@phantomBugs](https://twitter.com/phantomBugs){:target="_blank"} for all his help when I was bugging him about that 🙂). If you'd like to use [cutadapt](https://cutadapt.readthedocs.io/en/stable/index.html){:target="_blank"}, you can find installation instructions for it from the developers [here](https://cutadapt.readthedocs.io/en/stable/installation.html){:target="_blank"}.
  
-And since dada2 is an R package, you also of course need to have a working installation of R on your computer. If you'd like more info on this, check out the [R basics](/R/basics){:target="_blank"} section before moving forward. 
+And since DADA2 is an R package, you also of course need to have a working installation of R on your computer. If you'd like more info on this, check out the [R basics](/R/basics){:target="_blank"} section before moving forward. 
 <br>
 <br>
 
@@ -64,6 +64,8 @@ Now, let's get started!
 # Processing overview
 It's good to try to keep a bird's-eye view of what's going on. So here is an overview of the main processing steps we'll be performing with [cutadapt](https://cutadapt.readthedocs.io/en/stable/index.html){:target="_blank"} and [DADA2](https://benjjneb.github.io/dada2/index.html){:target="_blank"}. Don't worry if anything seems unclear right now, we will discuss each at each step.
 
+>**NOTE:** This particular dataset is already demultiplexed – meaning each sample has its own file(s) already. Sometimes you will get your data all mixed together in one file, and you will need to separate them into individual files based on their barcodes. If your data are starting in that form, you can check out [a demultiplexing example on this page](/amplicon/demultiplexing){:target="_blank"} if you'd like. 
+
 ||Command|What we're doing|
 |:--:|:--------:|----------|
 |1|`cutadapt`/`filterAndTrim()`|remove primers and quality trim/filter|
@@ -75,7 +77,7 @@ It's good to try to keep a bird's-eye view of what's going on. So here is an ove
 |7|`removeBimeraDenovo()`|screen for and remove chimeras|
 |8|`assignTaxonomy()`|assign taxonomy|
 
-And at the end of this we'll do some R magic to generate regular [flat files](/bash/bash_intro#working-with-plain-text-files-and-directories){:target="_blank"} for the standard desired outputs: a fasta file of our ASVs, a count table, and a taxonomy table.  
+And at the end of this we'll do some R magic to generate regular [flat files](/bash/bash_intro#working-with-plain-text-files-and-directories){:target="_blank"} for the standard desired outputs: 1) a fasta file of our ASVs; 2) a count table; and 3) a taxonomy table.  
 
 In our working directory there are 20 samples with forward (R1) and reverse (R2) reads with per-base-call quality information, so 40 fastq files (.fq). I typically like to have a file with all the sample names to use for various things throughout, so here's making that file based on how these sample names are formatted:
 
@@ -83,24 +85,24 @@ In our working directory there are 20 samples with forward (R1) and reverse (R2)
 ls *_R1.fq | cut -f1 -d "_" > samples
 ```
 
-If you're not comfortable with that line, consider running through the [bash basics](/bash/bash_intro){:target="_blank"} and/or [six glorious commands](/bash/six_commands){:target="_blank"} pages before going further here 🙂  
+>**NOTE:** If you're not comfortable with that line, and would like to be able to better utilize the awesome power of bash, consider running through the [bash basics](/bash/bash_intro){:target="_blank"} and/or [six glorious commands](/bash/six_commands){:target="_blank"} pages sometime 🙂  
 
 # Removing primers
-To start, we need to remove the primers from all of these (the primers used for this run are in the "primers.fa" file in our working directory), and here we're going to use [cutadapt](https://cutadapt.readthedocs.io/en/stable/index.html){:target="_blank"} to do that, but we would need to run it on each sample individually. So instead we're going to use a wonderful little bash loop to do that.  
+To start, we need to remove the primers from all of these (the primers used for this run are in the "primers.fa" file in our working directory), and here we're going to use [cutadapt](https://cutadapt.readthedocs.io/en/stable/index.html){:target="_blank"} to do that. Cutadapt operates on one sample at at time, so we're going to use a [wonderful little bash loop](/bash/for_loops){:target="_blank"} to run it on all of our samples.   
 
-First, here's what the command would look like on an individual sample (don't worry about running this, we're just going to dissect it for now): 
+First, here's what the command would look like on an individual sample **(don't worry about running this, we're just going to dissect it for now)**: 
 
 ```bash
 cutadapt -a GTGCCAGCMGCCGCGGTAA...ATTAGAWACCCBDGTAGTCC \
--A GGACTACHVGGGTWTCTAAT...TTACCGCGGCKGCTGGCAC \
--m 215 -M 285 \
--o B1_sub_R1_trimmed.fq -p B1_sub_R2_trimmed.fq \
-B1_sub_R1.fq B1_sub_R2.fq
+    -A GGACTACHVGGGTWTCTAAT...TTACCGCGGCKGCTGGCAC \
+    -m 215 -M 285 \
+    -o B1_sub_R1_trimmed.fq -p B1_sub_R2_trimmed.fq \
+    B1_sub_R1.fq B1_sub_R2.fq
 ```
 
-Cutadapt does a lot of different things, and there is excellent documentation at their [site](https://cutadapt.readthedocs.io/en/stable/index.html). Specifically what we're specifying here I learned about from their ["Trimming (amplicon-) primers from both ends of paired-end reads" page](https://cutadapt.readthedocs.io/en/stable/recipes.html#trimming-amplicon-primers-from-both-ends-of-paired-end-reads) (See? I told you they had awesome documentation). Because our paired reads in this case were sequenced longer than the span of the target amplicon, we will typically have both primers in each forward and reverse read. Cutadapt handles "linked" adapters perfectly for such a case. We are specifying the primers for the forward read with the `-a` flag, giving it the forward primer (in normal orientation), three dots (required by cutadapt to know they are "linked" and not actually right next to each other), then the reverse complement of the reverse primer (I found this [excellent site](http://arep.med.harvard.edu/labgc/adnan/projects/Utilities/revcomp.html) for converting to reverse complement **while treating degenerate bases properly**). Then for the reverse reads, specified with the `-A` flag, we give it the reverse primer (in normal 5'-3' orientation), three dots, and then the reverse complement of the forward primer. The minimum read length (set with `-m`) and max (set with `-M`) were based roughly on 10% smaller and bigger than would be expected after trimming the primers (so this sort of thing depends on your amplicon size and what you're looking to do). Then `-o` specifies the output of the forwards reads, `-p` specifies the output of the reverse reads, and the input forward and reverse are provided as positional arguments in that order. 
+First, don't worry about the backslashes `\`, they are just there to ignore the return characters that come right after them (and are invisible here) that I've put in so this is organized a little more clearly, rather than one long single line. Moving on to dissecting what the command is doing here, cutadapt does a lot of different things, and there is excellent documentation at their [site](https://cutadapt.readthedocs.io/en/stable/index.html){:target="_blank"}. I learned about what we're specifying here I learned about from their ["Trimming (amplicon-) primers from both ends of paired-end reads" page](https://cutadapt.readthedocs.io/en/stable/recipes.html#trimming-amplicon-primers-from-both-ends-of-paired-end-reads){:target="_blank"} (See? I told you they had awesome documentation). Because our paired reads in this case were sequenced longer than the span of the target amplicon (meaning, we did 2x300 bp sequencing, and the targeted V4 region is shorter than that), *we will typically have both primers in each forward and reverse read*. Cutadapt handles "linked" adapters perfectly for such a case. We are specifying the primers for the forward read with the `-a` flag, giving it the forward primer (in normal orientation), followed by three dots (required by cutadapt to know they are "linked", with bases in between them, rather than right next to each other), then the reverse complement of the reverse primer (I found this [excellent site](http://arep.med.harvard.edu/labgc/adnan/projects/Utilities/revcomp.html){:target="_blank"} for converting to reverse complement **while treating degenerate bases properly**). Then for the reverse reads, specified with the `-A` flag, we give it the reverse primer (in normal 5'-3' orientation), three dots, and then the reverse complement of the forward primer. The minimum read length (set with `-m`) and max (set with `-M`) were based roughly on 10% smaller and bigger than would be expected after trimming the primers. **These types of settings will be different for data generated with different sequencing, i.e. not 2x300, and different primers. Then `-o` specifies the output of the forwards reads, `-p` specifies the output of the reverse reads, and the input forward and reverse are provided as [positional arguments](/bash/bash_intro#running-commands){:target="_blank"} in that order. 
 
-You don't need to run that single example, because we're going to run them all in our loop below, but here's the before-and-after view of just that sample: 
+Again, you don't need to run that single example, because we're going to run them all in our loop below, but here's the before-and-after view of just that sample: 
 
 ```bash
 ### R1 BEFORE TRIMMING PRIMERS
@@ -138,33 +140,34 @@ head -n 2 B1_sub_R2_trimmed.fq
 # CGCACCCTACGTA
 ```
 
-It's important to notice that not only is the forward primer (`GTGCCAGCAGCCGCGGTAA`) trimmed off of the forward read at the start of it, but also that the reverse complement of the reverse primer (`ATTAGATACCCGGGTAGTCC`) is trimmed off of the end of it. Same goes for the R2 reads. 
+It's important to notice that not only is the forward primer (`GTGCCAGCAGCCGCGGTAA`) trimmed off of the forward read at the start of it, but also that the reverse complement of the reverse primer (`ATTAGATACCCGGGTAGTCC`) is trimmed off of the end of it. Same goes for the R2 reads. (Though again, if for your data the sequencing done doesn't span the entire target amplicon, then you will only have the forward primer on the forward reads, and the reverse primer on the reverse reads).
 
-**A huge thanks to [@saerobe](https://twitter.com/saerobe) for catching a mistake in here before where it was *not* trimming off the reverse primers properly!**
+**A huge thanks to [@saerobe](https://twitter.com/saerobe) for catching a slip-up I had in here before where it was *not* trimming off the reverse primers properly!**
 
 
-Now, back to our loop, here is how we can run it on all our samples at once, and since we have a lot of samples here, I'm [redirecting](http://localhost:4000/bash/bash_intro#pipes-and-redirectors){:target="_blank"} the "stdout" (what's printing the stats for each sample) to a file so we can more easily view and keep track of if we're losing a ton of sequences by having that information stored somewhere – instead of just plastered to the terminal window. We're also going to take advantage of another convenience of cutadapt – by adding the extension `.gz` to the output file names, it will compress them for us.  
+Now, on to doing them all with a loop, here is how we can run it on all our samples at once. Since we have a lot of samples here, I'm [redirecting](http://localhost:4000/bash/bash_intro#pipes-and-redirectors){:target="_blank"} the "stdout" (what's printing the stats for each sample) to a file so we can more easily view and keep track of if we're losing a ton of sequences or not by having that information stored somewhere – instead of just plastered to the terminal window. We're also going to take advantage of another convenience of cutadapt – by adding the extension `.gz` to the output file names, it will compress them for us.  
+
+>**NOTE:** We're not going to break down the loop here as we have other fish to fry, but if this looks confusing to you, then check out the pages on [bash basics](/bash/bash_intro){:target="_blank"} and [the wonderful world of loops](/bash/for_loops){:target="_blank"}. While odd-looking at first, little command-line loops like this are **extremely** powerful, and trust me, you can learn to leverage that power more quickly than you'd think! 
 
 
 ```bash
-for sample in $(cat samples);
+for sample in $(cat samples)
 do
 
-    echo "On sample: $sample";
+    echo "On sample: $sample"
     
     cutadapt -a GTGCCAGCMGCCGCGGTAA...ATTAGAWACCCBDGTAGTCC \
     -A GGACTACHVGGGTWTCTAAT...TTACCGCGGCKGCTGGCAC \
     -m 215 -M 285 \
     -o ${sample}_sub_R1_trimmed.fq.gz -p ${sample}_sub_R2_trimmed.fq.gz \
     ${sample}_sub_R1.fq ${sample}_sub_R2.fq \
-    >> cutadapt_primer_trimming_stats.txt;
+    >> cutadapt_primer_trimming_stats.txt
 
 done
 ```
+ 
 
-We're not going to break down the loop here as we have other fish to fry, but if this looks confusing to you, then check out the pages on [bash basics](/bash/bash_intro){:target="_blank"} and [the wonderful world of loops](/bash/for_loops){:target="_blank"}. While odd-looking at first, little command-line loops are extremely powerful, and trust me, you can learn to leverage that power more quickly than you'd think!  
-
-You can look through the output of the cutadapt stats file we made to get an idea of how things went. Here's a little one-liner to look at what fraction of reads were retained in each sample (column 2) and what fraction of bps were retained in each sample (column 3):
+You can look through the output of the cutadapt stats file we made ("cutadapt_primer_trimming_stats.txt") to get an idea of how things went. Here's a little one-liner to look at what fraction of reads were retained in each sample (column 2) and what fraction of bps were retained in each sample (column 3):
 
 ```bash
 paste samples <(grep "passing" cutadapt_primer_trimming_stats.txt | cut -f3 -d "(" | tr -d ")") <(grep "filtered" cutadapt_primer_trimming_stats.txt | cut -f3 -d "(" | tr -d ")")
@@ -205,50 +208,57 @@ To get started let's open up RStudio and take care of a few things. If you need 
 
 ```R
 library(dada2)
-packageVersion("dada2") # 1.10.0
+packageVersion("dada2") # 1.10.1 when this was put together
 
 setwd("~/dada2_amplicon_ex_workflow")
 
 list.files() # make sure what we think is here is actually here
 
-  # setting a few variables we're going to use
+## first we're setting a few variables we're going to use ##
+  # one with all sample names, by scanning our "samples" file we made earlier
 samples <- scan("samples", what="character")
 
   # one holding the file names of all the forward reads, and one with the reverse
 forward_reads <- sort(list.files(pattern="_R1_trimmed.fq.gz"))
 reverse_reads <- sort(list.files(pattern="_R2_trimmed.fq.gz"))
 
-  # and variables holding file names for the forward and reverse filtered reads we're going to generate with the next function:
+  # and variables holding file names for the forward and reverse filtered reads we're going to generate below
 filtered_forward_reads <- paste0(samples, "_sub_R1_filtered.fq.gz")
 filtered_reverse_reads <- paste0(samples, "_sub_R2_filtered.fq.gz")
 ```
 
 ## Quality trimming/filtering
-We did a filtering step above with bbduk (where we eliminated reads that had imperfect or missing primers and those that were shorter than 220 bps or longer than 280), but in DADA2 we'll implement a trimming step as well (where we trim reads down based on some quality threshold rather than throwing the read away). Since we're potentially shortening reads further, we're also going to include another minimum-length filtering component. But also, we can take advantage of a handy quality plotting function that DADA2 provides to visualize how you're reads are doing, `plotQualityProfile()`. By running that on our variables that hold all of our forward and reverse read filenames, we can easily generate plots for all samples or for a subset of them. So let's take a peak at that to help decide our trimming lengths:
+We did a filtering step above with cutadapt (where we eliminated reads that had imperfect or missing primers and those that were shorter than 215 bps or longer than 285), but in DADA2 we'll implement a trimming step as well (where we trim reads down based on some quality threshold rather than throwing the read away). Since we're potentially shortening reads further, we're again going to include another minimum-length filtering component. We can also take advantage of a handy quality plotting function that DADA2 provides to visualize how you're reads are doing, `plotQualityProfile()`. By running that on our variables that hold all of our forward and reverse read filenames, we can easily generate plots for all samples or for a subset of them. So let's take a peak at that to help decide our trimming lengths:
 
 ```R
 plotQualityProfile(forward_reads)
 plotQualityProfile(reverse_reads)
+  # and just plotting the last 4 samples of the reverse reads
 plotQualityProfile(reverse_reads[17:20])
 ```
 
-All forwards look pretty similar to eachother, and all reverses look pretty similar to eachother, but worse than the forwards – which is common (chemistry gets tired 😞). Here's the output of the last four samples' reverse reads: 
+All forwards look pretty similar to eachother, and all reverses look pretty similar to eachother, but worse than the forwards, which is common – chemistry gets tired 😞  
+
+Here's the output of the last four samples' reverse reads: 
 
 <center><img src="{{ site.url }}/images/dada2_not_filtered_qplots.png"></center>
 <br>
 On these plots, the bases are along the x-axis, and the quality score on the y-axis. The black underlying heatmap shows the frequency of each score at each base position, the green line is the median quality score at that base position, and the orange lines show the quartiles.  
 
-In [Phred](https://en.wikipedia.org/wiki/Phred_quality_score){:target="_blank"} talk the difference between a quality score of 40 and a quality score of 20 is an expected error rate of 1 in 10,000 vs 1 in 100. In this case, since we have full overlap with these primers and the sequencing performed (515f-806r, 2x300), we can be pretty conservative and trim these up a bit more. But it's important to think about your primers and the overlap you're going to have. Here, our primers span 515-806 (291 bases), and we cut off the primers which were 39 bps total, so we are expecting to span, nominally, 252 bases. If we trimmed forward and reverse here down to 100 bps each, we would not span that distance and this would cause problems later. Make sure you're considering this based on your data. Here, I'm going to cut the forward reads at 250 and the reverse reads at 200 – roughly where both sets maintain a median quality of 30 or above – and then see how things look. But we also want to set a minimum length to filter out those that are too short to overlap. 
+In [Phred](https://en.wikipedia.org/wiki/Phred_quality_score){:target="_blank"} talk the difference between a quality score of 40 and a quality score of 20 is an expected error rate of 1 in 10,000 vs 1 in 100. In this case, since we have full overlap with these primers and the sequencing performed (515f-806r, 2x300), we can be pretty conservative and trim these up a bit more. **But it's important to think about your primers and the overlap you're going to have.** Here, our primers span 515-806 (291 bases), and we cut off the primers which were 39 bps total, so we are expecting to span, nominally, 252 bases. **If we trimmed forward and reverse here down to 100 bps each, we would not span those 252 bases and this would cause problems later because we won't be able to merge our forward and reverse reads. Make sure you're considering this based on your data.** Here, I'm going to cut the forward reads at 250 and the reverse reads at 200 – roughly where both sets maintain a median quality of 30 or above – and then see how things look. But we also want to set a minimum length to filter out those that are too short to overlap (by default, this function truncates reads at the first instance of a quality score of 2, this is how we could end up with reads shorter than what we are explicitly trimming them down to). 
 
 In DADA2, this quality-filtering step is done with the `filterAndTrim()` function:  
 
 ```R
-filtered_out <- filterAndTrim(forward_reads, filtered_forward_reads, reverse_reads, filtered_reverse_reads, maxEE=c(2,2), rm.phix=TRUE, multithread=TRUE, minLen=175, truncLen=c(250,200))
+filtered_out <- filterAndTrim(forward_reads, filtered_forward_reads,
+                reverse_reads, filtered_reverse_reads, maxEE=c(2,2),
+                rm.phix=TRUE, multithread=TRUE, minLen=175,
+                truncLen=c(250,200))
 ```
 
-Here, the first and third arguments ("forward_reads" and "reverse_reads") are our input files, which are our primer-removed output fastq files from bbduk. The second and fourth are the variables holding the file names of the output forward and reverse seqs. And then we have a few parameters explicitly specified. `maxEE` is the quality filtering threshold being applied, and in this case we are saying we want to throw the read away if it is likely to have more than 2 erroneous base calls (we are specifying for both the forward and reverse reads separately). `rm.phix` removes any reads that match the PhiX bacteriophage genome, which is typically added to Illumina sequencing runs for quality monitoring. `multithread` will run the program in parallel if set to `TRUE` or if a number is given specifying how many cores you'd like run. And `minLen` is setting the minimum length reads we want to keep after trimming. The trimming occurring is coming from a default setting, `truncQ`, which is set to 2 unless we specify otherwise, meaning it trims all bases after the first quality score of 2 it comes across in a read. There is also an addition filtering default parameter that is removing any sequences containing any Ns, `maxN`. Then we have our `truncLen` parameter setting the minimum size to trim the forward and reverse reads to in order to keep the quality scores roughly above 30.  
+Here, the first and third arguments ("forward_reads" and "reverse_reads") are the variables holding our input files, which are our primer-trimmed output fastq files from cutadapt. The second and fourth are the variables holding the file names of the output forward and reverse seqs from this function. And then we have a few parameters explicitly specified. `maxEE` is the quality filtering threshold being applied based on the [expected errors](https://www.drive5.com/usearch/manual/exp_errs.html){:target="_blank"} and in this case we are saying we want to throw the read away if it is likely to have more than 2 erroneous base calls (we are specifying for both the forward and reverse reads separately). `rm.phix` removes any reads that match the PhiX bacteriophage genome, which is typically added to Illumina sequencing runs for quality monitoring. `multithread` will run the program in parallel if set to `TRUE` or if a number is given specifying how many cores you'd like run. And `minLen` is setting the minimum length reads we want to keep after trimming. As mentioned above, the trimming occurring beyond what we set with `truncLen` is coming from a default setting, `truncQ`, which is set to 2 unless we specify otherwise, meaning it trims all bases after the first quality score of 2 it comes across in a read. There is also an additional filtering default parameter that is removing any sequences containing any Ns, `maxN`, set to 0 by default. Then we have our `truncLen` parameter setting the minimum size to trim the forward and reverse reads to in order to keep the quality scores roughly above 30 overall.  
 
-As mentioned, the output read files were named in those variables we made above ("filtered_forward_reads" and "filtered_reverse_reads"), so those were written to files already – which we can see if we run `list.files()` in R, or by checking in our your working directory in the terminal:
+As mentioned, the output read files were named in those variables we made above ("filtered_forward_reads" and "filtered_reverse_reads"), so those files were created when we ran the function – we can see them if we run `list.files()` in R, or by checking in our your working directory in the terminal:
 
 <center><img src="{{ site.url }}/images/dada2_filtered_head.png"></center>
 <br>
@@ -293,9 +303,8 @@ plotQualityProfile(filtered_reverse_reads[17:20])
 <center><img src="{{ site.url }}/images/dada2_filtered_qplots.png"></center>
 Now we're lookin' good.
 
-## Generate an error model of our data
-Next up is generating our error model by learning the specific error-signature of our dataset. I mentioned above what expected error rates correspond to a couple [Phred](https://en.wikipedia.org/wiki/Phred_quality_score){:target="_blank"} quality scores, but each sequencing run, even when all goes well, will have its own subtle variations to this. This step tries to assess that for both the forward and reverse reads.
-It can be one of the more computationally intensive steps of the workflow, for this dataset on my laptop (2013 MacBook Pro) these each took about 5 minutes. 
+## Generating an error model of our data
+Next up is generating our error model by learning the specific error-signature of our dataset. Each sequencing run, even when all goes well, will have its own subtle variations to its error profile. This step tries to assess that for both the forward and reverse reads. It can be one of the more computationally intensive steps of the workflow, for this slimmed dataset on my laptop (2013 MacBook Pro) these each took about 5 minutes. 
 ```R
 err_forward_reads <- learnErrors(filtered_forward_reads, multithread=TRUE)
 err_reverse_reads <- learnErrors(filtered_reverse_reads, multithread=TRUE)
@@ -325,22 +334,27 @@ names(derep_reverse) <- samples
 ```
 
 ## Inferring ASVs
-Here's where DADA2 gets to do what it was born to do, that is to do its best to infer true biological sequences. It does this by incorporating the consensus quality profiles and abundances of each unique sequence, and then figuring out if each sequence is more likely to be of biological origin or more likely to be spurious. You can read more about the details of this in [the paper](https://www.nature.com/articles/nmeth.3869#methods){:target="_blank"} of course or looking through [the DADA2 site](https://benjjneb.github.io/dada2/index.html){:target="_blank"}. This step can be run on individual samples, which is the least computationally intensive manner, or on all samples together, which increases the function's ability to resolve low-abundance ASVs. Imagine Sample A has 10,000 copies of sequence Z, and Sample B has 1 copy of sequence Z. Sequence Z would likely be filtered out of Sample B even though it was a "true" singleton among perhaps thousands of spurious singletons we needed to remove. Because running all samples together on large datasets can become impractical very quickly, the developers also added a way to try to combine the best of both worlds they refer to as pseudo-pooling, which is demonstrated very nicely [here](https://benjjneb.github.io/dada2/pseudo.html#Pseudo-pooling){:target="_blank"}. This basically provides a way to tell Sample B from the above example that sequence Z is legit. But it's noted at the end of the [pseudo-pooling page](https://benjjneb.github.io/dada2/pseudo.html#Pseudo-pooling){:target="_blank"} that this is not always the best way to go, and it may depend on your experimental design which is likely more appropriate for your data – as usual. There are no one-size-fits-all solutions in bioinformatics! But that's exactly what makes it so damn fun 🙂
+Here's where DADA2 gets to do what it was born to do, that is to do its best to infer true biological sequences. It does this by incorporating the consensus quality profiles and abundances of each unique sequence, and then figuring out if each sequence is more likely to be of biological origin or more likely to be spurious. You can read more about the details of this in [the paper](https://www.nature.com/articles/nmeth.3869#methods){:target="_blank"} of course or looking through [the DADA2 site](https://benjjneb.github.io/dada2/index.html){:target="_blank"}.  
+
+This step can be run on individual samples, which is the least computationally intensive manner, or on all samples together, which increases the function's ability to resolve low-abundance ASVs. Imagine Sample A has 10,000 copies of sequence Z, and Sample B has 1 copy of sequence Z. Sequence Z would likely be filtered out of Sample B even though it was a "true" singleton among perhaps thousands of spurious singletons we needed to remove. Because running all samples together on large datasets can become impractical computationally, the developers also added a way to try to combine the best of both worlds they refer to as pseudo-pooling, which is explained very nicely [here](https://benjjneb.github.io/dada2/pseudo.html#Pseudo-pooling){:target="_blank"}. This basically provides a way to tell Sample B from the above example that sequence Z is legit. But it's noted at the end of the [pseudo-pooling page](https://benjjneb.github.io/dada2/pseudo.html#Pseudo-pooling){:target="_blank"} that this is not always the best way to go, and it may depend on your experimental design which is likely more appropriate for your data – as usual. There are no one-size-fits-all solutions in bioinformatics! But that's exactly what makes it so damn fun 🙂
+
+Here, we're going to use pseudo-pooling:
 
 ```R
 dada_forward <- dada(derep_forward, err=err_forward_reads, multithread=TRUE, pool="pseudo")
 dada_reverse <- dada(derep_reverse, err=err_reverse_reads, multithread=TRUE, pool="pseudo")
 ```
 
-## Merge forward and reverse reads
+## Merging forward and reverse reads
 Now DADA2 merges the forward and reverse ASVs to reconstruct our full target amplicon requiring the overlapping region to be identical between the two. By default it requires that at least 12 bps overlap, but in our case the overlap should be much greater. If you remember above we trimmed the forward reads to 250 and the reverse to 200, and our primers were 515f–806r. After cutting off the primers we're expecting a typical amplicon size of around 260 bases, so our typical overlap should be up around 190. That's estimated based on *E. coli* 16S rRNA gene positions and very back-of-the-envelope-esque of course, so to allow for true biological variation and such I'm going ot set the minimum overlap for this dataset for 170. I'm also setting the trimOverhang option to `TRUE` in case any of our reads go passed their opposite primers (which I wouldn't expect based on our trimming, but is possible due to the region and sequencing method).
 
 ```R
-merged_amplicons <- mergePairs(dada_forward, derep_forward, dada_reverse, derep_reverse, trimOverhang=TRUE, minOverlap=170)
+merged_amplicons <- mergePairs(dada_forward, derep_forward, dada_reverse,
+                    derep_reverse, trimOverhang=TRUE, minOverlap=170)
 
   # this object holds a lot of information that may be the first place you'd want to look if you want to start poking under the hood
 class(merged_amplicons) # list
-length(merged_amplicons) # 20, one for each of our samples
+length(merged_amplicons) # 20 elements in this list, one for each of our samples
 names(merged_amplicons) # the names() function gives us the name of each element of the list 
 
 class(merged_amplicons$B1) # each element of the list is a dataframe that can be accessed and manipulated like any ordinary dataframe
@@ -349,8 +363,8 @@ names(merged_amplicons$B1) # the names() function on a dataframe gives you the c
 # "sequence"  "abundance" "forward"   "reverse"   "nmatch"    "nmismatch" "nindel"    "prefer"    "accept"
 ```
 
-## Generate a count table
-Now we can generate a count table with the `makeSequenceTable()` function:
+## Generating a count table
+Now we can generate a count table with the `makeSequenceTable()` function. This is one of the main outputs from processing an amplicon dataset. You may have also heard this referred to as a biome table, or an OTU matrix. 
 
 ```R
 seqtab <- makeSequenceTable(merged_amplicons)
@@ -358,7 +372,7 @@ class(seqtab) # matrix
 dim(seqtab) # 20 2525
 ```
 
-We can see from the dimensions of the "seqtab" matrix that we have 2,567 ASVs in this case. But it's not very friendly to look at in its current form because the actual sequences are our rownames - so we'll make a more traditional count table in a couple steps.
+We can see from the dimensions of the "seqtab" matrix that we have 2,525 ASVs in this case. But it's not very friendly to look at in its current form because the actual sequences are our rownames - so we'll make a more traditional count table in a couple steps.
 
 ## Chimera identification
 DADA2 identifies likely chimeras by aligning each sequence with those that were recovered in greater abundance and then seeing if there are any lower-abundance sequences that can be made exactly by mixing left and right portions of two of the more-abundant ones. These are then removed:
@@ -371,14 +385,18 @@ sum(seqtab.nochim)/sum(seqtab) # 0.9927576 # good, we barely lost any in terms o
 ```
 
 ## Overview of counts throughout
-The developers' [DADA2 tutorial](https://benjjneb.github.io/dada2/tutorial.html){:target="_blank"} provides an example of a nice, quick way to pull out how many reads were dropped at various points of the pipeline. This can serve as a jumping off point if you're left with too few to help point you towards where you should start digging. Here's a slightly modified version: 
+The developers' [DADA2 tutorial](https://benjjneb.github.io/dada2/tutorial.html){:target="_blank"} provides an example of a nice, quick way to pull out how many reads were dropped at various points of the pipeline. This can serve as a jumping off point if you're left with too few sequences at the end to help point you towards where you should start digging into where they are being dropped. Here's a slightly modified version: 
 
 ```R
   # set a little function
 getN <- function(x) sum(getUniques(x))
 
   # making a little table
-summary_tab <- data.frame(row.names=samples, dada2_input=filtered_out[,1], filtered=filtered_out[,2], dada_f=sapply(dada_forward, getN), dada_r=sapply(dada_reverse, getN), merged=sapply(merged_amplicons, getN), nonchim=rowSums(seqtab.nochim), final_perc_reads_retained=round(rowSums(seqtab.nochim)/filtered_out[,1]*100, 1))
+summary_tab <- data.frame(row.names=samples, dada2_input=filtered_out[,1],
+               filtered=filtered_out[,2], dada_f=sapply(dada_forward, getN),
+               dada_r=sapply(dada_reverse, getN), merged=sapply(merged_amplicons, getN),
+               nonchim=rowSums(seqtab.nochim),
+               final_perc_reads_retained=round(rowSums(seqtab.nochim)/filtered_out[,1]*100, 1))
 
 summary_tab
 #       dada2_input filtered dada_f dada_r merged nonchim total_perc_reads_lost
@@ -405,14 +423,15 @@ summary_tab
 ```
 
 ## Assigning taxonomy
-DADA2 incorporates a function that assigns taxonomy using the [RDP's kmer-based method](https://rdp.cme.msu.edu/classifier/classifier.jsp){:target="_blank"}, original paper [here](http://www.ncbi.nlm.nih.gov/pubmed/17586664){:target="_blank"}. There are some DADA2-formatted databases available [here](https://benjjneb.github.io/dada2/training.html){:target="_blank"}, which is where the silva one came from that is in our current working directory, but you can use whatever database you'd like following the formatting specified at the bottom of that page. This step took maybe 10 minutes on my laptop. 
+DADA2 incorporates a function that assigns taxonomy using the [RDP's kmer-based method](https://rdp.cme.msu.edu/classifier/classifier.jsp){:target="_blank"}, original paper [here](http://www.ncbi.nlm.nih.gov/pubmed/17586664){:target="_blank"}. There are some DADA2-formatted databases available [here](https://benjjneb.github.io/dada2/training.html){:target="_blank"}, which is where the [SILVA](https://www.arb-silva.de/){:target="_blank"} one came from that is in our current working directory, but you can use whatever database you'd like following the formatting specified at the bottom of [that page](https://benjjneb.github.io/dada2/training.html){:target="_blank"}. This step took maybe 10-15 minutes on my laptop (2013 MacBook Pro). 
 
 ```R
-taxa <- assignTaxonomy(seqtab.nochim, "silva_nr_v132_train_set.fa.gz", multithread=T, tryRC=T)
+taxa <- assignTaxonomy(seqtab.nochim, "silva_nr_v132_train_set.fa.gz",
+        multithread=T, tryRC=T)
 ```
 
 # Extracting the standard goods from R
-The typical standard outputs from amplicon processing are a fasta file, a count table, and a taxonomy table. So here's how you can generate those files from your DADA2 objects in R:
+The typical standard outputs from amplicon processing are a fasta file, a count table, and a taxonomy table. So here's one way we can generate those files from your DADA2 objects in R:
 
 ```R
   # giving our seq headers more manageable names (ASV_1, ASV_2...)
@@ -430,17 +449,17 @@ write(asv_fasta, "ASVs.fa")
   # count table:
 asv_tab <- t(seqtab.nochim)
 row.names(asv_tab) <- sub(">", "", asv_headers)
-write.table(asv_tab, "ASVs_counts.txt", sep="\t", quote=F, col.names=NA)
+write.table(asv_tab, "ASVs_counts.tsv", sep="\t", quote=F, col.names=NA)
 
   # tax table:
 asv_tax <- taxa
 row.names(asv_tax) <- sub(">", "", asv_headers)
-write.table(asv_tax, "ASVs_taxonomy.txt", sep="\t", quote=F, col.names=NA)
+write.table(asv_tax, "ASVs_taxonomy.tsv", sep="\t", quote=F, col.names=NA)
 ```
 
 And now if we look back at our terminal, we can see the fruits of our labor are no longer confined to the R universe:
 
-<center><img src="{{ site.url }}/images/dada2_outfiles.png"></center>
+<center><img src="{{ site.url }}/images/dada2_out_files.png"></center>
 <br>
 You can find examples and corresponding code of some of the things you might want to do with these files in the [analysis section](/amplicon/workflow_ex#analysis-in-r){:target="_blank"} of the [usearch/vsearch tutorial](/amplicon/workflow_ex){:target="_blank"}.
 
