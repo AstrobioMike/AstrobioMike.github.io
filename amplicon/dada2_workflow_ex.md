@@ -461,6 +461,51 @@ And now if we look back at our terminal, we can see the fruits of our labor are 
 
 <center><img src="{{ site.url }}/images/dada2_out_files.png"></center>
 <br>
+
+# Checking for and removing likely contaminants 
+In the now-more-outdated [USEARCH/VSEARCH example workflow](/amplicon/workflow_ex){:target="_blank"}, I demonstrated one way to [remove likely contaminant sequences](http://localhost:4000/amplicon/workflow_ex#treatment-of-blanks){:target="_blank"} using "blanks" (samples run through the entire extraction and sequencing process that never had any DNA added to them). Now, in addition to DADA2, [@bejcal](https://twitter.com/bejcal){:target="_blank"} et al. have also created a stellar program for removing contaminants based on incorporated blanks called [decontam](https://github.com/benjjneb/decontam){:target="_blank"} (Nicole Davis et al. [publication here](https://doi.org/10.1186/s40168-018-0605-2){:target="_blank"}). As usual, they also have provided excellent documentation and have a [vignette here](https://benjjneb.github.io/decontam/vignettes/decontam_intro.html){:target="_blank"} showing an example of doing this from a [phyloseq](https://joey711.github.io/phyloseq/){:target="_blank"} object and discussing the various ways their program can be implemented (such as incorporating DNA concentrations if available). Here, we will apply it without DNA concentrations – using prevalence of ASVs in the incorporated blanks – starting from our count table generated above without having a phyloseq object. There are instructions to install decontam [here](https://github.com/benjjneb/decontam#installation){:target="_blank"}.  
+
+```R
+library(decontam)
+packageVersion("decontam") # 1.1.2 when this was put together
+```
+
+For decontam to work on our data, we need to provide it with our count table, currently stored in the "asv_tab" variable, and we need to give it a logical vector that tells it which samples are "blanks". Here is making that vector and running the program:
+
+```R
+colnames(asv_tab) # our blanks are the first 4 of 20 samples in this case
+vector_for_decontam <- c(rep(TRUE, 4), rep(FALSE, 16))
+
+contam_df <- isContaminant(t(asv_tab), neg=vector_for_decontam)
+
+table(contamdf.prev$contaminant) # identified 6 as contaminants
+```
+
+And now if we want to remove them from our 3 primary outputs:  
+
+```R
+  # getting IDs of those identified as likely contaminants
+contam_asvs <- row.names(contam_df[contam_df$contaminant == TRUE, ])
+
+  # making new fasta file
+contam_indices <- which(asv_fasta %in% paste0(">", contam_asvs))
+dont_want <- sort(c(contam_indices, contam_indices + 1))
+asv_fasta_no_contam <- asv_fasta[- dont_want]
+
+  # making new count table
+asv_tab_no_contam <- asv_tab[!row.names(asv_tab) %in% contam_asvs, ]
+
+  # making new taxonomy table
+asv_tax_no_contam <- asv_tax[!row.names(asv_tax) %in% contam_asvs, ]
+
+  ## and now writing them out to files
+write(asv_fasta_no_contam, "ASVs-no-contam.fa")
+write.table(asv_tab_no_contam, "ASVs_counts-no-contam.tsv",
+            sep="\t", quote=F, col.names=NA)
+write.table(asv_tax_no_contam, "ASVs_taxonomy-no-contam.tsv",
+            sep="\t", quote=F, col.names=NA)
+```
+
 You can find examples and corresponding code of some of the things you might want to do with these files in the [analysis section](/amplicon/workflow_ex#analysis-in-r){:target="_blank"} of the [usearch/vsearch tutorial](/amplicon/workflow_ex){:target="_blank"}.
 
 # 16S and 18S mixed together?
