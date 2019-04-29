@@ -264,6 +264,13 @@ sample_info_tab
 Taking a look at the sample_info_tab, we can see it simply has all 20 samples as rows, and three columns: temperature; type indicating if that row is a blank, water sample, rock, or biofilm; and then a characteristics column called "char" that just serves to distinguish between the main types of rocks (glassy, altered, or carbonate).
 
 ## Treatment of "blanks" 
+
+---
+
+>**NOTE:** This is how I did things before [@bejcal](https://twitter.com/bejcal){:target="_blank"} et al. put together [decontam](https://benjjneb.github.io/decontam/){:target="_blank"}, which is a much better way to do this. I'm leaving this here for any interested, but have added an example using decontam to the [DADA2 workflow example page here](/amplicon/dada2_workflow_ex#checking-for-and-removing-likely-contaminants){:target="_blank"}. So I absurdly recommend using that rather than employing the more *ad hoc* approach I put together for [this paper](https://doi.org/10.3389/fmicb.2015.01470){:target="_blank"} many years ago now.
+
+---
+
 First we want to deal with our "blanks" (those samples labeled B1-B4). In this case these refer to extraction blanks – meaning when doing the DNA extractions, we ran some extractions alongside the normal ones where we didn't add anything to the kit's starting lysis tubes. These are processed the same as the real samples and sent for sequencing as well. You may or may not have these with your data, if you didn't do it this time, be sure to next time you do an amplicon sequencing run :) 
 
 Sequences that show up in the blanks can be the result of over-amplification of contaminant DNA introduced from things like the DNA extraction or sequencing kit reagents, **or** they can be cross-contamination from real samples into the blanks. As such, strictly throwing away any ASV that shows up at all in the blanks (i.e. disregarding that ASV in all samples) is not wise. Imagine an ASV that contains 90,000 out of 100,000 sequences in a true sample, and has 6 sequences out of 20,000 in a blank. In such a case it is almost certain those sequences came to be in the blank due to cross-contamination from the real sample. I've seen similar cases to this in every dataset I've looked at. 
