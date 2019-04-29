@@ -93,6 +93,7 @@ To start, we need to remove the primers from all of these (the primers used for 
 First, here's what the command would look like on an individual sample **(don't worry about running this, we're just going to dissect it for now)**: 
 
 ```bash
+cutadapt --version # 2.3
 cutadapt -a GTGCCAGCMGCCGCGGTAA...ATTAGAWACCCBDGTAGTCC \
     -A GGACTACHVGGGTWTCTAAT...TTACCGCGGCKGCTGGCAC \
     -m 215 -M 285 \
@@ -156,12 +157,12 @@ do
 
     echo "On sample: $sample"
     
-    cutadapt -a GTGCCAGCMGCCGCGGTAA...ATTAGAWACCCBDGTAGTCC \
-    -A GGACTACHVGGGTWTCTAAT...TTACCGCGGCKGCTGGCAC \
+    cutadapt -a ^GTGCCAGCMGCCGCGGTAA...ATTAGAWACCCBDGTAGTCC \
+    -A ^GGACTACHVGGGTWTCTAAT...TTACCGCGGCKGCTGGCAC \
     -m 215 -M 285 \
     -o ${sample}_sub_R1_trimmed.fq.gz -p ${sample}_sub_R2_trimmed.fq.gz \
     ${sample}_sub_R1.fq ${sample}_sub_R2.fq \
-    >> cutadapt_primer_trimming_stats.txt
+    >> cutadapt_primer_trimming_stats.txt 2>&1
 
 done
 ```
