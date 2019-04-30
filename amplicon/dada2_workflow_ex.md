@@ -209,7 +209,7 @@ To get started let's open up RStudio and take care of a few things. If you need 
 
 ```R
 library(dada2)
-packageVersion("dada2") # 1.10.1 when this was put together
+packageVersion("dada2") # 1.11.5 when this was put together
 
 setwd("~/dada2_amplicon_ex_workflow")
 
@@ -255,11 +255,10 @@ In DADA2, this quality-filtering step is done with the `filterAndTrim()` functio
 ```R
 filtered_out <- filterAndTrim(forward_reads, filtered_forward_reads,
                 reverse_reads, filtered_reverse_reads, maxEE=c(2,2),
-                rm.phix=TRUE, multithread=TRUE, minLen=175,
-                truncLen=c(250,200))
+                rm.phix=TRUE, minLen=175, truncLen=c(250,200))
 ```
 
-Here, the first and third arguments ("forward_reads" and "reverse_reads") are the variables holding our input files, which are our primer-trimmed output fastq files from cutadapt. The second and fourth are the variables holding the file names of the output forward and reverse seqs from this function. And then we have a few parameters explicitly specified. `maxEE` is the quality filtering threshold being applied based on the [expected errors](https://www.drive5.com/usearch/manual/exp_errs.html){:target="_blank"} and in this case we are saying we want to throw the read away if it is likely to have more than 2 erroneous base calls (we are specifying for both the forward and reverse reads separately). `rm.phix` removes any reads that match the PhiX bacteriophage genome, which is typically added to Illumina sequencing runs for quality monitoring. `multithread` will run the program in parallel if set to `TRUE` or if a number is given specifying how many cores you'd like run. And `minLen` is setting the minimum length reads we want to keep after trimming. As mentioned above, the trimming occurring beyond what we set with `truncLen` is coming from a default setting, `truncQ`, which is set to 2 unless we specify otherwise, meaning it trims all bases after the first quality score of 2 it comes across in a read. There is also an additional filtering default parameter that is removing any sequences containing any Ns, `maxN`, set to 0 by default. Then we have our `truncLen` parameter setting the minimum size to trim the forward and reverse reads to in order to keep the quality scores roughly above 30 overall.  
+Here, the first and third arguments ("forward_reads" and "reverse_reads") are the variables holding our input files, which are our primer-trimmed output fastq files from cutadapt. The second and fourth are the variables holding the file names of the output forward and reverse seqs from this function. And then we have a few parameters explicitly specified. `maxEE` is the quality filtering threshold being applied based on the [expected errors](https://www.drive5.com/usearch/manual/exp_errs.html){:target="_blank"} and in this case we are saying we want to throw the read away if it is likely to have more than 2 erroneous base calls (we are specifying for both the forward and reverse reads separately). `rm.phix` removes any reads that match the PhiX bacteriophage genome, which is typically added to Illumina sequencing runs for quality monitoring. And `minLen` is setting the minimum length reads we want to keep after trimming. As mentioned above, the trimming occurring beyond what we set with `truncLen` is coming from a default setting, `truncQ`, which is set to 2 unless we specify otherwise, meaning it trims all bases after the first quality score of 2 it comes across in a read. There is also an additional filtering default parameter that is removing any sequences containing any Ns, `maxN`, set to 0 by default. Then we have our `truncLen` parameter setting the minimum size to trim the forward and reverse reads to in order to keep the quality scores roughly above 30 overall.  
 
 As mentioned, the output read files were named in those variables we made above ("filtered_forward_reads" and "filtered_reverse_reads"), so those files were created when we ran the function – we can see them if we run `list.files()` in R, or by checking in our your working directory in the terminal:
 
@@ -273,26 +272,26 @@ dim(filtered_out) # 20 2
 
 filtered_out
 #                            reads.in reads.out
-# B1_sub_R1_trimmed.fq.gz        1622      1504
-# B2_sub_R1_trimmed.fq.gz         594       532
-# B3_sub_R1_trimmed.fq.gz         506       459
-# B4_sub_R1_trimmed.fq.gz         509       477
-# BW1_sub_R1_trimmed.fq.gz       2301      2112
-# BW2_sub_R1_trimmed.fq.gz       6070      5566
-# R10_sub_R1_trimmed.fq.gz      11407     10466
-# R11_sub_R1_trimmed.fq.gz       9044      8216
-# R11BF_sub_R1_trimmed.fq.gz     8785      8144
-# R12_sub_R1_trimmed.fq.gz      15814     14498
-# R1A_sub_R1_trimmed.fq.gz      12221     10978
-# R1B_sub_R1_trimmed.fq.gz      16238     14762
-# R2_sub_R1_trimmed.fq.gz       17375     15771
-# R3_sub_R1_trimmed.fq.gz       17669     16055
-# R4_sub_R1_trimmed.fq.gz       19064     17373
-# R5_sub_R1_trimmed.fq.gz       18359     16824
-# R6_sub_R1_trimmed.fq.gz       14768     13445
-# R7_sub_R1_trimmed.fq.gz        8082      7394
-# R8_sub_R1_trimmed.fq.gz       12344     11285
-# R9_sub_R1_trimmed.fq.gz        8705      7919
+# B1_sub_R1_trimmed.fq.gz        1613      1498
+# B2_sub_R1_trimmed.fq.gz         591       529
+# B3_sub_R1_trimmed.fq.gz         503       457
+# B4_sub_R1_trimmed.fq.gz         507       475
+# BW1_sub_R1_trimmed.fq.gz       2294      2109
+# BW2_sub_R1_trimmed.fq.gz       6017      5527
+# R10_sub_R1_trimmed.fq.gz      11258     10354
+# R11BF_sub_R1_trimmed.fq.gz     8627      8028
+# R11_sub_R1_trimmed.fq.gz       8927      8138
+# R12_sub_R1_trimmed.fq.gz      15681     14423
+# R1A_sub_R1_trimmed.fq.gz      12108     10906
+# R1B_sub_R1_trimmed.fq.gz      16091     14672
+# R2_sub_R1_trimmed.fq.gz       17196     15660
+# R3_sub_R1_trimmed.fq.gz       17494     15950
+# R4_sub_R1_trimmed.fq.gz       18967     17324
+# R5_sub_R1_trimmed.fq.gz       18209     16728
+# R6_sub_R1_trimmed.fq.gz       14600     13338
+# R7_sub_R1_trimmed.fq.gz        8003      7331
+# R8_sub_R1_trimmed.fq.gz       12211     11192
+# R9_sub_R1_trimmed.fq.gz        8600      7853
 ```
 
 Now let's take a look at our filtered reads:
@@ -307,10 +306,13 @@ plotQualityProfile(filtered_reverse_reads[17:20])
 Now we're lookin' good.
 
 ## Generating an error model of our data
-Next up is generating our error model by learning the specific error-signature of our dataset. Each sequencing run, even when all goes well, will have its own subtle variations to its error profile. This step tries to assess that for both the forward and reverse reads. It can be one of the more computationally intensive steps of the workflow, for this slimmed dataset on my laptop (2013 MacBook Pro) these each took about 5 minutes. 
+Next up is generating our error model by learning the specific error-signature of our dataset. Each sequencing run, even when all goes well, will have its own subtle variations to its error profile. This step tries to assess that for both the forward and reverse reads. It can be one of the more computationally intensive steps of the workflow, for this slimmed dataset on my laptop (2013 MacBook Pro) these *each* took about 10 minutes *without* `multithread=TRUE` (as exemplified and commented out below), and each took about 5 minutes with that set. On the Binder for this page, if you're working there, each took about 15 minutes – so 30 total. I have the `multithread=TRUE` commented out because the Binder doesn't seem to like it, but feel free to only run the two commands that way if you are working on your own system.
+
 ```R
-err_forward_reads <- learnErrors(filtered_forward_reads, multithread=TRUE)
-err_reverse_reads <- learnErrors(filtered_reverse_reads, multithread=TRUE)
+err_forward_reads <- learnErrors(filtered_forward_reads)
+# err_forward_reads <- learnErrors(filtered_forward_reads, multithread=TRUE)
+err_reverse_reads <- learnErrors(filtered_reverse_reads)
+# err_reverse_reads <- learnErrors(filtered_reverse_reads, multithread=TRUE)
 ```
 
 The developers have incorporated a plotting function to visualize how well the estimated error rates match up with the observed:
