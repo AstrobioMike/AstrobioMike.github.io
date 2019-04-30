@@ -96,12 +96,12 @@ First, here's what the command would look like on an individual sample **(don't 
 cutadapt --version # 2.3
 cutadapt -a GTGCCAGCMGCCGCGGTAA...ATTAGAWACCCBDGTAGTCC \
     -A GGACTACHVGGGTWTCTAAT...TTACCGCGGCKGCTGGCAC \
-    -m 215 -M 285 \
+    -m 215 -M 285 --discard-untrimmed \
     -o B1_sub_R1_trimmed.fq -p B1_sub_R2_trimmed.fq \
     B1_sub_R1.fq B1_sub_R2.fq
 ```
 
-First, don't worry about the backslashes `\`, they are just there to ignore the return characters that come right after them (and are invisible here) that I've put in so this is organized a little more clearly, rather than one long single line. Moving on to dissecting what the command is doing here, cutadapt does a lot of different things, and there is excellent documentation at their [site](https://cutadapt.readthedocs.io/en/stable/index.html){:target="_blank"}. I learned about what we're specifying here I learned about from their ["Trimming (amplicon-) primers from both ends of paired-end reads" page](https://cutadapt.readthedocs.io/en/stable/recipes.html#trimming-amplicon-primers-from-both-ends-of-paired-end-reads){:target="_blank"} (See? I told you they had awesome documentation). Because our paired reads in this case were sequenced longer than the span of the target amplicon (meaning, we did 2x300 bp sequencing, and the targeted V4 region is shorter than that), *we will typically have both primers in each forward and reverse read*. Cutadapt handles "linked" adapters perfectly for such a case. We are specifying the primers for the forward read with the `-a` flag, giving it the forward primer (in normal orientation), followed by three dots (required by cutadapt to know they are "linked", with bases in between them, rather than right next to each other), then the reverse complement of the reverse primer (I found this [excellent site](http://arep.med.harvard.edu/labgc/adnan/projects/Utilities/revcomp.html){:target="_blank"} for converting to reverse complement **while treating degenerate bases properly**). Then for the reverse reads, specified with the `-A` flag, we give it the reverse primer (in normal 5'-3' orientation), three dots, and then the reverse complement of the forward primer. The minimum read length (set with `-m`) and max (set with `-M`) were based roughly on 10% smaller and bigger than would be expected after trimming the primers. **These types of settings will be different for data generated with different sequencing, i.e. not 2x300, and different primers. Then `-o` specifies the output of the forwards reads, `-p` specifies the output of the reverse reads, and the input forward and reverse are provided as [positional arguments](/bash/bash_intro#running-commands){:target="_blank"} in that order. 
+First, don't worry about the backslashes `\`, they are just there to ignore the return characters that come right after them (and are invisible here) that I've put in so this is organized a little more clearly, rather than one long single line. Moving on to dissecting what the command is doing here, cutadapt does a lot of different things, and there is excellent documentation at their [site](https://cutadapt.readthedocs.io/en/stable/index.html){:target="_blank"}. I learned about what we're specifying here I learned about from their ["Trimming (amplicon-) primers from both ends of paired-end reads" page](https://cutadapt.readthedocs.io/en/stable/recipes.html#trimming-amplicon-primers-from-both-ends-of-paired-end-reads){:target="_blank"} (See? I told you they had awesome documentation). Because our paired reads in this case were sequenced longer than the span of the target amplicon (meaning, we did 2x300 bp sequencing, and the targeted V4 region is shorter than that), *we will typically have both primers in each forward and reverse read*. Cutadapt handles "linked" adapters perfectly for such a case. We are specifying the primers for the forward read with the `-a` flag, giving it the forward primer (in normal orientation), followed by three dots (required by cutadapt to know they are "linked", with bases in between them, rather than right next to each other), then the reverse complement of the reverse primer (I found this [excellent site](http://arep.med.harvard.edu/labgc/adnan/projects/Utilities/revcomp.html){:target="_blank"} for converting to reverse complement **while treating degenerate bases properly**). Then for the reverse reads, specified with the `-A` flag, we give it the reverse primer (in normal 5'-3' orientation), three dots, and then the reverse complement of the forward primer. The minimum read length (set with `-m`) and max (set with `-M`) were based roughly on 10% smaller and bigger than would be expected after trimming the primers. **These types of settings will be different for data generated with different sequencing, i.e. not 2x300, and different primers. `--discard-untrimmed` states to throw away reads that don't have these primers in them in the expected locations. Then `-o` specifies the output of the forwards reads, `-p` specifies the output of the reverse reads, and the input forward and reverse are provided as [positional arguments](/bash/bash_intro#running-commands){:target="_blank"} in that order. 
 
 Again, you don't need to run that single example, because we're going to run them all in our loop below, but here's the before-and-after view of just that sample: 
 
@@ -159,7 +159,7 @@ do
     
     cutadapt -a ^GTGCCAGCMGCCGCGGTAA...ATTAGAWACCCBDGTAGTCC \
     -A ^GGACTACHVGGGTWTCTAAT...TTACCGCGGCKGCTGGCAC \
-    -m 215 -M 285 \
+    -m 215 -M 285 --discard-untrimmed \
     -o ${sample}_sub_R1_trimmed.fq.gz -p ${sample}_sub_R2_trimmed.fq.gz \
     ${sample}_sub_R1.fq ${sample}_sub_R2.fq \
     >> cutadapt_primer_trimming_stats.txt 2>&1
@@ -175,26 +175,26 @@ paste samples <(grep "passing" cutadapt_primer_trimming_stats.txt | cut -f3 -d "
 ```
 
 ```bash
-# B1     97.1%  83.5%
-# B2     97.1%  83.8%
-# B3     96.0%  82.9%
-# B4     97.1%  83.7%
-# BW1    96.7%  83.2%
-# BW2    95.4%  82.3%
-# R10    93.7%  80.9%
-# R11BF  92.3%  79.7%
-# R11    94.6%  81.7%
-# R12    95.1%  82.1%
-# R1A    94.2%  81.3%
-# R1B    94.8%  81.9%
-# R2     95.0%  82.0%
-# R3     94.8%  81.8%
-# R4     96.0%  82.8%
-# R5     94.5%  81.6%
-# R6     93.8%  81.0%
-# R7     95.4%  82.3%
-# R8     94.2%  81.3%
-# R9     93.5%  80.7%
+# B1    96.5%   83.0%
+# B2    96.6%   83.3%
+# B3    95.4%   82.4%
+# B4    96.8%   83.4%
+# BW1   96.4%   83.0%
+# BW2   94.6%   81.6%
+# R10   92.4%   79.8%
+# R11BF 90.6%   78.2%
+# R11   93.3%   80.6%
+# R12   94.3%   81.4%
+# R1A   93.3%   80.5%
+# R1B   94.0%   81.1%
+# R2    94.0%   81.2%
+# R3    93.8%   81.0%
+# R4    95.5%   82.4%
+# R5    93.7%   80.9%
+# R6    92.7%   80.1%
+# R7    94.4%   81.5%
+# R8    93.2%   80.4%
+# R9    92.4%   79.7%
 ```
 
 We would expect to lose around 13-14% of bps just for cutting off the primers, and the remainder of lost bps would be from the relatively low percent of those reads totally removed (~92-97% across the samples). 
