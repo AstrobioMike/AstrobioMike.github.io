@@ -12,8 +12,8 @@
 - title: Home
   url: /
   
-# - title: All Tutorials
-#   url: /all_tutorials/
+- title: All Tutorials
+  url: /all_tutorials/
 
-- title: Miscellaneous
-  url: /misc/
+# - title: Miscellaneous
+#   url: /misc/

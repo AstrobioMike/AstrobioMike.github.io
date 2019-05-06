@@ -1,6 +1,6 @@
 ---
 layout: main
-title: DADA2 example workflow
+title: A full example workflow for amplicon data
 categories: [amplicon, tutorial]
 permalink: amplicon/dada2_workflow_ex
 ---
@@ -9,32 +9,60 @@ permalink: amplicon/dada2_workflow_ex
 
 {% include _side_tab_amplicon.html %}
 
-[DADA2](https://benjjneb.github.io/dada2/index.html){:target="_blank"} is a relatively new processing workflow for recovering single-nucleotide resolved Amplicon Sequence Variants (ASVs) from amplicon data – if you're unfamiliar with ASVs, you can read more about ASVs vs OTUs in the [opening caveats](/amplicon/dada2_workflow_ex#opening-caveats) section that follows. Developed and maintained by [@bejcal](https://twitter.com/bejcal){:target="_blank"} et al., DADA2 leverages sequencing quality and abundance information to a greater extent than previously developed tools. It generates an error model based on your actual data, and then uses this error model to do its best to infer the original, true biological sequences that generated your data. The paper can be found [here](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4927377/){:target="_blank"}, and the DADA2 R package can be found here [here](https://benjjneb.github.io/dada2/index.html){:target="_blank"}. The DADA2 team already has a great tutorial available [here](https://benjjneb.github.io/dada2/tutorial.html){:target="_blank"}, and I learned my way around DADA2 by following that and reading through the [manual](https://www.bioconductor.org/packages/3.3/bioc/manuals/dada2/man/dada2.pdf){:target="_blank"}. While the overall workflow presented here is the same for the processing part, there are other additions such as: 1) heavier annotations and explanations to, in the style of this site all around, hopefully help new-comers to bioinformatics of course 🙂 2) examples of common analyses to do in R after processing amplicon data; and 3) a [section](/amplicon/dada2_workflow_ex#16s-and-18s-mixed-together) for people working with 16S and 18S sequences mixed together. 
-<br>
+Here we're going to run through one way to process an amplicon dataset and then many of the standard, initial analyses. We'll be working a little at the command line, and then primarily in R. So it'd be best if you are already have some experience with both. If you're new to either or both, there is an [intro to the command line here](/bash/bash_intro_binder){:target="_blank"} and an [intro to R here](/R/basics).   
+
+And before we get started here, the obligatory public service announcement:
+
+<div class="warning">
+<h2>ATTENTION!</h2>
+Keep in mind here that as with everything on this site, none of this is meant to be authoritative. This is simply one example of one workflow. When working with your own data you should of course never follow any pipeline blindly, and pay attention to differences in your data vs the tutorial dataset you are using. These differences can often require changes to parameters that can be important. <b>Don't let anything here, or anywhere, constrain your science to doing only what others have done!</b></div>
+
+Now that that's out of the way, let's get to it!  
+
 <br>
 
 ---
 ---
 <br>
 
-## Opening caveats
-There are many ways to process amplicon data. Some of the most widely used tools/pipelines include [mothur](https://www.mothur.org/){:target="_blank"}, [usearch](https://drive5.com/usearch/){:target="_blank"}, [vsearch](https://github.com/torognes/vsearch){:target="_blank"}, [Minimum Entropy Decomposition](http://merenlab.org/2014/11/04/med/){:target="_blank"}, [DADA2](https://benjjneb.github.io/dada2/index.html){:target="_blank"}, and [qiime2](https://qiime2.org/){:target="_blank"} (which employs other tools within it). If you are looking solely at a broad level, you will likely get very similar results regardless of which tool you use so long as you make similar decisions when processing your sequences (e.g. decisions about things like minimum abundance filtering), so don't get too lost in the weeds of trying to find the "best" tool for processing amplicon data. **That said, there is a movement in the community away from the traditional OTU approach and on to single-nucleotide-resolving methods that generate what are called ASVs (amplicon sequence variants).** And the reasoning for this is pretty sound, as recently laid out very nicely by [Callahan et al. here](https://www.nature.com/articles/ismej2017119){:target="_blank"}, but the intricacies of the differences may seem a little nebulous at first if you're not used to thinking about these things yet. **If you are new to this, know that most of the experts on these things would absolutely recommend using a newer method that resolves ASVs (enables single-nucleotide resolution) over a more traditional OTU approach (like 97% or 99% OTU clustering).** It may be the case that you'd like a broader level of resolution than what initial ASVs will give, but it is still best to first generate ASVs and then you can always "back out" your resolution with clustering at some threshold or binning sequences by taxonomy or whatever. This is because the underlying unit, the inferred ASV, is most often more biologically meaningful and a more useful unit beyond the current dataset than the units produced by traditional OTU clustering methods. 
+# DADA2
+We're going to be using [DADA2](https://benjjneb.github.io/dada2/index.html){:target="_blank"} is a relatively new processing workflow for recovering single-nucleotide resolved Amplicon Sequence Variants (ASVs) from amplicon data – if you're unfamiliar with ASVs, you can read more about ASVs vs OTUs in on the [amplicon home page here](/amplicon/){:target="_blank"}, along with some other introductory information. Developed and maintained by [@bejcal](https://twitter.com/bejcal){:target="_blank"} et al., DADA2 leverages sequencing quality and abundance information to a greater extent than previously developed tools. It generates an error model based on your actual data, and then uses this error model to do its best to infer the original, true biological sequences that generated your data. The paper can be found [here](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4927377/){:target="_blank"}, and the DADA2 R package can be found here [here](https://benjjneb.github.io/dada2/index.html){:target="_blank"}. The DADA2 team has a great tutorial available [here](https://benjjneb.github.io/dada2/tutorial.html){:target="_blank"}, and I learned my way around DADA2 by following that and reading through the [manual](https://www.bioconductor.org/packages/3.3/bioc/manuals/dada2/man/dada2.pdf){:target="_blank"}. This page builds upon that with: 1) heavier annotations and explanations to, in the style of this site all around, hopefully help new-comers to bioinformatics of course 🙂 and 2) examples of common analyses to do in R after processing amplicon data. There is also a separate page demonstrating one way to deal with [16S and 18S data mixed together here](/amplicon/16S_and_18S_mixed){:target="_blank"}. 
+<br>
+<br>
 
-Keep in mind here that as with everything on this site, none of this is meant to be authoritative. This is simply one example of one workflow. When working with your own data you should of course never follow any pipeline blindly, and pay attention to differences in your data vs the tutorial dataset you are using. These differences can often require changes to parameters that can be important.  
+---
+<br>
+
+# Binder available
+You can work on your own system if you'd like, but I have also created a "Binder" in which you can run through the entire tutorial on this page without needing to worry about setting up the appropriate environment on your own system. [Binder](https://mybinder.org/){:target="_blank"} is an incredible project with incredible people behind hit. I'm still very new to it, but the general idea is it makes it easier to setup and share specific working environments in support of open science. What this means for us here is that we can just click this little badge – [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/AstrobioMike/binder-dada2-ex-workflow/master?urlpath=rstudio){:target="_blank"} – and it'll open an RStudio environment with all our needed tools and packages installed and ready to rock... how awesome is that?!? Again, you can also work on your own system if you'd like, but this option is here in case it's helpful. If you'd like to use the Binder environment, click the badge above, and when that page finishes loading (it may take a couple of minutes), you will see a screen like this (minus the blue arrow):
+
+<center><img src="{{ site.url }}/images/binder-R-app-launch2.png"></center>
+<br>
+
+RStudio has the added benefit of providing our command-line environment too. If we click the "Terminal" tab that the blue arrow points to in this image, it will change the console to our command line and look like this: 
+
+<a id="terminal"></a>
+<center><img src="{{ site.url }}/images/binder-R-app-launch3.png"></center>
+<br>
+>**NOTE:** Don't worry if there is a conda error message at the top of your Terminal window, we can ignored that here.
+
+We will be using the command line first, as detailed below, so you can leave it there for now. But keep these tabs in mind as they determine whether you're working in R (which is the "Console" tab here) or working at the command line (the "Terminal" tab here). If something isn't working, that's a good thing to double-check first 🙂
+<br>
 <br>
 
 ---
 <br>
 
 # Tools used here
-So here we'll be using [DADA2](https://benjjneb.github.io/dada2/index.html){:target="_blank"} as our main processing tool. Additionally we'll be using [cutadapt](https://cutadapt.readthedocs.io/en/stable/index.html){:target="_blank"} to remove our primers. DADA2 is available as an [R](https://www.r-project.org/){:target="_blank"} package, with installation instructions provided by the developers [here](https://benjjneb.github.io/dada2/dada-installation.html){:target="_blank"}. If your experience is like mine, it shouldn't give you any trouble if installing on your computer, but you may run into some issues when trying to install on a server where you don't have authorization to do whatever you'd like (a huge thanks to [@phantomBugs](https://twitter.com/phantomBugs){:target="_blank"} for all his help when I was bugging him about that 🙂). If you'd like to use [cutadapt](https://cutadapt.readthedocs.io/en/stable/index.html){:target="_blank"}, you can find installation instructions for it from the developers [here](https://cutadapt.readthedocs.io/en/stable/installation.html){:target="_blank"}.
+If using the Binder environment, you don't need to worry about installing these tools, but if working on your own system, you will need to take care of some installations as noted while we go. In addition to [DADA2](https://benjjneb.github.io/dada2/index.html){:target="_blank"} as our main processing tool, we'll be using [cutadapt](https://cutadapt.readthedocs.io/en/stable/index.html){:target="_blank"} to remove our primers. DADA2 is available as an [R](https://www.r-project.org/){:target="_blank"} package, with installation instructions provided by the developers [here](https://benjjneb.github.io/dada2/dada-installation.html){:target="_blank"}. If your experience is like mine, it shouldn't give you any trouble if installing on your computer, but you may run into some issues when trying to install on a server where you don't have authorization to do whatever you'd like – a huge thanks to [@phantomBugs](https://twitter.com/phantomBugs){:target="_blank"} for all his help when I was bugging him about that! If you'd like to use [cutadapt](https://cutadapt.readthedocs.io/en/stable/index.html){:target="_blank"}, you can find installation instructions for it from the developers [here](https://cutadapt.readthedocs.io/en/stable/installation.html){:target="_blank"}.
  
-And since DADA2 is an R package, you also of course need to have a working installation of R on your computer. If you'd like more info on this, check out the [R basics](/R/basics){:target="_blank"} section before moving forward. 
+And since DADA2 is an R package, you also of course need to have a working installation of R on your computer. If you'd like/need more info on this, check out the [R basics](/R/basics){:target="_blank"} page before moving forward. 
 <br>
 <br>
 
 ---
 <br>
+
 
 # The data
 For a quick overview of the example data we'll be using and where it came from, we are going to work with a subset of the dataset [published here](https://www.frontiersin.org/articles/10.3389/fmicb.2015.01470/full){:target="_blank"}. We were exploring an underwater mountain ~3 km down at the bottom of the Pacific Ocean that serves as a low-temperature (~5-10°C) hydrothermal venting site. This amplicon dataset was generated from DNA extracted from crushed basalts collected from across the mountain with the goal being to begin characterizing the microbial communities of these deep-sea rocks. No one had ever been here before, so as is often the purpose of marker-gene sequencing, this was just a broad-level community survey. The sequencing was done on the Illumina MiSeq platform with 2x300 paired-end sequencing using primers targeting the V4 region of the 16S rRNA gene. There are 20 samples total: 4 extraction "blanks" (nothing added to DNA extraction kit), 2 bottom-water samples, 13 rocks, and one biofilm scraped off of a rock. None of these details are important for you to remember, it's just to give some overview if you care.  
@@ -44,11 +72,11 @@ In the following figure, overlain on the map are the rock sample collection loca
 <center><img src="{{ site.url }}/images/dorado.png"></center>
 
 <br>
-You can download the required dataset and files by copying and pasting the following commands into your terminal. For speed purposes we're only going to work with about 10% of the full dataset. Altogether the uncompressed size of the working directory is ~300MB.
+For speed purposes we're only going to work with about 10% of the full dataset. Altogether the uncompressed size of the working directory we are downloading here is ~300MB. To get started, **be sure you are in the "Terminal" window like [pictured above](/amplicon/dada2_workflow_ex#terminal){:target="_blank"} if using the Binder environment, or in your own command line if working on your own system.** We will be working here for the first step of removing the primers too, so don't switch over to R (the "Console" tab in the Binder/RStudio environment) until noted. You can download the required dataset and files by copying and pasting the following commands into your command-line terminal:
 
 ```
 cd ~
-curl -L -o dada2_amplicon_ex_workflow.tar.gz https://ndownloader.figshare.com/files/15007880
+curl -L -o dada2_amplicon_ex_workflow.tar.gz https://ndownloader.figshare.com/files/15071183
 tar -xzvf dada2_amplicon_ex_workflow.tar.gz
 rm dada2_amplicon_ex_workflow.tar.gz
 cd dada2_amplicon_ex_workflow/
@@ -77,9 +105,9 @@ It's good to try to keep a bird's-eye view of what's going on. So here is an ove
 |7|`removeBimeraDenovo()`|screen for and remove chimeras|
 |8|`assignTaxonomy()`|assign taxonomy|
 
-And at the end of this we'll do some R magic to generate regular [flat files](/bash/bash_intro#working-with-plain-text-files-and-directories){:target="_blank"} for the standard desired outputs: 1) a fasta file of our ASVs; 2) a count table; and 3) a taxonomy table.  
+And at the end of this we'll do some R magic to generate regular [flat files](/bash/bash_intro#working-with-plain-text-files-and-directories){:target="_blank"} for the standard desired outputs of amplicon/marker-gene processing: 1) a fasta file of our ASVs; 2) a count table; and 3) a taxonomy table.  
 
-In our working directory there are 20 samples with forward (R1) and reverse (R2) reads with per-base-call quality information, so 40 fastq files (.fq). I typically like to have a file with all the sample names to use for various things throughout, so here's making that file based on how these sample names are formatted:
+In our working directory there are 20 samples with forward (R1) and reverse (R2) reads with per-base-call quality information, so 40 fastq files (.fq). I typically like to have a file with all the sample names to use for various things throughout, so here's making that file based on how these sample names are formatted (be sure you are in the "Terminal" window like pictured above if using the Binder environment):
 
 ```bash
 ls *_R1.fq | cut -f1 -d "_" > samples
@@ -88,9 +116,9 @@ ls *_R1.fq | cut -f1 -d "_" > samples
 >**NOTE:** If you're not comfortable with that line, and would like to be able to better utilize the awesome power of bash, consider running through the [bash basics](/bash/bash_intro){:target="_blank"} and/or [six glorious commands](/bash/six_commands){:target="_blank"} pages sometime 🙂  
 
 # Removing primers
-To start, we need to remove the primers from all of these (the primers used for this run are in the "primers.fa" file in our working directory), and here we're going to use [cutadapt](https://cutadapt.readthedocs.io/en/stable/index.html){:target="_blank"} to do that. Cutadapt operates on one sample at at time, so we're going to use a [wonderful little bash loop](/bash/for_loops){:target="_blank"} to run it on all of our samples.   
+To start, we need to remove the primers from all of these (the primers used for this run are in the "primers.fa" file in our working directory), and here we're going to use [cutadapt](https://cutadapt.readthedocs.io/en/stable/index.html){:target="_blank"} to do that **at the command line ("Terminal" tab if in the binder environment**). Cutadapt operates on one sample at at time, so we're going to use a [wonderful little bash loop](/bash/for_loops){:target="_blank"} to run it on all of our samples.   
 
-First, here's what the command would look like on an individual sample **(don't worry about running this, we're just going to dissect it for now)**: 
+First, let's just run it on one individual sample and breakdown the command: 
 
 ```bash
 cutadapt --version # 2.3
@@ -101,9 +129,9 @@ cutadapt -a ^GTGCCAGCMGCCGCGGTAA...ATTAGAWACCCBDGTAGTCC \
     B1_sub_R1.fq B1_sub_R2.fq
 ```
 
-First, don't worry about the backslashes `\`, they are just there to ignore the return characters that come right after them (and are invisible here) that I've put in so this is organized a little more clearly, rather than one long single line. Moving on to dissecting what the command is doing here, cutadapt does a lot of different things, and there is excellent documentation at their [site](https://cutadapt.readthedocs.io/en/stable/index.html){:target="_blank"}. I learned about what we're specifying here I learned about from their ["Trimming (amplicon-) primers from both ends of paired-end reads" page](https://cutadapt.readthedocs.io/en/stable/recipes.html#trimming-amplicon-primers-from-both-ends-of-paired-end-reads){:target="_blank"} (See? I told you they had awesome documentation). Because our paired reads in this case were sequenced longer than the span of the target amplicon (meaning, we did 2x300 bp sequencing, and the targeted V4 region is shorter than that), *we will typically have both primers in each forward and reverse read*. Cutadapt handles "linked" adapters perfectly for such a case. We are specifying the primers for the forward read with the `-a` flag, giving it the forward primer (in normal orientation), followed by three dots (required by cutadapt to know they are "linked", with bases in between them, rather than right next to each other), then the reverse complement of the reverse primer (I found this [excellent site](http://arep.med.harvard.edu/labgc/adnan/projects/Utilities/revcomp.html){:target="_blank"} for converting to reverse complement **while treating degenerate bases properly**). Then for the reverse reads, specified with the `-A` flag, we give it the reverse primer (in normal 5'-3' orientation), three dots, and then the reverse complement of the forward primer. Both of those have a `^` symbol in front at the 5' end indicating they should be found at the start of the reads (which is the case with this particular setup). The minimum read length (set with `-m`) and max (set with `-M`) were based roughly on 10% smaller and bigger than would be expected after trimming the primers. **These types of settings will be different for data generated with different sequencing, i.e. not 2x300, and different primers. `--discard-untrimmed` states to throw away reads that don't have these primers in them in the expected locations. Then `-o` specifies the output of the forwards reads, `-p` specifies the output of the reverse reads, and the input forward and reverse are provided as [positional arguments](/bash/bash_intro#running-commands){:target="_blank"} in that order. 
+Don't worry about the backslashes `\`, they are just there to ignore the return characters that come right after them (and are invisible here) that I've put in so this is organized a little more clearly, rather than as one long single line. Moving on to dissecting what the command is doing here, cutadapt does a lot of different things, and there is excellent documentation at their [site](https://cutadapt.readthedocs.io/en/stable/index.html){:target="_blank"}. I learned about what we're specifying here I learned about from their ["Trimming (amplicon-) primers from both ends of paired-end reads" page](https://cutadapt.readthedocs.io/en/stable/recipes.html#trimming-amplicon-primers-from-both-ends-of-paired-end-reads){:target="_blank"} (See? I told you they had awesome documentation). Because our paired reads in this case were sequenced longer than the span of the target amplicon (meaning, we did 2x300 bp sequencing, and the targeted V4 region is shorter than that), *we will typically have both primers in each forward and reverse read*. Cutadapt handles "linked" adapters perfectly for such a case. We are specifying the primers for the forward read with the `-a` flag, giving it the forward primer (in normal orientation), followed by three dots (required by cutadapt to know they are "linked", with bases in between them, rather than right next to each other), then the reverse complement of the reverse primer (I found this [excellent site](http://arep.med.harvard.edu/labgc/adnan/projects/Utilities/revcomp.html){:target="_blank"} for converting to reverse complement **while treating degenerate bases properly**). Then for the reverse reads, specified with the `-A` flag, we give it the reverse primer (in normal 5'-3' orientation), three dots, and then the reverse complement of the forward primer. Both of those have a `^` symbol in front at the 5' end indicating they should be found at the start of the reads (which is the case with this particular setup). The minimum read length (set with `-m`) and max (set with `-M`) were based roughly on 10% smaller and bigger than would be expected after trimming the primers. **These types of settings will be different for data generated with different sequencing, i.e. not 2x300, and different primers. `--discard-untrimmed` states to throw away reads that don't have these primers in them in the expected locations. Then `-o` specifies the output of the forwards reads, `-p` specifies the output of the reverse reads, and the input forward and reverse are provided as [positional arguments](/bash/bash_intro#running-commands){:target="_blank"} in that order. 
 
-Again, you don't need to run that single example, because we're going to run them all in our loop below, but here's the before-and-after view of just that sample: 
+Here's a before-and-after view of just that sample: 
 
 ```bash
 ### R1 BEFORE TRIMMING PRIMERS
@@ -146,7 +174,7 @@ It's important to notice that not only is the forward primer (`GTGCCAGCAGCCGCGGT
 **A huge thanks to [@saerobe](https://twitter.com/saerobe) for catching a slip-up I had in here before where it was *not* trimming off the reverse primers properly!**
 
 
-Now, on to doing them all with a loop, here is how we can run it on all our samples at once. Since we have a lot of samples here, I'm [redirecting](http://localhost:4000/bash/bash_intro#pipes-and-redirectors){:target="_blank"} the "stdout" (what's printing the stats for each sample) to a file so we can more easily view and keep track of if we're losing a ton of sequences or not by having that information stored somewhere – instead of just plastered to the terminal window. We're also going to take advantage of another convenience of cutadapt – by adding the extension `.gz` to the output file names, it will compress them for us.  
+Now, on to doing them all with a loop, here is how we can run it on all our samples at once. Since we have a lot of samples here, I'm [redirecting](/bash/bash_intro#pipes-and-redirectors){:target="_blank"} the "stdout" (what's printing the stats for each sample) to a file so we can more easily view and keep track of if we're losing a ton of sequences or not by having that information stored somewhere – instead of just plastered to the terminal window. We're also going to take advantage of another convenience of cutadapt – by adding the extension `.gz` to the output file names, it will compress them for us.  
 
 >**NOTE:** We're not going to break down the loop here as we have other fish to fry, but if this looks confusing to you, then check out the pages on [bash basics](/bash/bash_intro){:target="_blank"} and [the wonderful world of loops](/bash/for_loops){:target="_blank"}. While odd-looking at first, little command-line loops like this are **extremely** powerful, and trust me, you can learn to leverage that power more quickly than you'd think! 
 
@@ -166,7 +194,6 @@ do
 
 done
 ```
- 
 
 You can look through the output of the cutadapt stats file we made ("cutadapt_primer_trimming_stats.txt") to get an idea of how things went. Here's a little one-liner to look at what fraction of reads were retained in each sample (column 2) and what fraction of bps were retained in each sample (column 3):
 
@@ -197,15 +224,17 @@ paste samples <(grep "passing" cutadapt_primer_trimming_stats.txt | cut -f3 -d "
 # R9    92.4%   79.7%
 ```
 
-We would expect to lose around 13-14% of bps just for cutting off the primers, and the remainder of lost bps would be from the relatively low percent of those reads totally removed (~92-97% across the samples). 
+We would expect to lose around 13-14% of bps just for cutting off the primers, and the remainder of lost bps would be from the relatively low percent of those reads totally removed (~92-97% across the samples), which could happen for reasons discussed above. 
 
-With primers removed, we're now ready to jump into R and start using DADA2! 
+With primers removed, we're now ready to switch R and start using DADA2! 
 
 # Processing with DADA2 in R
-Just as with the bash component above, this portion assumes you have some baseline experience with R already. If you aren't familiar with R at all yet it's probably a good iea to run through the [R basics page](/R/basics){:target="_blank"} first. But even if you don't have any experience with R yet, you'll still be able to follow along here and run everything if you'd like. A full R script of everything done here is available in the "R_working_dir" subdirectory called "dada2_example.R" that can be opened in RStudio if you prefer to follow along with that rather than copying and pasting commands from here. Either way, this part really isn't about the R code (right now), it's more about the processing.  
+As noted above, if you aren't familiar with R at all yet it's probably a good iea to run through the [R basics page](/R/basics){:target="_blank"} first. A full R script containing everything done here called "all_R_commands.R" is in our working directory. That file can be opened in RStudio if you prefer to follow along with that rather than copying and pasting commands from here. To open that document in the Binder environment, in the "Files" window at the bottom right, click on the "dada2_amplicon_ex_workflow" directory, then click on "all_R_commands.R". This will open an additional window at the top left (pushing your "Console"/"Terminal" window down halfway). This new window is a text editor within which you can also run code. To run code in there, on the line you'd like to run press `CMD + ENTER` on a Mac, or `CTRL + ENTER` on a Windows computer. If you'd like to open a new, blank document in this text editor window inside of RStudio (whether in the Binder or on your own system), you can click the icon at the top left that looks like a white square with a plus sign over it, and then click "R Script". **It's in that text editor window you'll want to paste in the commands below and then run them**, or be running them from the "all_R_commands.R" file if you'd rather, but mostly you won't be typing or pasting commands into the "Console". 
 
 ## Setting up our working environment
-To get started let's open up RStudio and take care of a few things. If you need to install the DADA2 package, visit the [installation page](https://benjjneb.github.io/dada2/dada-installation.html){:target="_blank"} provided by [@bejcal](https://twitter.com/bejcal){:target="_blank"}. This may require you needing to update your version of R and/or RStudio as well, which can be tricky sometimes. I've found [this page](https://www.linkedin.com/pulse/3-methods-update-r-rstudio-windows-mac-woratana-ngarmtrakulchol/){:target="_blank"} put together by [Woratana Ngarmtrakulchol](https://www.linkedin.com/in/woratana-ngarmtrakulchol-0079b766/){:target="_blank"} to be a lifesaver for me on more than one occasion 🙂
+If you are in the Binder environment, be sure to click the "Console" tab on the left side to change from the command-line terminal to R, and in here all the required packages are already installed. If you're working on your own system, you'll need to install DADA2. To do that, visit the [installation page](https://benjjneb.github.io/dada2/dada-installation.html){:target="_blank"} provided by [@bejcal](https://twitter.com/bejcal){:target="_blank"}. This may require you needing to update your version of R and/or RStudio as well, which can be tricky sometimes. I've found [this page](https://www.linkedin.com/pulse/3-methods-update-r-rstudio-windows-mac-woratana-ngarmtrakulchol/){:target="_blank"} put together by [Woratana Ngarmtrakulchol](https://www.linkedin.com/in/woratana-ngarmtrakulchol-0079b766/){:target="_blank"} to be a lifesaver for me on more than one occasion 🙂
+
+**From here on out, unless noted, we are working in R.** 
 
 ```R
 library(dada2)
@@ -260,7 +289,7 @@ filtered_out <- filterAndTrim(forward_reads, filtered_forward_reads,
 
 Here, the first and third arguments ("forward_reads" and "reverse_reads") are the variables holding our input files, which are our primer-trimmed output fastq files from cutadapt. The second and fourth are the variables holding the file names of the output forward and reverse seqs from this function. And then we have a few parameters explicitly specified. `maxEE` is the quality filtering threshold being applied based on the [expected errors](https://www.drive5.com/usearch/manual/exp_errs.html){:target="_blank"} and in this case we are saying we want to throw the read away if it is likely to have more than 2 erroneous base calls (we are specifying for both the forward and reverse reads separately). `rm.phix` removes any reads that match the PhiX bacteriophage genome, which is typically added to Illumina sequencing runs for quality monitoring. And `minLen` is setting the minimum length reads we want to keep after trimming. As mentioned above, the trimming occurring beyond what we set with `truncLen` is coming from a default setting, `truncQ`, which is set to 2 unless we specify otherwise, meaning it trims all bases after the first quality score of 2 it comes across in a read. There is also an additional filtering default parameter that is removing any sequences containing any Ns, `maxN`, set to 0 by default. Then we have our `truncLen` parameter setting the minimum size to trim the forward and reverse reads to in order to keep the quality scores roughly above 30 overall.  
 
-As mentioned, the output read files were named in those variables we made above ("filtered_forward_reads" and "filtered_reverse_reads"), so those files were created when we ran the function – we can see them if we run `list.files()` in R, or by checking in our your working directory in the terminal:
+As mentioned, the output read files were named in those variables we made above ("filtered_forward_reads" and "filtered_reverse_reads"), so those files were created when we ran the function – we can see them if we run `list.files()` in R, or by checking in our your working directory in the terminal (image from my computer, not the Binder environment):
 
 <center><img src="{{ site.url }}/images/dada2_filtered_head.png"></center>
 <br>
@@ -306,13 +335,13 @@ plotQualityProfile(filtered_reverse_reads[17:20])
 Now we're lookin' good.
 
 ## Generating an error model of our data
-Next up is generating our error model by learning the specific error-signature of our dataset. Each sequencing run, even when all goes well, will have its own subtle variations to its error profile. This step tries to assess that for both the forward and reverse reads. It can be one of the more computationally intensive steps of the workflow, for this slimmed dataset on my laptop (2013 MacBook Pro) these *each* took about 10 minutes *without* `multithread=TRUE` (as exemplified and commented out below), and each took about 5 minutes with that set. On the Binder for this page, if you're working there, each took about 15 minutes – so 30 total. I have the `multithread=TRUE` commented out because the Binder doesn't seem to like it, but feel free to only run the two commands that way if you are working on your own system.
+Next up is generating our error model by learning the specific error-signature of our dataset. Each sequencing run, even when all goes well, will have its own subtle variations to its error profile. This step tries to assess that for both the forward and reverse reads. It can be one of the more computationally intensive steps of the workflow, for this slimmed dataset on my laptop (2013 MacBook Pro) these *each* took about 10 minutes *without* `multithread=TRUE` (as exemplified and commented out below), and each took about 5 minutes with that option added. If you are working on your own system, you can feel free to run the two commands with the `multithread=TRUE` option set. I have way that commented out here because it seemed to be a problem when working in the Binder environment for this page. If you're working in the Binder, each will take about 15 minutes – so 30 minutes total.  And if you don't want to run them and wait, you can load all the R objects and skip whatever steps you'd like with `load("amplicon_dada2_ex.RData")`. 
 
 ```R
 err_forward_reads <- learnErrors(filtered_forward_reads)
-# err_forward_reads <- learnErrors(filtered_forward_reads, multithread=TRUE)
+# err_forward_reads <- learnErrors(filtered_forward_reads, multithread=TRUE) # problem running this way if on Binder
 err_reverse_reads <- learnErrors(filtered_reverse_reads)
-# err_reverse_reads <- learnErrors(filtered_reverse_reads, multithread=TRUE)
+# err_reverse_reads <- learnErrors(filtered_reverse_reads, multithread=TRUE) # problem running this way if on Binder
 ```
 
 The developers have incorporated a plotting function to visualize how well the estimated error rates match up with the observed:
@@ -346,8 +375,10 @@ This step can be run on individual samples, which is the least computationally i
 Here, we're going to use pseudo-pooling:
 
 ```R
-dada_forward <- dada(derep_forward, err=err_forward_reads, multithread=TRUE, pool="pseudo")
-dada_reverse <- dada(derep_reverse, err=err_reverse_reads, multithread=TRUE, pool="pseudo")
+dada_forward <- dada(derep_forward, err=err_forward_reads, pool="pseudo")
+# dada_forward <- dada(derep_forward, err=err_forward_reads, pool="pseudo", multithread=TRUE) # problem running this way if on Binder
+dada_reverse <- dada(derep_reverse, err=err_reverse_reads, pool="pseudo")
+# dada_reverse <- dada(derep_reverse, err=err_reverse_reads, pool="pseudo", multithread=TRUE) # problem running this way if on Binder
 ```
 
 ## Merging forward and reverse reads
@@ -374,7 +405,7 @@ Now we can generate a count table with the `makeSequenceTable()` function. This 
 ```R
 seqtab <- makeSequenceTable(merged_amplicons)
 class(seqtab) # matrix
-dim(seqtab) # 20 2525
+dim(seqtab) # 20 2521
 ```
 
 We can see from the dimensions of the "seqtab" matrix that we have 2,525 ASVs in this case. But it's not very friendly to look at in its current form because the actual sequences are our rownames - so we'll make a more traditional count table in a couple steps.
@@ -383,10 +414,10 @@ We can see from the dimensions of the "seqtab" matrix that we have 2,525 ASVs in
 DADA2 identifies likely chimeras by aligning each sequence with those that were recovered in greater abundance and then seeing if there are any lower-abundance sequences that can be made exactly by mixing left and right portions of two of the more-abundant ones. These are then removed:
 
 ```R
-seqtab.nochim <- removeBimeraDenovo(seqtab, multithread=T, verbose=T) # Identified 19 bimeras out of 2525 input sequences.
+seqtab.nochim <- removeBimeraDenovo(seqtab, verbose=T) # Identified 17 bimeras out of 2521 input sequences.
 
-  # though we only lost 19 sequences, we don't know if they held a lot in terms of abundance, this is one quick way to look at that
-sum(seqtab.nochim)/sum(seqtab) # 0.9927576 # good, we barely lost any in terms of abundance
+  # though we only lost 17 sequences, we don't know if they held a lot in terms of abundance, this is one quick way to look at that
+sum(seqtab.nochim)/sum(seqtab) # 0.9931372 # good, we barely lost any in terms of abundance
 ```
 
 ## Overview of counts throughout
@@ -404,35 +435,35 @@ summary_tab <- data.frame(row.names=samples, dada2_input=filtered_out[,1],
                final_perc_reads_retained=round(rowSums(seqtab.nochim)/filtered_out[,1]*100, 1))
 
 summary_tab
-#       dada2_input filtered dada_f dada_r merged nonchim total_perc_reads_lost
-# B1           1622     1504   1464   1472   1463    1463                  90.2
-# B2            594      532    526    527    526     526                  88.6
-# B3            506      459    452    453    452     452                  89.3
-# B4            509      477    442    449    441     441                  86.6
-# BW1          2301     2112   2069   2085   2057    2057                  89.4
-# BW2          6070     5566   5169   5268   4754    4754                  78.3
-# R10         11407    10466   9772   9916   9076    8913                  78.1
-# R11BF        9044     8216   7348   7586   6807    6690                  74.0
-# R11          8785     8144   7660   7754   7261    7053                  80.3
-# R12         15814    14498  12481  13003  10784   10718                  67.8
-# R1A         12221    10978   9648   9969   8634    8610                  70.5
-# R1B         16238    14762  13009  13474  11252   11208                  69.0
-# R2          17375    15771  14131  14604  12546   12488                  71.9
-# R3          17669    16055  14300  14758  12616   12556                  71.1
-# R4          19064    17373  16285  16545  14857   14791                  77.6
-# R5          18359    16824  14884  15423  13005   12918                  70.4
-# R6          14768    13445  12032  12399  10566   10555                  71.5
-# R7           8082     7394   6579   6784   5659    5647                  69.9
-# R8          12344    11285  10409  10600   9687    9567                  77.5
-# R9           8705     7919   7279   7452   6816    6771                  77.8
+#       dada2_input filtered dada_f dada_r merged nonchim final_perc_reads_retained
+# B1           1613     1498   1458   1466   1457    1457                      90.3
+# B2            591      529    523    524    523     523                      88.5
+# B3            503      457    450    451    450     450                      89.5
+# B4            507      475    440    447    439     439                      86.6
+# BW1          2294     2109   2066   2082   2054    2054                      89.5
+# BW2          6017     5527   5134   5229   4716    4716                      78.4
+# R10         11258    10354   9658   9819   9009    8847                      78.6
+# R11BF        8627     8028   7544   7640   7150    6960                      80.7
+# R11          8927     8138   7279   7511   6694    6577                      73.7
+# R12         15681    14423  12420  12932  10714   10649                      67.9
+# R1A         12108    10906   9584   9897   8559    8535                      70.5
+# R1B         16091    14672  12937  13389  11202   11158                      69.3
+# R2          17196    15660  14039  14498  12494   12436                      72.3
+# R3          17494    15950  14210  14662  12503   12444                      71.1
+# R4          18967    17324  16241  16501  14816   14750                      77.8
+# R5          18209    16728  14800  15332  12905   12818                      70.4
+# R6          14600    13338  11934  12311  10459   10448                      71.6
+# R7           8003     7331   6515   6726   5630    5618                      70.2
+# R8          12211    11192  10286  10513   9530    9454                      77.4
+# R9           8600     7853   7215   7390   6740    6695                      77.8
 ```
 
 ## Assigning taxonomy
-DADA2 incorporates a function that assigns taxonomy using the [RDP's kmer-based method](https://rdp.cme.msu.edu/classifier/classifier.jsp){:target="_blank"}, original paper [here](http://www.ncbi.nlm.nih.gov/pubmed/17586664){:target="_blank"}. There are some DADA2-formatted databases available [here](https://benjjneb.github.io/dada2/training.html){:target="_blank"}, which is where the [SILVA](https://www.arb-silva.de/){:target="_blank"} one came from that is in our current working directory, but you can use whatever database you'd like following the formatting specified at the bottom of [that page](https://benjjneb.github.io/dada2/training.html){:target="_blank"}. This step took maybe 10-15 minutes on my laptop (2013 MacBook Pro). 
+DADA2 incorporates a function that assigns taxonomy using the [RDP's kmer-based method](https://rdp.cme.msu.edu/classifier/classifier.jsp){:target="_blank"}, original paper [here](http://www.ncbi.nlm.nih.gov/pubmed/17586664){:target="_blank"}. There are some DADA2-formatted databases available [here](https://benjjneb.github.io/dada2/training.html){:target="_blank"}, which is where the [SILVA](https://www.arb-silva.de/){:target="_blank"} one came from that is in our current working directory, but you can use whatever database you'd like following the formatting specified at the bottom of [that page](https://benjjneb.github.io/dada2/training.html){:target="_blank"}. This step took ~10 minutes on my laptop (2013 MacBook Pro) with `multithread=TRUE`, it will fail if you run it that way in the Binder environment. Without `multithread=TRUE` it will take ~35 minutes in the Binder, or, as noted above, you can load all the R objects and skip the step with you can load all the R objects with `load("amplicon_dada2_ex.RData")` and skip whatever steps you'd like :)
 
 ```R
-taxa <- assignTaxonomy(seqtab.nochim, "silva_nr_v132_train_set.fa.gz",
-        multithread=T, tryRC=T)
+taxa <- assignTaxonomy(seqtab.nochim, "silva_nr_v132_train_set.fa.gz", tryRC=T)
+# taxa <- assignTaxonomy(seqtab.nochim, "silva_nr_v132_train_set.fa.gz", multithread=TRUE, tryRC=T) # problem running this way if on Binder
 ```
 
 # Extracting the standard goods from DADA2
@@ -483,7 +514,7 @@ vector_for_decontam <- c(rep(TRUE, 4), rep(FALSE, 16))
 
 contam_df <- isContaminant(t(asv_tab), neg=vector_for_decontam)
 
-table(contamdf.prev$contaminant) # identified 6 as contaminants
+table(contam_df$contaminant) # identified 6 as contaminants
 ```
 
 And now if we want to remove them from our 3 primary outputs:  
@@ -512,39 +543,42 @@ write.table(asv_tax_no_contam, "ASVs_taxonomy-no-contam.tsv",
 ```
 
 ---
-And that would be the end of what I consider to be the processing portion. Now we're going to move on to some of the typical analyses done with amplicon data.
+
+<br>
+And that would be the end of what I consider to be the processing portion. Now we're going to move on to some of the typical analyses done with amplicon data.  
+<br>
 
 # Analysis in R
 This portion also assumes you already have some baseline experience with R, if you aren't familiar with R at all yet it's probably a good idea to run through the [R basics page](/R/basics){:target="_blank"}. But even if you have limited experince with R so far, you'll still be able to follow along here and run everything if you'd like. This part isn't really about the R code (right now), it's just about going through some examples of the typical analyses done with amplicon data. So don't worry if some of the code seems super-confusing, especially because my R coding is pretty poor these days 😕
 
 ## Setting up our working environment
-We'll be using several more packages in R, so let's install them first in case you don't have them yet (if you have trouble with any of these, there is more info to follow):
+We'll be using several more packages in R, so here's how you could install them if you're **not** working in the Binder environment – if you are, they are already installed. If you have trouble with any of these, there is more info to follow:
 
 ```R
   # if you're following/working with the tutorial data, make sure you're in the correct place still
 setwd("~/amplicon_example_workflow/")
 list.files()
 
-install.packages("phyloseq")
-install.packages("vegan")
-install.packages("DESeq2")
-install.packages("ggplot2")
-install.packages("dendextend")
-install.packages("tidyr")
-install.packages("viridis")
-install.packages("reshape")
+# install.packages("phyloseq")
+# install.packages("vegan")
+# install.packages("DESeq2")
+# install.packages("ggplot2")
+# install.packages("dendextend")
+# install.packages("tidyr")
+# install.packages("viridis")
+# install.packages("reshape")
 ```
 
 Occasionaly you will run into a case where packages don't successfully install via the `install.packages()` function, for instance if it says it's not availabe for your version of R. When this happens, you can often get around that by installing from bioconductor or using devtools like demonstrated below. If any of those didn't succeed, you could try googling with these terms added as well. For example, searching for ["phyloseq bioconductor"](https://www.google.com/search?q=phyloseq+bioconductor&oq=phyloseq+bioconductor&aqs=chrome.0.0j69i60j0.3441j0j7&sourceid=chrome&ie=UTF-8) will bring you to its [bioconductor page](http://bioconductor.org/packages/release/bioc/html/phyloseq.html){:target="_blank"} which has instructions showing how to install like shown here for *phyloseq* and *DESeq2* if they failed by the above method.
 
 ```R
-source("https://bioconductor.org/biocLite.R")
-BiocManager::install("phyloseq")
-BiocManager::install("DESeq2")
+# source("https://bioconductor.org/biocLite.R")
+# BiocManager::install("phyloseq")
+# BiocManager::install("DESeq2")
 
 	# and here is an example using devtools:
-install.packages("devtools")
-devtools::install_github("tidyverse/ggplot2")
+# install.packages("devtools")
+# devtools::install_github("tidyverse/ggplot2")
 ```
 
 After all have installed successfully, load them up:
@@ -563,10 +597,10 @@ library("reshape")
 If you have a problem loading any of these libraries, close and then restart R and try loading the library again. If still no luck, try installing the package again and loading the library. 9 times out of 10, restarting R will solve the problem. Here are the versions used last time this page was updated:
 
 ```R
-packageVersion("phyloseq") # 1.26.1
+packageVersion("phyloseq") # 1.22.3
 packageVersion("vegan") # 2.5.4
-packageVersion("DESeq2") # 1.22.2
-packageVersion("ggplot2") # 3.1.1.9000
+packageVersion("DESeq2") # 1.18.1
+packageVersion("ggplot2") # 3.1.1
 packageVersion("dendextend") # 1.10.0
 packageVersion("tidyr") # 0.8.3
 packageVersion("viridis") # 0.5.1
@@ -574,19 +608,32 @@ packageVersion("reshape") # 0.8.8
 ```
  
 ## (Re)-Reading in our data
-We're primarily going to be working with our count table, our taxonomy table, and a new table with some information about our samples. To start from a clean slate, I'm going to clear out all R objects and then read the tables into new ones:
+We're primarily going to be working with our count table, our taxonomy table, and a new table with some information about our samples. To start from a clean slate, I'm going to clear out all R objects and then read the tables into new ones. 
 
 ```R
-rm(list=ls())
+## NOTE ##
+# if you loaded the saved R data above with `load("amplicon_dada2_ex.RData")` and
+# didn't run all the steps, you may want to write out these files here before
+# clearing the environment. It won't hurt if you did it already, so better to just
+# run these here :)
 
+write(asv_fasta_no_contam, "ASVs-no-contam.fa")
+write.table(asv_tab_no_contam, "ASVs_counts-no-contam.tsv",
+            sep="\t", quote=F, col.names=NA)
+write.table(asv_tax_no_contam, "ASVs_taxonomy-no-contam.tsv",
+            sep="\t", quote=F, col.names=NA)
+
+# ok, now moving on
+
+rm(list=ls())
   
 count_tab <- read.table("ASVs_counts-no-contam.tsv", header=T, row.names=1,
              check.names=F, sep="\t")[ , -c(1:4)]
-          # since we already used decontam to remove likely contaminants,
-          # we're dropping the "blank" samples from our count table which
-          # in the table we're reading in are the first 4 columns
+```
 
+**NOTE:** Since we've already used [decontam](https://github.com/benjjneb/decontam){:target="_blank"} to remove likely contaminants, we're dropping the "blank" samples from our count table which in the table we're reading in are the first 4 columns. That's what's being done by the `[ , -c(1:4)]` part at the end there. If you are unsure of what this is, and would like to learn about "indexing" in R (which is awesome and powerful), then check out the [R Basics](/R/basics#the-wonderful-world-of-indexing){:target="_blank"} and [Going Deeper with Indexing](/R/more_indexing){:target="_blank"} pages sometime 🙂
 
+```R
 tax_tab <- as.matrix(read.table("ASVs_taxonomy-no-contam.tsv", header=T,
            row.names=1, check.names=F, sep="\t"))
 
@@ -595,9 +642,11 @@ sample_info_tab <- read.table("sample_info.tsv", header=T, row.names=1,
   
   # and setting the color column to be of type "character", which helps later
 sample_info_tab$color <- as.character(sample_info_tab$color)
+
+sample_info_tab # to take a peek
 ```
  
-Taking a look at the sample_info_tab, we can see it simply has all 20 samples as rows, and four columns: 1) "temperature" for the temperature of the venting water was where collected; 2) "type" indicating if that sample is a blank, water sample, rock, or biofilm; 3) a characteristics column called "char" that just serves to distinguish between the main types of rocks (glassy, altered, or carbonate); and 4) "color", which has different R colors we can use later for plotting. This table can be made anywhere, e.g. in R, in excel, at the command line, you just need to make sure you read it into R properly. 
+Taking a look at the `sample_info_tab`, we see it has the 16 samples as rows, and four columns: 1) "temperature" for the temperature of the venting water was where collected; 2) "type" indicating if that sample is a blank, water sample, rock, or biofilm; 3) a characteristics column called "char" that just serves to distinguish between the main types of rocks (glassy, altered, or carbonate); and 4) "color", which has different R colors we can use later for plotting. This table can be made anywhere (e.g. in R, in excel, at the command line), you just need to make sure you read it into R properly (which you should always check just like we did here to make sure it came in correctly). 
 
 ## Beta diversity
 Beta diversity involves calculating metrics such as distances or dissimilarities based on pairwise comparisons of samples – they don't exist for a single sample, but rather only as metrics that relate samples to each other. Typically the first thing I do when I get a new dataset into R (whether it's marker-gene data like this, gene expression data, methylation levels, whatever) is generate some exploratory visualizations like ordinations and hierarchical clusterings. These give you a quick overview of how your samples relate to each other and can be a way to check for problems like batch effects. 
@@ -668,7 +717,7 @@ Generally speaking, ordinations provide visualizations of sample-relatedness bas
 ```R
   # making our phyloseq object with transformed table
 vst_count_phy <- otu_table(vst_trans_count_tab, taxa_are_rows=T)
-sample_info_tab_phy <- sample_data(filt_sample_info_tab)
+sample_info_tab_phy <- sample_data(sample_info_tab)
 vst_physeq <- phyloseq(vst_count_phy, sample_info_tab_phy)
 
   # generating and visualizing the PCoA with phyloseq
@@ -886,7 +935,7 @@ ggplot(filt_major_taxa_proportions_tab_for_plot.g2, aes(x=Sample, y=Proportion, 
 
 Ok, that's not helpful really at all in this case, but I kept it here for the code example. (Also, note that the biofilm sample has a large proportion of Alphaproteobacteria – possibly supporting what we saw above about it having the lowest Shannon diversity estimate, IF the majority of these are represented by the same ASV.) Another way to look would be using boxplots where each box is a major taxon, with each point being colored based on its sample type.
 
-```
+```R
 ggplot(filt_major_taxa_proportions_tab_for_plot.g2, aes(Major_Taxa, Proportion)) +
   geom_jitter(aes(color=factor(char)), size=2, width=0.15, height=0) +
   scale_color_manual(values=unique(filt_major_taxa_proportions_tab_for_plot.g2$color[order(filt_major_taxa_proportions_tab_for_plot.g2$char)])) +
@@ -983,10 +1032,10 @@ Again, not very useful here. But here is how you might parse your dataset down b
 As we saw earlier, we have some information about our samples in our sample info table. There are many ways to incorporate this information, but one of the first I typically go to is a permutational ANOVA test to see if any of the available information is indicative of community structure. Here we are going to test if there is a statistically signficant difference between our sample types. One way to do this is with the `betadisper` and `adonis` functions from the vegan package. `adonis` can tell us if there is a statistical difference between groups, but it has an assumption that must be met that we first need to check with `betadisper`, and that is that there is a sufficient level of homogeneity of dispersion within groups. If there is not, then `adonis` can be unreliable.
 
 ```R
-anova(betadisper(euc_dist, sample_info_tab$type)) # 0.001
+anova(betadisper(euc_dist, sample_info_tab$type)) # 0.002
 ```
 
-Checking by all sample types, we get a significant result (0.001) from the `betadisper` test. This tells us that there is a difference between group dispersions, which means that we can't trust the results of an adonis (permutational anova) test on this, because the assumption of homogenous within-group disperions is not met. This isn't all that surprising considering how different the water and biofilm samples are from the rocks.  
+Checking by all sample types, we get a significant result (0.002) from the `betadisper` test. This tells us that there is a difference between group dispersions, which means that we can't trust the results of an adonis (permutational anova) test on this, because the assumption of homogenous within-group disperions is not met. This isn't all that surprising considering how different the water and biofilm samples are from the rocks.  
 
 But a more interesting and specific question is "Do the rocks differ based on their level of exterior alteration?" So let's try this looking at just the basalt rocks, based on their characteristics of glassy and altered.
 
@@ -1004,10 +1053,10 @@ basalt_euc_dist <- dist(t(vst_trans_count_tab[ , colnames(vst_trans_count_tab) %
 basalt_sample_info_tab <- sample_info_tab[row.names(sample_info_tab) %in% basalt_sample_IDs, ]
 
   # running betadisper on just these based on level of alteration as shown in the images above:
-anova(betadisper(basalt_euc_dist, basalt_sample_info_tab$char)) # 0.8
+anova(betadisper(basalt_euc_dist, basalt_sample_info_tab$char)) # 0.7
 ```
 
-Looking at just the two basalt groups, glassy vs the more highly altered with thick outer rinds, we do not find a significant difference between their within-group dispersions (0.8). So we can now test if the groups host statistically different communities based on adonis, having met this assumption.
+Looking at just the two basalt groups, glassy vs the more highly altered with thick outer rinds, we do not find a significant difference between their within-group dispersions (0.7). So we can now test if the groups host statistically different communities based on adonis, having met this assumption.
 
 ```R
 adonis(basalt_euc_dist~basalt_sample_info_tab$char) # 0.003
@@ -1104,4 +1153,4 @@ If you glance through the taxonomy of our significant table here, you'll see sev
 
 <center><b>Now is when you do the science part 🙂</b></center>
 <br>
-Above we barely scratched the surface on just a handful of things. Here's where your questions and the experimental design start to guide how you go further. In [the paper](https://www.frontiersin.org/articles/10.3389/fmicb.2015.01470/full){:target="_blank"} this dataset came from for instance we ended up incorporating other seafloor basalt studies to identify what looked to be conserved taxa that showed up everywhere (like a sulfur-oxidizing gammaproteobacterium, *Thioprofundum lithotrophicum*), and we also identified that there seems to be a basalt-hosted Thaumarchaeota (*Nitrosopumilus* sp.) distinct from those present in the bottom water samples we analyzed; this was interesting to us because the genus has a known water-column version (*N. maritimus*) and sediment version (*N. koreensis*), and it seems there may also be a basalt-hosted counterpart that exists in relatively high abundance and may play a substantial role in ammonia oxidation and chemolithoautotrophy globally on deepsea basalts. And this is what I mean about marker-gene data being a tool for hypothesis generation: this bug can now be targeted with metagenomics and ultimately culturing efforts so we can try to figure out if it is actually playing a substantial role in biogeochemical cycling and the chemical transformation of much of the seafloor (my money's on yes, naturally). If you want to see more of how this dataset ended up, check out the discussion section of the [paper](https://www.frontiersin.org/articles/10.3389/fmicb.2015.01470/full){:target="_blank"}, it's written pretty well 🙂
+Above we barely scratched the surface on just a handful of things. Here's where your questions and the experimental design start to guide how you go further. In [the paper](https://www.frontiersin.org/articles/10.3389/fmicb.2015.01470/full){:target="_blank"} this dataset came from for instance we ended up incorporating other seafloor basalt studies to identify what looked to be conserved taxa that showed up everywhere (like a sulfur-oxidizing gammaproteobacterium, *Thioprofundum lithotrophicum*), and we also identified that there seems to be a basalt-hosted Thaumarchaeota (*Nitrosopumilus* sp.) distinct from those present in the bottom water samples we analyzed; this was interesting to us because the genus has a known water-column version (*N. maritimus*) and sediment version (*N. koreensis*), and it seems there may also be a basalt-hosted counterpart that exists in relatively high abundance and may play a substantial role in ammonia oxidation and chemolithoautotrophy globally on deepsea basalts. And this is what I mean about marker-gene data being a tool for hypothesis generation: this bug can now be targeted with metagenomics and ultimately culturing efforts so we can try to figure out if it is actually playing a substantial role in biogeochemical cycling and the chemical transformation of much of the seafloor (my money's on yes, naturally). If you want to see more of how this dataset ended up, check out the discussion section of the [paper](https://www.frontiersin.org/articles/10.3389/fmicb.2015.01470/full){:target="_blank"}, as an independent party I must say it's written pretty well 🙂
