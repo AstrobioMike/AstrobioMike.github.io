@@ -39,12 +39,12 @@ You can work on your own system if you'd like, but I have also created a "Binder
 <center><img src="{{ site.url }}/images/binder-R-app-launch2.png"></center>
 <br>
 
-RStudio has the added benefit of providing our command-line environment too. If we click the "Terminal" tab that the blue arrow points to in this image, it will change the console to our command line and look like this: 
+RStudio has the added benefit of providing our command-line environment too. If we click the "Terminal" tab that the blue arrow points to in the above image, it will change the console to our command line and look like this: 
 
 <a id="terminal"></a>
 <center><img src="{{ site.url }}/images/binder-R-app-launch3.png"></center>
 <br>
->**NOTE:** Don't worry if there is a conda error message at the top of your Terminal window, we can ignored that here.
+>**NOTE:** Don't worry if there is a conda error message at the top of your Terminal window, we can ignore that here.
 
 We will be using the command line first, as detailed below, so you can leave it there for now. But keep these tabs in mind as they determine whether you're working in R (which is the "Console" tab here) or working at the command line (the "Terminal" tab here). If something isn't working, that's a good thing to double-check first 🙂
 <br>
