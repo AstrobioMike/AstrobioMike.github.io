@@ -18,7 +18,6 @@ Before we get started here, an obligatory public service announcement:
 Keep in mind here that as with everything on this site, none of this is meant to be authoritative. This is simply one example of one workflow. When working with your own data you should of course never follow any pipeline blindly, and pay attention to differences in your data vs the tutorial dataset you are using. These differences can often require changes to parameters that can be important. <b>Don't let anything here, or anywhere, constrain your science to doing only what others have done!</b></div>
 
 Now that that's out of the way, let's get to it!  
-
 <br>
 
 ---
@@ -72,6 +71,8 @@ In the following figure, overlain on the map are the rock sample collection loca
 <center><img src="{{ site.url }}/images/dorado.png"></center>
 
 <br>
+
+## Getting the tutorial data
 For speed purposes we're only going to work with about 10% of the full dataset. Altogether the uncompressed size of the working directory we are downloading here is ~300MB. To get started, **be sure you are in the "Terminal" window like [pictured above](/amplicon/dada2_workflow_ex#terminal){:target="_blank"} if using the Binder environment, or in your own command line if working on your own system.** We will be working here for the first step of removing the primers too, so don't switch over to R (the "Console" tab in the Binder/RStudio environment) until noted. You can download the required dataset and files by copying and pasting the following commands into your command-line terminal:
 
 ```
