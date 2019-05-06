@@ -944,7 +944,7 @@ ggplot(filt_major_taxa_proportions_tab_for_plot.g2, aes(Major_Taxa, Proportion))
   labs(x="Major Taxa", y="% of 16S rRNA gene copies recovered", title="All samples")
 ```
 
-<center><img src="{{ site.url }}/images/boxplots_all_samples.png"></center>
+<center><img src="{{ site.url }}/images/boxplot_all_samples.png"></center>
 <br>
 
 Meh, let's keep in mind again that this was a very coarse level of resolution as we are using taxonomic classifications at the phylum and class ranks. This is why things may look more similar between the rocks and water samples than you might expect, and why when looking at the ASV level – like we did with the exploratory visualizations above – we can see more clearly that these do in fact host distinct communities. But let's look at this for a second anyway. The biofilm sample (green) again clearly stands out as it is almost completely dominated by sequences derived from Alphaproteobacteria. Three of the four "glassy" basalts (black dots) seem to have the greatest proportion of Gammaproteobacteria-derived sequences. And Cyanos and Euryarchaeota for the most part only seem to show up in water samples. Another way to look at this would be to plot the water and rock samples separately, which might help tighten up some taxa boxplots if they have a different distribution between the two sample types. 
