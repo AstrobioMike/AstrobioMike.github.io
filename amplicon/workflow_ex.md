@@ -9,6 +9,8 @@ permalink: amplicon/workflow_ex
 
 {% include _side_tab_amplicon.html %}
 
+>**NOTE:** This page is now somewhat outdated, but I am leaving it up for archiving purposes. If you are new to amplicon analysis, I recommend working through **[this page instead](/amplicon/dada2_workflow_ex)** 🙂
+
 This module represents a walkthrough of *one* possible workflow for an amplicon dataset (if you need a quick primer on some relevant terminology, visit the [amplicon main page](/amplicon/){:target="_blank"}). This will entail processing the raw sequences with [vsearch](https://github.com/torognes/vsearch){:target="_blank"} and [usearch](https://drive5.com/usearch/){:target="_blank"}, and analyzing the output and making some visualizations with [R](https://www.r-project.org/){:target="_blank"} using some great packages like [*vegan*](https://github.com/vegandevs/vegan){:target="_blank"} and [*phyloseq*](http://joey711.github.io/phyloseq/){:target="_blank"}.  
 
 If you are new to working at the command line and/or the R environment, you could still walk through this, but I recommend running through the [*bash* basics](/bash/basics){:target="_blank"} and [R basics](/R/basics){:target="_blank"} tutorials first.
