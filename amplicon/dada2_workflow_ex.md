@@ -9,9 +9,9 @@ permalink: amplicon/dada2_workflow_ex
 
 {% include _side_tab_amplicon.html %}
 
-Here we're going to run through one way to process an amplicon dataset and then many of the standard, initial analyses. We'll be working a little at the command line, and then primarily in R. So it'd be best if you are already have some experience with both. If you're new to either or both, there is an [intro to the command line here](/bash/bash_intro_binder){:target="_blank"} and an [intro to R here](/R/basics).   
+Here we're going to run through one way to process an amplicon dataset and then many of the standard, initial analyses. We'll be working a little at the command line, and then primarily in R. So it'd be best if you are already have some experience with both. If you're new to either or both, there is an [intro to the command line here](/bash/bash_intro_binder){:target="_blank"} and an [intro to R here](/R/basics) you may want to check out first 🙂  
 
-And before we get started here, the obligatory public service announcement:
+Before we get started here, an obligatory public service announcement:
 
 <div class="warning">
 <h2>ATTENTION!</h2>
