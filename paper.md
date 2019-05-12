@@ -11,6 +11,7 @@ affiliations:
 - name: Exobiology Branch, NASA Ames Research Center, Moffett Field, CA, USA
   index: 1
 date: 06 MAY 2019
+bibliography: paper.bib
 ---
 
 # Summary
