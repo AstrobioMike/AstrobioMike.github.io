@@ -661,7 +661,7 @@ Using wildcards at the command line like this is another powerful, fundamental s
 <h1>Congrats on getting through the basics!</h1>
 While the commands change, the general structure of how to operate at the command line stays the same. There are a lot of base commands in *bash*, and a dizzying number of optional arguments for most of them – as usual, google is our friend. If you end up working at the command line frequently, you will remember some things, but also you will often do a quick search to remember what the flag is for a specific argument, or how exactly a specific command works. Again, this really isn't about memorization.
 
-You can dig into some extremely useful commands on the [6 glorious commands page](/bash/six_commands), and see some more complicated examples in the [why is this all worth it?](/bash/why) page.
+You can dig into some extremely useful commands on the [6 glorious commands page](/bash/six_commands){:target="_blank"}, and see some more complicated examples in the [why is this all worth it?](/bash/why){:target="_blank"} page.
 
 <br>
 
