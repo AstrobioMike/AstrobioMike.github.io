@@ -226,6 +226,7 @@ cat sample_1/sample_1.fa
 ## Setting variables within a loop
 To do some more complicated operations, it is sometimes useful to set and use additional variables inside the loop. For this example, let's say we wanted to count how many total sequences were in each sample and then write this information out to a tab-delimited table that had two columns: our sample name; and how many total sequences. Each sample has the same number of sequences right now, so let's add a few sequences to a couple samples just so we that see the output actually reflects a difference:
 
+```
 for sample in sample_2 sample_5 sample_7 sample_99
 do 
   echo "On $sample" # tell us which sample we're on
@@ -240,6 +241,7 @@ do
   echo "" # adding a blank space between each sample in the output
     
 done
+```
 
 Now if we look at one of those samples, we see they have 6 sequences:
 
