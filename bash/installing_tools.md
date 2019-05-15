@@ -9,7 +9,8 @@ permalink: /bash/installing_tools
 
 {% include _side_tab_bash.html %}
 
-><center><h1>CONDA ALERT!</h1></center>
+
+># CONDA ALERT!
 >---
 >I initially started putting this page together before I learned of the magic of [conda](https://conda.io/docs/){:target="_blank"}. **Conda is a package and environment manager that is by far the easiest way to handle installing most of the tools you would want to use** – [this article](https://medium.freecodecamp.org/why-you-need-python-environments-and-how-to-manage-them-with-conda-85f155f4353c){:target="_blank"} covers pretty nicely why conda is super helpful, if you don't want to just take my word for it 🙂  
 >
