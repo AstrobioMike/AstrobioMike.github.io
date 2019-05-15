@@ -15,7 +15,7 @@ permalink: /bash/installing_tools
 >
 >At some point I'd to make a conda introductory page more in the style of this site, but there is already [excellent documentation from the developers and community here](https://conda.io/projects/conda/en/latest/user-guide/index.html){:target="_blank"}.  
 >
->To get conda up and running (which is very quick), you can follow the instructions to install miniconda (a light-weight version) for your appropriate system starting from [here](https://conda.io/docs/user-guide/install/index.html#regular-installation){:target="_blank"}.  
+>To get conda up and running (which is very quick), you can follow the instructions to install miniconda (a light-weight version) for your appropriate system starting from [here](https://conda.io/en/latest/miniconda.html){:target="_blank"}.  
 >
 >The rest of this page discusses how to do some things in a non-conda manner.
 
