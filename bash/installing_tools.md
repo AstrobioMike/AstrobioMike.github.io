@@ -9,6 +9,22 @@ permalink: /bash/installing_tools
 
 {% include _side_tab_bash.html %}
 
+><center><h1>CONDA ALERT!</h1></center>
+>---
+>I initially started putting this page together before I learned of the magic of [conda](https://conda.io/docs/){:target="_blank"}. **Conda is a package and environment manager that is by far the easiest way to handle installing most of the tools you would want to use** – [this article](https://medium.freecodecamp.org/why-you-need-python-environments-and-how-to-manage-them-with-conda-85f155f4353c){:target="_blank"} covers pretty nicely why conda is super helpful, if you don't want to just take my word for it 🙂  
+>
+>At some point I'd to make a conda introductory page more in the style of this site, but there is already [excellent documentation from the developers and community here](https://conda.io/projects/conda/en/latest/user-guide/index.html){:target="_blank"}.  
+>
+>To get conda up and running (which is very quick), you can follow the instructions to install miniconda (a light-weight version) for your appropriate system starting from [here](https://conda.io/docs/user-guide/install/index.html#regular-installation){:target="_blank"}.  
+>
+>The rest of this page discusses how to do some things in a non-conda manner.
+
+<br>
+
+---
+---
+<br>
+
 <div class="warning">
 <h2>ATTENTION!</h2>
 The installation examples here all download and install things into a directory called <code class="highlighter-rouge" style="padding-left:0.2em;padding-right:0.2em;padding-top:0.1em;padding-bottom:0.1em">~/happy_bin</code>. If you are new to this stuff and want to be able to follow the examples here more closely, be sure to familiarize yourself with <a href="http://astrobiomike.github.io/bash/modifying_your_path" target="_blank">what the PATH is here</a> and to <a href="http://astrobiomike.github.io/bash/installing_tools#first-we-need-a-happy-bin" target="_blank">follow these instructions</a> in order to create that directory and add it to your PATH.</div>
