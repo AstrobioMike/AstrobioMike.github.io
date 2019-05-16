@@ -13,7 +13,7 @@ permalink: /all_tutorials/
  
 * [Getting a bash environment](/bash/getting_bash_env)
 <!--* [Intro to bash](/bash/bash_intro)-->
-* [Intro to bash (Binder)](/bash/bash_intro_binder)
+* [Intro to bash](/bash/bash_intro_binder)
 * [Six glorious commands](/bash/six_commands)
 * [The wonderful world of loops](/bash/for_loops)
 * [Why is this all worth it?](/bash/why)
