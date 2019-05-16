@@ -4,8 +4,7 @@ title: All tutorials
 permalink: /all_tutorials/
 ---  
 
-**Below is a list of all the currently available pages. If you have any suggestions of things to add or stuff that would help you, feel free to [let me know](https://twitter.com/AstrobioMike){:target="_blank"} 🙂**
-
+**Below is a list of all the currently available pages. If you have any suggestions of things to add or stuff that would help you, feel free to get in touch via [twitter](https://twitter.com/AstrobioMike){:target="_blank"} or [post an issue](https://github.com/AstrobioMike/AstrobioMike.github.io/issues){:target="_blank"} 🙂**
 
 ---
 ---
@@ -13,14 +12,14 @@ permalink: /all_tutorials/
 <center><h2><a href="/bash/" style="color:#745bab">BASH</a></h2></center>  
  
 * [Getting a bash environment](/bash/getting_bash_env)
-* [Intro to bash](/bash/bash_intro)
+<!--* [Intro to bash](/bash/bash_intro)-->
 * [Intro to bash (Binder)](/bash/bash_intro_binder)
 * [Six glorious commands](/bash/six_commands)
 * [The wonderful world of loops](/bash/for_loops)
 * [Why is this all worth it?](/bash/why)
 * [What the heck is my PATH, and how do I get it to do what I want?](/bash/modifying_your_path)
 * [Help installing tools](/bash/installing_tools)
-* [Some useful one-liners](/bash/one_liners)
+<!--* [Some useful one-liners](/bash/one_liners)-->
 * [Downloading from NCBI](/bash/ncbi_eutils)
 * [Other great resources](/bash/other_resources)  
 <br>

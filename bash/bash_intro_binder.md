@@ -59,7 +59,7 @@ First, here are some terms that are often used interchangeably.
 <br>
 
 # Accessing our command-line environment
-Before we get started, we need a terminal to work in. For this page, I have created a "Binder" for us to work in. [Binder](https://mybinder.org/){:target="_blank"} is an incredible project with incredible people behind hit. I'm still very new to it, but the general idea is it makes it easier to setup and share specific working environments in support of open science. What this means for us here is that we can just click this little badge – [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/AstrobioMike/binder-bash-intro/master?urlpath=lab){:target="_blank"} – and it'll open the proper bash environment with all our needed example files in a web-browser ready to rock... how awesome is that?!? So yeah, click it already! 
+Before we get started, we need a terminal to work in. You can either work on your own computer if you already have access to a Unix-like command-line environment (which you can get help with [here](/bash/getting_bash_env){:target="_blank"} if needed), or you can work in a "Binder" I've created for this page. [Binder](https://mybinder.org/){:target="_blank"} is an incredible project with incredible people behind hit. I'm still very new to it, but the general idea is it makes it easier to setup and share specific working environments in support of open science. What this means for us here is that we can just click this little badge – [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/AstrobioMike/binder-bash-intro/master?urlpath=lab){:target="_blank"} – and it'll open the proper bash environment with all our needed example files in a web-browser ready to rock... how awesome is that?!? So yeah, if you want to work in the binder, click it already! 
 
 When that page finishes loading (it may take a couple minutes), you will see a screen like this (minus the blue arrows):
 
@@ -73,7 +73,7 @@ Now click the **folder icon** at the top-left (that the smaller blue arrow point
 
 This is our "command line", where we will be typing all of our commands 🙂
 
-**Note:** If you want to get a bash environment of your own going on your computer, see [this page](/bash/getting_bash_env){:target="_blank"} for some help.  
+>**Note:** If you want to get a bash environment of your own going on your computer, you can see [this page](/bash/getting_bash_env){:target="_blank"} for some help, and can then follow this page working on your own computer.
 <br>
 
 ---
