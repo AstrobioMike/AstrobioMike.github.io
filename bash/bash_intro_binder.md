@@ -44,6 +44,9 @@ First, here are some terms that are often used interchangeably.
 
 <br>
 
+---
+<br>
+
 # Why learn the command line?
 
 *  it's the foundation for most of bioinformatics
