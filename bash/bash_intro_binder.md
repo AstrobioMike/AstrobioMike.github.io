@@ -160,7 +160,7 @@ Note that when we provided the `-u` flag to the `date` command (to get the comma
 
 # The Unix file-system structure
 
-Your computer stores file locations in a hierarchical structure. You are likely already used to navigating through this stucture by clicking on various folders (also known as directories) in a Windows Explorer window or a Mac Finder window. Just like you need to select the appropriate files in the appropriate locations there, you need to do the same when working at the command line. What this means in practice is that each file and directory has its own "address", and that address is called its "**path**". 
+Your computer stores file locations in a hierarchical structure. You are likely already used to navigating through this stucture by clicking on various folders (also known as directories) in a Windows Explorer window or a Mac Finder window. Just like you need to select the appropriate files in the appropriate locations there (a GUI), you need to do the same when working at the command line. What this means in practice is that each file and directory has its own "address", and that address is called its "**path**". 
 
 Here is an image of an example file-system structure:
 
