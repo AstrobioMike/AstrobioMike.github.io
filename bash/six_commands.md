@@ -36,7 +36,7 @@ We'll mostly be messing with one file here called "example_gene_annotations.txt"
 <center><img src="{{ site.url }}/images/excel_tab.png"></center> 
 
 <br>
-We can see this file has 8 columns: "gene_ID", "PC_ID", "genome", "KO_ID", "KO_annotation", "COG_ID", "COG_annotation", and "rRNA", and there are 10 rows – the first of which is a header with our column names. At times we will find ourselves You will at times find yourself working with files that have too many rows or columns to be opened in Excel, or may just require more memory to fully open than your computer can handle. So let's try to deduce the same information by looking at this file in the terminal.  
+We can see this file has 8 columns: "gene_ID", "PC_ID", "genome", "KO_ID", "KO_annotation", "COG_ID", "COG_annotation", and "rRNA", and there are 10 rows – the first of which is a header with our column names. At times we will find ourselves working with files that have too many rows or columns to be opened in Excel, or may just require more memory to fully open than your computer can handle. So let's try to deduce the same information by looking at this file in the terminal.  
 
 Let's first take a peek at the file with the `head` command:
 
