@@ -260,7 +260,7 @@ Many commands in *bash* support what are known as "regular expressions". We've a
 # paste
 We just saw that `cat` sticks things together "vertically". `paste` is our command for sticking things together "horizontally". It treats the things you're sticking together like individual columns and adds some delimiter in between them. 
 
-We have another file we have in our working directory called "aa_lengths.txt". Let's look at it:
+We have another file in our working directory called "aa_lengths.txt". Let's look at it:
 
 ```
 head aa_lengths.txt
