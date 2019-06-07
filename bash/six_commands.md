@@ -280,7 +280,7 @@ paste genes_and_identifiers_only.txt aa_lengths.txt
 <br>
 If we wanted to specify a different delimiter, the `paste` command used the `-d` flag just like `cut`. 
 
-Now that we've seen how `paste` works, let's say we want a file like our "epoxyque_reduct_genes.txt" but that also has this this amino acid length information in it, such that the output looks like this: 
+Now that we've seen how `paste` works, let's say we want a file like our "epoxyque_reduct_genes.txt" but that also has this amino acid length information in it, such that the output looks like this: 
 
 <center><img src="{{ site.url }}/images/head_aa_added.png"></center> 
 
@@ -379,7 +379,7 @@ column -t example_blast_output.txt
 <br>
 So we see here we have 6 columns: "qseqid" is the query sequence (what we're blasting); "qlen" is the length of the query sequence; "sseqid" is the subject sequence (what our query hit in our blast database we were blasting against); "slen" is subject length; "pident" is percent identity; and "length" is the length of the alignment.
 
-After blasting you usually want to filter the output by some criteria. For the first example, let's just say we only want to keep hits that were greater than 90% identical. For `awk`, we specify which columns we want to act on with a `$` followed by the column number. So in this case, where the percent identity is in column 5 in our blast table, if we provide an expression like this, `$5 > 95`, `awk` will by default print all of the rows that pass this criterion. Let's give it a shot:
+After blasting you usually want to filter the output by some criteria. For the first example, let's just say we only want to keep hits that were greater than 95% identical. For `awk`, we specify which columns we want to act on with a `$` followed by the column number. So in this case, where the percent identity is in column 5 in our blast table, if we provide an expression like this, `$5 > 95`, `awk` will by default print all of the rows that pass this criterion. Let's give it a shot:
 
 ```
 awk '$5 > 95' example_blast_output.txt 
