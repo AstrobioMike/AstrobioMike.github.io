@@ -9,7 +9,10 @@ permalink: /R/basics
 
 {% include _side_tab_R.html %}
 
-This module is designed for those that are either completely new to R, or have some experience but maybe don't feel as solid about some of the fundamentals as they'd like. It will run through the very basics such as setting up your working environment, assigning variables, "indexing" (subsetting data), reading in and writing out data, and installing packages. Some relevant terminology is presented [here](/R/index) if you find yourself seeing some words that are unfamilar to you. This page is meant to be a quick-start to get you into and using the R environment. There is, of course, an incredible amount of functionality we won't be touching on here, so be sure to peruse the extensive [R intro documentation available here](https://cran.r-project.org/doc/manuals/r-release/R-intro.html) when you're starting to get your bearings and want to go further 🙂 
+This module is designed for those that are either completely new to R, or have some experience but maybe don't feel as solid about some of the fundamentals as they'd like. It will run through the very basics such as setting up your working environment, assigning variables, "indexing" (subsetting data), reading in and writing out data. Some relevant terminology is presented [here](/R/index){:target="_blank"} if you find yourself seeing some words that are unfamilar to you. This page is meant to be a quick-start to get you into and using the R environment.
+
+Part of what makes R so valuable and powerful are all of the open-source packages people have developed for it. We won't be getting into installing packages here, but there is a separate page [here](/R/installing_packages){:target="_blank"} that covers some of the typical avenues for installing packages (and some of the common problems that may arise).
+
 <br>
 <br>
 
