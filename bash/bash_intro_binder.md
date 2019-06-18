@@ -94,7 +94,7 @@ rm bash_intro.tar.gz
 cd bash_intro
 ```
 
-Don't forget to press enter to execute the last command (usually that doesn't copy over).  
+Don't forget to press enter to execute the last command (usually that doesn't copy over). If your system does not have `curl` installed, and you get an error message from the above, then it's probably best to work in the [binder environment](/bash/bash_intro_binder#accessing-our-command-line-environment) for now while getting used to things 🙂  
 
 <br>
 
