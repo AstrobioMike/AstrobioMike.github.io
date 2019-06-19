@@ -19,7 +19,7 @@ permalink: /bash/bash_intro_binder
 <br>
 
 # Important note!
-**Keep in mind, none of this is about memorization. It may seem counterintuitive, but the little details aren't important. What matters is starting to build a mental framework of the foundational rules and concepts. That equips us to figure out the things we need to do, when we need to do them!** 
+**Maybe the most important thing to keep in mind here is that this is all about *exposure*, not memorization or mastering anything. Don't worry about the details. At first we just need to starting building a mental framework of the foundational rules and concepts. That equips us to figure out the things we need to, when we need to do them 🙂 **
 
 <center>Here's a high-resolution timelapse of my ongoing journey:</center>
 <center><img src="{{ site.url }}/images/mike_philosophy2.png" title="Don't worry about every little detail!"></center>
@@ -37,10 +37,10 @@ First, here are some terms that are often used interchangeably.
 
 | Term     | What it is          |
 |:-------------:|------------------|
+| **`shell`** | what we use to talk to the computer; anything where you are pointing and clicking with a mouse is a **G**raphical **U**ser **I**nterface (**GUI**) shell; something with text only is a **C**ommand **L**ine **I**nterface (**CLI**) shell |  
 | **`command line`** | a text-based environment capable of taking input and providing output |  
 | **`Unix`** | a family of operating systems |  
 | **`bash`** | the most common programming language used at a Unix command-line |  
-| **`shell`** | what we use to talk to the computer; anything where you are pointing and clicking with a mouse is a **G**raphical **U**ser **I**nterface (**GUI**) shell; something with text only is a **C**ommand **L**ine **I**nterface (**CLI**) shell |  
 
 <br>
 
@@ -66,17 +66,18 @@ Before we get started, we need a terminal to work in. You can either work on you
 
 When that page finishes loading (it may take a couple minutes), you will see a screen like this (minus the blue arrows):
 
-<center><img src="{{ site.url }}/images/binder-app-launch.png"></center>
+<center><img src="../images/binder-app-launch.png"></center>
 <br>
 
 Now click the **folder icon** at the top-left (that the smaller blue arrow points to above) and then click the "**Terminal**" icon at the bottom, and we'll be in our appropriate command-line environment:
 
-<center><img src="{{ site.url }}/images/binder-terminal.png"></center>
+<center><img src="../images/binder-terminal.png"></center>
 <br>
 
 This is our "command line", where we will be typing all of our commands 🙂
 
 >**Note:** If you want to get a bash environment of your own going on your computer, you can see [this page](/bash/getting_bash_env){:target="_blank"} for some help, and can then follow this page working on your own computer.
+
 <br>
 
 ---
@@ -88,13 +89,27 @@ This is our "command line", where we will be typing all of our commands 🙂
 
 ```
 cd ~
-curl -LO https://github.com/AstrobioMike/AstrobioMike.github.io/raw/master/misc/bash_intro.tar.gz
-tar -xzvf bash_intro.tar.gz
-rm bash_intro.tar.gz
+curl -L -o bash_intro.tar.gz https://ndownloader.figshare.com/files/15537653
+tar -xzvf bash_intro.tar.gz && rm bash_intro.tar.gz
 cd bash_intro
 ```
 
 Don't forget to press enter to execute the last command (usually that doesn't copy over). If your system does not have `curl` installed, and you get an error message from the above, then it's probably best to work in the [binder environment](/bash/bash_intro_binder#accessing-our-command-line-environment) for now while getting used to things 🙂  
+
+<br>
+
+---
+<br>
+
+# A few foundational rules
+
+* **Spaces are special!** The command line uses spaces to know how to properly break things apart. This is why it's not ideal to have filenames that contain spaces, but rather it's better to use dashes (**`-`**) or underscores (**`_`**) – e.g., "draft_v3.txt" is preferred over "draft v3.txt".  
+<br>
+
+* The general syntax working at the command line goes like this: **`command argument`**.  
+<br>
+
+* Arguments (which can also be referred to as "flags" or "options" or "parameters") can be **optional** or **required** based on the command being used.  
 
 <br>
 
@@ -105,53 +120,60 @@ Don't forget to press enter to execute the last command (usually that doesn't co
 
 # Running commands
 
-The general syntax working at the command line goes like this: `command argument`. **Spaces are special!** The command line uses spaces to know how to properly break things apart. This is why it's not ideal to have filenames that contain spaces, but rather it's better to use dashes, `-`, or underscores, `_` – e.g., "draft_v3.txt" is preferred over "draft v3.txt". 
+>**NOTE:** It's okay to copy and paste things. This is not a typing test 🙂
 
-Arguments (which can also be referred to as "flags" or "options") can be **optional** or **required** based on the command being used. Let's see what this looks like:
-
-`date` is a command that prints out the date and time. This particular command does not require any arguments:
+**`date`** is a command that prints out the date and time. This particular command does not require any arguments:
 
 ```bash
 date
 ```
 
-When we run `date` with no arguments, it uses default settings, like assuming we want to know the time in our local time zone. But we can provide optional arguments to `date`. Optional arguments most often require putting a dash `-` in front of them in order for the program to interpret them properly. Here we are adding the `-u` argument to tell it to report UTC time instead of the local time (which is the "default"): 
+When we run **`date`** with no arguments, it uses some default settings, like assuming we want to know the time in our local time zone (well, the computer's local time zone). But we can provide optional arguments to **`date`**. Optional arguments most often require putting a dash in front of them in order for the program to interpret them properly. Here we are adding the **`-u`** argument to tell it to report UTC time instead of the local time: 
 
 ```bash
 date -u
 ```
 
-Note that if we try to run it without the dash `-`, we get an error:
+Note that if we try to run it without the dash, we get an error:
 
 ```bash
 date u
 ```
 
-Also note that if we try to enter this without the "space" separating `date` and the optional argument `-u`, the computer won't know how to break apart the command and we get a different error:
+Also note that if we try to enter this without the "space" separating **`date`** and the optional argument **`-u`**, the computer won't know how to break apart the command and we get a different error:
 
 ```bash
 date-u
 ```
 
-Some commands require arguments and won't work without them. `head` is a command that prints the first lines of a file, so it **requires** us to provide the file we want it to act on: 
+>The first error comes from the program **`date`**, and it doesn't know what to do with the letter **`u`**. The second error comes from **`bash`**, the language we are working in, because it's trying to find a program called "date-u" since we didn't tell it how to properly break things apart. 
+
+Unlike `date`, most commands require arguments and won't work without them. **`head`** is a command that prints the first lines of a file, so it **requires** us to provide the file we want it to act on: 
 
 ```bash
-head file_A.txt
+head example.txt
 ```
 
-Here "file\_A.txt" is the **required** argument, and in this case it is also what's known as a **positional** argument. This is because we aren't identifying what it is with a preceding flag or anything. We are just listing it after the command, and the `head` command knows what to do with it. But this depends on how the command was written. Sometimes you need to specify the input file to a command (e.g. some commands will use the `-i` flag, but it's often other things as well).
+Here "example.txt" is the **required** argument, and in this case it is also what's known as a **positional** argument. Whether things are positional arguments or not depends on how the command was written. Sometimes we need to specify the input file by putting something in front of it (e.g. some commands will use the `-i` flag, but it's often other things as well).
 
-If we ran `head` with no file to act on, it would get stuck. We know the terminal is still doing something (or trying to in this case) because our "prompt" hasn't returned. You can cancel an operation by pressing the "control" key and the "c" key simultaneously (`ctrl + c`). 
-
-There are also optional arguments for the `head` command. The default for `head` is to print the first 10 lines of a file. We can change that by specifying the `-n` flag, followed by how many lines we want:
+There are also optional arguments for the **`head`** command. The default for **`head`** is to print the first 10 lines of a file. We can change that by specifying the **`-n`** flag, followed by how many lines we want:
 
 ```bash
-head -n 5 file_A.txt
+head -n 5 example.txt
 ```
 
-Note that when we provided the `-u` flag to the `date` command (to get the command to print UTC time instead of local), we didn't need to provide any arguments to that particular flag (it's just on or off). But with the `-n` flag to `head`, we are specifying the number of lines we want to print out, so we have to provide a number in this case.
+How would we know we needed the **`-n`** flag for that? There are a few ways to find out. Many standard shell commands and other programs will have built-in help menus that we can access by providing **`-h`** or **`--help`** as the only argument:
 
-> This is the framework for how all things work at the command line! Multiple commands can be strung together, and some commands can have many options, inputs, and outputs and can grow to be quite long, but this general framework is underlying it all. **Becoming familiar with these baseline rules is important, memorizing particular commands and options is not!**
+```bash
+head -h
+head --help
+```
+
+And/or we can go to google to look for help. This is one of the parts that is not about memorization at all. We might remember a few if we use them a lot, but searching for options and details when needed is definitely the norm!
+
+<blockquote>
+What we've done so far really is the framework for how all things work at the command line! Multiple commands can be strung together, and some commands can have many options, inputs, and outputs and can grow to be quite long, but this general framework is underlying it all.<br><br><center><b>Becoming familiar with these baseline rules is important, memorizing particular commands and options is not!</b></center><br>
+</blockquote>
 
 <br>
 
@@ -160,17 +182,18 @@ Note that when we provided the `-u` flag to the `date` command (to get the comma
 
 # The Unix file-system structure
 
-Your computer stores file locations in a hierarchical structure. You are likely already used to navigating through this stucture by clicking on various folders (also known as directories) in a Windows Explorer window or a Mac Finder window. Just like you need to select the appropriate files in the appropriate locations there (a GUI), you need to do the same when working at the command line. What this means in practice is that each file and directory has its own "address", and that address is called its "**path**". 
+Your computer stores file locations in a hierarchical structure. You are likely already used to navigating through this stucture by clicking on various folders (also known as directories) in a Windows Explorer window or a Mac Finder window. Just like we need to select the appropriate files in the appropriate locations there (in a GUI), we need to do the same when working at a command-line interface. What this means in practice is that each file and directory has its own "address", and that address is called its "**path**". 
 
 Here is an image of an example file-system structure:
 
-<center><a href="https://raw.githubusercontent.com/AstrobioMike/AstrobioMike.github.io/master/images/file_system_structure.png"><img src="https://raw.githubusercontent.com/AstrobioMike/AstrobioMike.github.io/master/images/file_system_structure.png" width="500" height="551"></a></center>
 
 
+<center><a href="https://raw.githubusercontent.com/AstrobioMike/AstrobioMike.github.io/master/images/file_system_structure.png"><img src="../images/file_system_structure.png" width="80%"></a></center>
 <br>
+
 There are two special locations in all Unix-based systems: the "**root**" location and the current user's "**home**" location. "Root" is where the address system of the computer starts; "home" is where the current user's location starts.
 
-We tell the command line where files and directories are located by providing their address, their "path". If we use the `pwd` command (**p**rint **w**orking **d**irectory), we can find out what the path is for the directory we are sitting in. Whatever directory we are currently sitting in is called the "current working directory". And if we use the `ls` command (**l**i**s**t), we can see what directories and files are in the current directory we are sitting in.
+We tell the command line where files and directories are located by providing their address, their "path". If we use the **`pwd`** command (for **p**rint **w**orking **d**irectory), we can find out what the path is for the directory we are sitting in. And if we use the **`ls`** command (for **l**i**s**t), we can see what directories and files are in the current directory we are sitting in.
 
 ```
 pwd
@@ -178,85 +201,82 @@ ls
 ``` 
 
 ## Absolute vs relative path
-There are two ways to specify the path (address) of the file we want to do something to: the absolute path and the relative path. 
+There are two ways to specify the path (address) of the file we want to do something to:
 
-* An **absolute path** is an address that starts from an explicitly specified location: either the "root" `/` or the "home" `~/` location. 
-* A **relative path** is an address that starts from wherever you are currently sitting.
+* An **absolute path** is an address that starts from an explicitly specified location: either the "root" **`/`** or the "home" **`~/`** location. 
+* A **relative path** is an address that starts from wherever we are currently sitting.
 
-For example, let's look again at the `head` command we ran above:
-
-```bash
-head file_A.txt
-```
-
-**What we are actually doing here is using a relative path to specify where the "file\_A.txt" file is located.** This is because the command line automatically looks in the current working directory if you don't specify anything else about its location. 
-
-We can also run the same command on the same file using the **absolute path**:
+For example, let's look again at the **`head`** command we ran above:
 
 ```bash
-head /home/jovyan/bash_intro/file_A.txt
+head example.txt
 ```
 
-These both point to the same file. But the first way, `head file_A.txt`, will only work if we are entering it while "sitting" in the directory that holds that file, while the second way with the absolute path will work no matter where we happen to be sitting in the computer. 
+**What we are actually doing here is using a *relative path* to specify where the "example.txt" file is located.** This is because the command line automatically looks in the current working directory if we don't specify anything else about its location. 
+
+We can also run the same command on the same file using an **absolute path**:
+
+```bash
+head ~/bash_intro/example.txt
+```
+
+The previous two commands both point to the same file right now. But the first way, **`head example.txt`**, will only work if we are entering it while "sitting" in the directory that holds that file, while the second way will work no matter where we happen to be in the computer. 
 
 >**Note:** The address of a file, its "path", includes the file name also, it doesn't stop at the directory that holds it.
 
-It is important to be comfortable thinking about *where* you are in your computer when working at the command line. **One of the most common errors/easiest mistakes to make is trying to do something to a file that isn't where you think it is.** Let's run `head` on the "file\_A.txt" file again, and then let's try it on another file: "file\_E.txt":
+It is important to always think about *where* we are in the computer when working at the command line. **One of the most common errors/easiest mistakes to make is trying to do something to a file that isn't where we think it is.** Let's run **`head`** on the "example.txt" file again, and then let's try it on another file: "notes.txt":
 
 ```bash
-head file_A.txt
-head file_E.txt
+head example.txt
+head notes.txt
 ```
+Here the **`head`** command works fine on "example.txt", but we get an error message when we call it on "notes.txt" telling us no such file or directory. If we run the **`ls`** command to **l**i**s**t the contents of the current working directory, we can see the computer is absolutely right – spoiler alert: it usually is – and there is no file here named "notes.txt". 
 
-Here the `head` command works fine on "file\_A.txt", but we get an error message when we call it on "file\_E.txt" telling us no such file or directory. If we run the `ls` command to list the contents of the current working directory, we can see the computer is absolutely right – spoiler alert: it usually is – and there is no file here named "file\_E.txt". 
-
-The `ls` command by default operates on the current working directory if we don't specify any location, but we can tell it to list the contents of a different directory by providing it as a positional argument: 
-
-```
-ls another_directory
-```
-
-We can see the file we were looking for is located in the subdirectory called "another\_directory". Here is how we can run `head` on "file\_E.txt" by specifying the **relative path**:
+The **`ls`** command by default operates on the current working directory if we don't specify any location, but we can tell it to list the contents of a different directory by providing it as a positional argument: 
 
 ```bash
-head another_directory/file_E.txt
+ls
+ls experiment
 ```
 
-If we had been using **tab-completion**, we would not have made that mistake.
+We can see the file we were looking for is located in the subdirectory called "experiment". Here is how we can run **`head`** on "notes.txt" by specifying an accurate **relative path** to that file:
+
+```bash
+head experiment/notes.txt
+```
+
+If we had been using **tab-completion**, we would not have made that mistake!
 
 ### BONUS ROUND: Tab-completion is your friend!
 Tab-completion is a huge time-saver, but even more importantly it is a perpetual sanity-check that helps prevent mistakes. 
 
-If we are trying to point to a file that's in our current working directory, we can begin typing its name and then press `tab` to complete it. If there is only one possible way to finish what we've started typing, it will complete it for us. If there is more than one possible way to finish what we've started typing, it will complete as far as it can, and then hitting `tab` twice will show all the possible options. Most importantly, if tab-complete does not do either of those things, then we are either confused about where we are, or we're confused about where the file is that we're trying to do something to – this is invaluable.
+If we are trying to specify a file that's in our current working directory, we can begin typing its name and then press the **`tab`** key to complete it. If there is only one possible way to finish what we've started typing, it will complete it entirely for us. If there is more than one possible way to finish what we've started typing, it will complete as far as it can, and then hitting **`tab`** twice quickly will show all the possible options. **If tab-complete does not do either of those things, then we are either confused about where we are, or we're confused about where the file is that we're trying to do something to** – this is invaluable.
 
-> **Quick Practice**  
-> Try out tab-complete! Run `ls` first to see what's in our current working directory again. Then type `head f` and then press `tab`. This will auto-complete out as far as it can, which in this case is up to "file\_", because there are multiple possibilities still at that point. If we press `tab` twice here, it will print out all of the possibilities for us. And if we enter "A" and press `tab` again, it will finish completing "file\_A.txt" as that is the only remaining possibility, and we can now press `enter` to run our command. 
+> **Quick Practice**  <br>
+> Try out tab-complete! Run **`ls`** first to see what's in our current working directory again. Then type **`head e`** and then press the **`tab`** key. This will auto-complete out as far as it can, which in this case is up to "ex", because there are multiple possibilities still at that point. If we press **`tab`** twice quickly, it will print out all of the possibilities for us. And if we enter "a" and press **`tab`** again, it will finish completing "example.txt" as that is the only remaining possibility, and we can now press **`return`**. 
 
 <center><b>Use tab-completion whenever you can!!</b></center>
 <br>
 
 ## Moving around
-We can also move into the directory containing the file we want to work with by using the `cd` command (**c**hange **d**irectory). The `cd` command takes a positional argument that is the path (address) of the directory you want to change into. This can be a relative path or an absolute path. So here we'll use the relative path of the subdirectory, "another_directory", to change into it:
+We can also move into the directory containing the file we want to work with by using the **`cd`** command (**c**hange **d**irectory). This command takes a positional argument that is the path (address) of the directory we want to change into. This can be a relative path or an absolute path. Here we'll use the relative path of the subdirectory, "experiment", to change into it (use tab-completion!):
 
-```
-cd another_directory/
+```bash
+cd experiment/
 pwd
 ls
-head file_E.txt
+head notes.txt
 ```
 
-Great. But now how do we get back 'up' to the directory above us? One way would be to provide an absolute path, like `cd /home/jovyan/bash_intro/`, but there is also a handy shortcut. `..` is a relative path that specifies "up" one level – one directory – from wherever we currently are. So we can provide that as the positional argument to `cd` to get back to where we started, and then double check with `pwd` to show where we are and `ls` to list what's here:
+Great. But now how do we get back "up" to the directory above us? One way would be to provide an absolute path, like **`cd ~/bash_intro`**, but there is also a handy shortcut. **`..`** are special characters that act as a relative path specifying "up" one level – one directory – from wherever we currently are. So we can provide that as the positional argument to **`cd`** to get back to where we started:
 
-```
+```bash
 cd ..
 pwd
 ls
 ```
 
-Moving around the computer like this may feel a bit cumbersome at first, but after spending a little time with it and getting used to tab-completion you'll soon find yourself slightly frustrated when you have to scroll through a bunch of files and click on something by eye with a mouse or trackpad in a Finder window 🙂
-
-> **Quick Practice**  
-Try to get used to regularly thinking about "where" you are in the computer when working at the command line. Let's take a quick trip. First run `pwd` so we remember where we are. Then let's change directories into our computer's root directory `cd /` and find our way back using tab-completion.
+Moving around the computer like this may feel a bit cumbersome at first, but after spending a little time with it and getting used to tab-completion you'll soon find yourself slightly frustrated when you have to scroll through a bunch of files and click on something by eye in a GUI 🙂
 
 <br>
 
@@ -271,7 +291,7 @@ Try to get used to regularly thinking about "where" you are in the computer when
 | **`root`** | where the address system of the computer starts, **`/`** |
 | **`home`** | where the current user's location starts, **`~/`**|
 | **`absolute path`** | an address that starts from a specified location, i.e. root, or home |
-| **`relative path`** | an address that starts from wherever you are sitting |
+| **`relative path`** | an address that starts from wherever we are |
 | **`tab-completion`** | our best friend |
 
 
@@ -281,7 +301,7 @@ Try to get used to regularly thinking about "where" you are in the computer when
 |:----------:|------------------|
 |**`date`**| prints out information about the current date and time |
 |**`head`**| prints out the first lines of a file |
-|**`pwd`**       |tells you where you are in the computer (**p**rint **w**orking **d**irectory)|
+|**`pwd`**       |prints out where we are in the computer (**p**rint **w**orking **d**irectory)|
 |**`ls`**        |lists contents of a directory (**l**i**s**t)|
 |**`cd`**| **c**hange **d**irectories |
 
@@ -300,191 +320,199 @@ Try to get used to regularly thinking about "where" you are in the computer when
 <br>
 
 # Working with plain-text files and directories
-The most common command-line tools are mostly only useful for operating on what are known as **plain-text files** – also referred to as "flat files". There are a few definitions you can check out at the [wiki](https://en.wikipedia.org/wiki/Plain_text){:target="_blank"} if you'd like, but a good-enough working definition of what a plain-text file is might be something like: a text file that doesn't contain any special formatting characters or information, and that can be properly viewed and edited with any standard text editor. 
+Next we're going to look at some more ways to learn about and manipulate file and directories at the command line.
 
-Common types of flat-text files are those ending with extensions like ".txt", ".tsv" for **t**ab-**s**eparated **v**alues, or ".csv" for **c**omma **s**eparated **v**alues. Some examples of common file types that are *not* flat-text files would be ".docx", ".pdf", or ".xlsx". This is because those file formats contain special types of compression and formatting information that are only interpretable by programs specifically designed to work with them. 
+---
 
-> **Note on file extensions**  
-> File extensions themselves do not actually do anything to the file format. They are *mostly* there just for our convenience/organization – I say "mostly" because some programs require a specific extension to be present for them to even try interacting with a file. But this has nothing to do with the file contents, just that the program won't let you interact with it unless it has a specific extension.
-> 
-> The command `file` will tell you what type of file something is. Run `file file_D.xlsx` and then `file file_C.xlsx`. The "file\_D.xlsx" is actually an Excel file and has all kinds of special formatting for Excel that only makes sense to Excel. But "file\_C.xlsx" is just a plain-text file that happens to have the extention ".xlsx". Try running `head` on each of these files. (If your terminal is stuck after you run `head file\_D.xlsx` – which you can tell because your prompt doesn't return – remember you can cancel an operation by pressing `ctrl + c`.)
+>To be sure we are still working in the same place, let's run: 
+>```bash
+>cd ~/bash_intro
+>```
+
+---
+
+## Working with files
+We will often want to get a look at a file to see how it's structured. We've already used a very common tool for peeking at files, the **`head`** command. There is also **`tail`**, which prints the last 10 lines of a file:
+
+```bash
+head example.txt
+tail example.txt
+```
+
+This is especially helpful if a file is particularly large, as **`head`** will just print the first ten lines and stop. This means it will be just as instantaneous whether the file is 10KB or 10GB. 
+
+Another standard useful program for viewing the contents of a file is **`less`**. This opens a searchable, read-only program that allows you to scroll through the document: 
+
+```bash
+less example.txt
+```
+
+To exit the **`less`** program, press the "**q**" key. 
+
+The **`wc`** (**w**ord **c**ount) command is useful for counting how many lines, words, and characters there are in a file: 
+
+```bash
+wc example.txt
+```
+
+<challengeBlock>
+<center><b>QUICK PRACTICE!</b></center>
+
+How can we get <i>only</i> the number of lines in a file from the <htmlCode>wc</htmlCode> command?
+<br>
+
+<div class="wrap-collabsible">
+  <input id="q1" class="toggle" type="checkbox">
+  <label for="q1" class="lbl-toggle">Solution</label>
+  <div class="collapsible-content">
+    <div class="content-inner">
+		<pre>wc -l example.txt</pre>
+
+Adding the optional flag <htmlCode>-l</htmlCode> will print just how many lines are in a file. We could find this out by running <htmlCode>wc --help</htmlCode> or by visiting our good friend Google 🙂 
+<br>
+<br>
+<center>Printing out how many lines are in a file like this is super-useful for things like quickly seeing how many rows are in a large table, or how many sequences are in a file.</center>
+		
+    </div>
+  </div>
+</div>
+</challengeBlock>
+
 
 <br>
-## Ways to probe plain-text files
-We've already used a very common tool for peeking at files, the `head` command. There is also `tail`, which prints the last 10 lines of a file by default:
 
-```
-head file_A.txt
-tail file_A.txt
-```
+The most common command-line tools like these and many others we'll see are mostly only useful for operating on what are known as **plain-text files** – also referred to as "flat files". 
 
-Commands like `head` and `tail` are useful when you are working at the command line and you want to get an idea about the structure of a file. This is especially helpful if a file is particularly large, as `head` will just print the first ten lines and stop. This means it will be just as instantaneous whether the file is 10KB or 10GB. 
+### BONUS ROUND: What's a plain-text file?
+A general definition of a plain-text file is a text file that doesn't contain any special formatting characters or information, and that can be properly viewed and edited with any standard text editor.  
 
-Another useful command for just viewing a file is `less`. This opens a searchable, read-only program that allows you to scroll through the document: 
+Common types of plain-text files are those ending with extensions like ".txt", ".tsv" (**t**ab-**s**eparated **v**alues), or ".csv" (**c**omma **s**eparated **v**alues). Some examples of common file types that are *not* plain-text files would be ".docx", ".pdf", or ".xlsx". This is because those file formats contain special types of compression and formatting information that are only interpretable by programs specifically designed to work with them.  
 
-```bash
-less file_A.txt
-```
+> **A note on file extensions**<br>
+> File extensions themselves do not actually do anything to the file format. They are *mostly* there just for our convenience/organization – "mostly" because some programs require a specific extension to be present for them to even try interacting with a file. But this has nothing to do with the file contents, just that the program won't let you interact with it unless it has a specific extension.
 
-To exit the `less` program you need to press the "**q**" key. 
 
-The `wc` command is useful for counting how many lines, words, and characters there are in a file: 
-
-```bash
-wc file_A.txt
-```
-
-Adding the optional flag `-l` will print just how many lines are in a file (this is more useful than you might first think): 
-
-```bash
-wc -l file_A.txt
-```
-
-<br>
-## Ways to manipulate files and directories
+## Copying, moving, and renaming files
 
 <div class="warning">
 <center><h2>WARNING!</h2></center>
 <b>Using commands that do things like create, copy, and move files at the command line will overwrite files if they have the same name. And using commands that delete things will do so permanently. Use caution while getting used to things – and then forever after</b> 🙂
 </div>
+The commands **`cp`** and **`mv`** (**c**o**p**y and **m**o**v**e) have the same basic structure. They both require two positional arguments – the first is the file you want to act on, and the second is where you want it to go (which can include the name you want to give it). 
 
-
-The commands `cp` and `mv` (**c**o**p**y and **m**o**v**e) have the same basic structure. They both require two positional arguments – the first is the file you want to act on, and the second is where you want it to go (*this includes the name you want to give it*). 
-
-To see how this works, let's make a copy of "file\_A.txt":
-
-```
-ls
-cp file_A.txt file_A_copy.txt
-ls
-```
-
-Remember we are actually providing a *relative path* when we provide the file names here. So to make a copy of "file\_A.txt" and put it somewhere else, like in our subdirectory "another\_directory", we would change the second positional argument:
-
-```
-ls another_directory/
-cp file_A.txt another_directory/file_A_copy.txt
-ls another_directory/
-```
-
-If we want to copy something from somewhere else *to our current working directory*, we can use another special character, a period `.`, which specifies the current working directory – just like `..` which specifies one directory above us.
-
-```
-ls
-cp another_directory/file_E.txt .
-ls
-```
-
-And now we have a copy of that file in our current working directory. 
-
-Notice that in the first `cp` example we provided a new name in the target location, ("file\_A\_copy.txt"), but here when we used `.` to specify copying to the current working directory it simply copied the file with the same name as the original. *If that file name already existed in this directory, it would be overwritten*. 
-
-The `mv` command is used to move files **and** to rename them if wanted. That might sound a little weird at first, but not if you remember that the *path* (address/location) of a file *actually includes its name*. So in this sense, "moving" a file is actually the same thing as "renaming" it. Here we will move a file from our current working directory into our subdirectory. At the moment our current working directory and our subdirectory contain these files:  
-
-```
-ls
-ls another_directory/
-```
-
-Let's move "file\_C.xlsx" into the subdirectory:
-
-```
-mv file_C.xlsx another_directory/
-ls
-ls another_directory/
-```
-
-Notice that we didn't provide a file name for the second positional argument of the `mv` command (where we were sending it). Just like when we used `cp` to copy a file to our current working directory with `.` above, this keeps the name of the original file if you don't specify anything.  
-
-Remember that "file\_C.xlsx" was actually a text file and not an Excel file, check it with `file another_directory/file_C.xlsx`. Let's rename it so that it has a ".txt" extension:
-
-```
-ls another_directory/
-mv another_directory/file_C.xlsx another_directory/file_C.txt
-ls another_directory/
-```
-
-Notice here that we did this from a different directory using a relative path to specify the starting file and the ending file. 
-
-Now we'll see an example of how easy it can be to accidentally overwrite a file:
-
-```
-head file_A.txt
-tail file_A.txt
-wc -l file_A.txt
-
-head another_directory/file_E.txt
-wc -l another_directory/file_E.txt
-```
-
-```
-cp another_directory/file_E.txt file_A.txt
-```
-
-```
-head file_A.txt
-wc -l file_A.txt
-
-head another_directory/file_E.txt
-```
-
-And our original "file\_A.txt" file is now gone forever 😬 (well it would be if we hadn't made a copy of it earlier). 
-
-To delete files (intentionally) there is the `rm` command (**r**e**m**ove). This requires at least one argument specifying the file you want to delete. But again, caution is warranted. There will be no confirmation or retrieval from a waste bin afterwards.
-
-```
-ls
-rm file_A.txt
-ls
-```
-
-You can make a new directory with the command `mkdir` (for **m**a**k**e **dir**ectory):
-
-```
-ls
-mkdir our_new_directory
-ls
-```
-
-And similarly, directories can be deleted with `rmdir` (for **r**e**m**ove **dir**ectory):
-
-```
-rmdir our_new_directory/
-ls
-```
-
-Things are a little more forgiving when trying to delete a directory. If the directory is not empty, `rmdir` will give you an error. 
+To see how this works, let's make a copy of "example.txt":
 
 ```bash
-rmdir another_directory/
+ls
+cp example.txt example_copy.txt
+ls
 ```
 
-<br>
-## Making and editing plain-text files
-It is often very useful to be able to generate new plain-text files quickly at the command line, or make some changes to an existing one. One way to do this is using a text editor that operates at the command line. Here we're going to look at one program that does this called `nano`.
+By just giving the second argument a name and nothing else (meaning no path in front of the name), we are implicitly saying we want it copied to where we currently are. 
 
-When we run the command `nano` it will open a text editor in our terminal window. If we give it a file name as a positional argument, it will open that file if it exists, or it will create it if it doesn't. Here we'll make a new file:
+To make a copy and put it somewhere else, like in our subdirectory "data", we could change the second positional argument using a **relative path** ("relative" because it starts from where we currently are):
+
+```bash
+ls data/
+cp example.txt data/example_copy.txt
+ls data/
+```
+
+To copy it to that subdirectory but keep the same name, we could type the whole name out, but we can also just provide the directory but leave off the file name:
+
+```bash
+cp example.txt data/
+ls data/
+```
+
+If we wanted to copy something *from somewhere else to our current working directory* and keep the same name, we can use another special character, a period (**`.`**), which specifies the current working directory:
+
+```bash
+ls
+cp experiment/notes.txt .
+ls
+```
+
+The **`mv`** command is used to move files. Let's move the "example_copy.txt" file into the "experiment" subdirectory:
+
+```bash
+ls
+ls experiment/
+mv example_copy.txt experiment/
+ls
+ls experiment/
+```
+
+The **`mv`** command is also used to *rename* files. This may seem strange at first, but remember that the path (address) of a file actually includes its name too (otherwise everything in the same directory would have the same path). 
+
+```bash
+ls
+mv notes.txt notes_old.txt
+ls
+```
+
+To delete files there is the **`rm`** command (**r**e**m**ove). This requires at least one argument specifying the file we want to delete. But again, caution is warranted. There will be no confirmation or retrieval from a waste bin afterwards.
+
+```bash
+ls
+rm notes_old.txt
+ls
+```
+
+## A terminal text editor
+It is often very useful to be able to generate new plain-text files quickly at the command line, or make some changes to an existing one. One way to do this is using a text editor that operates at the command line. Here we're going to look at one program that does this called **`nano`**.
+
+When we run the command **`nano`** it will open a text editor in our terminal window. If we give it a file name as a positional argument, it will open that file if it exists, or it will create it if it doesn't. Here we'll make a new file:
 
 ```bash
 nano sample_names.txt
 ```
 
-And when we press `enter`, this is what our environment changes to:
+When we press **`return`**, our environment changes to this:
 
-<center><img src="{{ site.url }}/images/binder-nano.png"></center>
+<center><img src="../images/binder-nano.png" width="90%"></center>
 <br>
 
 
-Now we can type as usual. Afterwards, to save the file and exit we need to use some of the keyboard shortcuts listed on the bottom. "Write Out" will save our file, and the `^O` represents hitting `ctrl + o` (doesn't need to be a capital "O"). This will ask you to either enter or confirm the file name, we can just press `enter`. Then to exit we can press `ctrl + x`. And now our new file is in our current working directory:
+Now we can type as usual. Type in a couple of sample names, one on each line – it doesn't matter what the names are: 
 
-```
+<center><img src="../images/binder-nano2.png" width="90%"></center>
+<br>
+
+<br>
+
+Afterwards, to save the file and exit, we need to use some of the keyboard shortcuts listed on the bottom. "WriteOut" will save our file, and the **`^O`** represents pressing **`ctrl + o`** together (it doesn't need to be a capital "O"). This will ask us to either enter or confirm the file name, we can just press **`return`**. Now that it is saved, to exit we need to press **`ctrl + x`**. 
+
+And now our new file is in our current working directory:
+
+```bash
 ls
 head sample_names.txt
 ```
 
-<br>
-**NOTE:** Quickly [googling](https://www.google.com/search?ei=-SWlXOvuIaLy5gLP246oDQ&q=how+to+exit+nano&oq=how+to+exit+nano&gs_l=psy-ab.3..0l6.4168.5652..5979...0.0..0.146.1920.0j16......0....1..gws-wiz.......0i71j0i67j0i131.47VbE_2LDhI){:target="_blank"} how to get out of things like `nano` the first 15 times you use them is 100% normal!
+>**NOTE:** Quickly <a href="https://www.google.com/search?q=how+to+exit+nano" target="_blank">googling</a> how to get out of things like **`nano`** the first 15 times we use them is 100% normal!
 
+## Working with directories
+Commands for working with directories for the most part operate similarly. We can make a new directory with the command **`mkdir`** (for **m**a**k**e **dir**ectory): 
+
+```bash
+ls
+mkdir subset
+ls
+```
+
+And similarly, directories can be deleted with **`rmdir`** (for **r**e**m**ove **dir**ectory):
+
+```bash
+rmdir subset/
+ls
+```
+
+The command line is a little more forgiving when trying to delete a directory. If the directory is not empty, **`rmdir`** will give you an error. 
+
+```bash
+rmdir experiment/
+```
 <br>
 
 ---
@@ -494,9 +522,9 @@ head sample_names.txt
 
 |Command     |Function          |
 |:----------:|------------------|
-|**`head`**      |prints the first few lines of a file|
-|**`tail`**      |prints the last few lines of a file|
-|**`less`**      |allows you to browse a file (exit with "q" key)|
+|**`head`**      |prints the first lines of a file|
+|**`tail`**      |prints the last lines of a file|
+|**`less`**      |allows you to browse a file (exit with **`q`** key)|
 |**`wc`**       |count lines, words, and characters in a file|
 |**`cp`**      |copy a file or directory (use with caution)|
 |**`mv`**      |mv a file or directory (use with caution)|
@@ -505,156 +533,279 @@ head sample_names.txt
 |**`rmdir`**     |delete an empty directory|
 |**`nano`**     |create and edit plain text files at the command line|
 
+
+<h4><i>Special characters presented in the previous section:</i></h4>
+
+|Characters     | Meaning          |
+|:----------:|------------------|
+| **`.`** | specifies the current working directory |
+
 <br>
 
 ---
 <br>
 
-# Pipes and redirectors
+# Redirectors and wildcards
+So far we've only seen individual commands and printing information to the screen. This is useful for in-the-moment things, but not so much for getting things done. Next we're going take our first look at some of the things that make the Unix command-line environment so versatile and powerful: redirectors and wildcards! 
 
-Now we're going take our first look at some of the things that make the Unix command-line environment so powerful: pipes and redirectors! 
+---
 
->**A pipe `|` is used to connect multiple commands. It takes the output from the previous command and "pipes" it into the input of the following command.**  
+>To be sure we are still working in the same place, let's run: 
+>```bash
+>cd ~/bash_intro
+>```
 
-Let's look at an example. `ls` as we've seen lists the files and directories in our current working directory:
+---
 
+<br>
+## Redirectors
+When we are talking about "redirectors" here, we are referring to things that change where the output of something is going. The first we're going to look at is called a "pipe" (**`|`**). 
+
+> A pipe (**`|`**) is used to connect multiple commands. It takes the *output* from the previous command and "pipes" it into the *input* of the following command.
+
+Let's look at an example. Remember we used **`wc -l`** to count how many lines were in a file:
+
+```bash
+wc -l example.txt
 ```
+
+And that **`ls`** lists the files and directories in our current working directory:
+
+```bash
 ls
 ```
 
-If we pipe `|` that command into `wc -l`, instead of printing the output from `ls`, it will go into `wc -l` which will print out how many items there are:
+If we "pipe" (**`|`**) the **`ls`** command into the **`wc -l`** command, instead of printing the output from **`ls`** to the screen as usual, it will go into **`wc -l`** which will print out how many items there are:
 
-```
+```bash
 ls | wc -l
 ```
 
-For another example, let's look at what's in the subdirectory, "example_files":
+For another example, let's look at what's in the subdirectory, "data/all_samples/":
 
-```
-ls example_files/
+```bash
+ls data/all_samples/
 ```
 
 That prints out a lot of stuff, let's see how many things are in that directory: 
 
-```
-ls example_files/ | wc -l
+```bash
+ls data/all_samples/ | wc -l
 ```
 
 We'll get back to making sense of that when we get to *wildcards* in the next section.  
 
->**Another important character is the greater than sign, `>`. This tells the command line to "redirect" the output to a file, rather than just printing it to the screen as we've seen so far.**  
+> Another important character is the greater than sign, **`>`**. This tells the command line to *redirect* the output to a file, rather than just printing it to the screen as we've seen so far.
 
-For an example of this we will write the output of `ls` to a new file called "directory_contents.txt":
+For an example of this we will write the output of **`ls`** to a new file called "directory_contents.txt":
 
-```
+```bash
+ls
 ls > directory_contents.txt
 ```
 
-Notice that nothing printed to the screen this time. If we run `ls` we'll see the file we just created is there. 
+Notice that when we redirect the output with the **`>`**, nothing printed to the screen. And we've just created a file called "directory_contents.txt":
 
-```
+```bash
 ls
 head directory_contents.txt
 ```
 
-**It's important to remember that the `>` redirector will overwrite the file you are pointing to if it already exists.** If we use two of them instead, `>>`, this will *append* to the target file, rather than overwrite it:
+**It's important to remember that the `>` redirector will overwrite the file you are pointing to if it already exists.** 
 
+```bash
+ls experiment/ > directory_contents.txt
+head directory_contents.txt
 ```
-wc -l directory_contents.txt
+
+If we want to append an output to a file, rather than overwrite it, we can use two of them instead, **`>>`**:
+
+```bash
 ls >> directory_contents.txt
-wc -l directory_contents.txt
+head directory_contents.txt
 ```
 
-Okay, so far that isn't all that impressive. But this basic, modular structure really is what makes the Unix command-line powerful. There is one more topic we need to cover before starting to look at some more "real-life" examples, and that is **wild cards**. 
+## Wildcards
+> Wildcards as used at the command line are special characters that enable us to specify multiple items very easily. The **`*`** and **`?`** are probably the most commonly used, so let's try them out! 
 
-<br>
+<h3>The asterisk (<b>*</b>)</h3>
 
----
-<br>
+As we've seen, **`ls`** lists the contents of the current working directory, and by default it assumes you want everything: 
 
-<h4><i>Special characters presented in the previous section:</i></h4>
-
-|Characters     |Function          |
-|:----------:|------------------|
-|**`|`**      | a "pipe" allows stringing together multiple commands |
-|**`>`**      |sends output to a file (**overwrites** target file)|
-|**`>>`**      |sends output to a file (appends to target file)|
-
-<br>
-
----
-<br>
-
-# Wildcards
-
-Wildcards as used at the command line are special characters that enable us to specify multiple items very easily. The `*` and `?` are probably the most commonly used, and we'll get a glimpse of how they work with the `ls` command.
-
-As we've seen so far, `ls` lists the contents of the current working directory. By default, `ls` assumes you want everything. But we can be more specific about what we're interested in by giving it a positional argument that narrows things down. 
-
-There are a few different types of files in our current working directory: some subdirectories; a few ".txt" files; and a ".xlsx" file. 
-
-Let's say we only wanted to look for files in the current directory that end with the extension ".txt". The `*` wildcard can help us with that. At the command line, (generally), the `*` means any character, any number of times. Here's an example:
-
-```
+```bash
 ls
+```
+
+But we can be more specific about what we're interested in by giving it a positional argument that narrows things down. Let's say we only want to look for files that end with the extension ".txt". The **`*`** wildcard can help us with that.
+
+Here's an example:
+
+```bash
 ls *.txt
 ```
 
-For a more practical example, let's change directories into our "example_files" directory and look at what's in there again:
+What this is saying is that no matter what comes before, if it ends with ".txt" we want it. 
 
-```
-cd example_files/
+> At the command line, the **`*`** means any character, any number of times (including 0 times). 
+
+For a more practical example, let's change directories into that messy subdirectory we saw earlier: 
+
+```bash
+cd data/all_samples/
 ls
-```
-
-Looks like a lot of files, let's see how many again:
-
-```
 ls | wc -l
 ```
 
-We can see ".txt", ".log", and ".fq" files. ".fq" is a common extension for the "fastq" format, which holds sequences and their quality information. Let's see how many ".fq" files there are: 
+So there are 900 files here, and it looks like there are 3 different extensions: ".txt"; ".tsv", and ".fq" (a common extension for the "fastq" format, which holds sequences and their quality information). 
 
-```
-ls *.fq | wc -l
-```
+<challengeBlock>
+<center><b>QUICK PRACTICE!</b></center>
 
-Now let's say we wanted to move all the fastq files into their own directory:
+With 900 files and 3 file types (".txt", ".tsv", and ".fq"), we might expect there to be 300 of each type, but let's make sure. Using what we've seen above, how can we count how many files of each type there are in this directory?
+<br>
 
-```
+<div class="wrap-collabsible">
+  <input id="q2" class="toggle" type="checkbox">
+  <label for="q2" class="lbl-toggle">Solution</label>
+  <div class="collapsible-content">
+    <div class="content-inner">
+		<pre>ls *.txt | wc -l<br>ls *.tsv | wc -l<br>ls *.fq | wc -l</pre>
+
+Ah good, it's nice when things make sense 🙂
+		
+    </div>
+  </div>
+</div>
+</challengeBlock>
+
+
+So far we've just been using the **`*`** wildcard with the **`ls`** command. But wildcards can be used with many of the common shell commands we've seen so far. 
+
+For example, we can use it with the **`mv`** command to move all 300 of the ".fq" files into their own directory at once:
+
+```bash
+ls | wc -l
+
 mkdir fastq_files
+ls fastq_files/
+
 ls *.fq
 mv *.fq fastq_files/
+
+ls fastq_files/
+
+ls | wc -l
 ```
 
-> **Note**  
-> When using wildcards, running `ls` first like done here is good practice before actually running a command. It is a way of checking that you are specifying exactly what you think you are specifying. 
+<challengeBlock>
+<center><b>QUICK QUESTION!</b></center>
 
-At the command line, (generally) the `?` wildcard represents *any* character that appears *only one time*. Say we only wanted the log files for samples 10-19. We wouldn't be able to do that with the `*` wildcard alone, but we could with the `?`:
+Why does this say 601 instead of 600?
+<br>
 
+<div class="wrap-collabsible">
+  <input id="q3" class="toggle" type="checkbox">
+  <label for="q3" class="lbl-toggle">Solution</label>
+  <div class="collapsible-content">
+    <div class="content-inner">
+    
+It's also counting the new directory we created 🙂
+		
+    </div>
+  </div>
+</div>
+</challengeBlock>
+
+
+> **Note:** When using wildcards, running **`ls`** first like done in the above example (**`ls *.fq`**) is good practice before actually running a command. It is a way of checking that we are specifying exactly what we think we are specifying. 
+
+### BONUS ROUND: History!
+
+The shell also keeps track of our previous commands for us. There are a few different ways we can take advantage of this, one is by using the **`history`** command. But that alone will print all of it to the screen. It can be more practical to "pipe" (**`|`**) that into something else like **`tail`** to see the last few commands:
+
+```bash
+history | tail
 ```
-ls sample_1?.log
+
+Or **`less`** so we can scroll through our previous commands:
+
+```bash
+history | less
 ```
 
-Wildcards can be combined too. Like if we wanted to get all the ".log" and ".txt" files for samples 10-19, we could run:
+To get out of **`less`**, press the **`q`** key. 
 
-```
-ls *_1?.*
+We can also use the up and down arrows at the command line to scroll through previous commands. This is useful for finding commands, but it's also useful for making sure we are acting on the files we want to act on when using wildcards. As mentioned above, we can check first with **`ls *.fq`**, press **`return`** to see we are acting on the files we want, and then press the up arrow to bring up the previous command, and change it to what we want without altering the "*.fq" part of the command – as we already know it's correct. Any time we can remove the chance of human error, we should 🙂
+
+
+<challengeBlock>
+<center><b>QUICK PRACTICE!</b></center>
+
+We've already moved all the ".fq" files into their own directory. Create separate directories for the ".txt" files and the ".tsv" files too, and then try to move those files into their appropriate directories. 
+<br>
+
+<div class="wrap-collabsible">
+  <input id="q4" class="toggle" type="checkbox">
+  <label for="q4" class="lbl-toggle">Solution</label>
+  <div class="collapsible-content">
+    <div class="content-inner">
+
+<pre>mkdir text_files
+ls *.txt
+mv *.txt text_files
+
+mkdir tsv_files
+ls *.tsv
+mv *.tsv tsv_files
+
+ls</pre>
+
+It doesn't matter what the directories are named, but at the end they should be the only 3 things in the working directory 🙂
+		
+    </div>
+  </div>
+</div>
+</challengeBlock>
+
+
+<h3>The question mark (<b>?</b>)</h3>
+
+> At the command line, the **`?`** wildcard represents *any* character that appears *only one time*. 
+
+To see how this can be needed at times when the **`*`** won't do, let's change into the "fastq_file" subdirectory:
+
+```bash
+cd fastq_files/
 ```
 
-Using wildcards at the command line like this is another powerful, fundamental skill. And it is invaluable if you want to work with with a lot of files at once. 
+And let's say we wanted only the ".fq" files for samples 10-19. If we tried to grab those with the **`*`**, we'd get more than we wanted:
+
+```bash
+ls sample_1*.fq
+```
+
+Because the **`*`** allows for any character *any number* of times, it is also grabbing those in the 100s. But if we use the **`?`** wildcard, which only allows any character *one time*, we get only the samples we want:
+
+```bash
+ls sample_1?.fq
+```
 
 <br>
 
 ---
 <br>
+
+They may seem a little abstract at first, but redirectors and wildcards are two fundamental concepts of working at the command line that help make it a very powerful environment to work in. Just knowing they exist and generally what they do means that you can learn more about them when needed.
 
 <h4><i>Special characters presented in the previous section:</i></h4>
 
 |Character     |Function          |
 |:----------:|------------------|
-|**`*`**      |an asterisk represents any character appearing any number of times|
-|**`?`**      |a question mark represents any character that appears just once|
+|**`|`**      |a "pipe" allows stringing together multiple commands| 
+|**`>`**      |sends output to a file (**overwrites** target file)| 
+|**`>>`**      |sends output to a file (appends to target file)| 
+|**`*`**      |represents any character appearing any number of times|
+|**`?`**      |represents any character appearing only once| 
 
 <br>
 
@@ -664,7 +815,7 @@ Using wildcards at the command line like this is another powerful, fundamental s
 <h1>Congrats on getting through the basics!</h1>
 While the commands change, the general structure of how to operate at the command line stays the same. There are a lot of base commands in *bash*, and a dizzying number of optional arguments for most of them – as usual, google is our friend. If you end up working at the command line frequently, you will remember some things, but also you will often do a quick search to remember what the flag is for a specific argument, or how exactly a specific command works. Again, this really isn't about memorization.
 
-You can dig into some extremely useful commands on the [6 glorious commands page](/bash/six_commands){:target="_blank"}, and see some more complicated examples in the [why is this all worth it?](/bash/why){:target="_blank"} page.
+When you want to go further, be sure to check out the [6 glorious commands page](/bash/six_commands){:target="_blank"} and then [the wonderful world of loops](/bash/for_loops){:target="_blank"}! 
 
 <br>
 
@@ -675,16 +826,16 @@ You can dig into some extremely useful commands on the [6 glorious commands page
 
 |Command     |Function          |
 |:----------:|------------------|
-|**`date`**   | prints the time and date |
-|**`pwd`**       |prints where you are in the computer (**p**rint **w**orking **d**irectory)|
+|**`date`**   | prints out information about the current date and time |
+|**`pwd`**       |prints out where we are in the computer (**p**rint **w**orking **d**irectory)|
 |**`ls`**        |lists contents of a directory (**l**i**s**t)|
 |**`cd`**| **c**hange **d**irectories |
-|**`head`**      |prints the first few lines of a file|
-|**`tail`**      |prints the last few lines of a file|
-|**`less`**      |allows you to browse a file (exit with "q" key)|
+|**`head`**      |prints out the first lines of a file|
+|**`tail`**      |prints out the last lines of a file|
+|**`less`**      |allows us to browse a file (exit with **`q`** key)|
 |**`wc`**       |count lines, words, and characters in a file|
 |**`cp`**      |copy a file or directory (use with caution)|
-|**`mv`**      |mv a file or directory (use with caution)|
+|**`mv`**      |move or rename a file or directory (use with caution)|
 |**`rm`**      |delete a file or directory (use with caution)|
 |**`mkdir`**       |create a directory|
 |**`rmdir`**     |delete an empty directory|
@@ -695,15 +846,15 @@ You can dig into some extremely useful commands on the [6 glorious commands page
 
 | Term     | What it is          |
 |:----------:|------------------|
-| **`Unix`** | a family of operating systems |
+| **`shell`** | what we use to talk to the computer; anything where you are pointing and clicking with a mouse is a **G**raphical **U**ser **I**nterface (**GUI**) shell; something with text only is a **C**ommand **L**ine **I**nterface (**CLI**) shell |
 | **`command line`** | a text-based environment capable of taking input and providing output |
-| **`shell`** | our ambassador to the operating system; this translates between us and the computer |
+| **`Unix`** | a family of operating systems |
 | **`bash`** | the most common programming language used at a Unix command-line | 
-| **`path`** | the address system the computer uses |
+| **`path`** | the address system the computer uses to keep track of files and directories |
 | **`root`** | where the address system of the computer starts, **`/`** |
 | **`home`** | where the current user's location starts, **`~/`**|
 | **`absolute path`** | an address that starts from a specified location, i.e. root, or home |
-| **`relative path`** | an address that starts from wherever you are sitting |
+| **`relative path`** | an address that starts from wherever we are |
 | **`tab-completion`** | our best friend |
 
 
@@ -718,5 +869,5 @@ You can dig into some extremely useful commands on the [6 glorious commands page
 |**`|`**      | a "pipe" allows stringing together multiple commands |
 |**`>`**      |sends output to a file (**overwrites** target file)|
 |**`>>`**      |sends output to a file (appends to target file)|
-|**`*`**      |an asterisk represents any character appearing any number of times|
-|**`?`**      |a question mark represents any character that appears just once|
+|**`*`**      |represents any character appearing any number of times|
+|**`?`**      |represents any character appearing only once|

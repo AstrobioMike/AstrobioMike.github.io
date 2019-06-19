@@ -212,6 +212,44 @@ blockquote em{
     font-style: normal;
     font: Arial;
 }
+
+challengeBlock {
+  display:block;
+  background-color: #ecf2f9;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+  position: relative;
+  
+  color: #000000;
+  border-left: 6px solid $grey-color-dark;
+  border-right: 2px solid $grey-color-dark;
+  padding-left: 10px;
+  padding-right: 8px;
+  padding-top: 10px;
+  padding-bottom: 1px;
+  /*@include relative-font-size(1.1);*/
+  
+  /*font-style: italic;*/
+  
+  /*Box Shadow - (Optional)*/
+  -moz-box-shadow: 2px 2px 15px #ccc;
+  -webkit-box-shadow: 2px 2px 15px #ccc;
+  box-shadow: 2px 2px 15px #ccc;
+}
+
+htmlCode {
+  background-color: #efefef;
+  font-family: $code-font;
+  color: #0c0fad;
+  @include font(15);
+  padding: 0px 3px 0px 3px;
+  margin-bottom: 1.5em;
+  @include rounded(4px);
+  border: solid 1px black;
+  font-weight: bold;
+}
 /* 
    Footnotes
    ========================================================================== */
