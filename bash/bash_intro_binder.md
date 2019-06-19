@@ -19,7 +19,7 @@ permalink: /bash/bash_intro_binder
 <br>
 
 # Important note!
-**Maybe the most important thing to keep in mind here is that this is all about *exposure*, not memorization or mastering anything. Don't worry about the details. At first we just need to starting building a mental framework of the foundational rules and concepts. That equips us to figure out the things we need to, when we need to do them 🙂 **
+**Maybe the most important thing to keep in mind here is that this is all about *exposure*, not memorization or mastering anything. Don't worry about the details. At first we just need to starting building a mental framework of the foundational rules and concepts. That equips us to figure out the things we need to, when we need to do them** 🙂
 
 <center>Here's a high-resolution timelapse of my ongoing journey:</center>
 <center><img src="{{ site.url }}/images/mike_philosophy2.png" title="Don't worry about every little detail!"></center>
