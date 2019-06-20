@@ -7,6 +7,8 @@ permalink: /bash/bash_intro_binder
 
 {% include _bash_intro_toc.html %}
 
+{% include _side_tab_bash.html %}
+
 > **Things covered here:**  
 *  Some quick terms
 *  Why familiarity with the command line is valuable
