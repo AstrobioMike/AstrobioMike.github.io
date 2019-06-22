@@ -24,11 +24,10 @@ Loops are extremely powerful in all programming languages. They are what let us 
 >cd ~/unix_intro
 >```
 
-<br>
+<hr style="height:10px; visibility:hidden;" />
 
 ---
 <br>
-
 
 # Variables
 We can think of a variable as a placeholder for a value that will change with every iteration of our loop. To set a variable at the command line, we need to provide the variable name we want, an equals sign, and then the value we want the variable to hold (with no spaces in between any of that). Let's try it:
@@ -63,6 +62,7 @@ echo $my_new_var
 
 Great, that's really all we need to know about variables for now. Let's get to the good stuff 🙂
 
+<hr style="height:10px; visibility:hidden;" />
 # For loops
 Let's make a new directory to work in: 
 
@@ -70,6 +70,8 @@ Let's make a new directory to work in:
 mkdir for_loops
 cd for_loops/
 ```
+
+<hr style="height:10px; visibility:hidden;" />
 ## The 4 magic words
 There are 4 special words in the syntax of a For Loop in Unix languages: `for`, `in`, `do`, and `done`. 
 
@@ -116,8 +118,6 @@ Now we created a new file that holds these words:
 ls
 head words.txt
 ```
-
-
 
 <challengeBlock>
 <center><b>QUICK PRACTICE!</b></center>
@@ -174,6 +174,7 @@ We didn't need to write to the file inside the loop in this case (though sometim
 
 Usually we won't want to type out the items we're looping over, that was just to demonstrate what's happening. Often we will want to loop through items in a file, like a list of samples or genomes. 
 
+<hr style="height:10px; visibility:hidden;" />
 ## Looping through lines of a file
 Instead of typing out the elements we want to loop over, we can execute a command in such a way that the output of that command becomes the list of things we are looping over. 
 
@@ -200,6 +201,7 @@ echo $(cat words.txt)
 
 For a more practical example, let's pull multiple specific sequences we want from a file!
 
+<hr style="height:10px; visibility:hidden;" />
 ### BONUS ROUND: interleaving files with **paste**
 A pretty neat use of **`paste`** is to interleave two files. What **`paste`** is doing is sticking two files together, line-by-line, with some delimiter (separating character) in between them. This delimiter by default is a **`tab`** character, but we can set it to other things too, including a *newline* character. To demonstrate this, let's make a fasta-formatted sequence file from our genes in the previous lesson. 
 
@@ -336,6 +338,9 @@ ls
 head target_genes.faa
 ```
 
+<hr style="height:10px; visibility:hidden;" />
+
+---
 <br>
 # Summary
 Even though loops can get much more complicated as needed, practicing these foundational skills a bit is all that's needed to start harnessing their awesome power 🙂

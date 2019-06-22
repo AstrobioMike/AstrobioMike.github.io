@@ -22,7 +22,7 @@ Here we're going to touch upon 6 glorious commands that are absolutely worth hav
 >cd ~/unix_intro
 >```
 
-<br>
+<hr style="height:10px; visibility:hidden;" />
 
 ---
 <br>
@@ -53,8 +53,11 @@ wc -l gene_annotations.tsv
 
 Now that we know something about the file we're working with, let's get to some new commands!
 
-<br>
-# cut  
+<hr style="height:10px; visibility:hidden;" />
+# The Goods  
+
+<hr style="height:10px; visibility:hidden;" />
+## cut  
 **`cut`** is a command that's great for manipulating columns. The required arguments for **`cut`** are which columns we want, and from which file. Here's how we can use **`cut`** to pull out just the gene_ID column (column 1):
 
 ```bash
@@ -116,8 +119,8 @@ And to make sure it holds all 101 lines and not just the first 10!
 </div>
 </challengeBlock>
 
-<br>
-# grep  
+<hr style="height:10px; visibility:hidden;" />
+## grep  
 **`grep`** (**g**lobal **r**egular **e**x**p**ression) is a search tool. It looks through text files for strings (sequences of characters). In its default usage, **`grep`** will look for whatever string of characters you give it (1st positional argument), in whichever file you specify (2nd positional argument), and then print out the lines that contain what you searched for. Let's try it:
 
 ```bash
@@ -179,8 +182,8 @@ We're just scratching the surface of what **`grep`** can do, but one thing worth
 grep -c K18979 gene_annotations.tsv
 ```
 
-<br>
-# paste
+<hr style="height:10px; visibility:hidden;" />
+## paste
 Like **`cut`**, **`paste`** also works with columns. It pastes things together horizontally with a delimiter in between them (a tab by default). 
 
 We have another file in our working directory that holds some color names in Spanish: 
@@ -227,8 +230,8 @@ Notice that by putting the dash after the 6, and nothing else, we are specifying
 
 >**NOTE:** **`paste`** is a super-useful command. But it does **not** check to make sure what we are doing makes sense. If these files were out of order from each other, **`paste`** would still be just as happy to stick them together and then our merged file would hold mismatched information. So it's important to make sure things we are pasting together are in the appropriate order. It's a little too far off the path for now, but just to note them, useful commands to look into for doing this would be **`sort`** and **`comm`** 🙂
 
-<br>
-# sed
+<hr style="height:10px; visibility:hidden;" />
+## sed
 **`sed`** (for **s**tream **ed**itor) is our "search and replace" command, just like in something like Excel or Word, but much more powerful. Like many of the commands here, **`sed`** is useful in just general usage, but you can also learn to do a lot more with it if you need/want to at some point. For now, let's look at the general usage.
 
 Let's imagine a totally-not-real, never-happened scenario where co-authors waited until our paper was accepted (and we've even approved the proofs already) to then tell us they want to change the name of one of the new genomes in it 🤦 So now we need to change all instances of "UW179A" to "UW277". 
@@ -277,8 +280,8 @@ sed 's/NA/<NA>/g' gene_annotations.tsv | head
 
 And now all instances are replaced. These quick examples were just looking for exact matches, but **`sed`** has very powerful pattern searching features (building off of what special characters like **`*`**, **`?`**, and others can do) that you can look into as needed.
 
-<br>
-# awk  
+<hr style="height:10px; visibility:hidden;" />
+## awk  
 **`awk`** is even more expansive than any of the others we've seen, but like the others, just being familiar with its basic command-line usage can be powerful. **`awk`** is useful for doing things like filtering based on columns and doing calculations.
 
 The syntax of **`awk`** can also take a little getting used to. For some examples, we're going to work with a typical BLAST output table. Let's take a look at it first with **`head`**:
@@ -318,8 +321,8 @@ awk ' $5 > 95 && $6 > $2 * 0.9 ' blast_output.tsv
 
 Again, **`awk`** can seem pretty tricky, especially at first, but forunately we don't need to remember *how* to do these things, just that they can be done. And then we can look it up when we need it 🙂
 
-<br>
-# tr
+<hr style="height:10px; visibility:hidden;" />
+## tr
 The last one we're going to look at is **`tr`** (for **tr**anslate). **`tr`** changes one character into another character. It seems to become more useful with time, but it's worth knowing early if for no other reason than it deals with special characters really well – the type of special characters that many Excel versions put in exported tables that can ruin working with them at the command line 🤬
 
 For example, when exporting a table as tab-delimited or as a csv file from many versions of Excel, there will be odd newline characters (newline characters tell the computer to end one line and start a new one). The typical newline character is represented like this **`\n`**, but Excel likes to put in **`\r`** characters. We can see this messing with things on the Excel-exported file if we open it with **`less`**:
@@ -350,7 +353,11 @@ Now we can see the new file we made is ready for the command line (**`q`** exits
 less gene_annotations_fixed.tsv
 ```
 
+<hr style="height:10px; visibility:hidden;" />
+
+---
 <br>
+
 # Summary
 As mentioned, this page is just a first introduction to some great commands that are worth having in our toolkit. Each of them has much more functionality that we can dig into further as needed 🙂
 
@@ -367,7 +374,7 @@ Next we're going to look at [variables and for loops!](/unix/for-loops)
 |**`awk`**      |good for filtering columns and calculations| 
 |**`tr`**      |swap characters for other characters (**tr**anslate)| 
 
-<br>
+<hr style="height:20px; visibility:hidden;" />
 
 ---
 ---

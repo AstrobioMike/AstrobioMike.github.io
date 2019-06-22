@@ -21,7 +21,7 @@ permalink: /unix/working-with-files-and-dirs
 > * Introduction to a command-line text editor: **`nano`**
 > * Working with directories
 
-<br>
+<hr style="height:10px; visibility:hidden;" />
 
 ---
 <br>
@@ -34,7 +34,7 @@ Next we're going to look at some more ways to learn about and manipulate file an
 >cd ~/unix_intro
 >```
 
-<br>
+<hr style="height:10px; visibility:hidden;" />
 ## Working with files
 We will often want to get a look at a file to see how it's structured. We've already used a very common tool for peeking at files, the **`head`** command. There is also **`tail`**, which prints the last 10 lines of a file:
 
@@ -85,6 +85,7 @@ Adding the optional flag <htmlCode>-l</htmlCode> will print just how many lines 
 
 The most common command-line tools like these and many others we'll see are mostly only useful for operating on what are known as **plain-text files** – also referred to as "flat files". 
 
+<hr style="height:10px; visibility:hidden;" />
 ### BONUS ROUND: What's a plain-text file?
 A general definition of a plain-text file is a text file that doesn't contain any special formatting characters or information, and that can be properly viewed and edited with any standard text editor.  
 
@@ -93,7 +94,7 @@ Common types of plain-text files are those ending with extensions like ".txt", "
 > **A note on file extensions**<br>
 > File extensions themselves do not actually do anything to the file format. They are *mostly* there just for our convenience/organization – "mostly" because some programs require a specific extension to be present for them to even try interacting with a file. But this has nothing to do with the file contents, just that the program won't let you interact with it unless it has a specific extension.
 
-<br>
+<hr style="height:10px; visibility:hidden;" />
 ## Copying, moving, and renaming files
 
 <div class="warning">
@@ -161,6 +162,7 @@ rm notes_old.txt
 ls
 ```
 
+<hr style="height:10px; visibility:hidden;" />
 ## A terminal text editor
 It is often very useful to be able to generate new plain-text files quickly at the command line, or make some changes to an existing one. One way to do this is using a text editor that operates at the command line. Here we're going to look at one program that does this called **`nano`**.
 
@@ -181,7 +183,7 @@ Now we can type as usual. Type in a couple of sample names, one on each line –
 <center><img src="../images/binder-nano2.png" width="90%"></center>
 <br>
 
-<br>
+<hr style="height:10px; visibility:hidden;" />
 
 Afterwards, to save the file and exit, we need to use some of the keyboard shortcuts listed on the bottom. "WriteOut" will save our file, and the **`^O`** represents pressing **`ctrl + o`** together (it doesn't need to be a capital "O"). This will ask us to either enter or confirm the file name, we can just press **`return`**. Now that it is saved, to exit we need to press **`ctrl + x`**. 
 
@@ -194,6 +196,7 @@ head sample_names.txt
 
 >**NOTE:** Quickly <a href="https://www.google.com/search?q=how+to+exit+nano" target="_blank">googling</a> how to get out of things like **`nano`** the first 15 times we use them is 100% normal!
 
+<hr style="height:10px; visibility:hidden;" />
 ## Working with directories
 Commands for working with directories for the most part operate similarly. We can make a new directory with the command **`mkdir`** (for **m**a**k**e **dir**ectory): 
 
@@ -215,7 +218,8 @@ The command line is a little more forgiving when trying to delete a directory. I
 ```bash
 rmdir experiment/
 ```
-<br>
+
+<hr style="height:10px; visibility:hidden;" />
 
 ---
 <br>
@@ -245,7 +249,7 @@ So far we've only seen individual commands and printing information to the scree
 |:----------:|------------------|
 | **`.`** | specifies the current working directory |
 
-<br>
+<hr style="height:20px; visibility:hidden;" />
 
 ---
 ---

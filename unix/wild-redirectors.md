@@ -20,7 +20,7 @@ permalink: /unix/wild-redirectors
 > * Wildcards
 > * History
 
-<br>
+<hr style="height:10px; visibility:hidden;" />
 
 ---
 <br>
@@ -32,7 +32,7 @@ permalink: /unix/wild-redirectors
 >cd ~/unix_intro
 >```
 
-<br>
+<hr style="height:10px; visibility:hidden;" />
 ## Redirectors
 When we are talking about "redirectors" here, we are referring to things that change where the output of something is going. The first we're going to look at is called a "pipe" (**`|`**). 
 
@@ -100,9 +100,11 @@ ls >> directory_contents.txt
 head directory_contents.txt
 ```
 
+<hr style="height:10px; visibility:hidden;" />
 ## Wildcards
 > Wildcards as used at the command line are special characters that enable us to specify multiple items very easily. The **`*`** and **`?`** are probably the most commonly used, so let's try them out! 
 
+<hr style="height:10px; visibility:hidden;" />
 <h3>The asterisk (<b>*</b>)</h3>
 
 As we've seen, **`ls`** lists the contents of the current working directory, and by default it assumes you want everything: 
@@ -194,6 +196,7 @@ It's also counting the new directory we created 🙂
 
 > **Note:** When using wildcards, running **`ls`** first like done in the above example (**`ls *.fq`**) is good practice before actually running a command. It is a way of checking that we are specifying exactly what we think we are specifying. 
 
+<hr style="height:10px; visibility:hidden;" />
 ### BONUS ROUND: History!
 
 The shell also keeps track of our previous commands for us. There are a few different ways we can take advantage of this, one is by using the **`history`** command. But that alone will print all of it to the screen. It can be more practical to "pipe" (**`|`**) that into something else like **`tail`** to see the last few commands:
@@ -242,7 +245,7 @@ It doesn't matter what the directories are named, but at the end they should be 
 </div>
 </challengeBlock>
 
-
+<hr style="height:10px; visibility:hidden;" />
 <h3>The question mark (<b>?</b>)</h3>
 
 > At the command line, the **`?`** wildcard represents *any* character that appears *only one time*. 
@@ -265,7 +268,7 @@ Because the **`*`** allows for any character *any number* of times, it is also g
 ls sample_1?.fq
 ```
 
-<br>
+<hr style="height:10px; visibility:hidden;" />
 
 ---
 <br>

@@ -3,3 +3,4 @@ _site
 .jekyll-metadata
 .DS_store
 update_bundle.sh
+check_links.sh
