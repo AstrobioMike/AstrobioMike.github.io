@@ -15,6 +15,15 @@ permalink: /unix/for-loops
 
 <br>
 
+> **Things covered here:**
+> * Variables 
+> * For loops
+
+<hr style="height:10px; visibility:hidden;" />
+
+---
+<br>
+
 <center><h2>Welcome to the wonderful world of loops!</h2></center>
 
 Loops are extremely powerful in all programming languages. They are what let us write out a command or operation once, and have it run on all of our samples or files or whatever we want to act on. Not only is this powerful, but it also helps with keeping our code more concise and readable, and it helps elmininate some more of our mortal enemy (human error). There are multiple types of loops, but here we are going to cover what is probably the most common type: the for loop. First, we need to quickly cover a tiny bit about variables. 

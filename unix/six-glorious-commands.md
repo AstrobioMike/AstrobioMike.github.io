@@ -15,7 +15,13 @@ permalink: /unix/six-glorious-commands
 
 <br>
 
-Here we're going to touch upon 6 glorious commands that are absolutely worth having in our toolkit!
+> **Things covered here:**
+> * Here we're going to touch upon 6 glorious commands that are absolutely worth having in our toolkit! (Displayed in the table of contents.)
+
+<hr style="height:10px; visibility:hidden;" />
+
+---
+<br>
 
 >To be sure we are still working in the same place, let's run: 
 >```bash
