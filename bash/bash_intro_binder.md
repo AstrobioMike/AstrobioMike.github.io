@@ -873,3 +873,10 @@ When you want to go further, be sure to check out the [6 glorious commands page]
 |**`>>`**      |sends output to a file (appends to target file)|
 |**`*`**      |represents any character appearing any number of times|
 |**`?`**      |represents any character appearing only once|
+
+<br>
+
+---
+---
+
+<h4><a href="/bash/six_commands" style="float: right"><b>Next:</b> Six glorious commands</a></h4>

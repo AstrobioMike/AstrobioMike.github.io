@@ -17,7 +17,7 @@ The [DADA2](/amplicon/dada2_workflow_ex){:target="_blank"} and [u-/v-search](/am
 ---  
 <br>
 # Tools used here
-There are many freely available tools to perform demultiplexing. Here I'll demonstrate with [Sabre](https://github.com/najoshi/sabre){:target="_blank"}. Sabre is awesomely simple and quick, and the installation seems to run smoothly wherever I've tried it. There are installation and usage instructions on their [github](https://github.com/najoshi/sabre){:target="_blank"}, and my install steps are presented on the [bash installing tools page](/bash/installing_tools#sabre){:target="_blank"} if you'd like to see them.
+There are many freely available tools to perform demultiplexing. Here I'll demonstrate with [Sabre](https://github.com/najoshi/sabre){:target="_blank"}. Sabre is awesomely simple and quick, and the installation seems to run smoothly wherever I've tried it. There are installation and usage instructions on their [github](https://github.com/najoshi/sabre){:target="_blank"}, and my install steps are presented on the [Unix installing tools page](/unix/installing_tools#sabre){:target="_blank"} if you'd like to see them (though not fully implemented here yet, [Conda](/unix/installing_tools#conda-alert){:target="_blank"} is definely the way to go 🙂
 <br>
 <br>
 
@@ -47,7 +47,7 @@ column -t 100914ML515F-mapping.txt | head
 
 <center><img src="{{ site.url }}/images/demux_mapping_head.png"></center>
 <br>
-Here all we really care about for demultiplexing are this first and second columns, the sample name and the barcode. The sabre formatting required, as laid out [here on their github](https://github.com/najoshi/sabre){:target="_blank"}, wants 3 tab-delimited columns: 1) barcode; 2) name for forward read file; 3) name for reverse read file. So one easy way to make this file is with the magic of bash:
+Here all we really care about for demultiplexing are this first and second columns, the sample name and the barcode. The sabre formatting required, as laid out [here on their github](https://github.com/najoshi/sabre){:target="_blank"}, wants 3 tab-delimited columns: 1) barcode; 2) name for forward read file; 3) name for reverse read file. So one easy way to make this file is with the magic of Unix:
 
 ```bash
 awk -v OFS="\t" ' NR > 1 {print $2, $1"_R1.fq", $1"_R2.fq"} ' 100914ML515F-mapping.txt > sabre_formatted_barcode_file.txt
@@ -57,7 +57,7 @@ Here we are using `awk` to skip the first row of headers with `NR > 1`, and then
 
 <center><img src="{{ site.url }}/images/demux_sabre_formatted_head.png"></center>
 <br>
-If that `awk` command doesn't make any sense to you and being able to use bash to manipulate files like this would be useful to your work, then I highly recommend running through the [bash basics](/bash/basics){:target="_blank"} and [six glorious commands](/bash/six_commands){:target="_blank"} pages to get a better grasp on things 🙂  
+If that `awk` command doesn't make any sense to you and being able to use Unix to manipulate files like this would be useful to your work, then I highly recommend running through the [Unix crash course](/unix/unix-intro){:target="_blank"} to get a better grasp on things 🙂  
 <br>
 
 ---

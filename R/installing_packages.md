@@ -26,13 +26,13 @@ install.packages("ggplot2")
 
 And you'll get some info printed to your screen such as this:
 
-<center><img src="{{ site.url }}/images/ggplot2_install.png"></center>
+<center><img src="../images/ggplot2_install.png"></center>
 <br>
 And all is well with the world and you are ready to load the package with `library("ggplot2")`, at which point you're ready to rock.
 
 But occasionally when using `install.packages()` you will get a message like the following:
 
-<center><img src="{{ site.url }}/images/phyloseq_install_packages.png"></center>
+<center><img src="../images/phyloseq_install_packages.png"></center>
 <br>
 But do not despair! This is usually just a consequence of the package not having been updated to install this particular way, and you can almost always get around it by installing from bioconductor. When you do run into this, you should head right on over to google and search with terms for the package name and bioconductor, and you'll most likely find a way to install with `biocLite()`.  
 <br>
@@ -50,7 +50,7 @@ biocLite("phyloseq")
 
 And sure enough that seems to work just swell:
 
-<center><img src="{{ site.url }}/images/phyloseq_bioconductor_install_run.png"></center>
+<center><img src="../images/phyloseq_bioconductor_install_run.png"></center>
 <br>
 
 And again, after installing, you'd need to load the library in order to access the functions it contains: `library("phyloseq")`.  

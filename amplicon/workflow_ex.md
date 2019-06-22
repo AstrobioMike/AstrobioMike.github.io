@@ -13,7 +13,7 @@ permalink: amplicon/workflow_ex
 
 This module represents a walkthrough of *one* possible workflow for an amplicon dataset (if you need a quick primer on some relevant terminology, visit the [amplicon main page](/amplicon/){:target="_blank"}). This will entail processing the raw sequences with [vsearch](https://github.com/torognes/vsearch){:target="_blank"} and [usearch](https://drive5.com/usearch/){:target="_blank"}, and analyzing the output and making some visualizations with [R](https://www.r-project.org/){:target="_blank"} using some great packages like [*vegan*](https://github.com/vegandevs/vegan){:target="_blank"} and [*phyloseq*](http://joey711.github.io/phyloseq/){:target="_blank"}.  
 
-If you are new to working at the command line and/or the R environment, you could still walk through this, but I recommend running through the [*bash* basics](/bash/basics){:target="_blank"} and [R basics](/R/basics){:target="_blank"} tutorials first.
+If you are new to working at the command line and/or the R environment, you could still walk through this, but I recommend running through the [*bash* basics](/bash/bash_intro_binder){:target="_blank"} and [R basics](/R/basics){:target="_blank"} tutorials first.
 <br>
 <br>
 
@@ -91,7 +91,7 @@ Depending on the sequencing facility, when paired-end sequencing was performed y
 <br>
 The format of the read file names is a letter or 2 specifying which sample it is, followed by a 'sub' (just because these are subsampled from the full file sizes), and then an R1 or R2. All of the .fq files are fastq files (sequences with quality score information), and the .fa files are simply sequences with no quality information. For some basic information about these formats visit the [Amplicon main page]({{ site.url }}/amplicon/).
 
-So our first step is to merge these forward and reverse reads for each sample. This particular sequencing run was 2x300 paired-end over the V4 region, which is roughly ~300 base pairs (bps). So we have virtually full overlap for all of our sequences. The benefit of full-overlap as compared to sequencing a longer region with less overlap is improved base-calling accuracy. Here we are going to use usearch over vsearch in this case because usearch will trim any part of our forward or reverse reads that run past where they should (you can see a visualization of this [here](http://drive5.com/usearch/manual/merge_stagger.html){:target="_blank"} if interested). The command `-fastq_mergepairs` is what we will use to merge our reads, and we could do it for each individual sample like this, `usearch -fastq_mergepairs B1_sub_R1.fq -fastqout B1_sub_merged.fq`, but instead we're going to use a nice little *bash* special character that acts as a wildcard to make things easier. If you're unfamiliar with wildcards, shoot over to the [wildcards section]({{ site.url }}/bash/basics/#wildcards) of [*bash* basics](/bash/basics){:target="_blank"} when you have some time to learn about them. For now, you just need to know the `*` represents anything, any number of times (including 0 times), so as we use it here it will grab all of the files we need, one at a time, and run our command on all of them. As run here, the `-fastq_mergepairs` command will: 1) merge the paired reads for each sample into a single sequence; 2) rename the merged sequences so each sequence's header now specifies which sample it originated from; 3) combine the merged sequences from all samples into one file; 4) calculate new quality scores for each position of the merged sequences (as detailed [here](https://www.drive5.com/usearch/manual/merge_pair.html){:target="_blank"}). 
+So our first step is to merge these forward and reverse reads for each sample. This particular sequencing run was 2x300 paired-end over the V4 region, which is roughly ~300 base pairs (bps). So we have virtually full overlap for all of our sequences. The benefit of full-overlap as compared to sequencing a longer region with less overlap is improved base-calling accuracy. Here we are going to use usearch over vsearch in this case because usearch will trim any part of our forward or reverse reads that run past where they should (you can see a visualization of this [here](http://drive5.com/usearch/manual/merge_stagger.html){:target="_blank"} if interested). The command `-fastq_mergepairs` is what we will use to merge our reads, and we could do it for each individual sample like this, `usearch -fastq_mergepairs B1_sub_R1.fq -fastqout B1_sub_merged.fq`, but instead we're going to use a nice little *bash* special character that acts as a wildcard to make things easier. If you're unfamiliar with wildcards, shoot over to the [wildcards section](/bash/bash_intro_binder#wildcards) of the [intro to bash page](/bash/bash_intro_binder){:target="_blank"} when you have some time to learn about them. For now, you just need to know the `*` represents anything, any number of times (including 0 times), so as we use it here it will grab all of the files we need, one at a time, and run our command on all of them. As run here, the `-fastq_mergepairs` command will: 1) merge the paired reads for each sample into a single sequence; 2) rename the merged sequences so each sequence's header now specifies which sample it originated from; 3) combine the merged sequences from all samples into one file; 4) calculate new quality scores for each position of the merged sequences (as detailed [here](https://www.drive5.com/usearch/manual/merge_pair.html){:target="_blank"}). 
 
 ```
 usearch -fastq_mergepairs *_R1.fq -fastqout all_samples_merged.fq -relabel @
@@ -269,7 +269,7 @@ Taking a look at the sample_info_tab, we can see it simply has all 20 samples as
 
 ---
 
->**NOTE:** This is how I did things before [@bejcal](https://twitter.com/bejcal){:target="_blank"} et al. put together [decontam](https://benjjneb.github.io/decontam/){:target="_blank"}, which is a much better way to do this. I'm leaving this here for any interested, but have added an example using decontam to the [DADA2 workflow example page here](/amplicon/dada2_workflow_ex#checking-for-and-removing-likely-contaminants){:target="_blank"}. So I absurdly recommend using that rather than employing the more *ad hoc* approach I put together for [this paper](https://doi.org/10.3389/fmicb.2015.01470){:target="_blank"} many years ago now.
+>**NOTE:** This is how I did things before [@bejcal](https://twitter.com/bejcal){:target="_blank"} et al. put together [decontam](https://benjjneb.github.io/decontam/){:target="_blank"}, which is a much better way to do this. I'm leaving this here for any interested, but have added an example using decontam to the [DADA2 workflow example page here](/amplicon/dada2_workflow_ex#removing-likely-contaminants){:target="_blank"}. So I absurdly recommend using that rather than employing the more *ad hoc* approach I put together for [this paper](https://doi.org/10.3389/fmicb.2015.01470){:target="_blank"} many years ago now.
 
 ---
 
@@ -544,7 +544,7 @@ ggplot(filt_major_taxa_proportions_tab_for_plot.g2, aes(x=Sample, y=Proportion, 
   labs(x="Sample", y="% of 16S rRNA gene copies recovered", title="All samples")
 ```
 
-<center><img src="{{ site.url }}/images/stacked_bars.png"></center>
+<center><img src="../images/stacked_bars.png"></center>
 <br>
 
 Ok, that's not helpful really at all in this case, but I kept it here for the code example. (Also, note that the biofilm sample has a large proportion of Alphaproteobacteria – possibly supporting what we saw above about it having the lowest Shannon diversity estimate, IF the majority of these are represented by the same ASV.) Another way to look would be using boxplots where each box is a major taxon, with each point being colored based on its sample type.
@@ -558,7 +558,7 @@ ggplot(filt_major_taxa_proportions_tab_for_plot.g2, aes(Major_Taxa, Proportion))
   labs(x="Major Taxa", y="% of 16S rRNA gene copies recovered", title="All samples")
 ```
 
-<center><img src="{{ site.url }}/images/boxplots_all_samples.png"></center>
+<center><img src="../images/boxplot_all_samples.png"></center>
 <br>
   
 
@@ -638,7 +638,7 @@ ggplot(data.frame(water_sample_major_taxa_summary_tab), aes(x="Bottom water samp
   theme(plot.title = element_text(hjust=0.5), legend.title=element_blank())
 ```
 
-<center><img src="{{ site.url }}/images/rock_pie.png"></center>
+<center><img src="../images/rock_pie.png"></center>
 <br>
 <center><img src="{{ site.url }}/images/water_pie.png"></center>
 <br>

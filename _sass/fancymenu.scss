@@ -14,7 +14,7 @@
 }
 .fancy-menu-title {
   display: block;
-  width: 142px;;
+  width: 156px;;
   height: 20px;
   padding: 5px 0 0;
   background: #f3f3f3;
@@ -33,8 +33,8 @@
   display: block;
   height: 0;
   border-top: 5px solid #f3f3f3;
-  border-left: 71px solid transparent;
-  border-right: 71px solid transparent;
+  border-left: 78px solid transparent;
+  border-right: 78px solid transparent;
   border-bottom: 0 solid #dddddd;
   position: absolute;
   top: 100%;
@@ -53,8 +53,8 @@
   content: "";
   display: block;
   height: 0;
-  border-left: 71px solid transparent;
-  border-right: 71px solid transparent;
+  border-left: 78px solid transparent;
+  border-right: 78px solid transparent;
   border-bottom: 0 solid #ebebeb;
   position: absolute;
   bottom: 0;
@@ -66,7 +66,7 @@
 .fancy-menu-dropdown {
   display: block;
   text-align: center;
-  width: 142px;
+  width: 156px;
   padding: 3px 0;
   line-height: 2.7em;
   position: absolute;
@@ -88,8 +88,8 @@
   display: block;
   height: 0;
   border-top: 5px solid #ebebeb;
-  border-left: 71px solid transparent;
-  border-right: 71px solid transparent;
+  border-left: 78px solid transparent;
+  border-right: 78px solid transparent;
   position: absolute;
   top: 100%;
   left: 0;

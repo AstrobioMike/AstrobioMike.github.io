@@ -1,15 +1,15 @@
 ---
 layout: main
 title: Downloading from NCBI
-categories: [bash, tutorial]
-permalink: /bash/ncbi_eutils
+categories: [unix, tutorial]
+permalink: /unix/ncbi_eutils
 ---
 
-{% include _bash_downloading_from_ncbi_toc.html %}
+{% include _unix_downloading_from_ncbi_toc.html %}
 
-{% include _side_tab_bash.html %}
+{% include _side_tab_unix.html %}
 
-[NCBI](https://www.ncbi.nlm.nih.gov/){:target="_blank"} is pretty damn awesome. But the first few times I wanted to download a massive amount of reference sequences I found myself struggling a bit. If that has happened to you, then hopefully this page helps out. NCBI's [Entrez Direct E-utilities](https://www.ncbi.nlm.nih.gov/books/NBK179288/){:target="_blank"} offers one avenue to be able to download data in bulk at the command-line, but it can take a bit of *bash* dancing. I initially wrote this demonstrating one of the ways to do that dance, and you can still find that under the [Entrez section](/bash/ncbi_eutils#entrez) at the bottom of this page because it shows some basic *bash* tricks that are helpful in other situations. But wonderfully, after sharing the page, [@asherichia](https://twitter.com/asherichia){:target="_blank"} sent me a link to [@kaiblin](https://twitter.com/kaiblin){:target="_blank"}'s [github page](https://github.com/kblin){:target="_blank"}, where he and some others have put together two amazing tools for downloading data from NCBI. So now, I've just added two simplified examples of downloading genomes and proteins to the top of the page here demonstrating how to use their tools (even though they are very straightforward to use, and their repository [README](https://github.com/kblin/ncbi-genome-download){:target="_blank"} shows a bunch of helpful examples). Both of these tools can be installed easily via `pip` at the command line, i.e. `pip install ncbi-genome-download` and `pip install ncbi-acc-download` (if you're doing it on a server and hit a permissions error, adding the `--user` flag to `pip` usually works).  
+[NCBI](https://www.ncbi.nlm.nih.gov/){:target="_blank"} is pretty damn awesome. But the first few times I wanted to download a massive amount of reference sequences I found myself struggling a bit. If that has happened to you, then hopefully this page helps out. NCBI's [Entrez Direct E-utilities](https://www.ncbi.nlm.nih.gov/books/NBK179288/){:target="_blank"} offers one avenue to be able to download data in bulk at the command-line, but it can take a bit of Unix dancing. I initially wrote this demonstrating one of the ways to do that dance, and you can still find that under the [Entrez section](/unix/ncbi_eutils#entrez) at the bottom of this page because it shows some general Unix tricks that are helpful in other situations. But wonderfully, after sharing the page, [@asherichia](https://twitter.com/asherichia){:target="_blank"} sent me a link to [@kaiblin](https://twitter.com/kaiblin){:target="_blank"}'s [github page](https://github.com/kblin){:target="_blank"}, where he and some others have put together two amazing tools for downloading data from NCBI. So now, I've just added two simplified examples of downloading genomes and proteins to the top of the page here demonstrating how to use their tools (even though they are very straightforward to use, and their repository [README](https://github.com/kblin/ncbi-genome-download){:target="_blank"} shows a bunch of helpful examples). Both of these tools can be installed easily via `pip` at the command line, i.e. `pip install ncbi-genome-download` and `pip install ncbi-acc-download` (if you're doing it on a server and hit a permissions error, adding the `--user` flag to `pip` usually works).  
 <br>
 
 ---
@@ -40,7 +40,7 @@ If we wanted to grab multiple accessions, they can be supplied as a comma-delimi
 ncbi-acc-download -m protein WP_015663423.1,WP_006575543.1,WP_009965426.1
 ```
 
-And if you have a ton of these accessions in a single-column file, you can see one way to convert that to a comma-separated list in the [formatting for bulk download section](/bash/ncbi_eutils#formatting-for-bulk-download) below.  
+And if you have a ton of these accessions in a single-column file, you can see one way to convert that to a comma-separated list in the [formatting for bulk download section](/unix/ncbi_eutils#formatting-for-bulk-download) below.  
 
 Thanks again to [@asherichia](https://twitter.com/asherichia){:target="_blank"} for pointing me towards these two very helpful tools on [@kaiblin](https://twitter.com/kaiblin){:target="_blank"}'s [github page](https://github.com/kblin){:target="_blank"}!  
 <br>
@@ -48,7 +48,7 @@ Thanks again to [@asherichia](https://twitter.com/asherichia){:target="_blank"} 
 ---
 <br> 
 # Entrez
-I don't use this toolset for much more than pulling proteins and genomes from time to time, so I don't have a strong grasp on everything it can do. And now that I know about the helper download tools from [@kaiblin](https://twitter.com/kaiblin){:target="_blank"}'s [github page](https://github.com/kblin){:target="_blank"} demonstrated above, I will probably use it even less. But as mentioned there are some basic *bash* lines in here that may be helpful in other scenarios, so I figured I'd keep this example up of pulling amino acid sequences en masse. If you want to go further with using Entrez at the command line, make sure to look over the full functionality [here](https://www.ncbi.nlm.nih.gov/books/NBK25499/){:target="_blank"}.  
+I don't use this toolset for much more than pulling proteins and genomes from time to time, so I don't have a strong grasp on everything it can do. And now that I know about the helper download tools from [@kaiblin](https://twitter.com/kaiblin){:target="_blank"}'s [github page](https://github.com/kblin){:target="_blank"} demonstrated above, I will probably use it even less. But as mentioned there are some Unix lines in here that may be helpful in other scenarios, so I figured I'd keep this example up of pulling amino acid sequences en masse. If you want to go further with using Entrez at the command line, make sure to look over the full functionality [here](https://www.ncbi.nlm.nih.gov/books/NBK25499/){:target="_blank"}.  
 
 ## The efetch command
 The `efetch` command let's you pull all kinds of data from NCBI. If you run `efetch -help`, you can look at lots of parameters and types of info you can pull. Here, to get an idea of how the command works, let's just pull one amino acid sequence for an alkaline phosphatase:
@@ -62,7 +62,7 @@ And after a second the sequence should print out to the screen:
 <center><img src="{{ site.url }}/images/eutils_efetch1.png"></center>
 
 <br>
-These are some of the typical flags you need to supply to `efetch` or other E-utils commands: `-db` to specify which database; `-format` to tell it how you want the data; and -id to provide the desired accession numbers or unique IDs. Note that the default behavior just prints the output to the terminal, so to save the output you need to [redirect it](/bash/bash_intro_binder#redirectors-and-wildcards){:target="_blank"} to a file.  
+These are some of the typical flags you need to supply to `efetch` or other E-utils commands: `-db` to specify which database; `-format` to tell it how you want the data; and -id to provide the desired accession numbers or unique IDs. Note that the default behavior just prints the output to the terminal, so to save the output you need to [redirect it](/unix/wild-redirectors){:target="_blank"} to a file.  
 
 The efetch command can also take multiple IDs separated by commas. Here's an example pulling two sequences and writing the output to a new file:
 
@@ -70,7 +70,7 @@ The efetch command can also take multiple IDs separated by commas. Here's an exa
 efetch -db protein -format fasta -id AEE52072.1,ADV47642.1 > my_seqs.faa
 ```
 
-In practice of course we can download one or two from the site though, and we're only using this because we want a lot. While unfortunately you can't provide the `-id` argument of `efetch` a file of accession numbers, we can easily do a little *bash* workaround that we'll see. Additionally, [@ctskennerton](https://twitter.com/ctskennerton){:target="_blank"} pointed out to me that you *can* in fact provide a regular one-column file of accession numbers to the `epost` command (which basically queues up accessions to then be acted on), and then pipe the output of that into the `efetch` command. This is pretty sweet as it's a bit cleaner than the workaround I initially used, but it doesn't seem to work with a lot of accessions. When I tested things it worked fine for me on ~1,000 protein seqs, but I got "request timed out" errors when trying to run it on ~10,000 sequences. So I've kept the initial *bash* workaround in here and added the `epost | efetch` way too. If you're doing this regularly with a manageable number of references to pull, then doing it the cleaner way shouldn't be a problem. Thanks to [@ctskennerton](https://twitter.com/ctskennerton){:target="_blank"} for the tip! 
+In practice of course we can download one or two from the site though, and we're only using this because we want a lot. While unfortunately you can't provide the `-id` argument of `efetch` a file of accession numbers, we can easily do a little Unix workaround that we'll see. Additionally, [@ctskennerton](https://twitter.com/ctskennerton){:target="_blank"} pointed out to me that you *can* in fact provide a regular one-column file of accession numbers to the `epost` command (which basically queues up accessions to then be acted on), and then pipe the output of that into the `efetch` command. This is pretty sweet as it's a bit cleaner than the workaround I initially used, but it doesn't seem to work with a lot of accessions. When I tested things it worked fine for me on ~1,000 protein seqs, but I got "request timed out" errors when trying to run it on ~10,000 sequences. So I've kept the initial Unix workaround in here and added the `epost | efetch` way too. If you're doing this regularly with a manageable number of references to pull, then doing it the cleaner way shouldn't be a problem. Thanks to [@ctskennerton](https://twitter.com/ctskennerton){:target="_blank"} for the tip! 
 
 The other thing we have to address is that the [Entrez site notes](https://www.ncbi.nlm.nih.gov/books/NBK179288/#chapter6.Automation){:target="_blank"} that you shouldn't do more than blocks of 200 at a time due to server limitations. So we'll also go over how to chop up a large file into a bunch of little ones and run things in a loop with the magic of *bash*. But first, let's look at one way to generate a large list of desired accessions.
 
@@ -99,14 +99,14 @@ head -n 1025 sequence.seq > wanted_accessions.txt
 ```
 
 ## Formatting for bulk download
-Here we're going to do things without `epost` first. Remember from the example above that `efetch` can take multiple accessions separated by commas. To see how we can format our accessions list properly, first let's use *bash* to build up an `efetch` command that will run on just the first 10 seqs:
+Here we're going to do things without `epost` first. Remember from the example above that `efetch` can take multiple accessions separated by commas. To see how we can format our accessions list properly, first let's use Unix to build up an `efetch` command that will run on just the first 10 seqs:
 
 ```bash
 head wanted_accessions.txt | tr "\n" "," | sed 's/,$//' > ten_formatted.txt
 ```
-Here I used the `head` command to just grab the first 10 accessions, then used the `tr` command to change all newline characters to commas, and then `sed` to remove the very last trailing comma (see the [Intro to bash page](/bash/bash_intro_binder){:target="_blank} and [six glorious commands](/bash/six_commands){:target="_blank} pages if you're not yet familiar with these commands).  
+Here I used the `head` command to just grab the first 10 accessions, then used the `tr` command to change all newline characters to commas, and then `sed` to remove the very last trailing comma (see the [Unix crash course](/unix/unix-intro){:target="_blank} if you're not yet familiar with these commands).  
 
-<center><img src="{{ site.url }}/images/eutils_efetch3.png"></center>
+<center><img src="../images/eutils_efetch3.png"></center>
 
 <br>
 That's softwrapped in the image, but we can see that the 10 accessions are now all on one line and separated by commas. Now we simply need to add the rest of the `efetch` command in front of that. The following code replaces the start of every line (here just one) with the `efetch` command we need in front of the comma-delimited accessions, and then writes the output to a new file called "ten_accessions.sh":
@@ -124,7 +124,7 @@ Now all we need to do is call that file as a *bash* script and redirect the outp
 bash ten_accessions.txt > ten_phoDs.faa
 ```
 
-<center><img src="{{ site.url }}/images/eutils_efetch5.png"></center>
+<center><img src="../images/eutils_efetch5.png"></center>
 
 <br>
 Great. Now that we see how we can format one set of accessions for an `efetch` command, that just leaves: splitting the large file of accessions into multiple smaller files; building the formatted `efetch` command for all of them; and then throwing them all into a shell script together. Here I am going to use the `split` command to split up our large accessions file with 1,025 accessions, "wanted_accessions.txt", into as many 200-line files as are needed:
@@ -133,7 +133,7 @@ Great. Now that we see how we can format one set of accessions for an `efetch` c
 split -l 200 wanted_accessions.txt temp_block_
 ``` 
 
-<center><img src="{{ site.url }}/images/eutils_efetch6.png"></center>
+<center><img src="../images/eutils_efetch6.png"></center>
 
 <br>
 Here the `split` command made 6 files with the prefix we provided as the last positional argument, and all of them have 200 lines except the last which has the remaining 25. Now we can just loop through those to generate the properly formatted shell script like we did above for the individual one:  
@@ -172,3 +172,5 @@ for block in `ls temp_block_*`; do epost -input $block -db protein | efetch -for
 Much to my appreciation and to the benefit all, this page has already been helped along by great tips from [@ctskennerton](https://twitter.com/ctskennerton){:target="_blank"} and [@asherichia](https://twitter.com/asherichia){:target="_blank"}. We all have so many random, little tips and tricks and tools that we've arrived at that maybe others just simply haven't come across yet. It's great to be able to share them and hopefully save others some time!  
 
 So if you have insight into doing things better please let me know via [submitting an issue](https://github.com/AstrobioMike/AstrobioMike.github.io/issues){:target="_blank"} or [twitter](https://twitter.com/astrobiomike){:target="_blank"} and we can continue to update this for everyone 🙂
+
+**P.S. This page is in serious need of an update. Nothing is wrong with what is here, but things can be done much better. This note is left on 22-June-2019 to make myself feel bad when I see it later and maybe cause me to finally do it.**

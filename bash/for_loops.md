@@ -11,11 +11,11 @@ permalink: /bash/for_loops
 
 Loops are extremely powerful in all programming languages. They are what let us write out a command or operation once, and have it run on all of our samples or files or whatever we want to act on. Not only is this powerful, but it also helps with keeping our code more concise and readable, and it helps elmininate some more of our mortal enemy (human error). Again, this is because we only need to write out what we want to do once and it will then be done the same way to all. There are multiple types of loops, but here we are going to cover what is probably the most common type: the for loop.  
 
-If you are new to the command line, this will be much easier to follow if you've run through the [intro to bash](/bash/bash_intro){:target="_blank"} first. To get into loops, we quickly first need to more explicitly introduce bash variables.  
+If you are new to the command line, this will be much easier to follow if you've run through the [intro to bash](/bash/bash_intro_binder){:target="_blank"} first. To get into loops, we quickly first need to more explicitly introduce bash variables.  
 <br>
 
 # Variables in bash
-We already saw the special bash variable "PATH" in the [modifying your PATH page](/bash/modifying_your_path#the-path-demystified){:target="_blank"}. This is a special variable in all Unix-like systems that holds all of the locations (directories) that your computer looks in for programs. When we wanted to access our PATH in that tutorial, we had to put a dollar sign in front of it. Variables in bash are preceded with a `$` so bash knows to interpret the following string of text as a variable, rather than just as plain text. For example, in your terminal window, try running `echo PATH`. Now try running `echo $PATH`. With the first, bash just prints out "PATH" to the screen, but with the second it interprets it as a variable and prints out what that variable holds (your PATH, a colon-delimited list of all the directories your computer scans for programs). If you'd like you can [pipe](/bash/bash_intro#pipes-and-redirectors){:target="_blank"} that into the `tr` command to make it more human-readable: `echo $PATH | tr ":" "\n"`.
+We already saw the special bash variable "PATH" in the [modifying your PATH page](/bash/modifying_your_path#the-path-demystified){:target="_blank"}. This is a special variable in all Unix-like systems that holds all of the locations (directories) that your computer looks in for programs. When we wanted to access our PATH in that tutorial, we had to put a dollar sign in front of it. Variables in bash are preceded with a `$` so bash knows to interpret the following string of text as a variable, rather than just as plain text. For example, in your terminal window, try running `echo PATH`. Now try running `echo $PATH`. With the first, bash just prints out "PATH" to the screen, but with the second it interprets it as a variable and prints out what that variable holds (your PATH, a colon-delimited list of all the directories your computer scans for programs). If you'd like you can [pipe](/bash/bash_intro_binder#redirectors-and-wildcards){:target="_blank"} that into the `tr` command to make it more human-readable: `echo $PATH | tr ":" "\n"`.
 
 To set a variable in bash we provide the variable name we want, an equals sign, and then what we want the variable to hold (with no spaces in between any of that). Let's try it:
 
@@ -51,7 +51,7 @@ echo $my_new_var > $my_var
 cat $my_var
 ```
 
-Here we `echo` the text stored in `$my_new_var` and [redirect](/bash/bash_intro#pipes-and-redirectors){:target="_blank"} that output into a new file named with the text stored in `$my_var`. This made a file called "Europa" that holds the text within it "Europa is awesome."  
+Here we `echo` the text stored in `$my_new_var` and [redirect](/bash/bash_intro_binder#redirectors-and-wildcards){:target="_blank"} that output into a new file named with the text stored in `$my_var`. This made a file called "Europa" that holds the text within it "Europa is awesome."  
 
 This may seem a little confusing at first, but having a good grasp of variables will help a lot when starting to work with loops. So it's worth taking a second to make sure this makes sense. Make some of your own variables and try using them with some commands.  
 
@@ -99,7 +99,7 @@ do
 done
 ```
 
-Now we have a file that holds these words. Note that we used `>>` as the [redirector](/bash/bash_intro#pipes-and-redirectors){:target="_blank"}, and not just `>`. Remember `>>` will append to the file whereas `>` will overwrite it. If we used `>`, each time through the loop we would be overwriting it and at the end we would have a file with one line of "ukulele" only.
+Now we have a file that holds these words. Note that we used `>>` as the [redirector](/bash/bash_intro_binder#redirectors-and-wildcards){:target="_blank"}, and not just `>`. Remember `>>` will append to the file whereas `>` will overwrite it. If we used `>`, each time through the loop we would be overwriting it and at the end we would have a file with one line of "ukulele" only.
 
 ```
 cat words.txt
@@ -169,7 +169,7 @@ sort -t "_" -nk 2 samples > s_temp
 mv s_temp samples
 ```
 
-(You may want to review the [bash intro](/bash/bash_intro){:target="_blank"} and [six glorious commands](/bash/six_commands){:target="_blank"} pages if what we're doing here is unclear.)
+(You may want to review the [bash intro](/bash/bash_intro_binder){:target="_blank"} and [six glorious commands](/bash/six_commands){:target="_blank"} pages if what we're doing here is unclear.)
 
 Now the file "samples" holds all of our sample names on individual lines, in an order more intuitive for us:
 

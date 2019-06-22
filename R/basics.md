@@ -36,7 +36,7 @@ Part of what makes R so valuable and powerful are all of the open-source package
 Before we get started, we need an R environment to work in. You can work on your own computer if you'd like, or you can work in a "Binder" that's been created for this page, see below. 
 
 ## On your computer
-It is possible your computer already has R, if you are unsure, you can check by opening a terminal window ([a unix-like terminal](/bash/getting_bash_env){:target="_blank"}) and typing **`R`**. If this launches R rather than giving an error message, you should be good to go (enter **`q()`** to exit the R environment). If you do not have R, you can download it from here for Mac: [https://cran.r-project.org/bin/macosx/](https://cran.r-project.org/bin/macosx/){:target="_blank"}. And if you have a relatively newer Mac, you may also need to install XQuartz which you can get from here: [https://www.xquartz.org/](https://www.xquartz.org/){:target="_blank"}. 
+It is possible your computer already has R, if you are unsure, you can check by opening a terminal window ([a unix-like terminal](/unix/getting_unix_env){:target="_blank"}) and typing **`R`**. If this launches R rather than giving an error message, you should be good to go (enter **`q()`** to exit the R environment). If you do not have R, you can download it from here for Mac: [https://cran.r-project.org/bin/macosx/](https://cran.r-project.org/bin/macosx/){:target="_blank"}. And if you have a relatively newer Mac, you may also need to install XQuartz which you can get from here: [https://www.xquartz.org/](https://www.xquartz.org/){:target="_blank"}. 
 
 Lastly, I highly, *highly*, **highly** recommend installing the free version of [RStudio](https://www.rstudio.com/){:target="_blank"} if you don't already have it. RStudio is an interface for R that not only makes everything you will do in R easier and more organized, but it's also invaluable for reproducibility of your analyses as it makes it second-nature to generate and save R scripts of everything you're doing, while you're doing it – which is very helpful when you want to look back and see what worked out of the 20 things you just tried 🙂. You can download an RStudio installer from [here](https://www.rstudio.com/products/rstudio/download/#download){:target="_blank"}. See the next section for the typical layout of RStudio.  
 
@@ -45,12 +45,12 @@ Lastly, I highly, *highly*, **highly** recommend installing the free version of 
 
 When that page finishes loading (it may take a couple minutes), you will see a screen like this:
 
-<center><img src="{{ site.url }}/images/binder-R-launch.png"></center>
+<center><img src="../images/binder-R-launch.png"></center>
 <br>
 
 If we then click the icon with the green plus sign at the top-left, and then "R Script", it will open up our text editor area also, and look something like this (minus the labels added here): 
 
-<center><img src="{{ site.url }}/images/binder-R-labeled.png"></center>
+<center><img src="../images/binder-R-labeled.png"></center>
 
 <br>
 
@@ -70,7 +70,7 @@ Here we're going to be doing our work in the "console" area. To start, let's see
 ?getwd
 ```
 
-<center><img src="{{ site.url }}/images/binder-R-getwd-help.png"></center>
+<center><img src="../images/binder-R-getwd-help.png"></center>
 <br>
 And notice the pane at the bottom right now shows our help info for this function.  
 <br>
@@ -78,7 +78,7 @@ And notice the pane at the bottom right now shows our help info for this functio
 ---
 <br>
 # Some practice data
-**If you are not using the binder environment**, but want to follow along with this page, copy and paste the following commands into your terminal to get set up with a small, temporary working directory that has the files I'll be working with. If you're unfamiliar with working at the command line, and would like to get to know it better, consider running through [this page](/bash/bash_intro_binder){:target="_blank"} when you can 🙂
+**If you are not using the binder environment**, but want to follow along with this page, copy and paste the following commands into your terminal to get set up with a small, temporary working directory that has the files we'll be working with. If you're unfamiliar with working at the command line, and would like to get to know it better, consider running through [the Unix crash course here](/unix/unix-intro){:target="_blank"} when you can 🙂
 
 <center><b>SKIP THESE COMMANDS IF YOU ARE WORKING IN THE BINDER ENVIRONMENT SHOWN IN THE PICTURE ABOVE</b></center><br>
 
@@ -102,7 +102,7 @@ Just like when working at the command line, or pointing to files in a graphical 
 getwd()
 ```
 
-<center><img src="{{ site.url }}/images/binder-R-getwd.png" width="90%"></center>
+<center><img src="../images/binder-R-getwd.png" width="90%"></center>
 <br>
 
 Note that this is just a zoomed in image of the "console" pane. 
@@ -114,10 +114,10 @@ setwd("~/R_basics_temp/")
 getwd()
 ```
 
-<center><img src="{{ site.url }}/images/binder-R-setwd.png" width="90%"></center>
+<center><img src="../images/binder-R-setwd.png" width="90%"></center>
 <br>
 
->**NOTE:** Here we are providing the [absolute path](/bash/bash_intro_binder#absolute-vs-relative-path){:target="_blank"} to where we want to go, and it needs to be within quotations. Putting something within quotations in R is what tells it to take the text just as it is, rather than trying to look for a variable that is named with that text. We'll get into that more later, but just to note now why the quotes are important 🙂  
+>**NOTE:** Here we are providing the [absolute path](/unix/getting-started#absolute-vs-relative-path){:target="_blank"} to where we want to go, and it needs to be within quotations. Putting something within quotations in R is what tells it to take the text just as it is, rather than trying to look for a variable that is named with that text. We'll get into that more later, but just to note now why the quotes are important 🙂  
 
 Now that we are in the correct location that should contain the file for our tutorial here, let's check that it is actually here. At the command line this would be done with the **`ls`** command, here in R we do it with the **`list.files()`** function.
 
@@ -125,7 +125,7 @@ Now that we are in the correct location that should contain the file for our tut
 list.files()
 ```
 
-<center><img src="{{ site.url }}/images/binder-R-list-files.png" width="90%"></center>
+<center><img src="../images/binder-R-list-files.png" width="90%"></center>
 <br>
 
 ---
@@ -140,7 +140,7 @@ At its core, R is built for statistics, so with it we can do baseline arithmetic
 2 ^ 4 
 ```
 
-<center><img src="{{ site.url }}/images/R_basic.png" width="90%"></center> 
+<center><img src="../images/R_basic.png" width="90%"></center> 
 <br>
 >**NOTE:** The **`[1]`** we're seeing to the left of the output is an "index" number. As we go further we'll see why these are useful, but for now just know it's a counter for how many iterms are returned by a command – for each row of printed output it lists the "index" number of the first item of that row, here we only have 1 row of output, so it's always just showing 1.  
 
@@ -169,7 +169,7 @@ x * x
 2 ^ x
 ```
 
-<center><img src="{{ site.url }}/images/R_var_arith.png" width="90%"></center> 
+<center><img src="../images/R_var_arith.png" width="90%"></center> 
 <br>
 We can also check what type of data is contained within this variable with the **`class()`** function:
 
@@ -215,7 +215,7 @@ y <- c(5, 6, 7)
 y
 ```
 
-<center><img src="{{ site.url }}/images/R_vector.png" width="90%"></center> 
+<center><img src="../images/R_vector.png" width="90%"></center> 
 <br>
 Note that this is still of class "numeric" by checking with **`class(y)`**. It's good practice to get used to actively being aware of what type of objects we are working with. 
 
@@ -230,7 +230,7 @@ our_table
 class(our_table)
 ```
 
-<center><img src="{{ site.url }}/images/R_table.png" width="90%"></center> 
+<center><img src="../images/R_table.png" width="90%"></center> 
 <br>
 Dataframes are two-dimensional objects of rows and columns. Here we can see that the default behavior of the **`data.frame()`** function took our two vectors and put them in a table where each original vector now represents one column. Another similar, but distinct, table structure in R is a "matrix". You will sometimes find you need to convert a dataframe to a matrix or vice versa depending on what you are trying to do with it. Keep this in mind as one of the things to look at first when you run into an error.  
 
@@ -252,7 +252,7 @@ y[2] # second item
 y[3] # third item
 ```
 
-<center><img src="{{ site.url }}/images/R_vec_index.png" width="90%"></center> 
+<center><img src="../images/R_vec_index.png" width="90%"></center> 
 <br>
 
 >**NOTE:** It's good to think about a way to read this syntax that makes sense to us. The variable we are subsetting from comes first, "y" above, then within brackets we are stating what parts of it we want. Here just by index number, so we're saying something like 'from object "y", give us the first item' (**`y[1]`**). 
@@ -264,7 +264,7 @@ We can also ask for multiple by using the **`c()`** function we saw above:
 y[c(1,3)] # specifying items 1 and 3
 ```
 
-<center><img src="{{ site.url }}/images/R_vec_index_2.png" width="90%"></center> 
+<center><img src="../images/R_vec_index_2.png" width="90%"></center> 
 <br>
 
 Ok, so that's how we can subset by saying which positions we want. But in practice we often won't actually know which positions of a vector hold the values we are interested in – meaning we usually won't know the "index" number needed to pull out a specific value. This is where another type of indexing comes into play.
@@ -277,7 +277,7 @@ y # the whole vector
 y[y >= 6] # returns just the last two values
 ```
 
-<center><img src="{{ site.url }}/images/R_vec_index_ge_6.png" width="90%"></center> 
+<center><img src="../images/R_vec_index_ge_6.png" width="90%"></center> 
 <br>
 
 The way I read the expression **`y[y >= 6]`** in my head is: "Give me all the values of **`y`** where **`y`** is greater than or equal to 6." What R is actually doing under the hood here goes a little further into the weeds than would be helpful right now, so for the moment we're going to move on. But understanding fundamentally how subsetting with conditional statements works is extremely powerful and important, so feel free to dive deeper into this when you can by visiting the [going deeper with indexing page](/R/more_indexing){:target="_blank"} 🙂   
@@ -294,7 +294,7 @@ y[y >= 6] # returns only 6 and 7
 y[!y >= 6] # returns only 5
 ```
 
-<center><img src="{{ site.url }}/images/R_vec_index_ge_6_not1.png" width="90%"></center> 
+<center><img src="../images/R_vec_index_ge_6_not1.png" width="90%"></center> 
 <br>
 
 The use of the **`!`** character like this may seem a little unnecessary in the case of strictly numerical conditional expressions like this, but it's very handy for other types of conditional statements. We'll see a somewhat more complicated example below where inverting the **`!`** logical vector is the only way to actually get at what we want. Again, for now we are glancing over the fundamentals of how R handles indexing with conditional statements like this, but this underlies so many of the ways that we parse down data in R to get what we want, so if you'd like to get into it a little more, be sure to visit [going deeper with indexing](/R/more_indexing){:target="_blank"} when you can 🙂  
@@ -310,7 +310,7 @@ our_table # whole table
 our_table[2, 2] # subset value in the second row and second column only
 ```
 
-<center><img src="{{ site.url }}/images/R_tab_index_1.png" width="90%"></center> 
+<center><img src="../images/R_tab_index_1.png" width="90%"></center> 
 <br>
 
 If we provide nothing for either the row or the column position, *but still provide the comma that delineates the two values within our subsetting brackets*, we will get all values for that position: 
@@ -321,7 +321,7 @@ our_table[ , 2] # subset all rows, but only the second column
 our_table[3, ] # only row 3, but both columns
 ```
 
-<center><img src="{{ site.url }}/images/R_tab_index_2.png" width="90%"></center> 
+<center><img src="../images/R_tab_index_2.png" width="90%"></center> 
 <br>
 
 Notice that when subsetting returns only one column, but multiple rows (as in the first example there, **`our_table[ , 2]`**), it returns a numeric *vector*. But when subsetting returns one row, but multiple columns (as in the second example there, **`our_table[3, ]`**), it returns a dataframe:
@@ -332,7 +332,7 @@ class(our_table[ , 2])
 class(our_table[3, ])
 ```
 
-<center><img src="{{ site.url }}/images/R_tab_index_3.png" width="90%"></center> 
+<center><img src="../images/R_tab_index_3.png" width="90%"></center> 
 <br>
 
 This hints at something fundamental about R – that it treats rows and columns differently. This is another detail we don't need to worry about remembering, but just having seen it once may help troubleshoot faster if we happen to run into it sometime 🙂  
@@ -347,7 +347,7 @@ our_table[ , 2, drop=F]
 class(our_table[ , 2, drop=F])
 ```
 
-<center><img src="{{ site.url }}/images/R_tab_index_4.png" width="90%"></center> 
+<center><img src="../images/R_tab_index_4.png" width="90%"></center> 
 <br>
 
 Another way we can pull out a specific column from a dataframe as a vector is by the column header/name, in this case we have 2 columns with the names 'y' and 'z'. The function **`colnames()`** can tell us this:
@@ -356,7 +356,7 @@ Another way we can pull out a specific column from a dataframe as a vector is by
 colnames(our_table)  
 ```
 
-<center><img src="{{ site.url }}/images/R_tab_index_5.png" width="90%"></center> 
+<center><img src="../images/R_tab_index_5.png" width="90%"></center> 
 <br>
 
 To specify a column we want to pull from a dataframe, we enter the table variable name (here, "our_table), followed by a **`$`**, followed by the column name we want:
@@ -365,7 +365,7 @@ To specify a column we want to pull from a dataframe, we enter the table variabl
 our_table$z
 ```
 
-<center><img src="{{ site.url }}/images/R_tab_index_6.png" width="90%"></center> 
+<center><img src="../images/R_tab_index_6.png" width="90%"></center> 
 <br>
 
 We can also do this with the bracket format of subsetting, and therefore combine it with rows by index. Here we are saying we want rows 2 and 3, and specify the column by name instead of its index number:
@@ -373,7 +373,7 @@ We can also do this with the bracket format of subsetting, and therefore combine
 ```R
 our_table[c(2,3), "z"]
 ```
-<center><img src="{{ site.url }}/images/R_tab_index_7.png" width="90%"></center> 
+<center><img src="../images/R_tab_index_7.png" width="90%"></center> 
 <br>
 
 
@@ -388,11 +388,11 @@ Indexing in R can definitely seem pretty confusing at first, especially the logi
 Most of the time when working with R you're going to want to read in some data, do some stuff to it, and then write out something else to a new file that will then go on to live a wonderous and full life beyond the R environment. Here we're going to cover the basics of reading in and writing out files. 
 
 ## Checking out the data in the terminal first
-Before we try to read data into R, it's a *really* good idea to know what we're expecting. Let's get some idea of what our example file, "gene_annotations.txt", looks like in the terminal with some of the tools introduced in the [*bash* intro](/bash/bash_intro_binder){:target="_blank"} page.  
+Before we try to read data into R, it's a *really* good idea to know what we're expecting. Let's get some idea of what our example file, "gene_annotations.txt", looks like in the terminal with some of the tools introduced in the [Unix crash course](/unix/unix-intro){:target="_blank"} page.  
 
 We can work at the terminal in RStudio too, if we click the "Terminal" tab at the top of the "source" pane (which is the bottom left one in our binder environment):
 
-<center><img src="{{ site.url }}/images/R_basics_terminal.png" width="90%"></center> 
+<center><img src="../images/R_basics_terminal.png" width="90%"></center> 
 <br>
 
 >**NOTE:** If there is a conda error message that pops up before the prompt appears like shown in the image above, we can ignore that. 
@@ -405,7 +405,7 @@ cd ~/R_basics_temp/
 less -S gene_annotations.txt # the `-S` prevents lines from wrapping
 ```
 
-<center><img src="{{ site.url }}/images/R_basics_terminal_less.png" width="90%"></center> 
+<center><img src="../images/R_basics_terminal_less.png" width="90%"></center> 
 <br>
 
 From this we can see that it's a tab-delimited file, and that it has a header with column names for each column. We can exit **`less`** by pressing the **`q`** key. 
@@ -416,7 +416,7 @@ Let's take a look just at the column names:
 head -n 1 gene_annotations.txt
 ```
 
-<center><img src="{{ site.url }}/images/R_basics_terminal_head.png" width="90%"></center> 
+<center><img src="../images/R_basics_terminal_head.png" width="90%"></center> 
 <br>
 
 We can also quickly check how many rows we should be expecting:
@@ -425,14 +425,14 @@ We can also quickly check how many rows we should be expecting:
 wc -l gene_annotations.txt
 ```
 
-<center><img src="{{ site.url }}/images/R_basics_terminal_wc_l.png" width="90%"></center> 
+<center><img src="../images/R_basics_terminal_wc_l.png" width="90%"></center> 
 <br>
 
 Ok. So now instead of being blind to what the file holds, we know that it's tab-delimited, it has a header with column names, and it has 8 columns and 84,785 rows (including the header). Awesome. There are some parameters we need to set when we read a file into R, and know these things will help us check to make sure things are working like we want. Now let's get it into R! 
 
 Be sure to switch back to the "Console" tab at the bottom left now, away from the "Terminal" tab, so that our pane looks like this again:
 
-<center><img src="{{ site.url }}/images/R_tab_index_7.png" width="90%"></center> 
+<center><img src="../images/R_tab_index_7.png" width="90%"></center> 
 <br>
 
 ## read.table()
@@ -442,7 +442,7 @@ One of the most common ways of reading tables into R is to use the **`read.table
 gene_annotations_tab <- read.table("gene_annotations.txt")
 ```
 
-<center><img src="{{ site.url }}/images/read_table_err.png" width="90%"></center> 
+<center><img src="../images/read_table_err.png" width="90%"></center> 
 <br>
 
 Yay our first error! Many error messages may seem a little cryptic at first, but you'll be surprised at how many of them magically start to make sense over time. The important part in this one is at the end where it says "line 1 did not have 22 elements". We know from our exploration in the terminal above that our table should have 8 columns. This is a sign there is something up with how R is trying to split each line into columns. 
@@ -454,12 +454,12 @@ If we take a look at the help menu for this function with **`?read.table`**:
 ```
 The help shows up in our bottom right pane. And scanning through there for anything about specifing the delimiter, we can find the argument "sep". And it seems that by default the "sep" argument is set to act on all white space, which includes tabs AND blank spaces:
 
-<center><img src="{{ site.url }}/images/read_table_help_sep.png" width="90%"></center> 
+<center><img src="../images/read_table_help_sep.png" width="90%"></center> 
 <br>
 
 If we remember looking at our "gene_annotations.txt" file in the terminal with **`less`**, in addition to it being tab-delimited, there were also spaces within the KO and COG annotation columns. 
 
-<center><img src="{{ site.url }}/images/R_basics_terminal_less.png" width="90%"></center> 
+<center><img src="../images/R_basics_terminal_less.png" width="90%"></center> 
 <br>  
 
 So **`read.table()`** by default is making a new column everywhere there is a space, and then coming back to us and saying "Hey, your first line doesn't have all the columns it should have based on the rest of your file!" Which is nice of it, because it's letting us know something is probably wrong 🙂
@@ -476,7 +476,7 @@ This works without any errors, let's take a look at it with the **`head()`** fun
 head(gene_annotations_tab)
 ```
 
-<center><img src="{{ site.url }}/images/R_basics_read_table_head.png" width="90%"></center> 
+<center><img src="../images/R_basics_read_table_head.png" width="90%"></center> 
 <br>
 
 We can ignore that things are wrapping a little funny because it's wider than the panel can allow, but it put our column names in the first row and added new column names ("V1", "V2", etc.). Looking at the help menu for **`read.table()`** some more in our bottom right pane, we find there is an argument for "header", which is by default set to **`FALSE`**. So let's try again but this time we'll specify that there is a header:
@@ -487,7 +487,7 @@ gene_annotations_tab <- read.table("gene_annotations.txt", sep="\t", header=TRUE
 head(gene_annotations_tab) 
 ```
 
-<center><img src="{{ site.url }}/images/R_basics_read_table_head_2.png" width="90%"></center> 
+<center><img src="../images/R_basics_read_table_head_2.png" width="90%"></center> 
 <br>
 
 That looks better. Let's also check our column names and the size of the table:
@@ -498,7 +498,7 @@ colnames(gene_annotations_tab)
 dim(gene_annotations_tab)
 ```
 
-<center><img src="{{ site.url }}/images/R_basics_read_table_dim.png" width="90%"></center> 
+<center><img src="../images/R_basics_read_table_dim.png" width="90%"></center> 
 <br>
 
 >**NOTE:** Now that our vector of column names is longer than the window, our index numbers are printed on the left for each row ("[1]", "[4]", "[7]"). That is the index (positional number) of each row's first item.
@@ -523,7 +523,7 @@ And if we peek at our new table with **`head()`**, we se all top 6 have KEEG ann
 head(KEGG_only_tab)
 ```
 
-<center><img src="{{ site.url }}/images/R_basics_kegg_head.png" width="90%"></center> 
+<center><img src="../images/R_basics_kegg_head.png" width="90%"></center> 
 <br>
 
 
@@ -534,7 +534,7 @@ dim(gene_annotations_tab) # 84,784 genes
 dim(KEGG_only_tab) # 37,319 had KEGG annotations assigned
 ```
 
-<center><img src="{{ site.url }}/images/R_basics_kegg_dim.png" width="90%"></center> 
+<center><img src="../images/R_basics_kegg_dim.png" width="90%"></center> 
 <br>
 
 As mentioned above, there is a little more going on under the hood here that is covered at the [going deeper with indexing page](/R/more_indexing){:target="_blank"}. But it's definitely a little strange at first. Now let's write out our new table so it is free from the constraints of R!
@@ -548,7 +548,7 @@ write.table(KEGG_only_tab, "KEGG_annotated.tsv", sep="\t", row.names=F, quote=FA
 list.files() # checking it is there now
 ```
 
-<center><img src="{{ site.url }}/images/R_basics_kegg_write_out.png" width="90%"></center> 
+<center><img src="../images/R_basics_kegg_write_out.png" width="90%"></center> 
 <br>
 
 And as mentioned, it's good practice to peek at the output in the terminal when we are configuring the options to write something out to make sure it's doing what we think it's doing. So we can switch back to the "Terminal" tab in the bottom left pane, and check our new file with **`less`**:
@@ -557,7 +557,7 @@ And as mentioned, it's good practice to peek at the output in the terminal when 
 less -S KEGG_annotated.tsv
 ```
 
-<center><img src="{{ site.url }}/images/KEGG_only_tab_less.png" width="90%"></center> 
+<center><img src="../images/KEGG_only_tab_less.png" width="90%"></center> 
 <br>
 
 ---

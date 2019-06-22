@@ -1,0 +1,92 @@
+<div class="fancy-hList-div">
+  <ul class="fancy-hList">
+    
+    <li>
+      <a href="{{ site.url }}/bash/" class="fancy-menu">
+        <span class="fancy-menu-title" style="color: #745bab;">Bash</span>
+      </a>
+        <ul class="fancy-menu-dropdown">
+          <li><a href="{{ site.url }}/bash/">Bash home</a></li>
+          <li><a href="{{ site.url }}/bash/getting_bash_env">Getting a bash env.</a></li>
+<!--           <li><a href="{{ site.url }}/bash/bash_intro">Intro to Bash</a></li> -->
+          <li style="height: 0px; pointer-events: none;"><hr style="margin: 3px; border-color: #1f5cad; border-width: 0.5px; z-index: 110"/></li>
+          <li><a href="{{ site.url }}/bash/bash_intro_binder">Intro to Bash</a></li>
+          <li><a href="{{ site.url }}/bash/six_commands">six glorious commands</a></li>
+          <li><a href="{{ site.url }}/bash/for_loops">For loops</a></li>
+          <li style="height: 0px; pointer-events: none;"><hr style="margin: 3px; border-color: #1f5cad; border-width: 0.5px; z-index: 110"/></li>
+          <li><a href="{{ site.url }}/bash/why">Why is this all worth it?</a></li>
+          <li><a href="{{ site.url }}/bash/modifying_your_path">Modifying your PATH</a></li>
+          <li><a href="{{ site.url }}/bash/installing_tools">Installing tools</a></li>
+<!--           <li><a href="{{ site.url }}/bash/one_liners">Useful one-liners</a></li> -->
+          <li><a href="{{ site.url }}/bash/ncbi_eutils">Downloading from NCBI</a></li>
+          <li><a href="{{ site.url }}/bash/other_resources">Other great resources</a></li>
+        </ul>
+    </li>
+    
+    <li>
+      <a href="{{ site.url }}/R/" class="fancy-menu">
+        <span class="fancy-menu-title" style="color: #0000cc;">R</span>
+      </a>
+        <ul class="fancy-menu-dropdown">
+          <li><a href="{{ site.url }}/R/">R home</a></li>
+          <li style="height: 0px; pointer-events: none;"><hr style="margin: 3px; border-color: #1f5cad; border-width: 0.5px; z-index: 110"/></li>
+          <li><a href="{{ site.url }}/R/basics">Intro to R</a></li>
+          <li><a href="{{ site.url }}/R/more_indexing">More on indexing</a></li>
+          <li style="height: 0px; pointer-events: none;"><hr style="margin: 3px; border-color: #1f5cad; border-width: 0.5px; z-index: 110"/></li>
+          <li><a href="{{ site.url }}/R/installing_packages">Installing R packages</a></li>
+        </ul>
+    </li>
+    
+    <li>
+      <a href="{{ site.url }}/amplicon/" class="fancy-menu">
+        <span class="fancy-menu-title" style="color: #d64231;">Amplicon analysis</span>
+      </a>
+        <ul class="fancy-menu-dropdown">
+          <li><a href="{{ site.url }}/amplicon/">Amplicon Home</a></li>
+          <li style="height: 0px; pointer-events: none;"><hr style="margin: 3px; border-color: #1f5cad; border-width: 0.5px; z-index: 110"/></li>
+          <li><a href="{{ site.url }}/amplicon/demultiplexing">Demultiplexing</a></li>
+          <li><a href="{{ site.url }}/amplicon/dada2_workflow_ex">Full Ex. workflow</a></li>
+          <li><a href="{{ site.url }}/amplicon/16S_and_18S_mixed">16S/18S together</a></li>
+        </ul>
+    </li>
+    
+    <li>
+      <a href="{{ site.url }}/genomics/" class="fancy-menu">
+        <span class="fancy-menu-title" style="color: #5bab87;">Genomics</span>
+      </a>
+        <ul class="fancy-menu-dropdown">
+          <li><a href="{{ site.url }}/genomics/">Genomics Home</a></li>
+          <li style="height: 0px; pointer-events: none;"><hr style="margin: 3px; border-color: #1f5cad; border-width: 0.5px; z-index: 110"/></li>
+          <li><a href="{{ site.url }}/genomics/where_to_start">Where to start?</a></li>
+          <li><a href="{{ site.url }}/genomics/de_novo_assembly">De novo assembly</a></li>
+          <li><a href="{{ site.url }}/genomics/metagen_anvio">MAGs from MGs</a></li>
+        </ul>
+    </li>
+    
+    
+<!-- 
+    <li>
+      <a href="{{ site.url }}/metagenomics/" class="fancy-menu">
+        <span class="fancy-menu-title" style="color: #cc7a00;">Metagenomics</span>
+      </a>
+        <ul class="fancy-menu-dropdown">
+          <li><a href="{{ site.url }}/metagenomics/" style="color:#995c00;">Metagenomics Home</a></li>
+          <li><a href="{{ site.url }}/metagenomics/thoughts" style="color:#995c00;">Opening thoughts</a></li>
+          <li><a href="{{ site.url }}/metagenomics/where_to_start" style="color:#995c00;">Where to start?</a></li>
+        </ul>
+    </li>
+ -->
+    
+  </ul>
+</div>
+
+<!-- 
+    <li>
+      <a href="{{ site.url }}/R/" class="fancy-menu">
+        <span class="fancy-menu-title" style="color: #0000ff;">R</span>
+      </a>
+        <ul class="fancy-menu-dropdown">
+          <li><a href="{{ site.url }}/R/basics">R basics</a></li>
+        </ul>
+    </ul>
+ -->

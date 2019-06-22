@@ -9,7 +9,7 @@ permalink: /genomics/de_novo_assembly
 
 {% include _side_tab_genomics.html %}
 
-Here we're going to run through some of the typical steps for taking a newly sequenced isolate genome from raw fastq files through to an assembled, curated genome you can then begin to explore. It's assumed you're already somewhat familiar with working at the command line, if you're not yet, you should probably run through the [*bash* basics](/bash/bash_intro_binder){:target="_blank"} first 🙂  
+Here we're going to run through some of the typical steps for taking a newly sequenced isolate genome from raw fastq files through to an assembled, curated genome you can then begin to explore. It's assumed you're already somewhat familiar with working at the command line, if you're not yet, you should probably run through the [Unix crash course](/unix/unix-intro){:target="_blank"} first 🙂  
 
 And before we get started here, a public service announcement:
 
@@ -67,7 +67,7 @@ Isn't [conda](https://conda.io/docs/){:target="_blank"} awesome??
 ---
 <br>
 # The data
-The practice data we're going to use here was provided by colleagues at the [J. Craig Venter Institute](http://www.jcvi.org/){:target="_blank"}. In working out the details for a rather large-scale project, which in part involves sequencing a bunch of *Burkholderia* isolates from the ISS and performing de novo genome assemblies, [Aubrie O'Rourke](https://www.linkedin.com/in/aubrie-o-rourke-94975a6a/){:target="_blank"} and her team put an already sequenced isolate – [*Burkholderia cepacia* (ATCC 25416)](https://www.atcc.org/products/all/25416.aspx){:target="_blank"} – through their pipeline in order to test things out and to have something to benchmark their expectations against. The sequencing was done on Illumina's Nextseq platform as paired-end 2x150 bps, with about a 350-bp insert size.  
+The practice data we're going to use here was provided by colleagues at the [J. Craig Venter Institute](http://www.jcvi.org/){:target="_blank"}. In working out the details for a rather large-scale project, which in part involves sequencing a bunch of *Burkholderia* isolates from the ISS and performing de novo genome assemblies, [Aubrie O'Rourke](https://www.jcvi.org/about/aorourke){:target="_blank"} and her team put an already sequenced isolate – [*Burkholderia cepacia* (ATCC 25416)](https://www.atcc.org/products/all/25416.aspx){:target="_blank"} – through their pipeline in order to test things out and to have something to benchmark their expectations against. The sequencing was done on Illumina's Nextseq platform as paired-end 2x150 bps, with about a 350-bp insert size.  
 
 If you'd like to follow along with this page rather than just reading through, you can download all the data files and execute the commands as below. I tried subsampling the dataset so that things would be smaller and faster for the purposes of this page, but I couldn't seem to without the assembly suffering too much. By far the most computationally intensive step here is the [error correction step](/genomics/where_to_start#read-error-correction){:target="_blank"}, which ended up being the only one that I ran on a server rather than my personal computer (which is a late 2013 MacBook Pro with 4 CPUs and 8GB of memory). So I've provided the raw reads and the error-corrected reads so that step can be skipped if wanted. The download also includes most of the intermediate and all of the end-result files so you can explore any component along the way at will without doing the processing. Uncompressed the whole things is about 1.4 GB: 
 
@@ -97,7 +97,7 @@ The resulting html output files can be opened and explored showing all of the mo
 
 Looking at our output from the forward reads (B_cepacia_raw_R1_fastqc.html), not too much stands out other than the quality scores are pretty mediocre from about 1/3 of the way through the read on: 
 
-<center><img src="{{ site.url }}/images/fastqc_before.png"></center>  
+<center><img src="../images/fastqc_before.png"></center>  
 
 <br>
 Here the read length is stretched across the x-axis, the blue line is the mean quality score of all reads at the corresponding positions, red line is the median, and the yellow boxplots represent the interquartile range, and the whiskers the 10th and 90th percentiles. The reverse reads look very similar, you can open that html file (R2) as well if you'd like. Sometimes this will reveal there are still adapters from the sequencing run mixed in, which would wreak havoc on assembly efforts downstream. Getting this type of information from FastQC helps us determine what parameters we want to set for our quality filtering/read trimming.
@@ -137,7 +137,7 @@ And just for a peek at the FastQC output after our trimming:
 fastqc BCep_R1_paired.fastq.gz BCep_R2_paired.fastq.gz -t 4
 ```
 
-<center><img src="{{ site.url }}/images/fastqc_after.png"></center>  
+<center><img src="../images/fastqc_after.png"></center>  
 
 <br>
 Things still don't look perfect, but they look much cleaner than before – now our interquartile boxes (yellow) are much more snuggly sitting up top telling us our distribution of higher qualities across the end of the reads is much better. And though they weren't much of a factor here, don't forget to keep an eye on all the other modules from FastQC with any data you throw into it. They are not designed to be perfect assessments, because different experimental conditions can lead to warnings and such for expected reasons as mentioned above, but they are very useful in that they can point you toward potential problems you might not otherwise see. When something does catch your eye, open up the manual for that module [here](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/){:target="_blank"} and what it can mean and what can cause it 🙂  
@@ -233,7 +233,7 @@ quast -o quast_B_cep_out -R reference_genome/BCep_ref.fna \
 
 You can find more about the syntax and how to run QUAST [in its documentation](http://quast.bioinf.spbau.ru/manual.html){:target="_blank"}. The output directory contains text files of information, but there is also a useful html summary file called "report.html", which we can open and look at. Here's a portion of it:
 
-<center><img src="{{ site.url }}/images/quast_output.png"></center>  
+<center><img src="../images/quast_output.png"></center>  
 
 <br>
 The columns here hold information about each of our 4 assemblies and the rows are different metrics. The majority of the rows starting from the top are in relation to the reference we provided, then the last few starting with "# contigs" are reference-independent. In the interactive html page, you can highlight the row names to get some help on what they mean, and there is more info in the [manual](http://quast.bioinf.spbau.ru/manual.html){:target="_blank"} of course. The cells are shaded across the assemblies for each row from red to blue, indicating "worst" to "best", but this is only a loose guide to help your eye, as differences can be negligible or up to interpretation, and some rows are more important than others.  
@@ -378,7 +378,7 @@ anvi-interactive -c contigs.db -p B_cep_profiled/PROFILE.db --title "B. cepacia 
 ```
 <br>
 
-<center><img src="{{ site.url }}/images/fresh_anvi.png"></center>  
+<center><img src="../images/fresh_anvi.png"></center>  
 
 <br>
 So there is a lot going on here at first glance, especially if you're not yet familiar with how anvi'o organizes things. The interactive interface is extraordinarily expansive and I'd suggest reading about it [here](http://merenlab.org/2016/06/22/anvio-tutorial-v2/#anvi-interactive){:target="_blank"} and [here](http://merenlab.org/2016/02/27/the-anvio-interactive-interface/){:target="_blank"} to start digging into it some more when you can, but for our purposes here I'll just give a quick crash course.  
@@ -390,7 +390,7 @@ The first thing that jumps out to me here is the outer layer purple, labeled "Ta
 Just for a quick comparison, here is the same type of figure (taxonomy at the inner-part of the circle here), but from an enrichment culture, rather than axenic:  
 <br>
 
-<center><img src="{{ site.url }}/images/other_anvi.png"></center>  
+<center><img src="../images/other_anvi.png"></center>  
 
 <br>
 Here the highlighted contigs, labeled "Bin 1", represent the targeted cultivar from this sequencing run, demonstrating a nice example of how anvi'o can help you manually curate bins you're trying derive from assemblies.  
@@ -414,7 +414,7 @@ This was all basically to get a high-quality draft of our isolate genome, that w
 Pull available reference genomes of close relatives and build a phylogenomic tree to get a robust estimate of where your newly acquired isolates fit in evolutionarily with what is already known. Not surprisingly, [anvi'o can help you parse this out also](http://merenlab.org/2017/06/07/phylogenomics/){:target="_blank"}. This tree is based on an amino acid alignment of ~1,000 one-to-one orthologs. 
 <br>
 
-<center><img src="{{ site.url }}/images/phylo_syn.png"></center>  
+<center><img src="../images/phylo_syn.png"></center>  
 
 <br>
 
@@ -424,7 +424,7 @@ Pull available reference genomes of close relatives and build a phylogenomic tre
 Pull available metagenomes from other studies and recruit the reads to a reference library containing your isolate (and its close relatives if it has any) to begin assessing the distributions their genomic lineages. This example is done with ocean samples, but the same principle can be applied to any environments.
 <br>
 
-<center><img src="{{ site.url }}/images/dist_syn.png"></center>  
+<center><img src="../images/dist_syn.png"></center>  
 
 <br>
 
@@ -434,7 +434,7 @@ Pull available metagenomes from other studies and recruit the reads to a referen
 Start investigating differences in the genetic complement of your new isolate as compared to its known close relatives. And yes, [anvi'o can help with that too](http://merenlab.org/2016/11/08/pangenomics-v2/){:target="_blank"}. This example figure is combining pangenomics (the core of the figure showing the presence or absence of genes within each genome) with metagenomics (distributions of the genomes across samples in the top right corner) to try to associate genomic variability with ecological delineations:
 <br>
 
-<center><img src="{{ site.url }}/images/pan_syn.png"></center>  
+<center><img src="../images/pan_syn.png"></center>  
 
 <br>
 

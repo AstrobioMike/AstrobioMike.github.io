@@ -391,8 +391,7 @@ Ok! Now the payoff for all that hard work we just did. We are going to launch `a
 anvi-interactive -p merged_profile/PROFILE.db -c contigs.db --server-only -P 8080
 ```
 
-After running that on your cloud instance, go to your computer's web browser and go to this address (Chrome is ideal for anvi'o, but if you don't have that then whatever you've got will probably still be cool): [http://localhost:8080](http://localhost:8080)
-Once that loads up, click the "Draw" button at the bottom left and you should see the metagenome appear 🙂
+After running that on your cloud instance, go to your computer's web browser and go to this address "**http://localhost:8080**" (Chrome is ideal for anvi'o, but if you don't have that then whatever you've got will probably still be cool). Once that loads up, click the "Draw" button at the bottom left and you should see the metagenome appear 🙂
 
 <center><img src="https://raw.githubusercontent.com/AstrobioMike/Misc/master/anvi-open.png" data-canonical-src="https://raw.githubusercontent.com/AstrobioMike/Misc/master/anvi-open.png" width="800" height="365"></center>
 

@@ -54,7 +54,7 @@ Ok. So each value in a vector has an index number which is just the order of thi
 <br>
 # Subsetting by conditional statements
 
-We also saw how to subset using a conditional statement [here](https://astrobiomike.github.io/R/basics#subsetting-by-conditional-statements){:target="_blank"}, like so:
+We also saw how to subset using a conditional statement [here](/R/basics#subsetting-by-conditional-statements){:target="_blank"}, like so:
 
 ```R
 y

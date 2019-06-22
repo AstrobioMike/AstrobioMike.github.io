@@ -9,7 +9,7 @@ permalink: amplicon/dada2_workflow_ex
 
 {% include _side_tab_amplicon.html %}
 
-Here we're going to run through one way to process an amplicon dataset and then many of the standard, initial analyses. We'll be working a little at the command line, and then primarily in R. So it'd be best if you are already have some experience with both. If you're new to either or both, there is an [intro to the command line here](/bash/bash_intro_binder){:target="_blank"} and an [intro to R here](/R/basics) you may want to check out first 🙂  
+Here we're going to run through one way to process an amplicon dataset and then many of the standard, initial analyses. We'll be working a little at the command line, and then primarily in R. So it'd be best if you are already have some experience with both. If you're new to either or both, there is a [Unix crash course here](/unix/unix-intro){:target="_blank"} and an [intro to R here](/R/basics) you may want to check out first 🙂  
 
 Before we get started here, an obligatory public service announcement:
 
@@ -35,13 +35,13 @@ We're going to be using [DADA2](https://benjjneb.github.io/dada2/index.html){:ta
 # Binder available
 You can work on your own system if you'd like, but I have also created a "Binder" in which you can run through the entire tutorial on this page without needing to worry about setting up the appropriate environment on your own system. [Binder](https://mybinder.org/){:target="_blank"} is an incredible project with incredible people behind hit. I'm still very new to it, but the general idea is it makes it easier to setup and share specific working environments in support of open science. What this means for us here is that we can just click this little badge – [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/AstrobioMike/binder-dada2-ex-workflow/master?urlpath=rstudio){:target="_blank"} – and it'll open an RStudio environment with all our needed tools and packages installed and ready to rock... how awesome is that?!? Again, you can also work on your own system if you'd like, but this option is here in case it's helpful. If you'd like to use the Binder environment, click the badge above, and when that page finishes loading (it may take a couple of minutes), you will see a screen like this (minus the blue arrow):
 
-<center><img src="{{ site.url }}/images/binder-R-app-launch2.png"></center>
+<center><img src="../images/binder-R-app-launch2.png"></center>
 <br>
 
 RStudio has the added benefit of providing our command-line environment too. If we click the "Terminal" tab that the blue arrow points to in the above image, it will change the console to our command line and look like this: 
 
 <a id="terminal"></a>
-<center><img src="{{ site.url }}/images/binder-R-app-launch3.png"></center>
+<center><img src="../images/binder-R-app-launch3.png"></center>
 <br>
 >**NOTE:** Don't worry if there is a conda error message at the top of your Terminal window, we can ignore that here.
 
@@ -68,7 +68,7 @@ For a quick overview of the example data we'll be using and where it came from, 
 
 In the following figure, overlain on the map are the rock sample collection locations, and the panes on the right show examples of the 3 distinct types of rocks collected: 1) basalts with highly altered, thick outer rinds (>1 cm); 2) basalts that were smooth, glassy, thin exteriors (~1-2 mm); and 3) one calcified carbonate.
 
-<center><img src="{{ site.url }}/images/dorado.png"></center>
+<center><img src="../images/dorado.png"></center>
 
 <br>
 
@@ -106,7 +106,7 @@ It's good to try to keep a bird's-eye view of what's going on. So here is an ove
 |7|`removeBimeraDenovo()`|screen for and remove chimeras|
 |8|`assignTaxonomy()`|assign taxonomy|
 
-And at the end of this we'll do some R magic to generate regular [flat files](/bash/bash_intro#working-with-plain-text-files-and-directories){:target="_blank"} for the standard desired outputs of amplicon/marker-gene processing: 1) a fasta file of our ASVs; 2) a count table; and 3) a taxonomy table.  
+And at the end of this we'll do some R magic to generate regular [flat files](/unix/working-with-files-and-dirs#bonus-round-whats-a-plain-text-file){:target="_blank"} for the standard desired outputs of amplicon/marker-gene processing: 1) a fasta file of our ASVs; 2) a count table; and 3) a taxonomy table.  
 
 In our working directory there are 20 samples with forward (R1) and reverse (R2) reads with per-base-call quality information, so 40 fastq files (.fq). I typically like to have a file with all the sample names to use for various things throughout, so here's making that file based on how these sample names are formatted (be sure you are in the "Terminal" window like pictured above if using the Binder environment):
 
@@ -114,10 +114,10 @@ In our working directory there are 20 samples with forward (R1) and reverse (R2)
 ls *_R1.fq | cut -f1 -d "_" > samples
 ```
 
->**NOTE:** If you're not comfortable with that line, and would like to be able to better utilize the awesome power of bash, consider running through the [bash basics](/bash/bash_intro){:target="_blank"} and/or [six glorious commands](/bash/six_commands){:target="_blank"} pages sometime 🙂  
+>**NOTE:** If you're not comfortable with that line, and would like to be able to better utilize the awesome power of Unix, consider running through the [Unix crash course](/unix/unix-intro){:target="_blank"} sometime 🙂  
 
 # Removing primers
-To start, we need to remove the primers from all of these (the primers used for this run are in the "primers.fa" file in our working directory), and here we're going to use [cutadapt](https://cutadapt.readthedocs.io/en/stable/index.html){:target="_blank"} to do that **at the command line ("Terminal" tab if in the binder environment**). Cutadapt operates on one sample at at time, so we're going to use a [wonderful little bash loop](/bash/for_loops){:target="_blank"} to run it on all of our samples.   
+To start, we need to remove the primers from all of these (the primers used for this run are in the "primers.fa" file in our working directory), and here we're going to use [cutadapt](https://cutadapt.readthedocs.io/en/stable/index.html){:target="_blank"} to do that **at the command line ("Terminal" tab if in the binder environment**). Cutadapt operates on one sample at at time, so we're going to use a [wonderful little bash loop](/unix/for-loops){:target="_blank"} to run it on all of our samples.   
 
 First, let's just run it on one individual sample and breakdown the command: 
 
@@ -130,7 +130,7 @@ cutadapt -a ^GTGCCAGCMGCCGCGGTAA...ATTAGAWACCCBDGTAGTCC \
     B1_sub_R1.fq B1_sub_R2.fq
 ```
 
-Don't worry about the backslashes `\`, they are just there to ignore the return characters that come right after them (and are invisible here) that I've put in so this is organized a little more clearly, rather than as one long single line. Moving on to dissecting what the command is doing here, cutadapt does a lot of different things, and there is excellent documentation at their [site](https://cutadapt.readthedocs.io/en/stable/index.html){:target="_blank"}. I learned about what we're specifying here I learned about from their ["Trimming (amplicon-) primers from both ends of paired-end reads" page](https://cutadapt.readthedocs.io/en/stable/recipes.html#trimming-amplicon-primers-from-both-ends-of-paired-end-reads){:target="_blank"} (See? I told you they had awesome documentation). Because our paired reads in this case were sequenced longer than the span of the target amplicon (meaning, we did 2x300 bp sequencing, and the targeted V4 region is shorter than that), *we will typically have both primers in each forward and reverse read*. Cutadapt handles "linked" adapters perfectly for such a case. We are specifying the primers for the forward read with the `-a` flag, giving it the forward primer (in normal orientation), followed by three dots (required by cutadapt to know they are "linked", with bases in between them, rather than right next to each other), then the reverse complement of the reverse primer (I found this [excellent site](http://arep.med.harvard.edu/labgc/adnan/projects/Utilities/revcomp.html){:target="_blank"} for converting to reverse complement **while treating degenerate bases properly**). Then for the reverse reads, specified with the `-A` flag, we give it the reverse primer (in normal 5'-3' orientation), three dots, and then the reverse complement of the forward primer. Both of those have a `^` symbol in front at the 5' end indicating they should be found at the start of the reads (which is the case with this particular setup). The minimum read length (set with `-m`) and max (set with `-M`) were based roughly on 10% smaller and bigger than would be expected after trimming the primers. **These types of settings will be different for data generated with different sequencing, i.e. not 2x300, and different primers. `--discard-untrimmed` states to throw away reads that don't have these primers in them in the expected locations. Then `-o` specifies the output of the forwards reads, `-p` specifies the output of the reverse reads, and the input forward and reverse are provided as [positional arguments](/bash/bash_intro#running-commands){:target="_blank"} in that order. 
+Don't worry about the backslashes `\`, they are just there to ignore the return characters that come right after them (and are invisible here) that I've put in so this is organized a little more clearly, rather than as one long single line. Moving on to dissecting what the command is doing here, cutadapt does a lot of different things, and there is excellent documentation at their [site](https://cutadapt.readthedocs.io/en/stable/index.html){:target="_blank"}. I learned about what we're specifying here I learned about from their ["Trimming (amplicon-) primers from both ends of paired-end reads" page](https://cutadapt.readthedocs.io/en/stable/recipes.html#trimming-amplicon-primers-from-both-ends-of-paired-end-reads){:target="_blank"} (See? I told you they had awesome documentation). Because our paired reads in this case were sequenced longer than the span of the target amplicon (meaning, we did 2x300 bp sequencing, and the targeted V4 region is shorter than that), *we will typically have both primers in each forward and reverse read*. Cutadapt handles "linked" adapters perfectly for such a case. We are specifying the primers for the forward read with the `-a` flag, giving it the forward primer (in normal orientation), followed by three dots (required by cutadapt to know they are "linked", with bases in between them, rather than right next to each other), then the reverse complement of the reverse primer (I found this [excellent site](http://arep.med.harvard.edu/labgc/adnan/projects/Utilities/revcomp.html){:target="_blank"} for converting to reverse complement **while treating degenerate bases properly**). Then for the reverse reads, specified with the `-A` flag, we give it the reverse primer (in normal 5'-3' orientation), three dots, and then the reverse complement of the forward primer. Both of those have a `^` symbol in front at the 5' end indicating they should be found at the start of the reads (which is the case with this particular setup). The minimum read length (set with `-m`) and max (set with `-M`) were based roughly on 10% smaller and bigger than would be expected after trimming the primers. **These types of settings will be different for data generated with different sequencing, i.e. not 2x300, and different primers. `--discard-untrimmed` states to throw away reads that don't have these primers in them in the expected locations. Then `-o` specifies the output of the forwards reads, `-p` specifies the output of the reverse reads, and the input forward and reverse are provided as [positional arguments](/unix/getting-started#running-commands){:target="_blank"} in that order. 
 
 Here's a before-and-after view of just that sample: 
 
@@ -175,9 +175,9 @@ It's important to notice that not only is the forward primer (`GTGCCAGCAGCCGCGGT
 **A huge thanks to [@saerobe](https://twitter.com/saerobe) for catching a slip-up I had in here before where it was *not* trimming off the reverse primers properly!**
 
 
-Now, on to doing them all with a loop, here is how we can run it on all our samples at once. Since we have a lot of samples here, I'm [redirecting](/bash/bash_intro#pipes-and-redirectors){:target="_blank"} the "stdout" (what's printing the stats for each sample) to a file so we can more easily view and keep track of if we're losing a ton of sequences or not by having that information stored somewhere – instead of just plastered to the terminal window. We're also going to take advantage of another convenience of cutadapt – by adding the extension `.gz` to the output file names, it will compress them for us.  
+Now, on to doing them all with a loop, here is how we can run it on all our samples at once. Since we have a lot of samples here, I'm [redirecting](/unix/wild-redirectors){:target="_blank"} the "stdout" (what's printing the stats for each sample) to a file so we can more easily view and keep track of if we're losing a ton of sequences or not by having that information stored somewhere – instead of just plastered to the terminal window. We're also going to take advantage of another convenience of cutadapt – by adding the extension `.gz` to the output file names, it will compress them for us.  
 
->**NOTE:** We're not going to break down the loop here as we have other fish to fry, but if this looks confusing to you, then check out the pages on [bash basics](/bash/bash_intro){:target="_blank"} and [the wonderful world of loops](/bash/for_loops){:target="_blank"}. While odd-looking at first, little command-line loops like this are **extremely** powerful, and trust me, you can learn to leverage that power more quickly than you'd think! 
+>**NOTE:** We're not going to break down the loop here as we have other fish to fry, but if this looks confusing to you, then check out the last section in the [Unix crash course](/unix/unix-intro){:target="_blank"} that focuses on [for loops](/unix/for-loops){:target="_blank"}! While odd-looking at first, little command-line loops like this are **extremely** powerful, and trust me, you can learn to leverage that power more quickly than you'd think! 
 
 
 ```bash
@@ -233,7 +233,7 @@ With primers removed, we're now ready to switch R and start using DADA2!
 As noted above, if you aren't familiar with R at all yet it's probably a good iea to run through the [R basics page](/R/basics){:target="_blank"} first. A full R script containing everything done here called "all_R_commands.R" is in our working directory. That file can be opened in RStudio if you prefer to follow along with that rather than copying and pasting commands from here. To open that document in the Binder environment, in the "Files" window at the bottom right, click on the "dada2_amplicon_ex_workflow" directory, then click on "all_R_commands.R". This will open an additional window at the top left (pushing your "Console"/"Terminal" window down halfway). This new window is a text editor within which you can also run code. To run code in there, on the line you'd like to run press `CMD + ENTER` on a Mac, or `CTRL + ENTER` on a Windows computer. If you'd like to open a new, blank document in this text editor window inside of RStudio (whether in the Binder or on your own system), you can click the icon at the top left that looks like a white square with a plus sign over it, and then click "R Script". **It's in that text editor window you'll want to paste in the commands below and then run them**, or be running them from the "all_R_commands.R" file if you'd rather, but mostly you won't be typing or pasting commands into the "Console". 
 
 ## Setting up our working environment
-If you are in the Binder environment, be sure to click the "Console" tab on the left side to change from the command-line terminal to R, and in here all the required packages are already installed. If you're working on your own system, you'll need to install DADA2. To do that, visit the [installation page](https://benjjneb.github.io/dada2/dada-installation.html){:target="_blank"} provided by [@bejcal](https://twitter.com/bejcal){:target="_blank"}. This may require you needing to update your version of R and/or RStudio as well, which can be tricky sometimes. I've found [this page](https://www.linkedin.com/pulse/3-methods-update-r-rstudio-windows-mac-woratana-ngarmtrakulchol/){:target="_blank"} put together by [Woratana Ngarmtrakulchol](https://www.linkedin.com/in/woratana-ngarmtrakulchol-0079b766/){:target="_blank"} to be a lifesaver for me on more than one occasion 🙂
+If you are in the Binder environment, be sure to click the "Console" tab on the left side to change from the command-line terminal to R, and in here all the required packages are already installed. If you're working on your own system, you'll need to install DADA2. To do that, visit the [installation page](https://benjjneb.github.io/dada2/dada-installation.html){:target="_blank"} provided by [@bejcal](https://twitter.com/bejcal){:target="_blank"}. This may require you needing to update your version of R and/or RStudio as well, which can be tricky sometimes. I've found [this page](https://www.linkedin.com/pulse/3-methods-update-r-rstudio-windows-mac-woratana-ngarmtrakulchol/){:target="_blank"} put together by Woratana Ngarmtrakulchol to be a lifesaver for me on more than one occasion 🙂
 
 **From here on out, unless noted, we are working in R.** 
 
@@ -274,7 +274,7 @@ All forwards look pretty similar to eachother, and all reverses look pretty simi
 
 Here's the output of the last four samples' reverse reads: 
 
-<center><img src="{{ site.url }}/images/dada2_not_filtered_qplots.png"></center>
+<center><img src="../images/dada2_not_filtered_qplots.png"></center>
 <br>
 On these plots, the bases are along the x-axis, and the quality score on the y-axis. The black underlying heatmap shows the frequency of each score at each base position, the green line is the median quality score at that base position, and the orange lines show the quartiles.  
 
@@ -292,7 +292,7 @@ Here, the first and third arguments ("forward_reads" and "reverse_reads") are th
 
 As mentioned, the output read files were named in those variables we made above ("filtered_forward_reads" and "filtered_reverse_reads"), so those files were created when we ran the function – we can see them if we run `list.files()` in R, or by checking in our your working directory in the terminal (image from my computer, not the Binder environment):
 
-<center><img src="{{ site.url }}/images/dada2_filtered_head.png"></center>
+<center><img src="../images/dada2_filtered_head.png"></center>
 <br>
 But we also generated an object in R called filtered_out. And that's a matrix holding how many reads went in and how many reads made it out:
 
@@ -332,7 +332,7 @@ plotQualityProfile(filtered_reverse_reads)
 plotQualityProfile(filtered_reverse_reads[17:20])
 ```
 
-<center><img src="{{ site.url }}/images/dada2_filtered_qplots.png"></center>
+<center><img src="../images/dada2_filtered_qplots.png"></center>
 Now we're lookin' good.
 
 ## Generating an error model of our data
@@ -354,7 +354,7 @@ plotErrors(err_reverse_reads, nominalQ=TRUE)
 
 The forward and reverse didn't look too different, here's the output of the reverse:
 
-<center><img src="{{ site.url }}/images/dada2_err_plot.png"></center>
+<center><img src="../images/dada2_err_plot.png"></center>
 <br>
 [@bejcal](https://twitter.com/bejcal){:target="_blank"} goes into how to assess this a bit [here](https://benjjneb.github.io/dada2/tutorial.html#learn-the-error-rates){:target="_blank"}. The red line is what is expected based on the quality score, the black line represents the estimate, and the black dots represent the observed. This is one of those cases where this isn't a binary thing like "yes, things are good" or "no, they're not". I imagine over time and seeing outputs like this for multiple datasets you get a better feeling of what to expect and what should be more cause for alarm (as was the case for me with interpreting and making decisions based on quality-score plots like those [fastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/){:target="_blank"} produces). But generally speaking, you want the observed (black dots) to track well with the estimated (black line). [@bejcal](https://twitter.com/bejcal){:target="_blank"} notes [here](https://benjjneb.github.io/dada2/tutorial.html#learn-the-error-rates){:target="_blank"} that you can try to improve this by increasing the number of bases the function is using (default 100 million).
 
@@ -496,11 +496,11 @@ write.table(asv_tax, "ASVs_taxonomy.tsv", sep="\t", quote=F, col.names=NA)
 
 And now if we look back at our terminal, we can see the fruits of our labor are no longer confined to the R universe:
 
-<center><img src="{{ site.url }}/images/dada2_out_files.png"></center>
+<center><img src="../images/dada2_out_files.png"></center>
 <br>
 
 # Removing likely contaminants 
-In the now-more-outdated [USEARCH/VSEARCH example workflow](/amplicon/workflow_ex){:target="_blank"}, I demonstrated one way to [remove likely contaminant sequences](http://localhost:4000/amplicon/workflow_ex#treatment-of-blanks){:target="_blank"} using "blanks" (samples run through the entire extraction and sequencing process that never had any DNA added to them). Now, in addition to DADA2, [@bejcal](https://twitter.com/bejcal){:target="_blank"} et al. have also created a stellar program for removing contaminants based on incorporated blanks called [decontam](https://github.com/benjjneb/decontam){:target="_blank"} (Nicole Davis et al. [publication here](https://doi.org/10.1186/s40168-018-0605-2){:target="_blank"}). As usual, they also have provided excellent documentation and have a [vignette here](https://benjjneb.github.io/decontam/vignettes/decontam_intro.html){:target="_blank"} showing an example of doing this from a [phyloseq](https://joey711.github.io/phyloseq/){:target="_blank"} object and discussing the various ways their program can be implemented (such as incorporating DNA concentrations if available). Here, we will apply it without DNA concentrations – using prevalence of ASVs in the incorporated blanks – starting from our count table generated above without having a phyloseq object. There are instructions to install decontam [here](https://github.com/benjjneb/decontam#installation){:target="_blank"} if you are working on your own system rather than in the Binder for this page.  
+In the now-more-outdated [USEARCH/VSEARCH example workflow](/amplicon/workflow_ex){:target="_blank"}, I demonstrated one way to [remove likely contaminant sequences](/amplicon/workflow_ex#treatment-of-blanks){:target="_blank"} using "blanks" (samples run through the entire extraction and sequencing process that never had any DNA added to them). Now, in addition to DADA2, [@bejcal](https://twitter.com/bejcal){:target="_blank"} et al. have also created a stellar program for removing contaminants based on incorporated blanks called [decontam](https://github.com/benjjneb/decontam){:target="_blank"} (Nicole Davis et al. [publication here](https://doi.org/10.1186/s40168-018-0605-2){:target="_blank"}). As usual, they also have provided excellent documentation and have a [vignette here](https://benjjneb.github.io/decontam/vignettes/decontam_intro.html){:target="_blank"} showing an example of doing this from a [phyloseq](https://joey711.github.io/phyloseq/){:target="_blank"} object and discussing the various ways their program can be implemented (such as incorporating DNA concentrations if available). Here, we will apply it without DNA concentrations – using prevalence of ASVs in the incorporated blanks – starting from our count table generated above without having a phyloseq object. There are instructions to install decontam [here](https://github.com/benjjneb/decontam#installation){:target="_blank"} if you are working on your own system rather than in the Binder for this page.  
 
 ```R
 library(decontam)
@@ -741,12 +741,12 @@ labels_colors(euc_dend) <- dend_cols
 plot(euc_dend, ylab="VST Euc. dist.")
 ```
 
-<center><img src="{{ site.url }}/images/hclust.png"></center>
+<center><img src="../images/hclust.png"></center>
 
 <br>
 So from our first peek, the broadest clusters separate the biofilm, carbonate, and water samples from the basalt rocks, which are the black and brown labels. And those form two distinct clusters, with samples R8–R11 separate from the others (R1-R6, and R12). R8-R11 (black) were all of the glassier type of basalt with thin (~1-2 mm), smooth exteriors, while the rest (R1-R6, and R12; brown) had more highly altered, thick (>1 cm) outer rinds (excluding the oddball carbonate which isn't a basalt, R7). This is starting to suggest that level of alteration of the basalt may be correlated with community structure. If we look at the map figure again (below), we can also see that level of alteration also co-varies with whether samples were collected from the northern or southern end of the outcrop as all of the more highly altered basalts were collected from the northern end. 
 
-<center><img src="{{ site.url }}/images/dorado.png"></center>
+<center><img src="../images/dorado.png"></center>
 
 <br>
 
@@ -771,7 +771,7 @@ plot_ordination(vst_physeq, vst_pcoa, color="char") +
   theme(legend.position="none")
 ```
 
-<center><img src="{{ site.url }}/images/pcoa.png"></center>
+<center><img src="../images/pcoa.png"></center>
 
 <br>
 This is just providing us with a different overview of how our samples relate to each other. Inferences that are consistent with the hierarchical clustering above can be considered a bit more robust if the same general trends emerge from both approaches. It's important to remember that these are **exploratory visualizations** and do not say anything statistically about our samples. But our initial exploration here shows us the rock microbial communities seem to be more similar to each other than they are to the water samples, and focusing on just the basalts (brown and black labels), these visualizations both suggest their communities may correlate with level of exterior alteration.
@@ -789,7 +789,7 @@ rarecurve(t(count_tab), step=100, col=sample_info_tab$color, lwd=2, ylab="ASVs",
 abline(v=(min(rowSums(t(count_tab)))))
 ```
 
-<center><img src="{{ site.url }}/images/rarefaction.png"></center>
+<center><img src="../images/rarefaction.png"></center>
 <br>
 
 In this plot, samples are colored the same way as above, and the black vertical line represents the sampling depth of the sample with the least amount of sequences (a bottom water sample, BW1, in this case). This view suggests that the rock samples (all of them) are more diverse and have a greater richness than the water samples or the biofilm sample – based on where they all cross the vertical line of lowest sampling depth, which is not necessarily predictive of where they'd end up had they been sampled to greater depth. And again, just focusing on the brown and black lines for the two types of basalts we have, they seem to show similar trends within their respective groups that suggest the more highly altered basalts (brown lines) may host more diverse microbial communities than the glassier basalts (black lines). 
@@ -812,7 +812,7 @@ plot_richness(ASV_physeq, color="char", measures=c("Chao1", "Shannon")) +
   theme(legend.title = element_blank())
 ```
 
-<center><img src="{{ site.url }}/images/plot_richness.png"></center>
+<center><img src="../images/plot_richness.png"></center>
 
 Before saying anything about this I'd like to stress again that these are *not* interpretable as "real" numbers of anything (due to the nature of amplicon data), but they can still be useful as relative metrics of comparison. For example, we again see from this that the more highly altered basalts seem to host communities that are more diverse and have a higher richness than the other rocks, and that the water and biofilm samples are less diverse than the rocks. 
 
@@ -824,7 +824,7 @@ plot_richness(ASV_physeq, x="type", color="char", measures=c("Chao1", "Shannon")
   theme(legend.title = element_blank())
 ```
 
-<center><img src="{{ site.url }}/images/plot_richness_by_type.png"></center>
+<center><img src="../images/plot_richness_by_type.png"></center>
 <br>
 
 One last note on interpretation here, don't forget Chao1 is richness and Shannon is diversity, and what these mean as discussed above. Take for example the biofilm sample (green) above. It seems to have a higher estimated richness than the two water samples, but a lower Shannon diversity than both water samples. This suggests that the water samples likely have a greater "evenness"; or to put it another way, even though the biofilm may have more biological units (our ASVs here), it may be largely dominated by only a few of them. 
@@ -969,7 +969,7 @@ ggplot(filt_major_taxa_proportions_tab_for_plot.g2, aes(x=Sample, y=Proportion, 
   labs(x="Sample", y="% of 16S rRNA gene copies recovered", title="All samples")
 ```
 
-<center><img src="{{ site.url }}/images/stacked_bars.png"></center>
+<center><img src="../images/stacked_bars.png"></center>
 <br>
 
 Ok, that's not helpful really at all in this case, but I kept it here for the code example. (Also, note that the biofilm sample has a large proportion of Alphaproteobacteria – possibly supporting what we saw above about it having the lowest Shannon diversity estimate, IF the majority of these are represented by the same ASV.) Another way to look would be using boxplots where each box is a major taxon, with each point being colored based on its sample type.
@@ -983,7 +983,7 @@ ggplot(filt_major_taxa_proportions_tab_for_plot.g2, aes(Major_Taxa, Proportion))
   labs(x="Major Taxa", y="% of 16S rRNA gene copies recovered", title="All samples")
 ```
 
-<center><img src="{{ site.url }}/images/boxplot_all_samples.png"></center>
+<center><img src="../images/boxplot_all_samples.png"></center>
 <br>
 
 Meh, let's keep in mind again that this was a very coarse level of resolution as we are using taxonomic classifications at the phylum and class ranks. This is why things may look more similar between the rocks and water samples than you might expect, and why when looking at the ASV level – like we did with the exploratory visualizations above – we can see more clearly that these do in fact host distinct communities. But let's look at this for a second anyway. The biofilm sample (green) again clearly stands out as it is almost completely dominated by sequences derived from Alphaproteobacteria. Three of the four "glassy" basalts (black dots) seem to have the greatest proportion of Gammaproteobacteria-derived sequences. And Cyanos and Euryarchaeota for the most part only seem to show up in water samples. Another way to look at this would be to plot the water and rock samples separately, which might help tighten up some taxa boxplots if they have a different distribution between the two sample types. 
@@ -1019,9 +1019,9 @@ ggplot(filt_major_taxa_proportions_water_samples_only_tab_for_plot.g, aes(Major_
 
 ```
 
-<center><img src="{{ site.url }}/images/boxplots_rock_samples.png"></center>
+<center><img src="../images/boxplots_rock_samples.png"></center>
 <br>
-<center><img src="{{ site.url }}/images/boxplots_water_samples.png"></center>
+<center><img src="../images/boxplots_water_samples.png"></center>
 <br>
 
 
@@ -1059,9 +1059,9 @@ ggplot(data.frame(water_sample_major_taxa_summary_tab), aes(x="Bottom water samp
   theme(plot.title = element_text(hjust=0.5), legend.title=element_blank())
 ```
 
-<center><img src="{{ site.url }}/images/rock_pie.png"></center>
+<center><img src="../images/rock_pie.png"></center>
 <br>
-<center><img src="{{ site.url }}/images/water_pie.png"></center>
+<center><img src="../images/water_pie.png"></center>
 <br>
 
 Again, not very useful here. But here is how you might parse your dataset down by taxonomy to whatever level actually is useful and make some standard visualizations. 
@@ -1126,7 +1126,7 @@ plot_ordination(basalt_vst_physeq, basalt_vst_pcoa, color="char") +
   theme(legend.position="none")
 ```
 
-<center><img src="{{ site.url }}/images/basalt_PCoA.png"></center>
+<center><img src="../images/basalt_PCoA.png"></center>
 <br>
 
 ## Differential abundance analysis with DESeq2
@@ -1193,3 +1193,4 @@ If you glance through the taxonomy of our significant table here, you'll see sev
 <center><b>Now is when you do the science part 🙂</b></center>
 <br>
 Above we barely scratched the surface on just a handful of things. Here's where your questions and the experimental design start to guide how you go further. In [the paper](https://www.frontiersin.org/articles/10.3389/fmicb.2015.01470/full){:target="_blank"} this dataset came from for instance we ended up incorporating other seafloor basalt studies to identify what looked to be conserved taxa that showed up everywhere (like a sulfur-oxidizing gammaproteobacterium, *Thioprofundum lithotrophicum*), and we also identified that there seems to be a basalt-hosted Thaumarchaeota (*Nitrosopumilus* sp.) distinct from those present in the bottom water samples we analyzed; this was interesting to us because the genus has a known water-column version (*N. maritimus*) and sediment version (*N. koreensis*), and it seems there may also be a basalt-hosted counterpart that exists in relatively high abundance and may play a substantial role in ammonia oxidation and chemolithoautotrophy globally on deepsea basalts. And this is what I mean about marker-gene data being a tool for hypothesis generation: this bug can now be targeted with metagenomics and ultimately culturing efforts so we can try to figure out if it is actually playing a substantial role in biogeochemical cycling and the chemical transformation of much of the seafloor (my money's on yes, naturally). If you want to see more of how this dataset ended up, check out the discussion section of the [paper](https://www.frontiersin.org/articles/10.3389/fmicb.2015.01470/full){:target="_blank"}, as an independent party I must say it's written pretty well 🙂
+bundle exec htmlproofer --assume-extension --alt-ignore '/.*/' --disable-external --trace _site/

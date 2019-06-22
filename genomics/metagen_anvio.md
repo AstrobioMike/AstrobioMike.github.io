@@ -25,7 +25,7 @@ There are lots of awesome things you can do with metagenomics. Here's an overvie
 
 <center><a href="https://raw.githubusercontent.com/AstrobioMike/Misc/master/metagen_overview.png"><img src="https://raw.githubusercontent.com/AstrobioMike/Misc/master/metagen_overview.png"></a></center>
 
-Recovering genomes from metagenomes has become a powerful tool for microbial ecologists. Here we will assemble a metagenome, and go through the process of "binning" our assembled contigs into groups based on coverage and sequence composition using the analysis and visualization platform [anvi'o](http://merenlab.org/software/anvio/).
+Recovering genomes from metagenomes has become a powerful tool for microbial ecologists. Here we will assemble a metagenome, and go through the process of "binning" our assembled contigs into groups based on coverage and sequence composition using the analysis and visualization platform [anvi'o](http://merenlab.org/software/anvio/){:target="_blank"}.
 
 > **NOTE:** Even the highest quality genomes recovered from metagenomes are not the same as isolate genomes. It depends on the data and assembly, but in general they are more of an agglomeration of very closely related organisms from the sample due to the assembly process and fine-scale variation that exists in microbial populations. They are being more frequently referred to as "metagenome-assembled genomes", or MAGs, to better convey this. 
 
@@ -35,7 +35,7 @@ Recovering genomes from metagenomes has become a powerful tool for microbial eco
 <br>
 
 # Software needed
-We will be using bowtie2, anvio, and diamond. Install instructions for new things not included [here](/bash/installing_tools) to come soon. If you use `conda`, this line should do the trick:
+We will be using bowtie2, anvio, and diamond. Using [Conda](/unix/installing_tools#conda-alert){:target="_blank"}, this line should do the trick:
 
 ```bash
 conda install -y bowtie2 anvio diamond
@@ -47,7 +47,7 @@ conda install -y bowtie2 anvio diamond
 <br>
 
 # Our practice data
-To work with a smaller dataset here that will let us do things in a reasonable amount of time, we're going to be working with a relatively simple microbial community here that comes from metagenomic sequencing of an enrichment culture of the nitrogen-fixing cyanobacterium *Trichodesmium*. Metagenomics still takes a lot of time, so we're going to start with data already quality trimmed/filtered here, though assessing the quality and trimming/filtering as needed as laid out in [this lesson](https://angus.readthedocs.io/en/2018/quality-and-trimming.html) should pretty much always be the first step. To lighten the processing load the majority of *Trichodesmium* (target cultivar) reads have also been removed. Despite this, there are still some steps that would take a bit too long to just wait for, so in those cases there will be examples of how the code would be run, but we'll just pull result files from a subdirectory that comes with the data download so skip some of the more time-consuming steps 🙂
+To work with a smaller dataset here that will let us do things in a reasonable amount of time, we're going to be working with a relatively simple microbial community here that comes from metagenomic sequencing of an enrichment culture of the nitrogen-fixing cyanobacterium *Trichodesmium*. Metagenomics still takes a lot of time, so we're going to start with data already quality trimmed/filtered here, though assessing the quality and trimming/filtering as needed as laid out in [this lesson](https://angus.readthedocs.io/en/2018/quality-and-trimming.html){:target="_blank"} should pretty much always be the first step. To lighten the processing load the majority of *Trichodesmium* (target cultivar) reads have also been removed. Despite this, there are still some steps that would take a bit too long to just wait for, so in those cases there will be examples of how the code would be run, but we'll just pull result files from a subdirectory that comes with the data download so skip some of the more time-consuming steps 🙂
 
 Downloading the practice data should only take about 3 or 4 minutes (it's ~1.5 GB):
 
@@ -89,7 +89,7 @@ And now we're ready to get to work!
 <br>
 
 # What is a co-assembly?
-"Co-assembly" refers to performing an assembly where the input files would be reads from multiple samples. This is in contrast to doing an independent assembly for each sample, where the input for each would be just the reads from that individual sample. Three major benefits of co-assembly include: 1) higher read depth (this *can* allow you to have a more robust assembly that captures more of the diversity in your system, *but not always*); 2) it facilitates the comparison across samples by giving you one reference assembly to use for all; and 3) it can substantially improve your ability to recover genomes from metagenomes due to the awesome power of differential coverage (you can download a slide showing how coverage is used to do this from here -> [keynote](https://ndownloader.figshare.com/files/12367211), [powerpoint](https://ndownloader.figshare.com/files/12367226)).
+"Co-assembly" refers to performing an assembly where the input files would be reads from multiple samples. This is in contrast to doing an independent assembly for each sample, where the input for each would be just the reads from that individual sample. Three major benefits of co-assembly include: 1) higher read depth (this *can* allow you to have a more robust assembly that captures more of the diversity in your system, *but not always*); 2) it facilitates the comparison across samples by giving you one reference assembly to use for all; and 3) it can substantially improve your ability to recover genomes from metagenomes due to the awesome power of differential coverage (you can download a slide showing how coverage is used to do this from here -> [keynote](https://ndownloader.figshare.com/files/12367211), [powerpoint](https://ndownloader.figshare.com/files/12367226){:target="_blank"}).
 
 ## To co-assemble or not to co-assemble?
 Though a co-assembly has its benefits, it will not be ideal in all circumstances. And as with most things in bioinformatics, there are no golden rules as for when it would be better to co-assemble multiple samples together over when it would be better to run individual assemblies on each. It could depend on many factors (e.g. variation between the samples, diversity of the communities, the assembler(s) you're trying, you're overall questions, who knows how many others things?, etc.), and there can be datasets where a co-assembly would give you a poorer output assembly than an individual assembly would. So it is something you should consider with each dataset you work with, and if you are unsure and have the time/resources, then trying and assessing the outcome is always good practice. 
@@ -102,9 +102,9 @@ Though a co-assembly has its benefits, it will not be ideal in all circumstances
 # Co-assembly
 Above, we briefly touched on some plusses and minuses of co-assembly vs individual-sample assembly. Here we are working with 4 samples from an enrichment culture, and the communities *should be* pretty well constrained - certainly relative to complex environmental samples like, say, a transect across soil. That would be harder to decide, but for us, it's a pretty safe start to go with a co-assembly. 
 
-There are many assemblers out there, and the reason each has a paper showing how it beats others is because every dataset is different. Some assemblers work better for some datasets, and others work better for others. That's not to say all are magically equally good in every sense, but most that gather a following will out-perform all others under certain conditions. I typically try several (some well-known assemblers include [SPAdes](http://cab.spbu.ru/software/spades/), [Megahit](https://github.com/voutcn/megahit), [idba-ud](https://i.cs.hku.hk/~alse/hkubrg/projects/idba_ud/), [Minia](https://github.com/GATB/minia)), and compare them with [QUAST](http://quast.sourceforge.net/quast) (for individual genome assembly) or [MetaQUAST](http://quast.sourceforge.net/metaquast.html) (for metagenome assemblies). Choosing the "best" assembly is not straightforward and it can depend on what you're doing, there is some more on that [here](https://astrobiomike.github.io/genomics/de_novo_assembly#comparing-assemblies) if you're interested, along with an example of testing assemblies/options and comparing them.
+There are many assemblers out there, and the reason each has a paper showing how it beats others is because every dataset is different. Some assemblers work better for some datasets, and others work better for others. That's not to say all are magically equally good in every sense, but most that gather a following will out-perform all others under certain conditions. I typically try several (some well-known assemblers include [SPAdes](http://cab.spbu.ru/software/spades/){:target="_blank"}, [Megahit](https://github.com/voutcn/megahit){:target="_blank"}, [idba-ud](https://i.cs.hku.hk/~alse/hkubrg/projects/idba_ud/){:target="_blank"}, [Minia](https://github.com/GATB/minia){:target="_blank"}), and compare them with [QUAST](http://quast.sourceforge.net/quast){:target="_blank"} (for individual genome assembly) or [MetaQUAST](http://quast.sourceforge.net/metaquast.html){:target="_blank"} (for metagenome assemblies). Choosing the "best" assembly is not straightforward and it can depend on what you're doing, there is some more on that [here](/genomics/de_novo_assembly#comparing-assemblies){:target="_blank"} if you're interested, along with an example of testing assemblies/options and comparing them.
 
-In this case, here is how the command would be run with the [Megahit](https://github.com/voutcn/megahit) assembler. But even with the smaller dataset we're using, this takes about 40+ minutes on our cloud instances using 4 cpus. So rather than running this, we're just going to look at the command and then pull the assembly output file from our results directory.
+In this case, here is how the command would be run with the [Megahit](https://github.com/voutcn/megahit){:target="_blank"} assembler. But even with the smaller dataset we're using, this takes about 40+ minutes on our cloud instances using 4 cpus. So rather than running this, we're just going to look at the command and then pull the assembly output file from our results directory.
 
 ```bash
   ## don't run this, would take about 40+ minutes ##
@@ -147,7 +147,7 @@ anvi-script-reformat-fasta final.contigs.fa -o contigs.fa -l 1000 --simplify-nam
 # Mapping our reads to the assembly they built
 Among other things (like enabling variant detection), mapping our reads for each sample to the co-assembly they built gives us "coverage" information for each contig in each sample, which as discussed above will help us with our efforts to recover metagenome-assembled genomes (MAGs). 
 
-Here we are going to use [bowtie2](http://bowtie-bio.sourceforge.net/bowtie2/index.shtml) to do our mapping, and first need to create an index of our co-assembly:
+Here we are going to use [bowtie2](http://bowtie-bio.sourceforge.net/bowtie2/index.shtml){:target="_blank"} to do our mapping, and first need to create an index of our co-assembly:
 
 ```bash
 bowtie2-build contigs.fa assembly
@@ -239,9 +239,9 @@ cp ../results/*.bam* .
 <br>
 
 # Anvi'o Time!
-[Anvi'o](http://merenlab.org/software/anvio/) is a powerful analysis and visualization tool that provides extensive functionality for exploring all kinds of 'omics datasets. Here we are going to use it to visualize our metagenome and coverage from each sample, to help us see how recovering "genomes" from metagenomes works. 
+[Anvi'o](http://merenlab.org/software/anvio/){:target="_blank"} is a powerful analysis and visualization tool that provides extensive functionality for exploring all kinds of 'omics datasets. Here we are going to use it to visualize our metagenome and coverage from each sample, to help us see how recovering "genomes" from metagenomes works. 
 
-> A much more detailed anvi'o metagenomics tutorial can be found [here](http://merenlab.org/2016/06/22/anvio-tutorial-v2/) which starts from where we are (having our assembly fasta file and our sample bam files), and in general there are many tutorials and blogs at the [merenlab.org](http://merenlab.org/) site with lots of useful information for those interested in bioinformatics.
+> A much more detailed anvi'o metagenomics tutorial can be found [here](http://merenlab.org/2016/06/22/anvio-tutorial-v2/){:target="_blank"} which starts from where we are (having our assembly fasta file and our sample bam files), and in general there are many tutorials and blogs at the [merenlab.org](http://merenlab.org/){:target="_blank"} site with lots of useful information for those interested in bioinformatics.
 
 ### Building up our contigs database
 The heart of Anvi'o when used for metagenomics is what's known as the "contigs database". This holds the contigs from our co-assembly and information about them. What information, you ask? All kinds! And lots of it will be generated over the next few steps.
@@ -259,7 +259,7 @@ The heart of Anvi'o when used for metagenomics is what's known as the "contigs d
 >   * `-o` is specifying the name of the output database that is generated (it should end with the ".db" extension)
 >   * `-n` specifies a name for your project
 
-This step at the start is doing a few things: 1) calculating tetranucleotide frequencies for each contig (uses 4-mers by default but this can be changed); 2) identifies open-reading frames ("genes") with [prodigal](https://github.com/hyattpd/Prodigal); and 3) splits long contigs into segments of roughly 20,000 bps (though does not break genes apart) – this splitting of contigs helps with a few things like visualization and spotting anomalous coverage patters (we'll see how anvi'o helps us visualize coverage below).
+This step at the start is doing a few things: 1) calculating tetranucleotide frequencies for each contig (uses 4-mers by default but this can be changed); 2) identifies open-reading frames ("genes") with [prodigal](https://github.com/hyattpd/Prodigal){:target="_blank"}; and 3) splits long contigs into segments of roughly 20,000 bps (though does not break genes apart) – this splitting of contigs helps with a few things like visualization and spotting anomalous coverage patters (we'll see how anvi'o helps us visualize coverage below).
 
 Since we skipped that to save time, let's copy over the contigs database from our results directory:
 
@@ -268,7 +268,7 @@ cp ../results/contigs.db .
 ```
 Now that we have our contigs.db that holds our sequences and some basic information about them, we can start adding more, like:
 
-**Using the program [HMMER](http://hmmer.org/) to scan for a commonly used set of bacterial single-copy genes [(from Campbell et al. 2013)](http://www.pnas.org/content/110/14/5540.short)**. This will help us estimate genome completeness/redundancy in real-time as we work on binning our contigs below (this should only take ~3 minutes).
+**Using the program [HMMER](http://hmmer.org/){:target="_blank"} to scan for a commonly used set of bacterial single-copy genes [(from Campbell et al. 2013)](http://www.pnas.org/content/110/14/5540.short){:target="_blank"}**. This will help us estimate genome completeness/redundancy in real-time as we work on binning our contigs below (this should only take ~3 minutes).
 
 ```bash
 anvi-run-hmms -c contigs.db -I Campbell_et_al -T 4
@@ -280,9 +280,9 @@ anvi-run-hmms -c contigs.db -I Campbell_et_al -T 4
 >   * `-I` specifying which HMM profile we want to use (you can see which are available by running `anvi-run-hmms --help`, and can also add your own if you'd like)
 >   * `-T` specifies that we'd like to split the work among 4 cpus
 > 
->**NOTE:** See the bottom of page 7 of the [HMMER manual here](http://eddylab.org/software/hmmer3/3.1b2/Userguide.pdf) for a great explanation of what exactly a "hidden Markov model" is in the realm of sequence data.
+>**NOTE:** See the bottom of page 7 of the [HMMER manual here](http://eddylab.org/software/hmmer3/3.1b2/Userguide.pdf){:target="_blank"} for a great explanation of what exactly a "hidden Markov model" is in the realm of sequence data.
 
-**Use [NCBI COGs](https://www.ncbi.nlm.nih.gov/COG/) for functional annotation** of the open-reading frames [prodigal](https://github.com/hyattpd/Prodigal) predicted. This can be done with either [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi) or [DIAMOND](https://github.com/bbuchfink/diamond) – DIAMOND is like a less sensitive, but faster form of BLAST (default is DIAMOND). To run this however, we're first going to have to setup our COG database for anvi'o. Together this will take about 5:
+**Use [NCBI COGs](https://www.ncbi.nlm.nih.gov/COG/){:target="_blank"} for functional annotation** of the open-reading frames [prodigal](https://github.com/hyattpd/Prodigal){:target="_blank"} predicted. This can be done with either [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi){:target="_blank"} or [DIAMOND](https://github.com/bbuchfink/diamond){:target="_blank"} – DIAMOND is like a less sensitive, but faster form of BLAST (default is DIAMOND). To run this however, we're first going to have to setup our COG database for anvi'o. Together this will take about 5:
 
 ```bash
 anvi-setup-ncbi-cogs -T 4 --just-do-it
@@ -296,7 +296,7 @@ anvi-run-ncbi-cogs -c contigs.db  -T 4
 > * `anvi-run-ncbi-cogs` is the main program we're using
 >   * `-c` our input contigs database
 
-**Assign taxonomy with a tool called [Centrifuge](https://ccb.jhu.edu/software/centrifuge/manual.shtml#obtaining-centrifuge)** to the open-reading frames [prodigal](https://github.com/hyattpd/Prodigal) predicted. This step takes having a database setup and takes some time to run. There are good instructions at the [anvi'o tutorial for importing taxonomy](http://merenlab.org/2016/06/18/importing-taxonomy/), and here are the commands that were used to generate what's in our results file:
+**Assign taxonomy with a tool called [Centrifuge](https://ccb.jhu.edu/software/centrifuge/manual.shtml#obtaining-centrifuge){:target="_blank"}** to the open-reading frames [prodigal](https://github.com/hyattpd/Prodigal){:target="_blank"} predicted. This step takes having a database setup and takes some time to run. There are good instructions at the [anvi'o tutorial for importing taxonomy](http://merenlab.org/2016/06/18/importing-taxonomy/){:target="_blank"}, and here are the commands that were used to generate what's in our results file:
 
 ```bash
   ## do not run, takes a bit and a database setup ##
@@ -391,12 +391,11 @@ Ok! Now the payoff for all that hard work we just did. We are going to launch `a
 anvi-interactive -p merged_profile/PROFILE.db -c contigs.db --server-only -P 8080
 ```
 
-After running that on your cloud instance, go to your computer's web browser and go to this address (Chrome is ideal for anvi'o, but if you don't have that then whatever you've got will probably still be cool): [http://localhost:8080](http://localhost:8080)
-Once that loads up, click the "Draw" button at the bottom left and you should see the metagenome appear 🙂
+After running that on your cloud instance, go to your computer's web browser and go to this address "**http://localhost:8080**" (Chrome is ideal for anvi'o, but if you don't have that then whatever you've got will probably still be cool). Once that loads up, click the "Draw" button at the bottom left and you should see the metagenome appear 🙂
 
 <center><img src="https://raw.githubusercontent.com/AstrobioMike/Misc/master/anvi-open.png" data-canonical-src="https://raw.githubusercontent.com/AstrobioMike/Misc/master/anvi-open.png" width="800" height="365"></center>
 
-So there is a lot going on here at first glance, especially if you're not yet familiar with how anvi'o organizes things. The interactive interface is extraordinarily expansive and I'd suggest reading about it [here](http://merenlab.org/2016/06/22/anvio-tutorial-v2/#anvi-interactive) and [here](http://merenlab.org/2016/02/27/the-anvio-interactive-interface/) to start digging into it some more when you can, but here's a quick crash course.
+So there is a lot going on here at first glance, especially if you're not yet familiar with how anvi'o organizes things. The interactive interface is extraordinarily expansive and I'd suggest reading about it [here](http://merenlab.org/2016/06/22/anvio-tutorial-v2/#anvi-interactive){:target="_blank"} and [here](http://merenlab.org/2016/02/27/the-anvio-interactive-interface/){:target="_blank"} to start digging into it some more when you can, but here's a quick crash course.
 
 At the center of the figure is a hierarchical clustering of the contigs from our co-assembly (here clustered based on tetranucleotide frequency and coverage). So each tip (leaf) of the central clustering represents a contig (or a fragment of a contig as those longer than 20,000 bps are split into pieces of ~20,000 bps as mentioned above). Then radiating out from the center are layers of information ("Parent", "Taxonomy", "Length", "GC"), with each layer displaying information for each corresponding contig (leaf/tip). Beyond those, we get to our samples. For each sample layer, the visualization is showing the read coverage for that sample to each contig as you travel around the circle. 
 
@@ -467,7 +466,7 @@ ls merged_profile/SUMMARY_my_bins/bin_by_bin/Bin_2/
 <br>
 
 ## So what now?
-There are lots of fun things to do with newly recovered genomes, but unfortunately everything is pretty much beyond what more we can cover here. And as usual, what you want to do next largely depends on what you're doing all this for anyway. But some ideas could involve things like phylogenomics to robustly place your new genomes within references, looking at distributions of them by recruiting metagenomic reads from other samples and environments, and/or comparative genomics/pangenomics. As mentioned above, anvi'o tutorials, like [this one for phylogenomics](http://merenlab.org/2017/06/07/phylogenomics/) or [this one for pangenomics](http://merenlab.org/2016/11/08/pangenomics-v2/), are a great place to start 🙂
+There are lots of fun things to do with newly recovered genomes, but unfortunately everything is pretty much beyond what more we can cover here. And as usual, what you want to do next largely depends on what you're doing all this for anyway. But some ideas could involve things like phylogenomics to robustly place your new genomes within references, looking at distributions of them by recruiting metagenomic reads from other samples and environments, and/or comparative genomics/pangenomics. As mentioned above, anvi'o tutorials, like [this one for phylogenomics](http://merenlab.org/2017/06/07/phylogenomics/){:target="_blank"} or [this one for pangenomics](http://merenlab.org/2016/11/08/pangenomics-v2/){:target="_blank"}, are a great place to start 🙂
 
 <center><a href="https://raw.githubusercontent.com/AstrobioMike/Misc/master/metagen_overview.png"><img src="https://raw.githubusercontent.com/AstrobioMike/Misc/master/metagen_overview.png"></a></center>
 

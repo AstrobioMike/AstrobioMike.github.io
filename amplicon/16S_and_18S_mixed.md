@@ -39,7 +39,7 @@ The two samples in this working directory are [ERR1018543](https://www.ncbi.nlm.
 ## Magic-BLAST
 [NCBI's Magic-BLAST](https://ncbi.github.io/magicblast/){:target="_blank"} is a tool based on general [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi){:target="_blank"} principles but built to deal with high-throughput data, like Illumina reads, consider paired-reads, and can work with fastq files. So yeah, I hadn't heard of this before looking for this particular problem, but it's perfect for it 🙂
 
-It has binaries available for mac, linux, and windows, and didn't give me any snags. I threw up my install steps on the [bash installing tools page](/bash/installing_tools#magic-blast){:target="_blank"}.
+It has binaries available for mac, linux, and windows, and didn't give me any snags. I threw up my install steps on the [unix installing tools page](/unix/installing_tools#magic-blast){:target="_blank"}.
 
 I used the [PR2](https://figshare.com/articles/PR2_rRNA_gene_database/3803709){:target="_blank"} database to generate our blast database. I initially downloaded the "65.2 MB pr2_version_4.10.0_merged.tsv.gz" available [here](https://github.com/vaulot/pr2_database/releases){:target="_blank"} to start with, and formatted it into a fasta with the headers of each sequence containing the "pr2_main_id" and full taxonomy with the bash script in our directory called "formatting_pr2_fasta.sh".
 
@@ -48,7 +48,7 @@ gunzip pr2_version_4.10.0_merged.tsv.gz
 bash formatting_pr2_fasta.sh
 ```
 
-I found cutting off the primers before blasting made it easier to distinguish between 16S and 18S, which makes sense as the primer regions hit both because they are so well conserved. So here using [bbduk](https://jgi.doe.gov/data-and-tools/bbtools/bb-tools-user-guide/bbduk-guide/){:target="_blank"} to trim the primers (see [above](http://localhost:4000/amplicon/dada2_workflow_ex#removing-primers) for more details on the command/options):
+I found cutting off the primers before blasting made it easier to distinguish between 16S and 18S, which makes sense as the primer regions hit both because they are so well conserved. So here using [bbduk](https://jgi.doe.gov/data-and-tools/bbtools/bb-tools-user-guide/bbduk-guide/){:target="_blank"} to trim the primers:
 
 ```bash
   # first making a "samples" file with sample names to iterate through
@@ -86,7 +86,7 @@ for sample in $(cat samples); do echo "$sample"; awk '$3 > 90 && $7 > 35' "$samp
 
 Now for each sample we have a file of headers for the reads that we believe are of 18S origin:
 
-<center><img src="{{ site.url }}/images/dada2_18S_headers.png"></center>
+<center><img src="../images/dada2_18S_headers.png"></center>
 <br>
 
 ## Splitting fastq files into 16S/18S
@@ -98,7 +98,7 @@ for sample in $(cat samples); do echo $sample; python split_16S_18S_reads.py -f 
 
 Now we can see the four output files for each sample and how they're labeled:
 
-<center><img src="{{ site.url }}/images/dada2_split_fqs.png"></center>
+<center><img src="../images/dada2_split_fqs.png"></center>
 <br>
 
 ## Processing both in DADA2 and merging at the end
@@ -321,7 +321,7 @@ As with most of these types of things, we can't get everything right (because th
 
 That whole process was based on MagicBLAST alignments of the reads to the [PR2 database](https://figshare.com/articles/PR2_rRNA_gene_database/3803709){:target="_blank"}, so a good, quick evaluation of if this was all nonsense or not can be done by looking at the taxonomy assigned by RDP (which is kmer-based, not alignment) against the [silva database](https://www.arb-silva.de/){:target="_blank"} we used in DADA2. So let's look at those taxonomy outputs:
 
-<center><img src="{{ site.url }}/images/dada2_tax_output_ex.png"></center>
+<center><img src="../images/dada2_tax_output_ex.png"></center>
 <br>
 These are formatted such that the second column has the Kingdom (er, Domain), so let's see how many each has of Eukaryota, Bacteria, or Archaea in that column:
 
@@ -330,7 +330,7 @@ sed '1d' 18S_ASVs_taxonomy.txt | cut -f2 | sort | uniq -c
 sed '1d' 16S_ASVs_taxonomy.txt | cut -f2 | sort | uniq -c
 ```
 
-<center><img src="{{ site.url }}/images/dada2_tax_out_summary_ex.png"></center>
+<center><img src="../images/dada2_tax_out_summary_ex.png"></center>
 <br>
 Not bad! All 322 ASVs that came through the 18S pipeline were classified as Eukaryota by RDP with the silva database, while only 5 out of the 495 ASVs that came through the 16S pipeline were classified as Eukaryota. Of course, we have to take closer look at them, so let's grab the seqs and [web blast](https://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE=MegaBlast&PROGRAM=blastn&PAGE_TYPE=BlastSearch&BLAST_SPEC=){:target="_blank"} them:
 

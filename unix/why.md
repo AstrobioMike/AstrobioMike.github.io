@@ -1,20 +1,19 @@
 ---
 layout: main
 title: Why is this all worth it?
-categories: [bash]
-permalink: /bash/why
+categories: [unix]
+permalink: /unix/why
 ---
 
-{% include _bash_why_toc.html %}
+{% include _unix_why_toc.html %}
 
-{% include _side_tab_bash.html %}
+{% include _side_tab_unix.html %}
 
 
-It can be tough to see why these things are useful before you are actually using them regularly, so here I'm going to provide some real-life examples of how I use *bash* everyday. It is assumed you're already a little comfortable with *bash* and some of the most commonly used commands, but if not, be sure to check out the [intro to bash page](/bash/bash_intro_binder){:target="_blank"} and [six glorious commands](/bash/six_commands){:target="_blank"} 🙂
+It can be tough to see why these things are useful before you are actually using them regularly, so here I'm going to provide some real-life examples of how I use Unix everyday. It is assumed you're already a little comfortable with and some of the most commonly used commands, but if not, be sure to check out the [Unix crash course](/unix/unix-intro){:target="_blank"} 🙂
 
-<br>
+<hr style="height:10px; visibility:hidden;" />
 
----
 ---
 <br>
 # Getting started  
@@ -27,7 +26,10 @@ tar -xvf bash_why_temp.tar.gz
 rm bash_why_temp.tar.gz
 cd bash_why_temp
 ```
+<hr style="height:10px; visibility:hidden;" />
 
+---
+---
 <br>
 # Example 1 - Renaming 1,000 files
 So the setup is we have 1,000 files that have names like "Sample-1.fq", "Sample-2.fq", etc., but to use the program we want to use we need the filenames to contain an underscore instead of a dash, like "Sample_1.fq", "Sample_2.fq", etc. Time for *bash* to the rescue!
@@ -144,8 +146,10 @@ grep -w "^42" * | cut -f15 | awk '{sum += $1} END {print sum}'
 
 <br>
 And we see at this particular site the coverage of this specific amino acid position was 1,670, it was an alanine 1,605 of those times, and a glycine only 30 of those times. And sure enough this was a warmer site and we saw the exact opposite when looking at colder sites. Pretty cool! Props to [Piterra et al.](https://www.nature.com/articles/ismej2016102){:target="_blank"}.
-<br>
 
+<hr style="height:10px; visibility:hidden;" />
+
+---
 ---
 <br>
 # Example 4 - Converting NCBI taxon IDs to organism lineages  

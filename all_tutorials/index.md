@@ -4,31 +4,34 @@ title: All tutorials
 permalink: /all_tutorials/
 ---  
 
-**Below is a list of all the currently available pages. If you have any suggestions of things to add or stuff that would help you, feel free to get in touch via [twitter](https://twitter.com/AstrobioMike){:target="_blank"} or [post an issue](https://github.com/AstrobioMike/AstrobioMike.github.io/issues){:target="_blank"} 🙂**
+**Below is a list of all the currently available pages. If you have any suggestions of things to add or improve, please feel free to get in touch via [twitter](https://twitter.com/AstrobioMike){:target="_blank"} or [posting an issue](https://github.com/AstrobioMike/AstrobioMike.github.io/issues){:target="_blank"} 🙂**
 
 ---
 ---
 <br>
-<center><h2><a href="/bash/" style="color:#745bab">BASH</a></h2></center>  
- 
-* [Getting a bash environment](/bash/getting_bash_env)
-<!--* [Intro to bash](/bash/bash_intro)-->
-* [Intro to bash](/bash/bash_intro_binder)
-* [Six glorious commands](/bash/six_commands)
-* [The wonderful world of loops](/bash/for_loops)
-* [Why is this all worth it?](/bash/why)
-* [What the heck is my PATH, and how do I get it to do what I want?](/bash/modifying_your_path)
-* [Help installing tools](/bash/installing_tools)
+<center><h2><a href="/unix/" style="color:#745bab">Unix</a></h2></center>  
+
+* [Getting a Unix environment](/unix/getting_unix_env)
+* [Unix crash course](/unix/unix-intro)
+	1. [Getting started](/unix/getting-started)
+	2. [Working with files and directories](/unix/working-with-files-and-dirs)
+	3. [Redirectors and wildcards](/unix/wild-redirectors)
+	4. [Six glorious commands](/unix/six-glorious-commands)
+	5. [Variables and For loops](/unix/for-loops)  
+
+* [Why is this all worth it? (Some everyday examples)](/unix/why)
+* [What the heck is my PATH, and how do I get it to do what I want?](/unix/modifying_your_path)
+* [Help installing tools](/unix/installing_tools)
 <!--* [Some useful one-liners](/bash/one_liners)-->
-* [Downloading from NCBI](/bash/ncbi_eutils)
-* [Other great resources](/bash/other_resources)  
+* [Downloading from NCBI](/unix/ncbi_eutils)
+* [Other great resources](/unix/other_resources)  
 <br>
 
 ---
 <br>
 <center><h2><a href="/R/" style="color:#0000cc">R</a></h2></center>
 
-* [R basics](/R/basics)  
+* [Introduction to R](/R/basics)  
 * [Going deeper with indexing](/R/more_indexing)  
 * [Installing R packages](/R/installing_packages)  
 <br>
@@ -55,8 +58,12 @@ permalink: /all_tutorials/
 <br>
 <center><h2><a href="/misc/">Miscellaneous</a></h2></center>
 
-[This area](/misc/){:target="_blank"} holds tutorials and documents put together for elsewhere as well as some older versions of things for archiving purposes. Select ones are linked below, but there are more at the [index page](/misc/){:target="_blank"}.
+[This area](/misc/){:target="_blank"} holds tutorials and documents put together for elsewhere as well as some older versions of things solely from this site for archiving purposes. Select ones are linked below, but there are more [here](/misc/){:target="_blank"}.
 
 * [An amplicon and metagenomics overview](/misc/amplicon_and_metagen)
-* [Amplicon processing example with USEARCH/VSEARCH](/amplicon/workflow_ex)
+* [Amplicon processing example with USEARCH/VSEARCH](/amplicon/workflow_ex) (archived version)
+* [Intro to bash](/bash/bash_intro_binder) (archived version)
+* [Six glorious commands](/bash/six_commands) (archived version)
+* [The wonderful world of loops](/bash/for_loops) (archived version)
+
 
