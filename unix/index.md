@@ -2,7 +2,7 @@
 layout: main
 title: Unix home
 categories: [unix]
-permalink: /unix/index
+permalink: /unix/
 ---
 
 {% include _side_tab_unix.html %}
