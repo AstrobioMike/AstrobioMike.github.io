@@ -1,19 +1,12 @@
 # Site navigation links
-- title: About
+- title: About this site
   url: /about/
-
-#   
-# - title: Blog
-#   url: /posts/
   
+- title: All tutorials
+  url: /all_tutorials/
+
 - title: Research
   url: /research/
   
 - title: Home
   url: /
-  
-- title: All Tutorials
-  url: /all_tutorials/
-
-# - title: Miscellaneous
-#   url: /misc/

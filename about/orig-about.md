@@ -1,12 +1,17 @@
 ---
 layout: main
 title: About
-permalink: /about/
+permalink: /about/orig-about
 ---
 
-Hi there. My name's [Mike](https://twitter.com/AstrobioMike). I use the tools of bioinformatics to explore microbial ecology and evolution in all kinds of different systems. I did my PhD at University of Southern California and am currently a [Space Biology postdoctoral fellow](https://www.nasa.gov/feature/nasa-alfred-p-sloan-foundation-award-fellowships-to-study-space-station-microbes) with NASA at the Ames Research Center in Mountain View, CA where my primary focus is looking into molecular evolution of microbes from the International Space Station.  
-<br>
-I am definitely the 'biology-to-bioinformatics' type of person. I had never even seen a terminal window until my second year of grad school. Over the past several years I've been in the thralls of the steep learning curve that so many of us face at first, and it wasn't until pretty recently that I became comfortable with the idea of even referring to myself as a bioinformatician. And while I'm lightyears beyond where I started, I still consider myself an infant with regard to how much further I'd like to develop. But that's the thing, it's always relative. On this relative scale, if anyone is at an earlier stage than I currently am, I'd love to help out. But first, some disclaimers.
+Hi there 🙂 My name's [Mike](https://twitter.com/AstrobioMike). I'm a bioinformatician who gets to explore microbial ecology and evolution in all kinds of different environments. 
+
+I am definitely the biology-to-bioinformatics type of person. Our society as a whole these days is generating data much faster than it is developing the skills to deal with this data
+
+
+I had never even seen a terminal window until my second year of grad school (which was 
+
+. Over the past several years I've been in the thralls of the steep learning curve that so many of us face at first, and it wasn't until pretty recently that I became comfortable with the idea of even referring to myself as a bioinformatician. And while I'm lightyears beyond where I started, I still consider myself an infant with regard to how much further I'd like to develop. But that's the thing, it's always relative. On this relative scale, if anyone is at an earlier stage than I currently am, I'd love to help out. But first, some disclaimers.
 <br>
 
 <center><h3>DISCLAIMERS</h3></center>
