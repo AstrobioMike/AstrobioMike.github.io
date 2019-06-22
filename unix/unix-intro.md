@@ -1,6 +1,6 @@
 ---
 layout: main
-title: An introduction to Unix
+title: Unix crash course
 categories: [unix]
 permalink: /unix/unix-intro
 ---
