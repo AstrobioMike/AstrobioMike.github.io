@@ -11,6 +11,10 @@ permalink: /amplicon/
 <h2>WARNING!</h2>
 Don't get too lost in the weeds when working with marker-gene data. More often than not the kind of detailed questions that will land you in that situation can't be answered with this type of data anyway!</div>
 
+<center><a href="{{ site.url }}/images/amplicon_overview.png"><img src="{{ site.url }}/images/amplicon_overview.png"></a></center>
+
+<p align="right"><a href="https://ndownloader.figshare.com/files/15628100">PDF download</a></p>
+
 **Amplicons and marker-genes and tags, oh my!**  
 Most often a marker-gene analysis is the microbial ecologist's first tool in a vast toolkit. It is primarily used as a broad survey of community structure. As the warning notes above, when first beginning to work with this type of data it can be easy to get caught spinning your wheels about a subtle component in your processing pipeline that ultimately has a negligible impact compared to the noise we are working through. What I mean by this is, generally speaking, tag sequencing is most often not the appropriate tool to answer really meticulous questions. It is a tool for comparing baseline *proxies* of metrics about microbial communities. It is a tool of exploration and hypothesis generation.  
 

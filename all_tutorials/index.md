@@ -67,3 +67,20 @@ permalink: /all_tutorials/
 * [The wonderful world of loops](/bash/for_loops) (archived version)
 
 
+<br>
+
+---
+---
+<br>
+
+<center><h2>Some figures</h2></center>
+
+<center><a href="{{ site.url }}/images/amplicon_overview.png"><img src="{{ site.url }}/images/amplicon_overview.png"></a></center>
+
+<p align="right"><a href="https://ndownloader.figshare.com/files/15628100">PDF download</a></p>
+
+<br>
+
+<center><a href="{{ site.url }}/images/metagenomics_overview.png"><img src="{{ site.url }}/images/metagenomics_overview.png"></a></center>
+
+<p align="right"><a href="https://ndownloader.figshare.com/files/15628103">PDF download</a></p>

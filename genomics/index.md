@@ -7,4 +7,8 @@ categories: [genomics]
 
 {% include _side_tab_genomics.html %}
 
-Genomics is of course a ridiculously broad subject. In my small bubble of existence, my time spent in the genomics realm involves thinking about and working with individual prokaryotic genomes, doing things like: sequencing; assembly; functional annotation; assessing distributions across metagenomes; contrasting with other genomes; and trying to infer evolutionary relationships through phylogenomics. But as usual there are a ton of questions to pursue, and those questions will be different for almost everyone. Here I'm going to provide some examples of some of the things I do just to serve as a foundation for anyone that is new to this arena. Nothing here is authoritative or the "one correct way" to do things. These are just some examples to help get your feet wet, to hopefully make it easier for you to then dive in and go in whatever directions you choose.  
+<center><a href="{{ site.url }}/images/metagenomics_overview.png"><img src="{{ site.url }}/images/metagenomics_overview.png"></a></center>
+
+<p align="right"><a href="https://ndownloader.figshare.com/files/15628103">PDF download</a></p>
+
+Genomics is a very broad subject. In my small bubble, my time spent in the genomics realm involves mostly working with bacteria and archaea doing things like assembly, functional annotation, assessing distributions across metagenomes, comparative genomics, and trying to infer evolutionary relationships through phylogenomics. But as usual there are a ton of questions to pursue and lots of ways to pursue them. Here I'm going to provide some examples of some of the things I do 🙂
