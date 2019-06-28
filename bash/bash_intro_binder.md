@@ -9,6 +9,12 @@ permalink: /bash/bash_intro_binder
 
 {% include _side_tab_bash.html %}
 
+
+# UPDATE
+**This section has been updated and moved to [here](https://astrobiomike.github.io/unix/unix-intro)**
+
+
+
 > **Things covered here:**  
 *  Some quick terms
 *  Why familiarity with the command line is valuable
