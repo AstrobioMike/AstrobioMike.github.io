@@ -81,7 +81,7 @@ ___
 
 <center><a href="{{ site.url }}/images/amplicon_overview.png"><img src="{{ site.url }}/images/amplicon_overview.png"></a></center>
 
-<p align="right"><a href="https://ndownloader.figshare.com/files/12732065">PDF download</a></p>
+<p align="right"><a href="https://ndownloader.figshare.com/files/15628100">PDF download</a></p>
 
 <br>
 
@@ -111,7 +111,7 @@ All sequencing technologies make mistakes, and (to a much lesser extent), polyme
 
 <center><a href="{{ site.url }}/images/metagenomics_overview.png"><img src="{{ site.url }}/images/metagenomics_overview.png"></a></center>
 
-<p align="right"><a href="https://ndownloader.figshare.com/files/12732062">PDF download</a></p>
+<p align="right"><a href="https://ndownloader.figshare.com/files/15628103">PDF download</a></p>
 
 
 <br>
