@@ -516,6 +516,9 @@ vector_for_decontam <- c(rep(TRUE, 4), rep(FALSE, 16))
 contam_df <- isContaminant(t(asv_tab), neg=vector_for_decontam)
 
 table(contam_df$contaminant) # identified 6 as contaminants
+
+  # getting vector holding the identified contaminant IDs
+contam_asvs <- row.names(contam_df[contam_df$contaminant == TRUE, ])
 ```
 
 Since there were only six here, I wanted to peek at them. And not surprisingly, they are all things that are commonly contaminants, but of course not exclusively (e.g. *Burkholderia*, *Escherichia*, *Pseudomonas*, *Corynebacterium*). We can see this by looking at their taxonomic designations in our tax table:
