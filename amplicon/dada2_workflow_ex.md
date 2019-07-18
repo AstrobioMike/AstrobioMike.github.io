@@ -562,9 +562,6 @@ grep -w -A1 "^>ASV_104\|^>ASV_219\|^>ASV_230\|^>ASV_274\|^>ASV_285\|^>ASV_623" A
 And now, here is one way to remove them from our 3 primary outputs and create new files (back in R):  
 
 ```R
-  # getting IDs of those identified as likely contaminants
-contam_asvs <- row.names(contam_df[contam_df$contaminant == TRUE, ])
-
   # making new fasta file
 contam_indices <- which(asv_fasta %in% paste0(">", contam_asvs))
 dont_want <- sort(c(contam_indices, contam_indices + 1))
