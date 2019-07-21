@@ -2,7 +2,7 @@
 layout: main
 title: Unix crash course
 categories: [unix]
-permalink: /stamps2019/
+permalink: /stamps2019/unix-crash-course
 ---
 
 **Familiarity with the Unix command-line is very likely the most foundational skillset we can develop for bioinformatics** (and for many computational arenas beyond bioinformatics). This is a set of 5 introductory tutorials to help us get from being completely new to Unix up to being great friends with it 🙂 
