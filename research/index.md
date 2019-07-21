@@ -12,7 +12,6 @@ permalink: /research/
 #### Bioinformatician exploring microbial ecology and evolution
 
 *Email:*   Mike.Lee(AT)nasa(DOT)gov  
-*Phone:*   732-691-6402  
 {% include icon-twitter.html username=site.twitter_username %}  
 {% include _orcid.html %}  
 
