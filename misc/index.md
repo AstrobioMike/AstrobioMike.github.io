@@ -32,7 +32,7 @@ The basics to working at the command line along with some definitions and philos
 
 ## STAMPS 2019
 ### Introduction to Unix
-The basics to working at the command line along with some definitions and philosophy of starting out in bioinformatics can be found [here](/stamps2019/unix_intro){:target="_blank"}.
+The basics to working at the command line along with some definitions and philosophy of starting out in bioinformatics can be found [here](/stamps2019/){:target="_blank"}.
 <br>
 
 ---
