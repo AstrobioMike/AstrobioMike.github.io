@@ -8,7 +8,7 @@ permalink: /stamps2019/getting-started
 {% include _unix_getting_started_toc.html %}
 
 <hr>
-<center>This is part 1 of 5 of an <a href="/stamps2019/" target="_blank">introduction to Unix</a>.</center>
+<center>This is part 1 of 5 of an <a href="/stamps2019/unix-crash-course" target="_blank">introduction to Unix</a>.</center>
 <hr>
 
 > **Things covered here:**
@@ -290,6 +290,6 @@ Next we're going to look at some of the ways we can [work with files and directo
 ---
 <br>
 
-<h5><a href="/stamps2019/" style="float: left"><b>Back to:</b> Unix intro home</a>
+<h5><a href="/stamps2019/unix-crash-course" style="float: left"><b>Back to:</b> Unix intro home</a>
 
 <a href="/stamps2019/working-with-files-and-dirs" style="float: right"><b>Next:</b> 2. Working with files and directories</a></h5>

@@ -8,7 +8,7 @@ permalink: /stamps2019/wild-redirectors
 {% include _unix_redirectors_and_wildcards_toc.html %}
 
 <hr>
-<center>This is part 3 of 5 of an <a href="/stamps2019/unix-intro" target="_blank">introduction to Unix</a>. If you'd like to follow along, but need to pull up the proper working environment, visit <a href="/stamps2019/getting-started#accessing-our-command-line-environment" target="_blank">here</a> and then come back 🙂</center>
+<center>This is part 3 of 5 of an <a href="/stamps2019/unix-crash-course" target="_blank">introduction to Unix</a>. If you'd like to follow along, but need to pull up the proper working environment, visit <a href="/stamps2019/getting-started#accessing-our-command-line-environment" target="_blank">here</a> and then come back 🙂</center>
 <hr>
 
 > **Things covered here:**

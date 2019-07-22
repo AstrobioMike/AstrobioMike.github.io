@@ -8,7 +8,7 @@ permalink: /stamps2019/working-with-files-and-dirs
 {% include _unix_working_with_files_and_dirs_toc.html %}
 
 <hr>
-<center>This is part 2 of 5 of an <a href="/unix/unix-intro" target="_blank">introduction to Unix</a>. If you'd like to follow along, but need to pull up the proper working environment, visit <a href="/stamps2019/getting-started#accessing-our-command-line-environment" target="_blank">here</a> and then come back 🙂</center>
+<center>This is part 2 of 5 of an <a href="/stamp2019/unix-crash-course" target="_blank">introduction to Unix</a>. If you'd like to follow along, but need to pull up the proper working environment, visit <a href="/stamps2019/getting-started#accessing-our-command-line-environment" target="_blank">here</a> and then come back 🙂</center>
 <hr>
 <hr style="height:10px; visibility:hidden;" />
 

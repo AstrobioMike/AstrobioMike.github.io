@@ -8,7 +8,7 @@ permalink: /stamps2019/for-loops
 {% include _unix_loops_toc.html %}
 
 <hr>
-<center>This is part 5 of 5 of an <a href="/stamps2019/unix-intro" target="_blank">Introduction to Unix</a>. If you'd like to follow along, but need to pull up the proper working environment, visit <a href="/stamps2019/getting-started#accessing-our-command-line-environment" target="_blank">here</a> and then come back 🙂</center>
+<center>This is part 5 of 5 of an <a href="/stamps2019/unix-crash-course" target="_blank">Introduction to Unix</a>. If you'd like to follow along, but need to pull up the proper working environment, visit <a href="/stamps2019/getting-started#accessing-our-command-line-environment" target="_blank">here</a> and then come back 🙂</center>
 <hr>
 
 <br>
@@ -360,4 +360,4 @@ Even though loops can get much more complicated as needed, practicing these foun
 
 <h5><a href="/stamps2019/six-glorious-commands" style="float: left"><b>Previous:</b> 4. Six glorious commands</a>
 
-<a href="/stamps2019/" style="float: right"><b>Back to:</b> Unix intro home</a></h5>
+<a href="/stamps2019/unix-crash-course" style="float: right"><b>Back to:</b> Unix intro home</a></h5>
