@@ -62,7 +62,7 @@ cd ~/shell_intro/
 <blockquote><center><b>COPY AND PASTE STICKY CHECK!</b></center>
 It's okay to copy and paste things here anywhere you'd like. There can of course be some value to typing everything out, but right now is more just about the concepts. How exactly to copy and paste can be different on different machines and keyboard layouts, and sometimes just different because of the terminal we are working in. Let's take a minute now to make sure we can all copy and paste from the material into our terminals. 
 <br><br>
-There may be keyboard shortcuts that work, and/or holding shift and "right-clicking" may bring up the menu too if other ways are not working. 
+There may be keyboard shortcuts that work, and/or holding shift and "right-clicking" may bring up the menu too if other ways are not working.<br> 
 </blockquote>
 
 ---

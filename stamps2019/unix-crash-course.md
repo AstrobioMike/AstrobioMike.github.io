@@ -64,7 +64,7 @@ Here are some terms that are often used interchangeably – not because it's imp
 ---
 
 <hr style="height:10px; visibility:hidden;" />
-<center><b>Return to these later tonight if you'd like 🙂</b></center>
+<center><b>Return to these later if you'd like 🙂</b></center>
 
 <ol start="4">
   <li><a href="/stamps2019/six-glorious-commands">Six glorious commands</a></li>
