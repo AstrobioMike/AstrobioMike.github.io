@@ -29,7 +29,7 @@ We'll mostly be working with a file here called "gene_annotations.tsv", which is
 We can see the file has 4 columns: "gene_ID", "genome", "KO_ID", and "KO_annotation" (KO is for **K**egg **O**rthology, a popular functional database). Let's change into our working directory for this page and explore it a little at the command line with some of the things we've seen already.
 
 ```bash
-cd ~/unix_intro/six_commands/
+cd ~/shell_intro/six_commands/
 head gene_annotations.tsv
 ```
 

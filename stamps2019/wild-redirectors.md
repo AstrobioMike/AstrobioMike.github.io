@@ -27,7 +27,7 @@ permalink: /stamps2019/wild-redirectors
 
 >To be sure we are still working in the same place, let's run: 
 >```bash
->cd ~/unix_intro
+>cd ~/shell_intro
 >```
 
 <hr style="height:5px; visibility:hidden;" />
