@@ -6,7 +6,7 @@ permalink: /misc/amplicon_and_metagen
 
 {% include _amp_and_meta_toc.html %}
 
-This page presents a broad-level overview of amplicon sequencing and metagenomics as applied to microbial ecology. Both of these methods are most often applied for exploration and hypothesis generation and should be thought of as steps in the process of science rather than end-points – like all tools of science 🙂 
+>This page presents a broad-level overview of amplicon sequencing and metagenomics as applied to microbial ecology. Both of these methods are most often applied for exploration and hypothesis generation and should be thought of as steps in the process of science rather than end-points – like all tools of science 🙂 
 
 **Amplicon sequencing**  
 
