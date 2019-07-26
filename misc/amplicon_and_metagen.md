@@ -6,75 +6,80 @@ permalink: /misc/amplicon_and_metagen
 
 {% include _amp_and_meta_toc.html %}
 
-This page presents a broad-level overview of amplicon sequencing and metagenomics as approaches for microbial ecology and outlines some generic workflows for each listing some relevant tools. Both of these methods are just two more tools of investigation and should be thought of as steps in the process of science rather than end-points (like all tools of science). They are most often applied for exploration and hypothesis generation. 
-
-
-> "Why are you doing 16S sequencing? That doesn't tell you anything about function."  
-> 
-> "Why are you measuring nitrogen-fixation rates? That doesn't tell you anything about the biochemistry doing it."  
-> 
-> **Don't assess the utility of a tool based on something it's not supposed to do anyway.**
-
-<br>
-
-___
-<br>
+This page presents a broad-level overview of amplicon sequencing and metagenomics as applied to microbial ecology. Both of these methods are most often applied for exploration and hypothesis generation and should be thought of as steps in the process of science rather than end-points – like all tools of science 🙂 
 
 **Amplicon sequencing**  
-Amplicon sequencing of marker-genes (e.g. 16S, 18S, ITS) involves using specific primers that target a specific gene or gene fragment. It is one of the first tools in the microbial ecologist's toolkit. It is most often a broad-level survey of community composition used to generate hypotheses based on differences between samples (***differences based on recovered gene-copy numbers, not abundance of organisms***).
+
+Amplicon sequencing of marker-genes (e.g. 16S, 18S, ITS) involves using specific primers that target a specific gene or gene fragment. It is one of the first tools in the microbial ecologist's toolkit. It is most often used as a broad-level survey of community composition used to generate hypotheses based on differences between recovered gene-copy numbers between samples.
 
 **Metagenomics**  
-Shotgun metagenomic sequencing provides a way to access *all* the DNA of a mixed community. It uses random rather than targeted primers and therefore suffers much less from pcr bias. (It still suffers from other things such as cell-lysis rates which can be dependent on organism cell walls and the extraction method used.)
 
-<br>
+Shotgun metagenomic sequencing aims to amplify all the accessible DNA of a mixed community. It uses random primers and therefore suffers much less from pcr bias (discussed below). Metagenomics enables profiling of taxonomy and functional potential. Recently, the recovery of representative genomes from metagenomes has become a very powerful approach in microbial ecology, drastically expanding the known Tree of Life by granting us genomic access to as-yet unculturable microbial populations (e.g. [Hug et al. 2016](https://www.nature.com/articles/nmicrobiol201648); [Parks et al. 2017](https://www.nature.com/articles/s41564-017-0012-7)). 
 
-___
-<br>
+Here we'll discuss some of the things each is useful and not useful for, and then look at some general workflows for each. 
 
-# Some capabilities of each
-<br>
 
-## Amplicon
+## Amplicon sequencing utility
 * **Useful for:**
-
-    * one *metric* of community composition
-        * can say something about relative abundance of gene copies recovered (recovered gene copies ≠ counts of organisms)
-        * gives a snapshot of, e.g., "16S gene-fragment copies recovered"
-    * can track changes in community structure (as interpreted by recovered gene copy numbers) in response to a treatment and/or across environmental gradients/time, etc.
-    * can provide strong support for further investigation, particularly single-nucleotide resolution methods
-        * e.g. *Trichodesmium–Alteromonas* story ([starting paper here](https://www.nature.com/articles/ismej201749){:target="_blank"})  
-<br>
+    * one metric of community composition
+        * can say something about relative abundance of gene copies recovered
+    * can track changes in community structure (as interpreted by recovered gene copy numbers) in response to a treatment and/or across environmental gradients/time
+    * can provide strong support for further investigation of things 
 
 * **_Not_ useful for:**
     * abundance of organisms (or relative abundance of organisms)
         * recovered gene copies ≠ counts of organisms
             * gene-copy number varies per genome/organism (16S sequence can vary per genome)
             * pcr bias (small scale) -> under/over representation based on primer-binding efficiency
-            * pcr bias (large scale) -> "universal" primers, only looking for what we know and don't even catch all of that 
+            * pcr bias (large scale) -> "universal" primers, only looking for what we know and they don't even catch all of that 
+            * cell-lysis efficiencies
     * function
-        * Even if you can highly resolve the taxonomy of something from an amplicon sequence, it is still only one fragment of one gene, and extrapolating to a genome's functional potential is specious due to the highly variable nature of most microbes' accessory genomes. (hypothesis generation is ok, but state it as such)
-        * There is no strain-level resolving capability for a single gene. Strain-level resolution needs to be done at the genome level. This does not eliminate the value of using a single-nucleotide method like dada2, but the devil is in the interpretational details.
+        * even if we can highly resolve the taxonomy of something from an amplicon sequence, it is still only one fragment of one gene
+        * hypothesis generation is okay, e.g. speculating about observed shifts in gene-copy numbers based on what's known about nearest relatives in order to guide further work
+        * but, for example, writing a metagenomics paper based on 16S data would likely not be a good idea
+        * There is no strain-level resolving capability for a single gene, all that tells you is how similar those genes are.
         
-## Metagenomics
+        
+As noted above, amplicon data can still be very useful. Most often when people claim it isn't, they are assessing that based on things it's not supposed to do anyway, e.g.:
+
+> "Why are you doing 16S sequencing? That doesn't tell you anything about function."  
+> 
+> "Why are you measuring nitrogen-fixation rates? That doesn't tell you anything about the proteins that are doing it."  
+> 
+> **We shouldn't assess the utility of a tool based on something it's not supposed to do anyway 🙂**
+        
+## Metagenomics utility
 * **Useful for:**
     * functional potential
-    * insights into the "unculturables" 
-    * much better for "relative" abundance (still not true abundance)
+    * insights into the genomes of as-yet unculturable microbes
+    * much better for "relative" abundance due to no confounding copy-number problem and no drastic PCR bias (still not true abundance)
         * still some caveats, like cell-lysis efficiencies  
-<br>
+
 * **_Not_ useful for:**
+    * abundance of organisms
     * "activity"
-        * neither is transcriptomics or proteomics for that matter – Life is complicated 🙂
+        * neither is transcriptomics or proteomics for that matter – each gives you insight into cellular regulation at different levels
+
+<challengeBlock>
+<center><b>QUICK QUESTION!</b></center>
+
+With all that said, do you think we should expect relative abundance information from amplicon sequencing to match up with relative abundance from metagenomic sequencing? 
 <br>
 
----
-<br>
-**So, with all that said, should we expect relative abundance of amplicon sequencing to match up with metagenomics?**
+<div class="wrap-collabsible">
+  <input id="q1" class="toggle" type="checkbox">
+  <label for="q1" class="lbl-toggle">Solution</label>
+  <div class="collapsible-content">
+    <div class="content-inner">
+		
+No, and that's not a problem if we understand that neither are meant to tell us a true abundance anyway. They are providing different information is all. And the relative abundance metrics they do provide can still be informative when comparing multiple samples generated the same way 🙂
 
-No. They are very different methods with each asking different questions and providing different information.
+    </div>
+  </div>
+</div>
+</challengeBlock>
 
-___
-<br>
+
 # General workflows
 
 ## Amplicon overview
@@ -86,8 +91,7 @@ ___
 <br>
 
 #### A Note on OTUs vs ASVs  
-
-All sequencing technologies make mistakes, and (to a much lesser extent), polymerases make mistakes as well. These mistakes artificially increase the number of unique sequences in a sample, a lot. Clustering similar sequences together (generating OTUs) emerged as one way to mitigate error and summarize data – though at the cost of resolution. The field is moving towards using solely ASVs, and there is pretty good reasoning for this. This [paper](https://www.nature.com/articles/ismej2017119) nicely lays out the case for that, and the following points attempt to summarize it:  
+All sequencing technologies make mistakes, and (to a much lesser extent), polymerases make mistakes as well during the amplification process. These mistakes artificially increase the number of unique sequences in a sample, a lot. Clustering similar sequences together (generating OTUs) emerged as one way to mitigate these errors and to summarize data – though at the cost of resolution. The field as a whole is moving towards using solely ASVs, and there is pretty good reasoning for this. This [Callahan et al. 2017 paper](https://www.nature.com/articles/ismej2017119) nicely lays out the case for that, summarized in the following points:  
 
 * OTUs (operational taxonomic units)
     1. cluster sequences into groups based on percent similarity
@@ -101,22 +105,22 @@ All sequencing technologies make mistakes, and (to a much lesser extent), polyme
             * **\-** diversity of sample affects what OTUs are generated
 
 * ASVs (amplicon sequence variants)
-    1. attempt to identify the original biological sequences taking into account error
+    1. attempt to identify the original biological sequences by taking into account error
         * **\+** enables single-nucleotide resolution
         * **\+** can compare across studies
         * **\+** can capture novel diversity
 
-<br>
+If you happen to work with amplicon data, I highly recommend digging into the [Callahan et al. 2017 paper](https://www.nature.com/articles/ismej2017119) sometime 🙂
+
 ## Metagenomics overview
 
 <center><a href="{{ site.url }}/images/metagenomics_overview.png"><img src="{{ site.url }}/images/metagenomics_overview.png"></a></center>
 
 <p align="right"><a href="https://ndownloader.figshare.com/files/15628103">PDF download</a></p>
 
-
 <br>
 
-___
+---
 <br>
 
 # Some example tutorials
@@ -125,13 +129,7 @@ ___
 
 * **dada2** (ASVs)
     * [Developer tutorial](https://benjjneb.github.io/dada2/tutorial.html)
-    * Mike's [dada2 tutorial](https://astrobiomike.github.io/amplicon/dada2_workflow_ex), with a separate section for dealing with 18S mixed in with 16S
-* **usearch/vsearch** (ASVs and OTUs)
-    * [usearch](https://www.drive5.com/usearch/) is not entirely free, but it has some very useful tools and approaches (e.g. good calculation of hybrid quality scores after merging overlapping reads). There is a lightweight free version that can still do many things.
-    * [vsearch](https://github.com/torognes/vsearch/wiki/VSEARCH-pipeline) is completely free and open, and was made in response to usearch not being completely free. It does not have all of the capabilities of usearch however.
-    * Mike's [usearch/vsearch tutorial](https://astrobiomike.github.io/amplicon/workflow_ex)
-* **mothur** (OTUs only currently)
-    * [Developer tutorial](https://www.mothur.org/wiki/MiSeq_SOP)
+    * Happy Belly's [dada2 tutorial](https://astrobiomike.github.io/amplicon/dada2_workflow_ex)
 
 * **qiime2** 
     * qiime provides an environment that employs other processing tools (like those above) and also provides convenient visualization capabilities and an excellent infrastructure for tracking everything you've done
@@ -144,10 +142,9 @@ ___
 
 <h3><b>Metagenomics</b></h3>
 
-As you might guess, this is not as straightforward as the amplicon data tutorials as there are many more things to do with metagenomics data. But here are some places to start. If you know of others that are helpful please pass along so we can add them here 🙂
+As you might guess, this is not as straightforward as the amplicon data tutorials as there are typically many more possible branching paths and things to chase with metagenomics data. But here are some places to start. If you know of others that are helpful please pass along so we can add them here 🙂
 
-- Mike's recovering genomes from metagenomes [tutorial](https://astrobiomike.github.io/metagenomics/metagen_anvio)
+- Happy Belly's [recovering genomes from metagenomes tutorial](https://astrobiomike.github.io/metagenomics/metagen_anvio)
 	- [Here is a simplified example of how we recover genomes from metagenomes](/images/gen_from_metagen_slide.png); you can download a <a href="https://ndownloader.figshare.com/files/12367211">keynote slide here</a> and a <a href="https://ndownloader.figshare.com/files/12367226">powerpoint version here</a> if you'd like to use or edit 🙂  
-
 
 - A nice workflow leading up to and including recovering genomes can be found [here](http://merenlab.org/tutorials/infant-gut/) at the [anvi'o site](http://merenlab.org/software/anvio/) (along with other very informative/helpful tutorials and blogs)
