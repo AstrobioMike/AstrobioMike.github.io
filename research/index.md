@@ -42,6 +42,11 @@ I'm a bioinformatician currently at NASA's Ames Research Center in northern Cali
 [PDF download](https://academic.oup.com/bioinformatics/advance-article-pdf/doi/10.1093/bioinformatics/btz188/28405135/btz188.pdf){:target="_blank"}  
 Software lives [here](https://github.com/AstrobioMike/GToTree){:target="_blank"}; documentation lives [here](https://github.com/AstrobioMike/GToTree/wiki){:target="_blank"}.  
 
+<div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1177/1176934319862245"></div>  
+
+**Lee, M.D.** (2019). [Applications and considerations of GToTree: a user-friendly workflow for phylogenomics](https://doi.org/10.1177%2F1176934319862245){:target="_blank"}. *Evolutionary Bioinformatics*  
+[PDF download](https://journals.sagepub.com/doi/pdf/10.1177/1176934319862245){:target="_blank"}  
+
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1111/1462-2920.14552"></div>  
 
 **Lee, M.D.**, Ahlgren, N.A., Kling, J. D., Walworth, N.G., Rocap, G., Saito, M.A., Hutchins, D.A., and Webb, E.A. (2019). [Marine *Synechococcus* isolates representing globally abundant genomic lineages demonstrate a unique evolutionary path of genome reduction without a decrease in GC content](https://doi.org/10.1111/1462-2920.14552){:target="_blank"}. *Environmental Microbiology*.  
