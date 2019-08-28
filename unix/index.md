@@ -36,8 +36,8 @@ Here are some terms that are often used interchangeably – not because it's imp
 	4. [Six glorious commands](/unix/six-glorious-commands)
 	5. [Variables and For loops](/unix/for-loops)  
 
+* [What the heck is my **PATH**, and how do I get it to do what I want?](/unix/modifying_your_path)
 * [Why is this all worth it? (Some everyday examples)](/unix/why)
-* [What the heck is my PATH, and how do I get it to do what I want?](/unix/modifying_your_path)
 * [Help installing tools](/unix/installing_tools)
 <!--* [Some useful one-liners](/bash/one_liners)-->
 * [Downloading from NCBI](/unix/ncbi_eutils)
