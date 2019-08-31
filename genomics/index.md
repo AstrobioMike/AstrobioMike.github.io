@@ -1,5 +1,5 @@
 ---
-layout: main
+layout: mainish
 title: Genomics
 permalink: /genomics/
 categories: [genomics]
