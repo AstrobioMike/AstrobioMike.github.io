@@ -12,21 +12,28 @@ permalink: /all_tutorials/
 <center><h2><a href="/unix/" style="color:#745bab">Unix</a></h2></center>  
 
 * [Getting a Unix environment](/unix/getting_unix_env)
-* [Unix crash course](/unix/unix-intro)
+
+---
+
+* **[Unix crash course](/unix/unix-intro)**  
 	1. [Getting started](/unix/getting-started)
 	2. [Working with files and directories](/unix/working-with-files-and-dirs)
 	3. [Redirectors and wildcards](/unix/wild-redirectors)
 	4. [Six glorious commands](/unix/six-glorious-commands)
 	5. [Variables and For loops](/unix/for-loops)  
 
-* [Why is this all worth it? (Some everyday examples)](/unix/why)
+---
+
 * [What the heck is my PATH, and how do I get it to do what I want?](/unix/modifying_your_path)
-* [Help installing tools](/unix/installing_tools)
+* [Accessing data from NCBI at the command line with EDirect](/unix/ncbi_eutils)
+* [Why is this all worth it? (Some everyday examples)](/unix/why)
+* [Help installing tools](/unix/installing_tools) (this section is now pretty much happily obselete thanks to [conda](https://conda.io/en/latest/){:target="_blank"} 🙂)
 <!--* [Some useful one-liners](/bash/one_liners)-->
-* [Downloading from NCBI](/unix/ncbi_eutils)
 * [Other great resources](/unix/other_resources)  
+
 <br>
 
+---
 ---
 <br>
 <center><h2><a href="/R/" style="color:#0000cc">R</a></h2></center>
@@ -37,6 +44,7 @@ permalink: /all_tutorials/
 <br>
 
 ---
+---
 <br>
 <center><h2><a href="/amplicon/" style="color:#d64231">Amplicon analysis</a></h2></center>
 
@@ -46,6 +54,7 @@ permalink: /all_tutorials/
 <br>
 
 ---
+---
 <br>
 <center><h2><a href="/genomics/" style="color:#5bab87">Genomics</a></h2></center>
 
@@ -54,6 +63,7 @@ permalink: /all_tutorials/
 * [Recovering **M**etagenome-**A**ssembled **G**enomes (MAGs) from metagenomes](/genomics/metagen_anvio)
 <br>
 
+---
 ---
 <br>
 <center><h2><a href="/misc/">Miscellaneous</a></h2></center>
