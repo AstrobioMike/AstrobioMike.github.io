@@ -102,16 +102,8 @@ efetch -db protein -format fasta -id ABA21534.1
 We can't provide an input file to the **`efetch`** command, but we can to **`epost`** first. Assuming we have our target accessions in a single-column file, this can be done like so:
 
 ```bash
-head accs.txt
-```
+echo -e "ABA21534.1\nWP_013322114.1\nWP_015207051.1" > accs.txt
 
-```
-ABA21534.1
-WP_013322114.1
-WP_015207051.1
-```
-
-```bash
 epost -input accs.txt -db protein | efetch -format fasta
 ```
 
