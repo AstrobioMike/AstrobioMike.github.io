@@ -235,7 +235,7 @@ cat GCA_006538345.1-prot-accs.txt | JoinIntoGroupsOf 200 | xargs -n 1 sh -c \
     > GCA_006538345.1.faa
 ``` 
 
-That was submitting chuncks of 200 at a time and took about 20 seconds for me. Looking at [this page here of the Entrez database links](https://www.ncbi.nlm.nih.gov/entrez/query/static/entrezlinks.html){:target="_blank"} we can see that *nuccore_protein* says maximum items processed of 5,000. So I think we can set this value as high as that (which in this case is higher than our total targets, but this is how we'd do it if we had more):
+That was submitting chunks of 200 at a time and took about 20 seconds for me. Looking at [this page here of the Entrez database links](https://www.ncbi.nlm.nih.gov/entrez/query/static/entrezlinks.html){:target="_blank"} we can see that *nuccore_protein* says maximum items processed of 5,000. So I think we can set this value as high as that (which in this case is higher than our total targets, but this is how we'd do it if we had more):
 
 ```bash
 cat GCA_006538345.1-prot-accs.txt | JoinIntoGroupsOf 5000 | xargs -n 1 sh -c \
