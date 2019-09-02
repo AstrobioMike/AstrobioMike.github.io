@@ -259,4 +259,6 @@ And that took 6 seconds.
 ---
 <br>
 
-Again, I realize this isn't comprehensive or a fundamental understanding of any of this, and I apologize for that. `xtract` on its own is a pretty expansive language to learn, on top of needing to know the structure of how NCBI links all of its stuff together. It's a lot! But hopefully these examples being stored here will help more than just me 🙂
+Again, sorry this isn't a comprehensive or a fundamental explanation of any of this. I'm just not at that level with this particular skillset. `xtract` on its own is a pretty expansive language to learn, on top of needing to know the structure of how NCBI links all of its stuff together. It's a lot! I'd like to know it better someday, and then would love to put together a page for it 🤞 
+
+For now, hopefully these examples being stored here will help more than just me 🙂
