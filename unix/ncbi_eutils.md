@@ -70,13 +70,10 @@ esearch -db assembly -query '"Bacteria"[Organism] AND "latest refseq"[filter] AN
 
 **Downloading genomes by accession**  
 
-I'd typically do this part using `bit-dl-ncbi-assemblies` from my [Bioinf Tools](https://github.com/AstrobioMike/bioinf_tools#bioinformatics-tools-bit){:target="_blank"} after getting the accessions like in the examples above like so:
+I typically do this part using `bit-dl-ncbi-assemblies` from my [Bioinf Tools](https://github.com/AstrobioMike/bioinf_tools#bioinformatics-tools-bit){:target="_blank"} after getting the accessions like in the examples above. Here's what that would look like following the [*Alteromonas* example above](http://127.0.0.1:4000/unix/ncbi_eutils#accessing-genome-assemblies-and-info) to download those 160 assemblies (here in fasta format; took ~1 minute):
 
 ```bash
-echo -e "GCF_006538345.1\nGCF_006538325.1\nGCF_006538305.1\nGCF_006517115.1" \
-     > assembly-accs.txt
-
-bit-dl-ncbi-assemblies -w assembly-accs.txt -f fasta -j 4
+bit-dl-ncbi-assemblies -w Alteromonas-assembly-accs.txt -f fasta -j 10
 ```
 
 But here's an example using EDirect to pull the sequence data for a RefSeq accession:
