@@ -1,6 +1,6 @@
 ---
 layout: main
-title: Downloading from NCBI
+title: Accessing data from NCBI with EDirect
 categories: [unix, tutorial]
 permalink: /unix/ncbi_eutils
 ---
@@ -9,168 +9,244 @@ permalink: /unix/ncbi_eutils
 
 {% include _side_tab_unix.html %}
 
-[NCBI](https://www.ncbi.nlm.nih.gov/){:target="_blank"} is pretty damn awesome. But the first few times I wanted to download a massive amount of reference sequences I found myself struggling a bit. If that has happened to you, then hopefully this page helps out. NCBI's [Entrez Direct E-utilities](https://www.ncbi.nlm.nih.gov/books/NBK179288/){:target="_blank"} offers one avenue to be able to download data in bulk at the command-line, but it can take a bit of Unix dancing. I initially wrote this demonstrating one of the ways to do that dance, and you can still find that under the [Entrez section](/unix/ncbi_eutils#entrez) at the bottom of this page because it shows some general Unix tricks that are helpful in other situations. But wonderfully, after sharing the page, [@asherichia](https://twitter.com/asherichia){:target="_blank"} sent me a link to [@kaiblin](https://twitter.com/kaiblin){:target="_blank"}'s [github page](https://github.com/kblin){:target="_blank"}, where he and some others have put together two amazing tools for downloading data from NCBI. So now, I've just added two simplified examples of downloading genomes and proteins to the top of the page here demonstrating how to use their tools (even though they are very straightforward to use, and their repository [README](https://github.com/kblin/ncbi-genome-download){:target="_blank"} shows a bunch of helpful examples). Both of these tools can be installed easily via `pip` at the command line, i.e. `pip install ncbi-genome-download` and `pip install ncbi-acc-download` (if you're doing it on a server and hit a permissions error, adding the `--user` flag to `pip` usually works).  
-<br>
+[NCBI](https://www.ncbi.nlm.nih.gov/){:target="_blank"} is pretty damn awesome. But sometimes it can be a little tricky to figure out how to download the data we want – particularly when it's a lot of things and we want and/or need to do it at the command-line rather than at the site. There are some convenience tools available that may help in some situations depending on our needs. For searching by taxonomy and downloading genomes (assemblies), [@kaiblin](https://twitter.com/kaiblin){:target="_blank"} and some others have put together [a great tool](https://github.com/kblin/ncbi-genome-download){:target="_blank"} called `ncbi-genome-download`, and they have [one for downloading individual sequences by accession](https://github.com/kblin/ncbi-acc-download){:target="_blank"} called `ncbi-acc-download`. I also put together a small program specifically for downloading assemblies by accession when making [GToTree](https://github.com/AstrobioMike/GToTree/wiki/what-is-gtotree%3F){:target="_blank"}, and I found it useful in general so it's also now part of my [BioInf Tools](https://github.com/AstrobioMike/bioinf_tools#bioinformatics-tools-bit){:target="_blank"} as `bit-dl-ncbi-assemblies`. 
+
+But there have been times when I needed more than these could offer, which required me spending a decent amount of time getting used to using NCBI's
+[Entrez Direct E-utilities](https://www.ncbi.nlm.nih.gov/books/NBK179288/){:target="_blank"}, which was painful at times – and still is when I'm trying to figure out new stuff with it. But like a lot of things, once I had a little familiarity with it, I started to appreciate how useful and powerful it can be.
+
+There is a lot of info on this at [the main NCBI page for this here](https://www.ncbi.nlm.nih.gov/books/NBK179288/){:target="_blank"}, and some more [here](https://dataguide.nlm.nih.gov/edirect/overview.html){:target="_blank"}. Those are where I've learned from (along with a lot of trial and error). But I still have trouble finding examples when I need them (and I always need them when using this). And I often end up digging through several of my old log files to find things, so...
+
+This page holds some of the ways I've used EDirect, both to serve as a handy archive for myself, and to hopefully help others 🙂 It won't be as comprehensive as most other things on this site, as it's extremely expansive and it's still nowhere near intuitive for me 🤷‍♂️ But these examples may do what is needed, and if not they at least might provide good starting points for building the code that will do what is needed. 
+
+<hr style="height:15px; visibility:hidden;" />
 
 ---
 ---
 <br>
-# ncbi-genome-download
-Their script to download genomes, `ncbi-genome-download`, goes through NCBI's [ftp server](ftp://ftp.ncbi.nlm.nih.gov/){:target="_blank"}, and can be found [here](https://github.com/kblin/ncbi-genome-download){:target="_blank"}. They have quite a few options available to specify what you want that you can view with `ncbi-genome-download -h`, and there are examples you can look over at the [github repository](https://github.com/kblin/ncbi-genome-download){:target="_blank"}. For a quick example here, I'm going to pull fasta files for all [RefSeq](https://www.ncbi.nlm.nih.gov/refseq/){:target="_blank"} *Alteromonas* reference genomes labeled as "complete" – [see here](https://www.ncbi.nlm.nih.gov/assembly/help/#glossary){:target="_blank"} for definitions of RefSeq assembly levels – just because I have a softspot for *Alteromonas*:
+
+<h1>Using NCBI's EDirect</h1>
+
+For a while, this was also kind of a huge pain to install on some systems. But thanks to the gloriousness of [conda](https://conda.io/docs/){:target="_blank"}, that's no longer the case 🙂
+
+<hr style="height:15px; visibility:hidden;" />
+## Conda install
 
 ```bash
-ncbi-genome-download bacteria -g Alteromonas -l complete -F fasta -o Alteromonas_refseq_genomes
+conda install -y -c conda-forge -c bioconda -c defaults entrez-direct
 ```
 
-Here I'm specifying the positional argument of `bacteria` to tell it which group, then the genus with the `-g` flag, the assembly level with the `-l` flag, the format of the output with the `-F` flag, and the output directory with the `-o` flag. On my personal MacBook Pro this took a mere 40 seconds to download 30 genomes. Pretty sweet!  
-<br>
+<hr style="height:15px; visibility:hidden;" />
+## Accessing genome assemblies
+
+* **All RefSeq, Bacteria, "complete" assembly accessions** (for instance to input into [GToTree](https://github.com/AstrobioMike/GToTree/wiki/what-is-gtotree%3F){:target="_blank"}!)
+
+```bash
+esearch -db assembly -query '"Bacteria"[Organism] AND "latest refseq"[filter] AND \
+        "complete genome"[filter] AND (all[filter] NOT anomalous[filter] AND \
+        all[filter] NOT "derived from surveillance project"[filter])' | esummary | \
+        xtract -pattern DocumentSummary -element AssemblyAccession \
+        > bacteria-refseq-complete-accs.txt
+```
+
+>**NOTE:** We can build the search string at the NCBI website and copy and paste it from there (there's a little "Search Details" box at the right side of the search page that adds in things as we modify our search on the site). Doing the search and download with EDirect still helps a lot because it lets us: automate and document things well; download directly to a server rather than our local computer; pull more specific information than we can on the site; and more 🙂
+
+<hr style="height:10px; visibility:hidden;" />
+
+* **All *Alteromonas* assembly accessions, their assembly status, number of contigs, L50, N50, and total assembly length**
+
+```bash
+esearch -db assembly -query '"Alteromonas"[Organism] AND latest[filter] AND \
+        (all[filter] NOT anomalous[filter] AND all[filter] NOT "derived from \
+        surveillance project"[filter])' | esummary | xtract -pattern \
+        DocumentSummary -def "NA" -element AssemblyAccession,assembly-status -block \
+        Stat -if Stat@category -equals contig_count -or Stat@category -equals contig_l50 \
+        -or Stat@category -equals contig_n50 -or Stat@category -equals total_length \
+        -sep ":" -def "NA" -element Stat@category,Stat > Alteromonas-assembly-info.tsv
+```
+
+<hr style="height:15px; visibility:hidden;" />
+
+* **Downloading genomes by accession**  
+
+I'd typically do this part with one of the tools listed above in the intro, but here's an example for a RefSeq accession:
+
+```bash
+esearch -db assembly -query GCF_006538345.1 | elink -target nucleotide -name \
+        assembly_nuccore_refseq | efetch -format fasta > GCF_006538345.1.fa
+```
+
+And one for a GenBank accession:
+
+```bash
+esearch -db assembly -query GCA_006538345.1 | elink -target nucleotide -name \
+        assembly_nuccore_insdc | efetch -format fasta > GCA_006538345.1.fa
+```
+
+Note the change in the `-name` parameter between those two. "*assembly_nuccore_insdc*" is for GenBank, while "*assembly_nuccore_refseq*" is for RefSeq. Also note that I have no idea what the underlying infrastructure is here, and have to trial-and-error things whenever I'm trying to find something for the first time. Two places to look are with the `einfo -dbs` command and at [this site here](https://www.ncbi.nlm.nih.gov/entrez/query/static/entrezlinks.html){:target="_blank"}. Wish I could be more helpful than that, believe me!
+
+<hr style="height:15px; visibility:hidden;" />
 
 ---
 <br>
-# ncbi-acc-download
-The script they provide to download data by accession number, `ncbi-acc-download`, can be found [here](https://github.com/kblin/ncbi-acc-download){:target="_blank"} and uses [Entrez](https://www.ncbi.nlm.nih.gov/books/NBK184582/){:target="_blank"}. Other than accession numbers, which are supplied as a positional argument, you can tell the script whether you want nucleotides or proteins via the `-m` flag. The nucleotide option returns results in [GenBank format](https://www.ncbi.nlm.nih.gov/Sitemap/samplerecord.html){:target="_blank"}, and the protein option returns results in fasta format. Here's the syntax to pull a single protein sequence: 
+
+## Accessing proteins
+### Sequences
+* **Single protein by accesssion**
 
 ```bash
-ncbi-acc-download -m protein WP_015663423.1
+efetch -db protein -format fasta -id ABA21534.1
 ```
+<hr style="height:15px; visibility:hidden;" />
 
-If we wanted to grab multiple accessions, they can be supplied as a comma-delimited list:
+* **Many**  
+We can't provide an input file to the **`efetch`** command, but we can to **`epost`** first. Assuming we have our target accessions in a single-column file, this can be done like so:
 
 ```bash
-ncbi-acc-download -m protein WP_015663423.1,WP_006575543.1,WP_009965426.1
+head accs.txt
 ```
 
-And if you have a ton of these accessions in a single-column file, you can see one way to convert that to a comma-separated list in the [formatting for bulk download section](/unix/ncbi_eutils#formatting-for-bulk-download) below.  
+```
+ABA21534.1
+WP_013322114.1
+WP_015207051.1
+```
 
-Thanks again to [@asherichia](https://twitter.com/asherichia){:target="_blank"} for pointing me towards these two very helpful tools on [@kaiblin](https://twitter.com/kaiblin){:target="_blank"}'s [github page](https://github.com/kblin){:target="_blank"}!  
-<br>
+```bash
+epost -input accs.txt -db protein | efetch -format fasta
+```
+
+>**NOTE:** If doing this with tens of thousands of targets, we need to split things up. There is a section at the end of this page covering this. 
+
+<hr style="height:10px; visibility:hidden;" />
+
+* **Nucleotide coding sequence for protein from accession**
+
+```bash
+efetch -db protein -format fasta_cds_na -id ABA21534.1
+```
+
+<hr style="height:20px; visibility:hidden;" />
 
 ---
 <br> 
-# Entrez
-I don't use this toolset for much more than pulling proteins and genomes from time to time, so I don't have a strong grasp on everything it can do. And now that I know about the helper download tools from [@kaiblin](https://twitter.com/kaiblin){:target="_blank"}'s [github page](https://github.com/kblin){:target="_blank"} demonstrated above, I will probably use it even less. But as mentioned there are some Unix lines in here that may be helpful in other scenarios, so I figured I'd keep this example up of pulling amino acid sequences en masse. If you want to go further with using Entrez at the command line, make sure to look over the full functionality [here](https://www.ncbi.nlm.nih.gov/books/NBK25499/){:target="_blank"}.  
+### GIs from accessions
+I needed to do this to block them from a blast search as it can take a list of GIs to block, but not a list of accessions.
 
-## The efetch command
-The `efetch` command let's you pull all kinds of data from NCBI. If you run `efetch -help`, you can look at lots of parameters and types of info you can pull. Here, to get an idea of how the command works, let's just pull one amino acid sequence for an alkaline phosphatase:
+**Single**
 
 ```bash
-efetch -db protein -format fasta -id AEE52072.1
+esearch -db protein -query AEE52072.1 | esummary | xtract -pattern DocumentSummary \
+        -element Gi
 ```
 
-And after a second the sequence should print out to the screen:
+<hr style="height:10px; visibility:hidden;" />
 
-<center><img src="{{ site.url }}/images/eutils_efetch1.png"></center>
+**Many**  
+We can use **`epost`** similar to above:
 
+```bash
+epost -input accs.txt -db protein | esummary | xtract -pattern DocumentSummary \
+      -element Gi
+```
+
+<hr style="height:20px; visibility:hidden;" />
+
+<center><b>IMPORTANT</b></center>
+
+**`epost`** will not return things in the same order you input them. If you need to preserve the order, you should consider returning the accession as well, e.g.:
+
+```bash
+epost -input accs.txt -db protein | esummary | xtract -pattern DocumentSummary \
+      -element AccessionVersion,Gi
+```
+
+And then we can sort things based on the accession to make the input and outputs retain order. 
+
+<hr style="height:15px; visibility:hidden;" />
+
+---
+<br> 
+### Protein annotations from accessions
+
+* **Single**  
+
+```bash
+efetch -db protein -format gb -mode xml -id ABA21534.1 | xtract -pattern GBSeq \
+       -element GBSeq_accession-version -block GBQualifier -if GBQualifier_name \
+       -equals product -element GBQualifier_value
+```
+
+<hr style="height:10px; visibility:hidden;" />
+
+* **Many**  
+
+```bash
+epost -input accs.txt -db protein | efetch -format gb -mode xml | xtract -pattern \
+      GBSeq -element GBSeq_accession-version -block GBQualifier -if GBQualifier_name \
+      -equals product -element GBQualifier_value
+```
+
+<hr style="height:15px; visibility:hidden;" />
+
+---
+<br> 
+### Protein annotations from assembly accession
+
+```bash
+esearch -db assembly -query GCA_006538345.1 | elink -target nuccore -name \
+        assembly_nuccore_insdc | elink -target protein | efetch -format gb \
+        -mode xml | xtract -pattern GBSeq -element GBSeq_accession-version \
+        -block GBQualifier -if GBQualifier_name -equals product \
+        -element GBQualifier_value > GCA_006538345.1-annotations.tsv
+```
+
+<hr style="height:25px; visibility:hidden;" />
+
+---
 <br>
-These are some of the typical flags you need to supply to `efetch` or other E-utils commands: `-db` to specify which database; `-format` to tell it how you want the data; and -id to provide the desired accession numbers or unique IDs. Note that the default behavior just prints the output to the terminal, so to save the output you need to [redirect it](/unix/wild-redirectors){:target="_blank"} to a file.  
+# Breaking up lots of queries
 
-The efetch command can also take multiple IDs separated by commas. Here's an example pulling two sequences and writing the output to a new file:
+The other thing we have to address is that the [Entrez site notes](https://www.ncbi.nlm.nih.gov/books/NBK179288/#chapter6.Automation){:target="_blank"} that we shouldn't submit queries than the site can handle for the database we are targeting. This doesn't matter when we're doing a single search that is grabbing lots of things (like the example above to get all RefSeq bacterial accessions), but rather if we are submitting lots of things that need to be queried individually. 
+
+I needed to do this at some point, but I can't remember exactly for what. So this example will be a little contrived, but will show how I did it. Let's first grab all the protein accessions from an *Alteromonas* with assembly accession GCA_006538345.1:
 
 ```bash
-efetch -db protein -format fasta -id AEE52072.1,ADV47642.1 > my_seqs.faa
+esearch -db assembly -query GCA_006538345.1 | elink -target nuccore -name \
+        assembly_nuccore_insdc | elink -target protein | esummary | xtract -pattern \
+        DocumentSummary -element AccessionVersion > GCA_006538345.1-prot-accs.txt
 ```
 
-In practice of course we can download one or two from the site though, and we're only using this because we want a lot. While unfortunately you can't provide the `-id` argument of `efetch` a file of accession numbers, we can easily do a little Unix workaround that we'll see. Additionally, [@ctskennerton](https://twitter.com/ctskennerton){:target="_blank"} pointed out to me that you *can* in fact provide a regular one-column file of accession numbers to the `epost` command (which basically queues up accessions to then be acted on), and then pipe the output of that into the `efetch` command. This is pretty sweet as it's a bit cleaner than the workaround I initially used, but it doesn't seem to work with a lot of accessions. When I tested things it worked fine for me on ~1,000 protein seqs, but I got "request timed out" errors when trying to run it on ~10,000 sequences. So I've kept the initial Unix workaround in here and added the `epost | efetch` way too. If you're doing this regularly with a manageable number of references to pull, then doing it the cleaner way shouldn't be a problem. Thanks to [@ctskennerton](https://twitter.com/ctskennerton){:target="_blank"} for the tip! 
-
-The other thing we have to address is that the [Entrez site notes](https://www.ncbi.nlm.nih.gov/books/NBK179288/#chapter6.Automation){:target="_blank"} that you shouldn't do more than blocks of 200 at a time due to server limitations. So we'll also go over how to chop up a large file into a bunch of little ones and run things in a loop with the magic of *bash*. But first, let's look at one way to generate a large list of desired accessions.
-
-## Pulling lots of sequences
-For an example, let's imagine we want all the amino acid sequences of the *phoD*-type alkaline phosphatases available in [RefSeq](https://www.ncbi.nlm.nih.gov/refseq/){:target="_blank"} for bacteria (because Euks are too hard). While this is focused on amino acid coding sequences, the same principles apply if you wanted to pull different information. The only things that would change would be how you search your accessions and which options you specify for `efetch`.   
-
-## Generating accessions list
-As we just saw, to use `efetch` at the command line we first need to generate a list of accession numbers (or gene IDs). This can be done at the command line too with the `esearch` command, but I don't know how to use that yet. So far I've personally just done this on their web page. Here are the steps I just took to get the desired accessions for bacterial *phoD*-type amino acid sequences:  
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • went to [NCBI](https://www.ncbi.nlm.nih.gov/){:target="_blank"}  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • changed the search database from "All Databases" to "Protein"  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • searched for "alkaline phosphatase phoD"  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • limited the search to only RefSeq by clicking it under "Source databases" on the left side  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • limited the search to only bacteria by clicking that in the top right  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • clicked "Send to:", "File", changed format to "Accession List", clicked "Create File"  
-
-At the time of my doing this, this was a total of 10,249 accessions that were written to a file called "sequence.seq":  
-
-<center><img src="{{ site.url }}/images/eutils_efetch2.png"></center>
-
-<br>
-For the sake of this example we don't need that many, so I'm going to cut that down to about a 10th and store them in a file called "wanted_accessions.txt":
+This is 4,135 accessions. And here's a nice little bash function to help do this that comes from the [NCBI EDirect page](https://www.ncbi.nlm.nih.gov/books/NBK179288/){:target="_blank"}:
 
 ```bash
-head -n 1025 sequence.seq > wanted_accessions.txt
+JoinIntoGroupsOf() {
+  xargs -n "$@" echo |
+  sed 's/ /,/g'
+}
 ```
 
-## Formatting for bulk download
-Here we're going to do things without `epost` first. Remember from the example above that `efetch` can take multiple accessions separated by commas. To see how we can format our accessions list properly, first let's use Unix to build up an `efetch` command that will run on just the first 10 seqs:
+This will take chunks of our accessions and provide them separated by commas to our input. It's also a good idea to provide our email address when we are submitting a lot of things. That way if we cause a problem on their end, they can contact us to tell us and we won't keep breaking the system until we get banned 😬
 
 ```bash
-head wanted_accessions.txt | tr "\n" "," | sed 's/,$//' > ten_formatted.txt
-```
-Here I used the `head` command to just grab the first 10 accessions, then used the `tr` command to change all newline characters to commas, and then `sed` to remove the very last trailing comma (see the [Unix crash course](/unix/unix-intro){:target="_blank} if you're not yet familiar with these commands).  
-
-<center><img src="../images/eutils_efetch3.png"></center>
-
-<br>
-That's softwrapped in the image, but we can see that the 10 accessions are now all on one line and separated by commas. Now we simply need to add the rest of the `efetch` command in front of that. The following code replaces the start of every line (here just one) with the `efetch` command we need in front of the comma-delimited accessions, and then writes the output to a new file called "ten_accessions.sh":
-
-```bash
-sed 's/^/efetch -db protein -format fasta -id /' ten_formatted.txt > ten_accessions.sh
-```
-
-<center><img src="{{ site.url }}/images/eutils_efetch4.png"></center>
-
-<br>
-Now all we need to do is call that file as a *bash* script and redirect the output to a new file:
-
-```bash
-bash ten_accessions.txt > ten_phoDs.faa
-```
-
-<center><img src="../images/eutils_efetch5.png"></center>
-
-<br>
-Great. Now that we see how we can format one set of accessions for an `efetch` command, that just leaves: splitting the large file of accessions into multiple smaller files; building the formatted `efetch` command for all of them; and then throwing them all into a shell script together. Here I am going to use the `split` command to split up our large accessions file with 1,025 accessions, "wanted_accessions.txt", into as many 200-line files as are needed:
-
-```bash
-split -l 200 wanted_accessions.txt temp_block_
+cat GCA_006538345.1-prot-accs.txt | JoinIntoGroupsOf 200 | xargs -n 1 sh -c \
+    'efetch -email "MyEmail@gmail.com" -db protein -id $0 -format fasta' \
+    > GCA_006538345.1.faa
 ``` 
 
-<center><img src="../images/eutils_efetch6.png"></center>
-
-<br>
-Here the `split` command made 6 files with the prefix we provided as the last positional argument, and all of them have 200 lines except the last which has the remaining 25. Now we can just loop through those to generate the properly formatted shell script like we did above for the individual one:  
+That was submitting chuncks of 200 at a time and took about 20 seconds for me. Looking at [this page here of the Entrez database links](https://www.ncbi.nlm.nih.gov/entrez/query/static/entrezlinks.html){:target="_blank"} we can see that *nuccore_protein* says maximum items processed of 5,000. So I think we can set this value as high as that (which in this case is higher than our total targets, but this is how we'd do it if we had more):
 
 ```bash
-for block in `ls temp_block_*`; 
-  do 
-  tr "\n" "," < $block | sed 's/,$//' | sed 's/^/efetch -db protein -format fasta -id /'; 
-done > pull_more_phoD_seqs.sh
-```
+cat GCA_006538345.1-prot-accs.txt | JoinIntoGroupsOf 5000 | xargs -n 1 sh -c \
+    'efetch -email "MyEmail@gmail.com" -db protein -id $0 -format fasta' \
+    > GCA_006538345.1.faa
+``` 
 
-And here's what the newly created "pull_more_phoD_seqs.sh" file looks like (in `less` with no softwrapping, so the accession list runs off to the right):
+And that took 6 seconds. 
 
-<center><img src="{{ site.url }}/images/eutils_efetch7.png"></center>
-
-<br>
-And after running the script, which took about 15 seconds for these 1,025 sequences, we have our references 🙂 
-
-<center><img src="{{ site.url }}/images/eutils_efetch8.png"></center>
-
-<br> 
-And as mentioned above, while you can't provide the `efetch` command with a regular single-column file of accession numbers, you can provide that to the `epost` command, and then pipe that into `efetch`. In that case you wouldn't need to run the step generating the *bash* script. Also as I mentioned above though, in my quick tests this worked with the subset of ~1,000 protein sequences, but I got timed-out errors when trying to run it on 10,000. So it might depend on how much you're trying to pull, but here's how that command would look with just one file of accessions, and then if you were to loop through the blocks of 200 like we made above:
-
-```bash
-epost -input 10_accessions -db protein | efetch -format fasta > 10_accessions.faa
-
-for block in `ls temp_block_*`; do epost -input $block -db protein | efetch -format fasta; done > out.faa
-```
-
-<br>
+<hr style="height:25px; visibility:hidden;" />
 
 ---
 ---
 <br>
-# Help improve this page!
-Much to my appreciation and to the benefit all, this page has already been helped along by great tips from [@ctskennerton](https://twitter.com/ctskennerton){:target="_blank"} and [@asherichia](https://twitter.com/asherichia){:target="_blank"}. We all have so many random, little tips and tricks and tools that we've arrived at that maybe others just simply haven't come across yet. It's great to be able to share them and hopefully save others some time!  
 
-So if you have insight into doing things better please let me know via [submitting an issue](https://github.com/AstrobioMike/AstrobioMike.github.io/issues){:target="_blank"} or [twitter](https://twitter.com/astrobiomike){:target="_blank"} and we can continue to update this for everyone 🙂
-
-**P.S. This page is in serious need of an update. Nothing is wrong with what is here, but things can be done much better. This note is left on 22-June-2019 to make myself feel bad when I see it later and maybe cause me to finally do it.**
+Again, I realize this isn't comprehensive or a fundamental understanding of any of this, and I apologize for that. `xtract` on its own is a pretty expansive language to learn, on top of needing to know the structure of how NCBI links all of its stuff together. It's a lot! But hopefully these examples being stored here will help more than just me 🙂
