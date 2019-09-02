@@ -23,7 +23,7 @@ There is a lot of info on this at [the main NCBI EDirect page](https://www.ncbi.
 
 This page holds some of the ways I've used EDirect, both to serve as a handy archive for myself, and to hopefully help others 🙂 It won't be as comprehensive as most other things on this site, as it's extremely expansive and it's still nowhere near intuitive for me 🤷‍♂️ But these examples may do what is needed, and if not they at least might provide good starting points for building the code that will do what is needed. 
 
->**NOTE:** This stuff can look messy, mostly because it is. This page assumes you already have some familiarity with working at the command line. If you don't yet, then definitely consider running through the [Unix crash course](/Unix/unix-intro){:target="_blank"} first 🙂
+>**NOTE:** This stuff can look messy, mostly because it is; it scares me too. **This page assumes you already have some familiarity with working at the command line.** If you don't yet, then definitely consider running through the [Unix crash course](/Unix/unix-intro){:target="_blank"} first 🙂
 
 <hr style="height:15px; visibility:hidden;" />
 
