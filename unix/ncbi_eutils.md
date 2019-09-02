@@ -38,30 +38,30 @@ conda install -y -c conda-forge -c bioconda -c defaults entrez-direct
 <hr style="height:15px; visibility:hidden;" />
 ## Accessing genome assemblies
 
-* **All RefSeq, Bacteria, "complete" assembly accessions** (for instance to input into [GToTree](https://github.com/AstrobioMike/GToTree/wiki/what-is-gtotree%3F){:target="_blank"}!)
+* **All *Alteromonas* assembly accessions** (for instance to input into [GToTree](https://github.com/AstrobioMike/GToTree/wiki/what-is-gtotree%3F){:target="_blank"} like the [example here](https://github.com/AstrobioMike/GToTree/wiki/example-usage#alteromonas-example){:target="_blank"}!)
 
 ```bash
-esearch -db assembly -query '"Bacteria"[Organism] AND "latest refseq"[filter] AND \
-        "complete genome"[filter] AND (all[filter] NOT anomalous[filter] AND \
-        all[filter] NOT "derived from surveillance project"[filter])' | esummary | \
-        xtract -pattern DocumentSummary -element AssemblyAccession \
-        > bacteria-refseq-complete-accs.txt
+esearch -db assembly -query '"Alteromonas"[Organism] AND latest[filter] AND \
+        (all[filter] NOT anomalous[filter] AND all[filter] NOT "derived from \
+        surveillance project"[filter])' | esummary | xtract -pattern \
+        DocumentSummary -element AssemblyAccession > Alteromonas-assembly-accs.txt
 ```
 
 >**NOTE:** We can build the search string at the NCBI website and copy and paste it from there (there's a little "Search Details" box at the right side of the search page that adds in things as we modify our search on the site). Doing the search and download with EDirect still helps a lot because it lets us: automate and document things well; download directly to a server rather than our local computer; pull more specific information than we can on the site; and more 🙂
 
 <hr style="height:10px; visibility:hidden;" />
 
-* **All *Alteromonas* assembly accessions, their assembly status, number of contigs, L50, N50, and total assembly length**
+* **All RefSeq Bacteria assembly accessions, taxids, assembly status, number of contigs, L50, N50, and total assembly length** (took ~5 minutes to get 166,566 records as accessed on 1-Sep-2019)
 
 ```bash
-esearch -db assembly -query '"Alteromonas"[Organism] AND latest[filter] AND \
+esearch -db assembly -query '"Bacteria"[Organism] AND "latest refseq"[filter] AND \
         (all[filter] NOT anomalous[filter] AND all[filter] NOT "derived from \
-        surveillance project"[filter])' | esummary | xtract -pattern \
-        DocumentSummary -def "NA" -element AssemblyAccession,assembly-status -block \
-        Stat -if Stat@category -equals contig_count -or Stat@category -equals contig_l50 \
+        surveillance project"[filter])' | esummary | xtract -pattern DocumentSummary \
+        -def "NA" -element AssemblyAccession,Taxid,assembly-status -block Stat \
+        -if Stat@category -equals contig_count -or Stat@category -equals contig_l50 \
         -or Stat@category -equals contig_n50 -or Stat@category -equals total_length \
-        -sep ":" -def "NA" -element Stat@category,Stat > Alteromonas-assembly-info.tsv
+        -sep ":" -def "NA" -element Stat@category,Stat \
+        > All-bacteria-refseq-complete-assembly-info.tsv
 ```
 
 <hr style="height:15px; visibility:hidden;" />
@@ -115,6 +115,16 @@ epost -input accs.txt -db protein | efetch -format fasta
 
 ```bash
 efetch -db protein -format fasta_cds_na -id ABA21534.1
+```
+
+<hr style="height:15px; visibility:hidden;" />
+
+* **Protein sequences from assembly accession**
+
+```bash
+esearch -db assembly -query GCA_006538345.1 | elink -target nuccore -name \
+        assembly_nuccore_insdc | elink -target protein | efetch -format fasta \
+        > GCA_006538345.1.faa
 ```
 
 <hr style="height:20px; visibility:hidden;" />
