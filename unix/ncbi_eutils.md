@@ -18,6 +18,8 @@ There is a lot of info on this at [the main NCBI page for this here](https://www
 
 This page holds some of the ways I've used EDirect, both to serve as a handy archive for myself, and to hopefully help others 🙂 It won't be as comprehensive as most other things on this site, as it's extremely expansive and it's still nowhere near intuitive for me 🤷‍♂️ But these examples may do what is needed, and if not they at least might provide good starting points for building the code that will do what is needed. 
 
+>**NOTE:** This stuff can look messy, mostly because it is. This page assumes you already have some familiarity with working at the command line. If you don't yet, then definitely consider running through the [Unix crash course](/Unix/unix-intro){:target="_blank"} first 🙂
+
 <hr style="height:15px; visibility:hidden;" />
 
 ---
@@ -38,7 +40,7 @@ conda install -y -c conda-forge -c bioconda -c defaults entrez-direct
 <hr style="height:15px; visibility:hidden;" />
 ## Accessing genome assemblies and info
 
-* **All *Alteromonas* assembly accessions** (for instance to input into [GToTree](https://github.com/AstrobioMike/GToTree/wiki/what-is-gtotree%3F){:target="_blank"} like the [example here](https://github.com/AstrobioMike/GToTree/wiki/example-usage#alteromonas-example){:target="_blank"}!)
+**Getting all *Alteromonas* assembly accessions** (e.g. to input into [GToTree](https://github.com/AstrobioMike/GToTree/wiki/what-is-gtotree%3F){:target="_blank"} like the [example here](https://github.com/AstrobioMike/GToTree/wiki/example-usage#alteromonas-example){:target="_blank"}!)
 
 ```bash
 esearch -db assembly -query '"Alteromonas"[Organism] AND latest[filter] AND \
@@ -51,7 +53,7 @@ esearch -db assembly -query '"Alteromonas"[Organism] AND latest[filter] AND \
 
 <hr style="height:10px; visibility:hidden;" />
 
-* **All RefSeq Bacteria assembly accessions, taxids, assembly status, number of contigs, L50, N50, and total assembly length** (took ~5 minutes to get 166,566 records as accessed on 1-Sep-2019)
+**Getting all RefSeq Bacteria assembly accessions, taxids, assembly status, number of contigs, L50, N50, and total assembly length** (took ~5 minutes to get 166,566 records as accessed on 1-Sep-2019)
 
 ```bash
 esearch -db assembly -query '"Bacteria"[Organism] AND "latest refseq"[filter] AND \
@@ -66,9 +68,18 @@ esearch -db assembly -query '"Bacteria"[Organism] AND "latest refseq"[filter] AN
 
 <hr style="height:15px; visibility:hidden;" />
 
-* **Downloading genomes by accession**  
+**Downloading genomes by accession**  
 
-I'd typically do this part with one of the tools listed above in the intro, after getting the accessions like the examples above, but here's an example pulling the sequence data for a RefSeq accession:
+I'd typically do this part using `bit-dl-ncbi-assemblies` from my [Bioinf Tools](https://github.com/AstrobioMike/bioinf_tools#bioinformatics-tools-bit){:target="_blank"} after getting the accessions like in the examples above like so:
+
+```bash
+echo -e "GCF_006538345.1\nGCF_006538325.1\nGCF_006538305.1\nGCF_006517115.1" \
+     > assembly-accs.txt
+
+bit-dl-ncbi-assemblies -w assembly-accs.txt -f fasta -j 4
+```
+
+But here's an example using EDirect to pull the sequence data for a RefSeq accession:
 
 ```bash
 esearch -db assembly -query GCF_006538345.1 | elink -target nucleotide -name \
@@ -84,14 +95,6 @@ esearch -db assembly -query GCA_006538345.1 | elink -target nucleotide -name \
 
 Note the change in the `-name` parameter between those two. "*assembly_nuccore_insdc*" is for GenBank, while "*assembly_nuccore_refseq*" is for RefSeq. Also note that I have no idea what the underlying infrastructure is here, and have to trial-and-error things whenever I'm trying to find something for the first time. Two places to look are with the `einfo -dbs` command and at [this site here](https://www.ncbi.nlm.nih.gov/entrez/query/static/entrezlinks.html){:target="_blank"}.
 
-Here's an example of what I would typically do downloading in parallel with [Bioinf Tools](https://github.com/AstrobioMike/bioinf_tools#bioinformatics-tools-bit){:target="_blank"} using the accessions retrieved like above:
-
-```bash
-echo -e "GCF_006538345.1\nGCF_006538325.1\nGCF_006538305.1\nGCF_006517115.1" > assembly-accs.txt
-
-bit-dl-ncbi-assemblies -w assembly-accs.txt -f fasta -j 4
-```
-
 <hr style="height:15px; visibility:hidden;" />
 
 ---
@@ -99,14 +102,14 @@ bit-dl-ncbi-assemblies -w assembly-accs.txt -f fasta -j 4
 
 ## Accessing proteins
 ### Sequences
-* **Single protein by accesssion**
+**Getting a single protein sequence by accesssion**
 
 ```bash
 efetch -db protein -format fasta -id ABA21534.1
 ```
 <hr style="height:15px; visibility:hidden;" />
 
-* **Many**  
+**Getting many protein sequences by accession**  
 We can't provide an input file to the **`efetch`** command, but we can to **`epost`** first. Assuming we have our target accessions in a single-column file, this can be done like so:
 
 ```bash
@@ -119,7 +122,7 @@ epost -input accs.txt -db protein | efetch -format fasta
 
 <hr style="height:10px; visibility:hidden;" />
 
-* **Nucleotide coding sequence for protein from accession**
+**Getting the nucleotide coding sequence for a protein from the protein accession**
 
 ```bash
 efetch -db protein -format fasta_cds_na -id ABA21534.1
@@ -127,7 +130,7 @@ efetch -db protein -format fasta_cds_na -id ABA21534.1
 
 <hr style="height:15px; visibility:hidden;" />
 
-* **Protein sequences from assembly accession**
+**Getting protein sequences from an assembly (genome) accession**
 
 ```bash
 esearch -db assembly -query GCA_006538345.1 | elink -target nuccore -name \
@@ -140,9 +143,9 @@ esearch -db assembly -query GCA_006538345.1 | elink -target nuccore -name \
 ---
 <br> 
 ### GIs from accessions
-I needed to do this to block them from a blast search as it can take a list of GIs to block, but not a list of accessions.
+NCBI has unique GI IDs for things in addition to their accessions. I needed GIs specifically once in order to block them from a command-line BLAST search as it can take them to block, but not a list of accessions.
 
-**Single**
+**Getting a single GI from a protein accession**
 
 ```bash
 esearch -db protein -query AEE52072.1 | esummary | xtract -pattern DocumentSummary \
@@ -151,7 +154,7 @@ esearch -db protein -query AEE52072.1 | esummary | xtract -pattern DocumentSumma
 
 <hr style="height:10px; visibility:hidden;" />
 
-**Many**  
+**Getting many GIs from protein accessions**  
 We can use **`epost`** similar to above:
 
 ```bash
@@ -178,7 +181,7 @@ And then we can sort things based on the accession to make the input and outputs
 <br> 
 ### Protein annotations from accessions
 
-* **Single**  
+**Getting a single protein annotation from its accession**  
 
 ```bash
 efetch -db protein -format gb -mode xml -id ABA21534.1 | xtract -pattern GBSeq \
@@ -188,7 +191,7 @@ efetch -db protein -format gb -mode xml -id ABA21534.1 | xtract -pattern GBSeq \
 
 <hr style="height:10px; visibility:hidden;" />
 
-* **Many**  
+**Getting many protein annotations from their accessions**  
 
 ```bash
 epost -input accs.txt -db protein | efetch -format gb -mode xml | xtract -pattern \
