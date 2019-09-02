@@ -29,16 +29,21 @@ Here are some terms that are often used interchangeably – not because it's imp
 # All Unix pages
 
 * [Getting a Unix environment](/unix/getting_unix_env)
-* [Unix crash course](/unix/unix-intro)
+
+---
+
+* **[Unix crash course](/unix/unix-intro)**  
 	1. [Getting started](/unix/getting-started)
 	2. [Working with files and directories](/unix/working-with-files-and-dirs)
 	3. [Redirectors and wildcards](/unix/wild-redirectors)
 	4. [Six glorious commands](/unix/six-glorious-commands)
 	5. [Variables and For loops](/unix/for-loops)  
 
-* [Why is this all worth it? (Some everyday examples)](/unix/why)
+---
+
 * [What the heck is my PATH, and how do I get it to do what I want?](/unix/modifying_your_path)
-* [Help installing tools](/unix/installing_tools)
+* [Accessing data from NCBI at the command line with EDirect](/unix/ncbi_eutils)
+* [Why is this all worth it? (Some everyday examples)](/unix/why)
+* [Help installing tools](/unix/installing_tools) (this section is now pretty much happily obselete thanks to [conda](https://conda.io/en/latest/){:target="_blank"} 🙂)
 <!--* [Some useful one-liners](/bash/one_liners)-->
-* [Downloading from NCBI](/unix/ncbi_eutils)
 * [Other great resources](/unix/other_resources)  
