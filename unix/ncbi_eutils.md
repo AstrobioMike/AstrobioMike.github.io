@@ -12,9 +12,14 @@ permalink: /unix/ncbi_eutils
 [NCBI](https://www.ncbi.nlm.nih.gov/){:target="_blank"} is definitely pretty awesome. But sometimes it can be a little tricky to figure out how to download the data we want – particularly when it's a lot of things and we want and/or need to do it at the command-line rather than at the site. There are some convenient tools available that may help in some situations depending on our needs. For searching by taxonomy and downloading genomes (assemblies), [@kaiblin](https://twitter.com/kaiblin){:target="_blank"} and some others have put together [a great tool](https://github.com/kblin/ncbi-genome-download){:target="_blank"} called `ncbi-genome-download`, and they have [one for downloading individual sequences by accession](https://github.com/kblin/ncbi-acc-download){:target="_blank"} called `ncbi-acc-download`. I also put together a small program specifically for downloading assemblies by accession when making [GToTree](https://github.com/AstrobioMike/GToTree/wiki/what-is-gtotree%3F){:target="_blank"}, and I found it useful in general so it's also now part of my [Bioinf Tools](https://github.com/AstrobioMike/bioinf_tools#bioinformatics-tools-bit){:target="_blank"} as `bit-dl-ncbi-assemblies`. 
 
 But there have been times when I needed more than these could offer, which required me spending a decent amount of time getting used to using NCBI's
-[EDirect tools](https://www.ncbi.nlm.nih.gov/books/NBK179288/){:target="_blank"}. **EDirect is a set of tools NCBI provides to enable accessing the vast amount of information stored at NCBI from the command line.** Learning to use it at all was painful at times for me – and still is when I'm trying to figure out new stuff with it. But like a lot of things, once I had a little familiarity with it, I started to appreciate how useful and powerful it can be.
+[EDirect tools](https://www.ncbi.nlm.nih.gov/books/NBK179288/){:target="_blank"}. **EDirect is a set of tools NCBI provides to enable accessing the vast amount of information stored at NCBI from the command line.** Learning to use it at all was painful at times for me – and still is when I'm trying to figure out new stuff with it. But like a lot of things, once I had a little familiarity with it, I started to appreciate how useful and powerful it can be. 
 
-There is a lot of info on this at [the main NCBI page for this here](https://www.ncbi.nlm.nih.gov/books/NBK179288/){:target="_blank"}, and some more [here](https://dataguide.nlm.nih.gov/edirect/overview.html){:target="_blank"}. Those are where I've learned from (along with a lot of trial and error). But I still have trouble finding examples when I need them (and I always need them when using this). And I often end up digging through several of my old log files to find things, so...
+<hr style="height:15px; visibility:hidden;" />
+<center><h3>Why use EDirect?</h3></center>
+
+Being able to access data and info from NCBI at the command line can allow us to: automate and documente things well; download directly to a server rather than our local computer; pull more specific information than we can on the site; and more 🙂
+
+There is a lot of info on this at [the main NCBI EDirect page](https://www.ncbi.nlm.nih.gov/books/NBK179288/){:target="_blank"}, and some more [here](https://dataguide.nlm.nih.gov/edirect/overview.html){:target="_blank"}. Those are where I've learned from (along with *a lot* of trial and error). But I still have trouble finding examples when I need them (and I always need them when using this). And I often end up digging through several of my old log files to find things, so...
 
 This page holds some of the ways I've used EDirect, both to serve as a handy archive for myself, and to hopefully help others 🙂 It won't be as comprehensive as most other things on this site, as it's extremely expansive and it's still nowhere near intuitive for me 🤷‍♂️ But these examples may do what is needed, and if not they at least might provide good starting points for building the code that will do what is needed. 
 
@@ -37,7 +42,10 @@ For a while, this was also kind of a huge pain to install on some systems. But t
 conda install -y -c conda-forge -c bioconda -c defaults entrez-direct
 ```
 
-<hr style="height:15px; visibility:hidden;" />
+<hr style="height:25px; visibility:hidden;" />
+
+---
+<br>
 ## Accessing genome assemblies and info
 
 **Getting all *Alteromonas* assembly accessions** (e.g. to input into [GToTree](https://github.com/AstrobioMike/GToTree/wiki/what-is-gtotree%3F){:target="_blank"} like the [example here](https://github.com/AstrobioMike/GToTree/wiki/example-usage#alteromonas-example){:target="_blank"}!)
@@ -49,7 +57,7 @@ esearch -db assembly -query '"Alteromonas"[Organism] AND latest[filter] AND \
         DocumentSummary -element AssemblyAccession > Alteromonas-assembly-accs.txt
 ```
 
->**NOTE:** We can build the search string at the NCBI website and copy and paste it from there (there's a little "Search Details" box at the right side of the search page that adds in things as we modify our search on the site). Doing the search and download with EDirect still helps a lot because it lets us: automate and document things well; download directly to a server rather than our local computer; pull more specific information than we can on the site; and more 🙂
+>**NOTE:** We can build the search string at the NCBI website and copy and paste it from there (there's a little "Search Details" box at the right side of the search page that adds in things as we modify our search on the site).
 
 <hr style="height:10px; visibility:hidden;" />
 
