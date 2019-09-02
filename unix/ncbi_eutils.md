@@ -84,12 +84,12 @@ esearch -db assembly -query GCA_006538345.1 | elink -target nucleotide -name \
 
 Note the change in the `-name` parameter between those two. "*assembly_nuccore_insdc*" is for GenBank, while "*assembly_nuccore_refseq*" is for RefSeq. Also note that I have no idea what the underlying infrastructure is here, and have to trial-and-error things whenever I'm trying to find something for the first time. Two places to look are with the `einfo -dbs` command and at [this site here](https://www.ncbi.nlm.nih.gov/entrez/query/static/entrezlinks.html){:target="_blank"}. Wish I could be more helpful than that, believe me!
 
-Example downloading with [BioInf Tools](https://github.com/AstrobioMike/bioinf_tools#bioinformatics-tools-bit){:target="_blank"}:
+Example downloading in parallel with [Bioinf Tools](https://github.com/AstrobioMike/bioinf_tools#bioinformatics-tools-bit){:target="_blank"}:
 
 ```bash
-echo -e "GCF_006538345.1\nGCF_006538325.1\nGCF_006538305.1" > assembly-accs.txt
+echo -e "GCF_006538345.1\nGCF_006538325.1\nGCF_006538305.1\nGCF_006517115.1" > assembly-accs.txt
 
-bit-dl-ncbi-assemblies -w assembly-accs.txt -f fasta
+bit-dl-ncbi-assemblies -w assembly-accs.txt -f fasta -j 4
 ```
 
 <hr style="height:15px; visibility:hidden;" />
