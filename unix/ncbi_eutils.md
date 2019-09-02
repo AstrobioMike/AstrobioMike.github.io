@@ -36,7 +36,7 @@ conda install -y -c conda-forge -c bioconda -c defaults entrez-direct
 ```
 
 <hr style="height:15px; visibility:hidden;" />
-## Accessing genome assemblies
+## Accessing genome assemblies and info
 
 * **All *Alteromonas* assembly accessions** (for instance to input into [GToTree](https://github.com/AstrobioMike/GToTree/wiki/what-is-gtotree%3F){:target="_blank"} like the [example here](https://github.com/AstrobioMike/GToTree/wiki/example-usage#alteromonas-example){:target="_blank"}!)
 
@@ -68,7 +68,7 @@ esearch -db assembly -query '"Bacteria"[Organism] AND "latest refseq"[filter] AN
 
 * **Downloading genomes by accession**  
 
-I'd typically do this part with one of the tools listed above in the intro, but here's an example for a RefSeq accession:
+I'd typically do this part with one of the tools listed above in the intro, after getting the accessions like the examples above, but here's an example pulling the sequence data for a RefSeq accession:
 
 ```bash
 esearch -db assembly -query GCF_006538345.1 | elink -target nucleotide -name \
