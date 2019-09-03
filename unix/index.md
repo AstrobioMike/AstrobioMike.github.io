@@ -26,7 +26,7 @@ Here are some terms that are often used interchangeably – not because it's imp
 ---
 <br>
 
-# All Unix pages
+# Unix pages
 
 * [Getting a Unix environment](/unix/getting_unix_env)
 
