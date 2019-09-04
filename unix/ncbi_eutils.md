@@ -17,7 +17,7 @@ But there have been times when I needed more than these could offer, which requi
 <hr style="height:15px; visibility:hidden;" />
 <center><h3>Why use EDirect?</h3></center>
 
-Being able to access data and info from NCBI at the command line can allow us to: automate and documente things well; download directly to a server rather than our local computer; pull more specific information than we can on the site; and more 🙂
+Being able to access data and info from NCBI at the command line can allow us to: automate and document things well (we can give the exact command used to retrieve information and the date it was executed, rather than "pulled from NCBI"); download directly to a server rather than our local computer; pull more specific information than we can on the site; and more 🙂
 
 There is a lot of info on this at [the main NCBI EDirect page](https://www.ncbi.nlm.nih.gov/books/NBK179288/){:target="_blank"}, and some more [here](https://dataguide.nlm.nih.gov/edirect/overview.html){:target="_blank"}. Those are where I've learned from (along with *a lot* of trial and error). But I still have trouble finding examples when I need them (and I always need them when using this). And I often end up digging through several of my old log files to find things, so...
 
