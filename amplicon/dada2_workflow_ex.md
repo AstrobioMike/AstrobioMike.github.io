@@ -238,6 +238,8 @@ If you are in the Binder environment, be sure to click the "Console" tab on the 
 **From here on out, unless noted, we are working in R.** 
 
 ```R
+# BiocManager::install('dada2')
+
 library(dada2)
 packageVersion("dada2") # 1.11.5 when this was put together
 
@@ -598,9 +600,9 @@ We'll be using several more packages in R, so here's how you could install them 
 setwd("~/amplicon_example_workflow/")
 list.files()
 
-# install.packages("phyloseq")
+# BiocManager::install('phyloseq')
+# BiocManager::install('DESeq2')
 # install.packages("vegan")
-# install.packages("DESeq2")
 # install.packages("ggplot2")
 # install.packages("dendextend")
 # install.packages("tidyr")
