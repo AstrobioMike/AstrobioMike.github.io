@@ -600,9 +600,9 @@ We'll be using several more packages in R, so here's how you could install them 
 setwd("~/amplicon_example_workflow/")
 list.files()
 
-# BiocManager::install('phyloseq')
-# BiocManager::install('DESeq2')
+# install.packages("phyloseq") ## See following paragraph
 # install.packages("vegan")
+# install.packages("DESeq2")
 # install.packages("ggplot2")
 # install.packages("dendextend")
 # install.packages("tidyr")
