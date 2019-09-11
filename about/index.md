@@ -64,7 +64,7 @@ The purpose of this site is to try to provide the sort of help that would have h
 <img src="../images/up-dog.png" width="30%" style="float: right; padding-left: 15px">
 
 * There are many more squirrels to chase than there is time for us to chase them.
-	* This is true about many things to an extent of course, but it seems to be operating on a whole other level in bioinformatics (and I suspect everywhere in the relatively new world of "big-data").
+	* This is true about many things to an extent of course, but it seems to be operating on a whole other level in bioinformatics (and I suspect everywhere in the relatively new world of "big data").
 * There are no easy guidelines to this, as it ultimately up to you, the researcher.
 * The important takeaway is don't feel bad when you make a decision to let something go. Instead, know ahead of time that you are going to have to, and that's ok!
 
