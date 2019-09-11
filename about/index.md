@@ -55,8 +55,10 @@ The purpose of this site is to try to provide the sort of help that would have h
 		* Clearly documenting everything can make it feel a lot easier to make these decisions because the transparency means anyone can see it, understand the implications if there are any, and try other ways if they’d like.
 
 * Why for the community:
-	* Aside from just being necessary for science, it can also be a great resource for people with less experience to learn from.
-		* Even if we feel like we don't know anything, or that our code is ugly (I'm embarassed of lots of code I have on this very site 😬), it can still be helpful to those that happen to be at an earlier stage in this progression than we currently are. 
+	* Aside from just being necessary for science, it can also be a great resource for people with less experience to learn from!
+		* It's easy for us to perpetually feel like we don't know anything because naturally we are almost always focusing on the next thing we happen to be stuck on. But whether we realize it or not, we usually have scads of things in our wake that we already did figure out 😊
+		* So even if we feel like we don't know anything, or that our code is ugly (I'm embarassed of *lots* of code I have on this very site 😬), it can still be helpful to others that happen to be at a different stage in this progression than we currently are. 
+			* Not to mention virtually everyone has tips and tricks that others just haven't come across yet.
 
 <hr style="height:15px; visibility:hidden;" />
 ### 5) Be aware that you will often need to let some things go 😕
