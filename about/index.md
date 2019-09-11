@@ -56,7 +56,7 @@ The purpose of this site is to try to provide the sort of help that would have h
 
 * Why for the community:
 	* Aside from just being necessary for science, it can also be a great resource for people with less experience to learn from!
-		* It's easy for us to perpetually feel like we don't know anything because naturally we are almost always focusing on the next thing we happen to be stuck on. But whether we realize it or not, we usually have scads of things in our wake that we already did figure out 😊
+		* It's easy for us to perpetually feel like we don't know anything because naturally we are almost always focusing on whatever thing we happen to currently be stuck on. But whether we realize it or not, we usually have scads of things in our wake that we already did figure out 😊
 		* So even if we feel like we don't know anything, or that our code is ugly (I'm embarassed of *lots* of code I have on this very site 😬), it can still be helpful to others that happen to be at a different stage in this progression than we currently are. 
 			* Not to mention virtually everyone has tips and tricks that others just haven't come across yet.
 
