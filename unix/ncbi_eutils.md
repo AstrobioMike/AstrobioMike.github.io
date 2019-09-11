@@ -105,8 +105,48 @@ Note the change in the `-name` parameter between those two. "*assembly_nuccore_i
 ---
 <br>
 
+### Protein annotations from assembly accession
+
+```bash
+esearch -db assembly -query GCA_006538345.1 | elink -target nuccore -name \
+        assembly_nuccore_insdc | elink -target protein | efetch -format gb \
+        -mode xml | xtract -pattern GBSeq -element GBSeq_accession-version \
+        -block GBQualifier -if GBQualifier_name -equals product \
+        -element GBQualifier_value > GCA_006538345.1-annotations.tsv
+```
+
+<hr style="height:15px; visibility:hidden;" />
+
+---
+<br>
+
 ## Accessing proteins
-### Sequences
+### Sequences and accessions
+**Getting amino acid sequences based on protein-name text search**
+
+```bash
+esearch -db protein -query '"nosZ"[Protein name]' | efetch -format fasta > nosZ.faa
+```
+
+**Getting only unique sequences from the [Identical Protein Groups](https://www.ncbi.nlm.nih.gov/ipg/docs/about/){:target="_blank"} database**
+
+```bash
+esearch -db IPG -query '"nosZ"[Protein name]' | efetch -format fasta > nosZ-IPG.faa
+```
+
+**Getting nucleotide coding sequences for proteins based on protein-name text search**
+
+```bash
+esearch -db protein -query '"nosZ"[Protein name]' | efetch -format fasta_cds_na > nosZ.fa
+```
+
+**Getting protein accessions based on protein-name text search**
+
+```bash
+esearch -db protein -query '"nosZ"[Protein name]' | esummary | xtract -pattern \
+        DocumentSummary -element AccessionVersion > nosZ-accs.txt
+```
+
 **Getting a single protein sequence by accesssion**
 
 ```bash
@@ -202,20 +242,6 @@ efetch -db protein -format gb -mode xml -id ABA21534.1 | xtract -pattern GBSeq \
 epost -input accs.txt -db protein | efetch -format gb -mode xml | xtract -pattern \
       GBSeq -element GBSeq_accession-version -block GBQualifier -if GBQualifier_name \
       -equals product -element GBQualifier_value
-```
-
-<hr style="height:15px; visibility:hidden;" />
-
----
-<br> 
-### Protein annotations from assembly accession
-
-```bash
-esearch -db assembly -query GCA_006538345.1 | elink -target nuccore -name \
-        assembly_nuccore_insdc | elink -target protein | efetch -format gb \
-        -mode xml | xtract -pattern GBSeq -element GBSeq_accession-version \
-        -block GBQualifier -if GBQualifier_name -equals product \
-        -element GBQualifier_value > GCA_006538345.1-annotations.tsv
 ```
 
 <hr style="height:25px; visibility:hidden;" />
