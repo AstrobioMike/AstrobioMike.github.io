@@ -9,14 +9,14 @@ permalink: /genomics/where_to_start
 
 {% include _side_tab_genomics.html %}
 
-There are many things you can do to your sequence data before you being any type of analysis, and they can have a tremendous impact on what you're capable of doing with your data, especially if you will be doing any sort of assembly. As with most things in the bioinformatics world, there is no one-size-fits-all SOP for processing genomic sequencing data. Even when we are talking about individual genome sequencing, lots of things can add up to different datasets requring different processing steps or parameters to allow us to pull out the most (and more importantly most accurate) information that we can – things like the intricacies of the genome itself or the quality of the run when it was sequenced, for example. Here we'll look at some of the things you can do to your data in the initial processing steps. Help for installing the following tools can be found [here](/unix/installing_tools){:target="_blank}, and usage of some are demonstrated in the [de novo genome assembly and initial probing page](/genomics/de_novo_assembly){:target="_blank}.   
+There are many things you can do to your sequence data before you begin any type of analysis, and they can have a tremendous impact on what you're capable of doing with your data, especially if you will be doing any sort of assembly. As with most things in the bioinformatics world, there is no one-size-fits-all SOP for processing shotgun sequencing data. Even when we are talking about individual genome sequencing, lots of things can add up to different datasets requring different processing steps or parameters to allow us to pull out the most (and more importantly most accurate) information that we can – things like the intricacies of the genome itself or the quality of the run when it was sequenced, for example. Here we'll look at some of the things you can do to your data in the initial processing steps. Help for installing the following tools can be found [here](/unix/installing_tools){:target="_blank}, and usage of some are demonstrated in the [de novo genome assembly and initial probing page](/genomics/de_novo_assembly){:target="_blank}.   
 <br>
 
 ---
 ---
 <br>
 
-# Quality filtering
+# Quality trimming/filtering
 Typically you will get your sequencing data back from the sequencing facility in fastq formatted files. The defined fastq format is 4 lines per sequence: 1) the sequence identifier (header), preceded by a "@" character; 2) the sequence; 3) a "+" character and possibly the header information repeated; and 4) the quality score information for each individual basecall. With Illumina sequencing, the quality score information is a measure of how confident the software was when it called that particular base position whatever base it did. This isn't a perfect system, as there are still confounding factors like polymerase error and other systematic errors that won't show up in the quality score information, but nonetheless performing some quality-based filtering is essential.  
 
 There is a very handy and user-friendly tool called [fastqc](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) that is useful for getting an overview of your data's quality. Fastqc can help spot some commonly occurring problems, and can help guide the decisions you make when quality filtering.  
@@ -30,11 +30,12 @@ Whatever you choose to use, quality filtering needs to happen, and it's a good p
 <br>
 
 # Read error correction
-Probably not all that surprisingly, read error correction in the past has made incredible differences in the resulting assemblies and analyses I've been able to pull out of datasets. When I'm comparing assemblies (genome or metagenome) done under different parameters or with different programs, I usually throw one or two in that were assembled without an error correction step, and they are consistently worse – when considering generic assembly stats and when considering recovered genomes in my experience).  
+When I'm comparing assemblies (genome or metagenome) done under different parameters or with different programs, I usually throw in some that were assembled with and without a read error correction step, and anecdotally error corrections seems to improve things – at least when considering generic assembly stats. That doesn't mean it's always the case though. 
 
 I'm sure there are many tools that perform this task – and please shoot me a message if you know of and prefer some others so I can add them here – but I haven't yet ventured further than the error correction available with the [SPAdes assembler](http://cab.spbu.ru/software/spades/). Overall SPAdes has given me excellent results with reconstructing genomes from axenic or very clean enrichment cultures, but it can become a bit too memory intensive with some more complicated samples like diverse metagenomes. In those cases, I still run my error correction step through SPAdes with the `--only-error-correction` flag set, and then I take the error corrected reads to another assembler.  
 
-I imagine there may be some scenarios where error correction would hurt more than help (because all things seem to happen with data), and there may be some particular analysis you want to run where error correction might muddy the signal you're looking for, but barring any unusual context, I would advocate to pretty much always run a program that is designed to correct errors – especially if you are going to be assembling.  
+I imagine there may be some scenarios where error correction would hurt more than help (because all things seem to happen with data), and there may be some particular analysis you want to run where error correction might muddy the signal you're looking for, but barring any unusual context, if you are trying different assemblies, I would advocate for incorporating some with a read error correction step. 
+
 <br>
 
 ---
