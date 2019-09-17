@@ -137,7 +137,7 @@ esearch -db IPG -query '"nosZ"[Protein name]' | efetch -format fasta > nosZ-IPG.
 **Getting nucleotide coding sequences for proteins based on protein-name text search**
 
 ```bash
-esearch -db protein -query '"nosZ"[Protein name]' | efetch -format fasta_cds_aa > nosZ.fa
+esearch -db protein -query '"nosZ"[Protein name]' | efetch -format fasta_cds_na > nosZ.fa
 ```
 
 **Getting protein accessions based on protein-name text search**
@@ -170,7 +170,7 @@ epost -input accs.txt -db protein | efetch -format fasta
 **Getting the nucleotide coding sequence for a protein from the protein accession**
 
 ```bash
-efetch -db protein -format fasta_cds_aa -id ABA21534.1
+efetch -db protein -format fasta_cds_na -id ABA21534.1
 ```
 
 <hr style="height:15px; visibility:hidden;" />
