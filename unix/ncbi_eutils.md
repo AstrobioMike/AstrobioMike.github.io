@@ -250,7 +250,7 @@ epost -input accs.txt -db protein | efetch -format gb -mode xml | xtract -patter
 <br>
 # Breaking up lots of queries
 
-The other thing we have to address is that the [Entrez site notes](https://www.ncbi.nlm.nih.gov/books/NBK179288/#chapter6.Automation){:target="_blank"} that we shouldn't submit queries than the site can handle for the database we are targeting. This doesn't matter when we're doing a single search that is grabbing lots of things (like the example above to get all RefSeq bacterial accessions), but rather if we are submitting lots of things that need to be queried individually. 
+The other thing we have to address is that the [Entrez site notes](https://www.ncbi.nlm.nih.gov/books/NBK179288/#chapter6.Automation){:target="_blank"} that we shouldn't submit more queries than the site can handle for the database we are targeting. This doesn't matter when we're doing a single search that is grabbing lots of things (like the example above to get all RefSeq bacterial accessions), but rather if we are submitting lots of things that need to be queried individually. 
 
 I needed to do this at some point, but I can't remember exactly for what. So this example will be a little contrived, but will show how I did it. Let's first grab all the protein accessions from an *Alteromonas* with assembly accession GCA_006538345.1:
 
