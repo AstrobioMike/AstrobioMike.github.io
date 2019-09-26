@@ -597,7 +597,7 @@ We'll be using several more packages in R, so here's how you could install them 
 
 ```R
   # if you're following/working with the tutorial data, make sure you're in the correct place still
-setwd("~/amplicon_example_workflow/")
+setwd("~/dada2_amplicon_ex_workflow/")
 list.files()
 
 # install.packages("phyloseq") ## See following paragraph
