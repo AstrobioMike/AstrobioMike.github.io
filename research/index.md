@@ -11,9 +11,10 @@ permalink: /research/
 
 #### Bioinformatician exploring microbial ecology and evolution
 
-*Email:*   Mike.Lee(AT)nasa(DOT)gov  
+*Email:*   Mike.Lee@nasa.gov  
 {% include icon-twitter.html username=site.twitter_username %}  
-{% include _orcid.html %}  
+{% include icon-github.html username=site.github_username %}  
+{% include icon-orcid.html %}
 
 **Current position**  
 *NASA Space Biology Postdoctoral Fellow*
@@ -38,14 +39,19 @@ I'm a bioinformatician currently at NASA's Ames Research Center in northern Cali
 
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1101/512491"></div>  
 
-**Lee, M.D.** (2019). [GToTree: a user-friendly workflow for phylogenomics](https://doi.org/10.1093/bioinformatics/btz188){:target="_blank"}. *Bioinformatics*  
+**Lee, M.D.** (2019). [GToTree: a user-friendly workflow for phylogenomics](https://doi.org/10.1093/bioinformatics/btz188){:target="_blank"}. *Bioinformatics*.  
 [PDF download](https://academic.oup.com/bioinformatics/advance-article-pdf/doi/10.1093/bioinformatics/btz188/28405135/btz188.pdf){:target="_blank"}  
 Software lives [here](https://github.com/AstrobioMike/GToTree){:target="_blank"}; documentation lives [here](https://github.com/AstrobioMike/GToTree/wiki){:target="_blank"}.  
 
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1177/1176934319862245"></div>  
 
-**Lee, M.D.** (2019). [Applications and considerations of GToTree: a user-friendly workflow for phylogenomics](https://doi.org/10.1177%2F1176934319862245){:target="_blank"}. *Evolutionary Bioinformatics*  
+**Lee, M.D.** (2019). [Applications and considerations of GToTree: a user-friendly workflow for phylogenomics](https://doi.org/10.1177%2F1176934319862245){:target="_blank"}. *Evolutionary Bioinformatics*.  
 [PDF download](https://journals.sagepub.com/doi/pdf/10.1177/1176934319862245){:target="_blank"}  
+
+<div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.21105/jose.00053"></div>  
+
+**Lee, M.D.** (2019). [Happy Belly Bioinformatics: an open-source resource dedicated to helping biologists utilize bioinformatics](https://doi.org/10.21105/jose.00053){:target="_blank"}. *The Journal of Open-Source Education*.  
+[PDF download](https://www.theoj.org/jose-papers/jose.00053/10.21105.jose.00053.pdf){:target="_blank"}
 
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1111/1462-2920.14552"></div>  
 
