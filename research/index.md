@@ -21,6 +21,7 @@ permalink: /research/
 
 **Affiliations**  
 [*NASA*](https://www.nasa.gov/){:target="_blank"}  
+[*Blue Marble Space Institute of Science*](https://www.bmsis.org/){:target="_blank"}  
 [*JCVI*](https://www.jcvi.org/){:target="_blank"}  
 [*University of Southern California*](https://www.usc.edu/){:target="_blank"}  
 
