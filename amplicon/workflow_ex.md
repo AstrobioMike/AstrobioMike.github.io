@@ -125,7 +125,7 @@ We'll do this with the vsearch command `-fastq_filter`, and also quality filter 
 vsearch -fastq_filter all_samples_merged.fq --fastq_stripleft 19 --fastq_stripright 20 -fastq_maxee 1 --fastq_maxlen 280 --fastq_minlen 220 --fastaout QCd_merged.fa
 ```
 
-> **NOTE:** If this command fails, you may need to run it with an additional option set. I haven't been able to recreate this or figure out what's going on (doesn't seem to be version-dependent or method-of-installation dependent), but thanks to some awesome people writing in and helping to troubleshoot ([@zombiephylotype](https://twitter.com/zombiephylotype){:target="_blank"} and [@jaspermcevoy](https://twitter.com/jaspermcevoy){:target="_blank"}), we know it should work if you add `--fastq-max 75` to the above command.
+> **NOTE:** If this command fails, you may need to run it with an additional option set. I haven't been able to recreate this or figure out what's going on (doesn't seem to be version-dependent or method-of-installation dependent), but thanks to some awesome people writing in and helping to troubleshoot ([@zombiephylotype](https://twitter.com/zombiephylotype){:target="_blank"} and [@jaspermcevoy](https://twitter.com/jaspermcevoy){:target="_blank"}), we know it should work if you add `--fastq_qmax 75` to the above command.
 
 The output tells us only a couple thousand sequences were discarded due to poor quality and/or their length. And note that our output file from this is now a fasta file, as after quality filtering we no longer need to keep track of the quality scores for each sequence anymore. 
 
