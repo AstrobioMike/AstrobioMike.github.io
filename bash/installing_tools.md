@@ -285,7 +285,7 @@ cd ~/happy_bin
 curl -LO https://downloads.sourceforge.net/project/quast/quast-4.6.1.tar.gz
 tar -xzvf quast-4.6.1.tar.gz
 rm quast-4.6.1.tar.gz
-cd quast-4.6.1.tar.gz
+cd quast-4.6.1
 sudo ./setup.py install # will need to enter your password, and actually puts the executable in your /usr/local/bin
 cd ~/happy_bin
 ```
