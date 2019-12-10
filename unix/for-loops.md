@@ -108,7 +108,7 @@ done
 Just to note, we don't need to put these on separate lines, and we don't need to indent over the "body" of the loop like we did above (the `echo $item` part), but both can help with readability so we will continue doing that moving forward. As an example though, we could also enter it like this on one line, separating the major blocks with semicolons:
 
 ```bash
-for word in car truck ukulele; do echo $word; done
+for item in car truck ukulele; do echo $item; done
 ```
 
 We can also do multiple things within the body of the loop (the lines between the special words **`do`** and **`done`**). Here we'll add another line that also writes the words into a file we'll call "words.txt":
