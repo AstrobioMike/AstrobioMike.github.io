@@ -42,10 +42,10 @@ Loops are extremely powerful in all programming languages. They are what let us 
 We can think of a variable as a placeholder for a value that will change with every iteration of our loop. To set a variable at the command line, we need to provide the variable name we want, an equals sign, and then the value we want the variable to hold (with no spaces in between any of that). Let's try it:
 
 ```bash
-my_var=ANGUS
+my_var=Europa
 ```
 
-Nothing prints out when a variable is set, but the value "ANGUS" has been stored in the variable "my_var". 
+Nothing prints out when a variable is set, but the value "Europa" has been stored in the variable "my_var". 
 
 To use what's stored in a variable, the variable name needs to be preceded by a **`$`** so the shell knows to *evaluate* what follows, rather than just treat it as generic characters. 
 
@@ -64,7 +64,7 @@ echo my_var
 Recall that spaces are special characters on the command line. If we wanted to set a variable that contained spaces, we could surround it in quotations to tell Unix it should be considered as one thing:
 
 ```bash
-my_new_var="ANGUS is awesome."
+my_new_var="Europa is awesome."
 
 echo $my_new_var
 ```
@@ -94,10 +94,10 @@ There are 4 special words in the syntax of a For Loop in Unix languages: `for`, 
 | **`done`** | tell the computer we are done telling it what to do with each item |
 
 
-Let's see what this looks like in practice. Here we are going to: name the variable "item" (we can name this whatever we want); loop over 3 words (cat, dog, and ukulele); and we're going to just `echo` each item, which will print each word to the terminal. 
+Let's see what this looks like in practice. Here we are going to: name the variable "item" (we can name this whatever we want); loop over 3 words (car, truck, and ukulele); and we're going to just `echo` each item, which will print each word to the terminal. 
 
 ```bash
-for item in cat dog ukulele
+for item in car truck ukulele
 do
   echo $item
 done
@@ -108,13 +108,13 @@ done
 Just to note, we don't need to put these on separate lines, and we don't need to indent over the "body" of the loop like we did above (the `echo $item` part), but both can help with readability so we will continue doing that moving forward. As an example though, we could also enter it like this on one line, separating the major blocks with semicolons:
 
 ```bash
-for word in cat dog ukulele; do echo $word; done
+for word in car truck ukulele; do echo $word; done
 ```
 
 We can also do multiple things within the body of the loop (the lines between the special words **`do`** and **`done`**). Here we'll add another line that also writes the words into a file we'll call "words.txt":
 
 ```bash
-for item in cat dog ukulele
+for item in car truck ukulele
 do
   echo $item
   echo $item >> words.txt
@@ -140,7 +140,7 @@ Notice that we used <htmlCode><b>>></b></htmlCode> as the redirector inside the 
   <div class="collapsible-content">
     <div class="content-inner">
 
-<pre>for item in cat dog ukulele
+<pre>for item in car truck ukulele
 do
   echo $item
   echo $item > test.txt
@@ -167,7 +167,7 @@ Can you think of where we could put the <htmlCode><b>></b></htmlCode> so that it
   <div class="collapsible-content">
     <div class="content-inner">
 
-<pre>for item in cat dog ukulele
+<pre>for item in car truck ukulele
 do
   echo $item
 done > test.txt</pre>
