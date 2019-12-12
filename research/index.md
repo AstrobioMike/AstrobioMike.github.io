@@ -29,7 +29,7 @@ permalink: /research/
 I'm a bioinformatician currently at NASA's Ames Research Center in northern California, USA. I focus primarily on microbial ecology and evolution in all kinds of different systems ranging from the bottoms of our oceans up to the International Space Station 👽
 
 **CV**  
-[Lee_CV_2019.pdf](/research/Lee_CV_May_2019.pdf){:target="_blank"}  
+[Lee_CV_2019.pdf](/research/Lee_CV_Dec_2019.pdf){:target="_blank"}  
 <br>
 
 ---
