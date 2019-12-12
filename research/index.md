@@ -84,6 +84,11 @@ Software lives [here](https://github.com/AstrobioMike/GToTree){:target="_blank"}
 Kling, J.D., **Lee, M.D.**, Fu, F-X., Phan, M.D., Wang, X., Qu, P., and Hutchins, D.A. (2019). [Transient exposure to unusually high temperatures reshapes coastal phytoplankton communities](https://www.nature.com/articles/s41396-019-0525-6){:target="_blank"}. *ISME*.  
 [PDF download](Kling_et_al_2019_ISME.pdf){:target="_blank"}  
 
+<div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1128/MRA.01089-19"></div>  
+
+Sharma, I. and **Lee, M.D.** (2019). [Draft Genome Sequence of Cyclobacterium marinum Strain Atlantic-IS, Isolated from the Atlantic Slope off the Coast of Virginia, USA](https://mra.asm.org/content/8/50/e01089-19){:target="_blank"}. *Microbiology Resource Announcements*.  
+[PDF download](https://mra.asm.org/content/ga/8/50/e01089-19.full-text.pdf){:target="_blank"} 
+
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.3389/fmicb.2018.00189"></div>  
 
 Walworth, N.G. and **Lee, M.D.**, Suffridge, C., Qu, P., Fu, F-X., Saito, M.A., Webb, E.A., Sañudo-Wilhelmy, S.A., and Hutchins, D.A (2017). [Functional genomics and phylogenetic evidence suggest genus-wide cobalamin production by the globally distributed marine nitrogen fixer Trichodesmium](https://doi.org/10.3389/fmicb.2018.00189){:target="_blank"}. *Frontiers in Microbiology*.  
