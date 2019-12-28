@@ -79,6 +79,11 @@ Software lives [here](https://github.com/AstrobioMike/GToTree){:target="_blank"}
 **Lee, M.D.**, Kling, J.D., Araya, R., and Ceh, J. (2018). [Jellyfish life stages shape associated microbial communities, while a core microbiome is maintained across all](https://doi.org/10.3389/fmicb.2018.01534){:target="_blank"}. *Frontiers in Microbiology*.  
 [PDF download](Lee_et_al_2018_Front_Micro.pdf){:target="_blank"}  
 
+<div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1111/1462-2920.14893"></div>  
+
+Ahlgren, N.A., Belisle, B.S., and **Lee, M.D.** (2019). [Genomic mosaicism underlies the adaptation of marine Synechococcus ecotypes to distinct oceanic iron niches](https://doi.org/10.1111/1462-2920.14893){:target="_blank"}. *Evolutionary Bioinformatics*.  
+[PDF download](Ahlgren_et_al_2019_Syn_EM.pdf){:target="_blank"}  
+
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1038/s41396-019-0525-6"></div>  
 
 Kling, J.D., **Lee, M.D.**, Fu, F-X., Phan, M.D., Wang, X., Qu, P., and Hutchins, D.A. (2019). [Transient exposure to unusually high temperatures reshapes coastal phytoplankton communities](https://www.nature.com/articles/s41396-019-0525-6){:target="_blank"}. *ISME*.  
