@@ -16,14 +16,15 @@ permalink: /research/
 {% include icon-github.html username=site.github_username %}  
 {% include icon-orcid.html %}
 
-**Current position**  
-*NASA Space Biology Postdoctoral Fellow*
+**Current positions**  
+*NASA Space Biology Postdoctoral Fellow*  
+*NASA GeneLab Bioinformatician*  
 
 **Affiliations**  
 [*NASA*](https://www.nasa.gov/){:target="_blank"}  
 [*Blue Marble Space Institute of Science*](https://www.bmsis.org/){:target="_blank"}  
+[*NASA GeneLab*](https://genelab.nasa.gov/){:target="_blank"}  
 [*JCVI*](https://www.jcvi.org/){:target="_blank"}  
-[*University of Southern California*](https://www.usc.edu/){:target="_blank"}  
 
 **Research summary**  
 I'm a bioinformatician currently at NASA's Ames Research Center in northern California, USA. I focus primarily on microbial ecology and evolution in all kinds of different systems ranging from the bottoms of our oceans up to the International Space Station 👽
