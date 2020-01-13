@@ -11,7 +11,7 @@ permalink: /unix/unix-intro
 
 <hr style="height:10px; visibility:hidden;" />
 # Why learn Unix?
-*  it's the foundation for most of bioinformatics
+*  it's the foundation for most of bioinformatics (and much more)
 *  enables the use of non-GUI (Graphical User Interface) tools
 *  reproducibility
 *  quickly perform operations on large files (without reading into memory)
