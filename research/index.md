@@ -91,7 +91,7 @@ Software lives [here](https://github.com/AstrobioMike/GToTree){:target="_blank"}
 <a name="Ahlgren_et_al_2019_EM"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1111/1462-2920.14893"></div>  
 
-Ahlgren, N.A., Belisle, B.S., and **Lee, M.D.** (2019). [Genomic mosaicism underlies the adaptation of marine Synechococcus ecotypes to distinct oceanic iron niches](https://doi.org/10.1111/1462-2920.14893){:target="_blank"}. *Evolutionary Bioinformatics*.  
+Ahlgren, N.A., Belisle, B.S., and **Lee, M.D.** (2019). [Genomic mosaicism underlies the adaptation of marine Synechococcus ecotypes to distinct oceanic iron niches](https://doi.org/10.1111/1462-2920.14893){:target="_blank"}. *Environmental Microbiology*.  
 [PDF download](Ahlgren_et_al_2019_Syn_EM.pdf){:target="_blank"}  
 
 <a name="Kling_et_al_2019_ISME"></a>
