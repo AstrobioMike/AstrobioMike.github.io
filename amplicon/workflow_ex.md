@@ -9,7 +9,15 @@ permalink: amplicon/workflow_ex
 
 {% include _side_tab_amplicon.html %}
 
->**NOTE:** This page is now somewhat outdated, but I am leaving it up for archiving purposes. If you are new to amplicon analysis, I recommend working through **[this page instead](/amplicon/dada2_workflow_ex)** 🙂
+<div class="warning">
+<h2><b>ATTENTION!!</b></h2>
+<b>This page is now outdated and not being maintained, but being kept here for archive purposes. If you are new to amplicon analysis, I recommend working through <a href="/amplicon/dada2_workflow_ex/">this page instead</a> 🙂</b>
+</div>
+
+<br>
+
+---
+<br>
 
 This module represents a walkthrough of *one* possible workflow for an amplicon dataset (if you need a quick primer on some relevant terminology, visit the [amplicon main page](/amplicon/){:target="_blank"}). This will entail processing the raw sequences with [vsearch](https://github.com/torognes/vsearch){:target="_blank"} and [usearch](https://drive5.com/usearch/){:target="_blank"}, and analyzing the output and making some visualizations with [R](https://www.r-project.org/){:target="_blank"} using some great packages like [*vegan*](https://github.com/vegandevs/vegan){:target="_blank"} and [*phyloseq*](http://joey711.github.io/phyloseq/){:target="_blank"}.  
 
@@ -55,7 +63,7 @@ You can download the required dataset and files by copying and pasting the follo
 
 ```
 cd ~
-curl -O https://AstrobioMike.github.io/tutorial_files/amplicon_example_workflow.tar.gz
+curl -L -o amplicon_example_workflow.tar.gz https://ndownloader.figshare.com/files/21179823
 tar -xzvf amplicon_example_workflow.tar.gz
 rm amplicon_example_workflow.tar.gz
 cd amplicon_example_workflow/

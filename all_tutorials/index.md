@@ -48,6 +48,9 @@ permalink: /all_tutorials/
 <br>
 <center><h2><a href="/amplicon/" style="color:#d64231">Amplicon analysis</a></h2></center>
 
+<center><a href="{{ site.url }}/images/amplicon_overview.png"><img src="{{ site.url }}/images/amplicon_overview.png"></a></center>
+
+<p align="right"><a href="https://ndownloader.figshare.com/files/15628100">PDF download</a></p>
 * [Demultiplexing example](/amplicon/demultiplexing)  
 * [A full walkthrough of processing and initial analyses](/amplicon/dada2_workflow_ex)  
 * [An example of dealing with 16S and 18S mixed together](/amplicon/16S_and_18S_mixed)  
@@ -58,9 +61,13 @@ permalink: /all_tutorials/
 <br>
 <center><h2><a href="/genomics/" style="color:#5bab87">Genomics</a></h2></center>
 
+<center><a href="{{ site.url }}/images/metagenomics_overview.png"><img src="{{ site.url }}/images/metagenomics_overview.png"></a></center>
+
+<p align="right"><a href="https://ndownloader.figshare.com/files/15628103">PDF download</a></p>
+
 * [Where to start: quality filtering, error correction, and depth normalization](/genomics/where_to_start)  
 * [*de novo* genome assembly](/genomics/de_novo_assembly) 
-* [Recovering **M**etagenome-**A**ssembled **G**enomes (MAGs) from metagenomes](/genomics/metagen_anvio)
+* [Recovering **M**etagenome-**A**ssembled **G**enomes (MAGs) from metagenomes](/genomics/metagen_anvio)  
 <br>
 
 ---
@@ -68,7 +75,7 @@ permalink: /all_tutorials/
 <br>
 <center><h2><a href="/misc/">Miscellaneous</a></h2></center>
 
-[This area](/misc/){:target="_blank"} holds tutorials and documents put together for elsewhere as well as some older versions of things solely from this site for archiving purposes. Select ones are linked below, but there are more [here](/misc/){:target="_blank"}.
+[The miscellaneous area](/misc/){:target="_blank"} holds tutorials and documents put together for elsewhere as well as some older versions of things solely from this site for archiving purposes. Select ones are linked below, but there are more [here](/misc/){:target="_blank"}.
 
 * [An amplicon and metagenomics overview](/misc/amplicon_and_metagen)
 * [Amplicon processing example with USEARCH/VSEARCH](/amplicon/workflow_ex) (archived version)
@@ -76,21 +83,3 @@ permalink: /all_tutorials/
 * [Six glorious commands](/bash/six_commands) (archived version)
 * [The wonderful world of loops](/bash/for_loops) (archived version)
 
-
-<br>
-
----
----
-<br>
-
-<center><h2>Some figures</h2></center>
-
-<center><a href="{{ site.url }}/images/amplicon_overview.png"><img src="{{ site.url }}/images/amplicon_overview.png"></a></center>
-
-<p align="right"><a href="https://ndownloader.figshare.com/files/15628100">PDF download</a></p>
-
-<br>
-
-<center><a href="{{ site.url }}/images/metagenomics_overview.png"><img src="{{ site.url }}/images/metagenomics_overview.png"></a></center>
-
-<p align="right"><a href="https://ndownloader.figshare.com/files/15628103">PDF download</a></p>
