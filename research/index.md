@@ -88,6 +88,18 @@ Software lives [here](https://github.com/AstrobioMike/GToTree){:target="_blank"}
 **Lee, M.D.**, Kling, J.D., Araya, R., and Ceh, J. (2018). [Jellyfish life stages shape associated microbial communities, while a core microbiome is maintained across all](https://doi.org/10.3389/fmicb.2018.01534){:target="_blank"}. *Frontiers in Microbiology*.  
 [PDF download](Lee_et_al_2018_Front_Micro.pdf){:target="_blank"}  
 
+<a name="Walworth_et_al_2017_FrontMicro"></a>
+<div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.3389/fmicb.2018.00189"></div>  
+
+Walworth, N.G. and **Lee, M.D.**, Suffridge, C., Qu, P., Fu, F-X., Saito, M.A., Webb, E.A., Sañudo-Wilhelmy, S.A., and Hutchins, D.A (2017). [Functional genomics and phylogenetic evidence suggest genus-wide cobalamin production by the globally distributed marine nitrogen fixer Trichodesmium](https://doi.org/10.3389/fmicb.2018.00189){:target="_blank"}. *Frontiers in Microbiology*.  
+[PDF download](/research/Walworth_Lee_et_al_2018_FrontMicro.pdf){:target="_blank"}  
+
+<a name="ORourke_et_al_2020_astrobio_chapter"></a>
+<div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.21775/9781912530304.01"></div>  
+
+O'Rourke, A.O., Zoumplis, A., Wilburn, P., **Lee, M.D.**, Lee, Z., Vecina, M., and Mercader, K. (2020). [Following the Astrobiology roadmap: origins, habitability, and future exploration](https://doi.org/10.21775/9781912530304){:target="_blank"}. Book chapter in *Astrobiology: current, evolving, and emerging perspectives* by Caister Academic Press.  
+[PDF download](https://doi.org/10.21775/9781912530304.01){:target="_blank"}  
+
 <a name="Ahlgren_et_al_2019_EM"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1111/1462-2920.14893"></div>  
 
@@ -106,11 +118,6 @@ Kling, J.D., **Lee, M.D.**, Fu, F-X., Phan, M.D., Wang, X., Qu, P., and Hutchins
 Sharma, I. and **Lee, M.D.** (2019). [Draft Genome Sequence of Cyclobacterium marinum Strain Atlantic-IS, Isolated from the Atlantic Slope off the Coast of Virginia, USA](https://mra.asm.org/content/8/50/e01089-19){:target="_blank"}. *Microbiology Resource Announcements*.  
 [PDF download](https://mra.asm.org/content/ga/8/50/e01089-19.full-text.pdf){:target="_blank"} 
 
-<a name="Walworth_et_al_2017_FrontMicro"></a>
-<div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.3389/fmicb.2018.00189"></div>  
-
-Walworth, N.G. and **Lee, M.D.**, Suffridge, C., Qu, P., Fu, F-X., Saito, M.A., Webb, E.A., Sañudo-Wilhelmy, S.A., and Hutchins, D.A (2017). [Functional genomics and phylogenetic evidence suggest genus-wide cobalamin production by the globally distributed marine nitrogen fixer Trichodesmium](https://doi.org/10.3389/fmicb.2018.00189){:target="_blank"}. *Frontiers in Microbiology*.  
-[PDF download](/research/Walworth_Lee_et_al_2018_FrontMicro.pdf){:target="_blank"}  
 
 <a name="Walworth_et_al_2017_AEM"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="doi: 10.1128/AEM.02137-17"></div>  
