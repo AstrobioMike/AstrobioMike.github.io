@@ -153,6 +153,10 @@ Whenever I am working with a new dataset, I typically generate a few assemblies 
 Here we'll run a couple with [SPAdes](http://cab.spbu.ru/software/spades/){:target="_blank"} and a couple with [MEGAHIT](https://github.com/voutcn/megahit){:target="_blank"}. I will note that I've consistently found that incorporating an error-correction step tends improve assembly results, and the one I happen to use is available through the SPAdes program. So even when I end up using the assembly from another program, I typically run error-correction on the reads with SPAdes first, and then put the output of that into whatever other assembler I'm using. A default SPAdes run with the current version (noted at the top of this page) will run the error-correction step and save the reads from it so you can then use them elsewhere. If you don't want to do the assembly with SPAdes, but run the error-correction step, you can set the `--only-error-correction` flag like we do first here.
 
 ## SPAdes
+
+>**UPDATE:**
+>As of SPAdes [v3.14](http://cab.spbu.ru/files/release3.14.0/changelog.html), there is a dedicated `--isolate` mode that is designed to deal better with the high coverage that typically comes with isolate sequencing. That wasn't used in the below examples because it wasn't out yet, but if assembling an isolate, it is probably a good idea to use or at least try that too 🙂
+
 As mentioned above, I've had great results with [SPAdes](http://cab.spbu.ru/software/spades/){:target="_blank"} before when working with axenic or enrichment cultures, so I anticipate that to be the case here. And as discussed at the top of the page, the error-correction step here is the most computationally intensive of the whole process here, so I ran that alone on a server as follows (it took about 45 minutes with these settings):
 
 ```bash
