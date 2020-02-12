@@ -103,7 +103,7 @@ do
 done
 ```
 
-> **Note:** Notice the prompt is different while we are within the loop syntax. On the jetstream instances we're working on, it shows `and...> ` until we finish the loop with **`done`**. This might look different if you are on a different system, but it will be something distinct from the normal prompt. If you get stuck with that alternate prompt and you want to get rid of it, you can press **`ctrl + c`** to cancel it. 
+> **Note:** Notice the prompt is different while we are within the loop syntax. This is to tell you you are not at the typical prompt. If we get stuck with that alternate prompt and we want to get rid of it, we can press **`ctrl + c`** to cancel it. 
 
 Just to note, we don't need to put these on separate lines, and we don't need to indent over the "body" of the loop like we did above (the `echo $item` part), but both can help with readability so we will continue doing that moving forward. As an example though, we could also enter it like this on one line, separating the major blocks with semicolons:
 
@@ -214,7 +214,7 @@ For a more practical example, let's pull multiple specific sequences we want fro
 ### BONUS ROUND: interleaving files with **paste**
 A pretty neat use of **`paste`** is to interleave two files. What **`paste`** is doing is sticking two files together, line-by-line, with some delimiter (separating character) in between them. This delimiter by default is a **`tab`** character, but we can set it to other things too, including a *newline* character. To demonstrate this, let's make a fasta-formatted sequence file from our genes in the previous lesson. 
 
->"Fasta" is a common format for holding sequence information. In it, each sequence entry takes up two lines: the first is the name of the sequence and needs to be preceded by a **`>`** character; and the second line is the sequence. It looks like this:
+>**NOTE:** "Fasta" is a common format for holding sequence information. In it, each sequence entry takes up two lines: the first is the name of the sequence and needs to be preceded by a **`>`** character; and the second line is the sequence. It looks like this:
 >
 >```
 >>Seq_1
@@ -317,7 +317,7 @@ Cool! There's one more nuance we need to address though, and that is whether **`
 grep -A 1 "9" genes.faa
 ```
 
-It grabs everything that has a "9" in it. But we can tell **`grep`** to only take exact matches, meaning it needs to be the full word, if we provide the **`-w`** flag (for **w**ord). Here, the "word" can't have any whitespace inside it (spaces, tabs, and newline characters count as whitespace). We then also just need to add the leading **`>`** character in front of the sequence ID we want:
+It grabs everything that has a "9" in it. But we can tell **`grep`** to only take exact matches, meaning it needs to be the full word, if we provide the **`-w`** flag (for **w**ord). Here, the "word" (string we're looking for) must be immediately surrounded by whitespace (spaces, tabs, and newline characters count as whitespace). We then also just need to add the leading **`>`** character in front of the sequence ID we want:
 
 ```bash
 grep -w -A 1 ">9" genes.faa
@@ -346,6 +346,8 @@ done > target_genes.faa
 ls
 head target_genes.faa
 ```
+
+And now we've made a new fasta file holding the sequences of just the genes we wanted.
 
 <hr style="height:10px; visibility:hidden;" />
 

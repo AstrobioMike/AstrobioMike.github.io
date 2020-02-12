@@ -33,7 +33,7 @@ permalink: /unix/six-glorious-commands
 ---
 <br>
 
-We'll mostly be working with a file here called "gene_annotations.tsv", which is a tab-delimited table holding genes, their annotations, and their amino acid sequences. To help orient us, here is a peek at it in Excel:
+We'll mostly be working with a file here called "gene_annotations.tsv", which is a tab-delimited table genes IDs, their source genome, and some annotation info. To help orient us, here is a peek at it in Excel:
 
 <center><img src="../images/unix_example_gene_annots.png" width="70%"></center>
 <br>
@@ -70,7 +70,7 @@ Now that we know something about the file we're working with, let's get to some 
 cut -f 1 gene_annotations.tsv
 ```
 
-That is printing out all of the lines to the screen though, let's pipe **`|`** it into **`head`** for now to keep things manageable while we're working on it (remember we can bring up a previous command by pressing up):
+That is printing out all of the lines to the screen though, let's pipe **`|`** it into **`head`** for now to keep things manageable while we're working on it **(remember we can bring up a previous command by pressing up)**:
 
 ```bash
 cut -f 1 gene_annotations.tsv | head
@@ -153,7 +153,7 @@ Back to our gene annotations file, remember it holds KO-annotation information i
 head -n 1 gene_annotations.tsv
 ```
 
-For the moment, let's pretend we're interested in genes predicted to encode for the enzyme epoxyqueuosine reductase. If we search at the [KO website](https://www.genome.jp/kegg/ko.html) for this, it tells us that there are [2 KO_IDs](https://www.genome.jp/dbget-bin/www_bfind_sub?mode=bfind&max_hit=1000&dbkey=orthology&keywords=epoxyqueuosine+reductase) associated with it: K09765 and K18979. **`grep`** is a super-quick way to see if they are in our annotations file: 
+For the moment, let's pretend we're interested in genes predicted to encode for the enzyme epoxyqueuosine reductase for some reason. If we search at the [KO website](https://www.genome.jp/kegg/ko.html) for this, it tells us that there are [2 KO_IDs](https://www.genome.jp/dbget-bin/www_bfind_sub?mode=bfind&max_hit=1000&dbkey=orthology&keywords=epoxyqueuosine+reductase) associated with it: K09765 and K18979. **`grep`** is a super-quick way to see if they are in our annotations file: 
 
 ```bash
 grep K09765 gene_annotations.tsv
@@ -224,7 +224,7 @@ Let's say we want to add these protein lengths and sequences to our "gene_annota
 paste gene_annotations.tsv genes_and_seqs.tsv | head -n 1
 ```
 
->**Note:** If a "paste: write error: Broken pipe" message pops up here, it can be ignored. It is just happening because the **`head`** command is finishing before the **`paste`** command, and then **`paste`** is telling us it had nowhere to send the output anymore. But since all we care about is the first line here, it does not affect what we're doing. (Not all systems do things this way, but the one we're working on does.)
+>**Note:** If a "paste: write error: Broken pipe" message pops up here, it can be ignored. It is just happening because the **`head`** command is finishing before the **`paste`** command, and then **`paste`** is telling us it had nowhere to send the output anymore. But since all we care about is the first line here, it does not affect what we're doing. (Not all systems do things this way, so you may or may not see that.)
 
 If we wanted to take everything except the fifth column (the second "gene_ID" column), we could do it like this:
 
@@ -240,7 +240,7 @@ Notice that by putting the dash after the 6, and nothing else, we are specifying
 ## sed
 **`sed`** (for **s**tream **ed**itor) is our "search and replace" command, just like in something like Excel or Word, but much more powerful. Like many of the commands here, **`sed`** is useful in just general usage, but you can also learn to do a lot more with it if you need/want to at some point. For now, let's look at the general usage.
 
-Let's imagine a totally-not-real, never-happened scenario where co-authors waited until our paper was accepted (and we've even approved the proofs already) to then tell us they want to change the name of one of the new genomes in it 🤦 So now we need to change all instances of "UW179A" to "UW277". 
+Let's imagine a totally-not-real, never-happened scenario where co-authors waited until our paper was accepted (and we'd even approved the proofs already) to then tell us they want to change the name of one of the new genomes in it 🤦 So now we need to change all instances of "UW179A" to "UW277". 
 
 This genome happens to be at the end of our file, so we can check it with **`tail`** if we'd like:
  
@@ -284,7 +284,7 @@ Note that only the first occurrence in each line was changed. To change that beh
 sed 's/NA/<NA>/g' gene_annotations.tsv | head
 ```
 
-And now all instances are replaced. These quick examples were just looking for exact matches, but **`sed`** has very powerful pattern searching features (building off of what special characters like **`*`**, **`?`**, and others can do) that you can look into as needed.
+And now all instances are replaced. These quick examples were just looking for exact matches, but **`sed`** has very powerful pattern searching features (building off of what special characters like **`*`**, **`?`**, and others can do) that we can look into as needed.
 
 <hr style="height:10px; visibility:hidden;" />
 ## awk  
@@ -312,7 +312,7 @@ We can also do this sort of filtering based on multiple conditions by connecting
 awk ' $5 > 95 && $2 > 1000 ' blast_output.tsv
 ```
 
-We can also perform calculations on-the-fly to filter columns with **`awk`**. BLAST is a "local" aligner, which means we can have just a small portion of our input sequence align to something with a very high percent identity, but taken as a whole the entire sequences may be very different. The second row from the last command shows an example of this:
+We can also perform calculations on-the-fly to filter columns with **`awk`**. BLAST is a "local" aligner, which means we can have just a small portion of our input sequence align to something with a very high percent identity, but taken as a whole the sequences may be very different. The second row from the last command shows an example of this:
 
 <pre>query   qlen    subject slen    pident  al_length
 Te_4133 1470    3R_1087 8642    100.0   200</pre>
@@ -329,9 +329,9 @@ Again, **`awk`** can seem pretty tricky, especially at first, but forunately we 
 
 <hr style="height:10px; visibility:hidden;" />
 ## tr
-The last one we're going to look at is **`tr`** (for **tr**anslate). **`tr`** changes one character into another character. It seems to become more useful with time, but it's worth knowing early if for no other reason than it deals with special characters really well – the type of special characters that many Excel versions put in exported tables that can ruin working with them at the command line 🤬
+The last one we're going to look at is **`tr`** (for **tr**anslate). **`tr`** changes one character into another character. It seems to become more useful with time, but it's worth knowing early if for no other reason than it deals with special characters really well – the type of special characters that some Excel versions put in exported tables that can mess up working with them at the command line.
 
-For example, when exporting a table as tab-delimited or as a csv file from many versions of Excel, there will be odd newline characters (newline characters tell the computer to end one line and start a new one). The typical newline character is represented like this **`\n`**, but Excel likes to put in **`\r`** characters. We can see this messing with things on the Excel-exported file if we open it with **`less`**:
+For example, when exporting a table as tab-delimited or as a csv file from many versions of Excel, there will be different newline characters than the command line is expecting (newline characters tell the computer to end one line and start a new one). The typical newline character is represented like this **`\n`**, but some Excel versions put in **`\r`** characters. We can see this messing with things on the Excel-exported file if we open it with **`less`**:
 
 ```bash
 less gene_annotations_excel_exported.tsv

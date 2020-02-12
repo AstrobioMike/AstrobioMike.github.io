@@ -71,6 +71,11 @@ Don't forget to press enter to execute the last command (usually that doesn't co
 
 <h2><b><center>Now, let's get started!</center></b></h2>
 
+>To be sure we are all starting in the same place, and to work out the details for copying and pasting the the window you're working in (which can be different for some systems), copy and paste this command and hit `enter`: 
+>```bash
+>cd ~/unix_intro
+>```
+
 ---
 <br>
 # Running commands
@@ -83,7 +88,7 @@ Don't forget to press enter to execute the last command (usually that doesn't co
 date
 ```
 
-When we run **`date`** with no arguments, it uses some default settings, like assuming we want to know the time in our local time zone (well, the computer's local time zone). But we can provide optional arguments to **`date`**. Optional arguments most often require putting a dash in front of them in order for the program to interpret them properly. Here we are adding the **`-u`** argument to tell it to report UTC time instead of the local time: 
+When we run **`date`** with no arguments, it uses some default settings, like assuming we want to know the time in our computer's local time zone. But we can provide optional arguments to **`date`**. Optional arguments most often require putting a dash in front of them in order for the program to interpret them properly. Here we are adding the **`-u`** argument to tell it to report UTC time instead of the local time: 
 
 ```bash
 date -u
@@ -127,7 +132,7 @@ head --help
 And/or we can go to google to look for help. This is one of the parts that is not about memorization at all. We might remember a few if we use them a lot, but searching for options and details when needed is definitely the norm!
 
 <blockquote>
-What we've done so far already really is the framework for how all things work at the command line! Multiple commands can be strung together, and some commands can have many options, inputs, and outputs and can grow to be quite long, but this general framework is underlying it all.<br><br><center><b>Becoming familiar with these baseline rules is important, memorizing particular commands and options is not!</b></center><br>
+What we've done so far already really is the framework for how almost all things work at the command line! Multiple commands can be strung together, and some commands can have many options, inputs, and outputs and can grow to be quite long, but this is the general framework that underlies it all.<br><br><center><b>Becoming familiar with these baseline rules is important, memorizing particular commands and options is not!</b></center><br>
 </blockquote>
 
 
