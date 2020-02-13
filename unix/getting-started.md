@@ -71,7 +71,7 @@ Don't forget to press enter to execute the last command (usually that doesn't co
 
 <h2><b><center>Now, let's get started!</center></b></h2>
 
->To be sure we are all starting in the same place, and to work out the details for copying and pasting the the window you're working in (which can be different for some systems), copy and paste this command and hit `enter`: 
+>To be sure we are all starting in the same place, and to work out the details for copying and pasting in the window you're working in (which can be different for some systems), copy and paste this command and hit `enter`: 
 >```bash
 >cd ~/unix_intro
 >```
