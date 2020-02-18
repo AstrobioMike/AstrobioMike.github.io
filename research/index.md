@@ -27,10 +27,10 @@ permalink: /research/
 [*JCVI*](https://www.jcvi.org/){:target="_blank"}  
 
 **Research summary**  
-I'm a bioinformatician currently at NASA's Ames Research Center in northern California, USA. I focus primarily on microbial ecology and evolution in all kinds of different systems ranging from the bottoms of our oceans up to the International Space Station 👽
+I'm a bioinformatician at NASA's Ames Research Center in northern California, USA. I focus primarily on microbial ecology and evolution in all kinds of different systems ranging from the bottoms of our oceans up to the International Space Station 👽
 
 **CV**  
-[Lee_CV_2020.pdf](/research/Lee_CV_Jan_2020.pdf){:target="_blank"}  
+[Lee_CV_2020.pdf](/research/Lee_CV_Feb_2020.pdf){:target="_blank"}  
 <br>
 
 ---
