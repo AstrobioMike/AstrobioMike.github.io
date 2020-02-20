@@ -60,6 +60,12 @@ I'm a bioinformatician at NASA's Ames Research Center in northern California, US
 Software lives [here](https://github.com/AstrobioMike/GToTree){:target="_blank"}; documentation lives [here](https://github.com/AstrobioMike/GToTree/wiki){:target="_blank"}.  
 
 <a name="Lee_2019_evo_bioinf"></a>
+<div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1371/journal.pone.0227152"></div>  
+
+O'Rourke, A. and **Lee, M.D.**, Nierman, W.C., Everroad, R.C., and Dupont, C.L. (2020). [Genomic and phenotypic characterization of Burkholderia isolates from the potable water system of the International Space Station](https://doi.org/10.1371/journal.pone.0227152){:target="_blank"}. *PLOS ONE*.  
+[PDF download](https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0227152&type=printable){:target="_blank"}  
+
+<a name="Lee_2019_evo_bioinf"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1177/1176934319862245"></div>  
 
 **Lee, M.D.** (2019). [Applications and considerations of GToTree: a user-friendly workflow for phylogenomics](https://doi.org/10.1177%2F1176934319862245){:target="_blank"}. *Evolutionary Bioinformatics*.  
