@@ -114,7 +114,7 @@ Walworth, N.G. and **Lee, M.D.**, Suffridge, C., Qu, P., Fu, F-X., Saito, M.A., 
 [PDF download](/research/Walworth_Lee_et_al_2018_FrontMicro.pdf){:target="_blank"}  
 
 <a name="ORourke_et_al_2020_astrobio_chapter"></a>
-<div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.21775/9781912530304.01"></div>  
+<div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.21775/9781912530304"></div>  
 
 O'Rourke, A.O., Zoumplis, A., Wilburn, P., **Lee, M.D.**, Lee, Z., Vecina, M., and Mercader, K. (2020). [Following the Astrobiology roadmap: origins, habitability, and future exploration](https://doi.org/10.21775/9781912530304){:target="_blank"}. Book chapter in *Astrobiology: current, evolving, and emerging perspectives* by Caister Academic Press.  
 [PDF download](https://doi.org/10.21775/9781912530304.01){:target="_blank"}  
