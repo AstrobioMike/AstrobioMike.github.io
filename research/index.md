@@ -62,7 +62,7 @@ Software lives [here](https://github.com/AstrobioMike/GToTree){:target="_blank"}
 <a name="Lee_2019_evo_bioinf"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1371/journal.pone.0227152"></div>  
 
-O'Rourke, A. and **Lee, M.D.**, Nierman, W.C., Everroad, R.C., and Dupont, C.L. (2020). [Genomic and phenotypic characterization of Burkholderia isolates from the potable water system of the International Space Station](https://doi.org/10.1371/journal.pone.0227152){:target="_blank"}. *PLoS ONE*.  
+O'Rourke, A. and **Lee, M.D.**, Nierman, W.C., Everroad, R.C., and Dupont, C.L. (2020). [Genomic and phenotypic characterization of *Burkholderia* isolates from the potable water system of the International Space Station](https://doi.org/10.1371/journal.pone.0227152){:target="_blank"}. *PLoS ONE*.  
 [PDF download](https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0227152&type=printable){:target="_blank"}  
 
 <a name="Lee_2019_evo_bioinf"></a>
