@@ -92,7 +92,7 @@ Now, let's get started!
 
 # Processing overview
 
->**Note:** Due to some version changes when updating to a newer binder, values for some things may not match exactly with what's shown in the tutorial text and photos. This isn't a problem 🙂
+>**Note:** Due to some version changes when updating to a newer binder, versions and values for some things there may not match exactly with what's shown in the tutorial text and photos here. This isn't a problem 🙂
 
 It's good to try to keep a bird's-eye view of what's going on. So here is an overview of the main processing steps we'll be performing with [cutadapt](https://cutadapt.readthedocs.io/en/stable/index.html){:target="_blank"} and [DADA2](https://benjjneb.github.io/dada2/index.html){:target="_blank"}. Don't worry if anything seems unclear right now, we will discuss each at each step.
 
