@@ -241,7 +241,7 @@ If you are in the Binder environment, be sure to click the "Console" tab on the 
 # BiocManager::install('dada2')
 
 library(dada2)
-packageVersion("dada2") # 1.11.5 when this was put together
+packageVersion("dada2") # 1.11.5 when this was initially put together
 
 setwd("~/dada2_amplicon_ex_workflow")
 
@@ -1195,4 +1195,3 @@ If you glance through the taxonomy of our significant table here, you'll see sev
 <center><b>Now is when you do the science part 🙂</b></center>
 <br>
 Above we barely scratched the surface on just a handful of things. Here's where your questions and the experimental design start to guide how you go further. In [the paper](https://www.frontiersin.org/articles/10.3389/fmicb.2015.01470/full){:target="_blank"} this dataset came from for instance we ended up incorporating other seafloor basalt studies to identify what looked to be conserved taxa that showed up everywhere (like a sulfur-oxidizing gammaproteobacterium, *Thioprofundum lithotrophicum*), and we also identified that there seems to be a basalt-hosted Thaumarchaeota (*Nitrosopumilus* sp.) distinct from those present in the bottom water samples we analyzed; this was interesting to us because the genus has a known water-column version (*N. maritimus*) and sediment version (*N. koreensis*), and it seems there may also be a basalt-hosted counterpart that exists in relatively high abundance and may play a substantial role in ammonia oxidation and chemolithoautotrophy globally on deepsea basalts. And this is what I mean about marker-gene data being a tool for hypothesis generation: this bug can now be targeted with metagenomics and ultimately culturing efforts so we can try to figure out if it is actually playing a substantial role in biogeochemical cycling and the chemical transformation of much of the seafloor (my money's on yes, naturally). If you want to see more of how this dataset ended up, check out the discussion section of the [paper](https://www.frontiersin.org/articles/10.3389/fmicb.2015.01470/full){:target="_blank"}, as an independent party I must say it's written pretty well 🙂
-bundle exec htmlproofer --assume-extension --alt-ignore '/.*/' --disable-external --trace _site/
