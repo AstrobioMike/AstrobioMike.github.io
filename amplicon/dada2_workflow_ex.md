@@ -91,6 +91,9 @@ Now, let's get started!
 <br>
 
 # Processing overview
+
+>**Note:** Due to some version changes when updating to a newer binder, values for some things may not match exactly with what's shown in the tutorial text and photos. This isn't a problem 🙂
+
 It's good to try to keep a bird's-eye view of what's going on. So here is an overview of the main processing steps we'll be performing with [cutadapt](https://cutadapt.readthedocs.io/en/stable/index.html){:target="_blank"} and [DADA2](https://benjjneb.github.io/dada2/index.html){:target="_blank"}. Don't worry if anything seems unclear right now, we will discuss each at each step.
 
 >**NOTE:** This particular dataset is already demultiplexed – meaning each sample has its own file(s) already. Sometimes you will get your data all mixed together in one file, and you will need to separate them into individual files based on their barcodes. If your data are starting in that form, you can check out [a demultiplexing example on this page](/amplicon/demultiplexing){:target="_blank"} if you'd like. 
@@ -241,7 +244,7 @@ If you are in the Binder environment, be sure to click the "Console" tab on the 
 # BiocManager::install('dada2')
 
 library(dada2)
-packageVersion("dada2") # 1.11.5 when this was initially put together
+packageVersion("dada2") # 1.11.5 when this was initially put together, though now 1.15.2 in the binder
 
 setwd("~/dada2_amplicon_ex_workflow")
 
