@@ -248,6 +248,32 @@ epost -input accs.txt -db protein | efetch -format gb -mode xml | xtract -patter
 
 ---
 <br>
+
+## Accessing taxonomy info from protein accessions
+
+### Source-organism taxid and lineage from protein accession
+
+**Running for a single protein accession**
+
+```bash
+efetch -db protein -id WP_041587175.1 -format xml | xtract -pattern Seq-entry \
+       -def "NA" -element Textseq-id_accession,Textseq-id_version \
+       -block BioSource_org -def "NA" -element Object-id_id,OrgName_lineage
+```
+
+**Running for many protein accessions**
+
+```bash
+epost -input accs.txt -db protein | efetch -format xml | xtract -pattern Seq-entry \
+      -def "NA" -element Textseq-id_accession,Textseq-id_version \
+      -block BioSource_org -def "NA" -element Object-id_id,OrgName_lineage
+```
+
+<hr style="height:25px; visibility:hidden;" />
+
+---
+<br>
+
 # Breaking up lots of queries
 
 The other thing we have to address is that the [Entrez site notes](https://www.ncbi.nlm.nih.gov/books/NBK179288/#chapter6.Automation){:target="_blank"} that we shouldn't submit more queries than the site can handle for the database we are targeting. This doesn't matter when we're doing a single search that is grabbing lots of things (like the example above to get all RefSeq bacterial accessions), but rather if we are submitting lots of things that need to be queried individually. 

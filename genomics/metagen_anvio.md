@@ -23,7 +23,9 @@ permalink: /genomics/metagen_anvio
 # Intro
 There are lots of awesome things you can do with metagenomics. Here's an overview that tries to highlight some common approaches: 
 
-<center><a href="https://raw.githubusercontent.com/AstrobioMike/Misc/master/metagen_overview.png"><img src="https://raw.githubusercontent.com/AstrobioMike/Misc/master/metagen_overview.png"></a></center>
+<center><a href="{{ site.url }}/images/metagenomics_overview.png"><img src="{{ site.url }}/images/metagenomics_overview.png"></a></center>
+
+<p align="right"><a href="https://ndownloader.figshare.com/files/15628103">PDF download</a></p>
 
 Recovering genomes from metagenomes has become a powerful tool for microbial ecologists. Here we will assemble a metagenome, and go through the process of "binning" our assembled contigs into groups based on coverage and sequence composition using the analysis and visualization platform [anvi'o](http://merenlab.org/software/anvio/){:target="_blank"}. Here's a general overview of how we currently recover **m**etagenome-**a**ssembled **g**enomes from metagenomes:
 
