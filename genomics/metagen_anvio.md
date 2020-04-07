@@ -473,5 +473,7 @@ ls merged_profile/SUMMARY_my_bins/bin_by_bin/Bin_2/
 ## So what now?
 There are lots of fun things to do with newly recovered genomes, but unfortunately everything is pretty much beyond what more we can cover here. And as usual, what you want to do next largely depends on what you're doing all this for anyway. But some ideas could involve things like phylogenomics to robustly place your new genomes within references, looking at distributions of them by recruiting metagenomic reads from other samples and environments, and/or comparative genomics/pangenomics. As mentioned above, anvi'o tutorials, like [this one for phylogenomics](http://merenlab.org/2017/06/07/phylogenomics/){:target="_blank"} or [this one for pangenomics](http://merenlab.org/2016/11/08/pangenomics-v2/){:target="_blank"}, are a great place to start 🙂
 
-<center><a href="https://raw.githubusercontent.com/AstrobioMike/Misc/master/metagen_overview.png"><img src="https://raw.githubusercontent.com/AstrobioMike/Misc/master/metagen_overview.png"></a></center>
+<center><a href="{{ site.url }}/images/metagenomics_overview.png"><img src="{{ site.url }}/images/metagenomics_overview.png"></a></center>
+
+<p align="right"><a href="https://ndownloader.figshare.com/files/15628103">PDF download</a></p>
 
