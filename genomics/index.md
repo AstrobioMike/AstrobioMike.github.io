@@ -11,7 +11,7 @@ Genomics (used here to include metagenomics too) is a very broad subject. In my 
 
 <center><a href="{{ site.url }}/images/metagenomics_overview.png"><img src="{{ site.url }}/images/metagenomics_overview.png"></a></center>
 
-<p align="right"><a href="https://ndownloader.figshare.com/files/15628103">PDF download</a></p>
+<p align="right"><a href="https://ndownloader.figshare.com/files/22244505">PDF download</a></p>
 
 <hr style="height:10px; visibility:hidden;" />
 
