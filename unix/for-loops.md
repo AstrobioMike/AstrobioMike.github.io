@@ -10,7 +10,7 @@ permalink: /unix/for-loops
 {% include _side_tab_unix.html %}
 
 <hr>
-<center>This is part 5 of 5 of an <a href="/unix/unix-intro" target="_blank">Introduction to Unix</a>. If you'd like to follow along, but need to pull up the proper working environment, visit <a href="/unix/getting-started#accessing-our-command-line-environment" target="_blank">here</a> and then come back 🙂</center>
+<center>This is part 5 of 5 of an <a href="/unix/unix-intro" target="_blank">Introduction to Unix</a>. If you'd like to follow along, but need to pull up the proper working environment and/or example data, visit <a href="/unix/getting-started#accessing-our-command-line-environment" target="_blank">here</a> and then come back 🙂</center>
 <hr>
 
 <br>
@@ -28,7 +28,7 @@ permalink: /unix/for-loops
 
 Loops are extremely powerful in all programming languages. They are what let us write out a command or operation once, and have it run on all of our samples or files or whatever we want to act on. Not only is this powerful, but it also helps with keeping our code more concise and readable, and it helps elmininate some more of our mortal enemy (human error). There are multiple types of loops, but here we are going to cover what is probably the most common type: the for loop. First, we need to quickly cover a tiny bit about variables. 
 
->To be sure we are still working in the same place, let's run: 
+>Let's change back into our starting `unix_intro` directory:: 
 >```bash
 >cd ~/unix_intro
 >```
@@ -103,7 +103,7 @@ do
 done
 ```
 
-> **Note:** Notice the prompt is different while we are within the loop syntax. This is to tell you you are not at the typical prompt. If we get stuck with that alternate prompt and we want to get rid of it, we can press **`ctrl + c`** to cancel it. 
+> **Note:** Notice the prompt is different while we are within the loop syntax. This is to tell us we are not at the typical prompt. If we get stuck with that alternate prompt and we want to get rid of it, we can press **`ctrl + c`** to cancel it. 
 
 Just to note, we don't need to put these on separate lines, and we don't need to indent over the "body" of the loop like we did above (the `echo $item` part), but both can help with readability so we will continue doing that moving forward. As an example though, we could also enter it like this on one line, separating the major blocks with semicolons:
 
@@ -347,7 +347,7 @@ ls
 head target_genes.faa
 ```
 
-And now we've made a new fasta file holding the sequences of just the genes we wanted.
+And now we've made a new fasta file holding the sequences of just the genes we wanted!
 
 <hr style="height:10px; visibility:hidden;" />
 
@@ -355,6 +355,13 @@ And now we've made a new fasta file holding the sequences of just the genes we w
 <br>
 # Summary
 Even though loops can get much more complicated as needed, practicing these foundational skills a bit is all that's needed to start harnessing their awesome power 🙂
+
+<hr style="height:10px; visibility:hidden;" />
+
+---
+<br>
+
+<center><h2>Congrats on making it through the Unix introduction!</h2></center>
 
 <br>
 

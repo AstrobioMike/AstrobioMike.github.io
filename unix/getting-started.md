@@ -70,17 +70,13 @@ Don't forget to press enter to execute the last command (usually that doesn't co
 <br>
 
 <h2><b><center>Now, let's get started!</center></b></h2>
-
->To be sure we are all starting in the same place, and to work out the details for copying and pasting in the window you're working in (which can be different for some systems), copy and paste this command and hit `enter`: 
->```bash
->cd ~/unix_intro
->```
+<br>
 
 ---
 <br>
 # Running commands
 
->**NOTE:** It's okay to copy and paste things. This is not a typing test 🙂
+>**NOTE:** It's okay to copy and paste things throughout this intro if you'd like. There will be lots of time forever moving forward to worry about each individual character being perfect. Right now is just about the concepts 🙂 
 
 **`date`** is a command that prints out the date and time. This particular command does not require any arguments:
 
@@ -106,7 +102,7 @@ Also note that if we try to enter this without the "space" separating **`date`**
 date-u
 ```
 
->The first error comes from the program **`date`**, and it doesn't know what to do with the letter **`u`**. The second error comes from **`bash`**, the language we are working in, because it's trying to find a program called "date-u" since we didn't tell it how to properly break things apart. 
+>Notice that the first error comes from the program **`date`**, and it doesn't know what to do with the letter **`u`**. The second error comes from **`bash`**, the language we are working in, because it's trying to find a program called "date-u" since we didn't tell it how to properly break things apart. 
 
 Unlike `date`, most commands require arguments and won't work without them. **`head`** is a command that prints the first lines of a file, so it **requires** us to provide the file we want it to act on: 
 
@@ -114,7 +110,7 @@ Unlike `date`, most commands require arguments and won't work without them. **`h
 head example.txt
 ```
 
-Here "example.txt" is the **required** argument, and in this case it is also what's known as a **positional** argument. Whether things are positional arguments or not depends on how the command was written. Sometimes we need to specify the input file by putting something in front of it (e.g. some commands will use the `-i` flag, but it's often other things as well).
+Here "example.txt" is the **required** argument, and in this case it is also what's known as a **positional** argument. Whether things need to be provided as positional arguments or not depends on how the command or program we are using was written. Sometimes we need to specify the input file by putting something in front of it (e.g. some commands will use the `-i` flag, but it's often other things as well).
 
 There are also optional arguments for the **`head`** command. The default for **`head`** is to print the first 10 lines of a file. We can change that by specifying the **`-n`** flag, followed by how many lines we want:
 
@@ -129,7 +125,7 @@ head -h
 head --help
 ```
 
-And/or we can go to google to look for help. This is one of the parts that is not about memorization at all. We might remember a few if we use them a lot, but searching for options and details when needed is definitely the norm!
+And/or we can go to google to look for help. This is one of the parts that is not about memorization at all. We might remember a few flags or specific options if we happen to use them a lot, but searching for options and details when needed is definitely the norm!
 
 <blockquote>
 What we've done so far already really is the framework for how almost all things work at the command line! Multiple commands can be strung together, and some commands can have many options, inputs, and outputs and can grow to be quite long, but this is the general framework that underlies it all.<br><br><center><b>Becoming familiar with these baseline rules is important, memorizing particular commands and options is not!</b></center><br>

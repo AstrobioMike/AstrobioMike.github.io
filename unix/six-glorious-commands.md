@@ -10,7 +10,7 @@ permalink: /unix/six-glorious-commands
 {% include _side_tab_unix.html %}
 
 <hr>
-<center>This is part 4 of 5 of an <a href="/unix/unix-intro" target="_blank">introduction to Unix</a>. If you'd like to follow along, but need to pull up the proper working environment, visit <a href="/unix/getting-started#accessing-our-command-line-environment" target="_blank">here</a> and then come back 🙂</center>
+<center>This is part 4 of 5 of an <a href="/unix/unix-intro" target="_blank">introduction to Unix</a>. If you'd like to follow along, but need to pull up the proper working environment and/or example data, visit <a href="/unix/getting-started#accessing-our-command-line-environment" target="_blank">here</a> and then come back 🙂</center>
 <hr>
 
 <br>
@@ -23,7 +23,7 @@ permalink: /unix/six-glorious-commands
 ---
 <br>
 
->To be sure we are still working in the same place, let's run: 
+>Let's change back into our starting `unix_intro` directory:  
 >```bash
 >cd ~/unix_intro
 >```
@@ -33,7 +33,7 @@ permalink: /unix/six-glorious-commands
 ---
 <br>
 
-We'll mostly be working with a file here called "gene_annotations.tsv", which is a tab-delimited table genes IDs, their source genome, and some annotation info. To help orient us, here is a peek at it in Excel:
+We'll mostly be working with a file here called "gene_annotations.tsv", which is a tab-delimited table holding genes IDs, their source genome, and some annotation info. To help orient us, here is a peek at it in a spreadsheet program:
 
 <center><img src="../images/unix_example_gene_annots.png" width="70%"></center>
 <br>
@@ -41,7 +41,7 @@ We'll mostly be working with a file here called "gene_annotations.tsv", which is
 We can see the file has 4 columns: "gene_ID", "genome", "KO_ID", and "KO_annotation" (KO is for **K**egg **O**rthology, a popular functional database). Let's change into our working directory for this page and explore it a little at the command line with some of the things we've seen already.
 
 ```bash
-cd ~/unix_intro/six_commands/
+cd six_commands/
 head gene_annotations.tsv
 ```
 
@@ -88,7 +88,7 @@ And a range of columns if we join them with a dash:
 cut -f 1-3 gene_annotations.tsv | head
 ```
 
-Just like in Excel, **`cut`** thinks about where columns start and stop based on a delimiter, like a comma or a tab. The default setting is a tab, so we didn't need to change it for that file. But if we try using it on a **c**omma **s**eparated **v**alues file (a csv), things don't work well:
+Just like in spreadsheet programs, **`cut`** thinks about where columns start and stop based on a delimiter, like a comma or a tab. The default setting is a tab, so we didn't need to change it for that file. But if we try using it on a **c**omma **s**eparated **v**alues file (a csv), things don't work well:
 
 ```bash
 cut -f 1-3 example_gene_annotations.csv | head
@@ -97,7 +97,7 @@ cut -f 1-3 example_gene_annotations.csv | head
 Unless we tell **`cut`** the delimiter is a comma, which we can do with the **`-d`** parameter:
 
 ```bash
-cut -d , -f 1-3 example_gene_annotations.csv | head
+cut -d "," -f 1-3 example_gene_annotations.csv | head
 ```
 
 <challengeBlock>
@@ -177,6 +177,7 @@ Using a combination of <htmlCode><b>grep</b></htmlCode> and <htmlCode><b>cut</b>
 		
 <pre>grep K18979 gene_annotations.tsv | cut -f 2</pre>
 
+Being able to stick together these individual pieces like this becomes a really valuable toolset to have at our disposal!
     </div>
   </div>
 </div>
@@ -254,7 +255,7 @@ The syntax of **`sed`** is a little strange at first, so let's run it and then b
 sed 's/UW179A/UW277/' gene_annotations.tsv | tail
 ```
 
->Here, the **`sed`** command is followed by an expression within single quotes. This expression holds 4 items separated by the 3 forward slashes in there: the 1st is the letter "s", which is for "substitute"; the 2nd is what we'd like to find and replace, "UW179A"; the 3rd is what we'd like to replace it with, "UW277"; and the 4th is actually empty in this case (the next example will use that slot).
+>Here, the **`sed`** command is followed by an expression within single quotes (this whole expression one positional argument we are passing to the **`sed`** program). This expression holds 4 items separated by the 3 forward slashes in there: the 1st is the letter "s", which is for "substitute"; the 2nd is what we'd like to find and replace, "UW179A"; the 3rd is what we'd like to replace it with, "UW277"; and the 4th is actually empty in this case (the next example will use that slot).
 
 Now that we've previewed this, we can remove the **`tail`** and write the new version to a file with a redirector:
 
@@ -331,7 +332,7 @@ Again, **`awk`** can seem pretty tricky, especially at first, but forunately we 
 ## tr
 The last one we're going to look at is **`tr`** (for **tr**anslate). **`tr`** changes one character into another character. It seems to become more useful with time, but it's worth knowing early if for no other reason than it deals with special characters really well – the type of special characters that some Excel versions put in exported tables that can mess up working with them at the command line.
 
-For example, when exporting a table as tab-delimited or as a csv file from many versions of Excel, there will be different newline characters than the command line is expecting (newline characters tell the computer to end one line and start a new one). The typical newline character is represented like this **`\n`**, but some Excel versions put in **`\r`** characters. We can see this messing with things on the Excel-exported file if we open it with **`less`**:
+For example, when exporting a table as tab-delimited or as a csv file from some versions of Excel, there will be different newline characters than the command line is expecting (newline characters tell the computer to end one line and start a new one). The typical newline character is represented like this **`\n`**, but some Excel versions put in **`\r`** characters. We can see this messing with things on the Excel-exported file if we open it with **`less`**:
 
 ```bash
 less gene_annotations_excel_exported.tsv

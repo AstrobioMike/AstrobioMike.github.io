@@ -10,7 +10,7 @@ permalink: /unix/working-with-files-and-dirs
 {% include _side_tab_unix.html %}
 
 <hr>
-<center>This is part 2 of 5 of an <a href="/unix/unix-intro" target="_blank">introduction to Unix</a>. If you'd like to follow along, but need to pull up the proper working environment, visit <a href="/unix/getting-started#accessing-our-command-line-environment" target="_blank">here</a> and then come back 🙂</center>
+<center>This is part 2 of 5 of an <a href="/unix/unix-intro" target="_blank">introduction to Unix</a>. If you'd like to follow along, but need to pull up the proper working environment and/or example data, visit <a href="/unix/getting-started#accessing-our-command-line-environment" target="_blank">here</a> and then come back 🙂</center>
 <hr>
 
 <br>
