@@ -285,7 +285,11 @@ Note that only the first occurrence in each line was changed. To change that beh
 sed 's/NA/<NA>/g' gene_annotations.tsv | head
 ```
 
-And now all instances are replaced. These quick examples were just looking for exact matches, but **`sed`** has very powerful pattern searching features (building off of what special characters like **`*`**, **`?`**, and others can do) that we can look into as needed.
+And now all instances are replaced.
+
+There is however another problem we would need to address. You may have noticed that all places where "NA" occurred were changed, including places that said things like "DNA" in the "KO_annotation" column. This isn't ideal in this case, and this example was a little contrived just to show the `g` parameter of `sed`. There are ways to make `sed` work with exact words only (so it wouldn't affect things within longer strings like "DNA"), but those get a little tricky and vary by what type of Unix system we are working on, so they're a little bit beyond our current scope. But even with the few commands we've seen so far, we could also accomplish our current goal here by utilizing a combination of `cut`, `sed`, and `paste`. 
+
+These quick examples were just looking for exact matches, but **`sed`** has very powerful pattern searching features (building off of what special characters like **`*`**, **`?`**, and others can do) that we can look into as needed.
 
 <hr style="height:10px; visibility:hidden;" />
 ## awk  
