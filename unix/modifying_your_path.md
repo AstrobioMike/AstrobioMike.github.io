@@ -47,7 +47,6 @@ We can now more clearly see this is a list of directories. All of these places, 
 To demonstrate how to add a directory to your PATH, we're going to create a new directory and within it make a quick *bash* script that tells us what time it is. We're then going to add that directory to our PATH so that we can use the time-telling script from anywhere. If you want to follow along, you can make both by copying and pasting the following code block. If the following is confusing to you at first glance, running through the [Unix crash course](/unix/unix-intro){:target="_blank"} will get you almost entirely up to speed. For now, this is about the PATH though, so don't worry too much about any minor details of this script – though a quick explanation follows 🙂
 
 ```bash
-cd
 mkdir my-bin
 cd my-bin
 
