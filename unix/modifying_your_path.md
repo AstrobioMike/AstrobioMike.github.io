@@ -9,7 +9,7 @@ permalink: /unix/modifying_your_path
 
 {% include _side_tab_unix.html %}
 
-When I was starting out, the whole concept of what the "PATH" was and what it did was way more confusing to me than it needed to be. For some reason I just didn't come across a straightforwrard explanation for a long time (or wasn't paying attention or understanding if I had...). If the "PATH" is still a nebulous concept for you, then you've come to the right place 🙂  
+When I was starting out, the whole concept of what the "PATH" was and what it did was way more confusing to me than it needed to be. For some reason I just didn't come across a straightforwrard explanation for a long time (or wasn't paying attention or understanding if I had...). Either way, after I got it, I was like "Why didn't anyone just tell me this??", haha. If the "PATH" is still a nebulous concept for you, then you've come to the right place 🙂  
 
 <hr style="height:10px; visibility:hidden;" />
 
@@ -136,13 +136,13 @@ But we can also be anywhere else now:
 
 <br>
 ## Permanently
-As noted above, that method only *temporarily* modifies our PATH, which is sometimes useful. But more often than not we'll want to modify it permanently. To do so we need to edit a special file called **`~/.bash_profile`** (files with a **`.`** in front of them are "hidden" files). This file either already exists in your home directory or we will create it if it doesn't yet, and it gets run everytime you open a terminal window. This file and others like it are what allow us to customize our terminal window with things like setting variables we always want, adding color schemes, or modifying your prompt. Here is one way we can permanently add a directory to our PATH by using **`echo`** to append the code to the end of that file:
+As noted above, that method only *temporarily* modifies our PATH, which is sometimes useful. But often we will want to modify it permanently. To do so we need to edit a sort of special file, there are a few of these, but that is a concept for another page. The one we are going to use here is called **`~/.bash_profile`** (files with a **`.`** in front of them are "hidden" files). This file either already exists in our home directory or we will create it if it doesn't yet, and *it gets run everytime we open a terminal window*. This file and the others like it are what allow us to customize our terminal window with things like setting variables we always want, adding color schemes, or modifying our prompt. Here is one way we can permanently add a directory to our PATH by using **`echo`** to append the code to the end of that file:
 
 ```bash
 echo 'export PATH="$PATH:/Users/Mike_Lee/my-bin"' >> ~/.bash_profile
 ```
 
-Note that the code is exactly the same as we ran above, but now we're appending it to the **`~/.bash_profile`**. And since this file gets run each time we open a terminal window, it's the same thing as if we did it ourselves everytime we opened a terminal window – except much better of course because we don't have to actually do it ourselves. Keep in mind that doing it this way, where we **`echo`** the text needed into the file, isn't the only way to do this. The **`~/.bash_profile`** is just a text file, so we could open it with a regular text editor or a terminal-based one like [nano](/unix/working-with-files-and-dirs#a-terminal-text-editor){:target="_blank"} and enter the same text that way. Also, since this file is run everytime you open a terminal session, it actually hasn't been run yet since we just updated it right now, so our PATH variable hasn't yet been updated to include the directory we just added. So we can either open a new terminal session, or we can run the **`source`** command on the **`~/.bash_profile`** file like this: 
+Note that the code is exactly the same as we ran above, but now we're appending it to the **`~/.bash_profile`**. And since this file gets run each time we open a terminal window, it's the same thing as if we did it ourselves everytime we opened a terminal window – except much better of course because we don't have to actually do it ourselves. Keep in mind that doing it this way, where we **`echo`** the text needed into the file, isn't the only way to do this. The **`~/.bash_profile`** is just a text file, so we could open it with a regular text editor or a terminal-based one like [nano](/unix/working-with-files-and-dirs#a-terminal-text-editor){:target="_blank"} and enter the same text that way. Also, since this file is run everytime we *open* a terminal session, it actually hasn't been run yet since we just updated it right now, so our PATH variable hasn't yet been updated to include the directory we just added. So we can either open a new terminal session, or we can run the **`source`** command on the **`~/.bash_profile`** file like this: 
 
 ```bash
 source ~/.bash_profile
