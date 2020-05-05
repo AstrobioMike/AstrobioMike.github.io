@@ -12,13 +12,7 @@ permalink: /unix/installing_tools
 
 ># CONDA ALERT!
 >---
->I initially started putting this page together before I learned of the magic of [conda](https://conda.io/docs/){:target="_blank"}. **Conda is a package and environment manager that is by far the easiest way to handle installing most of the tools you would want to use** – [this article](https://medium.freecodecamp.org/why-you-need-python-environments-and-how-to-manage-them-with-conda-85f155f4353c){:target="_blank"} covers pretty nicely why conda is super helpful, if you don't want to just take my word for it 🙂  
->
->At some point I plan to make a conda introductory page more in the style of this site, but there is also currently available [excellent documentation from the developers and community here](https://conda.io/projects/conda/en/latest/user-guide/index.html){:target="_blank"}.  
->
->To get conda up and running (which is very quick), you can follow the instructions to install miniconda (a light-weight version) for your appropriate system starting from [here](https://conda.io/en/latest/miniconda.html){:target="_blank"}.  
->
->Some of the install below I've updated to include the conda installation, but others I haven't gotten to yet. Be sure to check if there is a conda installation available first if you can use that (there is for everything here I think).
+>I initially started putting this page together before I learned of the magic of [conda](https://conda.io/docs/){:target="_blank"}. If you're a new-comer to these things, it's definitely worth checking out the [Conda page](/unix/conda-intro) first 🙂
 
 <hr style="height:10px; visibility:hidden;" />
 
