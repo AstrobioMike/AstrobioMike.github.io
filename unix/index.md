@@ -41,6 +41,9 @@ Here are some terms that are often used interchangeably – not because it's imp
 
 ---
 
+https://astrobiomike.github.io/unix/conda-intro
+
+* [An introduction to Conda](/unix/conda-intro)
 * [What the heck is my PATH, and how do I get it to do what I want?](/unix/modifying_your_path)
 * [Accessing data from NCBI at the command line with EDirect](/unix/ncbi_eutils)
 * [Why is this all worth it? (Some everyday examples)](/unix/why)
