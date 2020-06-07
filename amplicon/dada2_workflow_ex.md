@@ -2,6 +2,7 @@
 layout: main
 title: A full example workflow for amplicon data
 categories: [amplicon, tutorial]
+tags: [amplicon,16S,18S,metabarcoding,dada2]
 permalink: amplicon/dada2_workflow_ex
 ---
 

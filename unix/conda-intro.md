@@ -2,6 +2,7 @@
 layout: main
 title: An introduction to Conda
 categories: [unix, tutorial]
+tags: [unix,bash,conda,bioinformatics,tools,program,installation,tutorial]
 permalink: /unix/conda-intro
 ---
 

@@ -2,6 +2,7 @@
 layout: main
 title: Example marker-gene workflow
 categories: [amplicon, tutorial]
+tags: [amplicon,16S,18S,metabarcoding,dada2]
 permalink: amplicon/workflow_ex
 ---
 

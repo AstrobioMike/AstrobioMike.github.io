@@ -2,6 +2,7 @@
 layout: main
 title: Quality filtering, error correction, and depth normalization
 categories: [genomics]
+tags: [genomics,metagenomics,assembly]
 permalink: /genomics/where_to_start
 ---
 

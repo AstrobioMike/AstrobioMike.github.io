@@ -2,6 +2,7 @@
 layout: main
 title: De novo genome assembly
 categories: [genomics, genome assembly]
+tags: [genomics,metagenomics,assembly]
 permalink: /genomics/de_novo_assembly
 ---
 

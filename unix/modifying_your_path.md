@@ -2,6 +2,8 @@
 layout: main
 title: What the heck is my PATH, and how do I get it to do what I want?
 categories: [unix, tutorial]
+tags: [unix,bash,path,PATH,tutorial]
+redirect_from: /bash/modifying_your_path
 permalink: /unix/modifying_your_path
 ---
 

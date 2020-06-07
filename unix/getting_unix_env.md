@@ -2,6 +2,7 @@
 layout: main
 title: Getting a Unix-like environment
 categories: [unix]
+tags: [unix,bash,bioinformatics,tools,program,installation,tutorial]
 permalink: /unix/getting_unix_env
 ---
 

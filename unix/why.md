@@ -2,6 +2,7 @@
 layout: main
 title: Why is this all worth it?
 categories: [unix]
+tags: [unix,bash,bioinformatics,tutorial]
 permalink: /unix/why
 ---
 

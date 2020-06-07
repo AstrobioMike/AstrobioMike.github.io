@@ -2,6 +2,7 @@
 layout: main
 title: 1. Getting started
 categories: [unix, tutorial]
+tags: [unix,bash,conda,bioinformatics,tools,program,installation,tutorial]
 permalink: /unix/getting-started
 ---
 

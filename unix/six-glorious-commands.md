@@ -2,6 +2,7 @@
 layout: main
 title: 4. Six glorious commands
 categories: [unix, tutorial]
+tags: [unix,bash,bioinformatics,cut,awk,grep,paste,sed,tr,tutorial]
 permalink: /unix/six-glorious-commands
 ---
 

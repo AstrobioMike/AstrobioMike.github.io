@@ -2,6 +2,7 @@
 layout: main
 title: 16S and 18S mixed together together
 categories: [amplicon, tutorial]
+tags: [amplicon,16S,18S,metabarcoding,dada2]
 permalink: amplicon/16S_and_18S_mixed
 ---
 
@@ -244,7 +245,9 @@ track_18S <- data.frame(row.names=samples, dada2_input=filtered_out_18S[,1],
 
 track_18S
 
-#            dada2_input filtered denoised merged table no_chimeras perc_reads_survived# ERR1018543        6674     4147     3765   3644  3644        3135                47.0# ERR1018546        2588     1610     1346   1317  1317        1244                48.1
+#            dada2_input filtered denoised merged table no_chimeras perc_reads_survived
+# ERR1018543        6674     4147     3765   3644  3644        3135                47.0
+# ERR1018546        2588     1610     1346   1317  1317        1244                48.1
 
 ## making and writing out standard output files:
 # giving our seq headers more manageable names (ASV_1, ASV_2...)
@@ -317,7 +320,8 @@ temp_merged_16S <- mergePairs(dada_forward_16S, derep_forward_16S,
                               
 quantile(temp_merged_16S[[1]]$nmatch, probs=seq(0,1,0.05)) 
 
-# 0%    5%    10%   15%   20%   25%   30%   35%   40%   45%   50%   55%   60%   65%   70%   75%   80%   85%   90%   95%   100% # 16.0  47.0  60.4  64.0  66.0  66.0  66.0  66.0  66.0  67.0  69.0  70.0  71.0  71.0  71.0  71.0  71.0  71.0  71.6  73.0  87.0
+# 0%    5%    10%   15%   20%   25%   30%   35%   40%   45%   50%   55%   60%   65%   70%   75%   80%   85%   90%   95%   100% 
+# 16.0  47.0  60.4  64.0  66.0  66.0  66.0  66.0  66.0  67.0  69.0  70.0  71.0  71.0  71.0  71.0  71.0  71.0  71.6  73.0  87.0
 
     # okay, going to use 45 as min overlap, as that captures >95% of the sequences in there
 rm(temp_merged_16S)

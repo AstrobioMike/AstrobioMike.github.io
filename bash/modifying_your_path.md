@@ -2,8 +2,13 @@
 layout: main
 title: What the heck is a PATH, and how do I get it to do what I want?
 categories: [bash, tutorial]
+redirect_to: /unix/modifying_your_path
 permalink: /bash/modifying_your_path
 ---
+
+<meta http-equiv="refresh" content="0; url=/unix/modifying_your_path">
+
+<link rel="canonical" href="/unix/modifying_your_path" />
 
 {% include _bash_PATH_toc.html %}
 

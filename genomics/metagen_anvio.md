@@ -2,6 +2,7 @@
 layout: main
 title: Assembling a metagenome and recovering "genomes" with Anvi'o
 categories: [metagenomics]
+tags: [genomics,metagenomics,assembly,binning,MAGs,anvio]
 permalink: /genomics/metagen_anvio
 ---
 

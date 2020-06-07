@@ -2,6 +2,7 @@
 layout: main
 title: 2. Working with files and directories
 categories: [unix, tutorial]
+tags: [unix,bash,bioinformatics,file system,tutorial]
 permalink: /unix/working-with-files-and-dirs
 ---
 

@@ -2,6 +2,7 @@
 layout: main
 title: Installing tools at the command line
 categories: [unix, tutorial]
+tags: [unix,bash,bioinformatics,tools,program,installation,tutorial]
 permalink: /unix/installing_tools
 ---
 

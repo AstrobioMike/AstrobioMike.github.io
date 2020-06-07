@@ -2,6 +2,7 @@
 layout: main
 title: Accessing data from NCBI with EDirect
 categories: [unix, tutorial]
+tags: [unix,bash,bioinformatics,tools,ncbi,download,data,tutorial]
 permalink: /unix/ncbi_eutils
 ---
 

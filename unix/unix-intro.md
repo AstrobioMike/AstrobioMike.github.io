@@ -2,6 +2,7 @@
 layout: main
 title: Unix crash course
 categories: [unix]
+tags: [unix,bash,bioinformatics,tutorial]
 permalink: /unix/unix-intro
 ---
 

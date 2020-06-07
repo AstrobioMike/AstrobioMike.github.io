@@ -2,6 +2,7 @@
 layout: main
 title: Variables and for loops
 categories: [unix, tutorial]
+tags: [unix,bash,for loops,bioinformatics,tutorial]
 permalink: /unix/for-loops
 ---
 

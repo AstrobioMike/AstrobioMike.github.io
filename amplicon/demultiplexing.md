@@ -2,6 +2,7 @@
 layout: main
 title: Demultiplexing
 categories: [amplicon, tutorial]
+tags: [amplicon,16S,18S,metabarcoding,demultiplexing,demultiplex]
 permalink: amplicon/demultiplexing
 ---
 

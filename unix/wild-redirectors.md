@@ -2,6 +2,7 @@
 layout: main
 title: 3. Redirectors and wildcards
 categories: [unix, tutorial]
+tags: [unix,bash,bioinformatics,redirector,pipe,tutorial]
 permalink: /unix/wild-redirectors
 ---
 

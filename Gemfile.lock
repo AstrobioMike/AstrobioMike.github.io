@@ -259,6 +259,7 @@ DEPENDENCIES
   github-pages (= 206)
   html-proofer
   jekyll-feed (~> 0.6)
+  jekyll-redirect-from
   rake
   tzinfo-data
 

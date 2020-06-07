@@ -30,6 +30,7 @@ google_analytics: "UA-110574647-1"
 markdown: kramdown
 plugins:
   - jekyll-feed
+  - jekyll-redirect-from
 
 highlighter: rouge
 # Exclude from processing.  # 
