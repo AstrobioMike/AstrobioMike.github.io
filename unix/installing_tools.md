@@ -12,7 +12,11 @@ permalink: /unix/installing_tools
 
 ># CONDA ALERT!
 >---
->I initially started putting this page together before I learned of the magic of [conda](https://conda.io/docs/){:target="_blank"}. If you're a new-comer to these things, it's definitely worth checking out the [Conda page](/unix/conda-intro) first 🙂
+>This page was created before [conda](https://conda.io/docs/){:target="_blank"} became the wonderful powerhouse it is today. Conda is a package and environment manager that is by far the easiest way to handle installing most of the tools we would want to use.
+>
+>**There is an [introduction to conda page here](/unix/conda-intro) that I highly recommend looking over and trying first for any installation goals.** 
+>
+>This page will stay here for archival purposes and to hopefully help if we run into something that conda can't help with 🙂
 
 <hr style="height:10px; visibility:hidden;" />
 
@@ -433,6 +437,4 @@ magicblast -version # for me, magicblast: 1.3.0
 ---
 ---
 <br>
-# More to come
-I'll be adding more examples here for each program we use, and feel free to contact me about any tricky ones you run into that might serve as good examples 🙂
 
