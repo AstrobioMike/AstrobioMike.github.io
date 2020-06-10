@@ -78,7 +78,7 @@ For speed purposes we're only going to work with about 10% of the full dataset. 
 
 ```
 cd ~
-curl -L -o dada2_amplicon_ex_workflow.tar.gz https://ndownloader.figshare.com/files/15072638
+curl -L -o dada2_amplicon_ex_workflow.tar.gz https://ndownloader.figshare.com/files/23066516
 tar -xzvf dada2_amplicon_ex_workflow.tar.gz
 rm dada2_amplicon_ex_workflow.tar.gz
 cd dada2_amplicon_ex_workflow/
@@ -108,7 +108,7 @@ It's good to try to keep a bird's-eye view of what's going on. So here is an ove
 |5|`mergePairs()`|merge forward and reverse reads to further refine ASVs|
 |6|`makeSequenceTable()`|generate a count table|
 |7|`removeBimeraDenovo()`|screen for and remove chimeras|
-|8|`assignTaxonomy()`|assign taxonomy|
+|8|`IdTaxa()`|assign taxonomy|
 
 And at the end of this we'll do some R magic to generate regular [flat files](/unix/working-with-files-and-dirs#bonus-round-whats-a-plain-text-file){:target="_blank"} for the standard desired outputs of amplicon/marker-gene processing: 1) a fasta file of our ASVs; 2) a count table; and 3) a taxonomy table.  
 
@@ -342,7 +342,7 @@ plotQualityProfile(filtered_reverse_reads[17:20])
 Now we're lookin' good.
 
 ## Generating an error model of our data
-Next up is generating our error model by learning the specific error-signature of our dataset. Each sequencing run, even when all goes well, will have its own subtle variations to its error profile. This step tries to assess that for both the forward and reverse reads. It can be one of the more computationally intensive steps of the workflow, for this slimmed dataset on my laptop (2013 MacBook Pro) these *each* took about 10 minutes *without* `multithread=TRUE` (as exemplified and commented out below), and each took about 5 minutes with that option added. If you are working on your own system, you can feel free to run the two commands with the `multithread=TRUE` option set. I have way that commented out here because it seemed to be a problem when working in the Binder environment for this page. If you're working in the Binder, each will take about 15 minutes – so 30 minutes total.  And if you don't want to run them and wait, you can load all the R objects and skip whatever steps you'd like with `load("amplicon_dada2_ex.RData")`. 
+Next up is generating our error model by learning the specific error-signature of our dataset. Each sequencing run, even when all goes well, will have its own subtle variations to its error profile. This step tries to assess that for both the forward and reverse reads. It can be one of the more computationally intensive steps of the workflow, for this slimmed dataset on my laptop (2013 MacBook Pro) these *each* took about 10 minutes *without* `multithread=TRUE` (as exemplified and commented out below), and each took about 5 minutes with that option added. If you are working on your own system, you can feel free to run the two commands with the `multithread=TRUE` option set. I have way that commented out here because it seemed to be a problem when working in the Binder environment for this page. If you're working in the Binder, each will take about 15 minutes – so 30 minutes total.  And if you don't want to run them and wait, you can load all the R objects and skip whatever steps you'd like with `source("amplicon_dada2_ex.RData")`. 
 
 ```R
 err_forward_reads <- learnErrors(filtered_forward_reads)
@@ -466,11 +466,32 @@ summary_tab
 ```
 
 ## Assigning taxonomy
-DADA2 incorporates a function that assigns taxonomy using the [RDP's kmer-based method](https://rdp.cme.msu.edu/classifier/classifier.jsp){:target="_blank"}, original paper [here](http://www.ncbi.nlm.nih.gov/pubmed/17586664){:target="_blank"}. There are some DADA2-formatted databases available [here](https://benjjneb.github.io/dada2/training.html){:target="_blank"}, which is where the [SILVA](https://www.arb-silva.de/){:target="_blank"} one came from that is in our current working directory, but you can use whatever database you'd like following the formatting specified at the bottom of [that page](https://benjjneb.github.io/dada2/training.html){:target="_blank"}. This step took ~10 minutes on my laptop (2013 MacBook Pro) with `multithread=TRUE`, it will fail if you run it that way in the Binder environment. Without `multithread=TRUE` it will take ~35 minutes in the Binder, or, as noted above, you can load all the R objects and skip the step with you can load all the R objects with `load("amplicon_dada2_ex.RData")` and skip whatever steps you'd like :)
+To assign taxonomy, we are going to use the [DECIPHER package](https://bioconductor.org/packages/release/bioc/html/DECIPHER.html){:target="_blank"}. There are some DECIPHER-formatted databases available [here](http://www2.decipher.codes/Classification/TrainingSets/){:target="_blank"}, which is where the [SILVA](https://www.arb-silva.de/){:target="_blank"} v138 comes from that we will use below. 
+
+Here we are downloading and loading that reference object:
 
 ```R
-taxa <- assignTaxonomy(seqtab.nochim, "silva_nr_v132_train_set.fa.gz", tryRC=T)
-# taxa <- assignTaxonomy(seqtab.nochim, "silva_nr_v132_train_set.fa.gz", multithread=TRUE, tryRC=T) # problem running this way if on Binder
+## downloading DECIPHER-formatted SILVA v138 reference
+download.file(url="http://www2.decipher.codes/Classification/TrainingSets/SILVA_SSU_r138_2019.RData", destfile="SILVA_SSU_r138_2019.RData")
+
+## loading reference taxonomy object
+source("SILVA_SSU_r138_2019.RData")
+  ### this currently won't be able to be loaded in the Binder environment
+```
+
+Running the following taxonomy assignment step ~30 minutes on my laptop (2013 MacBook Pro). So feel free to load the stored R objects with `load("amplicon_dada2_ex.RData")` to skip this step. And if working in the Binder, you'll need to do things that way as currently the Binder R can't read the RData object that holds the references.
+
+```R
+## loading DECIPHER
+# BiocManager::install("DECIPHER")
+library(DECIPHER)
+packageVersion("DECIPHER") # v2.6.0 when this was put together
+
+## creating DNAStringSet object of our ASVs
+dna <- DNAStringSet(getSequences(seqtab.nochim))
+
+## and classifying
+tax_info <- IdTaxa(test=dna, trainingSet=trainingSet, strand="both", processors=NULL)
 ```
 
 # Extracting the standard goods from DADA2
@@ -495,15 +516,27 @@ row.names(asv_tab) <- sub(">", "", asv_headers)
 write.table(asv_tab, "ASVs_counts.tsv", sep="\t", quote=F, col.names=NA)
 
   # tax table:
-asv_tax <- taxa
-row.names(asv_tax) <- sub(">", "", asv_headers)
-write.table(asv_tax, "ASVs_taxonomy.tsv", sep="\t", quote=F, col.names=NA)
+  # creating table of taxonomy and setting any that are unclassified as "NA"
+ranks <- c("domain", "phylum", "class", "order", "family", "genus", "species")
+asv_tax <- t(sapply(tax_info, function(x) {
+  m <- match(ranks, x$rank)
+  taxa <- x$taxon[m]
+  taxa[startsWith(taxa, "unclassified_")] <- NA
+  taxa
+}))
+colnames(asv_tax) <- ranks
+rownames(asv_tax) <- gsub(pattern=">", replacement="", x=asv_headers)
+
+write.table(asv_tax, "ASVs_taxonomy.tsv", sep = "\t", quote=F, col.names=NA)
 ```
 
 And now if we look back at our terminal, we can see the fruits of our labor are no longer confined to the R universe:
 
 <center><img src="../images/dada2_out_files.png"></center>
 <br>
+
+> **NOTE**  
+> This page was updated to use DECIPHER for taxonomy assignment and SILVA v138 as the reference in the code (when it initially used dada2's `assign_taxonomy()` function with SILVA v132), but the rest of the following document images and example outputs have not be updated yet. There were some big (much needed) changes in taxonomy due to SILVA switching to using the [GTDB](https://gtdb.ecogenomic.org/){:target="_blank"}. So if you are running through this and see any taxonomic discrepencies compared to what is below, that is why 🙂
 
 # Removing likely contaminants 
 In the now-more-outdated [USEARCH/VSEARCH example workflow](/amplicon/workflow_ex){:target="_blank"}, I demonstrated one way to [remove likely contaminant sequences](/amplicon/workflow_ex#treatment-of-blanks){:target="_blank"} using "blanks" (samples run through the entire extraction and sequencing process that never had any DNA added to them). Now, in addition to DADA2, [@bejcal](https://twitter.com/bejcal){:target="_blank"} et al. have also created a stellar program for removing contaminants based on incorporated blanks called [decontam](https://github.com/benjjneb/decontam){:target="_blank"} (Nicole Davis et al. [publication here](https://doi.org/10.1186/s40168-018-0605-2){:target="_blank"}). As usual, they also have provided excellent documentation and have a [vignette here](https://benjjneb.github.io/decontam/vignettes/decontam_intro.html){:target="_blank"} showing an example of doing this from a [phyloseq](https://joey711.github.io/phyloseq/){:target="_blank"} object and discussing the various ways their program can be implemented (such as incorporating DNA concentrations if available). Here, we will apply it without DNA concentrations – using prevalence of ASVs in the incorporated blanks – starting from our count table generated above without having a phyloseq object. There are instructions to install decontam [here](https://github.com/benjjneb/decontam#installation){:target="_blank"} if you are working on your own system rather than in the Binder for this page.  
@@ -1196,6 +1229,6 @@ If you glance through the taxonomy of our significant table here, you'll see sev
 <br>
 # So what now?
 
-<center><b>Now is when you do the science part 🙂</b></center>
+<center><b>Now is when we do the science part 🙂</b></center>
 <br>
-Above we barely scratched the surface on just a handful of things. Here's where your questions and the experimental design start to guide how you go further. In [the paper](https://www.frontiersin.org/articles/10.3389/fmicb.2015.01470/full){:target="_blank"} this dataset came from for instance we ended up incorporating other seafloor basalt studies to identify what looked to be conserved taxa that showed up everywhere (like a sulfur-oxidizing gammaproteobacterium, *Thioprofundum lithotrophicum*), and we also identified that there seems to be a basalt-hosted Thaumarchaeota (*Nitrosopumilus* sp.) distinct from those present in the bottom water samples we analyzed; this was interesting to us because the genus has a known water-column version (*N. maritimus*) and sediment version (*N. koreensis*), and it seems there may also be a basalt-hosted counterpart that exists in relatively high abundance and may play a substantial role in ammonia oxidation and chemolithoautotrophy globally on deepsea basalts. And this is what I mean about marker-gene data being a tool for hypothesis generation: this bug can now be targeted with metagenomics and ultimately culturing efforts so we can try to figure out if it is actually playing a substantial role in biogeochemical cycling and the chemical transformation of much of the seafloor (my money's on yes, naturally). If you want to see more of how this dataset ended up, check out the discussion section of the [paper](https://www.frontiersin.org/articles/10.3389/fmicb.2015.01470/full){:target="_blank"}, as an independent party I must say it's written pretty well 🙂
+Above we barely scratched the surface on just a handful of things. Here's where our questions and the experimental design start to guide how we go further. In [the paper](https://www.frontiersin.org/articles/10.3389/fmicb.2015.01470/full){:target="_blank"} this dataset came from for instance, we ended up incorporating other seafloor basalt studies to identify what looked to be conserved taxa that showed up everywhere (like a sulfur-oxidizing gammaproteobacterium, *Thioprofundum lithotrophicum*), and we also identified that there seems to be a basalt-hosted Thaumarchaeota (*Nitrosopumilus* sp.) distinct from those present in the bottom water samples we analyzed; this was interesting to us because the genus has a known water-column version (*N. maritimus*) and sediment version (*N. koreensis*), and it seems there may also be a basalt-hosted counterpart that exists in relatively high abundance and may play a substantial role in ammonia oxidation and chemolithoautotrophy globally on deepsea basalts. And this is what I mean about marker-gene data being a tool for hypothesis generation: this bug can now be targeted with metagenomics and ultimately culturing efforts so we can try to figure out if it is actually playing a substantial role in biogeochemical cycling and the chemical transformation of much of the seafloor (my money's on yes, naturally). If you want to see more of how this dataset ended up, check out the discussion section of the [paper](https://www.frontiersin.org/articles/10.3389/fmicb.2015.01470/full){:target="_blank"}, as an independent party I must say it's written pretty well for someone's first paper, hehe 🙂
