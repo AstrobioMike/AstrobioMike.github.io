@@ -20,7 +20,8 @@ Here we are going to talk about what phylogenomics is (as the term is most often
 ---
 ---
 <br>
-# What is phylogenomics?
+# Concepts
+## What is phylogenomics?
 **Put into one over-simplified, slightly misleading, but nonetheless conceptually usefull sentence: *phylogenomics* is attempting to infer evolutionary relationships at the genomic level.** This is over-simplified and slightly misleading because in practice we are never using the "entire" genomes of all of the organisms we wish to focus on (and depending on the breadth of diversity we are considering, it would be impossible and/or meaningless to use their entire genomes because they might be too different). So really, it is more appropriate to say: ***phylogenomics* is attempting to infer evolutionary relationships at something closer to the genome-level than an individual gene phylogeny gets us** (like a 16S rRNA gene tree). 
 
 Most *phylogenetic* trees that biologists are used to seeing and working with are visual representations of the estimated evolutionary relationships of various copies of a single gene-type (like the 16S rRNA gene). When we do this, if we are trying at all to think on the organism level (which we usually are, intentionally or not), we are using that gene as a proxy to stand in for the organism itself. We are assuming the evolutionary relationships of those genes tell us something meaningful about the evolutionary relationships of their source organisms.
@@ -62,11 +63,12 @@ Below we are going to use [GToTree](https://github.com/AstrobioMike/GToTree/wiki
 
 ---
 <br>
-# Let's do some phylogenomics!
-regular:
+# In practice
+## Let's do some phylogenomics!
+As described in its illustrious [Bioinformatics publication](https://doi.org/10.1093/bioinformatics/btz188){:target="_blank"}
 <center><a href="../images/GToTree-Overview.png"><img width="100%" src="../images/GToTree-Overview.png"></a></center>
 
-## Installing GToTree
+### Installing GToTree
 A [binder](https://mybinder.org/){:target="_blank"} is available to work in by clicking this badge here [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/AstrobioMike/binder-happy-belly-phylogenomics/master?urlpath=lab){:target="_blank"} and an example of getting into the binder command-line environment can be found [here](/unix/getting-started#accessing-our-command-line-environment){:target="_blank"} if needed (but be sure to activate the binder by clicking on the badge above, not the one on the other page). 
 
 > **Note on using binder for this tutorial**  
@@ -84,7 +86,7 @@ conda create -y -n gtotree -c conda-forge -c bioconda -c defaults -c astrobiomik
 conda activate gtotree
 ```
 
-## Alteromonas example
+### Alteromonas example
 
 ```bash
 esearch -query 'Alteromonas[ORGN] AND "latest refseq"[filter] AND "complete genome"[filter] AND (latest[filter] AND all[filter] NOT anomalous[filter])' -db assembly | esummary | xtract -pattern DocumentSummary -def "NA" -element AssemblyAccession > alteromonas_refseq_accessions.txt
@@ -120,10 +122,10 @@ GToTree -a alteromonas_refseq_accessions.txt -g genbank_files.txt -f fasta_files
 
 
 
-## Tree of Life example
+### Tree of Life example
 
-## Mixed-model example
+### Mixed-model example
 
-## Tree visualization and manipulation
+### Tree visualization and manipulation
 
 
