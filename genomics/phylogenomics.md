@@ -43,7 +43,7 @@ Now, with that laid out there, I want to immediately follow up with saying for t
 
 ---
 <br>
-## What genes should we use?
+## Which genes should we use?
 The organisms we are considering are what dictate the genes that should be used. Following what we touched on above about why SCGs are so useful in phylogenomics, the amount of genes that are going to fit those criteria is going to be relatively larger if we are focusing on a more closely related group of organisms than it will be if we are focusing on a more diverged group of organisms. The Tree of Life pictured above from [Hug et al. 2016](https://www.nature.com/articles/nmicrobiol201648){:target="_blank"} utilizes 15 target genes because it is designed to span 3 domains. But if, for instance, we were only focusing on Cyanobacteria, the number of shared, single-copy genes across that group would be much greater. For example, to design a single-copy gene set specific to Cyanobacteria for [GToTree](https://github.com/AstrobioMike/GToTree/wiki/what-is-gtotree%3F){:target="_blank"}, I basically tried to find all the genes that are present in exactly 1 copy in at least 90% of all Cyanobacteria genomes available from NCBI. That process (described in more detail and with an example [here](https://github.com/AstrobioMike/GToTree/wiki/SCG-sets){:target="_blank"}) yielded 251 gene targets when it was performed. In contrast, when applying the same process to all bacterial genomes, it yielded 74. **There isn't one, ideal set of target genes to always use because it entirely depends on the breadth of diversity we are trying to look at 🙂**
 
 <hr style="height:10px; visibility:hidden;" />
@@ -76,18 +76,23 @@ Most of these general steps can be done in different ways, and there are lots of
   * If a given input genome has multiple copies of our target gene, we might not want to include that gene from that genome as we may not be sure which to include (see [SCG section above](/genomics/phylogenomics#what-are-single-copy-core-genes) for why)
   * If an input genome had very few of our target genes identified overall, we might want to remove that genome from the analysis altogether
 
-Below we are going to use [GToTree](https://github.com/AstrobioMike/GToTree/wiki/what-is-gtotree%3F){:target="_blank"} to do some phylogenomics, and we'll outline how it automates this process for us and tries to ameliorate some of these concerns. 
+Below we are going to use [GToTree](https://github.com/AstrobioMike/GToTree/wiki/what-is-gtotree%3F){:target="_blank"} to do some phylogenomics, and we'll see how it automates these processes for us. 
 
 <hr style="height:10px; visibility:hidden;" />
 
 ---
 <br>
 # Let's do some phylogenomics!
-As described in its illustrious [Bioinformatics publication](https://doi.org/10.1093/bioinformatics/btz188){:target="_blank"} 💩 [GToTree](https://github.com/AstrobioMike/GToTree/wiki/what-is-gtotree%3F){:target="_blank"} is a user-friendly workflow for phylogenomics. It handles all of the potentially computationally prohibitive tasks under the hood for us – like accessing genomic data on large scales, integrating genomes from different file formats, performing some filtering, and stitching together the different tools in the process for us – which makes generating and iterating phylogenomic trees much more tractable. 
+As described in its illustrious [Bioinformatics publication](https://doi.org/10.1093/bioinformatics/btz188){:target="_blank"} 💩 [GToTree](https://github.com/AstrobioMike/GToTree/wiki/what-is-gtotree%3F){:target="_blank"} is a user-friendly workflow for phylogenomics. It handles all of the potentially computationally prohibitive tasks under the hood for us, like: accessing genomic data on large scales; integrating genomes from different file formats; performing filtering of genes and genomes; swapping input labels for lineage info; stitching together the different tools in the process for us; etc. It makes generating and iterating phylogenomic trees much more tractable. There's lots more information at the [GToTree wiki](https://github.com/AstrobioMike/GToTree/wiki){:target="_blank"}, but here is an overview figure:
 
 <center><a href="../images/GToTree-Overview.png"><img width="100%" src="../images/GToTree-Overview.png"></a></center>
 
-<br>
+<hr style="height:10px; visibility:hidden;" />
+
+> **NOTE**  
+> GToTree is not a taxonomy assignment tool, it is a tool for building de novo phylogenomic trees. See [When to use GToTree and when not?](https://github.com/AstrobioMike/GToTree/wiki/Things-to-consider#when-to-use-gtotree-and-when-not){:target="_blank"} for more discussion on this 🙂
+
+<hr style="height:10px; visibility:hidden;" />
 
 ---
 <br>
@@ -109,6 +114,10 @@ conda create -y -n gtotree -c conda-forge -c bioconda -c defaults -c astrobiomik
 
 conda activate gtotree
 ```
+
+## Synechococcus example
+*Synechococcus* is an abundant cyanobacterium found throughout the global ocean. A couple of years ago I was fortunate enough to get to work with several newly sequenced *Synechococcus* genomes. One of the things we wanted to do was to see where these new genomes it in relatively 
+
 
 ## Alteromonas example
 
