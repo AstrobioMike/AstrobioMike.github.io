@@ -8,7 +8,7 @@ permalink: /unix/unix-intro
 
 {% include _side_tab_unix.html %}
 
-**Unix is very likely the most foundational skillset we can develop for bioinformatics** (and much more than bioinformatics). This is a set of 5 introductory tutorials to help us get from being completely new to Unix up to being great friends with it 🙂 
+**Unix is very likely the most foundational skillset we can develop for bioinformatics** (and much more than bioinformatics). Many of the most common and powerful bioinformatics approaches happen in this text-based environment, and having a solid foundation here can make everything we’re trying to learn and do much easier. This is a set of 5 introductory tutorials to help us get from being completely new to Unix up to being great friends with it 🙂 
 
 <hr style="height:10px; visibility:hidden;" />
 # Why learn Unix?
