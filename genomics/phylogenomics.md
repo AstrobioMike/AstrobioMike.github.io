@@ -347,9 +347,9 @@ Which gives us a view of our tree like this:
 <center><a href="../images/iToL-syn-tree-final-view.png"><img width="90%" src="../images/iToL-syn-tree-final-view.png"></a></center>
 <br>
 
-At the time of doing [this work](https://doi.org/10.1111/1462-2920.14552){:target="_blank"} initially ([open pdf download available here](https://astrobiomike.github.io/research/Lee_et_al_2019_EnvMicro.pdf){:target="_blank"}), I didn't have GToTree yet, and made a tree with 1,002 single-copy genes highly specific for just the target 31 marine *Synechococcus* identified using [anvi'o's pangenomic workflow](http://merenlab.org/2016/11/08/pangenomics-v2/){:target="_blank"}. It turns out this is a perfect example of what was noted above:
+At the time of doing [this work](https://doi.org/10.1111/1462-2920.14552){:target="_blank"} initially ([open pdf download available here](https://astrobiomike.github.io/research/Lee_et_al_2019_EnvMicro.pdf){:target="_blank"}), I didn't have GToTree yet, and made a tree with 1,002 single-copy genes highly specific for just the target 31 marine *Synechococcus* identified using [anvi'o's pangenomic workflow](http://merenlab.org/2016/11/08/pangenomics-v2/){:target="_blank"}. It turns out this is a good example of what was noted above:
 
->*"In general, for a given set of organisms of interest, it'd be a good idea to use as many single-copy core genes as that set of organisms has. **But this certainly isn't always necessary in order to get a trusted signal that meets our current needs**."*
+>*In general, for a given set of organisms of interest, it'd be a good idea to use as many single-copy core genes as that set of organisms has. But this certainly isn't always necessary in order to get a trusted signal that meets our current needs.*
 
 Here, the Cyanobacteria-specific SCG-set of 251 genes gave back virtually the same tree and relationships that we got from the tree of 1,002 target genes that is in [figure 1](../images/syn-paper-figure-1.png){:target="_blank"} of the paper (minus some rotations, coloring, and label-adjustment):
 
