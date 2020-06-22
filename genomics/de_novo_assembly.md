@@ -419,7 +419,7 @@ This was all basically to get a high-quality draft of our isolate genome, that w
 Pull available reference genomes of close relatives and build a phylogenomic tree to get a robust estimate of where your newly acquired isolates fit in evolutionarily with what is already known. Not surprisingly, [anvi'o can help you parse this out also](http://merenlab.org/2017/06/07/phylogenomics/){:target="_blank"}. This tree is based on an amino acid alignment of ~1,000 one-to-one orthologs. 
 <br>
 
-<center><img src="../images/phylo_syn.png"></center>  
+<center><a href="../images/phylo_syn_fig1_A.png"><img src="../images/phylo_syn_fig1_A.png"></a></center>  
 
 <br>
 
@@ -429,7 +429,7 @@ Pull available reference genomes of close relatives and build a phylogenomic tre
 Pull available metagenomes from other studies and recruit the reads to a reference library containing your isolate (and its close relatives if it has any) to begin assessing the distributions their genomic lineages. This example is done with ocean samples, but the same principle can be applied to any environments.
 <br>
 
-<center><img src="../images/dist_syn.png"></center>  
+<center><a href="../images/dist_syn_2.png"><img src="../images/dist_syn_2.png"></a></center>  
 
 <br>
 
@@ -439,7 +439,7 @@ Pull available metagenomes from other studies and recruit the reads to a referen
 Start investigating differences in the genetic complement of your new isolate as compared to its known close relatives. And yes, [anvi'o can help with that too](http://merenlab.org/2016/11/08/pangenomics-v2/){:target="_blank"}. This example figure is combining pangenomics (the core of the figure showing the presence or absence of genes within each genome) with metagenomics (distributions of the genomes across samples in the top right corner) to try to associate genomic variability with ecological delineations:
 <br>
 
-<center><img src="../images/pan_syn.png"></center>  
+<center><a href="../images/pan_syn_2.png"><img src="../images/pan_syn_2.png"></a></center>  
 
 <br>
 
