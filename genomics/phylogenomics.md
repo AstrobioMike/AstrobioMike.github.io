@@ -23,7 +23,7 @@ Here we are going to talk about what phylogenomics is (regarding one common use 
 
 
 > **NOTE**  
-> This page focuses on how the term phylogenomics is most often utilized in my little bubble of existence – which is in the context of attempting to infer evolutionary relationships between organisms. But the term can also be used, and was [initially described](https://genome.cshlp.org/content/8/3/163.full){:target="_blank"}, within the context of functional genomics.
+> This page focuses on the term phylogenomics in the context of attempting to infer evolutionary relationships between organisms. But the term can also be used, and was [initially described](https://genome.cshlp.org/content/8/3/163.full){:target="_blank"}, within the context of functional genomics.
 
 <hr style="height:10px; visibility:hidden;" />
 ---
