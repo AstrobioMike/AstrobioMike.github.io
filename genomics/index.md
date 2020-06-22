@@ -20,5 +20,6 @@ Genomics (used here to include metagenomics too) is a very broad subject. In my 
 # Genomics pages
 
 * [Where to start: quality filtering, error correction, and depth normalization](/genomics/where_to_start)  
-* [*de novo* genome assembly](/genomics/de_novo_assembly) 
-* [Recovering **M**etagenome-**A**ssembled **G**enomes (MAGs) from metagenomes](/genomics/metagen_anvio)
+* [*de novo* genome assembly](/genomics/de_novo_assembly)  
+* [Recovering **M**etagenome-**A**ssembled **G**enomes (MAGs) from metagenomes](/genomics/metagen_anvio)  
+* [Phylogenomics](/genomics/phylogenomics)  
