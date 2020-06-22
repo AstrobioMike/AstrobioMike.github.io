@@ -353,7 +353,7 @@ At the time of doing [this work](https://doi.org/10.1111/1462-2920.14552){:targe
 
 Here, the Cyanobacteria-specific SCG-set of 251 genes gave back virtually the same tree and relationships that we got from the tree of 1,002 target genes that is in [figure 1](../images/syn-paper-figure-1.png){:target="_blank"} of the paper (minus some rotations, coloring, and label-adjustment):
 
-<center><a href="../images/phylo_syn_fig1_A.png"><img width="90%" src="../images/phylo_syn_fig1_A.png"></a></center>
+<center><a href="../images/phylo_syn_fig1_A.png"><img width="70%" src="../images/phylo_syn_fig1_A.png"></a></center>
 <hr style="height:20px; visibility:hidden;" />
 
 ---
