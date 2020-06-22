@@ -10,7 +10,7 @@ permalink: /genomics/phylogenomics
 
 {% include _side_tab_genomics.html %}
 
-Here we are going to talk about what phylogenomics is (regarding one common use of the term at least) and what goes into generating a phylogenomic tree. Then we're going to create a phylogenomic tree with [GToTree](https://github.com/AstrobioMike/GToTree/wiki/what-is-gtotree%3F){:target="_blank"} 🙂
+Here we are going to talk about what phylogenomics is (regarding one common use of the term at least) and what goes into generating a phylogenomic tree. Then we're going to create one with [GToTree](https://github.com/AstrobioMike/GToTree/wiki/what-is-gtotree%3F){:target="_blank"} 🙂
 
 <center><a href="../images/hug-tree-of-life.png"><img width="70%" src="../images/hug-tree-of-life.png"></a></center>
 
