@@ -296,21 +296,20 @@ And now all instances are replaced.
 
 There is however another problem we would need to address. You may have noticed that all places where "NA" occurred were changed, including places that said things like "DNA" in the "KO_annotation" column. This isn't ideal in this case, and this example was a little contrived just to show the `g` parameter of `sed`. There are ways to make `sed` work with exact words only (so it wouldn't affect things within longer strings like "DNA"), but those get a little tricky and vary by what type of Unix system we are working on, so they're a little bit beyond our current scope. We could also accomplish our current goal here by utilizing a combination of `cut`, `sed`, and `paste`, but here are two `sed`-only ways that would work on Darwin (the Mac Unix-like environment) and GNU (one of the most common Unix-like environments):
 
-On GNU (what our Binders are):
+**Match only exact words on GNU (what our Binders are):**
 
 ```bash
 sed 's/\<NA\>/<NA>/g' gene_annotations.tsv | head
 ```
 To tell `sed` only to match and change exact words on a GNU system, we need to surround our pattern with "<" and ">", but we need to *escape slash* them so that it doesn't treat them as the normal characters and look for them.
 
-On Mac (Darwin):
+**Match only exact words on Mac (Darwin):**
 
 ```bash
 sed "s/[[:<:]]NA[[:>:]]/<NA>/g" gene_annotations.tsv | head
 ```
 
 To tell `sed` to only replace exact words on a Darwin system, we need to surround our pattern with these longer "[[:<:]]" and "[[:>:]]".
-
 
 These quick examples were just looking for exact matches, but **`sed`** has very powerful pattern searching features (building off of what special characters like **`*`**, **`?`**, and others can do, though slightly differently) that we can look into as needed.
 
