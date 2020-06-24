@@ -18,12 +18,6 @@ permalink: /unix/six-glorious-commands
 
 > **Things covered here:**
 > * Here we're going to touch upon 6 glorious commands that are absolutely worth having in our toolkit!
->   * `cut`
->   * `grep`
->   * `paste`
->   * `sed`
->   * `awk`
->   * `tr`
 
 <hr style="height:10px; visibility:hidden;" />
 
