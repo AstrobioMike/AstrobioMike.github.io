@@ -43,6 +43,7 @@ We can see the file has 4 columns: "gene_ID", "genome", "KO_ID", and "KO_annotat
 
 ```bash
 cd six_commands/
+ls
 head gene_annotations.tsv
 ```
 
