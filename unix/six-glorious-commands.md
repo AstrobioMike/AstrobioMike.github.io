@@ -146,7 +146,7 @@ grep re colors.txt
 If what we are looking for is not in the file, we will just get our prompt back with nothing printed out:
 
 ```bash
-grep black colors.txt
+grep purple colors.txt
 ```
 
 Back to our gene annotations file, remember it holds KO-annotation information in the 3rd and 4th columns:
