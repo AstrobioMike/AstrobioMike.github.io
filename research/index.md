@@ -5,7 +5,7 @@ permalink: /research/
 ---
 <script type='text/javascript' src='https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js'></script>
 
-<img style="float: right; margin-left: 15px; margin-top: 5px" width="25%" src="{{ site.url }}/images/rock_MLee.jpg">
+<img style="float: right; margin-left: 15px; margin-top: 5px" width="25%" src="../images/rock_MLee.jpg">
 
 ## Michael D. Lee, PhD – Science Mercenary
 
@@ -113,6 +113,12 @@ O'Rourke, A. and **Lee, M.D.**, Nierman, W.C., Everroad, R.C., and Dupont, C.L. 
 Walworth, N.G. and **Lee, M.D.**, Suffridge, C., Qu, P., Fu, F-X., Saito, M.A., Webb, E.A., Sañudo-Wilhelmy, S.A., and Hutchins, D.A (2017). [Functional genomics and phylogenetic evidence suggest genus-wide cobalamin production by the globally distributed marine nitrogen fixer Trichodesmium](https://doi.org/10.3389/fmicb.2018.00189){:target="_blank"}. *Frontiers in Microbiology*.  
 [PDF download](/research/Walworth_Lee_et_al_2018_FrontMicro.pdf){:target="_blank"}  
 
+<a name="Seyler_et_al_2020_astrobio"></a>
+<div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1089/ast.2019.2135"></div>  
+
+Seyler, L., Kujawinski, E.B., Azua-Bustos, A., **Lee, M.D.**, Marlow, J., Perl, S.M., and Cleaves II, H.J (2020). [Metabolomics As an Emerging Tool in the Search for Astrobiologically Relevant Biomarkers](https://doi.org/10.1089/ast.2019.2135){:target="_blank"}. *Astrobiology*.  
+[PDF download](https://www.liebertpub.com/doi/pdf/10.1089/ast.2019.2135){:target="_blank"}  
+
 <a name="ORourke_et_al_2020_astrobio_chapter"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.21775/9781912530304"></div>  
 
@@ -130,13 +136,6 @@ Ahlgren, N.A., Belisle, B.S., and **Lee, M.D.** (2019). [Genomic mosaicism under
 
 Kling, J.D., **Lee, M.D.**, Fu, F-X., Phan, M.D., Wang, X., Qu, P., and Hutchins, D.A. (2019). [Transient exposure to unusually high temperatures reshapes coastal phytoplankton communities](https://www.nature.com/articles/s41396-019-0525-6){:target="_blank"}. *ISME*.  
 [PDF download](Kling_et_al_2019_ISME.pdf){:target="_blank"}  
-
-<a name="Sharma_et_al_2019_MRA"></a>
-<div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1128/MRA.01089-19"></div>  
-
-Sharma, I. and **Lee, M.D.** (2019). [Draft Genome Sequence of Cyclobacterium marinum Strain Atlantic-IS, Isolated from the Atlantic Slope off the Coast of Virginia, USA](https://mra.asm.org/content/8/50/e01089-19){:target="_blank"}. *Microbiology Resource Announcements*.  
-[PDF download](https://mra.asm.org/content/ga/8/50/e01089-19.full-text.pdf){:target="_blank"} 
-
 
 <a name="Walworth_et_al_2017_AEM"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="doi: 10.1128/AEM.02137-17"></div>  
@@ -179,3 +178,17 @@ Walworth, N.G., **Lee, M.D.**, Fu, F.-X., Hutchins, D.A., and Webb, E.A. (2016).
 
 Walworth, N.G., Fu, F.-X., Webb, E.A., Saito, M.A., Moran, D., McIlvin, M.R., **Lee, M.D.**, and Hutchins, D.A. (2016). [Mechanisms of increased *Trichodesmium* fitness under iron and phosphorus co-limitation in the present and future ocean](https://doi.org/10.1038/ncomms12081){:target="_blank"}. *Nature Communications*.   
 [PDF download](/research/Walworth_et_al_2016_NatCom.pdf){:target="_blank"}  
+
+<hr style="height:10px; visibility:hidden;" />
+#### Genome Announcements
+<a name="Sharma_et_al_2019_MRA"></a>
+<div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1128/MRA.01089-19"></div>  
+
+Sharma, I. and **Lee, M.D.** (2019). [Draft Genome Sequence of Cyclobacterium marinum Strain Atlantic-IS, Isolated from the Atlantic Slope off the Coast of Virginia, USA](https://mra.asm.org/content/8/50/e01089-19){:target="_blank"}. *Microbiology Resource Announcements*.  
+[PDF download](https://mra.asm.org/content/ga/8/50/e01089-19.full-text.pdf){:target="_blank"} 
+
+<a name="Becket_et_al_2020_MRA"></a>
+<div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1128/MRA.00354-20"></div>  
+
+Becket, E. et al. (2020). [Draft Genome Sequences of Bacillus glennii V44-8, Bacillus saganii V47-23a, Bacillus sp. Strain V59.32b, Bacillus sp. Strain MER_TA_151, and Paenibacillus sp. Strain MER_111, Isolated from Cleanrooms Where the Viking and Mars Exploration Rover Spacecraft Were Assembled](https://mra.asm.org/content/9/26/e00354-20){:target="_blank"}. *Microbiology Resource Announcements*.  
+[PDF download](https://mra.asm.org/content/ga/9/26/e00354-20.full.pdf){:target="_blank"} 
