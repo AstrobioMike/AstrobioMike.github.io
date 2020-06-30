@@ -276,7 +276,7 @@ anvi-gen-contigs-database -f spades_kmers_set_careful_assembly/contigs.fasta \
 
 Now that we have our `contigs.db` that holds our sequences and some basic information about them, we can start adding more. This is one of the places where the flexibility comes into play, but for now we'll just move forward with some parts of a general anvi'o workflow, including:
 
-• using the program [HMMER](http://hmmer.org/){:target="_blank"} with 3 profile hidden Markov models (HMMs) to scan for bacterial single-copy genes [(from Campbell et al. 2013)](http://www.pnas.org/content/110/14/5540.short){:target="_blank"} and ribosomal RNAs [(from Tørsten Seemann's Barrnap tool)](https://github.com/tseemann/barrnap){:target="_blank"} (if new to HMMs, see the bottom of page 7 [here](http://eddylab.org/software/hmmer3/3.1b2/Userguide.pdf){:target="_blank"} for a good explanation of what exactly a "hidden Markov model" is in the realm of sequence data)
+• using the program [HMMER](http://hmmer.org/){:target="_blank"} with profile hidden Markov models (HMMs) to scan for bacterial single-copy genes and ribosomal RNAs (if new to HMMs, see the bottom of page 7 [here](http://eddylab.org/software/hmmer3/3.1b2/Userguide.pdf){:target="_blank"} for a good explanation of what exactly a "hidden Markov model" is in the realm of sequence data)
 
 • using [NCBI COGs](https://www.ncbi.nlm.nih.gov/COG/){:target="_blank"} to functionally annotate the open-reading frames [Prodigal](https://github.com/hyattpd/Prodigal){:target="_blank"} predicted with either [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi){:target="_blank"} or [DIAMOND](https://github.com/bbuchfink/diamond){:target="_blank"}
 
@@ -286,6 +286,9 @@ This took ~30 minutes on my laptop, mostly because of needing to download and se
 
 ```bash
   # HMM searching for single-copy genes and rRNAs
+    # note, if using a newer version of anvi'o, this may need to be 
+    # changed to "Bacteria_71" instead of "Campbell_et_al"
+    # can see those available by running `anvi-run-hmms -h`
 anvi-run-hmms -I Campbell_et_al -c contigs.db -T 4
 anvi-run-hmms -I Ribosomal_RNAs -c contigs.db -T 4
 

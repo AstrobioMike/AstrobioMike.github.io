@@ -47,7 +47,9 @@ We will be using bowtie2, anvio, and diamond. Using [Conda](/unix/installing_too
 conda install -y bowtie2 anvio diamond
 ```
 
-<br>
+>At the time of putting this together, anvi'o 5.5 was used. Differences will be noted where needed if working with a newer version 🙂
+
+<hr style="height:10px; visibility:hidden;" />
 
 ---
 <br>
@@ -272,18 +274,24 @@ Since we skipped that to save time, let's copy over the contigs database from ou
 ```bash
 cp ../results/contigs.db .
 ```
+
+> If using a newer version of anvi'o, and copying over the results, you should run `anvi-migrate-db contigs.db` in order to update it. 
+
 Now that we have our contigs.db that holds our sequences and some basic information about them, we can start adding more, like:
 
-**Using the program [HMMER](http://hmmer.org/){:target="_blank"} to scan for a commonly used set of bacterial single-copy genes [(from Campbell et al. 2013)](http://www.pnas.org/content/110/14/5540.short){:target="_blank"}**. This will help us estimate genome completeness/redundancy in real-time as we work on binning our contigs below (this should only take ~3 minutes).
+**Using the program [HMMER](http://hmmer.org/){:target="_blank"} to scan for a commonly used set of bacterial single-copy genes.** This will help us estimate genome completeness/redundancy in real-time as we work on binning our contigs below (this should only take ~3 minutes).
 
 ```bash
+  ## note, if working with a newer version of anvi'o
+    ## may need to specify "Bacteria_71" rather than "Campbell_et_al"
+    ## those available can be seen with `anvi-run-hmms -h`
 anvi-run-hmms -c contigs.db -I Campbell_et_al -T 4
 ```
 
 > **Code breakdown:** 
 > * `anvi-run-hmms` is the main program we're using
 >   * `-c` our input contigs database
->   * `-I` specifying which HMM profile we want to use (you can see which are available by running `anvi-run-hmms --help`, and can also add your own if you'd like)
+>   * `-I` specifying which HMM profile we want to use (you can see which are available by running `anvi-run-hmms --help`)
 >   * `-T` specifies that we'd like to split the work among 4 cpus
 > 
 >**NOTE:** See the bottom of page 7 of the [HMMER manual here](http://eddylab.org/software/hmmer3/3.1b2/Userguide.pdf){:target="_blank"} for a great explanation of what exactly a "hidden Markov model" is in the realm of sequence data.
