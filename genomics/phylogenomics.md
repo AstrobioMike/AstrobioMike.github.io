@@ -144,7 +144,7 @@ We are going to place our new genomes (that we have in fasta format) into the co
 We can download this starting example data with the following:
 
 ```bash
-curl -L -o syn-gtotree-example.tar.gz https://ndownloader.figshare.com/files/23277134
+curl -L -o syn-gtotree-example.tar.gz https://ndownloader.figshare.com/files/23629763
 
 tar -xvzf syn-gtotree-example.tar.gz
 
