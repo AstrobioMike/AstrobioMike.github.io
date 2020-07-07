@@ -468,16 +468,26 @@ summary_tab
 ## Assigning taxonomy
 To assign taxonomy, we are going to use the [DECIPHER package](https://bioconductor.org/packages/release/bioc/html/DECIPHER.html){:target="_blank"}. There are some DECIPHER-formatted databases available [here](http://www2.decipher.codes/Classification/TrainingSets/){:target="_blank"}, which is where the [SILVA](https://www.arb-silva.de/){:target="_blank"} v138 comes from that we will use below. 
 
-Here we are downloading and loading that reference object:
+Here we are downloading and loading that reference object **(if working in the binder environment, skip this and run the following codeblock)**:
 
 ```R
 ## downloading DECIPHER-formatted SILVA v138 reference
 download.file(url="http://www2.decipher.codes/Classification/TrainingSets/SILVA_SSU_r138_2019.RData", destfile="SILVA_SSU_r138_2019.RData")
 
 ## loading reference taxonomy object
-source("SILVA_SSU_r138_2019.RData")
-  ### this currently won't be able to be loaded in the Binder environment
+load("SILVA_SSU_r138_2019.RData")
 ```
+
+**If in the binder environment and you skippped the previous codeblock**, or if working with a version of R between 1.4 and 3.5 (the binder is 3.4), then run the following to download and load a DECIPHER v138 reference object that can be read in properly:
+
+```R
+## downloading DECIPHER-formatted SILVA v138 reference (v2 R compression used for R versions 1.4-3.5)
+download.file(url="https://ndownloader.figshare.com/files/23739737", destfile="SILVA_SSU_r138_2019.v2-R-compresssed.RData")
+
+## loading reference taxonomy object
+load("SILVA_SSU_r138_2019.v2-R-compresssed.RData")
+```
+
 
 Running the following taxonomy assignment step ~30 minutes on my laptop (2013 MacBook Pro). So feel free to load the stored R objects with `load("amplicon_dada2_ex.RData")` to skip this step. And if working in the Binder, you'll need to do things that way as currently the Binder R can't read the RData object that holds the references.
 
