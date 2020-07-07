@@ -489,7 +489,7 @@ load("SILVA_SSU_r138_2019.v2-R-compresssed.RData")
 ```
 
 
-Running the following taxonomy assignment step ~30 minutes on my laptop (2013 MacBook Pro). So feel free to load the stored R objects with `load("amplicon_dada2_ex.RData")` to skip this step. And if working in the Binder, you'll need to do things that way as currently the Binder R can't read the RData object that holds the references.
+Running the following taxonomy assignment step took ~30 minutes on a 2013 MacBook Pro. So feel free to load the stored R objects with `load("amplicon_dada2_ex.RData")` to skip this step if you'd like.
 
 ```R
 ## loading DECIPHER
