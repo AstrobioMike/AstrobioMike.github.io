@@ -117,7 +117,7 @@ If wanted, a [Binder](https://mybinder.org/){:target="_blank"} is available to w
 > 
 > Lastly, if working in the Binder environment, be sure to add the `-P` flag to the `GToTree` command. Binder can't utilize `ftp`, so adding the `-P` flag tells `GToTree` to use `http` instead.
 
-If using the Binder, we can skip the GToTree installation step as it is already installed there.
+**If using the Binder, we can skip the GToTree installation step as it is already installed there.**
 
 To install it on our system, we can create a [conda](/unix/conda-intro){:target="_blank"} environment with [GToTree](https://github.com/AstrobioMike/GToTree/wiki/what-is-gtotree%3F){:target="_blank"}, and activate it like so: 
 
@@ -246,14 +246,16 @@ The help menu of GToTree can be seen with `GToTree -h`. Here we'll start the com
 **There will also be a results download option below if we want to skip the processing.**
 
 >**NOTE**  
->If running on the binder, be sure to provide the `-P` flag to specify to use https instead of ftp.
-
+>**If running on the binder**, be sure to provide the `-P` flag to specify to use https instead of ftp.
 
 ```bash
+   # if running on the binder, take the next command instead of this one 
 GToTree -a ref-syn-accs.txt -f our-genome-fasta-files.txt -H Cyanobacteria \
         -t -L Species -j 4 -o Syn-GToTree-out
-```
 
+   # if on binder, the `-P` flag (http instead of ftp) is required, and `-H Universal` is suggested instead of the cyanobacterial set
+# GToTree -a ref-syn-accs.txt -f our-genome-fasta-files.txt -H Universal -t -L Species -j 4 -P -o Syn-GToTree-out
+```
 
 >**Code breakdown**  
 >
