@@ -298,6 +298,10 @@ conda install -y -c conda-forge -c bioconda -c defaults -c astrobiomike bit
 This might take about a minute, once it is finished we can try one of them:
 
 ```bash
+# if working in the binder, this random-assembly.fa file is there already
+# if not, we can grab real quick with:
+curl -L -o random-assembly.fa https://ndownloader.figshare.com/files/23842415
+
 bit-summarize-assembly random-assembly.fa
 ```
 
