@@ -888,10 +888,10 @@ Let's make a summary of all major taxa proportions across all samples, then summ
 ```R
   # using phyloseq to make a count table that has summed all ASVs
     # that were in the same phylum
-phyla_counts_tab <- otu_table(tax_glom(ASV_physeq, taxrank="Phylum")) 
+phyla_counts_tab <- otu_table(tax_glom(ASV_physeq, taxrank="phylum")) 
 
   # making a vector of phyla names to set as row names
-phyla_tax_vec <- as.vector(tax_table(tax_glom(ASV_physeq, taxrank="Phylum"))[,2]) 
+phyla_tax_vec <- as.vector(tax_table(tax_glom(ASV_physeq, taxrank="phylum"))[,2]) 
 rownames(phyla_counts_tab) <- as.vector(phyla_tax_vec)
 
   # we also have to account for sequences that weren't assigned any
@@ -912,22 +912,22 @@ temp_major_taxa_counts_tab <- phyla_and_unidentified_counts_tab[!row.names(phyla
 
   # making count table broken down by class (contains classes beyond the
     # Proteobacteria too at this point)
-class_counts_tab <- otu_table(tax_glom(ASV_physeq, taxrank="Class")) 
+class_counts_tab <- otu_table(tax_glom(ASV_physeq, taxrank="class")) 
 
   # making a table that holds the phylum and class level info
-class_tax_phy_tab <- tax_table(tax_glom(ASV_physeq, taxrank="Class")) 
+class_tax_phy_tab <- tax_table(tax_glom(ASV_physeq, taxrank="class")) 
 
 phy_tmp_vec <- class_tax_phy_tab[,2]
 class_tmp_vec <- class_tax_phy_tab[,3]
 rows_tmp <- row.names(class_tax_phy_tab)
-class_tax_tab <- data.frame("Phylum"=phy_tmp_vec, "Class"=class_tmp_vec, row.names = rows_tmp)
+class_tax_tab <- data.frame("phylum"=phy_tmp_vec, "class"=class_tmp_vec, row.names = rows_tmp)
 
   # making a vector of just the Proteobacteria classes
-proteo_classes_vec <- as.vector(class_tax_tab[class_tax_tab$Phylum == "Proteobacteria", "Class"])
+proteo_classes_vec <- as.vector(class_tax_tab[class_tax_tab$phylum == "Proteobacteria", "class"])
 
   # changing the row names like above so that they correspond to the taxonomy,
     # rather than an ASV identifier
-rownames(class_counts_tab) <- as.vector(class_tax_tab$Class) 
+rownames(class_counts_tab) <- as.vector(class_tax_tab$class) 
 
   # making a table of the counts of the Proteobacterial classes
 proteo_class_counts_tab <- class_counts_tab[row.names(class_counts_tab) %in% proteo_classes_vec, ] 
@@ -952,7 +952,7 @@ major_taxa_proportions_tab <- apply(major_taxa_counts_tab, 2, function(x) x/sum(
 
   # if we check the dimensions of this table at this point
 dim(major_taxa_proportions_tab)
-  # we see there are currently 44 rows, which might be a little busy for a
+  # we see there are currently 42 rows, which might be a little busy for a
     # summary figure
     # many of these taxa make up a very small percentage, so we're going to
     # filter some out
@@ -963,7 +963,7 @@ dim(major_taxa_proportions_tab)
 temp_filt_major_taxa_proportions_tab <- data.frame(major_taxa_proportions_tab[apply(major_taxa_proportions_tab, 1, max) > 5, ])
   # checking how many we have that were above this threshold
 dim(temp_filt_major_taxa_proportions_tab) 
-    # now we have 13, much more manageable for an overview figure
+    # now we have 12, much more manageable for an overview figure
 
   # though each of the filtered taxa made up less than 5% alone, together they
     # may add up and should still be included in the overall summary
@@ -1017,6 +1017,9 @@ ggplot(filt_major_taxa_proportions_tab_for_plot.g2, aes(x=Sample, y=Proportion, 
   theme(axis.text.x=element_text(angle=90, vjust=0.4, hjust=1), legend.title=element_blank()) +
   labs(x="Sample", y="% of 16S rRNA gene copies recovered", title="All samples")
 ```
+
+> **NOTE**  
+> While the code on this page has been updated to include the change to using DECIPHER for taxonomy, I haven't had a chance to update the figures yet. So if running through this, the figures generated may look different based on the different taxonomy assignment. 
 
 <center><img src="../images/stacked_bars.png"></center>
 <br>
