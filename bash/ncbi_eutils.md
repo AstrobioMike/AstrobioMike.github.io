@@ -2,12 +2,16 @@
 layout: main
 title: Downloading from NCBI
 categories: [bash, tutorial]
+redirect_to: /unix/ncbi_eutils
 permalink: /bash/ncbi_eutils
 ---
 
 {% include _bash_downloading_from_ncbi_toc.html %}
 
 {% include _side_tab_bash.html %}
+
+# UPDATE
+**This page has been updated and moved to [here](https://astrobiomike.github.io/unix/ncbi_eutils), this current page only remains for archival purposes.**
 
 [NCBI](https://www.ncbi.nlm.nih.gov/){:target="_blank"} is pretty damn awesome. But the first few times I wanted to download a massive amount of reference sequences I found myself struggling a bit. If that has happened to you, then hopefully this page helps out. NCBI's [Entrez Direct E-utilities](https://www.ncbi.nlm.nih.gov/books/NBK179288/){:target="_blank"} offers one avenue to be able to download data in bulk at the command-line, but it can take a bit of *bash* dancing. I initially wrote this demonstrating one of the ways to do that dance, and you can still find that under the [Entrez section](/bash/ncbi_eutils#entrez) at the bottom of this page because it shows some basic *bash* tricks that are helpful in other situations. But wonderfully, after sharing the page, [@asherichia](https://twitter.com/asherichia){:target="_blank"} sent me a link to [@kaiblin](https://twitter.com/kaiblin){:target="_blank"}'s [github page](https://github.com/kblin){:target="_blank"}, where he and some others have put together two amazing tools for downloading data from NCBI. So now, I've just added two simplified examples of downloading genomes and proteins to the top of the page here demonstrating how to use their tools (even though they are very straightforward to use, and their repository [README](https://github.com/kblin/ncbi-genome-download){:target="_blank"} shows a bunch of helpful examples). Both of these tools can be installed easily via `pip` at the command line, i.e. `pip install ncbi-genome-download` and `pip install ncbi-acc-download` (if you're doing it on a server and hit a permissions error, adding the `--user` flag to `pip` usually works).  
 <br>

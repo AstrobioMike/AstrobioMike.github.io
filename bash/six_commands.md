@@ -2,12 +2,16 @@
 layout: main
 title: Six glorious commands worth getting to know
 categories: [bash, tutorial]
+redirect_to: /unix/six-glorious-commands
 permalink: /bash/six_commands
 ---
 
 {% include _bash_6_commands_toc.html %}
 
 {% include _side_tab_bash.html %}
+
+# UPDATE
+**This section has been updated and moved to the [Unix Crash Course here](https://astrobiomike.github.io/unix/unix-intro), this page only remains for archival purposes.**
 
 If you aren't already moderately comfortable with working at the command line, I recommended you run through the [intro to bash page](/bash/bash_intro_binder){:target="_blank"} page first. And if you see something here you aren't familiar with, you will be able to find it there. 
 
@@ -363,9 +367,12 @@ sed 's/NA/<NA>/g' genes_and_identifiers_only.txt
 
 The syntax of `awk` can also take a little getting used to. This is one of the commands that whenever I need to use it for something new and even remotely complicated, I usually pull up an old file I have or do some googling to remind myself of how to do whatever I'm trying to figure out (this is normal! none of this is about memorizing these things). 
 
+>**Note**  
+>Don't mind the changed prompt in these `awk` example images 
+
 For some examples of `awk`, we're going to work with a typical BLAST output table. Let's take a look at it first with `head`:
 
-<center><img src="{{ site.url }}/images/head_blast.png"></center> 
+<center><img src="../images/head_blast_awk.png"></center> 
 
 <br>
 And actually now is a good time to show an example of the `column` command. This will keep columns organized together: 
@@ -374,7 +381,7 @@ And actually now is a good time to show an example of the `column` command. This
 column -t example_blast_output.txt
 ```
 
-<center><img src="{{ site.url }}/images/head_blast_col.png"></center> 
+<center><img src="../images/head_blast_col_awk.png"></center> 
 
 <br>
 So we see here we have 6 columns: "qseqid" is the query sequence (what we're blasting); "qlen" is the length of the query sequence; "sseqid" is the subject sequence (what our query hit in our blast database we were blasting against); "slen" is subject length; "pident" is percent identity; and "length" is the length of the alignment.
@@ -385,7 +392,7 @@ After blasting you usually want to filter the output by some criteria. For the f
 awk '$5 > 95' example_blast_output.txt 
 ```
 
-<center><img src="{{ site.url }}/images/awk1.png"></center> 
+<center><img src="../images/awk_1.png"></center>
 
 <br>
 And actually before running that I didn't remember how `awk` was going to treat the text of the first row, but it seems to return that also so we don't have to worry about adding it back in. If it hadn't, we would have done something similar to above to keep our header if we had been writing this output to a new file.
@@ -396,7 +403,7 @@ We can also do this sort of filtering based on multiple columns by connecting mu
 awk '$5 > 95 && $2 > 1000' example_blast_output.txt
 ```
 
-<center><img src="{{ site.url }}/images/awk2.png"></center> 
+<center><img src="../images/awk_2.png"></center>
 
 <br>
 Percent identity alone doesn't tell us enough information though, as you can have just a tiny portion of a query sequence align to a subject sequence, but still have a high percent identity over that short alignment. So another filtering metric that might typically be incorporated is the alignment length (column 6 here) and the length of the query sequence (column 2 here), to say something like: "only keep the hits that are greater than 95% identical AND have alignments that are greater than 90% of the length of the query sequence. That would look something like this:
@@ -405,7 +412,7 @@ Percent identity alone doesn't tell us enough information though, as you can hav
 awk '$5 > 95 && $6 > $2*0.9' example_blast_output.txt
 ```
 
-<center><img src="{{ site.url }}/images/awk3.png"></center> 
+<center><img src="../images/awk_3.png"></center>
 
 <br>
 And although there'd be no reason to do so in this case, let's sum a column just to have the example here. Let's assume we want to sum the length of all the alignments (column 6): 
@@ -414,7 +421,7 @@ And although there'd be no reason to do so in this case, let's sum a column just
 awk '{sum += $6} END {print sum}' example_blast_output.txt
 ```
 
-<center><img src="{{ site.url }}/images/awk4.png"></center> 
+<center><img src="../images/awk_4.png"></center>
 
 <br>
 Here we've introduced two new components: 1) squiggly brackets which are there to separate the two actions of adding up the column ("sum" is just a variable name here, it could be anything), vs printing the variable "sum" at the end; and 2) the new concept of telling `awk` when to "END" whatever it is doing, before going onto the next step. Let's look at what happens when we don't provide that "END" component:
@@ -423,7 +430,7 @@ Here we've introduced two new components: 1) squiggly brackets which are there t
 awk '{sum += $2} {print sum}' aa_lengths.txt
 ```
 
-<center><img src="{{ site.url }}/images/awk5.png"></center> 
+<center><img src="../images/awk_5.png"></center>
 
 <br>
 That time it printed the value of our "sum" variable after it did each line, rather than waiting until it was done with the whole input. Again the syntax of `awk` takes some getting used to, and pretty much everytime I use it I look at an old log file or google things for it. But there are times I wouldn't know what to do without out, like we'll see in the real-life examples we'll get to soon.  
@@ -434,7 +441,7 @@ That time it printed the value of our "sum" variable after it did each line, rat
 # tr
 `tr` is for "translate". It is useful for changing single characters to another character, and more often I end up using it to change special characters to other special characters (when `sed` is problematic). 
 
-For example, when you export a table from Excel as a tab-delimited file, it does it with odd characters for the end of a line. Normally, unix-like systems interpret a `\n` as the end of a line. But Excel for some reason exports things with `\r` instead. We can see this if we run `less` on an Excel exported file. We have one of these in our working directory, called "example_gene_annotations_excel_exported.txt". If we run the `less` command on that, we'll get only one "line" returned:
+For example, when you export a table from Excel as a tab-delimited file, it does it with odd characters for the end of a line. Normally, unix-like systems interpret a `\n` as the end of a line. But Excel for some reason exports things with `\r` instead. We can see this if we run `less` on an Excel exported file. We have one of these in our working directory, called "example_gene_annotations_excel_exported.txt". If we run the `less -S` command on that file, we'll get only one "line" returned:
 
 <center><img src="{{ site.url }}/images/excel_exp.png"></center> 
 

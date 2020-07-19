@@ -1,6 +1,7 @@
 ---
 layout: main
 categories: [bash, tutorial]
+redirect_to: /unix/other_resources
 permalink: /bash/other_resources
 ---
 

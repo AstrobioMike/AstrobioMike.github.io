@@ -2,12 +2,16 @@
 layout: main
 title: The wonderful world of loops
 categories: [bash, tutorial]
+redirect_to: /unix/for-loops
 permalink: /bash/for_loops
 ---
 
 {% include _bash_loops_toc.html %}
 
 {% include _side_tab_bash.html %}
+
+# UPDATE
+**This section has been updated and moved to the [Unix Crash Course here](https://astrobiomike.github.io/unix/unix-intro), this page only remains for archival purposes.**
 
 Loops are extremely powerful in all programming languages. They are what let us write out a command or operation once, and have it run on all of our samples or files or whatever we want to act on. Not only is this powerful, but it also helps with keeping our code more concise and readable, and it helps elmininate some more of our mortal enemy (human error). Again, this is because we only need to write out what we want to do once and it will then be done the same way to all. There are multiple types of loops, but here we are going to cover what is probably the most common type: the for loop.  
 

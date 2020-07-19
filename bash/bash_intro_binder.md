@@ -2,6 +2,7 @@
 layout: main
 title: Introduction to Bash
 categories: [bash, tutorial]
+redirect_to: /unix/unix-intro
 permalink: /bash/bash_intro_binder
 ---
 
@@ -11,8 +12,7 @@ permalink: /bash/bash_intro_binder
 
 
 # UPDATE
-**This section has been updated and moved to [here](https://astrobiomike.github.io/unix/unix-intro)**
-
+**This section has been updated and moved to the [Unix Crash Course here](https://astrobiomike.github.io/unix/unix-intro), this page only remains for archival purposes.**
 
 
 > **Things covered here:**  

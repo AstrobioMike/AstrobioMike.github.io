@@ -10,9 +10,12 @@ permalink: /bash/modifying_your_path
 
 <link rel="canonical" href="/unix/modifying_your_path" />
 
-{% include _bash_PATH_toc.html %}
+{% include _bash_PATH_toc.html %}s
 
 {% include _side_tab_bash.html %}
+
+# UPDATE
+**This page has been updated and moved to [here](https://astrobiomike.github.io/unix/modifying_your_path), this current page only remains for archival purposes.**
 
 When I was starting out, the whole concept of what the "PATH" was and what it did was way more confusing to me than it needed to be. For some reason I just didn't come across a straightforwrard explanation for a long time (or wasn't paying attention if I had...). If the "PATH" is still a nebulous concept for you, then you've come to the right place.  
 <br>

@@ -2,12 +2,18 @@
 layout: main
 title: Why is this all worth it?
 categories: [bash]
+redirect_to: /unix/why
 permalink: /bash/why
 ---
 
 {% include _bash_why_toc.html %}
 
 {% include _side_tab_bash.html %}
+
+
+
+# UPDATE
+**This page has been updated and moved to the [Unix section here](https://astrobiomike.github.io/unix/why), this current page only remains for archival purposes.**
 
 
 It can be tough to see why these things are useful before you are actually using them regularly, so here I'm going to provide some real-life examples of how I use *bash* everyday. It is assumed you're already a little comfortable with *bash* and some of the most commonly used commands, but if not, be sure to check out the [intro to bash page](/bash/bash_intro_binder){:target="_blank"} and [six glorious commands](/bash/six_commands){:target="_blank"} 🙂
