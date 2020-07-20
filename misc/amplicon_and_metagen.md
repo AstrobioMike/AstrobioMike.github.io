@@ -8,6 +8,11 @@ permalink: /misc/amplicon_and_metagen
 
 >This page presents a broad-level overview of amplicon sequencing and metagenomics as applied to microbial ecology. Both of these methods are most often applied for exploration and hypothesis generation and should be thought of as steps in the process of science rather than end-points – like all tools of science 🙂 
 
+<center><a href="../images/amplicon-vs-metagenomics-overview-w-background.png"><img src="../images/amplicon-vs-metagenomics-split-overview.png"></a></center>
+
+<hr style="height:10px; visibility:hidden;" />
+<br>
+
 **Amplicon sequencing**  
 
 Amplicon sequencing of marker-genes (e.g. 16S, 18S, ITS) involves using specific primers that target a specific gene or gene fragment. It is one of the first tools in the microbial ecologist's toolkit. It is most often used as a broad-level survey of community composition used to generate hypotheses based on differences between recovered gene-copy numbers between samples.
@@ -84,7 +89,7 @@ No, and that's not a problem if we understand that neither are meant to tell us 
 
 ## Amplicon overview
 
-<center><a href="{{ site.url }}/images/amplicon_overview.png"><img src="{{ site.url }}/images/amplicon_overview.png"></a></center>
+<center><a href="../images/amplicon_overview.png"><img src="../images/amplicon_overview.png"></a></center>
 
 <p align="right"><a href="https://ndownloader.figshare.com/files/15628100">PDF download</a></p>
 
@@ -114,7 +119,7 @@ If you happen to work with amplicon data, I highly recommend digging into the [C
 
 ## Metagenomics overview
 
-<center><a href="{{ site.url }}/images/metagenomics_overview.png"><img src="{{ site.url }}/images/metagenomics_overview.png"></a></center>
+<center><a href="../images/metagenomics_overview.png"><img src="../images/metagenomics_overview.png"></a></center>
 
 <p align="right"><a href="https://ndownloader.figshare.com/files/15628103">PDF download</a></p>
 
