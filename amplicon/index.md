@@ -11,7 +11,7 @@ permalink: /amplicon/
 <h2>WARNING!</h2>
 Don't get too lost in the weeds when working with marker-gene data. More often than not the kind of detailed questions that will land you in that situation can't be answered with this type of data anyway!</div>
 
-<center><a href="{{ site.url }}/images/amplicon_overview.png"><img src="{{ site.url }}/images/amplicon_overview.png"></a></center>
+<center><a href="../images/amplicon_overview.png"><img src="../images/amplicon_overview.png"></a></center>
 
 <p align="right"><a href="https://ndownloader.figshare.com/files/15628100">PDF download</a></p>
 
@@ -24,6 +24,8 @@ Don't get too lost in the weeds when working with marker-gene data. More often t
 * [Demultiplexing example](/amplicon/demultiplexing)  
 * [A full walkthrough of processing and initial analyses](/amplicon/dada2_workflow_ex)  
 * [An example of dealing with 16S and 18S mixed together](/amplicon/16S_and_18S_mixed)  
+
+> See [this page](https://astrobiomike.github.io/misc/amplicon_and_metagen) for an overview of some of the differences between amplicon sequencing and metagenomics.
 
 <hr style="height:10px; visibility:hidden;" />
 
