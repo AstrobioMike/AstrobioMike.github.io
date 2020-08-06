@@ -29,12 +29,12 @@ permalink: /misc/workshops
 
 **JPL-HBCU**
 
-* 2020
+* [2020](https://github.com/AstrobioMike/JPL-HBCU-2020/wiki){:target="_blank"}  
 
 **Solo**
 
 * [BMSIS YSP 2020](https://hackmd.io/@astrobiomike/YSP2020){:target="_blank"}
-* Turkey Young Biologists Symposium 2019
+* Lebanese American University Young Biologists Symposium 2019
 * Bebout Group at NASA Ames 2017
 * USC 2017
 * I know I'm forgetting several at the moment... :/ 
