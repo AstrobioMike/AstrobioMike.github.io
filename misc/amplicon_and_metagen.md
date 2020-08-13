@@ -95,8 +95,8 @@ No, and that's not a problem if we understand that neither are meant to tell us 
 
 <br>
 
-#### A Note on OTUs vs ASVs  
-All sequencing technologies make mistakes, and (to a much lesser extent), polymerases make mistakes as well during the amplification process. These mistakes artificially increase the number of unique sequences in a sample, a lot. Clustering similar sequences together (generating OTUs) emerged as one way to mitigate these errors and to summarize data – though at the cost of resolution. The field as a whole is moving towards using solely ASVs, and there is pretty good reasoning for this. This [Callahan et al. 2017 paper](https://www.nature.com/articles/ismej2017119) nicely lays out the case for that, summarized in the following points:  
+#### A Note on OTUs vs ASVs (Amplicon Sequence Variants)  
+All sequencing technologies make mistakes, and (to a much lesser extent), polymerases make mistakes as well during the amplification process. When processing with traditional OTU-clustering methods, these mistakes, along with a hefty contribution from chimeric sequences, artificially increase the number of unique sequences we see in a sample after processing (what we often call "richness", though keep in mind we are counting *sequences*, not organisms) – often by **a lot** (e.g. [Edgar and Flyvbjerg 2015](https://academic.oup.com/bioinformatics/article/31/21/3476/194979){:target="_blank"}, [Callahan et al. 2016](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4927377/){:target="_blank"}, [Edgar 2017](https://peerj.com/articles/3889/){:target="_blank"}, [Prodan et al. 2020](https://doi.org/10.1371/journal.pone.0227434){:target="_blank"}). Our initial methods of clustering similar sequences together based on percent similarity thresholds (generating OTUs) emerged as one way to mitigate these errors and to summarize data – though at the cost of resolution. Single-nucleotide resolution methods that directly try to better "denoise" the data (deal with errors) have been developed, and these generate what we refer to as **A**mplicon **S**equence **V**ariants (ASVs). The field as a whole is moving towards using solely ASVs and, in addition to being designed to better deal with errors and drastically reducing the number of spurious recovered sequences, there are pretty good practical reasons for this also. This [Callahan et al. 2017 paper](https://www.nature.com/articles/ismej2017119){:target="_blank"} nicely lays out the practical case for this, summarized in the following points:  
 
 * OTUs (operational taxonomic units)
     1. cluster sequences into groups based on percent similarity
@@ -115,7 +115,7 @@ All sequencing technologies make mistakes, and (to a much lesser extent), polyme
         * **\+** can compare across studies
         * **\+** can capture novel diversity
 
-If you happen to work with amplicon data, I highly recommend digging into the [Callahan et al. 2017 paper](https://www.nature.com/articles/ismej2017119) sometime 🙂
+If you happen to work with amplicon data, and are unsure of what's going on with this whole hubbub between OTUs and ASVs, I highly recommend digging into the [Callahan et al. 2017 paper](https://www.nature.com/articles/ismej2017119){:target="_blank"} sometime to start 🙂
 
 ## Metagenomics overview
 
