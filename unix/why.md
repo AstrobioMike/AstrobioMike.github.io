@@ -20,7 +20,7 @@ It can be tough to see why these things are useful before you are actually using
 # Getting started  
 If you'd like to follow along here, you can get the mock data we'll be working with by coping and pasting these commands into your terminal.
 
-```
+```bash
 cd ~
 curl -O https://AstrobioMike.github.io/tutorial_files/bash_why_temp.tar.gz
 tar -xvf bash_why_temp.tar.gz
@@ -37,7 +37,7 @@ So the setup is we have 1,000 files that have names like "Sample-1.fq", "Sample-
 
 Our example_1 directory holds our 1,000 problematic files. 
 
-```
+```bash
 ls | head
 ls | wc -l
 ```
@@ -49,7 +49,7 @@ Here's the approach. We covered in the [intro to bash page](/bash/bash_intro_bin
 
 `echo` is a command that will spit back out whatever you tell it:
 
-```
+```bash
 echo "Hi Mike"
 ```
 
@@ -58,7 +58,7 @@ echo "Hi Mike"
 <br>
 Seems a little useless at first (unless you're lonely, of course 😢 ). But its utility makes more sense when you use [redirectors](/bash/bash_intro_binder#redirectors){:target="_blank"} to send things somewhere else. For example, instead of using `nano` like we've [done before](/bash/bash_intro_binder#a-terminal-text-editor){:target="_blank"} to make a new file, we can make our *bash* script with the `echo` command:
 
-```
+```bash
 echo "ls | head" > test.sh
 echo "ls | wc -l" >> test.sh
 head test.sh
@@ -69,7 +69,7 @@ head test.sh
 <br>
 The first command redirected "ls | head" into and created the file named "test.sh" (the .sh extension is for "shell" and is the typical extension used for *bash* scripts). And the second command appended "ls | wc -l" to that file. Then, as we see with `head`, those are the two lines in the file. We can now run this as a *bash* script. That's done by putting `bash` in front of the file name that is the script (so now `bash` is the command, and `test.sh` is a positional argument telling it what to operate on):
 
-```
+```bash
 bash test.sh
 ```
 
@@ -111,8 +111,8 @@ In this case we have a mapping file from the sequencing facility that looks like
 <br>
 Some sequencing facilities send you back your samples all mixed together, and you need to separate the sequences based on the barcode they have that ties them to which sample they came from. The barcode in this file is the second column, and the sample is specified in the first column. Some programs that do this demultiplexing step require a fasta file to be the "mapping file" to tell it which barcodes belong to which samples. We're going to make that fasta file from this starting file with just a few commands strung together:
 
-```
-cut -f1,2 mapping.txt | sed '1d' | sed 's/^/>/' | tr "\t" "\n" > mapping.fa
+```bash
+cut -f 1,2 mapping.txt | sed '1d' | sed 's/^/>/' | tr "\t" "\n" > mapping.fa
 ```
 
 <center><img src="{{ site.url }}/images/making_mapping_fasta.png"></center> 
@@ -125,8 +125,8 @@ cut -f1,2 mapping.txt | sed '1d' | sed 's/^/>/' | tr "\t" "\n" > mapping.fa
 # Example 3 - Counting specific amino acids in lots of tables
 Recently my good 'ol buddy Josh Kling was yabbering about some paper as he usually does, but for some odd reason I was actually listening this time. It turns out [this paper by Pittera et al.](https://www.nature.com/articles/ismej2016102){:target="_blank"} was about the thermostability of some *Synechococcus* proteins. They hypothesized that a particular amino acid (position number 43) would more often be alanine in warmer temperature waters, and glycine in colder temperature waters. Having been working on genomics and pangenomics of Syn, I had mapped metagenomic data from about 100 samples from the [TARA Oceans global sampling project](https://www.embl.de/tara-oceans/start/){:target="_blank"}. So we realized I had the data we needed to test this hypothesis just sitting in the computer. All the information was already in the mapping files, we just needed to pull it out. The first part that made that easy is thanks to [Anvi'o](http://merenlab.org/software/anvio/){:target="_blank"}, as that will parse your mapping files for you and give you nice tables like this that we have in our example_3 working directory:
 
-```
-column -t ANW_141_05M_24055_AA_freqs.txt | less -S
+```bash
+column -ts $'\t' ANW_141_05M_24055_AA_freqs.txt | less -S
 ```
 
 <center><img src="{{ site.url }}/images/aa_counts_ex.png"></center> 
@@ -143,7 +143,7 @@ Back to the task at hand, we want to know how often Syn uses an alanine at amino
 <br>
 Now that we know we have the right columns, here's the fun part:
 
-```
+```bash
 grep -w "^42" * | cut -f7 | awk '{sum += $1} END {print sum}'
 grep -w "^42" * | cut -f8 | awk '{sum += $1} END {print sum}'
 grep -w "^42" * | cut -f15 | awk '{sum += $1} END {print sum}'
@@ -169,8 +169,8 @@ Fortunately there is a nice tool called [taxonkit](https://github.com/shenwei356
 <br>
 Mixed in that mess, column 3 has the "taxids" we're looking for. So first we need to cut them out and put them into their own file. 
 
-```
-cut -f3 -d ',' epi2me_tax_out.csv | sed '1d' > taxids.txt
+```bash
+cut -f 3 -d ',' epi2me_tax_out.csv | sed '1d' > taxids.txt
 head taxids.txt
 ```
 
@@ -179,7 +179,7 @@ head taxids.txt
 <br>
 And now we can just provide that file to the taxonkit program like such:
 
-```
+```bash
 ./taxonkit lineage taxids.txt -o epi_tax.txt --names-file names.dmp --nodes-file nodes.dmp
 ```
 
