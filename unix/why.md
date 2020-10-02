@@ -11,7 +11,7 @@ permalink: /unix/why
 {% include _side_tab_unix.html %}
 
 
-It can be tough to see why these things are useful before you are actually using them regularly, so here I'm going to provide some real-life examples of how I use Unix everyday. It is assumed you're already a little comfortable with and some of the most commonly used commands, but if not, be sure to check out the [Unix crash course](/unix/unix-intro){:target="_blank"} 🙂
+It can be tough to see why these things are useful before you are actually using them regularly, and it's not that easy for someone else to demonstrate the general utility of standard unix commands, but I'm going to throw some real-life examples up here of things that were made easier because of them. It is assumed we're already a little comfortable with the command line and some of the most commonly used commands, but if not, be sure to check out the [Unix crash course](/unix/unix-intro){:target="_blank"} 🙂
 
 <hr style="height:10px; visibility:hidden;" />
 
