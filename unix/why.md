@@ -67,7 +67,7 @@ head test.sh
 <center><img src="{{ site.url }}/images/make_test_sh.png"></center> 
 
 <br>
-The first command redirected "ls | head" into and created the file named "test.sh" (the .sh extension is for "shell"). And the second command appended "ls | wc -l" to that file. Then, as we see with `head`, those are the two lines in the file. We can now run this as a *bash* script. That's done by putting `bash` in front of the file name that is the script:
+The first command redirected "ls | head" into and created the file named "test.sh" (the .sh extension is for "shell" and is the typical extension used for *bash* scripts). And the second command appended "ls | wc -l" to that file. Then, as we see with `head`, those are the two lines in the file. We can now run this as a *bash* script. That's done by putting `bash` in front of the file name that is the script (so now `bash` is the command, and `test.sh` is a positional argument telling it what to operate on):
 
 ```
 bash test.sh
@@ -76,16 +76,22 @@ bash test.sh
 <center><img src="{{ site.url }}/images/test_sh.png"></center> 
 
 <br>
-And that ran those commands just the same as if we entered them one at a time actively. This is sometimes referred to as running things in "batch". Also notice our `ls | wc -l` command gave us 1,001 files this time, because there is now also that "test.sh" file in there. If we run `ls *.fq | wc -l`, we'll get our 1,000 again. 
+And that ran those commands just the same as if we entered them one at a time interactively. Also notice our `ls | wc -l` command gave us 1,001 files this time, because there is now also that "test.sh" file in there. If we run `ls *.fq | wc -l`, we'll get our 1,000 again. 
 
-So back to the task at hand, we are going to make a *bash* script that has our 1,000 `mv` commands in it. Here's the whole process:
+So back to the task at hand, we are going to make a *bash* script that has our 1,000 `mv` commands in it, that will then run as if we entered them all one at a time. This assumes already having gone through the [unix introduction](https://astrobiomike.github.io/unix/unix-intro) in order to be familiar with the few commands here, so if it is confusing, run through that when you can (particularly the [six glorious commands page](https://astrobiomike.github.io/unix/six-glorious-commands)), but here's the whole process:
 
-```
+```bash
+  # getting all original file names in a file
 ls *.fq > orig_filenames
+  # changing what we want to change, and saving these new names in a second file
 tr "-" "_" < orig_filenames > new_filenames
+  # sticking them together horizontally with a space between them
 paste -d ' ' orig_filenames new_filenames > both_filenames
+  # adding 'mv ' in front of them, just like we would when entering the command by itself
 sed 's/^/mv /' both_filenames > rename_all.sh
+  # getting read of intermediate files
 rm *filenames
+  # and running our little script to rename them all for us :)
 bash rename_all.sh
 ``` 
 
