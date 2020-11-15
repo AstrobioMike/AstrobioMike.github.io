@@ -465,6 +465,12 @@ summary_tab
 # R9           8600     7853   7215   7390   6740    6695                      77.8
 ```
 
+And it might be useful to write this table out of R, saving it as a regular file:
+
+```R
+write.table(summary_tab, "read-count-tracking.tsv", quote=FALSE, sep="\t", col.names=NA)
+```
+
 ## Assigning taxonomy
 To assign taxonomy, we are going to use the [DECIPHER package](https://bioconductor.org/packages/release/bioc/html/DECIPHER.html){:target="_blank"}. There are some DECIPHER-formatted databases available [here](http://www2.decipher.codes/Classification/TrainingSets/){:target="_blank"}, which is where the [SILVA](https://www.arb-silva.de/){:target="_blank"} v138 comes from that we will use below. 
 
