@@ -18,7 +18,7 @@ permalink: /research/
 
 **Current positions**  
 *NASA GeneLab Bioinformatician*  
-*Blue Marble Space Institute of Science Research Scientist*
+*BMSIS Research Scientist*
 
 **Affiliations**  
 [*NASA*](https://www.nasa.gov/){:target="_blank"}  
