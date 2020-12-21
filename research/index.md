@@ -17,8 +17,8 @@ permalink: /research/
 {% include icon-orcid.html %}
 
 **Current positions**  
-*NASA Space Biology Postdoctoral Fellow*  
 *NASA GeneLab Bioinformatician*  
+*Blue Marble Space Institute of Science Research Scientist*
 
 **Affiliations**  
 [*NASA*](https://www.nasa.gov/){:target="_blank"}  
@@ -29,9 +29,11 @@ permalink: /research/
 **Research summary**  
 I'm a bioinformatician at NASA's Ames Research Center in northern California, USA. I focus primarily on microbial ecology and evolution in all kinds of different systems ranging from the bottoms of our oceans up to the International Space Station 👽
 
-**CV**  
+<!--**CV**  
 [Lee_CV_2020.pdf](/research/Lee_CV_Feb_2020.pdf){:target="_blank"}  
-<br>
+-->
+
+<hr style="height:10px; visibility:hidden;" />
 
 ---
 ---
@@ -40,7 +42,7 @@ I'm a bioinformatician at NASA's Ames Research Center in northern California, US
 ## Software
 
 ### [GToTree](https://github.com/AstrobioMike/GToTree/wiki){:target="_blank"}
-* Genome-level evolutionary inference (i.e. phylogenomics) is becoming an increasingly essential step in many biologists’ work. [GToTree](https://github.com/AstrobioMike/GToTree/wiki){:target="_blank"} is a comprehensive, user-friendly workflow for phylogenomics that greatly simplifies the computational work required of researchers to generate phylogenomic trees.<br>[Code](https://github.com/AstrobioMike/GToTree){:target="_blank"}; [Publication](https://doi.org/10.1093/bioinformatics/btz188){:target="_blank"}; [Wiki](https://github.com/AstrobioMike/GToTree/wiki/what-is-gtotree%3F){:target="_blank"}
+* Genome-level evolutionary inference (i.e. phylogenomics) is becoming an increasingly essential step in many biologists’ work. [GToTree](https://github.com/AstrobioMike/GToTree/wiki/what-is-gtotree%3F){:target="_blank"} is a comprehensive, user-friendly workflow for phylogenomics that greatly simplifies the computational work required of researchers to generate phylogenomic trees.<br>[Code](https://github.com/AstrobioMike/GToTree){:target="_blank"}; [Publication](https://doi.org/10.1093/bioinformatics/btz188){:target="_blank"}; [Wiki](https://github.com/AstrobioMike/GToTree/wiki){:target="_blank"}
 
 ### [Bioinformatics Tools (bit)](https://github.com/AstrobioMike/bioinf_tools#bioinformatics-tools-bit){:target="_blank"}
 * [bit](https://github.com/AstrobioMike/bioinf_tools#bioinformatics-tools-bit){:target="_blank"} holds a collection of scripts and small programs I've written over time that I use frequently enough that it's been worth it for me to package them through [conda](https://conda.io/docs/){:target="_blank"} to make them available to me and others anywhere.<br>[Code](https://github.com/AstrobioMike/bioinf_tools#bioinformatics-tools-bit){:target="_blank"}  
@@ -59,7 +61,7 @@ I'm a bioinformatician at NASA's Ames Research Center in northern California, US
 [PDF download](https://academic.oup.com/bioinformatics/advance-article-pdf/doi/10.1093/bioinformatics/btz188/28405135/btz188.pdf){:target="_blank"}  
 Software lives [here](https://github.com/AstrobioMike/GToTree){:target="_blank"}; documentation lives [here](https://github.com/AstrobioMike/GToTree/wiki){:target="_blank"}.  
 
-<a name="Lee_2019_evo_bioinf"></a>
+<a name="ORourke_PLoS_ONE"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1371/journal.pone.0227152"></div>  
 
 O'Rourke, A. and **Lee, M.D.**, Nierman, W.C., Everroad, R.C., and Dupont, C.L. (2020). [Genomic and phenotypic characterization of *Burkholderia* isolates from the potable water system of the International Space Station](https://doi.org/10.1371/journal.pone.0227152){:target="_blank"}. *PLoS ONE*.  
@@ -107,11 +109,11 @@ O'Rourke, A. and **Lee, M.D.**, Nierman, W.C., Everroad, R.C., and Dupont, C.L. 
 **Lee, M.D.**, Kling, J.D., Araya, R., and Ceh, J. (2018). [Jellyfish life stages shape associated microbial communities, while a core microbiome is maintained across all](https://doi.org/10.3389/fmicb.2018.01534){:target="_blank"}. *Frontiers in Microbiology*.  
 [PDF download](Lee_et_al_2018_Front_Micro.pdf){:target="_blank"}  
 
-<a name="Walworth_et_al_2017_FrontMicro"></a>
-<div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.3389/fmicb.2018.00189"></div>  
+<a name="Eren_2020_anvio"></a>
+<div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1038/s41564-020-00834-3"></div>  
 
-Walworth, N.G. and **Lee, M.D.**, Suffridge, C., Qu, P., Fu, F-X., Saito, M.A., Webb, E.A., Sañudo-Wilhelmy, S.A., and Hutchins, D.A (2017). [Functional genomics and phylogenetic evidence suggest genus-wide cobalamin production by the globally distributed marine nitrogen fixer Trichodesmium](https://doi.org/10.3389/fmicb.2018.00189){:target="_blank"}. *Frontiers in Microbiology*.  
-[PDF download](/research/Walworth_Lee_et_al_2018_FrontMicro.pdf){:target="_blank"}  
+Eren, A.M., Kiefl, E., Shaiber, A., Veseli, E., Miller, S.E., Schechter, M.S., Fink, I., Pan, J.N., Yousef, M., ..., **Lee, M.D.**, ..., and Willis A.D. (2020). [Community-led, integrated, reproducible multi-omics with anvi’o](https://www.nature.com/articles/s41564-020-00834-3){:target="_blank"}. *Nature Microbiology*.  
+[PDF download](https://rdcu.be/ccydr){:target="_blank"}  
 
 <a name="Seyler_et_al_2020_astrobio"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1089/ast.2019.2135"></div>  
@@ -136,6 +138,12 @@ Ahlgren, N.A., Belisle, B.S., and **Lee, M.D.** (2019). [Genomic mosaicism under
 
 Kling, J.D., **Lee, M.D.**, Fu, F-X., Phan, M.D., Wang, X., Qu, P., and Hutchins, D.A. (2019). [Transient exposure to unusually high temperatures reshapes coastal phytoplankton communities](https://www.nature.com/articles/s41396-019-0525-6){:target="_blank"}. *ISME*.  
 [PDF download](Kling_et_al_2019_ISME.pdf){:target="_blank"}  
+
+<a name="Walworth_et_al_2017_FrontMicro"></a>
+<div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.3389/fmicb.2018.00189"></div>  
+
+Walworth, N.G. and **Lee, M.D.**, Suffridge, C., Qu, P., Fu, F-X., Saito, M.A., Webb, E.A., Sañudo-Wilhelmy, S.A., and Hutchins, D.A (2017). [Functional genomics and phylogenetic evidence suggest genus-wide cobalamin production by the globally distributed marine nitrogen fixer Trichodesmium](https://doi.org/10.3389/fmicb.2018.00189){:target="_blank"}. *Frontiers in Microbiology*.  
+[PDF download](/research/Walworth_Lee_et_al_2018_FrontMicro.pdf){:target="_blank"}  
 
 <a name="Walworth_et_al_2017_AEM"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="doi: 10.1128/AEM.02137-17"></div>  
