@@ -113,7 +113,7 @@ O'Rourke, A. and **Lee, M.D.**, Nierman, W.C., Everroad, R.C., and Dupont, C.L. 
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1038/s41564-020-00834-3"></div>  
 
 Eren, A.M., Kiefl, E., Shaiber, A., Veseli, E., Miller, S.E., Schechter, M.S., Fink, I., Pan, J.N., Yousef, M., ..., **Lee, M.D.**, ..., and Willis A.D. (2020). [Community-led, integrated, reproducible multi-omics with anvi’o](https://www.nature.com/articles/s41564-020-00834-3){:target="_blank"}. *Nature Microbiology*.  
-[PDF download](https://rdcu.be/ccydr){:target="_blank"}  
+[PDF download](https://www.nature.com/articles/s41564-020-00834-3.pdf){:target="_blank"}  
 
 <a name="Seyler_et_al_2020_astrobio"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1089/ast.2019.2135"></div>  
