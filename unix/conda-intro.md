@@ -328,7 +328,7 @@ It's possible that already conflicts with the version of python our base conda e
 We can also create an environment and install tools at the same time. Here is creating an environment for [GToTree](https://github.com/AstrobioMike/GToTree/wiki){:target="_blank"} and installing it at the same time:
 
 ```bash
-conda create -n gtotree -c conda-forge -c bioconda -c astrobiomike gtotree
+conda create -n gtotree -c conda-forge -c bioconda -c defaults -c astrobiomike gtotree
 ```
 
 > **Breakdown**
