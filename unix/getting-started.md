@@ -157,7 +157,7 @@ ls
 ## Absolute vs relative path
 There are two ways to specify the path (address) of the file we want to do something to:
 
-* An **absolute path** is an address that starts from an explicitly specified location: either the "root" **`/`** or the "home" **`~/`** location. 
+* An **absolute path** is an address that starts from an explicitly specified location: either the "root" **`/`** or the "home" **`~/`** location. (Side note, because we also may see or hear the term, the "full path", is the absolute path that starts from the "root" **`/`**.)
 * A **relative path** is an address that starts from wherever we are currently sitting.
 
 For example, let's look again at the **`head`** command we ran above:
