@@ -39,13 +39,14 @@ We'll most likely want to be doing this on our own system eventually, but if we 
 # Getting and installing Conda
 Conda comes in [two broad forms](https://docs.conda.io/projects/conda/en/latest/user-guide/install/download.html#anaconda-or-miniconda){:target="_blank"}: Anaconda and Miniconda. Anaconda is large with lots of stuff, Miniconda is more lightweight and we install just what we want. For this reason, we're gonna move forward with Miniconda. The download page for Miniconda is [here](https://conda.io/en/latest/miniconda.html){:target="_blank"}, and we should pick the one appropriate for our operating system. Those labeled Miniconda**2** are using python 2 as the base, while those labeled Miniconda**3** are using python 3. Both can still build environments in the other's python version, but more than likely we should just take python 3. 
 
-Most likely, we will want Miniconda3, and for a 64-bit system. Choosing for our appropriate system here (working in the binder linked above), we are going to want a Linux version, so this is one way to download it to our system (from copying the link under "Miniconda Linux 64-bit":
+Most likely, we will want Miniconda3, and for a 64-bit system. Choosing for our appropriate system here (working in the binder linked above), we are going to want a Linux version, so this is one way to download it to our system (from copying the link under "Miniconda3 Linux 64-bit":
 
 ```bash
 curl -LO https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 ```
 
-> **NOTE:** Don't forget to get the link that works for your operating system, and modify it above as needed.
+> **NOTE:**  
+> Don't forget to get the link that works for your operating system, and modify the above as needed. E.g., if doing this on a mac, we would want the link under "Miniconda3 MacOSX 64-bit bash", and the command we would run would be `curl -LO https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh`.
 
 Now we can install that by running it as a `bash` command:
 
@@ -174,6 +175,14 @@ Looking at the [prodigal package page](https://anaconda.org/bioconda/prodigal){:
 conda install -c bioconda prodigal
 ```
 
+> **IMPORTANT NOTE**  
+> There is more on this below, but because it's important, we're going to note it here too. Despite what the install examples show on the anaconda pages like the one above, for many packages from bioconda to install properly, more channels need to be set in a specific hierarchy (e.g. see this in the [bioconda documentation here](https://bioconda.github.io/user/install.html#set-up-channels). Some installs work fine regardless (as is the case with `prodigal` here), but others will fail, and even worse, some will succeed but have more insidious issues. This is because even though `prodigal` may be in the bioconda channel, some of its dependencies may be found elsewhere or in multiple places, and having those 3 channels set in the proper priority helps to ensure the correct versions of everything are being used. Since I use conda on different systems all the time, I find it much easier and safer just to run the install command specifiying all the channels needed for it in one line like so:
+>
+> `conda install -c conda-forge -c bioconda -c defaults prodigal`
+>
+> That way we get what's needed each time, and we don't have to worry about changing the underlying conda channel hierarchy on each system we use it on like the [bioconda documentation](https://bioconda.github.io/user/install.html#set-up-channels) demonstrates. 
+
+
 This prints out such as what and what versions of things are going to be installed, and where they are going to be installed (which will end with the name of the environment we created). **After inputting `y` and pressing return/enter**, the program is installed in this environment, and we can check for `prodigal` again, only this time successfully:
 
 ```bash
@@ -219,7 +228,7 @@ conda search -c bioconda prodigal
 This lists 2 different versions available (2.6.2 and 2.6.3, with 3 different "builds" for each. A build here is when the program isn't changed, but how it was packaged for conda has changed. If we wanted to install v2.6.2 instead of v2.6.3 like we got above, we could specify it like so:
 
 ```bash
-conda install -c bioconda prodigal=2.6.2
+conda install -c conda-forge -c bioconda -c defaults prodigal=2.6.2
 ```
 
 Just like above when we specified the python version we wanted, we can place an equals sign and then the version we want of any program we are installing. 
@@ -249,6 +258,8 @@ conda install -c conda-forge -c bioconda -c defaults prodigal
 
 (Though in this case it is going to ask us if we want to update the version we have to a newer version, **we can just hit `n` and return**.)
 
+As mentioned above, I prefer doing things this way so I don't have to ever bother with changing the stored channel configuration on any system I use conda on. Plus, this has the added benefit that I very frequently accidentally type out "conda-forage" 🙂
+
 **Or we can set the channels ahead of time** like the [bioconda documentation](https://bioconda.github.io/user/install.html#set-up-channels){:target="_blank"} demonstrates (when done this way, the last one we add has the highest priority):
 
 ```bash
@@ -271,7 +282,6 @@ conda install prodigal
 
 (Again this will ask us if we want to update. If we had the same version as the latest, it would just say it is installed alrady. **We can just hit `n` and return again.**)
 
-I tend to list out the channels when installing something just out of habit now, like in the first example above (as it's almost always bioconda in my case). This has the added benefit that I very frequently accidentally type out "conda-forage" 🙂
 
 <hr style="height:10px; visibility:hidden;" />
 
@@ -281,10 +291,10 @@ I tend to list out the channels when installing something just out of habit now,
 # An example of something we might want to install in our base environment
 As mentioned above, the base environment is somewhere we might want to install smaller programs that we tend to use a lot. For example, I have a collection of small scripts I use very frequently stored in [a package here](https://github.com/AstrobioMike/bioinf_tools#bioinformatics-tools-bit){:target="_blank"} called `bit` – for **b**io**i**nformatics **t**ools ¯\\\_(ツ)_/¯
 
-Let's switch into our base environment and install it (the `-y` flag makes is so we don't need to confirm anything):
+Let's switch back into our base environment, by deactivating the one we are currently in, and install it (the `-y` flag makes is so we don't need to confirm anything):
 
 ```bash
-conda activate base
+conda deactivate
 
 conda install -y -c conda-forge -c bioconda -c defaults -c astrobiomike bit
 ```
@@ -295,7 +305,7 @@ conda install -y -c conda-forge -c bioconda -c defaults -c astrobiomike bit
 > * `-c ...` – specifies the channels
 > * `bit` – this positional argument is specifying the program name as it is within conda
 
-This might take about a minute, once it is finished we can try one of them:
+This might take about a minute (or it might fail, see below), once it is finished we can try one of them:
 
 ```bash
 # if working in the binder, this random-assembly.fa file is there already
@@ -307,6 +317,8 @@ bit-summarize-assembly random-assembly.fa
 
 Because I typically use this and other scripts in here all over the place (we can see them all by typing `bit-` then hitting tab twice), it makes sense for me to have them in my base environment. But we wouldn't want to put too many large things into one environment unless it is needed, as it increases the likelihood of version conflicts.
 
+It's possible that already conflicts with the version of python our base conda environment is using, in which case that may have failed. Due to my adding and adding things to that, I've not found that it is pretty restricted to which version of python3 it can use. In that case, I would install it in it's own environment like we'll look at next.
+
 <hr style="height:10px; visibility:hidden;" />
 
 ---
@@ -315,16 +327,14 @@ Because I typically use this and other scripts in here all over the place (we ca
 We can also create an environment and install tools at the same time. Here is creating an environment for [GToTree](https://github.com/AstrobioMike/GToTree/wiki){:target="_blank"} and installing it at the same time:
 
 ```bash
-conda create -y -n gtotree -c conda-forge -c bioconda -c astrobiomike gtotree python=3.7
+conda create -n gtotree -c conda-forge -c bioconda -c astrobiomike gtotree
 ```
 
 > **Breakdown**
 > * `conda create` – our base command
-> * `-y` – says not to ask us for any confirmation
 > * `-n gtotree` – creates the environment named "gtotree"
 > * `-c ...` – specifies the channels
 > * `gtotree` – this positional argument is specifying the program name as it is within conda
-> * `python=3.7` – specifies the python version that GToTree expects to operate in
 
 When that is done, we can change into the environment, and see that it is there:
 
