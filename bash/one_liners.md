@@ -11,7 +11,7 @@ permalink: /bash/one_liners
 
 Here are some *bash* one-liners I have stored in a text document on my desktop. I've added things to it over time that I either didn't use often enough to have memorized, or that solved some problem for me that was particularly frustrating.  
 
-I have started [this repository at github](https://github.com/AstrobioMike/bioinf_tools){:target="_blank"} which holds a lot of these that I use all the time in more user-friendly scripts, and installation help for that can be found [here](/bash/installing_tools#my-bioinformatics-tools-bit){:target="_blank"}. 
+I have started [this repository at github](https://github.com/AstrobioMike/bioinf_tools){:target="_blank"} which holds a lot of these that I use all the time in more user-friendly scripts, and installation help for that can be found [here](https://github.com/AstrobioMike/bioinf_tools#conda-install){:target="_blank"}. 
 
 <br>
 
