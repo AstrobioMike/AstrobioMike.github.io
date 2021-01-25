@@ -109,6 +109,18 @@ O'Rourke, A. and **Lee, M.D.**, Nierman, W.C., Everroad, R.C., and Dupont, C.L. 
 **Lee, M.D.**, Kling, J.D., Araya, R., and Ceh, J. (2018). [Jellyfish life stages shape associated microbial communities, while a core microbiome is maintained across all](https://doi.org/10.3389/fmicb.2018.01534){:target="_blank"}. *Frontiers in Microbiology*.  
 [PDF download](Lee_et_al_2018_Front_Micro.pdf){:target="_blank"}  
 
+<a name="Zajkowski_et_al_2021"></a>
+<div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="doi.org/10.1093/molbev/msab010"></div>  
+
+Zajkowski, T., **Lee, M.D.**, Mondal, S.S., Carbajal, A., Dec, R., Brennock, P.D., Piast, R.W., Snyder, J.E., Bense, N.B., Dzwolak, W., Jarosz, D.F., and Rothschild, L.J. (2021). [The hunt for ancient prions: Archaeal prion-like domains form amyloid-based epigenetic elements](https://doi.org/10.1093/molbev/msab010){:target="_blank"}. *Molecular Biology and Evolution*.  
+[PDF download](https://academic.oup.com/mbe/advance-article-pdf/doi/10.1093/molbev/msab010/35957457/msab010.pdf){:target="_blank"}  
+
+<a name="McParland_et_al_2021"></a>
+<div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="doi.org/10.1111/1462-2920.15393"></div>  
+
+McParland, E.L., **Lee, M.D.**, Webb, E.A., Alexander, H., and Levine, N.M. (2021). [DMSP synthesis genes distinguish two types of DMSP producer phenotypes](https://doi.org/10.1111/1462-2920.15393){:target="_blank"}. *Environmental Microbiology*.  
+PDF download - coming soon :) 
+
 <a name="Eren_2020_anvio"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1038/s41564-020-00834-3"></div>  
 
