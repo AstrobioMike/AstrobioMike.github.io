@@ -93,7 +93,7 @@ Now, let's get started!
 
 # Processing overview
 
->**Note:** I have occassionally updated program versions (and changed the method and reference database used for taxonomic assignment) without necessarily re-generating all the figures included below or updating all spots in the text that reference specific things. There are also some different versions in the [binder](/amplicon/dada2_workflow_ex#binder-available) than were used when this page was put together (due to constraints on how I could build the binder when it was put together). So if your values differ slightly from the ones shown anywhere, this generally isn't a problem. If you are unsure and curious, feel free to [post an issue here](https://github.com/AstrobioMike/AstrobioMike.github.io/issues){:target="_blank"} or reach out to me through [email or twitter](/research/){:target="_blank"} 🙂
+>**Note:** I have occassionally updated program versions (and changed the method and reference database used for taxonomic assignment) without necessarily re-generating all the figures included below or updating all spots in the text that reference specific things. There are also some different versions in the [binder](/amplicon/dada2_workflow_ex#binder-available) than were used when this page was put together (due to constraints on how I could build the binder when it was put together). So if values we see in our processing run differ slightly from the ones shown anywhere, this isn't a problem. If you are unsure and curious about that happeneing anywhere, free to [post an issue here](https://github.com/AstrobioMike/AstrobioMike.github.io/issues){:target="_blank"} or reach out to me through [email or twitter](/research/){:target="_blank"} 🙂
 
 It's good to try to keep a bird's-eye view of what's going on. So here is an overview of the main processing steps we'll be performing with [cutadapt](https://cutadapt.readthedocs.io/en/stable/index.html){:target="_blank"} and [DADA2](https://benjjneb.github.io/dada2/index.html){:target="_blank"}. Don't worry if anything seems unclear right now, we will discuss each at each step.
 
@@ -474,7 +474,7 @@ write.table(summary_tab, "read-count-tracking.tsv", quote=FALSE, sep="\t", col.n
 ## Assigning taxonomy
 To assign taxonomy, we are going to use the [DECIPHER package](https://bioconductor.org/packages/release/bioc/html/DECIPHER.html){:target="_blank"}. There are some DECIPHER-formatted databases available [here](http://www2.decipher.codes/Classification/TrainingSets/){:target="_blank"}, which is where the [SILVA](https://www.arb-silva.de/){:target="_blank"} v138 comes from that we will use below. 
 
-Here we are downloading and loading that reference object **(if working in the binder environment, skip this and run the following codeblock)**:
+Here we are downloading and loading that reference object **(if working in the binder environment we saw at the top of this page, skip this and run the following codeblock)**:
 
 ```R
 ## downloading DECIPHER-formatted SILVA v138 reference
@@ -484,10 +484,10 @@ download.file(url="http://www2.decipher.codes/Classification/TrainingSets/SILVA_
 load("SILVA_SSU_r138_2019.RData")
 ```
 
-**If in the binder environment and you skippped the previous codeblock**, or if working with a version of R between 1.4 and 3.5 (the binder is 3.4), then run the following to download and load a DECIPHER v138 reference object that can be read in properly:
+**If in the binder environment and you skippped the previous codeblock**, or if working with a version of R between 1.4 and 3.5, then run the following to download and load a DECIPHER v138 reference object that can be read in properly:
 
 ```R
-## downloading DECIPHER-formatted SILVA v138 reference (v2 R compression used for R versions 1.4-3.5)
+## downloading DECIPHER-formatted SILVA v138 reference (v2 R compression used for R versions 1.4-3.5) (and loading the other version on binder seems to crash the binder for some reason I haven't figured out, so using this there too)
 download.file(url="https://ndownloader.figshare.com/files/23739737", destfile="SILVA_SSU_r138_2019.v2-R-compresssed.RData")
 
 ## loading reference taxonomy object
