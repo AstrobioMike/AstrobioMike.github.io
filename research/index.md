@@ -64,7 +64,7 @@ Software lives [here](https://github.com/AstrobioMike/GToTree){:target="_blank"}
 <a name="Lee_et_al_iScience_2021"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1016/j.isci.2021.102114"></div>  
 
-**Lee, M.D.**, O'Rourke, A., Lorenzi, H., Bebout, B.M., Dupont, C.L., and Everroad, R.C. (2021). [Reference-guided metagenomics reveals genome-level evidence of potential microbial transmission from the ISS environment to an astronaut's microbiome](https://doi.org/10.1016/j.isci.2021.102114){:target="_blank"}. *PLoS ONE*.  
+**Lee, M.D.**, O'Rourke, A., Lorenzi, H., Bebout, B.M., Dupont, C.L., and Everroad, R.C. (2021). [Reference-guided metagenomics reveals genome-level evidence of potential microbial transmission from the ISS environment to an astronaut's microbiome](https://doi.org/10.1016/j.isci.2021.102114){:target="_blank"}. *iScience*.  
 [PDF download](https://www.cell.com/action/showPdf?pii=S2589-0042%2821%2900082-1){:target="_blank"}  
 
 <a name="ORourke_PLoS_ONE"></a>
