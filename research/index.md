@@ -133,6 +133,12 @@ PDF download - coming soon :)
 Eren, A.M., Kiefl, E., Shaiber, A., Veseli, E., Miller, S.E., Schechter, M.S., Fink, I., Pan, J.N., Yousef, M., ..., **Lee, M.D.**, ..., and Willis A.D. (2020). [Community-led, integrated, reproducible multi-omics with anvi’o](https://www.nature.com/articles/s41564-020-00834-3){:target="_blank"}. *Nature Microbiology*.  
 [PDF download](https://www.nature.com/articles/s41564-020-00834-3.pdf){:target="_blank"}  
 
+<a name="Walworth_et_al_2020_mol_bio_evo"></a>
+<div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1093/molbev/msaa256"></div>  
+
+Walworth, N.G., **Lee, M.D.**, Dolzhenko, E., Fu., F-X., Smith, A.D., Webb, E.A., and Hutchins, D.A. (2020). [Long-Term m5C Methylome Dynamics Parallel Phenotypic Adaptation in the Cyanobacterium *Trichodesmium*](https://doi.org/10.1093/molbev/msaa256){:target="_blank"}. *Molecular Biology and Evolution*.  
+[PDF download](https://academic.oup.com/mbe/advance-article-pdf/doi/10.1093/molbev/msaa256/34462566/msaa256.pdf){:target="_blank"}  
+
 <a name="Seyler_et_al_2020_astrobio"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1089/ast.2019.2135"></div>  
 
