@@ -4,6 +4,10 @@ title: About this site
 permalink: /about/
 ---
 
+---
+
+> **See kind words that have been shared about Happy Belly Bioinformatics[here](/about/kind-words){:target="_blank"}**❤️ 
+
 Hi there 🙂 My name's [Mike](https://twitter.com/AstrobioMike){:target="_blank"}. I'm a bioinformatician who gets to explore microbial ecology and evolution in all kinds of different environments. 
 
 I am 100% the biology-to-bioinformatics type of person. Like so many of us these days, I found myself in a biology lab with lots of bioinformatics work to be done, but little to no guidance or expertise in bioinformatics available. This isn't anyone's fault of course, it's just that **our society as a whole is generating data much faster than it is developing the skills to work with it**. And it takes time for our educational infrastructure to catch up to what is needed. In the meantime, many of us are stuck fighting our way up a pretty steep learning curve trying to develop skills that are rapidly becoming essential for biologists. At some undefined point in gradschool, I made it through the toughest parts of that learning curve, things started getting easier for a change, and I started realizing how glorious and empowering it was on the other side 🙂 
