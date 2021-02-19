@@ -4,7 +4,7 @@ title: Kind words for Happy Belly Bioinformatics
 permalink: /about/kind-words
 ---
 
-<br>
+---
 
 > **Thank you to all those who have shared the site and kind words about it** 😊
 
