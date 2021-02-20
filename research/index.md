@@ -61,11 +61,13 @@ I'm a bioinformatician at NASA's Ames Research Center in northern California, US
 [PDF download](https://academic.oup.com/bioinformatics/advance-article-pdf/doi/10.1093/bioinformatics/btz188/28405135/btz188.pdf){:target="_blank"}  
 Software lives [here](https://github.com/AstrobioMike/GToTree){:target="_blank"}; documentation lives [here](https://github.com/AstrobioMike/GToTree/wiki){:target="_blank"}.  
 
+
 <a name="Lee_et_al_iScience_2021"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1016/j.isci.2021.102114"></div>  
 
 **Lee, M.D.**, O'Rourke, A., Lorenzi, H., Bebout, B.M., Dupont, C.L., and Everroad, R.C. (2021). [Reference-guided metagenomics reveals genome-level evidence of potential microbial transmission from the ISS environment to an astronaut's microbiome](https://doi.org/10.1016/j.isci.2021.102114){:target="_blank"}. *iScience*.  
 [PDF download](https://www.cell.com/action/showPdf?pii=S2589-0042%2821%2900082-1){:target="_blank"}  
+
 
 <a name="ORourke_PLoS_ONE"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1371/journal.pone.0227152"></div>  
@@ -73,11 +75,13 @@ Software lives [here](https://github.com/AstrobioMike/GToTree){:target="_blank"}
 O'Rourke, A. and **Lee, M.D.**, Nierman, W.C., Everroad, R.C., and Dupont, C.L. (2020). [Genomic and phenotypic characterization of *Burkholderia* isolates from the potable water system of the International Space Station](https://doi.org/10.1371/journal.pone.0227152){:target="_blank"}. *PLoS ONE*.  
 [PDF download](https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0227152&type=printable){:target="_blank"}  
 
+
 <a name="Lee_2019_evo_bioinf"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1177/1176934319862245"></div>  
 
 **Lee, M.D.** (2019). [Applications and considerations of GToTree: a user-friendly workflow for phylogenomics](https://doi.org/10.1177%2F1176934319862245){:target="_blank"}. *Evolutionary Bioinformatics*.  
 [PDF download](https://journals.sagepub.com/doi/pdf/10.1177/1176934319862245){:target="_blank"}  
+
 
 <a name="Lee_2019_happy_belly"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.21105/jose.00053"></div>  
@@ -85,11 +89,13 @@ O'Rourke, A. and **Lee, M.D.**, Nierman, W.C., Everroad, R.C., and Dupont, C.L. 
 **Lee, M.D.** (2019). [Happy Belly Bioinformatics: an open-source resource dedicated to helping biologists utilize bioinformatics](https://doi.org/10.21105/jose.00053){:target="_blank"}. *The Journal of Open-Source Education*.  
 [PDF download](https://www.theoj.org/jose-papers/jose.00053/10.21105.jose.00053.pdf){:target="_blank"}
 
+
 <a name="Lee_et_al_2019_EM"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1111/1462-2920.14552"></div>  
 
 **Lee, M.D.**, Ahlgren, N.A., Kling, J. D., Walworth, N.G., Rocap, G., Saito, M.A., Hutchins, D.A., and Webb, E.A. (2019). [Marine *Synechococcus* isolates representing globally abundant genomic lineages demonstrate a unique evolutionary path of genome reduction without a decrease in GC content](https://doi.org/10.1111/1462-2920.14552){:target="_blank"}. *Environmental Microbiology*.  
 [PDF download](/research/Lee_et_al_2019_EnvMicro.pdf){:target="_blank"}
+
 
 <a name="Lee_et_al_2017_ISME"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1038/ismej.2017.49"></div>  
@@ -97,11 +103,13 @@ O'Rourke, A. and **Lee, M.D.**, Nierman, W.C., Everroad, R.C., and Dupont, C.L. 
 **Lee, M.D.**, Walworth, N.G., McParland, E.L., Fu, F.-X., Mincer, T.J., Levine, N.M., Hutchins, D.A., and Webb, E.A. (2017). [The *Trichodesmium* consortium: conserved heterotrophic co-occurrence and genomic signatures of potential interactions](https://doi.org/10.1038/ismej.2017.49){:target="_blank"}. *ISMEJ*.  
 [PDF download](/research/Lee_et_al_2017_ISME.pdf){:target="_blank"}  
 
+
 <a name="Lee_et_al_2017_AEM"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1111/1462-2920.14552"></div>  
 
 **Lee, M.D.**, Webb, E.A., Walworth, N.G., Fu, F.-X., Held, N.A., Saito, M.A., and Hutchins, D.A. (2017). [Transcriptional activities of the microbial consortium living with the marine nitrogen-fixing cyanobacterium *Trichodesmium* reveal potential roles in community-level nitrogen cycling](https://doi.org/10.1128/AEM.02026-17){:target="_blank"}. *Applied and Environmental Microbiology*.  
 [PDF download](/research/Lee_et_al_2017_AEM.pdf){:target="_blank"}  
+
 
 <a name="Lee_et_al_2015_FrontMicro"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.3389/fmicb.2015.01470"></div>  
@@ -109,11 +117,13 @@ O'Rourke, A. and **Lee, M.D.**, Nierman, W.C., Everroad, R.C., and Dupont, C.L. 
 **Lee, M.D.**, Walworth, N.G., Sylvan, J.B., Edwards, K.J., and Orcutt, B.N. (2015). [Microbial communities on seafloor basalts at Dorado Outcrop reflect level of alteration and highlight global lithic clades](https://doi.org/10.3389/fmicb.2015.01470){:target="_blank"}. *Frontiers in Microbiology*.  
 [PDF download](/research/Lee_et_al_2015_FrontMicro.pdf){:target="_blank"}  
 
-<div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.3389/fmicb.2018.01534"></div>  
 
 <a name="Lee_et_al_2018_FrontMicro"></a>
+<div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.3389/fmicb.2018.01534"></div>  
+
 **Lee, M.D.**, Kling, J.D., Araya, R., and Ceh, J. (2018). [Jellyfish life stages shape associated microbial communities, while a core microbiome is maintained across all](https://doi.org/10.3389/fmicb.2018.01534){:target="_blank"}. *Frontiers in Microbiology*.  
 [PDF download](Lee_et_al_2018_Front_Micro.pdf){:target="_blank"}  
+
 
 <a name="Zajkowski_et_al_2021"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="doi.org/10.1093/molbev/msab010"></div>  
@@ -121,11 +131,20 @@ O'Rourke, A. and **Lee, M.D.**, Nierman, W.C., Everroad, R.C., and Dupont, C.L. 
 Zajkowski, T., **Lee, M.D.**, Mondal, S.S., Carbajal, A., Dec, R., Brennock, P.D., Piast, R.W., Snyder, J.E., Bense, N.B., Dzwolak, W., Jarosz, D.F., and Rothschild, L.J. (2021). [The hunt for ancient prions: Archaeal prion-like domains form amyloid-based epigenetic elements](https://doi.org/10.1093/molbev/msab010){:target="_blank"}. *Molecular Biology and Evolution*.  
 [PDF download](https://academic.oup.com/mbe/advance-article-pdf/doi/10.1093/molbev/msab010/35957457/msab010.pdf){:target="_blank"}  
 
+
+<a name="Sapoval_et_al_2021"></a>
+<div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="doi.org/10.1101/gr.268961.120"></div>  
+
+Sapoval, N., Mahmoud, M., Jochum, M., Liu, Y., Elworth, R.A.L., Wang, Q., Albin, D., Ogilvie, H., **Lee, M.D.**, Villapol, S., Hernandez, K., Berry, I.M., Foox, J., Beheshti, A., Ternus, K., Aagaard, K., Posada, D., Mason, C., Sedlazeck, F.J., and Trangen, T.J. (2021). [Hidden genomic diversity of SARS-CoV-2: implications for qRT- PCR diagnostics and transmission](https://doi.org/10.1101/gr.268961.120){:target="_blank"}. *Genome Research.*  
+[PDF download](https://genome.cshlp.org/content/early/2021/02/18/gr.268961.120.full.pdf+html){:target="_blank"}  
+
+
 <a name="McParland_et_al_2021"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="doi.org/10.1111/1462-2920.15393"></div>  
 
 McParland, E.L., **Lee, M.D.**, Webb, E.A., Alexander, H., and Levine, N.M. (2021). [DMSP synthesis genes distinguish two types of DMSP producer phenotypes](https://doi.org/10.1111/1462-2920.15393){:target="_blank"}. *Environmental Microbiology*.  
 PDF download - coming soon :) 
+
 
 <a name="Eren_2020_anvio"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1038/s41564-020-00834-3"></div>  
@@ -133,11 +152,13 @@ PDF download - coming soon :)
 Eren, A.M., Kiefl, E., Shaiber, A., Veseli, E., Miller, S.E., Schechter, M.S., Fink, I., Pan, J.N., Yousef, M., ..., **Lee, M.D.**, ..., and Willis A.D. (2020). [Community-led, integrated, reproducible multi-omics with anvi’o](https://www.nature.com/articles/s41564-020-00834-3){:target="_blank"}. *Nature Microbiology*.  
 [PDF download](https://www.nature.com/articles/s41564-020-00834-3.pdf){:target="_blank"}  
 
+
 <a name="Walworth_et_al_2020_mol_bio_evo"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1093/molbev/msaa256"></div>  
 
 Walworth, N.G., **Lee, M.D.**, Dolzhenko, E., Fu., F-X., Smith, A.D., Webb, E.A., and Hutchins, D.A. (2020). [Long-Term m5C Methylome Dynamics Parallel Phenotypic Adaptation in the Cyanobacterium *Trichodesmium*](https://doi.org/10.1093/molbev/msaa256){:target="_blank"}. *Molecular Biology and Evolution*.  
 [PDF download](https://academic.oup.com/mbe/advance-article-pdf/doi/10.1093/molbev/msaa256/34462566/msaa256.pdf){:target="_blank"}  
+
 
 <a name="Seyler_et_al_2020_astrobio"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1089/ast.2019.2135"></div>  
@@ -145,11 +166,13 @@ Walworth, N.G., **Lee, M.D.**, Dolzhenko, E., Fu., F-X., Smith, A.D., Webb, E.A.
 Seyler, L., Kujawinski, E.B., Azua-Bustos, A., **Lee, M.D.**, Marlow, J., Perl, S.M., and Cleaves II, H.J (2020). [Metabolomics As an Emerging Tool in the Search for Astrobiologically Relevant Biomarkers](https://doi.org/10.1089/ast.2019.2135){:target="_blank"}. *Astrobiology*.  
 [PDF download](https://www.liebertpub.com/doi/pdf/10.1089/ast.2019.2135){:target="_blank"}  
 
+
 <a name="ORourke_et_al_2020_astrobio_chapter"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.21775/9781912530304"></div>  
 
 O'Rourke, A.O., Zoumplis, A., Wilburn, P., **Lee, M.D.**, Lee, Z., Vecina, M., and Mercader, K. (2020). [Following the Astrobiology roadmap: origins, habitability, and future exploration](https://doi.org/10.21775/9781912530304){:target="_blank"}. Book chapter in *Astrobiology: current, evolving, and emerging perspectives* by Caister Academic Press.  
 [PDF download](https://doi.org/10.21775/9781912530304.01){:target="_blank"}  
+
 
 <a name="Ahlgren_et_al_2019_EM"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1111/1462-2920.14893"></div>  
@@ -157,11 +180,13 @@ O'Rourke, A.O., Zoumplis, A., Wilburn, P., **Lee, M.D.**, Lee, Z., Vecina, M., a
 Ahlgren, N.A., Belisle, B.S., and **Lee, M.D.** (2019). [Genomic mosaicism underlies the adaptation of marine Synechococcus ecotypes to distinct oceanic iron niches](https://doi.org/10.1111/1462-2920.14893){:target="_blank"}. *Environmental Microbiology*.  
 [PDF download](Ahlgren_et_al_2019_Syn_EM.pdf){:target="_blank"}  
 
+
 <a name="Kling_et_al_2019_ISME"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1038/s41396-019-0525-6"></div>  
 
 Kling, J.D., **Lee, M.D.**, Fu, F-X., Phan, M.D., Wang, X., Qu, P., and Hutchins, D.A. (2019). [Transient exposure to unusually high temperatures reshapes coastal phytoplankton communities](https://www.nature.com/articles/s41396-019-0525-6){:target="_blank"}. *ISME*.  
 [PDF download](Kling_et_al_2019_ISME.pdf){:target="_blank"}  
+
 
 <a name="Walworth_et_al_2017_FrontMicro"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.3389/fmicb.2018.00189"></div>  
@@ -169,11 +194,13 @@ Kling, J.D., **Lee, M.D.**, Fu, F-X., Phan, M.D., Wang, X., Qu, P., and Hutchins
 Walworth, N.G. and **Lee, M.D.**, Suffridge, C., Qu, P., Fu, F-X., Saito, M.A., Webb, E.A., Sañudo-Wilhelmy, S.A., and Hutchins, D.A (2017). [Functional genomics and phylogenetic evidence suggest genus-wide cobalamin production by the globally distributed marine nitrogen fixer Trichodesmium](https://doi.org/10.3389/fmicb.2018.00189){:target="_blank"}. *Frontiers in Microbiology*.  
 [PDF download](/research/Walworth_Lee_et_al_2018_FrontMicro.pdf){:target="_blank"}  
 
+
 <a name="Walworth_et_al_2017_AEM"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="doi: 10.1128/AEM.02137-17"></div>  
 
 Walworth, N.G., Fu., F-X., **Lee, M.D.**, Cai, X., Saito, M.A., Webb, E.A., and Hutchins, D.A (2017). [Nutrient co-limited *Trichodesmium* as nitrogen source or sink in a future ocean](https://doi.org/10.1128/AEM.02137-17){:target="_blank"}. *Applied and Environmental Microbiology*.  
 [PDF download](/research/Walworth_et_al_2017_AEM.pdf){:target="_blank"}  
+
 
 <a name="Hutchins_et_al_2017_Science"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1126/science.aao0067"></div>  
@@ -181,11 +208,13 @@ Walworth, N.G., Fu., F-X., **Lee, M.D.**, Cai, X., Saito, M.A., Webb, E.A., and 
 Hutchins, D.A., Fu, F.-X., Walworth, N.G., **Lee, M.D.**, Saito, M.A., and Webb, E.A. (2017). [Comment on “The complex effects of ocean acidification on the prominent N2-fixing cyanobacterium *Trichodesmium*”](https://doi.org/10.1126/science.aao0067){:target="_blank"}. *Science*.  
 [PDF download](/research/Hutchins_et_al_2017_Science.pdf){:target="_blank"}  
 
+
 <a name="Walworth_et_al_2017_EM"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1111/1462-2920.13934"></div>  
 
 Walworth, N.G., Hutchins, D.A., Dolzhenko, E., **Lee, M.D.**, Fu., F-X., Smith, A.D., and Webb, E.A. (2017). [Biogeographic conservation of the cytosine epigenome in the globally important marine, nitrogen-fixing cyanobacterium *Trichodesmium*](https://doi.org/10.1111/1462-2920.13934){:target="_blank"}. *Environmental Microbiology*.  
 [PDF download](/research/Walworth_et_al_2017_EnvMicro.pdf){:target="_blank"}  
+
 
 <a name="Momper_et_al_2017_ISME"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1038/ismej.2017.94"></div>  
@@ -193,11 +222,13 @@ Walworth, N.G., Hutchins, D.A., Dolzhenko, E., **Lee, M.D.**, Fu., F-X., Smith, 
 Momper, L.M., Jungbluth, S.P., **Lee, M.D.**, and Amend, J.P. (2017). [Energy and carbon metabolisms in a deep terrestrial subsurface fluid microbial community](https://doi.org/10.1038/ismej.2017.94){:target="_blank"}. *ISMEJ*.  
 [PDF download](/research/Momper_et_al_2017_ISME.pdf){:target="_blank"}  
 
+
 <a name="Ramirez_et_al_2016_FrontMicro"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.3389/fmicb.2016.01679"></div>  
 
 Ramirez, G.A., Hoffman, C.L., **Lee, M.D.**, Lesniewski, R.A., Barco, R., Garber, A., Toner, B.M., Wheat, C.G., Edwards, K.J., Orcutt, B.N. (2016). [Assessing marine microbial induced corrosion monitored in Santa Catalina Island, California](https://doi.org/10.3389/fmicb.2016.01679){:target="_blank"}. *Frontiers in Microbiology*.  
 [PDF download](/research/Ramirez_et_al_2016_FrontMicro.pdf){:target="_blank"}  
+
 
 <a name="Walworth_et_al_2016_PNAS"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1073/pnas.1605202113"></div>  
@@ -205,19 +236,23 @@ Ramirez, G.A., Hoffman, C.L., **Lee, M.D.**, Lesniewski, R.A., Barco, R., Garber
 Walworth, N.G., **Lee, M.D.**, Fu, F.-X., Hutchins, D.A., and Webb, E.A. (2016). [Molecular and physiological evidence of genetic assimilation to high CO2 in the marine nitrogen fixer *Trichodesmium*](https://doi.org/10.1073/pnas.1605202113){:target="_blank"}. *PNAS*.   
 [PDF download](/research/Walworth_et_al_2016_PNAS.pdf){:target="_blank"}  
 
+
 <a name="Walworth_et_al_2016_NatComm"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1038/ncomms12081"></div>  
 
 Walworth, N.G., Fu, F.-X., Webb, E.A., Saito, M.A., Moran, D., McIlvin, M.R., **Lee, M.D.**, and Hutchins, D.A. (2016). [Mechanisms of increased *Trichodesmium* fitness under iron and phosphorus co-limitation in the present and future ocean](https://doi.org/10.1038/ncomms12081){:target="_blank"}. *Nature Communications*.   
 [PDF download](/research/Walworth_et_al_2016_NatCom.pdf){:target="_blank"}  
 
+
 <hr style="height:10px; visibility:hidden;" />
 #### Genome Announcements
+
 <a name="Sharma_et_al_2019_MRA"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1128/MRA.01089-19"></div>  
 
 Sharma, I. and **Lee, M.D.** (2019). [Draft Genome Sequence of Cyclobacterium marinum Strain Atlantic-IS, Isolated from the Atlantic Slope off the Coast of Virginia, USA](https://mra.asm.org/content/8/50/e01089-19){:target="_blank"}. *Microbiology Resource Announcements*.  
 [PDF download](https://mra.asm.org/content/ga/8/50/e01089-19.full-text.pdf){:target="_blank"} 
+
 
 <a name="Becket_et_al_2020_MRA"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1128/MRA.00354-20"></div>  
