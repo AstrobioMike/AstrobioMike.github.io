@@ -54,13 +54,7 @@ I'm a bioinformatician at NASA's Ames Research Center in northern California, US
 
 ### Publications
 
-<a name="Lee_2019_GToTree"></a>
-<div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1101/512491"></div>  
-
-**Lee, M.D.** (2019). [GToTree: a user-friendly workflow for phylogenomics](https://doi.org/10.1093/bioinformatics/btz188){:target="_blank"}. *Bioinformatics*.  
-[PDF download](https://academic.oup.com/bioinformatics/advance-article-pdf/doi/10.1093/bioinformatics/btz188/28405135/btz188.pdf){:target="_blank"}  
-Software lives [here](https://github.com/AstrobioMike/GToTree){:target="_blank"}; documentation lives [here](https://github.com/AstrobioMike/GToTree/wiki){:target="_blank"}.  
-
+#### First-author
 
 <a name="Lee_et_al_iScience_2021"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1016/j.isci.2021.102114"></div>  
@@ -74,6 +68,14 @@ Software lives [here](https://github.com/AstrobioMike/GToTree){:target="_blank"}
 
 O'Rourke, A. and **Lee, M.D.**, Nierman, W.C., Everroad, R.C., and Dupont, C.L. (2020). [Genomic and phenotypic characterization of *Burkholderia* isolates from the potable water system of the International Space Station](https://doi.org/10.1371/journal.pone.0227152){:target="_blank"}. *PLoS ONE*.  
 [PDF download](https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0227152&type=printable){:target="_blank"}  
+
+
+<a name="Lee_2019_GToTree"></a>
+<div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1101/512491"></div>  
+
+**Lee, M.D.** (2019). [GToTree: a user-friendly workflow for phylogenomics](https://doi.org/10.1093/bioinformatics/btz188){:target="_blank"}. *Bioinformatics*.  
+[PDF download](https://academic.oup.com/bioinformatics/advance-article-pdf/doi/10.1093/bioinformatics/btz188/28405135/btz188.pdf){:target="_blank"}  
+[Software](https://github.com/AstrobioMike/GToTree){:target="_blank"} | [Documentation](https://github.com/AstrobioMike/GToTree/wiki){:target="_blank"}  
 
 
 <a name="Lee_2019_evo_bioinf"></a>
@@ -97,6 +99,13 @@ O'Rourke, A. and **Lee, M.D.**, Nierman, W.C., Everroad, R.C., and Dupont, C.L. 
 [PDF download](/research/Lee_et_al_2019_EnvMicro.pdf){:target="_blank"}
 
 
+<a name="Lee_et_al_2018_FrontMicro"></a>
+<div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.3389/fmicb.2018.01534"></div>  
+
+**Lee, M.D.**, Kling, J.D., Araya, R., and Ceh, J. (2018). [Jellyfish life stages shape associated microbial communities, while a core microbiome is maintained across all](https://doi.org/10.3389/fmicb.2018.01534){:target="_blank"}. *Frontiers in Microbiology*.  
+[PDF download](Lee_et_al_2018_Front_Micro.pdf){:target="_blank"}  
+
+
 <a name="Lee_et_al_2017_ISME"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1038/ismej.2017.49"></div>  
 
@@ -110,6 +119,12 @@ O'Rourke, A. and **Lee, M.D.**, Nierman, W.C., Everroad, R.C., and Dupont, C.L. 
 **Lee, M.D.**, Webb, E.A., Walworth, N.G., Fu, F.-X., Held, N.A., Saito, M.A., and Hutchins, D.A. (2017). [Transcriptional activities of the microbial consortium living with the marine nitrogen-fixing cyanobacterium *Trichodesmium* reveal potential roles in community-level nitrogen cycling](https://doi.org/10.1128/AEM.02026-17){:target="_blank"}. *Applied and Environmental Microbiology*.  
 [PDF download](/research/Lee_et_al_2017_AEM.pdf){:target="_blank"}  
 
+<a name="Walworth_et_al_2017_FrontMicro"></a>
+<div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.3389/fmicb.2018.00189"></div>  
+
+Walworth, N.G. and **Lee, M.D.**, Suffridge, C., Qu, P., Fu, F-X., Saito, M.A., Webb, E.A., Sañudo-Wilhelmy, S.A., and Hutchins, D.A (2017). [Functional genomics and phylogenetic evidence suggest genus-wide cobalamin production by the globally distributed marine nitrogen fixer Trichodesmium](https://doi.org/10.3389/fmicb.2018.00189){:target="_blank"}. *Frontiers in Microbiology*.  
+[PDF download](/research/Walworth_Lee_et_al_2018_FrontMicro.pdf){:target="_blank"}  
+
 
 <a name="Lee_et_al_2015_FrontMicro"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.3389/fmicb.2015.01470"></div>  
@@ -118,12 +133,9 @@ O'Rourke, A. and **Lee, M.D.**, Nierman, W.C., Everroad, R.C., and Dupont, C.L. 
 [PDF download](/research/Lee_et_al_2015_FrontMicro.pdf){:target="_blank"}  
 
 
-<a name="Lee_et_al_2018_FrontMicro"></a>
-<div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.3389/fmicb.2018.01534"></div>  
 
-**Lee, M.D.**, Kling, J.D., Araya, R., and Ceh, J. (2018). [Jellyfish life stages shape associated microbial communities, while a core microbiome is maintained across all](https://doi.org/10.3389/fmicb.2018.01534){:target="_blank"}. *Frontiers in Microbiology*.  
-[PDF download](Lee_et_al_2018_Front_Micro.pdf){:target="_blank"}  
-
+<hr style="height:10px; visibility:hidden;" />
+#### Co-author
 
 <a name="Zajkowski_et_al_2021"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="doi.org/10.1093/molbev/msab010"></div>  
@@ -188,13 +200,6 @@ Kling, J.D., **Lee, M.D.**, Fu, F-X., Phan, M.D., Wang, X., Qu, P., and Hutchins
 [PDF download](Kling_et_al_2019_ISME.pdf){:target="_blank"}  
 
 
-<a name="Walworth_et_al_2017_FrontMicro"></a>
-<div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.3389/fmicb.2018.00189"></div>  
-
-Walworth, N.G. and **Lee, M.D.**, Suffridge, C., Qu, P., Fu, F-X., Saito, M.A., Webb, E.A., Sañudo-Wilhelmy, S.A., and Hutchins, D.A (2017). [Functional genomics and phylogenetic evidence suggest genus-wide cobalamin production by the globally distributed marine nitrogen fixer Trichodesmium](https://doi.org/10.3389/fmicb.2018.00189){:target="_blank"}. *Frontiers in Microbiology*.  
-[PDF download](/research/Walworth_Lee_et_al_2018_FrontMicro.pdf){:target="_blank"}  
-
-
 <a name="Walworth_et_al_2017_AEM"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="doi: 10.1128/AEM.02137-17"></div>  
 
@@ -247,6 +252,13 @@ Walworth, N.G., Fu, F.-X., Webb, E.A., Saito, M.A., Moran, D., McIlvin, M.R., **
 <hr style="height:10px; visibility:hidden;" />
 #### Genome Announcements
 
+<a name="Becket_et_al_2020_MRA"></a>
+<div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1128/MRA.00354-20"></div>  
+
+Becket, E. et al. (2020). [Draft Genome Sequences of Bacillus glennii V44-8, Bacillus saganii V47-23a, Bacillus sp. Strain V59.32b, Bacillus sp. Strain MER_TA_151, and Paenibacillus sp. Strain MER_111, Isolated from Cleanrooms Where the Viking and Mars Exploration Rover Spacecraft Were Assembled](https://mra.asm.org/content/9/26/e00354-20){:target="_blank"}. *Microbiology Resource Announcements*.  
+[PDF download](https://mra.asm.org/content/ga/9/26/e00354-20.full.pdf){:target="_blank"} 
+
+
 <a name="Sharma_et_al_2019_MRA"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1128/MRA.01089-19"></div>  
 
@@ -254,8 +266,4 @@ Sharma, I. and **Lee, M.D.** (2019). [Draft Genome Sequence of Cyclobacterium ma
 [PDF download](https://mra.asm.org/content/ga/8/50/e01089-19.full-text.pdf){:target="_blank"} 
 
 
-<a name="Becket_et_al_2020_MRA"></a>
-<div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1128/MRA.00354-20"></div>  
 
-Becket, E. et al. (2020). [Draft Genome Sequences of Bacillus glennii V44-8, Bacillus saganii V47-23a, Bacillus sp. Strain V59.32b, Bacillus sp. Strain MER_TA_151, and Paenibacillus sp. Strain MER_111, Isolated from Cleanrooms Where the Viking and Mars Exploration Rover Spacecraft Were Assembled](https://mra.asm.org/content/9/26/e00354-20){:target="_blank"}. *Microbiology Resource Announcements*.  
-[PDF download](https://mra.asm.org/content/ga/9/26/e00354-20.full.pdf){:target="_blank"} 
