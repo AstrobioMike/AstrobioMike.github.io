@@ -35,6 +35,7 @@ I'm a bioinformatician at NASA's Ames Research Center in northern California, US
 * [Marine microbes](#marine-microbes)  
 * [Software, platforms, and education](#software-platforms-and-education)  
 * [CoVID-19](#covid-19)  
+* [Aquaponics](#aquaponics)  
 * [Genome Announcements](#genome-announcements)  
 
 <!--**CV**  
@@ -130,7 +131,7 @@ McParland, E.L., **Lee, M.D.**, Webb, E.A., Alexander, H., and Levine, N.M. (202
 <a name="Maza_et_al_2021"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="doi.org/doi.org/10.3390/jof7030210"></div>  
 
-Maza-Márquez, P., **Lee, M.D.**, and Bebout, B.M. (2021). [The Abundance and Diversity of Fungi in a Hypersaline Microbial Mat from Guerrero Negro, Baja California, México](https://doi.org/10.3390/jof7030210){:target="_blank"}. *Environmental Microbiology*.  
+Maza-Márquez, P., **Lee, M.D.**, and Bebout, B.M. (2021). [The Abundance and Diversity of Fungi in a Hypersaline Microbial Mat from Guerrero Negro, Baja California, México](https://doi.org/10.3390/jof7030210){:target="_blank"}. *Journal of Fungi*.  
 [PDF download](https://www.mdpi.com/2309-608X/7/3/210/pdf){:target="_blank"}  
 
 
@@ -275,6 +276,15 @@ Eren, A.M., Kiefl, E., Shaiber, A., Veseli, E., Miller, S.E., Schechter, M.S., F
 Sapoval, N., Mahmoud, M., Jochum, M., Liu, Y., Elworth, R.A.L., Wang, Q., Albin, D., Ogilvie, H., **Lee, M.D.**, Villapol, S., Hernandez, K., Berry, I.M., Foox, J., Beheshti, A., Ternus, K., Aagaard, K., Posada, D., Mason, C., Sedlazeck, F.J., and Trangen, T.J. (2021). [Hidden genomic diversity of SARS-CoV-2: implications for qRT- PCR diagnostics and transmission](https://doi.org/10.1101/gr.268961.120){:target="_blank"}. *Genome Research.*  
 [PDF download](https://genome.cshlp.org/content/early/2021/02/18/gr.268961.120.full.pdf+html){:target="_blank"}  
 
+
+<hr style="height:10px; visibility:hidden;" />
+#### **Aquaponics**
+
+<a name="Day_et_al_2021"></a>
+<div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="doi.org/10.1371/journal.pone.0247534"></div>  
+
+Day, J.A.,Diener, C., Otwell, A.E., Tams, K.E., Bebout, B.M., Detweiler, A.M., **Lee, M.D.**, Scott, M.T., Ta, W., Ha, M., Carreon, S.A., Tong, K., Ali, A.A., Gibbons, S.M., and Baliga, N.S.  (2021). [Lettuce (*Lactuca sativa*) productivity influenced by microbial inocula under nitrogen-limited conditions in aquaponics](https://doi.org/10.1371/journal.pone.0247534){:target="_blank"}. *PLOS ONE.*  
+[PDF download](https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0247534&type=printable){:target="_blank"}  
 
 
 <hr style="height:10px; visibility:hidden;" />
