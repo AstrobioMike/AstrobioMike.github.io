@@ -124,7 +124,14 @@ Momper, L.M., Jungbluth, S.P., **Lee, M.D.**, and Amend, J.P. (2017). [Energy an
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="doi.org/10.1111/1462-2920.15393"></div>  
 
 McParland, E.L., **Lee, M.D.**, Webb, E.A., Alexander, H., and Levine, N.M. (2021). [DMSP synthesis genes distinguish two types of DMSP producer phenotypes](https://doi.org/10.1111/1462-2920.15393){:target="_blank"}. *Environmental Microbiology*.  
-PDF download - coming soon :) 
+[PDF download](https://sfamjournals.onlinelibrary.wiley.com/doi/epdf/10.1111/1462-2920.15393){:target="_blank"}  
+
+
+<a name="Maza_et_al_2021"></a>
+<div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="doi.org/doi.org/10.3390/jof7030210"></div>  
+
+Maza-Márquez, P., **Lee, M.D.**, and Bebout, B.M. (2021). [The Abundance and Diversity of Fungi in a Hypersaline Microbial Mat from Guerrero Negro, Baja California, México](https://doi.org/10.3390/jof7030210){:target="_blank"}. *Environmental Microbiology*.  
+[PDF download](https://www.mdpi.com/2309-608X/7/3/210/pdf){:target="_blank"}  
 
 
 <a name="Walworth_et_al_2020_mol_bio_evo"></a>
