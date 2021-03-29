@@ -12,7 +12,7 @@ permalink: amplicon/workflow_ex
 
 <div class="warning">
 <h2><b>ATTENTION!!</b></h2>
-<b>This page is now outdated and not being maintained, but being kept here for archive purposes. If you are new to amplicon analysis, I recommend working through <a href="/amplicon/dada2_workflow_ex/">this page instead</a> 🙂</b>
+<b>This page is now outdated and not being maintained, but being kept here for archive purposes. If you are new to amplicon analysis, I recommend working through <a href="/amplicon/dada2_workflow_ex">this page instead</a> 🙂</b>
 </div>
 
 <br>
