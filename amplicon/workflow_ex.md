@@ -190,6 +190,7 @@ And that's that. Now we're just going to run a few housekeeping commands to get 
 ```
 sed -i.tmp 's/#OTU ID//' ASV_counts.txt
 cp ASV_counts.txt R_working_dir/
+# the following script used here can be found in the directory downloaded from "The data" section at the start of this page :)
 bash convert_usearch_tax.sh
 cp ASV_tax.txt R_working_dir/
 ```
