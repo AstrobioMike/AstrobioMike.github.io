@@ -41,13 +41,15 @@ Recovering genomes from metagenomes has become a powerful tool for microbial eco
 <br>
 
 # Software needed
-We will be using bowtie2, anvio, and diamond. Using [Conda](/unix/installing_tools#conda-alert){:target="_blank"}, this line should do the trick:
+We will be using bowtie2, megahit, and anvio. It's best to put anvio in it's own environment, so we'll just install bowtie2 and megahit first with [Conda](/unix/conda-intro){:target="_blank"}. This line should do the trick:
 
 ```bash
-conda install -y bowtie2 anvio diamond
+conda install -y bowtie2 megahit
 ```
 
->At the time of putting this together, anvi'o 5.5 was used. Differences will be noted where needed if working with a newer version 🙂
+And be sure to install anvio also by following the instructions [here](https://merenlab.org/2016/06/26/installation-v2/).
+
+>At the time of putting this together, anvi'o 5.5 was used. This is very far behind the current version of anvio. Differences will be noted where needed if working with a newer version, and there is a stellar, up-to-date anvio metagenomics tutorial [here](https://merenlab.org/2016/06/22/anvio-tutorial-v2/). But in the style of Happy Belly Bioinformatics, this page discusses a lot of the conceptual things too. So it might still be worthwhile to read through the anvio portion if new to this stuff 🙂
 
 <hr style="height:10px; visibility:hidden;" />
 
