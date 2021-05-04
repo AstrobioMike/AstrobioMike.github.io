@@ -19,7 +19,7 @@ permalink: /unix/conda-intro
 # What is Conda and why do we love it?
 [Conda](https://conda.io/docs/){:target="_blank"} is a package and environment manager that is **by far the easiest way to handle installing most of the tools we want to use** in bioinformatics. Being "conda-installable" requires that someone (could be the developer, could be others) has gone through the trouble of making it that way, so not *everything* is available, but almost everything we're likely to want to use is. Going hand-in-hand with making things easier to install is conda's other value, that it **handles different environments very nicely for us**. Sometimes `Program A` will depend on a specific version of `Program B`. But then, `Program C` will depend on a different version of `Program B`, and this causes problems. **Conda lets us easily create and manage separate environments to avoid these types of version conflicts**, and automatically checks for us when we try to install something new (so we find out now, before we break something somewhere under the hood and have no idea what happened). The benefits go further, like *really* helping with reproducibility too, but let's get into it! 
 
->**NOTE:** This page assumes already having some familiarity with working at the command line. If that's not the case yet, then consider running through the [Unix crash course](/Unix/unix-intro){:target="_blank"} first 🙂
+>**NOTE:** This page assumes already having some familiarity with working at the command line. If that's not the case yet, then consider running through the [Unix crash course](/unix/unix-intro){:target="_blank"} first 🙂
 
 <hr style="height:10px; visibility:hidden;" />
 
