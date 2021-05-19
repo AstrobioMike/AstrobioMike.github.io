@@ -381,6 +381,14 @@ Now we can see the new file we made is ready for the command line (**`q`** exits
 less gene_annotations_fixed.tsv
 ```
 
+And we can see that the command-line now recognizes the newline characters by trying to count the number of lines again:
+
+```bash
+wc -l gene_annotations_fixed.tsv
+```
+
+> Some may say this could be done with `sed`, and that's true, sometimes. When it comes to dealing with special characters like these, `sed` can operate pretty differently depending on which type of Unix-like environment we are in (e.g. on a Mac OSX distribution vs typical Linux distributions). And it can get tricky to specify these newline characters appropriately. So I find it safer and more portable to use `tr` like above 👍
+
 <hr style="height:10px; visibility:hidden;" />
 
 ---
