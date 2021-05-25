@@ -18,7 +18,14 @@ The [DADA2](/amplicon/dada2_workflow_ex){:target="_blank"} and [u-/v-search](/am
 ---  
 <br>
 # Tools used here
-There are many freely available tools to perform demultiplexing. Here I'll demonstrate with [Sabre](https://github.com/najoshi/sabre){:target="_blank"}. Sabre is awesomely simple and quick, and the installation seems to run smoothly wherever I've tried it. There are installation and usage instructions on their [github](https://github.com/najoshi/sabre){:target="_blank"}, and my install steps are presented on the [Unix installing tools page](/unix/installing_tools#sabre){:target="_blank"} if you'd like to see them (though not fully implemented here yet, [Conda](/unix/installing_tools#conda-alert){:target="_blank"} is definely the way to go 🙂
+There are many freely available tools to perform demultiplexing. Here I'll demonstrate with [Sabre](https://github.com/najoshi/sabre){:target="_blank"}. Sabre is awesomely simple and quick, and it is installable through the wonderful environment manager [Conda](/unix/conda-intro){:target="_blank"} 🙂
+
+Once we have conda, sabre can be installed like so:
+
+```
+conda install -c conda-forge -c bioconda -c defaults sabre
+```
+
 <br>
 <br>
 
