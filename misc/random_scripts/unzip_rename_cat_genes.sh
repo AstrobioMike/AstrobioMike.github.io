@@ -10,7 +10,7 @@ do
 
   gunzip ${assembly}_protein.faa.gz
 
-  bit-simplify-fasta-headers -i ${assembly}_protein.faa -w $assembly -o genes.tmp # this just renames the headers and appends a number to keep them unique (https://github.com/AstrobioMike/bioinf_tools)
+  bit-rename-fasta-headers -i ${assembly}_protein.faa -w $assembly -o genes.tmp # this just renames the headers and appends a number to keep them unique (https://github.com/AstrobioMike/bioinf_tools)
 
   cat genes.tmp >> all_genes.faa
 
