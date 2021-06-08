@@ -33,7 +33,7 @@ I'm a bioinformatician at NASA's Ames Research Center in northern California, US
 * [Space Biology](#space-biology)  
 * [Astrobiology](#astrobiology)  
 * [Marine microbes](#marine-microbes)  
-* [Software, platforms, and education](#software-platforms-and-education)  
+* [Software, platforms, workflows, and education](#software-platforms-workflows-and-education)  
 * [CoVID-19](#covid-19)  
 * [Aquaponics](#aquaponics)  
 * [Genome Announcements](#genome-announcements)  
@@ -235,7 +235,13 @@ Walworth, N.G., Fu, F.-X., Webb, E.A., Saito, M.A., Moran, D., McIlvin, M.R., **
 
 
 <hr style="height:10px; visibility:hidden;" />
-#### **Software, platforms, and education**
+#### **Software, platforms, workflows, and education**
+
+<a name="Overbey_2021"></a>
+<div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1016/j.isci.2021.102361"></div>  
+
+Overbey, E.G., Saravia-Butler, A.M., Zhang, Z., Rathi, K.S., Fogle, H., da Silveira, W.A., Barker, R.J., Bass, J.J., Beheshti, A., ..., **Lee, M.D.**, ..., and Galazka, J.M. (2021). [NASA GeneLab RNA-seq consensus pipeline: Standardized processing of short-read RNA-seq data](https://doi.org/10.1016/j.isci.2021.102361){:target="_blank"}. *iScience*.  
+[PDF download](https://www.sciencedirect.com/science/article/pii/S2589004221003291/pdfft?isDTMRedir=true&download=true){:target="_blank"}  
 
 <a name="Eren_2020_anvio"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1038/s41564-020-00834-3"></div>  
