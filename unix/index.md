@@ -7,7 +7,7 @@ permalink: /unix/
 
 {% include _side_tab_unix.html %}
 
-If you're new to the empowering world of Unix and would like to dive in, you should run through the 5 short pages that comprise the [Unix crash course](/unix/unix-intro){:target="_blank"}. Other than that, feel free to check out the other pages under the Unix pull-down menu above and listed below 🙂
+If you're new to the empowering world of Unix and would like to dive in, you should start with checking out [why learning Unix is valuable](/unix/unix-intro#why-learn-unix){:target="_blank"} and run through the 5 short tutorials that comprise the [Unix crash course](/unix/unix-intro){:target="_blank"}. Other than that, feel free to check out the other pages under the Unix pull-down menu above and listed below 🙂
 
 <hr style="height:10px; visibility:hidden;" />
 # Some terminology 
