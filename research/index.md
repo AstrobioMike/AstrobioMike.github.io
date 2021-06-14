@@ -22,11 +22,16 @@ permalink: /research/
 
 **Affiliations**  
 [*NASA*](https://www.nasa.gov/){:target="_blank"}  
-[*Blue Marble Space Institute of Science*](https://www.bmsis.org/){:target="_blank"}  
 [*NASA GeneLab*](https://genelab.nasa.gov/){:target="_blank"}  
+[*Blue Marble Space Institute of Science*](https://www.bmsis.org/){:target="_blank"}  
+
+**Education**  
+* A.S. General Science ([Ocean County College](https://www.ocean.edu/){:target="_blank"}, NJ, USA, 2011)  
+* B.S. Biology ([Kean University](https://www.kean.edu/){:target="_blank"}, NJ, USA, 2013)  
+* Ph.D. Biology ([University of Southern California](https://www.usc.edu/){:target="_blank"}, CA, USA, 2018)  
 
 **Research summary**  
-I'm a research scientist with [Blue Marble Space Institute of Science]((https://www.bmsis.org/){:target="_blank"} and [NASA GeneLab](https://genelab.nasa.gov/){:target="_blank"} bioinformatician located at NASA's Ames Research Center in northern California, USA. I focus primarily on microbial ecology and evolution in all kinds of different systems ranging from the bottoms of our oceans up to the International Space Station 👽
+I'm a research scientist with [Blue Marble Space Institute of Science](https://www.bmsis.org/){:target="_blank"} and [NASA GeneLab](https://genelab.nasa.gov/){:target="_blank"} bioinformatician located at NASA's Ames Research Center in northern California, USA. I focus primarily on microbial ecology and evolution in all kinds of different systems ranging from the bottoms of our oceans up to the International Space Station 👽
 
 *Publication groupings*:  
 * [Space Biology](#space-biology)  
@@ -52,8 +57,8 @@ I'm a research scientist with [Blue Marble Space Institute of Science]((https://
 ### [GToTree](https://github.com/AstrobioMike/GToTree/wiki){:target="_blank"}
 * Genome-level evolutionary inference (i.e. phylogenomics) is becoming an increasingly essential step in many biologists’ work. [GToTree](https://github.com/AstrobioMike/GToTree/wiki/what-is-gtotree%3F){:target="_blank"} is a comprehensive, user-friendly workflow for phylogenomics that greatly simplifies the computational work required of researchers to generate phylogenomic trees.<br>[Code](https://github.com/AstrobioMike/GToTree){:target="_blank"}; [Publication](https://doi.org/10.1093/bioinformatics/btz188){:target="_blank"}; [Wiki](https://github.com/AstrobioMike/GToTree/wiki){:target="_blank"}
 
-### [Bioinformatics Tools (bit)](https://github.com/AstrobioMike/bioinf_tools#bioinformatics-tools-bit){:target="_blank"}
-* [bit](https://github.com/AstrobioMike/bioinf_tools#bioinformatics-tools-bit){:target="_blank"} holds a collection of scripts and small programs I've written over time that I use frequently enough that it's been worth it for me to package them through [conda](https://conda.io/docs/){:target="_blank"} to make them available to me and others anywhere.<br>[Code](https://github.com/AstrobioMike/bioinf_tools#bioinformatics-tools-bit){:target="_blank"}  
+### [Bioinformatics Tools (bit)](https://github.com/AstrobioMike/bit#bioinformatics-tools-bit){:target="_blank"}
+* [bit](https://github.com/AstrobioMike/bit#bioinformatics-tools-bit){:target="_blank"} holds a collection of scripts and small programs I've written over time that I use frequently enough that it's been worth it for me to package them through [conda](https://conda.io/docs/){:target="_blank"} to make them available to me and others anywhere.<br>[Code](https://github.com/AstrobioMike/bit#bioinformatics-tools-bit){:target="_blank"}  
 <br>
 
 ---
