@@ -87,7 +87,7 @@ ls
 head directory_contents.txt
 ```
 
-**It's important to remember that the `>` redirector will overwrite the file you are pointing to if it already exists.** 
+**It's important to remember that the `>` redirector will overwrite the file we are pointing to if it already exists.** 
 
 ```bash
 ls experiment/ > directory_contents.txt
@@ -108,7 +108,7 @@ head directory_contents.txt
 <hr style="height:10px; visibility:hidden;" />
 <h3>The asterisk (<b>*</b>)</h3>
 
-As we've seen, **`ls`** lists the contents of the current working directory, and by default it assumes you want everything: 
+As we've seen, **`ls`** lists the contents of the current working directory, and by default it assumes we want everything: 
 
 ```bash
 ls
