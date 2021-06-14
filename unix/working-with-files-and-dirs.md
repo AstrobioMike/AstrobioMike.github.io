@@ -93,7 +93,7 @@ A general definition of a plain-text file is a text file that doesn't contain an
 Common types of plain-text files are those ending with extensions like ".txt", ".tsv" (**t**ab-**s**eparated **v**alues), or ".csv" (**c**omma **s**eparated **v**alues). Some examples of common file types that are *not* plain-text files would be ".docx", ".pdf", or ".xlsx". This is because those file formats contain special types of compression and formatting information that are only interpretable by programs specifically designed to work with them.  
 
 > **A note on file extensions**<br>
-> File extensions themselves do not actually do anything to the file format. They are *mostly* there just for our convenience/organization – "mostly" because some programs require a specific extension to be present for them to even try interacting with a file. But this has nothing to do with the file contents, just that the program won't let you interact with it unless it has a specific extension.
+> File extensions themselves do not actually do anything to the file format. They are *mostly* there just for our convenience/organization – "mostly" because some programs require a specific extension to be present for them to even try interacting with a file. But this has nothing to do with the file contents, just that the program won't let us interact with it unless it has a specific extension.
 
 <hr style="height:10px; visibility:hidden;" />
 ## Copying, moving, and renaming files
@@ -102,7 +102,7 @@ Common types of plain-text files are those ending with extensions like ".txt", "
 <center><h2>WARNING!</h2></center>
 <b>Using commands that do things like create, copy, and move files at the command line will overwrite files if they have the same name. And using commands that delete things will do so permanently. Use caution while getting used to things – and then forever after</b> 🙂
 </div>
-The commands **`cp`** and **`mv`** (**c**o**p**y and **m**o**v**e) have the same basic structure. They both require two positional arguments – the first is the file you want to act on, and the second is where you want it to go (which can include the name you want to give it). 
+The commands **`cp`** and **`mv`** (**c**o**p**y and **m**o**v**e) have the same basic structure. They both require two positional arguments – the first is the file we want to act on, and the second is where we want it to go (which can include the name we want to give it). 
 
 To see how this works, let's make a copy of "example.txt":
 
@@ -214,7 +214,7 @@ rmdir subset/
 ls
 ```
 
-The command line is a little more forgiving when trying to delete a directory. If the directory is not empty, **`rmdir`** will give you an error. 
+The command line is a little more forgiving when trying to delete a directory. If the directory is not empty, **`rmdir`** will give us an error. 
 
 ```bash
 rmdir experiment/
@@ -234,7 +234,7 @@ So far we've only seen individual commands and printing information to the scree
 |:----------:|------------------|
 |**`head`**      |prints the first lines of a file|
 |**`tail`**      |prints the last lines of a file|
-|**`less`**      |allows you to browse a file (exit with **`q`** key)|
+|**`less`**      |allows us to browse a file (exit with **`q`** key)|
 |**`wc`**       |count lines, words, and characters in a file|
 |**`cp`**      |copy a file or directory (use with caution)|
 |**`mv`**      |mv a file or directory (use with caution)|
