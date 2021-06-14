@@ -17,17 +17,16 @@ permalink: /research/
 {% include icon-orcid.html %}
 
 **Current positions**  
+*BMSIS Research Scientist*  
 *NASA GeneLab Bioinformatician*  
-*BMSIS Research Scientist*
 
 **Affiliations**  
 [*NASA*](https://www.nasa.gov/){:target="_blank"}  
 [*Blue Marble Space Institute of Science*](https://www.bmsis.org/){:target="_blank"}  
 [*NASA GeneLab*](https://genelab.nasa.gov/){:target="_blank"}  
-[*JCVI*](https://www.jcvi.org/){:target="_blank"}  
 
 **Research summary**  
-I'm a bioinformatician at NASA's Ames Research Center in northern California, USA. I focus primarily on microbial ecology and evolution in all kinds of different systems ranging from the bottoms of our oceans up to the International Space Station 👽
+I'm a research scientist with [Blue Marble Space Institute of Science]((https://www.bmsis.org/){:target="_blank"} and [NASA GeneLab](https://genelab.nasa.gov/){:target="_blank"} bioinformatician located at NASA's Ames Research Center in northern California, USA. I focus primarily on microbial ecology and evolution in all kinds of different systems ranging from the bottoms of our oceans up to the International Space Station 👽
 
 *Publication groupings*:  
 * [Space Biology](#space-biology)  
