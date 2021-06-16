@@ -24,6 +24,7 @@ permalink: /all_tutorials/
 
 ---
 
+* [An introduction to Scripting](/unix/scripting)
 * [An introduction to Conda](/unix/conda-intro)
 * [What the heck is my PATH, and how do I get it to do what I want?](/unix/modifying_your_path)
 * [Accessing data from NCBI at the command line with EDirect](/unix/ncbi_eutils)

@@ -45,7 +45,7 @@ Most likely, we will want Miniconda3, and for a 64-bit system. Choosing for our 
 curl -LO https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 ```
 
-> **NOTE:**  
+> **NOTE**  
 > Don't forget to get the link that works for your operating system, and modify the above as needed. E.g., if doing this on a mac, we would want the link under "Miniconda3 MacOSX 64-bit bash", and the command we would run would be:  
 > 
 > `curl -LO https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh`

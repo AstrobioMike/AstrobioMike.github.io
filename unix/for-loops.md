@@ -282,9 +282,13 @@ paste -d "\n" fasta_ids.tmp seqs.tmp > genes.faa
 
 head genes.faa
 
+ls *.tmp
 rm *.tmp
 ```
 
+<hr style="height:10px; visibility:hidden;" />
+
+## Retrieving specific sequences with a loop
 Now imagine we want to pull out all of the sequences that were annotated with that function we looked at before, epoxyqueuosine reductase, which we figured out had the KO identifier "K18979". We can get the gene IDs using **`grep`** like we did previously and then using **`cut`** to just keep the first column (note that we are providing the *relative* path to this file, starting from our current location):
 
 ```bash
