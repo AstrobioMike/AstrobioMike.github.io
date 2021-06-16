@@ -122,7 +122,7 @@ head -n 2 genes.faa
 <br>
 
 
-Before, we were pretending to be interested in genes annotated as "K18979" from the [KEGG Orthology](https://www.genome.jp/kegg/ko.html){:target="_blank"} database (which is how our example data are annotated). And we made a list of the gene_IDs annotated as this by using `grep` and `cut` like so:
+When working with these example files before, we were pretending to be interested in genes annotated as "K18979" from the [KEGG Orthology](https://www.genome.jp/kegg/ko.html){:target="_blank"} database (which is how our example data are annotated). And we made a list of the gene_IDs annotated as this by using `grep` and `cut`. Let's do that again here:
 
 ```bash
 grep "K18979" gene_annotations.tsv | cut -f 1 > target_gene_ids.txt
