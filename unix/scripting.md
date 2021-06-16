@@ -10,7 +10,7 @@ permalink: /unix/scripting
 
 {% include _side_tab_unix.html %}
 
-Instead of running the lines 1-by-1 like we do when we are interactively coding at the command-line, we can put the same commands into a plain-text file and then run the file. That's the basis of scripting, and it's great both for reproducibility and for saving time 🙂
+Instead of running commands one after another like we do when we are interactively coding at the command-line, we can put the same commands into a plain-text file and then run the file. That will execute them one after another just like if we were doing it interactively. That's the basis of scripting, and it's great both for reproducibility and for saving time 🙂
 
 This intro page covers just the fundamentals of scripting at the command line. Like with other things, this can get much more complicated as we need it to, but the basics covered here are enough to get us up and running! This page is not meant to be a detailed dive into shell scripting or all that that can encompass. If looking for a more technical and in-depth tutorial for that, [linuxconfig.org](https://linuxconfig.org){:target="_blank"} has one [here](https://linuxconfig.org/bash-scripting-tutorial){:target="_blank"} that would be a great place to start.
 
