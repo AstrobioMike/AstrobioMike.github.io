@@ -102,7 +102,7 @@ cat first-script.sh
 
 <br>
 
-Just putting those 3 lines into a file, we can now run it as a script. One way we can run this script, is by giving `bash` as the command, and then the file holding the script as the first positional argument:
+Just putting those 3 lines into a file, we can now run it as a script. One way we can run this script, is by giving `bash` as the command, and then the file holding the script as a positional argument:
 
 ```bash
 bash first-script.sh
