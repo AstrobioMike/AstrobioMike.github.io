@@ -118,7 +118,7 @@ And that's it! Notice it prints out to the terminal exactly the same way as if w
 <hr style="height:10px; visibility:hidden;" />
 
 # Scripting with positional arguments
-Variables and loops are common components of scripts. These were introduced in part 5 of the [Unix Crash Course](/unix/unix-intro){:target="_blank"}, so we are going to build off of the examples used there. 
+Variables and loops are common components of scripts. These were introduced in [part 5](/unix/for-loops){:target="_blank"} of the [Unix Crash Course](/unix/unix-intro){:target="_blank"}, so we are going to build off of the examples used there. 
 
 First, let's grab a couple of example files:
 
