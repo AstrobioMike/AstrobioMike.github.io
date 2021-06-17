@@ -84,7 +84,10 @@ nano first-script.sh
 
 <br>
 
-Add those 3 lines to the file in `nano` like above, and then we can press `ctrl + x` to begin to exit `nano`, it will ask us if we want to save, so press the `y` key for yes, then hit enter to keep the filename we gave it. (We're going to be doing quite a bit of opening and closing `nano` on this page, so remember to look back up here while if getting used to it still 🙂)
+Add those 3 lines to the file in `nano` like above, and then we can press `ctrl + x` to begin to exit `nano`, it will ask us if we want to save, so press the `y` key for yes, then hit enter to keep the filename we gave it. 
+
+> **NOTE**  
+> We're going to be doing quite a bit of opening and closing `nano` on this page, so remember to look back up here if getting used to it still 🙂
 
 Now we have that file here holding this contents:
 
