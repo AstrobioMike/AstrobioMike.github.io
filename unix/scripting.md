@@ -72,7 +72,7 @@ ls | wc -l
 
 <br>
 
-We were introduced tothe command-line text editor `nano` in part 2 of the [Unix Crash Course](/unix/unix-intro){:target="_blank"}, so we're going to use that here to make our first script, adding the 3 commands we just ran to it. It is convention to name a command-line script like this with the extension `.sh` for "shell":
+We were introduced to the command-line text editor `nano` in part 2 of the [Unix Crash Course](/unix/unix-intro){:target="_blank"}, so we're going to use that here to make our first script, adding the 3 commands we just ran to it. It is convention to name a command-line script like this with the extension `.sh` for "shell":
 
 ```bash
 nano first-script.sh
