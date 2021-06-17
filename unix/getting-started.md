@@ -27,14 +27,14 @@ permalink: /unix/getting-started
 # Accessing our command-line environment
 Before we get started, we need a terminal to work in. You can either work on your own computer if you already have access to a Unix-like command-line environment (which you can get help with [here](/unix/getting_unix_env){:target="_blank"} if needed), or you can work in a "Binder" that's been created for these 5 [Introduction to Unix lessons](/unix/unix-intro){:target="_blank"}. [Binder](https://mybinder.org/){:target="_blank"} is an incredible project with incredible people behind hit. I'm still pretty new to it, but the general idea is it makes it easier to setup and share specific working environments in support of open science. What this means for us here is that we can just click this little badge – [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/AstrobioMike/binder-unix-intro/master?urlpath=lab){:target="_blank"} – and it'll open the proper Unix environment in our web-browser with all our needed example files ready to rock... how awesome is that?!? So yeah, if you want to work in the binder, click it already! 
 
-When that page finishes loading (it may take a couple minutes), you will see a screen like this (minus the blue arrows):
+When that page finishes loading (it may take a minute), you will see a screen like this (minus the blue arrows):
 
-<center><img src="../images/binder-app-launch.png" width="90%"></center>
+<center><img src="../images/binder-app-launch2.png" width="90%"></center>
 <br>
 
 Now click the **folder icon** at the top-left (that the smaller blue arrow points to above) and then click the "**Terminal**" icon at the bottom, and we'll be in our appropriate command-line environment:
 
-<center><img src="../images/binder-terminal.png" width="90%"></center>
+<center><img src="../images/binder-terminal2.png" width="90%"></center>
 <br>
 
 This is our "command line", where we will be typing all of our commands 🙂
