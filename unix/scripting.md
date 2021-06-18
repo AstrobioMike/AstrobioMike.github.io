@@ -12,12 +12,27 @@ permalink: /unix/scripting
 
 Instead of running commands one after another like we do when we are interactively coding at the command-line, we can put the same commands into a plain-text file and then run the file. That will execute them one after another just like if we were running them individually. That's the basis of scripting, and it's great both for reproducibility and for saving time 🙂
 
+<hr>
+
+> **Things covered here:**
+> * What a script is
+> * Adding positional arguments
+> * If/then basic framework
+> * Adding print statements
+> * What a shebang is
+> * Permissions
+
+<hr style="height:10px; visibility:hidden;" />
+
+---
+<br>
+
+
 This intro page covers just the fundamentals of scripting at the command line. Like with other things, this can get much more complicated as we need it to, but the basics covered here are enough to get us up and running! This page is not meant to be a detailed dive into shell scripting or all that it encompasses. If looking for a more technical and in-depth treatment like that, [linuxconfig.org](https://linuxconfig.org){:target="_blank"} has one [here](https://linuxconfig.org/bash-scripting-tutorial){:target="_blank"} that would be a great place to start.
 
-We'll start here with examples of running code interactively, then putting it into a file and running the file as a shell script. Then we'll move a little into making them more flexible with examples of how we can provide positional arguments when we call the script, rather than having them hard-coded inside of it.
 
 >**NOTE**  
->This page assumes already having some familiarity with working at at a Unix-like command-line. If that's not the case yet, then consider running through the [Unix crash course](/unix/unix-intro){:target="_blank"} first 🙂
+>This page assumes we already have some familiarity with working at a Unix-like command-line. If that's not the case yet, then consider running through the [Unix crash course](/unix/unix-intro){:target="_blank"} first 🙂
 
 <hr style="height:10px; visibility:hidden;" />
 
