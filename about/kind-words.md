@@ -6,7 +6,15 @@ permalink: /about/kind-words
 
 ---
 
-> **Thank you to all those who have shared the site and kind words about it** 😊
+> **Thank you to all of you who have shared the site and kind words about it!** 😊
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Wah, so useful! I&#39;ve benefitted a lot from your work, thank you very much!</p>&mdash; Bilgenur Baloglu (@bilgeMolEcol) <a href="https://twitter.com/bilgeMolEcol/status/1405725648438636544?ref_src=twsrc%5Etfw">June 18, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<br>
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">the only reason my brain has survived being deep fried in <a href="https://twitter.com/hashtag/Bioinformatics?src=hash&amp;ref_src=twsrc%5Etfw">#Bioinformatics</a> is because <a href="https://twitter.com/AstrobioMike?ref_src=twsrc%5Etfw">@AstrobioMike</a> gave his resource site such a lovely name <a href="https://t.co/3UTFD7ko6H">https://t.co/3UTFD7ko6H</a> (highly recommend this + <a href="https://twitter.com/merenbey?ref_src=twsrc%5Etfw">@merenbey</a>&#39;s microbial &#39;omics webinar series for any other confused undergrads)</p>&mdash; Isabel (@isabelinspace) <a href="https://twitter.com/isabelinspace/status/1402295117726334977?ref_src=twsrc%5Etfw">June 8, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<br>
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Working through the excellent Unix crash course from <a href="https://twitter.com/AstrobioMike?ref_src=twsrc%5Etfw">@AstrobioMike</a> with my lovely assistant! Found here: <a href="https://t.co/zfzcuLVnsb">https://t.co/zfzcuLVnsb</a> <a href="https://t.co/xg1lF5V7iX">pic.twitter.com/xg1lF5V7iX</a></p>&mdash; Laila 🔬🐛 (@lailaephillips) <a href="https://twitter.com/lailaephillips/status/1362825236140331008?ref_src=twsrc%5Etfw">February 19, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>  
 

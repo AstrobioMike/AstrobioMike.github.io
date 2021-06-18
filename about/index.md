@@ -6,7 +6,7 @@ permalink: /about/
 
 ---
 
-> **See kind words that have been shared about Happy Belly Bioinformatics[here](/about/kind-words){:target="_blank"}**❤️ 
+> **See some kind words that have been shared about Happy Belly Bioinformatics[here](/about/kind-words){:target="_blank"}**❤️ 
 
 Hi there 🙂 My name's [Mike](https://twitter.com/AstrobioMike){:target="_blank"}. I'm a bioinformatician who gets to explore microbial ecology and evolution in all kinds of different environments. 
 
