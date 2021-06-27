@@ -21,6 +21,10 @@ permalink: /about/kind-words
 
 <br>
 
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">This is a very good, very accessible starter set of tutorials <a href="https://t.co/Rkvhq2xSNl">https://t.co/Rkvhq2xSNl</a><br>From <a href="https://twitter.com/AstrobioMike?ref_src=twsrc%5Etfw">@AstrobioMike</a></p>&mdash; Philip Leftwich (@PhilipLeftwich) <a href="https://twitter.com/PhilipLeftwich/status/1397264107800350728?ref_src=twsrc%5Etfw">May 25, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<br>
+
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Working through the excellent Unix crash course from <a href="https://twitter.com/AstrobioMike?ref_src=twsrc%5Etfw">@AstrobioMike</a> with my lovely assistant! Found here: <a href="https://t.co/zfzcuLVnsb">https://t.co/zfzcuLVnsb</a> <a href="https://t.co/xg1lF5V7iX">pic.twitter.com/xg1lF5V7iX</a></p>&mdash; Laila 🔬🐛 (@lailaephillips) <a href="https://twitter.com/lailaephillips/status/1362825236140331008?ref_src=twsrc%5Etfw">February 19, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>  
 
 <br> 
