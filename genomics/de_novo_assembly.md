@@ -43,8 +43,12 @@ This will create an environment for this tutorial and install all these programs
 > **A note on conda**  
 > This was initially put together with everything in one [conda](https://conda.io/docs/){:target="_blank"} environment to try to keep things simpler if we weren't familiar with conda yet. Sometimes that can be a problem if some of the programs have conflicting requirements, or it might also be really slow to install. If having trouble with the below installation, consider running through the [conda intro page](/unix/conda-intro){:target="_blank"} first, and then break the following up into separate environments and run through this page – just be sure to activate the appropriate environment before a command, and deactivate it after before switching to the next (this will make sense after going through the conda page if it sounds like confusing nonsense right now 🙂). It'd be good practice with conda too, which is super-helpful to become familiar with. 
 
+[Mamba](https://github.com/mamba-org/mamba#mamba){:target="_blank"} is generally a much faster reimplementation of the conda infrastructure. So I recommend trying that, particularly if trying large environment builds like this one.
+
 ```bash
-conda create -n de_novo_example -c bioconda -c conda-forge fastqc=0.11.5 \
+conda install -c conda-forge mamba --yes
+
+mamba create -n de_novo_example -c bioconda -c conda-forge fastqc=0.11.5 \
              trimmomatic=0.36 spades=3.11.1 megahit=1.1.2 quast=5.0.2 \
              bowtie2=2.2.5 anvio=5.5.0 centrifuge=1.0.4 java-jdk=8.0.112 --yes
    # you may or may not need the java-jdk, but it won't hurt our environment :)
