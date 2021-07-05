@@ -6,7 +6,7 @@ permalink: /unix/other_resources
 
 {% include _side_tab_unix.html %}
 
-# Here are some other great places to learn about bash!
+# Here are some other great places to learn about unix!
 
 Google is always a great place to start if we have a specific problem we are hitting. It's most often going to be something others have already ran into and discussed 🙂
 

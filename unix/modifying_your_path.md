@@ -19,9 +19,9 @@ When I was starting out, the whole concept of what the "PATH" was and what it di
 ---
 <br>
 # The PATH demystified
-As mentioned in the [intro to Unix section](/unix/unix-intro){:target="_blank"}, one of the easiest mistakes to make at the command line is to be trying to specify a file or program that isn't where we think it is. For files, we usually point to where the file is (if it's not in our current working directory) using the [*absolute* or *relative* path](/unix/getting-started#absolute-vs-relative-path){:target="_blank"}, where "path" here, in lowercase, just means a sort of address in the computer. But for programs that we use often, we usually want to be able to call them without having to provide the complete path to wherever the program is located. So a big part of getting specific programs to work properly at the command line is having them in a location on the computer that you can access no matter [where you are](/unix/getting-started#the-unix-file-system-structure){:target="_blank"}.  
+As mentioned in the [intro to Unix section](/unix/unix-intro){:target="_blank"}, one of the easiest mistakes to make at the command line is to be trying to specify a file or program that isn't where we think it is. For files, we usually point to where the file is (if it's not in our current working directory) using the [*absolute* or *relative* path](/unix/getting-started#absolute-vs-relative-path){:target="_blank"}, where "path" here, in lowercase, just means a sort of address in the computer. But for programs that we use often, we usually want to be able to call them without having to provide the complete path to wherever the program is located. So a big part of getting specific programs to work properly at the command line is having them in a location on the computer that we can access no matter [where we are](/unix/getting-started#the-unix-file-system-structure){:target="_blank"}.  
 
-The command line automatically checks in a list of pre-defined locations (directories) everytime you are trying to call a certain command. This is why we can use certain commands like **`ls`** and **`pwd`** and such from any directory we happen to be in. This list of pre-designated directories is stored in a special variable called the "PATH" (all caps required). You can see your PATH, and which directories are stored in it, by entering **`echo $PATH`** at the command line (the **`$`** is used to call variables in bash and other Unix languages; see the [variables](/unix/for-loops#variables){:target="_blank"} if new to this). Here's a look at mine:
+The command line automatically checks in a list of pre-defined locations (directories) everytime we are trying to call a certain command. This is why we can use certain commands like **`ls`** and **`pwd`** and such from any directory we happen to be in. This list of pre-designated directories is stored in a special variable called the "PATH" (all caps required). We can see our PATH, and which directories are stored in it, by entering **`echo $PATH`** at the command line (the **`$`** is used to call variables in bash and other Unix languages; see the [variables](/unix/for-loops#variables){:target="_blank"} if new to this). Here's a look at mine:
 
 <center><img src="../images/my_PATH2.png" width="100%"></center>
 
@@ -37,7 +37,7 @@ echo $PATH | tr ":" "\n"
 <br>
 We can now more clearly see this is a list of directories. All of these places, stored in the variable called "PATH", are searched whenever we are typing a command in the terminal window. If the command we are trying to use is present in any of the directories listed in our PATH, we don't need to point at its specific location in full (its path, lowercase) when we are trying to use it – which is of course nice for things we use often. 
 
-**To make a program available anywhere, we can either place that program in a directory that's already in our PATH, or we can add a new directory to our PATH that contains the program.** (Keep in mind that the order in which things appear in your PATH *does* matter. If you have two versions of a program with the same name, whichever shows up first will be the one that's used.)  
+**To make a program available anywhere, we can either place that program in a directory that's already in our PATH, or we can add a new directory to our PATH that contains the program.** (Keep in mind that the order in which things appear in our PATH *does* matter. If we have two versions of a program with the same name, whichever shows up first will be the one that's used.)  
 
 <hr style="height:10px; visibility:hidden;" />
 
@@ -45,8 +45,8 @@ We can now more clearly see this is a list of directories. All of these places, 
 ---
 <br>
 
-# Adding a directory to your PATH
-To demonstrate how to add a directory to your PATH, we're going to create a new directory and within it make a quick *bash* script that tells us what time it is. We're then going to add that directory to our PATH so that we can use the time-telling script from anywhere. If you want to follow along, you can make both by copying and pasting the following code block. If the following is confusing to you at first glance, running through the [Unix crash course](/unix/unix-intro){:target="_blank"} will get you almost entirely up to speed. For now, this is about the PATH though, so don't worry too much about any minor details of this script – though a quick explanation follows 🙂
+# Adding a directory to our PATH
+To demonstrate how to add a directory to our PATH, we're going to create a new directory and within it make a quick *bash* script that tells us what time it is. We're then going to add that directory to our PATH so that we can use the time-telling script from anywhere. If you want to follow along, you can make both by copying and pasting the following code block. If the following is confusing to you at first glance, running through the [Unix crash course](/unix/unix-intro){:target="_blank"} will get you almost entirely up to speed. For now, this is about the PATH though, so don't worry too much about any minor details of this script – though a quick explanation follows 🙂
 
 ```bash
 mkdir my-bin
@@ -109,7 +109,7 @@ Now that the [absolute path](/unix/getting-started#absolute-vs-relative-path){:t
 
 ## Temporarily
 
-Running the following code modifies the PATH just for the current terminal session, so when you close the window it will be gone. Here is what mine looks like, we'll break it down after looking at it:
+Running the following code modifies the PATH just for the current terminal session, so when we close the window it will be gone. Here is what mine looks like, we'll break it down after looking at it:
 
 ```bash
 export PATH="$PATH:/Users/Mike_Lee/my-bin"
@@ -155,7 +155,7 @@ source ~/.bash_profile
 ---
 <br>
 
-And that's it! The **`PATH`** variable is just a special variable that contains all of the directories that are automatically searched when we try to call a program. Feel free to delete the **`what_time_is_it.sh`** script, but consider keeping the **`my-bin`** directory as a place to put things if you want them to be available anywhere. Now that this directory is already in your PATH, you won't have to worry about that part anymore and anything you put in there will be accessible from anywhere on your computer.  
+And that's it! The **`PATH`** variable is just a special variable that contains all of the directories that are automatically searched when we try to call a program. Feel free to delete the **`what_time_is_it.sh`** script, but consider keeping the **`my-bin`** directory as a place to put things if you want them to be available from anywhere. Now that this directory is already in your PATH, you won't have to worry about that part anymore and anything you put in there will be accessible from anywhere on that computer.  
 
 # One last important note
-You can add any directories to your PATH that you'd like, **but be sure to always include the `$PATH` in the list as you edit it**, otherwise you might get stuck with no regular commands working anymore (like **`ls`**, **`pwd`**, **`wc`**, etc.). If that happens, don't despair! You can open that **`~/.bash_profile`** in any regular text editor (you may have to select "show hidden files" or something like that in the Finder window in order to see it), and then just delete whatever was added that messed things up. Then you'll be able to launch a new terminal again that works just fine and try again! 
+We can add any directories to our PATH that we'd like, **but we must be sure to always include the `$PATH` variable like that in the list as we edit it**, otherwise we might get stuck with no regular commands working anymore (like **`ls`**, **`pwd`**, **`wc`**, etc.). If that happens, don't despair! We can open that **`~/.bash_profile`** in any regular text editor (we may have to select "show hidden files" or something like that in the Finder window in order to see it), and then just delete whatever was added that messed things up. Then we'll be able to launch a new terminal again that works just fine and try again! 
