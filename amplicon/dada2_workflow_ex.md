@@ -109,11 +109,13 @@ Now, let's get started!
 
 # Processing overview
 
->**Note:** I have occassionally updated program versions (and changed the method and reference database used for taxonomic assignment) without necessarily re-generating all the figures included below or updating all spots in the text that reference specific things. There are also some different versions in the [binder](/amplicon/dada2_workflow_ex#binder-available) than were used when this page was put together (due to constraints on how I could build the binder when it was put together). So if values we see in our processing run differ slightly from the ones shown anywhere, this isn't a problem. If you are unsure and curious about that happeneing anywhere, free to [post an issue here](https://github.com/AstrobioMike/AstrobioMike.github.io/issues){:target="_blank"} or reach out to me through [email or twitter](/research/){:target="_blank"} 🙂
+>**Note**  
+> There may be some slight differences in numbers in places due to differences in program versions between when this page was initially put together and what is in either the binder or conda environment. So don't worry if you are seeing something slightly different than what's noted or pictured anywhere below. If you are unsure or curious about that happeneing anywhere, free to [post an issue here](https://github.com/AstrobioMike/AstrobioMike.github.io/issues){:target="_blank"} or reach out to me through [email or twitter](/research/){:target="_blank"} 🙂
 
 It's good to try to keep a bird's-eye view of what's going on. So here is an overview of the main processing steps we'll be performing with [cutadapt](https://cutadapt.readthedocs.io/en/stable/index.html){:target="_blank"} and [DADA2](https://benjjneb.github.io/dada2/index.html){:target="_blank"}. Don't worry if anything seems unclear right now, we will discuss each at each step.
 
->**NOTE:** This particular dataset is already demultiplexed – meaning each sample has its own file(s) already. Sometimes you will get your data all mixed together in one file, and you will need to separate them into individual files based on their barcodes. If your data are starting in that form, you can check out [a demultiplexing example on this page](/amplicon/demultiplexing){:target="_blank"} if you'd like. 
+
+This particular dataset is already demultiplexed – meaning each sample has its own file(s) already. Sometimes you will get your data all mixed together in one file, and you will need to separate them into individual files based on their barcodes. If your data are starting in that form, you can check out [a demultiplexing example on this page](/amplicon/demultiplexing){:target="_blank"} if you'd like. 
 
 ||Command|What we're doing|
 |:--:|:--------:|----------|
