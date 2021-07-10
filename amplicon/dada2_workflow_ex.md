@@ -33,8 +33,11 @@ We're going to be using [DADA2](https://benjjneb.github.io/dada2/index.html){:ta
 ---
 <br>
 
-# Binder available
-You can work on your own system if you'd like, but I have also created a "Binder" in which you can run through the entire tutorial on this page without needing to worry about setting up the appropriate environment on your own system. [Binder](https://mybinder.org/){:target="_blank"} is an incredible project with incredible people behind hit. I'm still very new to it, but the general idea is it makes it easier to setup and share specific working environments in support of open science. What this means for us here is that we can just click this little badge – [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/AstrobioMike/binder-dada2-ex-workflow/v4?urlpath=rstudio){:target="_blank"} – and it'll open an RStudio environment with all our needed tools and packages installed and ready to rock... how awesome is that?!? Again, you can also work on your own system if you'd like, but this option is here in case it's helpful. If you'd like to use the Binder environment, click the badge above, and when that page finishes loading (it may take a couple of minutes), you will see a screen like this (minus the blue arrow):
+# Working environment
+If wanting to follow along, we can work on our own system if we'd like (see [conda setup](#conda-setup) below), or we can work in a "Binder" without needing to worry about setting up the appropriate environment on our own system (see next section, [Binder available](#binder-available)). If we want to work on our own system and use conda to set things up, we need to have access to a [Unix-like environment](/unix/getting_unix_env){:target="_blank"} – sorry I haven't been able to get a conda working environment for Windows computers yet! But the [Binder](#binder-available) avenue will work just fine on any system 🙂
+
+## Binder available
+[Binder](https://mybinder.org/){:target="_blank"} is an incredible project with incredible people behind hit. I'm still pretty new to it, but the general idea is it makes it easier to setup and share specific working environments in support of open science. What this means for us here is that we can just click this little badge – [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/AstrobioMike/binder-dada2-ex-workflow/v5?urlpath=rstudio){:target="_blank"} – and it'll open an RStudio environment with all our needed tools and packages installed and ready to rock... how awesome is that?!? Again, we can also work on our own system if we'd like (so long as we have a [Unix-like environment](/unix/getting_unix_env){:target="_blank"} available – sorry I haven't been able to get a working environment for Windows computers yet), but this option is here in case it's helpful. If you'd like to use the Binder environment, click the badge above, and when that page finishes loading (it may take a couple of minutes), you will see a screen like this (minus the blue arrow):
 
 <center><img src="../images/binder-R-app-launch2.png"></center>
 <br>
@@ -46,18 +49,31 @@ RStudio has the added benefit of providing our command-line environment too. If 
 <br>
 >**NOTE:** Don't worry if there is a conda error message at the top of your Terminal window, we can ignore that here.
 
-We will be using the command line first, as detailed below, so you can leave it there for now. But keep these tabs in mind as they determine whether you're working in R (which is the "Console" tab here) or working at the command line (the "Terminal" tab here). If something isn't working, that's a good thing to double-check first 🙂
-<br>
-<br>
+We will be using the command line first, as detailed below, so you can leave it there for now. But keep these tabs in mind as they determine whether you're working in R (which is the "Console" tab here) or working at the command line (the "Terminal" tab here). If something we're trying to run isn't working, that's a good thing to double-check first 🙂
 
----
-<br>
 
-# Tools used here
-If using the Binder environment, you don't need to worry about installing these tools, but if working on your own system, you will need to take care of some installations as noted while we go. In addition to [DADA2](https://benjjneb.github.io/dada2/index.html){:target="_blank"} as our main processing tool, we'll be using [cutadapt](https://cutadapt.readthedocs.io/en/stable/index.html){:target="_blank"} to remove our primers. DADA2 is available as an [R](https://www.r-project.org/){:target="_blank"} package, with installation instructions provided by the developers [here](https://benjjneb.github.io/dada2/dada-installation.html){:target="_blank"}. If your experience is like mine, it shouldn't give you any trouble if installing on your computer, but you may run into some issues when trying to install on a server where you don't have authorization to do whatever you'd like – a huge thanks to [@phantomBugs](https://twitter.com/phantomBugs){:target="_blank"} for all his help when I was bugging him about that! If you'd like to use [cutadapt](https://cutadapt.readthedocs.io/en/stable/index.html){:target="_blank"}, you can find installation instructions for it from the developers [here](https://cutadapt.readthedocs.io/en/stable/installation.html){:target="_blank"} (which includes the conda installation method `conda install -c bioconda cutadapt`, or to install the specific version used when putting this together `conda install -c bioconda cutadapt=2.3`). Considering checking out the [conda intro page](/unix/conda-intro) if you are unfamiliar with conda 🙂
- 
-And since DADA2 is an R package, you also of course need to have a working installation of R on your computer. If you'd like/need more info on this, check out the [R basics](/R/basics){:target="_blank"} page before moving forward. 
-<br>
+## Conda setup
+> **NOTE**  
+> Skip this section if working in the binder environment from above. 
+
+See this [intro to conda page](/unix/conda-intro){:target="_blank"} if new to the gloriousness that is conda, it's totally worth it 🙂 And it needs to be installed on our system before we can use it to build our environment for following along on this page on our own system. Remember the [binder above](#binder-available) is always available if we aren't able or don't want to set things up on our own computer.
+
+[Mamba](https://github.com/mamba-org/mamba#mamba){:target="_blank"} is typically a much faster drop-in implementation of conda. It can be particularly useful when trying to build environments with many packages that need to have all of their dependencies resolved and checked for conflicts – which is the case here. So we are going to install that first, and then use that to build our environment.
+
+```bash
+conda install -y -c conda-forge mamba
+
+conda create -y -n hb-dada2-ex-wf -c conda-forge -c bioconda -c defaults \
+             cutadapt=2.3 r-base=3.6.3 rstudio=1.1.456 r-tidyverse=1.3.0 \
+             r-vegan=2.5 r-dendextend=1.14.0 r-viridis=0.6 bioconductor-phyloseq=1.30 \
+             bioconductor-deseq2=1.26 bioconductor-dada2=1.14 bioconductor-decipher=2.14 \
+             bioconductor-decontam=1.6 r-biocmanager=1.30 r-matrix=1.3_2
+
+conda activate hb-dada2-ex-wf
+```
+
+We start off working in the terminal, but when it is time to go into R, in this conda environment we just need to type `rstudio` and hit `enter` and that will open up RStudio on our computer 👍  
+
 <br>
 
 ---
@@ -78,7 +94,7 @@ For speed purposes we're only going to work with about 10% of the full dataset. 
 
 ```
 cd ~
-curl -L -o dada2_amplicon_ex_workflow.tar.gz https://ndownloader.figshare.com/files/23066516
+curl -L -o dada2_amplicon_ex_workflow.tar.gz https://ndownloader.figshare.com/files/28769289
 tar -xzvf dada2_amplicon_ex_workflow.tar.gz
 rm dada2_amplicon_ex_workflow.tar.gz
 cd dada2_amplicon_ex_workflow/
@@ -239,13 +255,11 @@ As noted above, if you aren't familiar with R at all yet it's probably a good ie
 ## Setting up our working environment
 If you are in the Binder environment, be sure to click the "Console" tab on the left side to change from the command-line terminal to R, and in here all the required packages are already installed. If you're working on your own system, you'll need to install DADA2. To do that, visit the [installation page](https://benjjneb.github.io/dada2/dada-installation.html){:target="_blank"} provided by [@bejcal](https://twitter.com/bejcal){:target="_blank"}. This may require you needing to update your version of R and/or RStudio as well, which can be tricky sometimes. I've found [this page](https://www.linkedin.com/pulse/3-methods-update-r-rstudio-windows-mac-woratana-ngarmtrakulchol/){:target="_blank"} put together by Woratana Ngarmtrakulchol to be a lifesaver for me on more than one occasion 🙂
 
-**From here on out, unless noted, we are working in R.** 
+**From here on out, unless noted, we are working in R. Libraries loaded in R are already installed if working in the Binder environment, or they were installed during the conda setup above.** 
 
 ```R
-# BiocManager::install('dada2')
-
 library(dada2)
-packageVersion("dada2") # 1.11.5 when this was initially put together, though now 1.15.2 in the binder
+packageVersion("dada2") # 1.11.5 when this was initially put together, though might be different in the binder or conda installation, that's ok!
 
 setwd("~/dada2_amplicon_ex_workflow")
 
@@ -328,6 +342,9 @@ filtered_out
 # R7_sub_R1_trimmed.fq.gz        8003      7331
 # R8_sub_R1_trimmed.fq.gz       12211     11192
 # R9_sub_R1_trimmed.fq.gz        8600      7853
+
+  ## don't worry if the numbers vary a little, this might happen due to different versions being used 
+  ## from when this was initially put together
 ```
 
 Now let's take a look at our filtered reads:
@@ -342,7 +359,7 @@ plotQualityProfile(filtered_reverse_reads[17:20])
 Now we're lookin' good.
 
 ## Generating an error model of our data
-Next up is generating our error model by learning the specific error-signature of our dataset. Each sequencing run, even when all goes well, will have its own subtle variations to its error profile. This step tries to assess that for both the forward and reverse reads. It can be one of the more computationally intensive steps of the workflow, for this slimmed dataset on my laptop (2013 MacBook Pro) these *each* took about 10 minutes *without* `multithread=TRUE` (as exemplified and commented out below), and each took about 5 minutes with that option added. If you are working on your own system, you can feel free to run the two commands with the `multithread=TRUE` option set. I have way that commented out here because it seemed to be a problem when working in the Binder environment for this page. If you're working in the Binder, each will take about 15 minutes – so 30 minutes total.  And if you don't want to run them and wait, you can load all the R objects and skip whatever steps you'd like with `load("amplicon_dada2_ex.RData")`. 
+Next up is generating our error model by learning the specific error-signature of our dataset. Each sequencing run, even when all goes well, will have its own subtle variations to its error profile. This step tries to assess that for both the forward and reverse reads. It is one of the more computationally intensive steps of the workflow. For this slimmed dataset on a 2013 MacBook Pro laptop, these took about 10 minutes each *without* `multithread=TRUE`, and each took about 5 minutes with that option added. If you are working on your own system, you can feel free to run the two commands with the `multithread=TRUE` option set. *I have the multithreaded way commented out in the codeblock below because it can cause problems when working in the Binder environment*. If you're working in the Binder, each will take about 15 minutes – so 30 minutes total. And if you don't want to run them and wait, you can load all the R objects and skip whatever steps you'd like with `load("amplicon_dada2_ex.RData")`. 
 
 ```R
 err_forward_reads <- learnErrors(filtered_forward_reads)
@@ -374,6 +391,9 @@ derep_reverse <- derepFastq(filtered_reverse_reads, verbose=TRUE)
 names(derep_reverse) <- samples
 ```
 
+> **NOTE**  
+> The dereplication step is no longer listed as part of the [standard dada2 tutorial](https://benjjneb.github.io/dada2/tutorial.html){:target="_blank"}, as it is performed by the `dada()` step [if that command is given filenames](https://github.com/benjjneb/dada2/issues/1095){:target="_blank"}. It can be lighter on memory requirements to run them as separate steps like done here, so it is left this way here for the sake of folks running things in the binder.
+
 ## Inferring ASVs
 Here's where DADA2 gets to do what it was born to do, that is to do its best to infer true biological sequences. It does this by incorporating the consensus quality profiles and abundances of each unique sequence, and then figuring out if each sequence is more likely to be of biological origin or more likely to be spurious. You can read more about the details of this in [the paper](https://www.nature.com/articles/nmeth.3869#methods){:target="_blank"} of course or looking through [the DADA2 site](https://benjjneb.github.io/dada2/index.html){:target="_blank"}.  
 
@@ -387,6 +407,7 @@ dada_forward <- dada(derep_forward, err=err_forward_reads, pool="pseudo")
 dada_reverse <- dada(derep_reverse, err=err_reverse_reads, pool="pseudo")
 # dada_reverse <- dada(derep_reverse, err=err_reverse_reads, pool="pseudo", multithread=TRUE) # problem running this way if on Binder
 ```
+
 
 ## Merging forward and reverse reads
 Now DADA2 merges the forward and reverse ASVs to reconstruct our full target amplicon requiring the overlapping region to be identical between the two. By default it requires that at least 12 bps overlap, but in our case the overlap should be much greater. If you remember above we trimmed the forward reads to 250 and the reverse to 200, and our primers were 515f–806r. After cutting off the primers we're expecting a typical amplicon size of around 260 bases, so our typical overlap should be up around 190. That's estimated based on *E. coli* 16S rRNA gene positions and very back-of-the-envelope-esque of course, so to allow for true biological variation and such I'm going ot set the minimum overlap for this dataset for 170. I'm also setting the trimOverhang option to `TRUE` in case any of our reads go passed their opposite primers (which I wouldn't expect based on our trimming, but is possible due to the region and sequencing method).
@@ -413,6 +434,9 @@ Now we can generate a count table with the `makeSequenceTable()` function. This 
 seqtab <- makeSequenceTable(merged_amplicons)
 class(seqtab) # matrix
 dim(seqtab) # 20 2521
+
+  ## don't worry if the numbers vary a little, this might happen due to different versions being used 
+  ## from when this was initially put together
 ```
 
 We can see from the dimensions of the "seqtab" matrix that we have 2,525 ASVs in this case. But it's not very friendly to look at in its current form because the actual sequences are our rownames - so we'll make a more traditional count table in a couple steps.
@@ -424,7 +448,10 @@ DADA2 identifies likely chimeras by aligning each sequence with those that were 
 seqtab.nochim <- removeBimeraDenovo(seqtab, verbose=T) # Identified 17 bimeras out of 2521 input sequences.
 
   # though we only lost 17 sequences, we don't know if they held a lot in terms of abundance, this is one quick way to look at that
-sum(seqtab.nochim)/sum(seqtab) # 0.9931372 # good, we barely lost any in terms of abundance
+sum(seqtab.nochim)/sum(seqtab) # 0.9931372 # in this case we barely lost any in terms of abundance
+
+  ## don't worry if the numbers vary a little, this might happen due to different versions being used 
+  ## from when this was initially put together
 ```
 
 ## Overview of counts throughout
@@ -463,6 +490,10 @@ summary_tab
 # R7           8003     7331   6515   6726   5630    5618                      70.2
 # R8          12211    11192  10286  10513   9530    9454                      77.4
 # R9           8600     7853   7215   7390   6740    6695                      77.8
+
+  ## don't worry if the numbers vary a little, this might happen due to different versions being used 
+  ## from when this was initially put together
+
 ```
 
 And it might be useful to write this table out of R, saving it as a regular file:
@@ -474,40 +505,32 @@ write.table(summary_tab, "read-count-tracking.tsv", quote=FALSE, sep="\t", col.n
 ## Assigning taxonomy
 To assign taxonomy, we are going to use the [DECIPHER package](https://bioconductor.org/packages/release/bioc/html/DECIPHER.html){:target="_blank"}. There are some DECIPHER-formatted databases available [here](http://www2.decipher.codes/Classification/TrainingSets/){:target="_blank"}, which is where the [SILVA](https://www.arb-silva.de/){:target="_blank"} v138 comes from that we will use below. 
 
-Here we are downloading and loading that reference object **(if working in the binder environment we saw at the top of this page, skip this and run the following codeblock)**:
+> **NOTE**  
+> The code in the next block here is commented out because it takes about 30 minutes to run on a standard laptop, and if in the binder environment, there is an internal R memory restriction that prevents us from being able to load the reference database and run the taxonomy assignment in there altogether. So it's here to show the code below, but we are going to jump ahead to the next codeblock and just load the output taxonomy object 👍
 
 ```R
+    ## skipping this codeblock for time, and it will not run in the binder environment
 ## downloading DECIPHER-formatted SILVA v138 reference
-download.file(url="http://www2.decipher.codes/Classification/TrainingSets/SILVA_SSU_r138_2019.RData", destfile="SILVA_SSU_r138_2019.RData")
+# download.file(url="http://www2.decipher.codes/Classification/TrainingSets/SILVA_SSU_r138_2019.RData", destfile="SILVA_SSU_r138_2019.RData")
 
 ## loading reference taxonomy object
-load("SILVA_SSU_r138_2019.RData")
-```
+# load("SILVA_SSU_r138_2019.RData")
 
-**If in the binder environment and you skippped the previous codeblock**, or if working with a version of R between 1.4 and 3.5, then run the following to download and load a DECIPHER v138 reference object that can be read in properly:
-
-```R
-## downloading DECIPHER-formatted SILVA v138 reference (v2 R compression used for R versions 1.4-3.5) (and loading the other version on binder seems to crash the binder for some reason I haven't figured out, so using this there too)
-download.file(url="https://ndownloader.figshare.com/files/23739737", destfile="SILVA_SSU_r138_2019.v2-R-compresssed.RData")
-
-## loading reference taxonomy object
-load("SILVA_SSU_r138_2019.v2-R-compresssed.RData")
-```
-
-
-Running the following taxonomy assignment step took ~30 minutes on a 2013 MacBook Pro. So feel free to load the stored R objects with `load("amplicon_dada2_ex.RData")` to skip this step if you'd like.
-
-```R
 ## loading DECIPHER
-# BiocManager::install("DECIPHER")
-library(DECIPHER)
-packageVersion("DECIPHER") # v2.6.0 when this was put together
+# library(DECIPHER)
+# packageVersion("DECIPHER") # v2.6.0 when this was initially put together, though might be different in the binder or conda installation, that's ok!
 
 ## creating DNAStringSet object of our ASVs
-dna <- DNAStringSet(getSequences(seqtab.nochim))
+# dna <- DNAStringSet(getSequences(seqtab.nochim))
 
 ## and classifying
-tax_info <- IdTaxa(test=dna, trainingSet=trainingSet, strand="both", processors=NULL)
+# tax_info <- IdTaxa(test=dna, trainingSet=trainingSet, strand="both", processors=NULL)
+```
+
+Loading the output taxonomy object:
+
+```R
+load("tax-info.RData")
 ```
 
 # Extracting the standard goods from DADA2
@@ -552,7 +575,7 @@ And now if we look back at our terminal, we can see the fruits of our labor are 
 <br>
 
 > **NOTE**  
-> This page was updated to use DECIPHER for taxonomy assignment and SILVA v138 as the reference in the code (when it initially used dada2's `assign_taxonomy()` function with SILVA v132), but the rest of the following document images and example outputs have not be updated yet. There were some big (much needed) changes in taxonomy due to SILVA switching to using the [GTDB](https://gtdb.ecogenomic.org/){:target="_blank"}. So if you are running through this and see any taxonomic discrepencies compared to what is below, that is why 🙂
+> This page was updated to use DECIPHER for taxonomy assignment and SILVA v138 as the reference in the code (when it initially used dada2's `assign_taxonomy()` function with SILVA v132), but the rest of the following document images and example outputs have not be updated yet. There were some big (much needed) changes in taxonomy due to SILVA switching to using the [GTDB](https://gtdb.ecogenomic.org/){:target="_blank"}. So if you are running through this and see any taxonomic discrepencies compared to what is below, that is why, and it is nothing to worry about 🙂
 
 # Removing likely contaminants 
 In the now-more-outdated [USEARCH/VSEARCH example workflow](/amplicon/workflow_ex){:target="_blank"}, I demonstrated one way to [remove likely contaminant sequences](/amplicon/workflow_ex#treatment-of-blanks){:target="_blank"} using "blanks" (samples run through the entire extraction and sequencing process that never had any DNA added to them). Now, in addition to DADA2, [@bejcal](https://twitter.com/bejcal){:target="_blank"} et al. have also created a stellar program for removing contaminants based on incorporated blanks called [decontam](https://github.com/benjjneb/decontam){:target="_blank"} (Nicole Davis et al. [publication here](https://doi.org/10.1186/s40168-018-0605-2){:target="_blank"}). As usual, they also have provided excellent documentation and have a [vignette here](https://benjjneb.github.io/decontam/vignettes/decontam_intro.html){:target="_blank"} showing an example of doing this from a [phyloseq](https://joey711.github.io/phyloseq/){:target="_blank"} object and discussing the various ways their program can be implemented (such as incorporating DNA concentrations if available). Here, we will apply it without DNA concentrations – using prevalence of ASVs in the incorporated blanks – starting from our count table generated above without having a phyloseq object. There are instructions to install decontam [here](https://github.com/benjjneb/decontam#installation){:target="_blank"} if you are working on your own system rather than in the Binder for this page.  
@@ -572,6 +595,9 @@ contam_df <- isContaminant(t(asv_tab), neg=vector_for_decontam)
 
 table(contam_df$contaminant) # identified 6 as contaminants
 
+  ## don't worry if the numbers vary a little, this might happen due to different versions being used 
+  ## from when this was initially put together
+
   # getting vector holding the identified contaminant IDs
 contam_asvs <- row.names(contam_df[contam_df$contaminant == TRUE, ])
 ```
@@ -588,9 +614,12 @@ asv_tax[row.names(asv_tax) %in% contam_asvs, ]
 # ASV_274 "Bacteria" "Proteobacteria" "Gammaproteobacteria" "Pseudomonadales"       "Pseudomonadaceae"   "Pseudomonas"                               
 # ASV_285 "Bacteria" "Proteobacteria" "Gammaproteobacteria" "Betaproteobacteriales" "Burkholderiaceae"   "Tepidimonas"                               
 # ASV_623 "Bacteria" "Actinobacteria" "Actinobacteria"      "Corynebacteriales"     "Corynebacteriaceae" "Corynebacterium_1"
+
+  ## don't worry if the numbers vary a little, this might happen due to different versions being used 
+  ## from when this was initially put together
 ```
 
-And I also pulled out the sequences to [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi?PROGRAM=blastn&PAGE_TYPE=BlastSearch&LINK_LOC=blasthome){:target="_blank"} them, though all the taxonomic designations matched up perfectly. To pull the sequences I ran this at the command line ("Terminal" tab in RStudio if you're working in the Binder):
+And I also pulled out the sequences to [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi?PROGRAM=blastn&PAGE_TYPE=BlastSearch&LINK_LOC=blasthome){:target="_blank"} them, though all the taxonomic designations matched up perfectly. To pull these particular sequences, we can ran this *at the command line ("Terminal" tab in RStudio if you're working in the Binder)*:
 
 ```bash
 grep -w -A1 "^>ASV_104\|^>ASV_219\|^>ASV_230\|^>ASV_274\|^>ASV_285\|^>ASV_623" ASVs.fa
@@ -612,6 +641,9 @@ grep -w -A1 "^>ASV_104\|^>ASV_219\|^>ASV_230\|^>ASV_274\|^>ASV_285\|^>ASV_623" A
 # --
 # >ASV_623
 # TACGTAGGGTGCGAGCGTTGTCCGGAATTACTGGGCGTAAAGGGCTCGTAGGTGGTTTGTCGCGTCGTCTGTGAAATTCCGGGGCTTAACTCCGGGCGTGCAGGCGATACGGGCATAACTTGAGTACTGTAGGGGTAACTGGAATTCCTGGTGTAGCGGTGAAATGCGCAGATATCAGGAGGAACACCGATGGCGAAGGCAGGTTACTGGGCAGTTACTGACGCTGAGGAGCGAAAGCATGGGTAGCGAACAGG
+
+  ## don't worry if things vary a little, this might happen due to different versions being used 
+  ## from when this was initially put together
 ```
 
 And now, here is one way to remove them from our 3 primary outputs and create new files (back in R):  
@@ -645,64 +677,21 @@ And that would be the end of what I consider to be the processing portion. Now w
 # Analysis in R
 This portion also assumes you already have some baseline experience with R, if you aren't familiar with R at all yet it's probably a good idea to run through the [R basics page](/R/basics){:target="_blank"}. But even if you have limited experince with R so far, you'll still be able to follow along here and run everything if you'd like. This part isn't really about the R code (right now), it's just about going through some examples of the typical analyses done with amplicon data. So don't worry if some of the code seems super-confusing, especially because my R coding is pretty poor these days 😕
 
-## Setting up our working environment
-We'll be using several more packages in R, so here's how you could install them if you're **not** working in the Binder environment – if you are, they are already installed. If you have trouble with any of these, there is more info to follow:
+## Loading libraries
+These are either present in the Binder environment already, or we installed them with conda above. Some of the versions may be different from when this was first put together, and therefore the outputs may be subtly different too. That's ok!
 
 ```R
-  # if you're following/working with the tutorial data, make sure you're in the correct place still
-setwd("~/dada2_amplicon_ex_workflow/")
-list.files()
-
-# install.packages("phyloseq") ## See following paragraph
-# install.packages("vegan")
-# install.packages("DESeq2")
-# install.packages("ggplot2")
-# install.packages("dendextend")
-# install.packages("tidyr")
-# install.packages("viridis")
-# install.packages("reshape")
-```
-
-Occasionaly you will run into a case where packages don't successfully install via the `install.packages()` function, for instance if it says it's not availabe for your version of R. When this happens, you can often get around that by installing from bioconductor or using devtools like demonstrated below. If any of those above didn't succeed (or you run into that when working on other stuff), you could try googling with these terms added as well. For example, searching for ["phyloseq bioconductor"](https://www.google.com/search?q=phyloseq+bioconductor&oq=phyloseq+bioconductor&aqs=chrome.0.0j69i60j0.3441j0j7&sourceid=chrome&ie=UTF-8) will bring you to its [bioconductor page](http://bioconductor.org/packages/release/bioc/html/phyloseq.html){:target="_blank"} which has instructions showing how to install like shown here for *phyloseq* and *DESeq2* if they failed by the above method.  
-
-```R
-# source("https://bioconductor.org/biocLite.R")
-# BiocManager::install("phyloseq")
-# BiocManager::install("DESeq2")
-
-	# and here is an example using devtools:
-# install.packages("devtools")
-# devtools::install_github("tidyverse/ggplot2")
-```
-
-After all have installed successfully, load them up:
-
-```R
-library("phyloseq")
-library("vegan")
-library("DESeq2")
-library("ggplot2")
-library("dendextend")
-library("tidyr")
-library("viridis")
-library("reshape")
-```
-
-If you have a problem loading any of these libraries, close and then restart R and try loading the library again. If still no luck, try installing the package again and loading the library. 9 times out of 10, restarting R will solve the problem. Here are the versions used last time this page was updated:
-
-```R
-packageVersion("phyloseq") # 1.22.3
-packageVersion("vegan") # 2.5.4
-packageVersion("DESeq2") # 1.18.1
-packageVersion("ggplot2") # 3.1.1
-packageVersion("dendextend") # 1.10.0
-packageVersion("tidyr") # 0.8.3
-packageVersion("viridis") # 0.5.1
-packageVersion("reshape") # 0.8.8
+  # don't worry if versions are different from what's listed here, shown are are just what was used when this was initially put together
+library(tidyverse) ; packageVersion("tidyverse") # 1.3.1
+library(phyloseq) ; packageVersion("phyloseq") # 1.22.3
+library(vegan) ; packageVersion("vegan") # 2.5.4
+library(DESeq2) ; packageVersion("DESeq2") # 1.18.1
+library(dendextend) ; packageVersion("dendextend") # 1.10.0
+library(viridis) ; packageVersion("viridis") # 0.5.1
 ```
  
 ## (Re)-Reading in our data
-We're primarily going to be working with our count table, our taxonomy table, and a new table with some information about our samples. To start from a clean slate, I'm going to clear out all R objects and then read the tables into new ones. 
+We're primarily going to be working with our count table, our taxonomy table, and a new table with some information about our samples. To start from a clean slate, and free up some memory for R, let's clear out all R objects and then read these tables into new ones. 
 
 ```R
 ## NOTE ##
@@ -819,11 +808,11 @@ vst_pcoa <- ordinate(vst_physeq, method="MDS", distance="euclidean")
 eigen_vals <- vst_pcoa$values$Eigenvalues # allows us to scale the axes according to their magnitude of separating apart the samples
 
 plot_ordination(vst_physeq, vst_pcoa, color="char") + 
-  geom_point(size=1) + labs(col="type") + 
-  geom_text(aes(label=rownames(sample_info_tab), hjust=0.3, vjust=-0.4)) + 
-  coord_fixed(sqrt(eigen_vals[2]/eigen_vals[1])) + ggtitle("PCoA") + 
-  scale_color_manual(values=unique(sample_info_tab$color[order(sample_info_tab$char)])) + 
-  theme(legend.position="none")
+    geom_point(size=1) + labs(col="type") + 
+    geom_text(aes(label=rownames(sample_info_tab), hjust=0.3, vjust=-0.4)) + 
+    coord_fixed(sqrt(eigen_vals[2]/eigen_vals[1])) + ggtitle("PCoA") + 
+    scale_color_manual(values=unique(sample_info_tab$color[order(sample_info_tab$char)])) + 
+    theme_bw() + theme(legend.position="none")
 ```
 
 <center><img src="../images/pcoa.png"></center>
@@ -847,10 +836,10 @@ abline(v=(min(rowSums(t(count_tab)))))
 <center><img src="../images/rarefaction.png"></center>
 <br>
 
-In this plot, samples are colored the same way as above, and the black vertical line represents the sampling depth of the sample with the least amount of sequences (a bottom water sample, BW1, in this case). This view suggests that the rock samples (all of them) are more diverse and have a greater richness than the water samples or the biofilm sample – based on where they all cross the vertical line of lowest sampling depth, which is not necessarily predictive of where they'd end up had they been sampled to greater depth. And again, just focusing on the brown and black lines for the two types of basalts we have, they seem to show similar trends within their respective groups that suggest the more highly altered basalts (brown lines) may host more diverse microbial communities than the glassier basalts (black lines). 
+In this plot, samples are colored the same way as above, and the black vertical line represents the sampling depth of the sample with the least amount of sequences (a bottom water sample, BW1, in this case). This view suggests that the rock samples have a greater richness (unique number of sequences recovered) than the water samples or the biofilm sample – based on where they all cross the vertical line of lowest sampling depth, which is not necessarily predictive of where they'd end up had they been sampled to greater depth. And again, just focusing on the brown and black lines for the two types of basalts we have, they seem to show similar trends within their respective groups that suggest the more highly altered basalts (brown lines) may host more microbial communities with greater richness than the glassier basalts (black lines). 
 
 <h4><center>Richness and diversity estimates</center></h4>
-Here we're going to plot Chao1 richness esimates and Shannon diversity values. Chao1 is a richness estimator, "richness" being the total number of distinct units in your sample, "distinct units" being whatever you happen to be measuring (ASVs in our case here). And Shannon's diversity index is a metric of diversity. The term diversity includes "richness" (the total number of your distinct units) and "evenness" (the relative proportions of all of your distinct units). **Again, these are really just metrics to help contrast your samples within an experiment, and should not be considered "true" values of anything or be compared across studies.**
+Here we're going to plot Chao1 richness esimates and Shannon diversity values. Chao1 is a richness estimator, "richness" being the total number of distinct units in our sample, "distinct units" being whatever we happen to be measuring (ASVs in our case here). And Shannon's diversity index is a metric of diversity. The term diversity includes "richness" (the total number of our distinct units) and "evenness" (the relative proportions of all of our distinct units). **Again, these are really just metrics to help contrast our samples within an experiment, and should not be considered "true" values of anything or be compared across studies.**
 
 We are going to go back to using the phyloseq package for this to use the function `plot_richness()` – which the developers kindly provide some examples of [here](https://joey711.github.io/phyloseq/plot_richness-examples.html){:target="_blank"}. 
 
@@ -863,20 +852,20 @@ ASV_physeq <- phyloseq(count_tab_phy, tax_tab_phy, sample_info_tab_phy)
 
   # and now we can call the plot_richness() function on our phyloseq object
 plot_richness(ASV_physeq, color="char", measures=c("Chao1", "Shannon")) + 
-  scale_color_manual(values=unique(sample_info_tab$color[order(sample_info_tab$char)])) +
-  theme(legend.title = element_blank())
+    scale_color_manual(values=unique(sample_info_tab$color[order(sample_info_tab$char)])) +
+    theme_bw() + theme(legend.title = element_blank(), axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
 ```
 
 <center><img src="../images/plot_richness.png"></center>
 
-Before saying anything about this I'd like to stress again that these are *not* interpretable as "real" numbers of anything (due to the nature of amplicon data), but they can still be useful as relative metrics of comparison. For example, we again see from this that the more highly altered basalts seem to host communities that are more diverse and have a higher richness than the other rocks, and that the water and biofilm samples are less diverse than the rocks. 
+Before saying anything about this I'd like to stress again that these are *not* interpretable as "real" numbers of anything (due to the nature of amplicon data), but they can still be useful as relative metrics of comparison within a study. For example, we again see from this that the more highly altered basalts seem to host communities that are more diverse and have a higher richness than the other rocks, and that the water and biofilm samples are less diverse than the rocks. 
 
 And just for another quick example of why phyloseq is pretty awesome, let's look at how easy it is to plot by grouping sample types while still coloring by the characteristics column:
 
 ```R
 plot_richness(ASV_physeq, x="type", color="char", measures=c("Chao1", "Shannon")) + 
-  scale_color_manual(values=unique(sample_info_tab$color[order(sample_info_tab$char)])) +
-  theme(legend.title = element_blank())
+    scale_color_manual(values=unique(sample_info_tab$color[order(sample_info_tab$char)])) +
+    theme_bw() + theme(legend.title = element_blank(), axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
 ```
 
 <center><img src="../images/plot_richness_by_type.png"></center>
@@ -977,6 +966,9 @@ dim(temp_filt_major_taxa_proportions_tab)
     # filtered out (which will also keep our totals at 100%)
 filtered_proportions <- colSums(major_taxa_proportions_tab) - colSums(temp_filt_major_taxa_proportions_tab)
 filt_major_taxa_proportions_tab <- rbind(temp_filt_major_taxa_proportions_tab, "Other"=filtered_proportions)
+
+  ## don't worry if the numbers or taxonomy vary a little, this might happen due to different versions being used 
+  ## from when this was initially put together
 ```
 
 Now that we have a nice proportions table ready to go, we can make some figures with it. While not always all that informative, expecially at the level of resolution we're using here (phyla and proteo classes only), we'll make some stacked bar charts, boxplots, and some pie charts. We'll use ggplot2 to do this, and for these types of plots it seems to be easiest to work with tables in [narrow format](https://en.wikipedia.org/wiki/Wide_and_narrow_data#Narrow){:target="_blank"}. We'll see what that means, how to transform the table, and then add some information for the samples to help with plotting. 
@@ -991,7 +983,7 @@ filt_major_taxa_proportions_tab_for_plot$Major_Taxa <- row.names(filt_major_taxa
 
   # now we'll transform the table into narrow, or long, format (also makes
   # plotting easier)
-filt_major_taxa_proportions_tab_for_plot.g <- gather(filt_major_taxa_proportions_tab_for_plot, Sample, Proportion, -Major_Taxa)
+filt_major_taxa_proportions_tab_for_plot.g <- pivot_longer(filt_major_taxa_proportions_tab_for_plot, !Major_Taxa, names_to = "Sample", values_to = "Proportion") %>% data.frame()
 
   # take a look at the new table and compare it with the old one
 head(filt_major_taxa_proportions_tab_for_plot.g)
@@ -1018,33 +1010,31 @@ filt_major_taxa_proportions_tab_for_plot.g2 <- merge(filt_major_taxa_proportions
 
   # one common way to look at this is with stacked bar charts for each taxon per sample:
 ggplot(filt_major_taxa_proportions_tab_for_plot.g2, aes(x=Sample, y=Proportion, fill=Major_Taxa)) +
-  geom_bar(width=0.6, stat="identity") +
-  theme_bw() +
-  theme(axis.text.x=element_text(angle=90, vjust=0.4, hjust=1), legend.title=element_blank()) +
-  labs(x="Sample", y="% of 16S rRNA gene copies recovered", title="All samples")
+    geom_bar(width=0.6, stat="identity") +
+    theme_bw() +
+    theme(axis.text.x=element_text(angle=90, vjust=0.4, hjust=1), legend.title=element_blank()) +
+    labs(x="Sample", y="% of 16S rRNA gene copies recovered", title="All samples")
 ```
 
-> **NOTE**  
-> While the code on this page has been updated to include the change to using DECIPHER for taxonomy, I haven't had a chance to update the figures yet. So if running through this, the figures generated may look different based on the different taxonomy assignment. 
 
 <center><img src="../images/stacked_bars.png"></center>
 <br>
 
-Ok, that's not helpful really at all in this case, but I kept it here for the code example. (Also, note that the biofilm sample has a large proportion of Alphaproteobacteria – possibly supporting what we saw above about it having the lowest Shannon diversity estimate, IF the majority of these are represented by the same ASV.) Another way to look would be using boxplots where each box is a major taxon, with each point being colored based on its sample type.
+Ok, that's not helpful really at all in this case, but it's here for the code example. No one likes stacked taxonomy barcharts, but we as humans just keep making them ¯\\\_(ツ)\_/¯ Another way to look would be using boxplots where each box is a major taxon, with each point being colored based on its sample type.
 
 ```R
 ggplot(filt_major_taxa_proportions_tab_for_plot.g2, aes(Major_Taxa, Proportion)) +
-  geom_jitter(aes(color=factor(char)), size=2, width=0.15, height=0) +
-  scale_color_manual(values=unique(filt_major_taxa_proportions_tab_for_plot.g2$color[order(filt_major_taxa_proportions_tab_for_plot.g2$char)])) +
-  geom_boxplot(fill=NA, outlier.color=NA) +
-  theme(axis.text.x=element_text(angle=90, vjust=0.4, hjust=1), legend.title=element_blank()) +
-  labs(x="Major Taxa", y="% of 16S rRNA gene copies recovered", title="All samples")
+    geom_jitter(aes(color=factor(char), shape=factor(char)), size=2, width=0.15, height=0) +
+    scale_color_manual(values=unique(filt_major_taxa_proportions_tab_for_plot.g2$color[order(filt_major_taxa_proportions_tab_for_plot.g2$char)])) +
+    geom_boxplot(fill=NA, outlier.color=NA) + theme_bw() +
+    theme(axis.text.x=element_text(angle=45, hjust=1), legend.title=element_blank()) +
+    labs(x="Major Taxa", y="% of 16S rRNA gene copies recovered", title="All samples")
 ```
 
 <center><img src="../images/boxplot_all_samples.png"></center>
 <br>
 
-Meh, let's keep in mind again that this was a very coarse level of resolution as we are using taxonomic classifications at the phylum and class ranks. This is why things may look more similar between the rocks and water samples than you might expect, and why when looking at the ASV level – like we did with the exploratory visualizations above – we can see more clearly that these do in fact host distinct communities. But let's look at this for a second anyway. The biofilm sample (green) again clearly stands out as it is almost completely dominated by sequences derived from Alphaproteobacteria. Three of the four "glassy" basalts (black dots) seem to have the greatest proportion of Gammaproteobacteria-derived sequences. And Cyanos and Euryarchaeota for the most part only seem to show up in water samples. Another way to look at this would be to plot the water and rock samples separately, which might help tighten up some taxa boxplots if they have a different distribution between the two sample types. 
+Don't forget to keep in mind again that this was a very coarse level of resolution as we are using taxonomic classifications at the phylum and class ranks. This could partly be why things may look more similar between the rocks and water samples than we might expect, and why when looking at the ASV level – like we did with the exploratory visualizations above – we can see more clearly that these seem to host distinct communities. But let's look at this for a second anyway. The biofilm sample (green triangles) clearly stands out as having the greatest proportion of seqs classified as coming from Alphaproteobacteria and those that were Unclassified. Three of the four "glassy" basalts (black plus signs) seem to have the greatest proportion of Gammaproteobacteria-derived sequences. And Cyanos, Desulfobacterota, and Firmicutes for the most part only seem to show up in one of the water samples. Another way to look at this would be to plot the water and rock samples separately, which might help tighten up some taxa boxplots if they have a different distribution between the two sample types. 
 
 ```R
   # let's set some helpful variables first:
@@ -1059,21 +1049,23 @@ filt_major_taxa_proportions_water_samples_only_tab_for_plot.g <- filt_major_taxa
   # and now we can use the same code as above just with whatever minor alterations we want
   # rock samples
 ggplot(filt_major_taxa_proportions_rocks_only_tab_for_plot.g, aes(Major_Taxa, Proportion)) +
-  scale_y_continuous(limits=c(0,50)) + # adding a setting for the y axis range so the rock and water plots are on the same scale
-  geom_jitter(aes(color=factor(char)), size=2, width=0.15, height=0) +
-  scale_color_manual(values=unique(filt_major_taxa_proportions_rocks_only_tab_for_plot.g$color[order(filt_major_taxa_proportions_rocks_only_tab_for_plot.g$char)])) +
-  geom_boxplot(fill=NA, outlier.color=NA) +
-  theme(axis.text.x=element_text(angle=90, vjust=0.4, hjust=1), legend.position="top", legend.title=element_blank()) + # moved legend to top 
-  labs(x="Major Taxa", y="% of 16S rRNA gene copies recovered", title="Rock samples only")
+    scale_y_continuous(limits=c(0,50)) + # adding a setting for the y axis range so the rock and water plots are on the same scale
+    geom_jitter(aes(color=factor(char), shape=factor(char)), size=2, width=0.15, height=0) +
+    scale_color_manual(values=unique(filt_major_taxa_proportions_rocks_only_tab_for_plot.g$color[order(filt_major_taxa_proportions_rocks_only_tab_for_plot.g$char)])) +
+    geom_boxplot(fill=NA, outlier.color=NA) + theme_bw() +
+    theme(axis.text.x=element_text(angle=45, hjust=1), legend.position="top", legend.title=element_blank()) + # moved legend to top 
+    labs(x="Major Taxa", y="% of 16S rRNA gene copies recovered", title="Rock samples only")
 
-  # water samples
+# water samples
 ggplot(filt_major_taxa_proportions_water_samples_only_tab_for_plot.g, aes(Major_Taxa, Proportion)) +
-  scale_y_continuous(limits=c(0,50)) + # adding a setting for the y axis range so the rock and water plots are on the same scale
-  geom_jitter(aes(color=factor(char)), size=2, width=0.15, height=0) +
-  scale_color_manual(values=unique(filt_major_taxa_proportions_water_samples_only_tab_for_plot.g$color[order(filt_major_taxa_proportions_water_samples_only_tab_for_plot.g$char)])) +
-  geom_boxplot(fill=NA, outlier.color=NA) +
-  theme(axis.text.x=element_text(angle=90, vjust=0.4, hjust=1), legend.position="top", legend.title=element_blank()) + # moved legend to top 
-  labs(x="Major Taxa", y="% of 16S rRNA gene copies recovered", title="Bottom water samples only")
+    scale_y_continuous(limits=c(0,50)) + # adding a setting for the y axis range so the rock and water plots are on the same scale
+    geom_jitter(aes(color=factor(char)), size=2, width=0.15, height=0) +
+    scale_color_manual(values=unique(filt_major_taxa_proportions_water_samples_only_tab_for_plot.g$color[order(filt_major_taxa_proportions_water_samples_only_tab_for_plot.g$char)])) +
+    geom_boxplot(fill=NA, outlier.color=NA) + theme_bw() +
+    theme(axis.text.x=element_text(angle=45, hjust=1), legend.position="none") +
+    labs(x="Major Taxa", y="% of 16S rRNA gene copies recovered", title="Bottom-water samples only")
+    
+    # probably don't need the boxplots for the 2 water samples, but let's be crazy
 
 ```
 
@@ -1083,38 +1075,39 @@ ggplot(filt_major_taxa_proportions_water_samples_only_tab_for_plot.g, aes(Major_
 <br>
 
 
-This shows us more clearly for instance that one of the two water samples had ~30% of its recovered 16S sequences come from Firmicutes, while none of the 13 rock samples had more than 5%. It's good of course to break down your data and look at it in all the different ways you can, this was just to demonstrate one example. 
+This shows us more clearly for instance that one of the two water samples had ~15% of its recovered 16S sequences classified as Firmicutes, while none of the 13 rock samples had more than 1%. It's good of course to break down our data and look at it in all the different ways you can, this was just to demonstrate one example. 
 
-Last taxonomic summary we'll go through in will just be some pie charts. This is mostly because I think it's worth showing an example of using the `cast()` function to return your tables into "wide" format.
+Last taxonomic summary we'll go through in will just be some pie charts. This is mostly because I think it's worth showing an example of using the `pivot_wider()` function to return our tables into "wide" format.
 
 ```R
   # notice we're leaving off the "char" and "color" columns, in the code, and be sure to peak at the tables after making them
-rock_sample_major_taxa_proportion_tab <- cast(filt_major_taxa_proportions_rocks_only_tab_for_plot.g[, c(1:3)], Major_Taxa ~ Sample)
-water_sample_major_taxa_proportion_tab <- cast(filt_major_taxa_proportions_water_samples_only_tab_for_plot.g[, c(1:3)], Major_Taxa ~ Sample)
-  # summing each taxa across all samples for both groups 
+rock_sample_major_taxa_proportion_tab <- filt_major_taxa_proportions_rocks_only_tab_for_plot.g[, c(1:3)] %>% pivot_wider(names_from = Major_Taxa, values_from = Proportion) %>% column_to_rownames("Sample") %>% t() %>% data.frame()
+water_sample_major_taxa_proportion_tab <- filt_major_taxa_proportions_water_samples_only_tab_for_plot.g[, c(1:3)] %>% pivot_wider(names_from = Major_Taxa, values_from = Proportion) %>% column_to_rownames("Sample") %>% t() %>% data.frame()
+
+# summing each taxa across all samples for both groups 
 rock_sample_summed_major_taxa_proportions_vec <- rowSums(rock_sample_major_taxa_proportion_tab)
 water_sample_summed_major_taxa_proportions_vec <- rowSums(water_sample_major_taxa_proportion_tab)
 
 rock_sample_major_taxa_summary_tab <- data.frame("Major_Taxa"=names(rock_sample_summed_major_taxa_proportions_vec), "Proportion"=rock_sample_summed_major_taxa_proportions_vec, row.names=NULL)
 water_sample_major_taxa_summary_tab <- data.frame("Major_Taxa"=names(water_sample_summed_major_taxa_proportions_vec), "Proportion"=water_sample_summed_major_taxa_proportions_vec, row.names=NULL)
 
-  # plotting just rocks
+# plotting just rocks
 ggplot(data.frame(rock_sample_major_taxa_summary_tab), aes(x="Rock samples", y=Proportion, fill=Major_Taxa)) + 
-  geom_bar(width=1, stat="identity") +
-  coord_polar("y") +
-  scale_fill_viridis(discrete=TRUE) +
-  ggtitle("Rock samples only") +
-  theme_void() +
-  theme(plot.title = element_text(hjust=0.5), legend.title=element_blank())
+    geom_bar(width=1, stat="identity") +
+    coord_polar("y") +
+    scale_fill_viridis(discrete=TRUE) +
+    ggtitle("Rock samples only") +
+    theme_void() +
+    theme(plot.title = element_text(hjust=0.5), legend.title=element_blank())
 
-  # and plotting just water samples
+# and plotting just water samples
 ggplot(data.frame(water_sample_major_taxa_summary_tab), aes(x="Bottom water samples", y=Proportion, fill=Major_Taxa)) + 
-  geom_bar(width=1, stat="identity") +
-  coord_polar("y") +
-  scale_fill_viridis(discrete=TRUE) +
-  ggtitle("Water samples only") +
-  theme_void() +
-  theme(plot.title = element_text(hjust=0.5), legend.title=element_blank())
+    geom_bar(width=1, stat="identity") +
+    coord_polar("y") +
+    scale_fill_viridis(discrete=TRUE) +
+    ggtitle("Water samples only") +
+    theme_void() +
+    theme(plot.title = element_text(hjust=0.5), legend.title=element_blank())
 ```
 
 <center><img src="../images/rock_pie.png"></center>
@@ -1130,6 +1123,8 @@ As we saw earlier, we have some information about our samples in our sample info
 
 ```R
 anova(betadisper(euc_dist, sample_info_tab$type)) # 0.002
+  ## don't worry if the numbers vary a little, this might happen due to different versions being used 
+  ## from when this was initially put together, and due to variation in the permutations
 ```
 
 Checking by all sample types, we get a significant result (0.002) from the `betadisper` test. This tells us that there is a difference between group dispersions, which means that we can't trust the results of an adonis (permutational anova) test on this, because the assumption of homogenous within-group disperions is not met. This isn't all that surprising considering how different the water and biofilm samples are from the rocks.  
@@ -1151,12 +1146,16 @@ basalt_sample_info_tab <- sample_info_tab[row.names(sample_info_tab) %in% basalt
 
   # running betadisper on just these based on level of alteration as shown in the images above:
 anova(betadisper(basalt_euc_dist, basalt_sample_info_tab$char)) # 0.7
+  ## don't worry if the numbers vary a little, this might happen due to different versions being used 
+  ## from when this was initially put together, and due to variation in the permutations
 ```
 
 Looking at just the two basalt groups, glassy vs the more highly altered with thick outer rinds, we do not find a significant difference between their within-group dispersions (0.7). So we can now test if the groups host statistically different communities based on adonis, having met this assumption.
 
 ```R
 adonis(basalt_euc_dist~basalt_sample_info_tab$char) # 0.003
+  ## don't worry if the numbers vary a little, this might happen due to different versions being used 
+  ## from when this was initially put together, and due to variation in the permutations
 ```
 
 And with a significance level of 0.003, this gives us our **first statistical evidence** that there is actually a difference in microbial communities hosted by the more highly altered basalts as compared to the glassier less altered basalts, pretty cool!  
@@ -1175,13 +1174,13 @@ basalt_eigen_vals <- basalt_vst_pcoa$values$Eigenvalues # allows us to scale the
 
   # and making our new ordination of just basalts with our adonis statistic
 plot_ordination(basalt_vst_physeq, basalt_vst_pcoa, color="char") + 
-  labs(col="type") + geom_point(size=1) + 
-  geom_text(aes(label=rownames(basalt_sample_info_tab), hjust=0.3, vjust=-0.4)) + 
-  annotate("text", x=25, y=73, label="Highly altered vs glassy") +
-  annotate("text", x=25, y=67, label="Permutational ANOVA = 0.005") + 
-  coord_fixed(sqrt(basalt_eigen_vals[2]/basalt_eigen_vals[1])) + ggtitle("PCoA - basalts only") + 
-  scale_color_manual(values=unique(basalt_sample_info_tab$color[order(basalt_sample_info_tab$char)])) + 
-  theme(legend.position="none")
+    labs(col="type") + geom_point(size=1) + 
+    geom_text(aes(label=rownames(basalt_sample_info_tab), hjust=0.3, vjust=-0.4)) + 
+    annotate("text", x=25, y=68, label="Highly altered vs glassy") +
+    annotate("text", x=25, y=62, label="Permutational ANOVA = 0.003") + 
+    coord_fixed(sqrt(basalt_eigen_vals[2]/basalt_eigen_vals[1])) + ggtitle("PCoA - basalts only") + 
+    scale_color_manual(values=unique(basalt_sample_info_tab$color[order(basalt_sample_info_tab$char)])) + 
+    theme_bw() + theme(legend.position="none")
 ```
 
 <center><img src="../images/basalt_PCoA.png"></center>
@@ -1236,10 +1235,10 @@ sigtab_deseq_altered_vs_glassy_with_tax <- cbind(as(sigtab_res_deseq_altered_vs_
   # and now let's sort that table by the baseMean column
 sigtab_deseq_altered_vs_glassy_with_tax[order(sigtab_deseq_altered_vs_glassy_with_tax$baseMean, decreasing=T), ]
 
-  # this puts sequence derived from an Actinobacteria at the top that was detected in ~10 log2fold greater abundance in the glassy basalts than in the more highly altered basalts
+  # this puts a sequence derived from a Rhizobiales at the second to highest (first is unclassified) that was detected in ~7 log2fold greater abundance in the glassy basalts than in the highly altered basalts
 ```
 
-If you glance through the taxonomy of our significant table here, you'll see several have the same designations. It's possible this is one of those cases where the single-nucleotide resolution approach more inhibits your cause than helps it. You can imagine that with organisms having multiple copies of the 16S rRNA gene, but those copies aren't identical (which happens a lot), this could be muddying what you're looking for here by splitting the signal up and weaking it. Another way to look at this would be to sum the ASVs by the same genus designations, or to go back and cluster them into some form of OTU (after identifying ASVs) – in which case you'd still be using the ASV units, but then clustering them at some arbitrary level to see if that level of resolution is more revealing for the system you're looking at.
+If you glance through the taxonomy of our significant table here, you'll see several have the same designations. It's possible this is one of those cases where the single-nucleotide resolution approach more inhibits our cause than helps it. You can imagine that with organisms having multiple copies of the 16S rRNA gene, which may not be identical, this could be muddying what we're looking for here by splitting the signal up and weaking it. Another way to look at this would be to sum the ASVs by the same genus designations, or to go back and cluster them into some form of OTU (after identifying ASVs) – in which case we'd still be using the ASV units, but then clustering them at some arbitrary level to see if that level of resolution is more revealing for the system we're looking at.
 <br>
 <br>
 
