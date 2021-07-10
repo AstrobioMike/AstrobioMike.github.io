@@ -65,9 +65,10 @@ conda install -y -c conda-forge mamba
 
 mamba create -y -n hb-dada2-ex-wf -c conda-forge -c bioconda -c defaults \
              cutadapt=2.3 r-base=3.6.3 rstudio=1.1.456 r-tidyverse=1.3.0 \
-             r-vegan=2.5 r-dendextend=1.14.0 r-viridis=0.6 bioconductor-phyloseq=1.30 \
-             bioconductor-deseq2=1.26 bioconductor-dada2=1.14 bioconductor-decipher=2.14 \
-             bioconductor-decontam=1.6 r-biocmanager=1.30 r-matrix=1.3_2
+             r-vegan=2.5 r-dendextend=1.14.0 r-viridis=0.6 \
+             bioconductor-phyloseq=1.30 bioconductor-deseq2=1.26 bioconductor-dada2=1.14 \
+             bioconductor-decipher=2.14 bioconductor-decontam=1.6 r-biocmanager=1.30 \
+             r-matrix=1.3_2 libopenblas=0.3.7
 
 conda activate hb-dada2-ex-wf
 ```
