@@ -41,6 +41,10 @@ cd dada2_16S_18S_ex
 
 The two samples in this working directory are [ERR1018543](https://www.ncbi.nlm.nih.gov/sra/ERR1018543){:target="_blank"} and [ERR10185469](https://www.ncbi.nlm.nih.gov/sra/ERR1018546){:target="_blank"} which were both filtered marine water, size fraction 1µm–80µm, sequenced 2x300 with primers targeting the V4V5 region of the 16S rRNA gene which also capture 18S (515f: 5'-GTGCCAGCMGCCGCGGTAA-3' to 926r: 5'CCGYCAATTYMTTTRAGTTT-3'; [Parada et al. 2015](https://onlinelibrary.wiley.com/doi/abs/10.1111/1462-2920.13023){:target="_blank"}). 
 
+---
+<br>
+
+
 # Conda environment
 Here's how we can create a [conda](/unix/conda-intro){:target="_blank"} environment for the work done on this page if wanted. 
 
@@ -53,6 +57,10 @@ conda create -n hb-16S-18S-example -c conda-forge -c bioconda -c defaults -c ast
 conda activate hb-16S-18S-example
 ```
 
+<br>
+
+---
+<br>
 
 # Getting and formatting the PR2 database
 The great folks working on the [PR2 database](https://github.com/pr2database/pr2database#pr2database-){:target="_blank"} have lots of formats available for us. The general table is in xlsx format though ("pr2_version_4.14.0_merged.xlsx"), and I was having trouble manipulating it at the command line due to some cells having line-breaks within them (e.g., entry AB695498.1.1724_U). So we are going to read it into R to parse it down to just 18S seqs and to create the fasta file we need for generating a blast database. 
