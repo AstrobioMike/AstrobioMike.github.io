@@ -76,6 +76,7 @@ And now we're going to manipulate it in R. If you created and entered the conda 
 
 ```R
 ## in R ##
+library(tidyverse)
 library(readxl)
 tab <- read_xlsx("pr2_version_4.14.0_merged.xlsx")
 sub_tab <- tab %>% filter(gene == "18S_rRNA")
