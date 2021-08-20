@@ -51,7 +51,7 @@ Here's how we can create a [conda](/unix/conda-intro){:target="_blank"} environm
 ```bash
 conda create -n hb-16S-18S-example -c conda-forge -c bioconda -c defaults -c astrobiomike \
              python=3 magicblast=1.5.0 cutadapt=3.4 bit=1.8.33 r-base rstudio \
-             r-biocmanager r-tidyverse=1.3.1 bioconductor-dada2=1.20.0 \
+             r-biocmanager r-tidyverse=1.3.1 r-readxl=1.3.1 bioconductor-dada2=1.20.0 \
              bioconductor-decipher=2.20.0
 
 conda activate hb-16S-18S-example
@@ -76,6 +76,7 @@ And now we're going to manipulate it in R. If you created and entered the conda 
 
 ```R
 ## in R ##
+library(readxl)
 tab <- read_xlsx("pr2_version_4.14.0_merged.xlsx")
 sub_tab <- tab %>% filter(gene == "18S_rRNA")
 # making fasta
