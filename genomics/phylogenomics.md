@@ -10,7 +10,11 @@ permalink: /genomics/phylogenomics
 
 {% include _side_tab_genomics.html %}
 
-Here we are going to talk about what phylogenomics is (regarding one common use of the term at least) and what goes into generating a phylogenomic tree. Then we're going to create one with [GToTree](https://github.com/AstrobioMike/GToTree/wiki/what-is-gtotree%3F){:target="_blank"} 🙂
+
+Here we are going to talk about what phylogenomics is and what goes into generating a phylogenomic tree. Then we're going to create one with [GToTree](https://github.com/AstrobioMike/GToTree/wiki/what-is-gtotree%3F){:target="_blank"} 🙂
+
+
+I was fortunate enough to be part of the stellar [Online seminar series on Microbial 'Omics for beginners](https://merenlab.org/2020/06/27/seminar-series-on-microbial-omics/){:target="_blank"}, for which I gave an introduction to phylogenetics and phylogenomics. If interested in a video on these concepts, you can find that [here](https://merenlab.org/2020/06/27/seminar-series-on-microbial-omics/#august-12-2020){:target="_blank"}.
 
 <center><a href="../images/hug-tree-of-life.png"><img width="70%" src="../images/hug-tree-of-life.png"></a></center>
 
@@ -39,7 +43,7 @@ Most phylogenetic trees that biologists are used to seeing and working with are 
 
 We are doing the same thing with phylogenomics, just instead of a single gene, we are using multiple genes. In the end, we are still just using sequences as proxies. So an even more appropriate definition might be: **phylogenomics is attempting to infer evolutionary relationships between sequences comprised of multiple concatenated genes, while assuming those inferred evolutionary relationships tell us something meaningful with regard to the evolutionary relationships of their source genomes**. But that can sound pretty convoluted if we're just starting to get into this mental space, hence the over-simplified, slightly misleading version first – that does still get the point across 🙂
 
-Now, with that laid out there, I want to immediately follow up with saying for the most part, it *is* a safe assumption that the inferred evolutionary relationships of the multi-gene sequences we are getting *are* meaningfully representative of their source genomes' evolutionary relationships. And this generally becomes a safer assumption when a greater number of *appropriate* genes are included – and a less safer assumption if fewer, or *inappropriate*, genes are included. Which and how many genes are *appropriate* entirely depends on the breadth of diversity we are interested in spanning (more on that below). In general, for a given set of organisms of interest, it'd be a good idea to use as many *single-copy core genes* as that set of organisms has. But this certainly isn't always necessary in order to get a trusted signal that meets our current needs (our *Synechococcus* example below actually demonstrates this).
+Now, with that laid out there, I want to immediately follow up with saying for the most part, it is indeed a safe assumption that the inferred evolutionary relationships of the multi-gene sequences we are getting are meaningfully representative of their source genomes' evolutionary relationships. And this generally becomes a safer assumption when a greater number of *appropriate* genes are included – and a less safer assumption if fewer, or inappropriate, genes are included. Which and how many genes are appropriate entirely depends on the breadth of diversity we are interested in spanning (more on that below). 
 
 <hr style="height:10px; visibility:hidden;" />
 
