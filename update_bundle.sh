@@ -1,2 +1,2 @@
-bundle update
+# bundle update
 bundle update github-pages
