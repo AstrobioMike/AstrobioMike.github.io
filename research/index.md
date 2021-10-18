@@ -242,16 +242,23 @@ Walworth, N.G., Fu, F.-X., Webb, E.A., Saito, M.A., Moran, D., McIlvin, M.R., **
 <hr style="height:10px; visibility:hidden;" />
 #### **Software, platforms, workflows, and education**
 
+<a name="Tully_2021"></a>
+<div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.3389/feduc.2021.711618"></div>  
+
+Tully, B.J., Buongiorno, J., Cohen, A.B., Cram, J.A., Garber, A.I., Hu, S.K., et al. (2021). [The Bioinformatics Virtual Coordination Network: An Open-Source and Interactive Learning Environment](https://doi.org/10.3389/feduc.2021.711618){:target="_blank"}. *Frontiers in Education*.  
+[PDF download](/research/Tully-et-al-Frontiers-2021.pdf){:target="_blank"}  
+
+
 <a name="Overbey_2021"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1016/j.isci.2021.102361"></div>  
 
-Overbey, E.G., Saravia-Butler, A.M., Zhang, Z., Rathi, K.S., Fogle, H., da Silveira, W.A., Barker, R.J., Bass, J.J., Beheshti, A., ..., **Lee, M.D.**, ..., and Galazka, J.M. (2021). [NASA GeneLab RNA-seq consensus pipeline: Standardized processing of short-read RNA-seq data](https://doi.org/10.1016/j.isci.2021.102361){:target="_blank"}. *iScience*.  
+Overbey, E.G., Saravia-Butler, A.M., Zhang, Z., Rathi, K.S., Fogle, H., da Silveira, W.A., et al. (2021). [NASA GeneLab RNA-seq consensus pipeline: Standardized processing of short-read RNA-seq data](https://doi.org/10.1016/j.isci.2021.102361){:target="_blank"}. *iScience*.  
 [PDF download](https://www.sciencedirect.com/science/article/pii/S2589004221003291/pdfft?isDTMRedir=true&download=true){:target="_blank"}  
 
 <a name="Eren_2020_anvio"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1038/s41564-020-00834-3"></div>  
 
-Eren, A.M., Kiefl, E., Shaiber, A., Veseli, E., Miller, S.E., Schechter, M.S., Fink, I., Pan, J.N., Yousef, M., ..., **Lee, M.D.**, ..., and Willis A.D. (2020). [Community-led, integrated, reproducible multi-omics with anvi’o](https://www.nature.com/articles/s41564-020-00834-3){:target="_blank"}. *Nature Microbiology*.  
+Eren, A.M., Kiefl, E., Shaiber, A., Veseli, E., Miller, S.E., Schechter, M.S., et al. (2020). [Community-led, integrated, reproducible multi-omics with anvi’o](https://www.nature.com/articles/s41564-020-00834-3){:target="_blank"}. *Nature Microbiology*.  
 [PDF download](https://www.nature.com/articles/s41564-020-00834-3.pdf){:target="_blank"}  
 
 
