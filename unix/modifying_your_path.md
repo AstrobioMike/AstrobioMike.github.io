@@ -140,6 +140,9 @@ But we can also be anywhere else now:
 ## Permanently
 As noted above, that method only *temporarily* modifies our PATH, which is sometimes useful. But often we will want to modify it permanently. To do so we need to edit a sort of special file, there are a few of these, but that is a concept for another page. The one we are going to use here is called **`~/.bash_profile`** (files with a **`.`** in front of them are "hidden" files). This file either already exists in our home directory or we will create it if it doesn't yet, and *it gets run everytime we open a terminal window*. This file and the others like it are what allow us to customize our terminal window with things like setting variables we always want, adding color schemes, or modifying our prompt. Here is one way we can permanently add a directory to our PATH by using **`echo`** to append the code to the end of that file:
 
+> **NOTE** 
+> If we are working a server or cluster, it may be the case that we actually want to modify our PATH varible in the `~/.profile` file instead of the `~/.bash_profile` file as done below. If you check your home location with `ls -a ~/` and you have a `~/.profile` but no `~/.bash_profile`, then change the two example lines below so that `~/.profile` is used in place of `~/.bash_profile`.
+
 ```bash
 echo 'export PATH="$PATH:/Users/Mike_Lee/my-bin"' >> ~/.bash_profile
 ```
