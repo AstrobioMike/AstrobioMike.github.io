@@ -126,6 +126,18 @@ Momper, L.M., Jungbluth, S.P., **Lee, M.D.**, and Amend, J.P. (2017). [Energy an
 <hr style="height:10px; visibility:hidden;" />
 #### **Marine Microbes**
 
+<a name="Walworth_et_al_2022"></a>
+<div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="doi.org/10.1021/acs.jproteome.1c00517"></div>  
+
+Walworth, N.G., Saito, M.A., **Lee, M.D.**, McIlvin, M.R., Moran, D.M., Kellogg, R.M., Fu, F-X., Hutchins, D.A., and Webb, E.A. (2022). [Why environmental biomarkers work: transcriptome–proteome correlations and modeling of multistressor experiments in the marine bacterium *Trichodesmium*](https://doi.org/10.1021/acs.jproteome.1c00517){:target="_blank"}. *Journal of Proteome Research* [PDF download](Walworth-et-al-2022.pdf){:target="_blank"}.
+
+
+<a name="Qu_et_al_2022"></a>
+<div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="doi.org/10.1111/1758-2229.13041"></div>  
+
+Qu, P., Fu, F-X., Wang, X-W., Kling, J.D., Elghazzawy, M., Huh, M., Zhou, Q-Q., Want, C., Wing Kwan Mak, E., **Lee, M.D.**, Yang, N., and Hutchins, D. (2022). [Two co-dominant nitrogen-fixing cyanobacteria demonstrate distinct acclimation and adaptation responses to cope with ocean warming](https://doi.org/10.1111/1758-2229.13041){:target="_blank"}. *Environmental Microbiology Reports* [PDF will be added soon](){:target="_blank"}.
+
+
 <a name="McParland_et_al_2021"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="doi.org/10.1111/1462-2920.15393"></div>  
 
@@ -143,7 +155,7 @@ Maza-Márquez, P., **Lee, M.D.**, and Bebout, B.M. (2021). [The Abundance and Di
 <a name="Walworth_et_al_2020_mol_bio_evo"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1093/molbev/msaa256"></div>  
 
-Walworth, N.G., **Lee, M.D.**, Dolzhenko, E., Fu., F-X., Smith, A.D., Webb, E.A., and Hutchins, D.A. (2020). [Long-Term m5C Methylome Dynamics Parallel Phenotypic Adaptation in the Cyanobacterium *Trichodesmium*](https://doi.org/10.1093/molbev/msaa256){:target="_blank"}. *Molecular Biology and Evolution*.  
+Walworth, N.G., **Lee, M.D.**, Dolzhenko, E., Fu, F-X., Smith, A.D., Webb, E.A., and Hutchins, D.A. (2020). [Long-Term m5C Methylome Dynamics Parallel Phenotypic Adaptation in the Cyanobacterium *Trichodesmium*](https://doi.org/10.1093/molbev/msaa256){:target="_blank"}. *Molecular Biology and Evolution*.  
 [PDF download](https://academic.oup.com/mbe/advance-article-pdf/doi/10.1093/molbev/msaa256/34462566/msaa256.pdf){:target="_blank"}  
 
 
