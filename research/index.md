@@ -129,13 +129,15 @@ Momper, L.M., Jungbluth, S.P., **Lee, M.D.**, and Amend, J.P. (2017). [Energy an
 <a name="Walworth_et_al_2022"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="doi.org/10.1021/acs.jproteome.1c00517"></div>  
 
-Walworth, N.G., Saito, M.A., **Lee, M.D.**, McIlvin, M.R., Moran, D.M., Kellogg, R.M., Fu, F-X., Hutchins, D.A., and Webb, E.A. (2022). [Why environmental biomarkers work: transcriptome–proteome correlations and modeling of multistressor experiments in the marine bacterium *Trichodesmium*](https://doi.org/10.1021/acs.jproteome.1c00517){:target="_blank"}. *Journal of Proteome Research* [PDF download](Walworth-et-al-2022.pdf){:target="_blank"}.
+Walworth, N.G., Saito, M.A., **Lee, M.D.**, McIlvin, M.R., Moran, D.M., Kellogg, R.M., Fu, F-X., Hutchins, D.A., and Webb, E.A. (2022). [Why environmental biomarkers work: transcriptome–proteome correlations and modeling of multistressor experiments in the marine bacterium *Trichodesmium*](https://doi.org/10.1021/acs.jproteome.1c00517){:target="_blank"}. *Journal of Proteome Research*  
+[PDF download](Walworth-et-al-2022.pdf){:target="_blank"}.
 
 
 <a name="Qu_et_al_2022"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="doi.org/10.1111/1758-2229.13041"></div>  
 
-Qu, P., Fu, F-X., Wang, X-W., Kling, J.D., Elghazzawy, M., Huh, M., Zhou, Q-Q., Want, C., Wing Kwan Mak, E., **Lee, M.D.**, Yang, N., and Hutchins, D. (2022). [Two co-dominant nitrogen-fixing cyanobacteria demonstrate distinct acclimation and adaptation responses to cope with ocean warming](https://doi.org/10.1111/1758-2229.13041){:target="_blank"}. *Environmental Microbiology Reports* [PDF will be added soon](){:target="_blank"}.
+Qu, P., Fu, F-X., Wang, X-W., Kling, J.D., Elghazzawy, M., Huh, M., Zhou, Q-Q., Want, C., Wing Kwan Mak, E., **Lee, M.D.**, Yang, N., and Hutchins, D. (2022). [Two co-dominant nitrogen-fixing cyanobacteria demonstrate distinct acclimation and adaptation responses to cope with ocean warming](https://doi.org/10.1111/1758-2229.13041){:target="_blank"}. *Environmental Microbiology Reports*  
+[PDF will be added soon](){:target="_blank"}.
 
 
 <a name="McParland_et_al_2021"></a>
