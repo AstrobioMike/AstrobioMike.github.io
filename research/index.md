@@ -56,10 +56,12 @@ I'm a research scientist with [Blue Marble Space Institute of Science](https://w
 ## Software
 
 ### [GToTree](https://github.com/AstrobioMike/GToTree/wiki){:target="_blank"}
-* Genome-level evolutionary inference (i.e. phylogenomics) is becoming an increasingly essential step in many biologists’ work. [GToTree](https://github.com/AstrobioMike/GToTree/wiki/what-is-gtotree%3F){:target="_blank"} is a comprehensive, user-friendly workflow for phylogenomics that greatly simplifies the computational work required of researchers to generate phylogenomic trees.<br>[Code](https://github.com/AstrobioMike/GToTree){:target="_blank"}; [Publication](https://doi.org/10.1093/bioinformatics/btz188){:target="_blank"}; [Wiki](https://github.com/AstrobioMike/GToTree/wiki){:target="_blank"}
+* Genome-level evolutionary inference (i.e. phylogenomics) is becoming an increasingly essential step in many biologists’ work. [GToTree](https://github.com/AstrobioMike/GToTree/wiki/what-is-gtotree%3F){:target="_blank"} is a comprehensive, user-friendly workflow for phylogenomics that greatly simplifies the computational work required of researchers to generate phylogenomic trees.<br>[Code](https://github.com/AstrobioMike/GToTree){:target="_blank"}; [Publication](https://doi.org/10.1093/bioinformatics/btz188){:target="_blank"}; [Wiki](https://github.com/AstrobioMike/GToTree/wiki){:target="_blank"}  
 
 ### [Bioinformatics Tools (bit)](https://github.com/AstrobioMike/bit#bioinformatics-tools-bit){:target="_blank"}
-* [bit](https://github.com/AstrobioMike/bit#bioinformatics-tools-bit){:target="_blank"} holds a collection of scripts and small programs I've written over time that I use frequently enough that it's been worth it for me to package them through [conda](https://conda.io/docs/){:target="_blank"} to make them available to me and others anywhere.<br>[Code](https://github.com/AstrobioMike/bit#bioinformatics-tools-bit){:target="_blank"}  
+* [bit](https://github.com/AstrobioMike/bit#bioinformatics-tools-bit){:target="_blank"} holds a collection of scripts and small programs I've written over time that I use frequently enough that it's been worth it for me to package them through [conda](https://conda.io/docs/){:target="_blank"} to make them available to me and others anywhere.<br>[Code](https://github.com/AstrobioMike/bit#bioinformatics-tools-bit){:target="_blank"}; [Publication](https://doi.org/10.12688/f1000research.79530.1){:target="_blank"}; [Documentation](https://github.com/AstrobioMike/bit#bioinformatics-tools-bit){:target="_blank"}  
+
+
 <br>
 
 ---
@@ -160,7 +162,7 @@ Maza-Márquez, P., **Lee, M.D.**, and Bebout, B.M. (2021). [The Abundance and Di
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1093/molbev/msaa256"></div>  
 
 Walworth, N.G., **Lee, M.D.**, Dolzhenko, E., Fu, F-X., Smith, A.D., Webb, E.A., and Hutchins, D.A. (2020). [Long-Term m5C Methylome Dynamics Parallel Phenotypic Adaptation in the Cyanobacterium *Trichodesmium*](https://doi.org/10.1093/molbev/msaa256){:target="_blank"}. *Molecular Biology and Evolution*.  
-[PDF download](https://academic.oup.com/mbe/advance-article-pdf/doi/10.1093/molbev/msaa256/34462566/msaa256.pdf){:target="_blank"}  
+[PDF download](Walworth-et-al-2020.pdf){:target="_blank"}  
 
 
 <a name="Lee_et_al_2019_EM"></a>
@@ -257,6 +259,14 @@ Walworth, N.G., Fu, F.-X., Webb, E.A., Saito, M.A., Moran, D., McIlvin, M.R., **
 
 <hr style="height:10px; visibility:hidden;" />
 #### **Software, platforms, workflows, and education**
+
+<a name="Lee_2022_bit"></a>
+<div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.12688/f1000research.79530.1"></div>  
+
+**Lee, M.D.** (2022). [bit: a multipurpose collection of bioinformatics tools](https://doi.org/10.12688/f1000research.79530.1){:target="_blank"}. *F1000Research*.  
+[PDF download](https://f1000research.com/articles/11-122/v1/pdf?article_uuid=85d81770-170f-4d30-90f7-751701ee239d){:target="_blank"}  
+[Software](https://github.com/AstrobioMike/bit){:target="_blank"} | [Documentation](https://github.com/AstrobioMike/bit#bioinformatics-tools-bit){:target="_blank"}  
+
 
 <a name="Tully_2021"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.3389/feduc.2021.711618"></div>  
