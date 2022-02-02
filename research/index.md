@@ -18,8 +18,9 @@ permalink: /research/
 [Google Scholar](https://scholar.google.com/citations?user=-ONw6lsAAAAJ&hl=en){:target="_blank"}
 
 **Current positions**  
-*BMSIS Research Scientist*  
 *NASA GeneLab Bioinformatician*  
+*BMSIS Research Scientist*  
+
 
 **Affiliations**  
 [*NASA*](https://www.nasa.gov/){:target="_blank"}  
@@ -32,7 +33,7 @@ permalink: /research/
 * Ph.D. Biology ([University of Southern California](https://www.usc.edu/){:target="_blank"}, CA, USA, 2018)  
 
 **Research summary**  
-I'm a research scientist with [Blue Marble Space Institute of Science](https://www.bmsis.org/){:target="_blank"} and [NASA GeneLab](https://genelab.nasa.gov/){:target="_blank"} bioinformatician located at NASA's Ames Research Center in northern California, USA. I focus primarily on microbial ecology and evolution in all kinds of different systems ranging from the bottoms of our oceans up to the International Space Station 👽
+I'm a bioinformatician with [NASA GeneLab](https://genelab.nasa.gov/){:target="_blank"} and a research scientist with [Blue Marble Space Institute of Science](https://www.bmsis.org/){:target="_blank"} located at NASA's Ames Research Center in northern California, USA. I focus primarily on microbial ecology and evolution in all kinds of different systems ranging from the bottoms of our oceans up to the International Space Station 👽
 
 *Publication groupings*:  
 * [Space Biology](#space-biology)  
@@ -97,13 +98,12 @@ Zajkowski, T., **Lee, M.D.**, Mondal, S.S., Carbajal, A., Dec, R., Brennock, P.D
 [PDF download](/research/Zajkowski-et-al-2021.pdf){:target="_blank"}  
 
 
-
-
 <a name="Seyler_et_al_2020_astrobio"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1089/ast.2019.2135"></div>  
 
 Seyler, L., Kujawinski, E.B., Azua-Bustos, A., **Lee, M.D.**, Marlow, J., Perl, S.M., and Cleaves II, H.J (2020). [Metabolomics As an Emerging Tool in the Search for Astrobiologically Relevant Biomarkers](https://doi.org/10.1089/ast.2019.2135){:target="_blank"}. *Astrobiology*.  
 [PDF download](https://www.liebertpub.com/doi/pdf/10.1089/ast.2019.2135){:target="_blank"}  
+
 
 <a name="ORourke_et_al_2020_astrobio_chapter"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.21775/9781912530304"></div>  
@@ -142,6 +142,13 @@ Walworth, N.G., Saito, M.A., **Lee, M.D.**, McIlvin, M.R., Moran, D.M., Kellogg,
 
 Qu, P., Fu, F-X., Wang, X-W., Kling, J.D., Elghazzawy, M., Huh, M., Zhou, Q-Q., Want, C., Wing Kwan Mak, E., **Lee, M.D.**, Yang, N., and Hutchins, D. (2022). [Two co-dominant nitrogen-fixing cyanobacteria demonstrate distinct acclimation and adaptation responses to cope with ocean warming](https://doi.org/10.1111/1758-2229.13041){:target="_blank"}. *Environmental Microbiology Reports*  
 [PDF download](Qu-et-al-2022.pdf){:target="_blank"}
+
+
+<a name="Maza_et_al_2022"></a>
+<div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="doi.org/10.1038/s41396-021-01161-z"></div>  
+
+Maza-Márquez, P., **Lee, M.D.**, Detweiler, A.M., and Bebout, B.M. (2022). [Millimeter-scale vertical partitioning of nitrogen cycling in hypersaline mats reveals prominence of genes encoding multi-heme and prismane proteins](https://doi.org/10.1038/s41396-021-01161-z){:target="_blank"}. *ISMEJ*  
+[PDF download](https://doi.org/10.1038/s41396-021-01161-z){:target="_blank"}
 
 
 <a name="McParland_et_al_2021"></a>
