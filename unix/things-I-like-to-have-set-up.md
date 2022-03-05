@@ -64,9 +64,9 @@ This little step doesn't virtually nothing to setup and nothing to run given the
 <br>-->
 
 # Modifying our prompt to facilitate 'scp'
-The prompt is the text in front of our cursor at the command line. `scp` (**s**ecure **c**o**p**y) is a program that lets us send files between different machines. It has the same syntax as the `cp` command, where the first positional argument is what we want to copy, and the second (or last if we have multiple things) is where we want it to go. In whichever positional argument we are specifying the remote machine's location, we first have to indicate how to find the remote machine in a similar fashion to what we enter to connect to it with `ssh`. 
+The prompt is the text in front of our cursor at the command line. `scp` (**s**ecure **c**o**p**y) is a program that lets us send files between different machines. It has the same syntax as the `cp` command, where the first positional argument is what we want to copy, and the second (or last if we have multiple things we want to copy) is where we want it to go. In whichever positional argument we are specifying the remote machine's location, we first have to indicate how to find the remote machine in a similar fashion to what we enter to connect to it with `ssh`. 
 
-I like to modify my prompt so that it has that information and the full path to the current working directory I am in. Then, when I want to `scp` files to or from where I am working on a remote machine, I can just copy my prompot to help quickly build the command. 
+I like to modify my prompt so that it has that information and the full path to the current working directory I am in. Then, when I want to `scp` files to or from where I am working on a remote machine, I can just copy my prompt to help quickly build the command. 
 
 For example, if I typically login with `ssh mike@microbialomics.org`, and I set up my prompt on the remote machine I am working on to look like this:
 
@@ -88,7 +88,7 @@ This is super-convenient when sending files back and forth 🙂
 <hr style="height:10px; visibility:hidden;" />
 
 ## How we can change it
-This prompt is held in a variable called `PS1`, which is typically set in the `~/.bashrc` file (if in a `bash` shell, see note [above](/unix/things-I-like-to-have-set-up#what-is-a-start-up-file)). And in many systems, the part that handles it will look something like this initially:
+This prompt is held in a variable called `PS1`, which is typically set in the `~/.bashrc` file (if in a `bash` shell, see note [above](/unix/things-I-like-to-have-set-up#what-is-a-start-up-file)). We could just change that variable if we only wanted to change it for the current session, but to change it for good, we should alter it in the `~/.bashrc` file. In many systems, the part that handles it will look something like this initially:
 
 ```bash
 if [ "$color_prompt" = yes ]; then
