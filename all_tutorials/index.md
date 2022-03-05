@@ -24,14 +24,17 @@ permalink: /all_tutorials/
 
 ---
 
+
 * [An introduction to Scripting](/unix/scripting)
 * [An introduction to Conda](/unix/conda-intro)
 * [What the heck is my PATH, and how do I get it to do what I want?](/unix/modifying_your_path)
+* [Helpful things I like to have set up on any Unix-like environment I work on](/unix/things-I-like-to-have-set-up)
 * [Accessing data from NCBI at the command line with EDirect](/unix/ncbi_eutils)
 * [Why is this all worth it? (Some everyday examples)](/unix/why)
-* [Help installing tools](/unix/installing_tools) (this section is now pretty much happily obselete thanks to [conda](https://conda.io/en/latest/){:target="_blank"} 🙂)
+* [Help installing tools](/unix/installing_tools) (this section is now pretty much happily obselete thanks to [conda](/unix/conda-intro) 🙂)
 <!--* [Some useful one-liners](/bash/one_liners)-->
 * [Other great resources](/unix/other_resources)  
+
 
 <br>
 

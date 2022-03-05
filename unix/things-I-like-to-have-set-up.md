@@ -1,6 +1,6 @@
 ---
 layout: main
-title: Things I like to have set up on any Unix-like system I am working on
+title: Helpful things I like to have set up on any Unix-like system I am working on
 categories: [unix, tutorial]
 tags: [unix,bash,bioinformatics,prompt,alias,command-line,tutorial]
 permalink: /unix/things-I-like-to-have-set-up
