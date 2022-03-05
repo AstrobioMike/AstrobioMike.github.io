@@ -15,6 +15,9 @@ permalink: /unix/things-I-like-to-have-set-up
 > 
 > This page introduces the concepts of start-up files and aliases while demonstrating a handful of things I find helpful enough that I typically set them up right away when I start working on a new system 🙂  
 
+
+<hr style="height:10px; visibility:hidden;" />
+
 ---
 ---
 <br>
@@ -27,10 +30,10 @@ Note that the start-up files we are going to work with below are the `~/.bashrc`
 
 <hr style="height:10px; visibility:hidden;" />
 
-## Always having a backup ~/.bashrc
-Since the `~/.bashrc` file is integral to things working properly, and I occasoinally make changes to that file (like we will below), I like to automatically make a backup of that file everytime I start a new terminal session. That way if I accidentally mess something up, I can replace the file with the backup that was working before I messed with it (or have someone else replace it if I can't even do that 😬).
+<!--## Always having a backup ~/.bashrc
+Since the `~/.bashrc` file is integral to things working properly, and I occasoinally make changes to that file (like we will below), I like to automatically make a backup of that file everytime I start a new terminal session. That way if I accidentally mess something up, I might be able to replace the file with the version of my `~/.bashrc` that was working before I messed with it (or have someone else replace it if I can't even do that 😬). 
 
-I do that by adding a line to the `~/.bashrc` file that makes a copy of itself. 
+I set up making a copy of my current one at the start of every new session by adding a line to the `~/.bashrc` file that makes a copy of itself. 
 
 We can add that by copying/pasting the following codeblock (for ease of use with this page, but usually it is easier to edit the file with a text editor like [nano](/unix/working-with-files-and-dirs#a-terminal-text-editor){:target="_blank"}):
 
@@ -55,42 +58,37 @@ And we can see our backup file is present after we ran `source` on the updated f
 <center><img src="../images/bashrc-copy-check.png" width="100%"></center>
 <br>
 
+This little step doesn't virtually nothing to setup and nothing to run given the small size of the file, and it just might help us out some day (it's . It's also possible this backup might get overwritten with our problematic one depending on what we do. But even if we completely lose our working `~/.bashrc`, we can always restore the original one that comes from a system-wide template if needed (or ask whoever manages our user account to do so).
+
 ---
-<br>
+<br>-->
 
-# Modifying our prompt
-The prompt is the text in front of our cursor at the command line. 
-<hr style="height:10px; visibility:hidden;" />
+# Modifying our prompt to facilitate 'scp'
+The prompt is the text in front of our cursor at the command line. `scp` (**s**ecure **c**o**p**y) is a program that lets us send files between different machines. It has the same syntax as the `cp` command, where the first positional argument is what we want to copy, and the second (or last if we have multiple things) is where we want it to go. In whichever positional argument we are specifying the remote machine's location, we first have to indicate how to find the remote machine in a similar fashion to what we enter to connect to it with `ssh`. 
 
-## Why change it?
-> Other than just wanting our prompt to look the way we want, I like to modify it specifically so that when I want to `scp` files to or from where I am working on a remote machine, I can just copy my prompt to build the command.
+I like to modify my prompt so that it has that information and the full path to the current working directory I am in. Then, when I want to `scp` files to or from where I am working on a remote machine, I can just copy my prompot to help quickly build the command. 
 
-For example, if I login with `ssh mike@microbialomics.org`, and my prompt on the remote machine I am working on looks like this:
+For example, if I typically login with `ssh mike@microbialomics.org`, and I set up my prompt on the remote machine I am working on to look like this:
 
 <center><img src="../images/unix-things-prompt.png" width="100%"></center>
 <br>
 
-And I want to `scp` a file from there to my local computer:
-
-<center><img src="../images/unix-things-prompt-file.png" width="100%"></center>
-<br>
-
-I can just highlight and copy the whole prompt:
+When I want to `scp` a file to or from there, I can just highlight and copy the whole prompt:
 
 <center><img src="../images/unix-things-prompt-scp.png" width="100%"></center>
 <br>
 
-And paste it in and add the file name to quickly create the argument saying where the file is as I build the `scp` command on my local computer:
+And paste it in and add the filename to quickly create the argument saying where the file is as I build the `scp` command on my other computer:
 
 <center><img src="../images/unix-things-prompt-scp2.png" width="100%"></center>
 <br>
 
-This makes it super-convenient for sending files to or from the remote machine 🙂
+This is super-convenient when sending files back and forth 🙂
 
 <hr style="height:10px; visibility:hidden;" />
 
-## How to change it
-This prompt is held in a variable called `PS1`, which is typically set in the `~/.bashrc` file (if in a `bash` shell, see note above). And in most systems, the part that handles it will look something like this initially:
+## How we can change it
+This prompt is held in a variable called `PS1`, which is typically set in the `~/.bashrc` file (if in a `bash` shell, see note [above](/unix/things-I-like-to-have-set-up#what-is-a-start-up-file)). And in many systems, the part that handles it will look something like this initially:
 
 ```bash
 if [ "$color_prompt" = yes ]; then
@@ -102,10 +100,10 @@ fi
 
 <hr style="height:10px; visibility:hidden;" />
 
-There is a lot of mess in there, but looking just at the first PS1, the key parts we currently care about that affect the actual text of the prompt we see are:
+There is a lot of mess in there, but looking just at the first PS1 there, the key parts we currently care about that affect the actual text of the prompt that we see in our terminal are:
 - `\u` - this is for our username
 - `@` - here is our @ symbol separating the username from what's next
-- `\h` - this is for the hostname of the maching we are one (we can see it by running `hostname`)
+- `\h` - this is for the hostname of the maching we are on (we can see it by running `hostname`)
 - `:` - separating those prior things from the current working directory
 - `\w` - the current working directory (from the ~/ home location)
 - `\$ ` - the dollar-sign at the end followed by an empty space, so our cursor starts after that
@@ -121,7 +119,7 @@ This gives us something like this as our prompt (where things within the <...> a
 
 I like to change the part after the @ symbol (what is set by `\h` in the above right now) so that it is exactly whatever I need to type when I `ssh` into the machine. And I like to change the part after the colon (which is set by `\w` in the above) so that it is the full, absolute path, rather than the path starting from the home location (which is what `\w` gives us).
 
-So if i `ssh` into the machine like this, for example:
+So if I `ssh` into the machine like this, for example:
 
 ```bash
 ssh mike@microbialomics.org
@@ -290,6 +288,24 @@ Now just running `dush` will list the sizes of all directories and files in the 
 <center><img src="../images/unix-things-dush-ex.png" width="100%"></center>
 <br>
 
+## SSH connections
+I connect to remote computers pretty much all day everyday. So I don't always want to type out the connection (especially for ones where I need to use an IP address intead of words). So I will typically add an alias for connecting to any remote machine I use regularly. E.g., if this were real, I would add this to my `~/.bash_aliases` file:
+
+```bash
+alias hb-connect="ssh mike@microbialomics.org"
+```
+
+```bash
+source ~/.bashrc
+```
+
+And now I would just have to run `hb-connect` to connect and get my password prompt.
+
+<hr style="height:10px; visibility:hidden;" />
+
+---
+<br>
+
 ## Printing in formatted columns
 `column` is a handy command for quickly viewing plain text tables like tab-separated value (tsv) and comma-separated value (csv) files, but I typically like to give it a few arguments I'd rather not type out each time. So I have these for tsv and csv in my `~/.bash_aliases` file:
 
@@ -308,24 +324,33 @@ So it's easier to quickly check out table files in a more organized fashion (not
 <center><img src="../images/unix-things-i-like-to-set-column-ex.png" width="100%"></center>
 <br>
 
+## Getting indexed column headers
+Sometimes I want to use `cut` or `awk` on specific columns in a tsv or csv that has lots of columns, and I find myself trying to count the column names to find which numbers I need to pass to the program I want to use. There is a short one-liner we can use to list them with numbers pretty quickly, e.g., running it on the tsv file from the above example:
 
-## SSH connections
-I connect to remote computers pretty much all day everyday. So I don't always want to type out the connection (especially for ones where I need to use an IP address intead of words). So I will typically add an alias for connecting to any remote machine I use regularly. E.g., if this were real, I would add this to my `~/.bash_aliases` file:
+<center><img src="../images/unix-things-i-like-to-set-column-headers.png" width="100%"></center>
+<br>
+
+Where we are getting the first line with `head`, changing the delimiter into a newline character with `tr`, then sticking that into `cat` with an argument to add line numbers. Then, if I wanted "col2" and "col3", I can quickly see that I want to specify 2 and 3 to `cut` or `awk` (ignore the fact that in this toy example the header names have numbers in them 🙈).
+
+That's great, but it's nicer to just type one word quickly to do this. 
+
+Sooo, this one is technically a *function*, not an alias. This is because we need to be able to provide an argument, the file we want to act on – which we can't do with an alias. And though we could create another start-up file holding functions, for now we can also just add these lines to our `~/.bash_aliases` file 🙂
 
 ```bash
-alias hb-connect="ssh mike@microbialomics.org"
+colnames-t() { head -n 1 ${1} | tr "\t" "\n" | cat -n; }
+colnames-c() { head -n 1 ${1} | tr "," "\n" | cat -n; }
 ```
 
 ```bash
 source ~/.bashrc
 ```
 
-And now I would just have to run `hb-connect` to connect and get my password prompt.
+And after we source the `~/.bashrc` file (which remember will also load the `~/.bash_aliases` file if it exists), now we can use them quickly instead of typing out the full one-liner ourselves each time:
 
-<hr style="height:10px; visibility:hidden;" />
-
----
+<center><img src="../images/unix-things-i-like-to-set-column-headers2.png" width="100%"></center>
 <br>
+
+
 # Using aliases to quickly access info
 <hr style="height:10px; visibility:hidden;" />
 
