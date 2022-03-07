@@ -1,6 +1,6 @@
 ---
 layout: main
-title: An introduction to startup files, aliases, and functions with some helpful things I like to do with them
+title: An introduction to startup files, aliases, and functions along with some helpful things I like to do with them
 categories: [unix, tutorial]
 tags: [unix,bash,bioinformatics,prompt,alias,startup files,functions,command-line,tutorial]
 permalink: /unix/more-automation-power
