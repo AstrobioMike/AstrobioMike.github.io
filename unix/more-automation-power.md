@@ -272,7 +272,7 @@ This one-liner will do this for us:
 history -p !!:p >> log; printf "\n" >> log
 ```
 
-Which would be annoying to type out in full everytime we want to use it, so instead, let's create an alias in our `~/.bash_aliases` file by coping and pasting this:
+Which would be annoying to type out in full everytime we want to use it, so instead, let's create an alias in our `~/.bash_aliases` file by coping and pasting this into that file (see example just above if needing a reminder on using `nano` to do this):
 
 ```bash
 alias store='history -p !!:p >> log; printf "\n" >> log'
