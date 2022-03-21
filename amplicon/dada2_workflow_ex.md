@@ -891,14 +891,14 @@ Let's make a summary of all major taxa proportions across all samples, then summ
 phyla_counts_tab <- otu_table(tax_glom(ASV_physeq, taxrank="phylum")) 
 
   # making a vector of phyla names to set as row names
-phyla_tax_vec <- as.vector(tax_table(tax_glom(ASV_physeq, taxrank="phylum"))[,2]) 
+phyla_tax_vec <- as.vector(tax_table(tax_glom(ASV_physeq, taxrank="phylum"))[,"phylum"]) 
 rownames(phyla_counts_tab) <- as.vector(phyla_tax_vec)
 
   # we also have to account for sequences that weren't assigned any
     # taxonomy even at the phylum level 
     # these came into R as 'NAs' in the taxonomy table, but their counts are
     # still in the count table
-    # so we can get that value for each sample by substracting the column sums
+    # so we can get that value for each sample by subtracting the column sums
     # of this new table (that has everything that had a phylum assigned to it)
     # from the column sums of the starting count table (that has all
     # representative sequences)
