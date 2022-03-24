@@ -14,8 +14,8 @@ permalink: /research/
 *Email:*   Mike.Lee@nasa.gov  
 {% include icon-twitter.html username=site.twitter_username %}  
 {% include icon-github.html username=site.github_username %}  
-{% include icon-orcid.html %}  
-[Google Scholar](https://scholar.google.com/citations?user=-ONw6lsAAAAJ&hl=en){:target="_blank"}
+{% include icon-google-scholar.html %}  
+{:target="_blank"}
 
 **Current positions**  
 *NASA GeneLab Bioinformatician*  
