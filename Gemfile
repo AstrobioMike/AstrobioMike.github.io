@@ -24,9 +24,8 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-
 # adding extras for using github-pages and staying sync'd: http://jekyllrb.com/docs/github-pages/
-source 'https://rubygems.org'
+# source 'https://rubygems.org'
 
 require 'json'
 require 'open-uri'
