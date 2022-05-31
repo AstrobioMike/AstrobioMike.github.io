@@ -14,7 +14,6 @@ Part of what makes R so valuable is that there is an enormous community of peopl
 > Keep in mind that the best way to install something is generally going to be the way the package documentation recommends. So that's the first place we should start whenever possible. For instance, the dada2 package has it's recommended method of installation right at the top of [its documentation](https://benjjneb.github.io/dada2/){:target="_blank"}. 
 
 <br>
-<br>
 
 ---
 ---

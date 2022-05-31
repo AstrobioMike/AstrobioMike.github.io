@@ -43,9 +43,9 @@ permalink: /all_tutorials/
 <br>
 <center><h2><a href="/R/" style="color:#0000cc">R</a></h2></center>
 
-* [Introduction to R](/R/basics)  
-* [Going deeper with indexing](/R/more_indexing)  
+* [An introduction to R](/R/basics)  
 * [Installing R packages](/R/installing_packages)  
+* [Other great resources](/R/other_resources)
 <br>
 
 ---
