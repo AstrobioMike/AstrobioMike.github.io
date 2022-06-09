@@ -11,7 +11,7 @@ permalink: /unix/conda-intro
 {% include _side_tab_unix.html %}
 
 ---
-<br>
+<hr style="height:10px; visibility:hidden;" />
 
 **This is a page about [Conda](https://conda.io/docs/){:target="_blank"} in the style of this site, but there is also excellent documentation available from the Conda developers and community [here](https://conda.io/projects/conda/en/latest/user-guide/index.html){:target="_blank"}. Thank you, Conda team 🙂**
 
@@ -327,7 +327,7 @@ conda install -c conda-forge mamba
 
 Entering 'y' when prompted, and then forevermore we can use `mamba` in place of `conda` when *installing* things. **But it has seemed more stable/rubust to me to still use `conda` when activating/deactivating environments. Example in this next section...
 
-## Creating an environment and installing packages in one command with `mamba`
+## Creating an environment and installing packages in one command with mamba
 
 For this example, we'll create an environment with `mamba` while also specifying the channels needed and the program we want to install in one command. I'll shamelessly use my own package of bioinformatic tools, [bit](https://github.com/AstrobioMike/bioinf_tools#bioinformatics-tools-bit){:target="_blank"}  ¯\\\_(ツ)\_/¯
 
