@@ -1,6 +1,6 @@
 ---
 layout: main
-title: Conda R/Rstudio setup
+title: Conda R/RStudio setup
 categories: [R, tutorial]
 permalink: /R/conda-r-rstudio-setup
 ---
@@ -59,6 +59,10 @@ Then once in the environment, we can just execute `rstudio` to open an RStudio w
 ```bash
 rstudio
 ```
+
+<center><img src="../images/conda-rstudio.png"></center>
+<br>
+
 
 👍
 
