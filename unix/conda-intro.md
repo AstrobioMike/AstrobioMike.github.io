@@ -12,10 +12,12 @@ permalink: /unix/conda-intro
 
 ---
 <br>
+
 **This is a page about [Conda](https://conda.io/docs/){:target="_blank"} in the style of this site, but there is also excellent documentation available from the Conda developers and community [here](https://conda.io/projects/conda/en/latest/user-guide/index.html){:target="_blank"}. Thank you, Conda team 🙂**
 
 ---
 <br>
+
 # What is Conda and why do we love it?
 [Conda](https://conda.io/docs/){:target="_blank"} is a package and environment manager that is **by far the easiest way to handle installing most of the tools we want to use** in bioinformatics. Being "conda-installable" requires that someone (could be the developer, could be others) has gone through the trouble of making it that way, so not *everything* is available, but almost everything we're likely to want to use is. Going hand-in-hand with making things easier to install is conda's other value, that it **handles different environments very nicely for us**. Sometimes `Program A` will depend on a specific version of `Program B`. But then, `Program C` will depend on a different version of `Program B`, and this causes problems. **Conda lets us easily create and manage separate environments to avoid these types of version conflicts**, and automatically checks for us when we try to install something new (so we find out now, before we break something somewhere under the hood and have no idea what happened). The benefits go further, like *really* helping with reproducibility too, but let's get into it! 
 
@@ -26,8 +28,9 @@ permalink: /unix/conda-intro
 ---
 ---
 <br>
+
 # Binder available
-We'll most likely want to be doing this on our own system eventually, but if we just want a temporary system to run through this tutorial, we can open a [Binder](https://mybinder.org/){:target="_blank"} by clicking this badge – [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/AstrobioMike/binder-conda-intro/master?urlpath=lab){:target="_blank"}. After the screen loads, we can click the "Terminal" icon under "Other" to launch our command-line environment:
+We'll most likely want to be doing this on our own system eventually, but if we just want a temporary system to run through this tutorial, we can open a [Binder](https://mybinder.org/){:target="_blank"} by clicking this badge – [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/AstrobioMike/binder-conda-intro/v2?urlpath=lab){:target="_blank"}. After the screen loads, we can click the "Terminal" icon under "Other" to launch our command-line environment:
 
 <center><img src="../images/binder-conda-app-launch.png" width="90%"></center>
 <br>
@@ -36,26 +39,32 @@ We'll most likely want to be doing this on our own system eventually, but if we 
 
 ---
 <br>
-# Getting and installing Conda
-Conda comes in [two broad forms](https://docs.conda.io/projects/conda/en/latest/user-guide/install/download.html#anaconda-or-miniconda){:target="_blank"}: Anaconda and Miniconda. Anaconda is large with lots of stuff, Miniconda is more lightweight and we install just what we want. For this reason, we're gonna move forward with Miniconda. The download page for Miniconda is [here](https://conda.io/en/latest/miniconda.html){:target="_blank"}, and we should pick the one appropriate for our operating system. Those labeled Miniconda**2** are using python 2 as the base, while those labeled Miniconda**3** are using python 3. Both can still build environments in the other's python version, but more than likely we should just take python 3. 
 
-Most likely, we will want Miniconda3, and for a 64-bit system. Choosing for our appropriate system here (working in the binder linked above), we are going to want a Linux version, so this is one way to download it to our system (from copying the link under "Miniconda3 Linux 64-bit":
+# Getting and installing Conda
+Conda comes in [two broad forms](https://docs.conda.io/projects/conda/en/latest/user-guide/install/download.html#anaconda-or-miniconda){:target="_blank"}: Anaconda and Miniconda. Anaconda is large with lots of programs in it already, Miniconda is more lightweight and then we can install just what we want. For this reason, I always use Miniconda, and that's what we're gonna move forward with here. 
+
+The download page for Miniconda is [here](https://conda.io/en/latest/miniconda.html){:target="_blank"}, and we should pick the one appropriate for our operating system, with one minor exception. If working on a new Mac with the M1 chip, I currently think (date of this suggestion is 9-Jun-2022) it's best to  install the regular Intel version, rather than the Apple M1 version. This is because not a lot of packages in conda have M1 versions built yet, and the M1 computers come with software (called [rosetta](https://support.apple.com/en-us/HT211861){:target="_blank"}) that will ask to be installed the first time it's needed, but then tries to make it so intel-based things work on the M1. And so far this has worked splendidly for me, while installing an M1 based version of conda led immediately to packages not being available. Over time, as more developers put up versions for the M1 chip, this will of course change.
+
+So if working in the binder linked above, we are going to want a Linux version, so this is one way to download it to our system (from copying the link under "Miniconda3 Linux 64-bit"):
 
 ```bash
 curl -LO https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 ```
 
-> **NOTE**  
-> Don't forget to get the link that works for your operating system, and modify the above as needed. E.g., if doing this on a mac, we would want the link under "Miniconda3 MacOSX 64-bit bash", and the command we would run would be:  
+> **IF WORKING ON YOUR OWN SYSTEM**  
+> Don't forget to get the link that works for your operating system, and modify the above as needed. E.g., if doing this on a Mac, we would want the link under "Miniconda3 MacOSX 64-bit bash", and the command we would run would be:  
 > 
 > `curl -LO https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh`
+> 
+> If working on a windows, I believe you want to be in the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install){:target="_blank"} environment, and install the same "Miniconda3 Linux 64-bit" as the example above (though I don't have a windows machine available to test this more thoroughly on 😞 )
 
 Now we can install that by running it as a `bash` command:
 
 ```bash
 bash Miniconda3-latest-Linux-x86_64.sh
-# again, adjusted if needed based on your system, e.g. if working on a Mac:
+  # again, adjusted if if working on a mac, e.g.:
 # bash Miniconda3-latest-MacOSX-x86_64.sh
+  # though the same if in WSL on windows as noted above
 ```
 
 **We need to interact with the following during installation:**
@@ -68,6 +77,9 @@ Great! Now we have conda installed. We just need to reload our current shell ses
 
 ```bash
 source ~/.bashrc
+  # if on mac, and using zsh, you might need to run
+# source ~/.zshrc
+  # or you can just open a new terminal session
 ```
 
 And now we can see a `(base)` at the start of our prompt, which tells us we are in the "base" conda environment. 
@@ -76,6 +88,7 @@ And now we can see a `(base)` at the start of our prompt, which tells us we are 
 
 ---
 <br>
+
 # Creating and navigating environments
 Here, "environments" represent the the infrastructure our computer is currently operating in. This includes things like if certain variables exist and how they are set (like our [PATH](https://astrobiomike.github.io/unix/modifying_your_path){:target="_blank"}). 
 
@@ -156,6 +169,7 @@ conda env remove -n python-v2.7
 
 ---
 <br>
+
 # Finding and installing packages
 To install the packages (tools/programs) we want, we use the `conda install` command. But we need to tell conda where to look for it (**conda stores and looks for packages in different "channels"**), and we need to know what it is called in the conda system (usually this is just the program name we are familiar with). Let's imagine we want to install the protein-coding gene-prediction program [prodigal](https://github.com/hyattpd/Prodigal){:target="_blank"}. 
 
@@ -247,6 +261,7 @@ prodigal -v
 
 ---
 <br>
+
 ## A note on channels
 When we do something in conda, it automatically searches our stored channels (and it does so in [a specific order](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-channels.html){:target="_blank"}). We had to specify `-c bioconda` in the command above when we installed `prodigal` because that channel wasn't yet in our stored channels. We can either set these ahead of time, or we can specify them when we install something. Most of the things we biologists will want to use are found in the [bioconda channel](https://bioconda.github.io/index.html){:target="_blank"}. The [prodigal package page instructions on anaconda.org](https://anaconda.org/bioconda/prodigal){:target="_blank"} instructions are actually not 100% ideal. Looking at the [bioconda documentation](https://bioconda.github.io/user/install.html#set-up-channels){:target="_blank"} we can see that we should specify our channel priority such that `conda-forge` is searched before `bioconda` which is searched before `defaults`. 
 
@@ -286,77 +301,81 @@ conda install prodigal
 
 (Again this will ask us if we want to update. If we had the same version as the latest, it would just say it is installed alrady. **We can just hit `n` and return again.**)
 
+Let's switch back to our base environment before moving forward:
+
+```bash
+conda deactivate
+```
+
 
 <hr style="height:10px; visibility:hidden;" />
 
 ---
 <br>
 
-# An example of something we might want to install in our base environment
-As mentioned above, the base environment is somewhere we might want to install smaller programs that we tend to use a lot. For example, I have a collection of small scripts I use very frequently stored in [a package here](https://github.com/AstrobioMike/bioinf_tools#bioinformatics-tools-bit){:target="_blank"} called `bit` – for **b**io**i**nformatics **t**ools ¯\\\_(ツ)_/¯
+# BONUS: [mamba](https://github.com/mamba-org/mamba#mamba){:target="_blank"} # 5!
 
-Let's switch back into our base environment, by deactivating the one we are currently in, and install it (the `-y` flag makes is so we don't need to confirm anything):
+[mamba](https://github.com/mamba-org/mamba#mamba){:target="_blank"} is a drop-in replacement for conda that works to improve upon some aspects of the conda infrastructure. It can very frequently perform installations much faster (helping loads with the "solving environment" steps). 
+
+`conda` needs to be installed first like we did above, then we install `mamba` with `conda`. Trust me, this is likely very worth it for you, I do it on virtually every system I put conda on 🙂
+
+So here's how we can install `mamba`, remember we want to be in the "base" conda environment when we run this (see just above):
 
 ```bash
-conda deactivate
+conda install -c conda-forge mamba
+```
 
-conda install -y -c conda-forge -c bioconda -c defaults -c astrobiomike bit
+Entering 'y' when prompted, and then forevermore we can use `mamba` in place of `conda` when *installing* things. **But it has seemed more stable/rubust to me to still use `conda` when activating/deactivating environments. Example in this next section...
+
+## Creating an environment and installing packages in one command with `mamba`
+
+For this example, we'll create an environment with `mamba` while also specifying the channels needed and the program we want to install in one command. I'll shamelessly use my own package of bioinformatic tools, [bit](https://github.com/AstrobioMike/bioinf_tools#bioinformatics-tools-bit){:target="_blank"}  ¯\\\_(ツ)\_/¯
+
+We want to be in our base environment, and then we can create the environment like so: 
+
+```bash
+mamba create -n bit -y -c conda-forge -c bioconda -c defaults -c astrobiomike bit
 ```
 
 > **Breakdown**
-> * `conda install` – our base command
+> * `mamba create` – our base command (we just swapped `conda` with `mamba`)
+> * `-n` – here is where we provide the name we want the environment to have
 > * `-y` – says not to ask us for any confirmation
-> * `-c ...` – specifies the channels
-> * `bit` – this positional argument is specifying the program name as it is within conda
+> * `-c ...` – each one of these specifies the channels in the appropriate order
+> * `bit` – this positional argument is specifying the program name
 
-This might take about a minute (or it might fail, see below), once it is finished we can try one of them:
+This might take about about a minute, then we can activate it like so (note, as mentioned above I tend to use `conda` still for activate/deactivate, and `mamba` for all installations/env. creations):
+
+
+```bash
+conda activate bit
+```
+
+Then we can test it with `bit-version`, and run an example command like so:
 
 ```bash
 # if working in the binder, this random-assembly.fa file is there already
-# if not, we can grab real quick with:
+# if not, we can grab it real quick with:
 curl -L -o random-assembly.fa https://ndownloader.figshare.com/files/23842415
 
 bit-summarize-assembly random-assembly.fa
 ```
 
-Because I typically use this and other scripts in here all over the place (we can see them all by typing `bit-` then hitting tab twice), it makes sense for me to have them in my base environment. But we wouldn't want to put too many large things into one environment unless it is needed, as it increases the likelihood of version conflicts.
-
-It's possible that already conflicts with the version of python our base conda environment is using, in which case that may have failed. Due to my adding and adding things to that, I've not found that it is pretty restricted to which version of python3 it can use. In that case, I would install it in it's own environment like we'll look at next.
 
 <hr style="height:10px; visibility:hidden;" />
 
 ---
 <br>
-# Creating an environment and installing packages in one command
-We can also create an environment and install tools at the same time. Here is creating an environment for [GToTree](https://github.com/AstrobioMike/GToTree/wiki){:target="_blank"} and installing it at the same time:
 
-```bash
-conda create -n gtotree -c conda-forge -c bioconda -c defaults -c astrobiomike gtotree
-```
 
-> **Breakdown**
-> * `conda create` – our base command
-> * `-n gtotree` – creates the environment named "gtotree"
-> * `-c ...` – specifies the channels
-> * `gtotree` – this positional argument is specifying the program name as it is within conda
-
-When that is done, we can change into the environment, and see that it is there:
-
-```bash
-conda activate gtotree
-
-GToTree -v
-
-gtt-hmms
-```
-
-Again, it might be hard to appreciate if we haven't fought with installations, versions, and environments before, but [Conda](https://conda.io/docs/){:target="_blank"} is stellar 🙂
+Again, `conda` might be hard to appreciate if we haven't fought with installations, versions, and environments before, but [conda](https://conda.io/docs/){:target="_blank"} really is stellar 🙂
 
 <hr style="height:10px; visibility:hidden;" />
 
 ---
 ---
 <br>
+
 # Other Conda Resources
 * [Main Conda documentation](https://docs.conda.io/en/latest/){:target="_blank"}
 * [Main Conda user guide](https://conda.io/projects/conda/en/latest/user-guide/index.html){:target="_blank"}
