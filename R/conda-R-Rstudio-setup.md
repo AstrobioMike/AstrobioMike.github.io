@@ -61,10 +61,6 @@ rstudio
 ```
 
 <center><img src="../images/conda-rstudio.png"></center>
-<br>
-
-
-👍
 
 <hr style="height:10px; visibility:hidden;" />
 
