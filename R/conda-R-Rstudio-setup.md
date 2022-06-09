@@ -75,8 +75,8 @@ For example, searching for ["tidyverse" there](https://anaconda.org/search?q=tid
 
 <hr style="height:10px; visibility:hidden;" />
 
-# Installing more packages
-Packages can be installed in the R environment the way we normally would, but I occasionally have run into problems doing things that way. Because of this I generally try to find my wanted R-packages as conda-installable packages, and install them that way. So that would be my first recommendation. For instance, searching for [dada2 on the anaconda page](https://anaconda.org/search?q=dada2){:target="_blank"} reveals it is installable through the bioconda channel. 
+# Installing more R libraries
+Libraries can be installed in the R conda environment the way we normally would (meaning no conda involved), but I occasionally have run into problems when doing things that way. Because of this I generally try to find whatever R libraries I want as conda-installable packages and install them that way when I'm working in a conda-created R environment. So that would be my first recommendation. For instance, searching for [dada2 on the anaconda page](https://anaconda.org/search?q=dada2){:target="_blank"} reveals it is installable through the bioconda channel. 
 
 So in the terminal, not in R, I would install this package with conda, while in the active R-4.1.3 environment we created above:
 
