@@ -92,8 +92,12 @@ And now we can see a `(base)` at the start of our prompt, which tells us we are 
 # Creating and navigating environments
 Here, "environments" represent the the infrastructure our computer is currently operating in. This includes things like if certain variables exist and how they are set (like our [PATH](https://astrobiomike.github.io/unix/modifying_your_path){:target="_blank"}). 
 
+<hr style="height:10px; visibility:hidden;" />
+
 ## Base environment  
 The "base" conda environment is, like it sounds, kind of our home base inside conda. We wouldn't want to install lots of complicated programs here, as the more things added, the more likely something is going to end up having a conflict. But the base environment is somewhere we might want to install smaller programs that we tend to use a lot (example below). 
+
+<hr style="height:10px; visibility:hidden;" />
 
 ## Making a new environment
 The simplest way we can create a new conda environment is like so:
@@ -103,6 +107,8 @@ conda create -n new-env
 ```
 
 Where the base command is `conda create`, then we are specifying the name of our new environment with `-n` (here "new-env"). It will check some things out and tell us where it is going to put it, **when we hit `y` and enter**, it will be created. 
+
+<hr style="height:10px; visibility:hidden;" />
 
 ## Entering an environment
 
@@ -122,12 +128,16 @@ conda env list
 
 Which will print out all of the available conda environments, and have an asterisk next to the one we are currently in.
 
+<hr style="height:10px; visibility:hidden;" />
+
 ## Exiting an environment
 We can exit whatever conda environment we are currently in by running:
 
 ```bash
 conda deactivate
 ```
+
+<hr style="height:10px; visibility:hidden;" />
 
 ## Making an environment with a specific python version
 By default, the `conda create` command will use the python version that the base conda environment is running. But we can specify a different one in the command if we'd like:
@@ -156,6 +166,8 @@ python --version # different than base
 
 If we were trying to use a program that was only available in python 2, we could create a conda environment that was prepared to work with it just like this without messing up all the things we use that depend on python 3! (I'll note it's kind of hard to appreciate this sort of thing unless you've fought with the consequences before 🙂)
 
+<hr style="height:10px; visibility:hidden;" />
+
 ## Removing an environment
 And here is how we can remove an environment, by providing its name to the `-n` flag:
 
@@ -183,8 +195,12 @@ prodigal -v
 
 And we get a "command not found" error if this isn't installed on our system and accessible in our current environment. So let's look at a common way to find it and install it through conda!
 
+<hr style="height:10px; visibility:hidden;" />
+
 ## Searching for packages
 The first thing I usually do, whether I know if a program is conda-installable or not, is just search in a web-browser for "conda install" plus whatever program I am looking for. For example, searching for "[conda install prodigal](https://www.google.com/search?q=conda+install+prodigal&oq=conda+install+prodigal&aqs=chrome..69i57.2079j0j7&sourceid=chrome&ie=UTF-8){:target="_blank"}" on google brings the top hit back as the [prodigal package page](https://anaconda.org/bioconda/prodigal){:target="_blank"} on [anaconda.org](https://anaconda.org/){:target="_blank"} (which is where these are all hosted). [Anaconda.org](https://anaconda.org/){:target="_blank"} is also a great place to look if we are having trouble finding a program.
+
+<hr style="height:10px; visibility:hidden;" />
 
 ## Installing packages
 Looking at the [prodigal package page](https://anaconda.org/bioconda/prodigal){:target="_blank"}, we can see there are instructions for installing through conda. These specify where they are specifying the appropriate channel to look in with the `-c` flag. So we can just run this line to install `prodigal`:
@@ -217,6 +233,8 @@ prodigal -v
 
 > **NOTE:** Notice that the [prodigal github page](https://github.com/hyattpd/Prodigal){:target="_blank"} doesn't list the conda installation there! This is not all that uncommon, as developers aren't always the folks that make their programs conda-installable. Not seeing conda installation instructions on a particular program's installation page, does not mean it is not available through conda. Be sure to look for it like shown above!
 
+<hr style="height:10px; visibility:hidden;" />
+
 ## Uninstalling a package
 If we wanted to remove prodigal, we would want to first be inside the environment that has it, so let's switch back in to our new environment:
 
@@ -235,6 +253,8 @@ conda uninstall prodigal
 ```bash
 prodigal -v
 ```
+
+<hr style="height:10px; visibility:hidden;" />
 
 ## Installing a specific version of a package
 If we wanted to specify a different version of `prodigal` to install, we first need to know it exists in conda. We can see all the version types available like so:
@@ -262,7 +282,7 @@ prodigal -v
 ---
 <br>
 
-## A note on channels
+# A note on channels
 When we do something in conda, it automatically searches our stored channels (and it does so in [a specific order](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-channels.html){:target="_blank"}). We had to specify `-c bioconda` in the command above when we installed `prodigal` because that channel wasn't yet in our stored channels. We can either set these ahead of time, or we can specify them when we install something. Most of the things we biologists will want to use are found in the [bioconda channel](https://bioconda.github.io/index.html){:target="_blank"}. The [prodigal package page instructions on anaconda.org](https://anaconda.org/bioconda/prodigal){:target="_blank"} instructions are actually not 100% ideal. Looking at the [bioconda documentation](https://bioconda.github.io/user/install.html#set-up-channels){:target="_blank"} we can see that we should specify our channel priority such that `conda-forge` is searched before `bioconda` which is searched before `defaults`. 
 
 Even though it worked ok with `prodigal` when we only gave it the `-c bioconda` channel, other programs might run into an issue. So it's best to follow the [bioconda documentation](https://bioconda.github.io/user/install.html#set-up-channels){:target="_blank"} and specify all the channels in the proper order. Here are two ways we can do that. 
