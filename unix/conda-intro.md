@@ -354,10 +354,12 @@ conda activate bit
 Then we can test it with `bit-version`, and run an example command like so:
 
 ```bash
-# if working in the binder, this random-assembly.fa file is there already
-# if not, we can grab it real quick with:
+bit-version
+
+# downloading tiny example fasta file:
 curl -L -o random-assembly.fa https://ndownloader.figshare.com/files/23842415
 
+# and here is using a program in the bit package to summarize it
 bit-summarize-assembly random-assembly.fa
 ```
 
