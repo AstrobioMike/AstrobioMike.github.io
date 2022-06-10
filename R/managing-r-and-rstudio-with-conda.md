@@ -109,6 +109,9 @@ If there isn't a conda-prepared package for a specific R library I want, then I'
 
 <hr style="height:10px; visibility:hidden;" />
 
+---
+<br>
+
 # BONUS: Creating a conda environment with Jupyter Lab and an R kernel
 
 Here is one way we can create a conda environment that has an R kernel in Jupyter Lab:
