@@ -18,8 +18,9 @@ There is extensive documentation on R at the CRAN [Introduction to R site](https
 <br>
 # R pages
 * [Introduction to R](/R/basics)  
-* [Going deeper with indexing](/R/more_indexing)  
 * [Installing R packages](/R/installing_packages)  
+* [Managing R and RStudio with conda](/R/managing-r-and-rstudio-with-conda)  
+* [Other great resources](/R/other_resources)  
 
 <hr style="height:10px; visibility:hidden;" />
 

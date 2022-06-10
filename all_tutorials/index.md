@@ -45,7 +45,9 @@ permalink: /all_tutorials/
 
 * [An introduction to R](/R/basics)  
 * [Installing R packages](/R/installing_packages)  
+* [Managing R and RStudio with conda](/R/managing-r-and-rstudio-with-conda)  
 * [Other great resources](/R/other_resources)
+
 <br>
 
 ---
