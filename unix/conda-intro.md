@@ -45,26 +45,28 @@ Conda comes in [two broad forms](https://docs.conda.io/projects/conda/en/latest/
 
 The download page for Miniconda is [here](https://conda.io/en/latest/miniconda.html){:target="_blank"}, and we should pick the one appropriate for our operating system, with one minor exception. If working on a new Mac with the M1 chip, I currently think (date of this suggestion is 9-Jun-2022) it's best to  install the regular Intel version, rather than the Apple M1 version. This is because not a lot of packages in conda have M1 versions built yet, and the M1 computers come with software (called [rosetta](https://support.apple.com/en-us/HT211861){:target="_blank"}) that will ask to be installed the first time it's needed, but then tries to make it so intel-based things work on the M1. And so far this has worked splendidly for me, while installing an M1 based version of conda led immediately to packages not being available. Over time, as more developers put up versions for the M1 chip, this will of course change.
 
-So if working in the binder linked above, we are going to want a Linux version, so this is one way to download it to our system (from copying the link under "Miniconda3 Linux 64-bit"):
+**If working in the binder linked above**, we are going to want a Linux version, so this is one way to download it to our system (from copying the link under "Miniconda3 Linux 64-bit"):
 
 ```bash
 curl -LO https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 ```
 
-> **IF WORKING ON YOUR OWN SYSTEM**  
-> Don't forget to get the link that works for your operating system, and modify the above as needed. E.g., if doing this on a Mac, we would want the link under "Miniconda3 macOS Intel x86 64-bit bash" (regardless of if we have the new M1 version or not), and the command we would run would be:  
-> 
-> `curl -LO https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh`
-> 
-> If working on a windows, I believe you want to be in the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install){:target="_blank"} environment if possible, though I think being in something like mobaXterm will work the same, and install the same "Miniconda3 Linux 64-bit" as the example above (though I don't have a windows machine available to test this more thoroughly on 😞 )
+**If working on a Mac**, we would want the link under "Miniconda3 macOS Intel x86 64-bit bash" (regardless of if we have the new M1 version or not), and the command we would run would be:  
+
+```bash
+curl -LO https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh
+```
+
+**If working on Windows**, I believe you want to be in the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install){:target="_blank"} environment if possible (though I think being in something like mobaXterm will work the same). And we'd want to install the "Miniconda3 Linux 64-bit" (though I don't have a windows machine available to test this more thoroughly on 😞 ). Same as the first example above, that would be this command to download it:
+
+```bash
+curl -LO https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+```
 
 Now we can install that by running it as a `bash` command:
 
 ```bash
-bash Miniconda3-latest-Linux-x86_64.sh
-  # again, adjusted if if working on a mac, e.g.:
-# bash Miniconda3-latest-MacOSX-x86_64.sh
-  # though the same if in WSL on windows as noted above
+bash Miniconda3-latest-*.sh
 ```
 
 **We need to interact with the following during installation:**
@@ -334,7 +336,7 @@ conda deactivate
 ---
 <br>
 
-# BONUS: [mamba](https://github.com/mamba-org/mamba#mamba){:target="_blank"} # 5!
+# BONUS: [mamba](https://github.com/mamba-org/mamba#mamba){:target="_blank"} (No. 5)
 
 [mamba](https://github.com/mamba-org/mamba#mamba){:target="_blank"} is a drop-in replacement for conda that works to improve upon some aspects of the conda infrastructure. It can very frequently perform installations much faster (helping loads with the "solving environment" steps). 
 

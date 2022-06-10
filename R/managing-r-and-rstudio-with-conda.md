@@ -20,7 +20,7 @@ I like to have a system-wide R installation, setting it up following steps like 
 
 # Setting up a conda environment with R and RStudio
 
-We can check which version of R are currently available to be installed through conda (using `mamba` here as also described on the [conda intro page here](/unix/conda-intro#bonus-mamba--5){:target="_blank"}) with the following: 
+We can check which version of R are currently available to be installed through conda (using `mamba` here as also described on the [conda intro page here](/unix/conda-intro#bonus-mamba-no-5){:target="_blank"}) with the following: 
 
 ```bash
 mamba search -c conda-forge r-base
@@ -106,6 +106,19 @@ library(dada2)
 ```
 
 If there isn't a conda-prepared package for a specific R library I want, then I'd move onto trying to do the installation the recommended way for that library inside R. 
+
+<hr style="height:10px; visibility:hidden;" />
+
+# BONUS: Creating a conda environment with Jupyter Lab and an R kernel
+
+Here is one way we can create a conda environment that has an R kernel in Jupyter Lab:
+
+```bash
+mamba create -n jupyter-lab -y -c conda-forge r-base=4.1.3 rstudio r-tidyverse jupyterlab r-irkernel
+```
+
+Then when we activate that environment, we can launch jupyter lab with be executing `jupyter lab` at our command line. And we'll see we can select an R kernel for notebooks there 👍
+
 
 ---
 ---
