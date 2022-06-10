@@ -54,7 +54,7 @@ Once we've created the above, we just need to activate that conda environment:
 conda activate R-4.1.3
 ```
 
-Then once in the environment, we can just execute `rstudio` to open an RStudio window within that conda environment:
+Then once in the environment, we can execute `rstudio` to open an RStudio window within that conda environment (see notes below if this doesn't open RStudio as pictured):
 
 ```bash
 rstudio
