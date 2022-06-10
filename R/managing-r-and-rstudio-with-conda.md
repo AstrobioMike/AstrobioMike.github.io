@@ -1,8 +1,8 @@
 ---
 layout: main
-title: Conda R/RStudio setup
+title: Managing R and RStudio with conda
 categories: [R, tutorial]
-permalink: /R/conda-r-rstudio-setup
+permalink: /R/managing-r-and-rstudio-with-conda
 ---
 
 {% include _R_conda_toc.html %}
@@ -61,6 +61,22 @@ rstudio
 ```
 
 <center><img src="../images/conda-rstudio.png"></center>
+
+> **Windows NOTE**  
+> If running conda on a Windows computer, I believe we might also need to run the following commands before rstudio will open properly:
+> ```bash
+> sudo apt-get update
+> sudo apt-get install libgl1-mesa-glx libegl1-mesa libxrandr2 libxrandr2 libxss1 libxcursor1 libxcomposite1 libasound2 libxi6 libxtst6
+> ```
+> So if the above failed to work I would try that. I don't have a Windows computer to test on unfortunately, but I found this when looking around thanks to this [page](https://nbisweden.github.io/workshop-scRNAseq/conda_instructions.html){:target="_blank"}.
+
+> **Mac NOTE**  
+> You made need to install xcode command line tools for RStudio to open properly. To prompt to begin that, from the terminal, execute this:
+> ```bash
+> xcode-select --install
+> ```
+> And an installation window should pop up. After that is installed, try running the `rstudio` command again.
+
 
 <hr style="height:10px; visibility:hidden;" />
 

@@ -19,7 +19,7 @@ permalink: /unix/conda-intro
 <br>
 
 # What is Conda and why do we love it?
-[Conda](https://conda.io/docs/){:target="_blank"} is a package and environment manager that is **by far the easiest way to handle installing most of the tools we want to use** in bioinformatics. Being "conda-installable" requires that someone (could be the developer, could be others) has gone through the trouble of making it that way, so not *everything* is available, but almost everything we're likely to want to use is. Going hand-in-hand with making things easier to install is conda's other value, that it **handles different environments very nicely for us**. Sometimes `Program A` will depend on a specific version of `Program B`. But then, `Program C` will depend on a different version of `Program B`, and this causes problems. **Conda lets us easily create and manage separate environments to avoid these types of version conflicts**, and automatically checks for us when we try to install something new (so we find out now, before we break something somewhere under the hood and have no idea what happened). The benefits go further, like *really* helping with reproducibility too, but let's get into it! 
+[Conda](https://conda.io/docs/){:target="_blank"} is a package and environment manager that is **by far the easiest way to handle installing most of the tools we want to use** in bioinformatics. Being "conda-installable" requires that someone (could be the developer, could be others) has gone through the trouble of making it that way, so not *everything* is available, but almost everything we're likely to want to use is. Going hand-in-hand with making things easier to install is conda's other value, that it **handles different environments very nicely for us**. Sometimes `Program A` will depend on a specific version of `Program B`. But then, `Program C` will depend on a different version of `Program B`, and this causes problems. **Conda lets us easily create and manage separate environments to avoid these types of version conflicts**, and automatically checks for us when we try to install something new (so we find out now, before we break something somewhere under the hood and have no idea what happened). The benefits go further, like helping with reproducibility too, but let's get into it! 
 
 >**NOTE:** This page assumes already having some familiarity with working at the command line. If that's not the case yet, then consider running through the [Unix crash course](/unix/unix-intro){:target="_blank"} first 🙂
 
@@ -52,11 +52,11 @@ curl -LO https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 ```
 
 > **IF WORKING ON YOUR OWN SYSTEM**  
-> Don't forget to get the link that works for your operating system, and modify the above as needed. E.g., if doing this on a Mac, we would want the link under "Miniconda3 MacOSX 64-bit bash", and the command we would run would be:  
+> Don't forget to get the link that works for your operating system, and modify the above as needed. E.g., if doing this on a Mac, we would want the link under "Miniconda3 macOS Intel x86 64-bit bash" (regardless of if we have the new M1 version or not), and the command we would run would be:  
 > 
 > `curl -LO https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh`
 > 
-> If working on a windows, I believe you want to be in the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install){:target="_blank"} environment, and install the same "Miniconda3 Linux 64-bit" as the example above (though I don't have a windows machine available to test this more thoroughly on 😞 )
+> If working on a windows, I believe you want to be in the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install){:target="_blank"} environment if possible, though I think being in something like mobaXterm will work the same, and install the same "Miniconda3 Linux 64-bit" as the example above (though I don't have a windows machine available to test this more thoroughly on 😞 )
 
 Now we can install that by running it as a `bash` command:
 
