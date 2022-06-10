@@ -105,7 +105,7 @@ Then in the R environment within this conda environment, we are able to laod tha
 library(dada2)
 ```
 
-If there isn't a conda-prepared package for a specific R library I want, then I'd move onto trying to do the installation the recommended way for that library inside R. 
+If there isn't a conda-prepared package for a specific R library I want, then I'd move on to trying to do the installation the recommended way for that library inside R. 
 
 <hr style="height:10px; visibility:hidden;" />
 
