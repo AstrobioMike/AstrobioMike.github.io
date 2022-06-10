@@ -28,7 +28,7 @@ mamba search -c conda-forge r-base
 
 Which at the time of putting this page together, 4.1.3 was the latest available for my system, so I'm going to specify that one.
 
-And I usually let it figure out whichever RStudio version it wants to use. And I always install the tidyverse package too, because it's awesome. And for that I let it select whichever version it wants also, unless it matters to me. So I would typically create a new environment with R and Rstudio like so:
+And I usually let it figure out whichever RStudio version it wants to use. And I always install the [tidyverse](https://tidyverse.tidyverse.org/){:target="_blank"} package too, because it's awesome. And for that I let it select whichever version it wants also, unless it matters to me. So I would typically create a new environment with R and Rstudio like so:
 
 
 ```bash
