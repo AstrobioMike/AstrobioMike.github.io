@@ -22,7 +22,7 @@ If you are working on a Mac or Linux computer, this is already taken care of and
 If you are working on a Windows computer, you will need to set up a working command-line environment. There are many ways to do this, below are listed just two if you are looking for suggestions :) 
 
 ## Windows 10 or later
-* If the operating system is Windows 10 or later, it includes a way to run a Unix-like command-line environment. You can follow the helpful steps outlined [here](https://www.howtogeek.com/249966/how-to-install-and-use-the-linux-bash-shell-on-windows-10/) to get set up.
+* If the operating system is Windows 10 or later, it includes a way to run a Unix-like command-line environment. You can find info on how to install that [here](https://docs.microsoft.com/en-us/windows/wsl/install).
 
 ## Earlier than Windows 10
 * If the operating system is an earlier version, one way you can set up a command-line working environment is through [Git for Windows](https://gitforwindows.org/). Here are the steps that I followed when trying this with the version noted below.  
