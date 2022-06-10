@@ -182,6 +182,7 @@ conda env remove -n python-v2.7
 ---
 <br>
 
+
 # Finding and installing packages
 To install the packages (tools/programs) we want, we use the `conda install` command. But we need to tell conda where to look for it (**conda stores and looks for packages in different "channels"**), and we need to know what it is called in the conda system (usually this is just the program name we are familiar with). Let's imagine we want to install the protein-coding gene-prediction program [prodigal](https://github.com/hyattpd/Prodigal){:target="_blank"}. 
 
@@ -390,7 +391,62 @@ bit-summarize-assembly random-assembly.fa
 <br>
 
 
-Again, `conda` might be hard to appreciate if we haven't fought with installations, versions, and environments before, but [conda](https://conda.io/docs/){:target="_blank"} really is stellar 🙂
+## Creating an environment from a yaml file
+In the examples above, we created a new environment and provided the programs/versions we wanted in the actual command we typed out. Sometimes it's convenient to instead use a [yaml file](https://en.wikipedia.org/wiki/YAML){:target="_blank"} that holds all the information about the programs/versions we want, and we can just give that file to the `conda/mamba create` command. 
+
+Here is an example of a [conda-formatted yaml](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-file-manually){:target="_blank"} file:
+
+```yaml
+name: py3.5-with-prodigal
+channels:
+    - conda-forge
+    - bioconda
+    - defaults
+dependencies:
+    - python=3.5
+    - prodigal
+```
+
+Here, we are specifying the 'name', which becomes the name of the conda environment (meaning what we will give to the `conda activate ...` command), the channels (remember from above, that things from the bioconda channel should have [all 3 of those specified in that order](https://bioconda.github.io/user/install.html#set-up-channels){:target="_blank"}), and then the "dependencies" are the programs and/or versions we want. For this example, just to show it, we are specifying python version 3.5, and no version specified for prodigal. 
+
+We can quickly download that yaml file from above to our working location by running this command:
+
+```bash
+curl -L -o example-conda.yaml https://figshare.com/ndownloader/files/35843666
+```
+
+And here is how we can create an environment from a yaml file:
+
+```bash
+conda env create -f example-conda.yaml
+```
+
+> **Breakdown**
+> * `conda env create` – our base command, when providing a yaml file, we need to add in the 'env' part here, unlike above where we just used `conda create` or `mamba create` (`mamba env create` would work here too)
+> * `-f` – here is where we provide the file that holds the info on the environment we want to create
+
+
+When that's done, we can activate it the same way:
+
+```bash
+conda activate py3.5-with-prodigal
+```
+
+And we will have the python version we specified, as well as prodigal in there.
+
+Since we don't really need it, remember we can remove an environment like shown below, we just need to deactivate it first:
+
+```bash
+conda deactivate
+conda env remove -n py3.5-with-prodigal
+```
+
+<hr style="height:10px; visibility:hidden;" />
+
+---
+---
+
+>Again, [conda](https://conda.io/docs/){:target="_blank"} might be hard to appreciate if we haven't fought with installations, versions, and environments before, but I promise, it really is stellar 🙂
 
 <hr style="height:10px; visibility:hidden;" />
 
