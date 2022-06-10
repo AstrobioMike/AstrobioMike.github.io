@@ -73,16 +73,16 @@ bash Miniconda3-latest-Linux-x86_64.sh
 2. It will then ask if the location is ok, **hitting enter will place it in our current home directory**, which is usually great. 
 3. At the end it will ask if we want to initialize Miniconda3. There might be reasons to not want to do this, but until we hit one of those reasons, it probably makes things easier to **say `yes` to that**.  
 
-Great! Now we have conda installed. We just need to reload our current shell session, which we can do like so:
+Great! Now we have conda installed. We just need to reload our current shell session, which we can usually do like so:
 
 ```bash
-source ~/.bashrc
+source ~/.bash_profile || source ~/.bashrc
   # if on mac, and using zsh, you might need to run
 # source ~/.zshrc
   # or you can just open a new terminal session
 ```
 
-And now we can see a `(base)` at the start of our prompt, which tells us we are in the "base" conda environment. 
+And after that we should see a `(base)` at the start of our prompt, which tells us we are in the "base" conda environment. If the above didn't work, you can also just open a new terminal window, and it should be updated there 👍
 
 <hr style="height:10px; visibility:hidden;" />
 
