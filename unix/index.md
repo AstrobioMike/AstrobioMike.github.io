@@ -43,6 +43,7 @@ Here are some terms that are often used interchangeably – not because it's imp
 
 * [An introduction to Scripting](/unix/scripting)
 * [An introduction to Conda](/unix/conda-intro)
+* [An introduction to Screen](/unix/screen-intro)
 * [What the heck is my PATH, and how do I get it to do what I want?](/unix/modifying_your_path)
 * [More automation power (startup files, aliases, and functions)](/unix/more-automation-power)
 * [Accessing data from NCBI at the command line with EDirect](/unix/ncbi_eutils)
