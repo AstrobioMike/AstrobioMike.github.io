@@ -27,34 +27,15 @@ The ['screen'](https://en.wikipedia.org/wiki/GNU_Screen){:target="_blank"} progr
 
 ## tl;dr
 
-> Here's a short list of the main things demonstrated below.
-> 
-> **Start a new `screen` with a name we want (or re-attach to one that is running), e.g., "assembly" here:**
-> 
-> ```bash
-> screen -R assembly
-> ```
-> 
-> **Detach from a `screen` and leave it running:**
-> 
-> `ctrl + a` release, then press `d`
-> 
-> **List the currently active `screen`s and see if they are attached or not:**
-> 
-> ```bash
-> screen -ls
-> ```
-> 
-> **To scroll in a `screen`:**
-> 
-> `ctrl + a` release, then press `[`
-> 
-> **Exit and close a `screen` (while attached to it):**
-> 
-> ```bash
-> exit
-> ```
+**Here's a short list of the main things demonstrated below.**
 
+| Goal | How to do it |
+|:--|:--:|
+| Start, or re-attach to, a `screen` with a specific name ("assembly" here) | `screen -R assembly` |
+| Detach from a `screen` and leave it running | press `ctrl + a`, release them, then press `d` |
+| List the currently active `screen`s and see if they are attached or not | `screen -ls` |
+| To scroll in a `screen` | press `ctrl + a`, release them, then press `[` |
+| Exit and close a `screen` (while attached to it) | `exit` |
 
 <hr style="height:10px; visibility:hidden;" />
 
@@ -71,11 +52,11 @@ In our command-line environment, we can start a named `screen` session by provdi
 screen -R assembly
 ```
 
-<center><img src="../images/screen-command.png" width="90%"></center>
+<center><img src="../images/screen-command.png" width="100%"></center>
 
 When we execute that command, our terminal environment changes, maybe giving us some information about the `screen` we are using, or maybe just saying "New Screen" on the bottom, but either after a few seconds or after we press `return`, it will again look like our normal command line: 
 
-<center><img src="../images/screen-prompt.png" width="90%"></center>
+<center><img src="../images/screen-prompt.png" width="100%"></center>
 
 To double-check that we are actually in a `screen`, we can use `screen -ls` to **list** the current `screen`'s that are running and if any of them are currently "attached", e.g.:
 
@@ -83,7 +64,7 @@ To double-check that we are actually in a `screen`, we can use `screen -ls` to *
 screen -ls
 ```
 
-<center><img src="../images/screen-ls.png" width="90%"></center>
+<center><img src="../images/screen-ls.png" width="100%"></center>
 
 That tells us one screen is on that has a unique ID (here "16518"), followed by the name we gave it (here "assembly"), and that we are "Attached" to it. 
 
@@ -101,7 +82,7 @@ do
 done
 ```
 
-<center><img src="../images/screen-count.png" width="90%"></center>
+<center><img src="../images/screen-count.png" width="100%"></center>
 
 Now that that's running, let's look at how to detach from that `screen` while it's doing work.
 
@@ -113,7 +94,7 @@ Now that that's running, let's look at how to detach from that `screen` while it
 # Detaching from an active 'screen'
 To detach from a `screen` and leave it running, we need to use some keyboard action. In the screen, we want to press `ctrl + a` then release both of those (this puts us in a sort of alternate keyboard mode), then we want to press the `d` key. That will return us to our original terminal session, and tell us we have detached from that `screen`, e.g.:
 
-<center><img src="../images/screen-detach.png" width="90%"></center>
+<center><img src="../images/screen-detach.png" width="100%"></center>
 
 And now if we run `screen -ls`, we will see that screen is still running, but now it says detached instead of attached:
 
@@ -121,13 +102,13 @@ And now if we run `screen -ls`, we will see that screen is still running, but no
 screen -ls
 ```
 
-<center><img src="../images/screen-ls-detached.png" width="90%"></center>
+<center><img src="../images/screen-ls-detached.png" width="100%"></center>
 
 Great! Now we can disconnect from our remote computer (if that's where we're doing this), then connect again. 
 
 **After I reconnect** and get my usual prompt, when I run `screen -ls` I can see the same information: that my `screen` session is still running, and I'm not currently attached to it:
 
-<center><img src="../images/screen-ls-detached.png" width="90%"></center>
+<center><img src="../images/screen-ls-detached.png" width="100%"></center>
 
 Now let's look at how to re-attach to that currently running `screen`.
 
@@ -145,18 +126,18 @@ screen -R assembly
 
 Which switches my terminal to being in that `screen` session that is listing out numbers every 10 seconds:
 
-<center><img src="../images/screen-count-2.png" width="90%"></center>
+<center><img src="../images/screen-count-2.png" width="100%"></center>
 
 We can cancel that process now, by pressing `ctrl + c`, to get our normal prompt back:
 
-<center><img src="../images/screen-count-cancelled.png" width="90%"></center>
+<center><img src="../images/screen-count-cancelled.png" width="100%"></center>
 
 And we can check we are still within the `screen` with:
 
 ```bash
 screen -ls
 ```
-<center><img src="../images/screen-ls-2.png" width="90%"></center>
+<center><img src="../images/screen-ls-2.png" width="100%"></center>
 
 Now let's look at how to exit a screen and close it for good (rather than detaching like discussed above).
 
@@ -169,11 +150,11 @@ Now let's look at how to exit a screen and close it for good (rather than detach
 # Exiting and closing a 'screen'
 Exiting a screen will shutdown that screen and it will be gone forever, so we only want to do this when we are done with it. But to close a `screen` for good, we just need to type the command `exit`:
 
-<center><img src="../images/screen-exit.png" width="90%"></center>
+<center><img src="../images/screen-exit.png" width="100%"></center>
 
 And when we hit `enter`, it will bring us back to our regular terminal, and tell us the `screen` in terminating:
 
-<center><img src="../images/screen-exited.png" width="90%"></center>
+<center><img src="../images/screen-exited.png" width="100%"></center>
 
 And if we run `screen -ls` now, we will see there are no active ones anymore:
 
@@ -181,7 +162,7 @@ And if we run `screen -ls` now, we will see there are no active ones anymore:
 screen -ls
 ```
 
-<center><img src="../images/no-screens.png" width="90%"></center>
+<center><img src="../images/no-screens.png" width="100%"></center>
 
 <hr style="height:10px; visibility:hidden;" />
 
