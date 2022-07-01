@@ -14,7 +14,7 @@ permalink: /stamps2018/unix_intro
 *  Viewing, creating, and manipulating "plain-text" documents
 *  Intro to pipes and redirectors
 *  Intro to wildcards
-
+ 
 <br>
 **Most importantly, none of this is about memorization. It may seem counterintuitive, but the minute details aren't important. What matters is starting to build a mental framework of the foundational rules and concepts. That equips us to figure out the things we need to do, when we need to do them!** 
 
