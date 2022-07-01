@@ -27,7 +27,7 @@ permalink: /stamps2018/unix_intro
 <br>
 
 # Some terminology
-
+ 
 | Term     | What it is          |
 |:-------------:|------------------|
 | **`Unix`** | a family of operating systems |
