@@ -206,7 +206,7 @@ This comes back as class "character" because now we are putting the <htmlCode>x<
 
 
 
-We can also store multiple items into a single variable. A one-dimensional object holding multiple items that are of the same "type" (e.g., numeric, or character) is known as a *vector*. **To put multiple items into one object, we can use the `c()` function**, stemming from "concatenate". Here we'll make a vector of numbers:
+We can also store multiple items into a single variable. A one-dimensional object holding multiple items is called a *vector* in R. **To put multiple items into one object, we can use the `c()` function**, for "concatenate". Here we'll make a vector of numbers:
 
 ```R
 y <- c(5, 6, 7)
@@ -238,7 +238,7 @@ Dataframes are two-dimensional objects of rows and columns. Here we can see that
 <br>
 
 # The wonderful world of indexing
-One of the most powerful things about R is how easy it makes it to subset vectors and tables down to whatever you are interested in via what's known as "indexing". Here we'll look at a couple of the ways we can specify what we would like to subset, and we'll see these in practice on a larger scale below. 
+Subsetting tables or vectors in R down to just what we want is sometimes referred to as "indexing". And it's a nice concept to be familiar with if working at all in R. Here we'll look at a couple of the ways we can specify what we would like to subset, and we'll see these in practice on a larger scale below. 
 
 <br>
 
@@ -323,10 +323,8 @@ y[y >= 6]
 <center><img src="../images/R_vec_ind_3.png" width="90%"></center> 
 <br>
 
-The way I read the expression **`y[y >= 6]`** in my head is: "Give me all the values of vector 'y', where 'y' is greater than or equal to 6." This fundamental concept is a key component of what makes indexing in R (and other languages) so powerful!  
 
-
-Now, if we wanted to get the opposite of what our conditional statement yeilds (so in essence we'd be pulling the values that resolve to FALSE, instead of those that resolve to TRUE), we would add a **`!`** in front of the conditional statement. 
+Now, if we wanted to get the opposite of what our conditional statement yields (so in essence we'd be pulling the values that resolve to FALSE, instead of those that resolve to TRUE), we would add a **`!`** in front of the conditional statement. 
 
 We can see this if we just apply it to a vector we type out ourselves:
 
@@ -452,7 +450,7 @@ Indexing in R can definitely seem pretty confusing at first, but as mentioned, i
 <br>
 
 # Reading in and writing out data
-Most of the time when working with R you're going to want to read in some data, do some stuff to it, and then write out something else to a new file that will then go on to live a wonderous and full life beyond the R environment. Here we're going to cover the basics of reading in and writing out files. 
+Most of the time when working with R we're going to want to read in some data, do some stuff to it, and then write out something else to a new file that will then go on to live a wonderous and full life beyond the R environment. Here we're going to cover the basics of reading in and writing out files. 
 
 <br>
 
@@ -499,7 +497,7 @@ wc -l gene_annotations.txt
 <center><img src="../images/R_basics_terminal_wc_l.png" width="90%"></center> 
 <br>
 
-Ok. So now instead of being blind to what the file holds, we know that it's tab-delimited, it has a header with column names, and it has 8 columns and 84,785 rows (including the header). Awesome. There are some parameters we need to set when we read a file into R, and know these things will help us check to make sure things are working like we want. Now let's get it into R! 
+Ok. So now instead of being blind to what the file holds, we know that it's tab-delimited, it has a header with column names, and it has 8 columns and 84,785 rows (including the header). Awesome. There are some parameters we need to set when we read a file into R, and knowing these things will help us check to make sure we are reading in the file the way we mean to. Now let's get it into R! 
 
 Be sure to switch back to the "Console" tab at the bottom left now, away from the "Terminal" tab, so that our pane looks like this again:
 
@@ -518,7 +516,7 @@ gene_annotations_tab <- read.table("gene_annotations.txt")
 <center><img src="../images/read_table_err.png" width="90%"></center> 
 <br>
 
-Yay, our first error! Many error messages may seem a little cryptic at first, but you'll be surprised at how many of them magically start to make sense over time. The important part in this one is at the end where it says "line 1 did not have 22 elements". We know from our exploration in the terminal above that our table should have 8 columns. This is a sign there is something up with how R is trying to split each line into columns. 
+Yay, our first error! Many error messages may seem a little cryptic at first, but many of them do magically start to make sense over time. The important part in this one is at the end where it says "line 1 did not have 22 elements". We know from our exploration in the terminal above that our table should have 8 columns. This is a sign there is something up with how R is trying to split each line into columns. 
 
 If we take a look at the help menu for this function with **`?read.table`**:
 
@@ -557,7 +555,7 @@ We can ignore that things are wrapping a little funny because it's wider than th
 Looking at the help menu for **`read.table()`** some more in our bottom right pane, we find there is an argument for "header", which is by default set to **`FALSE`**. So let's try again but this time we'll specify that there is a header:
 
 ```R
-gene_annotations_tab <- read.table("gene_annotations.txt", sep="\t", header=TRUE)
+gene_annotations_tab <- read.table("gene_annotations.txt", sep = "\t", header = TRUE)
 
 head(gene_annotations_tab) 
 ```
@@ -582,7 +580,7 @@ So our table is 84,784 rows by 8 columns, which is great as that's what we expec
 
 <a name="cond_example"></a>
 
-Now let's generate a new table so we can practice writing out to a file from R. You may have noticed there are some NAs in our "gene_annotations_tab.txt" table, which are special values to R. These are present in the KEGG and COG annotation and ID columns as "NA" for those genes which weren't annotated. Here, let's pretend we want to subset our full table down to include only those genes that *were* annotated by KEGG. R's **`is.na()`** function can help us do this. The **`is.na()`** function will return whether or not each item of an object contains an **`NA`**, but in this case we are interested in those that are *not* **`NA`**, meaning we want those that actually contain values (KEGG identifiers in this case). So we need to return the opposite of this using the **`!`** character like we did above with **`y[!y >= 6]`**.  
+Now let's generate a new table so we can practice writing out to a file from R. You may have noticed there are some NAs in our "gene_annotations_tab.txt" table, which are special values to R. These are present in the KEGG and COG annotation and ID columns as "<NA>" for those genes which weren't annotated. Here, let's pretend we want to subset our full table down to include only those genes that *were* annotated by KEGG. R's **`is.na()`** function can help us do this. The **`is.na()`** function will return whether or not each item of an object contains an **`NA`**, but in this case we are interested in those that are *not* **`NA`**, meaning we want those that actually contain values (KEGG identifiers in this case). So we need to return the opposite of this using the **`!`** character like we did above with **`y[!y >= 6]`**.  
 
 This combines a few concepts, so let's run the code and then we'll break it down 🙂
 
@@ -603,7 +601,7 @@ KEGG_only_tab <- gene_annotations_tab[!is.na(gene_annotations_tab$KO_ID), ]
 >   *  (revisiting the '[Conditional statements resolve to TRUE/FALSE](#conditional-statements-resolve-to-truefalse)' section above might help if this is still confusing)
 
 
-And if we peek at our new table with **`head()`**, we se all top 6 have KEEG annotations, where as before some where NA:
+And if we peek at our new table with **`head()`**, we ses all top 6 have KEGG annotations, where as before some where NA:
 
 ```R
 head(KEGG_only_tab)
