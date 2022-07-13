@@ -21,8 +21,8 @@ The purpose of this site is to try to provide the sort of help that would have h
 
 ### 1) Fundamentals and concepts are important, not details
 * Don’t feel like you need to master everything you come across.
-	* This can be very hard for a lot of us! But we are not computer scientists, we are biologists using computers.
-	* Meaning, for example, we don’t need to be able to program perfectly in Python in order to use it effectively in our research. Just having a basic foundation is much more attainable alongside the rest of our research and other obligations. And if we need more at some point, we can learn what we need, when we need it. 
+	* This can be very hard for a lot of us! We are scientists after all 🙂 But we don't need to understand something inside out to be able to use it effectivly in our work.
+	* Meaning, for example, we don’t need to be able to program perfectly in Python in order to write a small program that works just fine and enables our research to move forward. Just having a basic foundation is much more attainable alongside the rest of our research and other obligations. And if we need more at some point, we can learn what we need, when we need it. 
 * **Think of it like Excel. Many of us use Excel effectively without knowing how to do everything it can do (which is a lot).** 
 
 <hr style="height:15px; visibility:hidden;" />

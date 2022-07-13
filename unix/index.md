@@ -16,7 +16,7 @@ Here are some terms that are often used interchangeably – not because it's imp
 | Term     | What it is          |
 |:-------------:|------------------|
 | **`shell`** | what we use to talk to the computer; anything where we are pointing and clicking with a mouse is a **G**raphical **U**ser **I**nterface (**GUI**) shell; something with text only is a **C**ommand **L**ine **I**nterface (**CLI**) shell |  
-| **`command line`** | a text-based environment capable of taking input and providing output |  
+| **`command line/terminal`** | a text-based environment capable of taking input and providing output |  
 | **`Unix`** | a family of operating systems (we also use the term "Unix-like" because one of the most popular operating systems derived from Unix is specifically named as [*not* being Unix](https://en.wikipedia.org/wiki/GNU){:target="_blank"}) |  
 | **`bash`** | the most common programming language used at a Unix command-line |  
 

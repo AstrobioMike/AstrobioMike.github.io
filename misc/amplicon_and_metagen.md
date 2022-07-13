@@ -19,7 +19,7 @@ Amplicon sequencing of marker-genes (e.g. 16S, 18S, ITS) involves using specific
 
 **Metagenomics**  
 
-Shotgun metagenomic sequencing aims to amplify all the accessible DNA of a mixed community. It uses random primers and therefore suffers much less from pcr bias (discussed below). Metagenomics enables profiling of taxonomy and functional potential. Recently, the recovery of representative genomes from metagenomes has become a very powerful approach in microbial ecology, drastically expanding the known Tree of Life by granting us genomic access to as-yet unculturable microbial populations (e.g. [Hug et al. 2016](https://www.nature.com/articles/nmicrobiol201648); [Parks et al. 2017](https://www.nature.com/articles/s41564-017-0012-7)). 
+Shotgun metagenomic sequencing aims to amplify all the accessible DNA of a mixed community. It uses random primers and therefore suffers much less from pcr bias (discussed below). Metagenomics provides a window into the taxonomy and functional potential of a sample. Recently, the recovery of representative genomes from metagenomes has become a very powerful approach in microbial ecology, drastically expanding the known Tree of Life by granting us genomic access to as-yet unculturable microbial populations (e.g. [Hug et al. 2016](https://www.nature.com/articles/nmicrobiol201648); [Parks et al. 2017](https://www.nature.com/articles/s41564-017-0012-7)). 
 
 Here we'll discuss some of the things each is useful and not useful for, and then look at some general workflows for each. 
 
@@ -29,7 +29,7 @@ Here we'll discuss some of the things each is useful and not useful for, and the
     * one metric of community composition
         * can say something about relative abundance of gene copies recovered
     * can track changes in community structure (as interpreted by recovered gene copy numbers) in response to a treatment and/or across environmental gradients/time
-    * can provide strong support for further investigation of things 
+    * can help generate hypotheses and provide support for further investigation of things 
 
 * **_Not_ useful for:**
     * abundance of organisms (or relative abundance of organisms)
@@ -45,13 +45,15 @@ Here we'll discuss some of the things each is useful and not useful for, and the
         * There is no strain-level resolving capability for a single gene, all that tells you is how similar those genes are.
         
         
-As noted above, amplicon data can still be very useful. Most often when people claim it isn't, they are assessing that based on things it's not supposed to do anyway, e.g.:
+As noted above, amplicon data can still be very useful. Most often when people claim it isn't, they are assessing it based on things it's not supposed to do anyway, e.g., this type of question:
 
 > "Why are you doing 16S sequencing? That doesn't tell you anything about function."  
-> 
+
+To me is like this type of question:
+
 > "Why are you measuring nitrogen-fixation rates? That doesn't tell you anything about the proteins that are doing it."  
-> 
-> **We shouldn't assess the utility of a tool based on something it's not supposed to do anyway 🙂**
+
+**We shouldn't assess the utility of a tool based on something it's not supposed to do anyway 🙂**
         
 ## Metagenomics utility
 * **Useful for:**
@@ -63,7 +65,7 @@ As noted above, amplicon data can still be very useful. Most often when people c
 * **_Not_ useful for:**
     * abundance of organisms
     * "activity"
-        * neither is transcriptomics or proteomics for that matter – each gives you insight into cellular regulation at different levels
+        * neither is transcriptomics or proteomics for that matter – each gives us insight into cellular regulation at different levels
 
 <challengeBlock>
 <center><b>QUICK QUESTION!</b></center>
