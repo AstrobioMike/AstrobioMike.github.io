@@ -59,7 +59,7 @@ Operational Taxonomic Unit. OTUs are an artificial, arbitrary construct useful f
 Amplicon Sequence Variant. Resulting sequences from newer processing methodologies that attempt to take into account sequencing error rates and are believed to represent true biological sequences. The case for moving towards using ASVs over OTUs is made very well in [this paper](https://www.nature.com/articles/ismej2017119){:target="_blank"} by [@bejcal](https://twitter.com/bejcal){:target="_blank"}, [@joey711](https://twitter.com/joey711){:target="_blank"}, and [@SherlockpHolmes](https://twitter.com/SherlockpHolmes){:target="_blank"}.
 
 **Tag sequencing**  
-In my opinion, the most useful and most often used meaning of "tag sequencing" is when you are using primers that target something specific, like a marker gene. So the opposite of shotgun sequencing which uses random hexamer or nonamer primers. But on rare occassions I have heard this used to mean barcoding samples.
+In my opinion, the most useful and most often used meaning of "tag sequencing" is when you are using primers that target something specific, like a marker gene. So the opposite of shotgun sequencing which uses random hexamer or nonamer primers. But on rare occasions I have heard this used to mean barcoding samples.
 
 **Barcodes**  
 Barcodes refer to the sequences ligated to your individual samples' genetic material before they get all mixed together to be sequenced together. These barcodes are then unique to each sample, so you can afterwards identify which sequences came from which samples.
