@@ -11,7 +11,7 @@ permalink: /unix/modifying_your_path
 
 {% include _side_tab_unix.html %}
 
-When I was starting out, the whole concept of what the "PATH" was and what it did was way more confusing to me than it needed to be. For some reason I just didn't come across a straightforwrard explanation for a long time (or wasn't paying attention or understanding if I had...). Either way, after I got it, I was like "Why didn't anyone just tell me this??", haha. If the "PATH" is still a nebulous concept for you, then you've come to the right place 🙂  
+When I was starting out, the whole concept of what the "PATH" was and what it did was way more confusing to me than it needed to be. For some reason I just didn't come across a straightforwrard explanation for a long time (or wasn't paying attention or understanding if I had...). Either way, after I got it, I was like "Why didn't anyone just tell me this??". If the "PATH" is still a nebulous concept for you, then you've come to the right place 🙂  
 
 <hr style="height:10px; visibility:hidden;" />
 
@@ -19,14 +19,14 @@ When I was starting out, the whole concept of what the "PATH" was and what it di
 ---
 <br>
 # The PATH demystified
-As mentioned in the [intro to Unix section](/unix/unix-intro){:target="_blank"}, one of the easiest mistakes to make at the command line is to be trying to specify a file or program that isn't where we think it is. For files, we usually point to where the file is (if it's not in our current working directory) using the [*absolute* or *relative* path](/unix/getting-started#absolute-vs-relative-path){:target="_blank"}, where "path" here, in lowercase, just means a sort of address in the computer. But for programs that we use often, we usually want to be able to call them without having to provide the complete path to wherever the program is located. So a big part of getting specific programs to work properly at the command line is having them in a location on the computer that we can access no matter [where we are](/unix/getting-started#the-unix-file-system-structure){:target="_blank"}.  
+As mentioned early in the [Unix crash course](/unix/unix-intro){:target="_blank"}, one of the easiest mistakes to make at the command line is to be trying to specify a file or program that isn't where we think it is. For files, we usually point to where the file is using an [*absolute* or *relative* path](/unix/getting-started#absolute-vs-relative-path){:target="_blank"}, where "path" here, in lowercase, just means a sort of address in the computer. But for programs that we use often, we usually want to be able to call them without having to provide the path to wherever the program is located. So a big part of getting specific programs to work properly at the command line is having them in a location on the computer that we can access no matter [where we are](/unix/getting-started#the-unix-file-system-structure){:target="_blank"}.  
 
-The command line automatically checks in a list of pre-defined locations (directories) everytime we are trying to call a certain command. This is why we can use certain commands like **`ls`** and **`pwd`** and such from any directory we happen to be in. This list of pre-designated directories is stored in a special variable called the "PATH" (all caps required). We can see our PATH, and which directories are stored in it, by entering **`echo $PATH`** at the command line (the **`$`** is used to call variables in bash and other Unix languages; see the [variables](/unix/for-loops#variables){:target="_blank"} if new to this). Here's a look at mine:
+The command line automatically checks in a list of pre-defined locations (directories) everytime we are trying to call a certain command. This is why we can use certain commands like **`ls`** and **`pwd`** and such from any directory we happen to be in. This list of pre-designated directories is stored in a special variable called "PATH" (all caps required). We can see our PATH, and which directories are stored in it, by entering **`echo $PATH`** at the command line (the **`$`** is used to call variables in bash and other Unix languages; see the [variables](/unix/for-loops#variables){:target="_blank"} if new to this). Here's a look at a rather messy one of mine:
 
 <center><img src="../images/my_PATH2.png" width="100%"></center>
 
 <br>
-This is a colon-delimited list of all the directories the command line looks in by default for programs. To make it a little friendlier to glance at, we can change the colons to newline characters by [piping](/unix/wild-redirectors#redirectors){:target="_blank"} the output of **`echo $PATH`** into **`tr`**, one of our [six glorious commands](/unix/six-glorious-commands#tr){:target="_blank"}, to change the colons to newline characters for a more user-friendly output: 
+This is a colon-delimited list of all the directories the command line looks in by default for programs on the particular computer I'm on right now. To make it a little friendlier to glance at, we can change the colons to newline characters by [piping](/unix/wild-redirectors#redirectors){:target="_blank"} the output of **`echo $PATH`** into **`tr`**, one of our [six glorious commands](/unix/six-glorious-commands#tr){:target="_blank"}, to change the colons to newline characters for a more user-friendly output: 
 
 ```bash
 echo $PATH | tr ":" "\n"
