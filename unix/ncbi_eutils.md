@@ -34,13 +34,14 @@ This page holds some of the ways I've used EDirect, both to serve as a handy arc
 
 <h1>Using NCBI's EDirect</h1>
 
-For a while, this was also kind of a huge pain to install on some systems. But thanks to the gloriousness of [conda](https://conda.io/docs/){:target="_blank"}, that's no longer the case 🙂
+For a while, this was also kind of a huge pain to install on some systems. But thanks to the gloriousness of [conda](/unix/conda-intro){:target="_blank"}, that's no longer the case 🙂
 
 <hr style="height:15px; visibility:hidden;" />
 ## Conda install
 
 ```bash
-conda install -y -c conda-forge -c bioconda -c defaults entrez-direct
+conda create -y -c conda-forge -c bioconda -c defaults entrez
+conda activate entrez
 ```
 
 <hr style="height:25px; visibility:hidden;" />
@@ -121,7 +122,7 @@ esearch -db assembly -query GCA_006538345.1 | elink -target nuccore -name \
 ---
 <br>
 
-## Accessing proteins
+## Accessing individual genes/proteins
 ### Sequences and accessions
 **Getting amino acid sequences based on protein-name text search**
 
