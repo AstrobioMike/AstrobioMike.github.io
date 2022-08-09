@@ -79,7 +79,7 @@ With all that said, do you think we should expect relative abundance information
   <div class="collapsible-content">
     <div class="content-inner">
 		
-No, and that's not a problem if we understand that neither are meant to tell us a true abundance anyway. They are providing different information is all. And the relative abundance metrics they do provide can still be informative when comparing multiple samples generated the same way 🙂
+No, and that's not a problem if we understand that neither are meant to tell us a true abundance anyway. They are each providing a different, foggy view into the system we sequenced. And the relative abundance metrics they do provide can still be informative when comparing multiple samples generated the same way 🙂
 
     </div>
   </div>
