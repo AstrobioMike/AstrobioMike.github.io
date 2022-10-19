@@ -348,7 +348,7 @@ So here's how we can install `mamba`, remember we want to be in the "base" conda
 conda install -c conda-forge mamba
 ```
 
-Entering 'y' when prompted, and then forevermore we can use `mamba` in place of `conda` when *installing* things. **But it has seemed more stable/rubust to me to still use `conda` when activating/deactivating environments. Example in this next section...
+Entering 'y' when prompted, and then forevermore we can use `mamba` in place of `conda` when *installing* things. **But it has seemed more stable/rubust to me to still use `conda` when activating/deactivating environments.** Example in this next section...
 
 ## Creating an environment and installing packages in one command with mamba
 
