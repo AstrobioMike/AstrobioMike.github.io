@@ -342,10 +342,10 @@ conda deactivate
 
 `conda` needs to be installed first like we did above, then we install `mamba` with `conda`. Trust me, this is likely very worth it for you, I do it on virtually every system I put conda on 🙂
 
-So here's how we can install `mamba`, remember we want to be in the "base" conda environment when we run this (see just above):
+So here's how we can install `mamba`, remember we want to be in the "base" conda environment when we run this (see just above), but we can also explicitly state that we want that environment as done here:
 
 ```bash
-conda install -c conda-forge mamba
+conda install -n base -c conda-forge mamba
 ```
 
 Entering 'y' when prompted, and then forevermore we can use `mamba` in place of `conda` when *installing* things. **But it has seemed more stable/rubust to me to still use `conda` when activating/deactivating environments.** Example in this next section...
