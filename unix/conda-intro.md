@@ -45,7 +45,7 @@ Conda comes in [two broad forms](https://docs.conda.io/projects/conda/en/latest/
 
 The download page for Miniconda is [here](https://conda.io/en/latest/miniconda.html){:target="_blank"}, and we should pick the one appropriate for our operating system, with one minor exception. If working on a new Mac with the M1 chip, I currently think (date of this suggestion is 9-Jun-2022) it's best to  install the regular Intel version, rather than the Apple M1 version. This is because not a lot of packages in conda have M1 versions built yet, and the M1 computers come with software (called [rosetta](https://support.apple.com/en-us/HT211861){:target="_blank"}) that will ask to be installed the first time it's needed, but then tries to make it so intel-based things work on the M1. And so far this has worked splendidly for me, while installing an M1 based version of conda led immediately to packages not being available. Over time, as more developers put up versions for the M1 chip, this will of course change.
 
-**If working in the binder linked above**, we are going to want a Linux version, so this is one way to download it to our system (from copying the link under "Miniconda3 Linux 64-bit"):
+**If working in the binder linked above or on a Linux system**, which is almost definitely the case if you are logged into a server, we are going to want a Linux version, so this is one way to download it to our system (from copying the link under "Miniconda3 Linux 64-bit"):
 
 ```bash
 curl -LO https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
