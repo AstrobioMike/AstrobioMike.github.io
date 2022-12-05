@@ -85,7 +85,7 @@ Don't forget to press enter to execute the last command (usually that doesn't co
 date
 ```
 
-When we run **`date`** with no arguments, it uses some default settings, like assuming we want to know the time in our computer's local time zone. But we can provide optional arguments to **`date`**. Optional arguments most often require putting a dash in front of them in order for the program to interpret them properly. Here we are adding the **`-u`** argument to tell it to report UTC time instead of the local time: 
+When we run **`date`** with no arguments, it uses some default settings, like assuming we want to know the time in our computer's local time zone. But we can provide optional arguments to **`date`**. Optional arguments most often require putting a dash in front of them in order for the program to interpret them properly. Here we are adding the **`-u`** argument to tell it to report UTC time instead of the local time – which will be the same if the computer we're using happens to be set to UTC time, of course 🙂: 
 
 ```bash
 date -u
