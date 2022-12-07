@@ -36,13 +36,19 @@ permalink: /research/
 I'm a bioinformatician with [NASA GeneLab](https://genelab.nasa.gov/){:target="_blank"} and a research scientist with [Blue Marble Space Institute of Science](https://www.bmsis.org/){:target="_blank"} located at NASA's Ames Research Center in northern California, USA. I focus primarily on microbial ecology and evolution in all kinds of different systems ranging from the bottoms of our oceans up to the International Space Station 👽
 
 *Publication groupings*:  
-* [Space Biology](#space-biology)  
-* [Astrobiology](#astrobiology)  
-* [Marine microbes](#marine-microbes)  
-* [Software, platforms, workflows, and education](#software-platforms-workflows-and-education)  
-* [CoVID-19](#covid-19)  
-* [Aquaponics](#aquaponics)  
-* [Genome Announcements](#genome-announcements)  
+- [Michael D. Lee, Ph.D.](#michael-d-lee-phd)
+    - [Bioinformatician exploring microbial ecology and evolution](#bioinformatician-exploring-microbial-ecology-and-evolution)
+- [Software](#software)
+  - [GToTree{:target="\_blank"}](#gtotreetarget_blank)
+  - [Bioinformatics Tools (bit){:target="\_blank"}](#bioinformatics-tools-bittarget_blank)
+  - [Publications](#publications)
+    - [**Space Biology**](#space-biology)
+    - [**Astrobiology**](#astrobiology)
+    - [**Marine Microbes**](#marine-microbes)
+    - [**Software, platforms, workflows, and education**](#software-platforms-workflows-and-education)
+    - [**CoVID-19**](#covid-19)
+    - [**Aquaponics**](#aquaponics)
+    - [**Genome Announcements**](#genome-announcements)
 
 <!--**CV**  
 [Lee_CV_2020.pdf](/research/Lee_CV_Feb_2020.pdf){:target="_blank"}  
@@ -320,6 +326,13 @@ Eren, A.M., Kiefl, E., Shaiber, A., Veseli, E., Miller, S.E., Schechter, M.S., e
 
 <hr style="height:10px; visibility:hidden;" />
 #### **CoVID-19**
+
+<a name="Jochum_et_al_2022"></a>
+<div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="doi.org/10.1038/s41598-022-25463-0"></div>  
+
+Jochum, M., **Lee, M.D.**, Curry, K., Zaksas, V., Vitalis, E., Treangen, T., Aagaard, K., and Ternus, K. (2022). [Analysis of bronchoalveolar lavage fluid metatranscriptomes among patients with COVID-19 disease
+](https://doi.org/10.1038/s41598-022-25463-0){:target="_blank"}. *Scientific Reports*.  
+[PDF download](https://www.nature.com/articles/s41598-022-25463-0.pdf){:target="_blank"}  
 
 <a name="Sapoval_et_al_2021"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="doi.org/10.1101/gr.268961.120"></div>  
