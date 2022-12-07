@@ -2,7 +2,7 @@
     "replacementPatterns": [
         {
             "pattern": "^/",
-            "replacement": "{{BASEURL}}"
+            "replacement": "http://astrobiomike.github.io/"
         }
     ],
 
