@@ -4,5 +4,20 @@
             "pattern": "^/",
             "replacement": "http://astrobiomike.github.io/"
         }
+    ],
+
+    "ignorePatterns": [
+		{
+			"pattern": "http://localhost.*"
+		},
+        {
+            "pattern": "https://ccb.jhu.edu/software/centrifuge/.*"
+        }
+	],
+
+    "aliveStatusCodes": [
+        403,
+        503
     ]
+
 }
