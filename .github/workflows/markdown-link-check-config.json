@@ -1,7 +1,6 @@
 {
     "replacementPatterns": [
         {
-            // adding this so relative links don't fail
             "pattern": "^/",
             "replacement": "http://astrobiomike.github.io/"
         }
