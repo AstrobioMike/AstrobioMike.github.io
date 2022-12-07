@@ -7,8 +7,6 @@ permalink: /research/
 
 <img style="float: right; margin-left: 15px; margin-top: 5px" width="25%" src="../images/rock_MLee.jpg">
 
-[broken link](https://mmkkdddd.com)
-
 ## Michael D. Lee, Ph.D.
 
 #### Bioinformatician exploring microbial ecology and evolution
