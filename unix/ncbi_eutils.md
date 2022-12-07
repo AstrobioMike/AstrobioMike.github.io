@@ -24,7 +24,7 @@ There is a lot of info on this at [the main NCBI EDirect page](https://www.ncbi.
 
 This page holds some of the ways I've used EDirect, both to serve as a handy archive for myself, and to hopefully help others 🙂 It won't be as comprehensive as most other things on this site, as it's extremely expansive and it's still nowhere near intuitive for me 🤷‍♂️ But these examples may do what is needed, and if not they at least might provide good starting points for building the code that will do what is needed. 
 
->**NOTE:** This stuff can look messy, mostly because it is; it scares me too. **This page assumes you already have some familiarity with working at the command line.** If you don't yet, then definitely consider running through the [Unix crash course](/Unix/unix-intro){:target="_blank"} first 🙂
+>**NOTE:** This stuff can look messy, mostly because it is; it scares me too. **This page assumes you already have some familiarity with working at the command line.** If you don't yet, then definitely consider running through the [Unix crash course](/unix/unix-intro){:target="_blank"} first 🙂
 
 <hr style="height:15px; visibility:hidden;" />
 
@@ -80,7 +80,7 @@ esearch -db assembly -query '"Bacteria"[Organism] AND "latest refseq"[filter] AN
 
 **Downloading genomes by accession**  
 
-I typically do this part using `bit-dl-ncbi-assemblies` from my [Bioinf Tools](https://github.com/AstrobioMike/bioinf_tools#bioinformatics-tools-bit){:target="_blank"} after getting the accessions like in the examples above. Here's what that would look like following the [*Alteromonas* example above](http://127.0.0.1:4000/unix/ncbi_eutils#accessing-genome-assemblies-and-info) to download those 160 assemblies (here in fasta format; took ~1 minute):
+I typically do this part using `bit-dl-ncbi-assemblies` from my [Bioinf Tools](https://github.com/AstrobioMike/bioinf_tools#bioinformatics-tools-bit){:target="_blank"} after getting the accessions like in the examples above. Here's what that would look like following the [*Alteromonas* example above](/unix/ncbi_eutils#accessing-genome-assemblies-and-info) to download those 160 assemblies (here in fasta format; took ~1 minute):
 
 ```bash
 bit-dl-ncbi-assemblies -w Alteromonas-assembly-accs.txt -f fasta -j 10

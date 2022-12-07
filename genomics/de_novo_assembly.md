@@ -238,7 +238,7 @@ quast -o quast_B_cep_out -R reference_genome/BCep_ref.fna \
       megahit_min_count_3_assembly/final.contigs.fa
 ```
 
-We can find more about the syntax and how to run QUAST [in its documentation](http://quast.bioinf.spbau.ru/manual.html){:target="_blank"}. The output directory contains text files of information, but there is also a useful html summary file called "report.html", which we can open and look at. Here's a portion of it:
+We can find more about the syntax and how to run QUAST [in its documentation](https://quast.sourceforge.net/docs/manual.html){:target="_blank"}. The output directory contains text files of information, but there is also a useful html summary file called "report.html", which we can open and look at. Here's a portion of it:
 
 <center><img src="../images/quast_output.png"></center>  
 

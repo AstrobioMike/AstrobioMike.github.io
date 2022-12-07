@@ -312,7 +312,7 @@ Eren, A.M., Kiefl, E., Shaiber, A., Veseli, E., Miller, S.E., Schechter, M.S., e
 <a name="Lee_2019_evo_bioinf"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1177/1176934319862245"></div>  
 
-**Lee, M.D.** (2019). [Applications and considerations of GToTree: a user-friendly workflow for phylogenomics](https://doi.org/10.1177%2F1176934319862245){:target="_blank"}. *Evolutionary Bioinformatics*.  
+**Lee, M.D.** (2019). [Applications and considerations of GToTree: a user-friendly workflow for phylogenomics](https://doi.org/10.1177/1176934319862245){:target="_blank"}. *Evolutionary Bioinformatics*.  
 [PDF download](https://journals.sagepub.com/doi/pdf/10.1177/1176934319862245){:target="_blank"}  
 
 

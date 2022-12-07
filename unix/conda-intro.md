@@ -217,7 +217,7 @@ conda install -c bioconda prodigal
 >
 > `conda install -c conda-forge -c bioconda -c defaults prodigal`
 >
-> That way we get what's needed each time, and we don't have to worry about changing the underlying conda channel hierarchy on each system we use it on like the [bioconda documentation](https://bioconda.github.io/user/install.html#set-up-channels) demonstrates. 
+> That way we get what's needed each time, and we don't have to worry about changing the underlying conda channel hierarchy on each system we use it on like the [bioconda documentation](https://bioconda.github.io) demonstrates. 
 
 
 This prints out such as what and what versions of things are going to be installed, and where they are going to be installed (which will end with the name of the environment we created). **After inputting `y` and pressing return/enter**, the program is installed in this environment, and we can check for `prodigal` again, only this time successfully:
@@ -286,9 +286,9 @@ prodigal -v
 <br>
 
 # A note on channels
-When we do something in conda, it automatically searches our stored channels (and it does so in [a specific order](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-channels.html){:target="_blank"}). We had to specify `-c bioconda` in the command above when we installed `prodigal` because that channel wasn't yet in our stored channels. We can either set these ahead of time, or we can specify them when we install something. Most of the things we biologists will want to use are found in the [bioconda channel](https://bioconda.github.io/index.html){:target="_blank"}. The [prodigal package page instructions on anaconda.org](https://anaconda.org/bioconda/prodigal){:target="_blank"} instructions are actually not 100% ideal. Looking at the [bioconda documentation](https://bioconda.github.io/user/install.html#set-up-channels){:target="_blank"} we can see that we should specify our channel priority such that `conda-forge` is searched before `bioconda` which is searched before `defaults`. 
+When we do something in conda, it automatically searches our stored channels (and it does so in [a specific order](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-channels.html){:target="_blank"}). We had to specify `-c bioconda` in the command above when we installed `prodigal` because that channel wasn't yet in our stored channels. We can either set these ahead of time, or we can specify them when we install something. Most of the things we biologists will want to use are found in the [bioconda channel](https://bioconda.github.io/index.html){:target="_blank"}. The [prodigal package page instructions on anaconda.org](https://anaconda.org/bioconda/prodigal){:target="_blank"} instructions are actually not 100% ideal. Looking at the [bioconda documentation](https://bioconda.github.io/#usage){:target="_blank"} we can see that we should specify our channel priority such that `conda-forge` is searched before `bioconda` which is searched before `defaults`. 
 
-Even though it worked ok with `prodigal` when we only gave it the `-c bioconda` channel, other programs might run into an issue. So it's best to follow the [bioconda documentation](https://bioconda.github.io/user/install.html#set-up-channels){:target="_blank"} and specify all the channels in the proper order. Here are two ways we can do that. 
+Even though it worked ok with `prodigal` when we only gave it the `-c bioconda` channel, other programs might run into an issue. So it's best to follow the [bioconda documentation](https://bioconda.github.io/#usage){:target="_blank"} and specify all the channels in the proper order. Here are two ways we can do that. 
 
 **We can specify these channels in the installation command like so:**
 
@@ -302,7 +302,7 @@ conda install -c conda-forge -c bioconda -c defaults prodigal
 
 As mentioned above, I prefer doing things this way so I don't have to ever bother with changing the stored channel configuration on any system I use conda on. Plus, this has the added benefit that I very frequently accidentally type out "conda-forage" 🙂
 
-**Or we can set the channels ahead of time** like the [bioconda documentation](https://bioconda.github.io/user/install.html#set-up-channels){:target="_blank"} demonstrates (when done this way, the last one we add has the highest priority):
+**Or we can set the channels ahead of time** like the [bioconda documentation](https://bioconda.github.io/#usage){:target="_blank"} demonstrates (when done this way, the last one we add has the highest priority):
 
 ```bash
 conda config --add channels defaults # no need to worry about the warning
@@ -409,7 +409,7 @@ dependencies:
     - prodigal
 ```
 
-Here, we are specifying the 'name', which becomes the name of the conda environment (meaning what we will give to the `conda activate ...` command), the channels (remember from above, that things from the bioconda channel should have [all 3 of those specified in that order](https://bioconda.github.io/user/install.html#set-up-channels){:target="_blank"}), and then the "dependencies" are the programs and/or versions we want. For this example, just to show it, we are specifying python version 3.5, and no version specified for prodigal. 
+Here, we are specifying the 'name', which becomes the name of the conda environment (meaning what we will give to the `conda activate ...` command), the channels (remember from above, that things from the bioconda channel should have [all 3 of those specified in that order](https://bioconda.github.io/#usage){:target="_blank"}), and then the "dependencies" are the programs and/or versions we want. For this example, just to show it, we are specifying python version 3.5, and no version specified for prodigal. 
 
 We can quickly download that yaml file from above to our working location by running this command:
 

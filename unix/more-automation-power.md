@@ -542,7 +542,7 @@ head -n 1 file.tsv | tr "\t" "\n" | cat -n
 <center><img src="../images/unix-things-i-like-to-set-column-headers1.png" width="100%"></center>
 <br>
 
-Where we are getting the first line with `head`, changing the delimiter into a newline character with `tr`, then [piping](unix/wild-redirectors#redirectors){:target="_blank"} that into `cat` with an argument to add line numbers. Then, if I wanted to act on the "COREscore" column with something like `cut` or `awk`, I can quickly see it's column number 12.
+Where we are getting the first line with `head`, changing the delimiter into a newline character with `tr`, then [piping](/unix/wild-redirectors#redirectors){:target="_blank"} that into `cat` with an argument to add line numbers. Then, if I wanted to act on the "COREscore" column with something like `cut` or `awk`, I can quickly see it's column number 12.
 
 That's great, but it's nicer to just type one word quickly to do this. 
 

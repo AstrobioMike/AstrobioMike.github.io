@@ -86,7 +86,7 @@ Sabre will spit out some info for how many reads were assigned to each barcode, 
 <center><img src="{{ site.url }}/images/demux_sabre_files_head.png"></center>
 <br>
 
-Sabre also removed the barcodes from the forward reads for the read pairs it was able to split. **If your primers and sequencing protocol resulted in full overlap, you may have the reverse complement of the barcodes at the end of the reverse reads**. Sabre has a `-c` flag for this, but on the couple of datasets I tried that on, it doesn't seem to be operating in the same orientation my reverse reads were in. That is however dealt with if you use something like [bbduk](https://jgi.doe.gov/data-and-tools/bbtools/bb-tools-user-guide/bbduk-guide/){:target="_blank"} – which I have an example of in the [DADA2 example workflow here](/amplicon/dada2_workflow_ex#removing-primers){:target="_blank"} – to remove the primers (which lie inside of the barcode in both reads).  
+Sabre also removed the barcodes from the forward reads for the read pairs it was able to split. **If your primers and sequencing protocol resulted in full overlap, you may have the reverse complement of the barcodes at the end of the reverse reads**. Sabre has a `-c` flag for this, but on the couple of datasets I tried that on, it doesn't seem to be operating in the same orientation my reverse reads were in. That is however dealt with if you use something like [bbduk](https://jgi.doe.gov/data-and-tools/software-tools/bbtools/bb-tools-user-guide/bbduk-guide/){:target="_blank"} – which I have an example of in the [DADA2 example workflow here](/amplicon/dada2_workflow_ex#removing-primers){:target="_blank"} – to remove the primers (which lie inside of the barcode in both reads).  
 <br>
   
 ---

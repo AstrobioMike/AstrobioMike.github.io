@@ -147,7 +147,7 @@ export PATH=${PATH}:$HOME/edirect >& /dev/null || setenv PATH "${PATH}:$HOME/edi
 ./edirect/setup.sh
 ```
 
-This downloads and installs EDirect. The last step may take a minute or two, and when it's done it might tell you a command you need to run in order to add the appropriate directory to your [PATH](/unix/modifying_your_PATH){:target="_blank"}. Copy and paste that command into the terminal, open a new terminal window or run `source ~/.bashrc` (or `source ~/.bash_profile` if it had you add it to that file). Then you're ready to test out that all is well by running `esearch -help`, and you should hopefully see something like this:
+This downloads and installs EDirect. The last step may take a minute or two, and when it's done it might tell you a command you need to run in order to add the appropriate directory to your [PATH](/unix/modifying_your_path){:target="_blank"}. Copy and paste that command into the terminal, open a new terminal window or run `source ~/.bashrc` (or `source ~/.bash_profile` if it had you add it to that file). Then you're ready to test out that all is well by running `esearch -help`, and you should hopefully see something like this:
 
 <center><img src="../images/checking_ncbi_eutils.png"></center>
 
