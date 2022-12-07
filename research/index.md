@@ -36,19 +36,13 @@ permalink: /research/
 I'm a bioinformatician with [NASA GeneLab](https://genelab.nasa.gov/){:target="_blank"} and a research scientist with [Blue Marble Space Institute of Science](https://www.bmsis.org/){:target="_blank"} located at NASA's Ames Research Center in northern California, USA. I focus primarily on microbial ecology and evolution in all kinds of different systems ranging from the bottoms of our oceans up to the International Space Station 👽
 
 *Publication groupings*:  
-- [Michael D. Lee, Ph.D.](#michael-d-lee-phd)
-    - [Bioinformatician exploring microbial ecology and evolution](#bioinformatician-exploring-microbial-ecology-and-evolution)
-- [Software](#software)
-  - [GToTree{:target="\_blank"}](#gtotreetarget_blank)
-  - [Bioinformatics Tools (bit){:target="\_blank"}](#bioinformatics-tools-bittarget_blank)
-  - [Publications](#publications)
-    - [**Space Biology**](#space-biology)
-    - [**Astrobiology**](#astrobiology)
-    - [**Marine Microbes**](#marine-microbes)
-    - [**Software, platforms, workflows, and education**](#software-platforms-workflows-and-education)
-    - [**CoVID-19**](#covid-19)
-    - [**Aquaponics**](#aquaponics)
-    - [**Genome Announcements**](#genome-announcements)
+  - [**Space Biology**](#space-biology)
+  - [**Astrobiology**](#astrobiology)
+  - [**Marine Microbes**](#marine-microbes)
+  - [**Software, platforms, workflows, and education**](#software-platforms-workflows-and-education)
+  - [**CoVID-19**](#covid-19)
+  - [**Aquaponics**](#aquaponics)
+  - [**Genome Announcements**](#genome-announcements)
 
 <!--**CV**  
 [Lee_CV_2020.pdf](/research/Lee_CV_Feb_2020.pdf){:target="_blank"}  
