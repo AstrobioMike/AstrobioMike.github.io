@@ -324,8 +324,7 @@ Eren, A.M., Kiefl, E., Shaiber, A., Veseli, E., Miller, S.E., Schechter, M.S., e
 <a name="Jochum_et_al_2022"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="doi.org/10.1038/s41598-022-25463-0"></div>  
 
-Jochum, M., **Lee, M.D.**, Curry, K., Zaksas, V., Vitalis, E., Treangen, T., Aagaard, K., and Ternus, K. (2022). [Analysis of bronchoalveolar lavage fluid metatranscriptomes among patients with COVID-19 disease
-](https://doi.org/10.1038/s41598-022-25463-0){:target="_blank"}. *Scientific Reports*.  
+Jochum, M., **Lee, M.D.**, Curry, K., Zaksas, V., Vitalis, E., Treangen, T., Aagaard, K., and Ternus, K. (2022). [Analysis of bronchoalveolar lavage fluid metatranscriptomes among patients with COVID-19 disease](https://doi.org/10.1038/s41598-022-25463-0){:target="_blank"}. *Scientific Reports*.  
 [PDF download](https://www.nature.com/articles/s41598-022-25463-0.pdf){:target="_blank"}  
 
 <a name="Sapoval_et_al_2021"></a>
