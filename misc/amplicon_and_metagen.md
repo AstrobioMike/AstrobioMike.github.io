@@ -131,29 +131,3 @@ If you happen to work with amplicon data, and are unsure of what's going on with
 
 ---
 <br>
-
-# Some example tutorials
-
-<h3><b>Amplicon</b></h3>
-
-* **dada2** (ASVs)
-    * [Developer tutorial](https://benjjneb.github.io/dada2/tutorial.html)
-    * Happy Belly's [dada2 tutorial](https://astrobiomike.github.io/amplicon/dada2_workflow_ex)
-
-* **qiime2** 
-    * qiime provides an environment that employs other processing tools (like those above) and also provides convenient visualization capabilities and an excellent infrastructure for tracking everything you've done
-    * they have [extensive documentation](https://docs.qiime2.org/2018.6/) and an [amplicon tutorial here](https://docs.qiime2.org/2018.6/tutorials/moving-pictures/)
-
-<br>
-
----
-<br>
-
-<h3><b>Metagenomics</b></h3>
-
-As you might guess, this is not as straightforward as the amplicon data tutorials as there are typically many more possible branching paths and things to chase with metagenomics data. But here are some places to start. If you know of others that are helpful please pass along so we can add them here 🙂
-
-- Happy Belly's [recovering genomes from metagenomes tutorial](https://astrobiomike.github.io/metagenomics/metagen_anvio)
-	- [Here is a simplified example of how we recover genomes from metagenomes](/images/gen_from_metagen_slide.png); you can download a <a href="https://ndownloader.figshare.com/files/12367211">keynote slide here</a> and a <a href="https://ndownloader.figshare.com/files/12367226">powerpoint version here</a> if you'd like to use or edit 🙂  
-
-- A nice workflow leading up to and including recovering genomes can be found [here](http://merenlab.org/tutorials/infant-gut/) at the [anvi'o site](http://merenlab.org/software/anvio/) (along with other very informative/helpful tutorials and blogs)
