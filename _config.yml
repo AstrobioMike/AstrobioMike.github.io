@@ -25,6 +25,9 @@ github_username:  AstrobioMike
 
 # google analytics, setup from these instructions: https://desiredpersona.com/google-analytics-jekyll/
 google_analytics: "UA-110574647-1"
+# updated to google analytics 4, these instructions might help (don't want to remove prior tracking with GA yet though): https://cuda-chen.github.io/blogging/2022/04/30/switch-your-jekyll-blog-to-google-analytics-4-simplified.html
+# google_analytics: "G-JXFTZ02Z27"
+
 
 # Build settings
 markdown: kramdown
