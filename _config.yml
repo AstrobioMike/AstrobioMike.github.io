@@ -25,8 +25,12 @@ github_username:  AstrobioMike
 
 # google analytics, setup from these instructions: https://desiredpersona.com/google-analytics-jekyll/
 google_analytics: "UA-110574647-1"
-# updated to google analytics 4, these instructions might help (don't want to remove prior tracking with GA yet though): https://cuda-chen.github.io/blogging/2022/04/30/switch-your-jekyll-blog-to-google-analytics-4-simplified.html
+# updated to google analytics 4, saw this changed on this page: https://cuda-chen.github.io/blogging/2022/04/30/switch-your-jekyll-blog-to-google-analytics-4-simplified.html
+# but don't want to remove prior tracking with GA yet, and not sure i need to (or should) ever, since these will never be merged
+# but both (original and GA4) are under my account at analytics.google.com
 # google_analytics: "G-JXFTZ02Z27"
+# though i guess jan 2 is as good a day as ever to stop collecting data the old way, but want to know it's working for certain
+### IF and when i do swap these, be sure to change _includes/head.html and _includes/_head.html by removing "{% include analytics.html %}" lines in each ###
 
 
 # Build settings
