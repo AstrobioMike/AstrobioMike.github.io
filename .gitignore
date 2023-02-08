@@ -5,3 +5,4 @@ _site
 update_bundle.sh
 check_links.sh
 new-way-to-launch-local.txt
+jupyter-notebooks/.ipynb_checkpoints/
