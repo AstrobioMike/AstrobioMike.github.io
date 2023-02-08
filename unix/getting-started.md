@@ -60,7 +60,7 @@ Don't forget to press enter to execute the last command (usually that doesn't co
 <br>
 # A few foundational rules
 
-* **Spaces are special!** The command line uses spaces to know how to properly break things apart. This is why it's not ideal to have filenames that contain spaces, but rather it's better to use dashes (**`-`**) or underscores (**`_`**) – e.g., "draft_v3.txt" is preferred over "draft v3.txt".  
+* **Spaces are special!** The command line uses spaces to know how to properly break things apart. This is why it's not ideal to have filenames that contain spaces, but rather it's better to use dashes (**`-`**) or underscores (**`_`**) – e.g., "draft-v3.txt" is preferred over "draft v3.txt".  
 <br>
 
 * The general syntax working at the command line goes like this: **`command argument`**.  
@@ -79,13 +79,17 @@ Don't forget to press enter to execute the last command (usually that doesn't co
 
 >**NOTE:** It's okay to copy and paste things throughout this intro if you'd like. There will be lots of time forever moving forward to worry about each individual character being perfect. Right now is just about the concepts 🙂 
 
-**`date`** is a command that prints out the date and time. This particular command does not require any arguments:
+**`date`** is a command that prints out the date and time. This particular command doesn't require any arguments:
 
 ```bash
 date
 ```
 
-When we run **`date`** with no arguments, it uses some default settings, like assuming we want to know the time in our computer's local time zone. But we can provide optional arguments to **`date`**. Optional arguments most often require putting a dash in front of them in order for the program to interpret them properly. Here we are adding the **`-u`** argument to tell it to report UTC time instead of the local time – which will be the same if the computer we're using happens to be set to UTC time, of course 🙂: 
+When we run **`date`** with no arguments, it uses some default settings, like assuming we want to know the time in our computer's local time zone. But we can provide optional arguments to **`date`**. 
+
+Optional arguments most often require putting a dash in front of them in order for the program to interpret them properly. 
+
+Here, we are adding the **`-u`** argument to tell it to report UTC time instead of the local time – which will be the same if the computer we're using happens to be set to UTC time, of course 🙂: 
 
 ```bash
 date -u
@@ -103,15 +107,17 @@ Also note that if we try to enter this without the "space" separating **`date`**
 date-u
 ```
 
->Notice that the first error comes from the program **`date`**, and it doesn't know what to do with the letter **`u`**. The second error comes from **`bash`**, the language we are working in, because it's trying to find a program called "date-u" since we didn't tell it how to properly break things apart. 
+> Notice that the first error comes from the program **`date`**, so the program we wanted is responding to us, but it doesn't know what to do with the letter **`u`** we gave it. The second error comes from **`bash`**, the language we are working in, telling us it can't find a command (or program) called "date-u" – which it's looking for because we didn't tell it how ot properly break things apart (because we removed the needed space).  
 
-Unlike `date`, most commands require arguments and won't work without them. **`head`** is a command that prints the first lines of a file, so it **requires** us to provide the file we want it to act on: 
+Unlike **`date`**, most commands require arguments and won't work without them. **`head`** is a command that prints the first lines of a file, so it **requires** us to provide the file we want it to act on. Here is printout out the first lines of a file called "example.txt":
 
 ```bash
 head example.txt
 ```
 
-Here "example.txt" is the **required** argument, and in this case it is also what's known as a **positional** argument. Whether things need to be provided as positional arguments or not depends on how the command or program we are using was written. Sometimes we need to specify the input file by putting something in front of it (e.g. some commands will use the `-i` flag, but it's often other things as well).
+Here "example.txt" is the **required** argument, and in this case it is also what's known as a **positional** argument (we'll see examples of what's *not* a positional argument in a second). 
+
+Whether things need to be provided as positional arguments or not depends on how the command or program we are using was written. Sometimes we need to specify the input file by putting something in front of it (e.g., some commands will use the **`-i`** flag, but it's often other things as well).
 
 There are also optional arguments for the **`head`** command. The default for **`head`** is to print the first 10 lines of a file. We can change that by specifying the **`-n`** flag, followed by how many lines we want:
 
@@ -126,7 +132,11 @@ head -h
 head --help
 ```
 
-And/or we can go to google to look for help. This is one of the parts that is not about memorization at all. We might remember a few flags or specific options if we happen to use them a lot, but searching for options and details when needed is definitely the norm!
+That spit out a lot of information (and **`head`** is a relatively simple command compared to many others), but somewhere in there we can see "-n, --lines..." (we could have used **`--lines 5`** instead of **`-n 5`** to get the same result), but even that can be confusing if we're not use to how this information is presented. 
+
+I usually try an built-in help menu first, because it's usually immediately accessible and might help. But if it's not working out, I very quickly go to our good friend google, which will often have a more easily understood answer for me somehwere. 
+
+What options are available for a certain command, and how to specify them, are parts of this process that are not about memorization at all. We might remember a few flags or specific options if we happen to use them a lot, but searching for options and details when needed is definitely the norm!
 
 <blockquote>
 What we've done so far already really is the framework for how almost all things work at the command line! Multiple commands can be strung together, and some commands can have many options, inputs, and outputs and can grow to be quite long, but this is the general framework that underlies it all.<br><br><center><b>Becoming familiar with these baseline rules is important, memorizing particular commands and options is not!</b></center><br>
@@ -137,36 +147,46 @@ What we've done so far already really is the framework for how almost all things
 <br>
 # The Unix file-system structure
 
-Your computer stores file locations in a hierarchical structure. You are likely already used to navigating through this stucture by clicking on various folders (also known as directories) in a Windows Explorer window or a Mac Finder window. Just like we need to select the appropriate files in the appropriate locations there (in a GUI), we need to do the same when working at a command-line interface. What this means in practice is that each file and directory has its own "address", and that address is called its "**path**". 
+Computers store file locations in a hierarchical structure. We are typically already used to navigating through this stucture by clicking on various folders (also known as directories) in a Windows Explorer window or a Mac Finder window. Just like we need to select the appropriate files in the appropriate locations there (in a Graphical User-Interface, or GUI), we need to do the same when working at a command-line interface. What this means in practice is that each file and directory has its own "address", and that address is called its "**path**". 
 
-Here is an image of an example file-system structure:
+Additionally, there are two special locations in all Unix-based systems, so 2 more terms we should become familiar with: the "**root**" location and the current user's "**home**" location. "Root" is where the address system of the computer starts; "home" is where the current user's location starts.
+
+Here is an image of an example file-system structure. Let's take a peek at it. First imagining just "clicking" through folders (directories) in a GUI in order to reach the file we want, "processing_notes.txt". Then we'll talk about it in terms of the "path" we could use to get to the same file at the command line.
 
 <center><a href="../images/file_system_structure.png"><img src="../images/file_system_structure.png" width="80%"></a></center>
 <br>
 
-There are two special locations in all Unix-based systems: the "**root**" location and the current user's "**home**" location. "Root" is where the address system of the computer starts; "home" is where the current user's location starts.
 
-We tell the command line where files and directories are located by providing their address, their "path". If we use the **`pwd`** command (for **p**rint **w**orking **d**irectory), we can find out what the path is for the directory we are sitting in. And if we use the **`ls`** command (for **l**i**s**t), we can see what directories and files are in the current directory we are sitting in.
+We tell the command line where files and directories are located by providing their address, their "path". If we use the **`pwd`** command (for **p**rint **w**orking **d**irectory), we can find out what the path is for the directory (folder) we are sitting in:
 
 ```
 pwd
+```
+
+Note that is providing the path starting from the special **root** location, because it begins with that leading **`/`**, which is the special character that denotes the start of the address system.
+
+And we can use the **`ls`** command (for **l**i**s**t) to see what directories and files are in the current directory we are sitting in:
+
+```
 ls
 ``` 
 
 <br>
 ## Absolute vs relative path
-There are two ways to specify the path (address) of the file we want to do something to:
+There are two ways to specify the path (address in the computer) of the file we want to find or do something to:
 
-* An **absolute path** is an address that starts from an explicitly specified location: either the "root" **`/`** or the "home" **`~/`** location. (Side note, because we also may see or hear the term, the "full path", is the absolute path that starts from the "root" **`/`**.)
+* An **absolute path** is an address that starts from one of those two special locations we mentioned above: either the "root" (specified with **`/`**) or the "home" location (specified with **`~/`**). (Side note, because we also may see or hear the term, the "full path", is the absolute path that starts from the "root" **`/`**.)
 * A **relative path** is an address that starts from wherever we are currently sitting.
 
-For example, let's look again at the **`head`** command we ran above:
+These can sound a little more confusing at first than they are, so it's best to just look at some examples. 
+
+Let's start by looking again at the **`head`** command we ran above:
 
 ```bash
 head example.txt
 ```
 
-**What we are actually doing here is using a *relative path* to specify where the "example.txt" file is located.** This is because the command line automatically looks in the current working directory if we don't specify anything else about its location. 
+**What we are actually doing here is using a *relative path* to specify where the "example.txt" file is located.** The command line automatically looks in the current working directory if we don't specify anything else about a file's location. So this works specifically because there is a file called "example.txt" in the current directory we are sitting in where we are running the command.
 
 We can also run the same command on the same file using an **absolute path**:
 
@@ -174,26 +194,35 @@ We can also run the same command on the same file using an **absolute path**:
 head ~/unix_intro/example.txt
 ```
 
-The previous two commands both point to the same file right now. But the first way, **`head example.txt`**, will only work if we are entering it while "sitting" in the directory that holds that file, while the second way will work no matter where we happen to be in the computer. 
+There we are using the special "home" location, specified by the **`~/`** at the start, then going into the directory that holds the file, then naming the file. 
+
+The previous two commands both point to the same file. But the first way, **`head example.txt`**, will only work if we are entering it while "sitting" in the directory that holds that file, while the second way will work no matter "where" we happen to be in the computer. 
 
 >**Note:** The address of a file, its "path", includes the file name also, it doesn't stop at the directory that holds it.
 
-It is important to always think about *where* we are in the computer when working at the command line. **One of the most common errors/easiest mistakes to make is trying to do something to a file that isn't where we think it is.** Let's run **`head`** on the "example.txt" file again, and then let's try it on another file: "notes.txt":
+It is important to always think about *where* we are in the computer when working at the command line. **One of the most common errors/easiest mistakes to make is trying to do something to a file that isn't where we think it is.** 
+
+Let's run **`head`** on the "example.txt" file again, using a relative path by just providing the name of the file, and then let's try it on another file, "notes.txt":
 
 ```bash
 head example.txt
 head notes.txt
 ```
-Here the **`head`** command works fine on "example.txt", but we get an error message when we call it on "notes.txt" telling us no such file or directory. If we run the **`ls`** command to **l**i**s**t the contents of the current working directory, we can see the computer is absolutely right – spoiler alert: it usually is – and there is no file here named "notes.txt". 
+Here the **`head`** command works fine on "example.txt", but we get an error message when we call it on "notes.txt" telling us no such file or directory. 
+
+If we run the **`ls`** command to **l**i**s**t the contents of the current working directory, we can see the computer is absolutely right – spoiler alert: it usually is – and there is no file here named "notes.txt". 
+
+```bash
+ls
+```
 
 The **`ls`** command by default operates on the current working directory if we don't specify any location, but we can tell it to list the contents of a different directory by providing it as a positional argument: 
 
 ```bash
-ls
 ls experiment
 ```
 
-We can see the file we were looking for is located in the subdirectory called "experiment". Here is how we can run **`head`** on "notes.txt" by specifying an accurate **relative path** to that file:
+We can see the file we were looking for is located in this sub-directory called "experiment". Here is how we can run **`head`** on "notes.txt" by specifying an accurate **relative path** to that file:
 
 ```bash
 head experiment/notes.txt
