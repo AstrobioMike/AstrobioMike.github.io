@@ -37,14 +37,14 @@ Next we're going to look at some more ways to learn about and manipulate file an
 
 <hr style="height:10px; visibility:hidden;" />
 ## Working with files
-We will often want to get a look at a file to see how it's structured. We've already used a very common tool for peeking at files, the **`head`** command. There is also **`tail`**, which prints the last 10 lines of a file:
+We will often want to get a look at a file to see how it's structured or what's in it. We've already used one very common tool for peeking at files, the **`head`** command. There is also **`tail`**, which prints the last 10 lines of a file by default:
 
 ```bash
 head example.txt
 tail example.txt
 ```
 
-This is especially helpful if a file is particularly large, as **`head`** will just print the first ten lines and stop. This means it will be just as instantaneous whether the file is 10kB or 10GB. 
+Programs like these can be especially helpful if a file is particularly large, as **`head`** will just print the first ten lines and stop. This means it will be just as instantaneous whether the file is 10kB or 10GB. 
 
 Another standard useful program for viewing the contents of a file is **`less`**. This opens a searchable, read-only program that allows us to scroll through the document: 
 
@@ -63,7 +63,7 @@ wc example.txt
 <challengeBlock>
 <center><b>QUICK PRACTICE!</b></center>
 
-How can we get <i>only</i> the number of lines in a file from the <htmlCode>wc</htmlCode> command?
+Try to find an option/argument that will let us get <i>only</i> the number of lines in a file from the <htmlCode>wc</htmlCode> command.
 <br>
 
 <div class="wrap-collabsible">
@@ -122,7 +122,7 @@ cp example.txt data/example_copy.txt
 ls data/
 ```
 
-To copy it to that subdirectory but keep the same name, we could type the whole name out, but we can also just provide the directory but leave off the file name:
+To copy it to that subdirectory but keep the same name, we could type the whole name out, but we can also just provide the directory and leave off the file name, and it will automatically keep the same original name:
 
 ```bash
 cp example.txt data/
@@ -137,7 +137,7 @@ cp experiment/notes.txt .
 ls
 ```
 
-The **`mv`** command is used to move files. Let's move the "example_copy.txt" file into the "experiment" subdirectory:
+The **`mv`** command is used to **m**o**v**e files. Let's move the "example_copy.txt" file into the "experiment" subdirectory:
 
 ```bash
 ls
