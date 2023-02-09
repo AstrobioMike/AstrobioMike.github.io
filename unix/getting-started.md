@@ -134,7 +134,7 @@ head --help
 
 That spit out a lot of information (and **`head`** is a relatively simple command compared to many others), but somewhere in there we can see "-n, --lines..." (we could have used **`--lines 5`** instead of **`-n 5`** to get the same result), but even that can be confusing if we're not use to how this information is presented. 
 
-I usually try an built-in help menu first, because it's usually immediately accessible and might help. But if it's not working out, I very quickly go to our good friend google, which will often have a more easily understood answer for me somehwere. 
+I usually try a built-in help menu first, because it's usually immediately accessible and might help. But if it's not working out, I very quickly go to our good friend google, which will often have a more easily understood answer for me somehwere. 
 
 What options are available for a certain command, and how to specify them, are parts of this process that are not about memorization at all. We might remember a few flags or specific options if we happen to use them a lot, but searching for options and details when needed is definitely the norm!
 

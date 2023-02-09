@@ -16,7 +16,11 @@ permalink: /unix/unix-intro
 <br>
 
 # What is Unix?
-The term "Unix" encompasses a family of operating systems that share a common ancestor that was initially developed in the late 1960s. It was built based off a modular design philosophy, where relatively simple tools can be strung together seemlessly in order to accomplish more complicated tasks. In short, it has spread like crazy throughout the computational world. Many successful offshoots of Unix have been developed, which is why we might see the term "Unix-like", in order to encompass all the systems that aren't technically "Unix". None of this really matters, but just to cover a little bit of terminology (you can see a few more terms [here](https://astrobiomike.github.io/unix/){:target="_blank"} if wanted).
+The term "Unix" encompasses a family of operating systems that share a common ancestor that was initially developed in the late 1960s. It was built based off a modular design philosophy, where relatively simple tools can be strung together seemlessly in order to accomplish more complicated tasks. In short, it has spread like crazy throughout the computational world over the past 5 decades. 
+
+Many successful offshoots of Unix have been developed, which is why we might see the term "Unix-like", in order to encompass all the systems that aren't technically "Unix". 
+
+None of this really matters, but just noting for any who are curious (you can see a few more terms [here](https://astrobiomike.github.io/unix/){:target="_blank"} if wanted).
 
 <hr style="height:10px; visibility:hidden;" />
 
