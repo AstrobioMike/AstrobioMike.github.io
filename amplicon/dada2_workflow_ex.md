@@ -147,13 +147,13 @@ First, let's just run it on one individual sample and breakdown the command:
 ```bash
 cutadapt --version # 2.3
 cutadapt -a ^GTGCCAGCMGCCGCGGTAA...ATTAGAWACCCBDGTAGTCC \
-    -A ^GGACTACHVGGGTWTCTAAT...TTACCGCGGCKGCTGGCAC \
-    -m 215 -M 285 --discard-untrimmed \
-    -o B1_sub_R1_trimmed.fq -p B1_sub_R2_trimmed.fq \
-    B1_sub_R1.fq B1_sub_R2.fq
+         -A ^GGACTACHVGGGTWTCTAAT...TTACCGCGGCKGCTGGCAC \
+         -m 215 -M 285 --discard-untrimmed \
+         -o B1_sub_R1_trimmed.fq -p B1_sub_R2_trimmed.fq \
+         B1_sub_R1.fq B1_sub_R2.fq
 ```
 
-Don't worry about the backslashes `\`, they are just there to ignore the return characters that come right after them (and are invisible here) that I've put in so this is organized a little more clearly, rather than as one long single line. Moving on to dissecting what the command is doing here, cutadapt does a lot of different things, and there is excellent documentation at their [site](https://cutadapt.readthedocs.io/en/stable/index.html){:target="_blank"}. I learned about what we're specifying here from their ["Trimming (amplicon-) primers from both ends of paired-end reads" page](https://cutadapt.readthedocs.io/en/stable/recipes.html#trimming-amplicon-primers-from-both-ends-of-paired-end-reads){:target="_blank"} (See? I told you they had awesome documentation). Because our paired reads in this case were sequenced longer than the span of the target amplicon (meaning, we did 2x300 bp sequencing, and the targeted V4 region is shorter than that), *we will typically have both primers in each forward and reverse read*. Cutadapt handles "linked" adapters perfectly for such a case. We are specifying the primers for the forward read with the `-a` flag, giving it the forward primer (in normal orientation), followed by three dots (required by cutadapt to know they are "linked", with bases in between them, rather than right next to each other), then the reverse complement of the reverse primer (I found this [excellent site](http://arep.med.harvard.edu/labgc/adnan/projects/Utilities/revcomp.html){:target="_blank"} for converting to reverse complement **while treating degenerate bases properly**). Then for the reverse reads, specified with the `-A` flag, we give it the reverse primer (in normal 5'-3' orientation), three dots, and then the reverse complement of the forward primer. Both of those have a `^` symbol in front at the 5' end indicating they should be found at the start of the reads (which is the case with this particular setup). The minimum read length (set with `-m`) and max (set with `-M`) were based roughly on 10% smaller and bigger than would be expected after trimming the primers. **These types of settings will be different for data generated with different sequencing, i.e. not 2x300, and different primers. `--discard-untrimmed` states to throw away reads that don't have these primers in them in the expected locations. Then `-o` specifies the output of the forwards reads, `-p` specifies the output of the reverse reads, and the input forward and reverse are provided as [positional arguments](/unix/getting-started#running-commands){:target="_blank"} in that order. 
+Don't worry about the backslashes `\`, they are just there to ignore the return characters that come right after them (and are invisible here) that I've put in so this is organized a little more clearly, rather than as one long single line. Moving on to dissecting what the command is doing here, cutadapt does a lot of different things, and there is excellent documentation at their [site](https://cutadapt.readthedocs.io/en/stable/index.html){:target="_blank"}. I learned about what we're specifying here from their ["Trimming (amplicon-) primers from paired-end reads" section](https://cutadapt.readthedocs.io/en/stable/recipes.html#trimming-amplicon-primers-from-paired-end-reads){:target="_blank"} (See? I told you they had awesome documentation). Because our paired reads in this case were sequenced longer than the span of the target amplicon (meaning, we did 2x300 bp sequencing, and the targeted V4 region is shorter than that), *we will typically have both primers in each forward and reverse read*. Cutadapt handles "linked" adapters perfectly for such a case. We are specifying the primers for the forward read with the `-a` flag, giving it the forward primer (in normal orientation), followed by three dots (required by cutadapt to know they are "linked", with bases in between them, rather than right next to each other), then the reverse complement of the reverse primer (I found this [excellent site](http://arep.med.harvard.edu/labgc/adnan/projects/Utilities/revcomp.html){:target="_blank"} for converting to reverse complement **while treating degenerate bases properly**). Then for the reverse reads, specified with the `-A` flag, we give it the reverse primer (in normal 5'-3' orientation), three dots, and then the reverse complement of the forward primer. Both of those have a `^` symbol in front at the 5' end indicating they should be found at the start of the reads (which is the case with this particular setup). The minimum read length (set with `-m`) and max (set with `-M`) were based roughly on 10% smaller and bigger than would be expected after trimming the primers. **These types of settings will be different for data generated with different sequencing, i.e. not 2x300, and different primers. `--discard-untrimmed` states to throw away reads that don't have these primers in them in the expected locations. Then `-o` specifies the output of the forwards reads, `-p` specifies the output of the reverse reads, and the input forward and reverse are provided as [positional arguments](/unix/getting-started#running-commands){:target="_blank"} in that order. 
 
 Here's a before-and-after view of just that sample: 
 
@@ -210,11 +210,11 @@ do
     echo "On sample: $sample"
     
     cutadapt -a ^GTGCCAGCMGCCGCGGTAA...ATTAGAWACCCBDGTAGTCC \
-    -A ^GGACTACHVGGGTWTCTAAT...TTACCGCGGCKGCTGGCAC \
-    -m 215 -M 285 --discard-untrimmed \
-    -o ${sample}_sub_R1_trimmed.fq.gz -p ${sample}_sub_R2_trimmed.fq.gz \
-    ${sample}_sub_R1.fq ${sample}_sub_R2.fq \
-    >> cutadapt_primer_trimming_stats.txt 2>&1
+             -A ^GGACTACHVGGGTWTCTAAT...TTACCGCGGCKGCTGGCAC \
+             -m 215 -M 285 --discard-untrimmed \
+             -o ${sample}_sub_R1_trimmed.fq.gz -p ${sample}_sub_R2_trimmed.fq.gz \
+             ${sample}_sub_R1.fq ${sample}_sub_R2.fq \
+             >> cutadapt_primer_trimming_stats.txt 2>&1
 
 done
 ```
@@ -348,8 +348,8 @@ filtered_out
 # R8_sub_R1_trimmed.fq.gz       12211     11192
 # R9_sub_R1_trimmed.fq.gz        8600      7853
 
-  ## don't worry if the numbers vary a little, this might happen due to different versions being used 
-  ## from when this was initially put together
+    ## don't worry if the numbers vary a little, this might happen due to different versions being used 
+    ## from when this was initially put together
 ```
 
 Now let's take a look at our filtered reads:
@@ -421,7 +421,7 @@ Now DADA2 merges the forward and reverse ASVs to reconstruct our full target amp
 merged_amplicons <- mergePairs(dada_forward, derep_forward, dada_reverse,
                     derep_reverse, trimOverhang=TRUE, minOverlap=170)
 
-  # this object holds a lot of information that may be the first place you'd want to look if you want to start poking under the hood
+    # this object holds a lot of information that may be the first place you'd want to look if you want to start poking under the hood
 class(merged_amplicons) # list
 length(merged_amplicons) # 20 elements in this list, one for each of our samples
 names(merged_amplicons) # the names() function gives us the name of each element of the list 
@@ -440,8 +440,8 @@ seqtab <- makeSequenceTable(merged_amplicons)
 class(seqtab) # matrix
 dim(seqtab) # 20 2521
 
-  ## don't worry if the numbers vary a little, this might happen due to different versions being used 
-  ## from when this was initially put together
+    ## don't worry if the numbers vary a little, this might happen due to different versions being used 
+    ## from when this was initially put together
 ```
 
 We can see from the dimensions of the "seqtab" matrix that we have 2,525 ASVs in this case. But it's not very friendly to look at in its current form because the actual sequences are our rownames - so we'll make a more traditional count table in a couple steps.
@@ -452,21 +452,21 @@ DADA2 identifies likely chimeras by aligning each sequence with those that were 
 ```R
 seqtab.nochim <- removeBimeraDenovo(seqtab, verbose=T) # Identified 17 bimeras out of 2521 input sequences.
 
-  # though we only lost 17 sequences, we don't know if they held a lot in terms of abundance, this is one quick way to look at that
+    # though we only lost 17 sequences, we don't know if they held a lot in terms of abundance, this is one quick way to look at that
 sum(seqtab.nochim)/sum(seqtab) # 0.9931372 # in this case we barely lost any in terms of abundance
 
-  ## don't worry if the numbers vary a little, this might happen due to different versions being used 
-  ## from when this was initially put together
+    ## don't worry if the numbers vary a little, this might happen due to different versions being used 
+    ## from when this was initially put together
 ```
 
 ## Overview of counts throughout
 The developers' [DADA2 tutorial](https://benjjneb.github.io/dada2/tutorial.html){:target="_blank"} provides an example of a nice, quick way to pull out how many reads were dropped at various points of the pipeline. This can serve as a jumping off point if you're left with too few sequences at the end to help point you towards where you should start digging into where they are being dropped. Here's a slightly modified version: 
 
 ```R
-  # set a little function
+    # set a little function
 getN <- function(x) sum(getUniques(x))
 
-  # making a little table
+    # making a little table
 summary_tab <- data.frame(row.names=samples, dada2_input=filtered_out[,1],
                filtered=filtered_out[,2], dada_f=sapply(dada_forward, getN),
                dada_r=sapply(dada_reverse, getN), merged=sapply(merged_amplicons, getN),
@@ -496,8 +496,8 @@ summary_tab
 # R8          12211    11192  10286  10513   9530    9454                      77.4
 # R9           8600     7853   7215   7390   6740    6695                      77.8
 
-  ## don't worry if the numbers vary a little, this might happen due to different versions being used 
-  ## from when this was initially put together
+    ## don't worry if the numbers vary a little, this might happen due to different versions being used 
+    ## from when this was initially put together
 
 ```
 
@@ -542,32 +542,32 @@ load("tax-info.RData")
 The typical standard outputs from amplicon processing are a fasta file, a count table, and a taxonomy table. So here's one way we can generate those files from your DADA2 objects in R:
 
 ```R
-  # giving our seq headers more manageable names (ASV_1, ASV_2...)
+    # giving our seq headers more manageable names (ASV_1, ASV_2...)
 asv_seqs <- colnames(seqtab.nochim)
 asv_headers <- vector(dim(seqtab.nochim)[2], mode="character")
 
 for (i in 1:dim(seqtab.nochim)[2]) {
-  asv_headers[i] <- paste(">ASV", i, sep="_")
+    asv_headers[i] <- paste(">ASV", i, sep="_")
 }
 
-  # making and writing out a fasta of our final ASV seqs:
+    # making and writing out a fasta of our final ASV seqs:
 asv_fasta <- c(rbind(asv_headers, asv_seqs))
 write(asv_fasta, "ASVs.fa")
 
-  # count table:
+    # count table:
 asv_tab <- t(seqtab.nochim)
 row.names(asv_tab) <- sub(">", "", asv_headers)
 write.table(asv_tab, "ASVs_counts.tsv", sep="\t", quote=F, col.names=NA)
 
-  # tax table:
-  # creating table of taxonomy and setting any that are unclassified as "NA"
+    # tax table:
+    # creating table of taxonomy and setting any that are unclassified as "NA"
 ranks <- c("domain", "phylum", "class", "order", "family", "genus", "species")
 asv_tax <- t(sapply(tax_info, function(x) {
-  m <- match(ranks, x$rank)
-  taxa <- x$taxon[m]
-  taxa[startsWith(taxa, "unclassified_")] <- NA
-  taxa
-}))
+    m <- match(ranks, x$rank)
+    taxa <- x$taxon[m]
+    taxa[startsWith(taxa, "unclassified_")] <- NA
+    taxa
+    }))
 colnames(asv_tax) <- ranks
 rownames(asv_tax) <- gsub(pattern=">", replacement="", x=asv_headers)
 
@@ -600,10 +600,10 @@ contam_df <- isContaminant(t(asv_tab), neg=vector_for_decontam)
 
 table(contam_df$contaminant) # identified 6 as contaminants
 
-  ## don't worry if the numbers vary a little, this might happen due to different versions being used 
-  ## from when this was initially put together
+    ## don't worry if the numbers vary a little, this might happen due to different versions being used 
+    ## from when this was initially put together
 
-  # getting vector holding the identified contaminant IDs
+    # getting vector holding the identified contaminant IDs
 contam_asvs <- row.names(contam_df[contam_df$contaminant == TRUE, ])
 ```
 
@@ -620,8 +620,8 @@ asv_tax[row.names(asv_tax) %in% contam_asvs, ]
 # ASV_285 "Bacteria" "Proteobacteria" "Gammaproteobacteria" "Betaproteobacteriales" "Burkholderiaceae"   "Tepidimonas"                               
 # ASV_623 "Bacteria" "Actinobacteria" "Actinobacteria"      "Corynebacteriales"     "Corynebacteriaceae" "Corynebacterium_1"
 
-  ## don't worry if the numbers vary a little, this might happen due to different versions being used 
-  ## from when this was initially put together
+    ## don't worry if the numbers vary a little, this might happen due to different versions being used 
+    ## from when this was initially put together
 ```
 
 And I also pulled out the sequences to [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi?PROGRAM=blastn&PAGE_TYPE=BlastSearch&LINK_LOC=blasthome){:target="_blank"} them, though all the taxonomic designations matched up perfectly. To pull these particular sequences, we can ran this *at the command line ("Terminal" tab in RStudio if you're working in the Binder)*:
@@ -647,25 +647,25 @@ grep -w -A1 "^>ASV_104\|^>ASV_219\|^>ASV_230\|^>ASV_274\|^>ASV_285\|^>ASV_623" A
 # >ASV_623
 # TACGTAGGGTGCGAGCGTTGTCCGGAATTACTGGGCGTAAAGGGCTCGTAGGTGGTTTGTCGCGTCGTCTGTGAAATTCCGGGGCTTAACTCCGGGCGTGCAGGCGATACGGGCATAACTTGAGTACTGTAGGGGTAACTGGAATTCCTGGTGTAGCGGTGAAATGCGCAGATATCAGGAGGAACACCGATGGCGAAGGCAGGTTACTGGGCAGTTACTGACGCTGAGGAGCGAAAGCATGGGTAGCGAACAGG
 
-  ## don't worry if things vary a little, this might happen due to different versions being used 
-  ## from when this was initially put together
+    ## don't worry if things vary a little, this might happen due to different versions being used 
+    ## from when this was initially put together
 ```
 
 And now, here is one way to remove them from our 3 primary outputs and create new files (back in R):  
 
 ```R
-  # making new fasta file
+    # making new fasta file
 contam_indices <- which(asv_fasta %in% paste0(">", contam_asvs))
 dont_want <- sort(c(contam_indices, contam_indices + 1))
 asv_fasta_no_contam <- asv_fasta[- dont_want]
 
-  # making new count table
+    # making new count table
 asv_tab_no_contam <- asv_tab[!row.names(asv_tab) %in% contam_asvs, ]
 
-  # making new taxonomy table
+    # making new taxonomy table
 asv_tax_no_contam <- asv_tax[!row.names(asv_tax) %in% contam_asvs, ]
 
-  ## and now writing them out to files
+    ## and now writing them out to files
 write(asv_fasta_no_contam, "ASVs-no-contam.fa")
 write.table(asv_tab_no_contam, "ASVs_counts-no-contam.tsv",
             sep="\t", quote=F, col.names=NA)
@@ -686,7 +686,7 @@ This portion also assumes you already have some baseline experience with R, if y
 These are either present in the Binder environment already, or we installed them with conda above. Some of the versions may be different from when this was first put together, and therefore the outputs may be subtly different too. That's ok!
 
 ```R
-  # don't worry if versions are different from what's listed here, shown are are just what was used when this was initially put together
+    # don't worry if versions are different from what's listed here, shown are are just what was used when this was initially put together
 library(tidyverse) ; packageVersion("tidyverse") # 1.3.1
 library(phyloseq) ; packageVersion("phyloseq") # 1.22.3
 library(vegan) ; packageVersion("vegan") # 2.5.4
@@ -728,7 +728,7 @@ tax_tab <- as.matrix(read.table("ASVs_taxonomy-no-contam.tsv", header=T,
 sample_info_tab <- read.table("sample_info.tsv", header=T, row.names=1,
                    check.names=F, sep="\t")
   
-  # and setting the color column to be of type "character", which helps later
+    # and setting the color column to be of type "character", which helps later
 sample_info_tab$color <- as.character(sample_info_tab$color)
 
 sample_info_tab # to take a peek
@@ -745,7 +745,7 @@ We're going to use Euclidean distances to generate some exploratory visualizatio
 Common ways to do this involve either subsampling each sample down the the lowest sample's depth, or turning counts into proportions of the total for each sample. However, both of these approaches are generally shunned by people I trust when it comes to such topics (i.e., statisticians). For example, in their 2014 PLOS Computational Biology paper, ["Waste not, want not: why rarefying microbiome data is inadmissible"](http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003531){:target="_blank"}, McMurdie and Holmes show that a better method of normalizing across samples is to use a variance stabilizing transformation – which fortunately we can do with the [DESeq2](https://bioconductor.org/packages/release/bioc/html/DESeq2.html){:target="_blank"} package that we already have loaded.
 
 ```R
-  # first we need to make a DESeq2 object
+    # first we need to make a DESeq2 object
 deseq_counts <- DESeqDataSetFromMatrix(count_tab, colData = sample_info_tab, design = ~type) 
     # we have to include the "colData" and "design" arguments because they are 
     # required, as they are needed for further downstream processing by DESeq2, 
@@ -763,10 +763,10 @@ deseq_counts_vst <- varianceStabilizingTransformation(deseq_counts)
     # now followed by the transformation function:
       # deseq_counts_vst <- varianceStabilizingTransformation(deseq_counts)
 
-  # and here is pulling out our transformed table
+    # and here is pulling out our transformed table
 vst_trans_count_tab <- assay(deseq_counts_vst)
 
-  # and calculating our Euclidean distance matrix
+    # and calculating our Euclidean distance matrix
 euc_dist <- dist(t(vst_trans_count_tab))
 ```
 
@@ -776,12 +776,12 @@ Now that we have our Euclidean distance matrix, let's make and plot a hierarchic
 ```R
 euc_clust <- hclust(euc_dist, method="ward.D2")
 
-  # hclust objects like this can be plotted with the generic plot() function
+    # hclust objects like this can be plotted with the generic plot() function
 plot(euc_clust) 
     # but i like to change them to dendrograms for two reasons:
-      # 1) it's easier to color the dendrogram plot by groups
-      # 2) if wanted you can rotate clusters with the rotate() 
-      #    function of the dendextend package
+        # 1) it's easier to color the dendrogram plot by groups
+        # 2) if wanted you can rotate clusters with the rotate() 
+        #    function of the dendextend package
 
 euc_dend <- as.dendrogram(euc_clust, hang=0.1)
 dend_cols <- as.character(sample_info_tab$color[order.dendrogram(euc_dend)])
@@ -803,12 +803,12 @@ So from our first peek, the broadest clusters separate the biofilm, carbonate, a
 Generally speaking, ordinations provide visualizations of sample-relatedness based on dimension reduction – this is where the 'multidimensional scaling' term (MDS) fits in. The 'dimensions' could be, for instance, whatever you measured in each sample, in our case counts of ASVs. Principle coordinates analysis (PCoA) is a type of multidimensional scaling that operates on dissimilarities or distances. Here we're going to generate and plot our PCoA with [phyloseq](https://joey711.github.io/phyloseq/){:target="_blank"}, because it is very convenient for doing such things. But because we're still doing beta diversity here, we want to use our transformed table. So we're going to make a phyloseq object with our *DESeq2*-transformed table and generate the PCoA from that.
 
 ```R
-  # making our phyloseq object with transformed table
+    # making our phyloseq object with transformed table
 vst_count_phy <- otu_table(vst_trans_count_tab, taxa_are_rows=T)
 sample_info_tab_phy <- sample_data(sample_info_tab)
 vst_physeq <- phyloseq(vst_count_phy, sample_info_tab_phy)
 
-  # generating and visualizing the PCoA with phyloseq
+    # generating and visualizing the PCoA with phyloseq
 vst_pcoa <- ordinate(vst_physeq, method="MDS", distance="euclidean")
 eigen_vals <- vst_pcoa$values$Eigenvalues # allows us to scale the axes according to their magnitude of separating apart the samples
 
@@ -834,7 +834,7 @@ First thing's first, **it is not okay to use rarefaction curves to estimate tota
 ```R
 rarecurve(t(count_tab), step=100, col=sample_info_tab$color, lwd=2, ylab="ASVs", label=F)
 
-  # and adding a vertical line at the fewest seqs in any sample
+    # and adding a vertical line at the fewest seqs in any sample
 abline(v=(min(rowSums(t(count_tab)))))
 ```
 
@@ -849,13 +849,13 @@ Here we're going to plot Chao1 richness esimates and Shannon diversity values. C
 We are going to go back to using the phyloseq package for this to use the function `plot_richness()` – which the developers kindly provide some examples of [here](https://joey711.github.io/phyloseq/plot_richness-examples.html){:target="_blank"}. 
 
 ```R
-  # first we need to create a phyloseq object using our un-transformed count table
+    # first we need to create a phyloseq object using our un-transformed count table
 count_tab_phy <- otu_table(count_tab, taxa_are_rows=T)
 tax_tab_phy <- tax_table(tax_tab)
 
 ASV_physeq <- phyloseq(count_tab_phy, tax_tab_phy, sample_info_tab_phy)
 
-  # and now we can call the plot_richness() function on our phyloseq object
+    # and now we can call the plot_richness() function on our phyloseq object
 plot_richness(ASV_physeq, color="char", measures=c("Chao1", "Shannon")) + 
     scale_color_manual(values=unique(sample_info_tab$color[order(sample_info_tab$char)])) +
     theme_bw() + theme(legend.title = element_blank(), axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
@@ -886,15 +886,15 @@ Here we'll make some broad-level summarization figures. Phyloseq is also very us
 Let's make a summary of all major taxa proportions across all samples, then summaries for just the water samples and just the rock samples. To start, we need to parse our count matrix by taxonomy. How you want to break things down will depend on your data and your question, as usual. Here, we'll just generate a table of proportions of each phylum, and then breakdown the Proteobacteria to the class level.
 
 ```R
-  # using phyloseq to make a count table that has summed all ASVs
-    # that were in the same phylum
+    # using phyloseq to make a count table that has summed all ASVs
+        # that were in the same phylum
 phyla_counts_tab <- otu_table(tax_glom(ASV_physeq, taxrank="phylum")) 
 
   # making a vector of phyla names to set as row names
 phyla_tax_vec <- as.vector(tax_table(tax_glom(ASV_physeq, taxrank="phylum"))[,"phylum"]) 
 rownames(phyla_counts_tab) <- as.vector(phyla_tax_vec)
 
-  # we also have to account for sequences that weren't assigned any
+    # we also have to account for sequences that weren't assigned any
     # taxonomy even at the phylum level 
     # these came into R as 'NAs' in the taxonomy table, but their counts are
     # still in the count table
@@ -903,18 +903,18 @@ rownames(phyla_counts_tab) <- as.vector(phyla_tax_vec)
     # from the column sums of the starting count table (that has all
     # representative sequences)
 unclassified_tax_counts <- colSums(count_tab) - colSums(phyla_counts_tab)
-  # and we'll add this row to our phylum count table:
+    # and we'll add this row to our phylum count table:
 phyla_and_unidentified_counts_tab <- rbind(phyla_counts_tab, "Unclassified"=unclassified_tax_counts)
 
-  # now we'll remove the Proteobacteria, so we can next add them back in
+    # now we'll remove the Proteobacteria, so we can next add them back in
     # broken down by class
 temp_major_taxa_counts_tab <- phyla_and_unidentified_counts_tab[!row.names(phyla_and_unidentified_counts_tab) %in% "Proteobacteria", ]
 
-  # making count table broken down by class (contains classes beyond the
+    # making count table broken down by class (contains classes beyond the
     # Proteobacteria too at this point)
 class_counts_tab <- otu_table(tax_glom(ASV_physeq, taxrank="class")) 
 
-  # making a table that holds the phylum and class level info
+    # making a table that holds the phylum and class level info
 class_tax_phy_tab <- tax_table(tax_glom(ASV_physeq, taxrank="class")) 
 
 phy_tmp_vec <- class_tax_phy_tab[,2]
@@ -922,17 +922,17 @@ class_tmp_vec <- class_tax_phy_tab[,3]
 rows_tmp <- row.names(class_tax_phy_tab)
 class_tax_tab <- data.frame("phylum"=phy_tmp_vec, "class"=class_tmp_vec, row.names = rows_tmp)
 
-  # making a vector of just the Proteobacteria classes
+    # making a vector of just the Proteobacteria classes
 proteo_classes_vec <- as.vector(class_tax_tab[class_tax_tab$phylum == "Proteobacteria", "class"])
 
-  # changing the row names like above so that they correspond to the taxonomy,
+    # changing the row names like above so that they correspond to the taxonomy,
     # rather than an ASV identifier
 rownames(class_counts_tab) <- as.vector(class_tax_tab$class) 
 
-  # making a table of the counts of the Proteobacterial classes
+    # making a table of the counts of the Proteobacterial classes
 proteo_class_counts_tab <- class_counts_tab[row.names(class_counts_tab) %in% proteo_classes_vec, ] 
 
-  # there are also possibly some some sequences that were resolved to the level
+    # there are also possibly some some sequences that were resolved to the level
     # of Proteobacteria, but not any further, and therefore would be missing from
     # our class table
     # we can find the sum of them by subtracting the proteo class count table
@@ -942,17 +942,17 @@ proteo_no_class_annotated_counts <- phyla_and_unidentified_counts_tab[row.names(
   # now combining the tables:
 major_taxa_counts_tab <- rbind(temp_major_taxa_counts_tab, proteo_class_counts_tab, "Unresolved_Proteobacteria"=proteo_no_class_annotated_counts)
 
-  # and to check we didn't miss any other sequences, we can compare the column
+    # and to check we didn't miss any other sequences, we can compare the column
     # sums to see if they are the same
     # if "TRUE", we know nothing fell through the cracks
 identical(colSums(major_taxa_counts_tab), colSums(count_tab)) 
 
-  # now we'll generate a proportions table for summarizing:
+    # now we'll generate a proportions table for summarizing:
 major_taxa_proportions_tab <- apply(major_taxa_counts_tab, 2, function(x) x/sum(x)*100)
 
   # if we check the dimensions of this table at this point
 dim(major_taxa_proportions_tab)
-  # we see there are currently 42 rows, which might be a little busy for a
+    # we see there are currently 42 rows, which might be a little busy for a
     # summary figure
     # many of these taxa make up a very small percentage, so we're going to
     # filter some out
@@ -965,55 +965,55 @@ temp_filt_major_taxa_proportions_tab <- data.frame(major_taxa_proportions_tab[ap
 dim(temp_filt_major_taxa_proportions_tab) 
     # now we have 12, much more manageable for an overview figure
 
-  # though each of the filtered taxa made up less than 5% alone, together they
+    # though each of the filtered taxa made up less than 5% alone, together they
     # may add up and should still be included in the overall summary
     # so we're going to add a row called "Other" that keeps track of how much we
     # filtered out (which will also keep our totals at 100%)
 filtered_proportions <- colSums(major_taxa_proportions_tab) - colSums(temp_filt_major_taxa_proportions_tab)
 filt_major_taxa_proportions_tab <- rbind(temp_filt_major_taxa_proportions_tab, "Other"=filtered_proportions)
 
-  ## don't worry if the numbers or taxonomy vary a little, this might happen due to different versions being used 
-  ## from when this was initially put together
+    ## don't worry if the numbers or taxonomy vary a little, this might happen due to different versions being used 
+    ## from when this was initially put together
 ```
 
 Now that we have a nice proportions table ready to go, we can make some figures with it. While not always all that informative, expecially at the level of resolution we're using here (phyla and proteo classes only), we'll make some stacked bar charts, boxplots, and some pie charts. We'll use ggplot2 to do this, and for these types of plots it seems to be easiest to work with tables in [narrow format](https://en.wikipedia.org/wiki/Wide_and_narrow_data#Narrow){:target="_blank"}. We'll see what that means, how to transform the table, and then add some information for the samples to help with plotting. 
 
 ```R
-  # first let's make a copy of our table that's safe for manipulating
+    # first let's make a copy of our table that's safe for manipulating
 filt_major_taxa_proportions_tab_for_plot <- filt_major_taxa_proportions_tab
 
-  # and add a column of the taxa names so that it is within the table, rather
-  # than just as row names (this makes working with ggplot easier)
+    # and add a column of the taxa names so that it is within the table, rather
+    # than just as row names (this makes working with ggplot easier)
 filt_major_taxa_proportions_tab_for_plot$Major_Taxa <- row.names(filt_major_taxa_proportions_tab_for_plot)
 
-  # now we'll transform the table into narrow, or long, format (also makes
-  # plotting easier)
+    # now we'll transform the table into narrow, or long, format (also makes
+    # plotting easier)
 filt_major_taxa_proportions_tab_for_plot.g <- pivot_longer(filt_major_taxa_proportions_tab_for_plot, !Major_Taxa, names_to = "Sample", values_to = "Proportion") %>% data.frame()
 
-  # take a look at the new table and compare it with the old one
+    # take a look at the new table and compare it with the old one
 head(filt_major_taxa_proportions_tab_for_plot.g)
 head(filt_major_taxa_proportions_tab_for_plot)
     # manipulating tables like this is something you may need to do frequently in R
 
-  # now we want a table with "color" and "characteristics" of each sample to
+    # now we want a table with "color" and "characteristics" of each sample to
     # merge into our plotting table so we can use that more easily in our plotting
     # function
     # here we're making a new table by pulling what we want from the sample
     # information table
 sample_info_for_merge<-data.frame("Sample"=row.names(sample_info_tab), "char"=sample_info_tab$char, "color"=sample_info_tab$color, stringsAsFactors=F)
 
-  # and here we are merging this table with the plotting table we just made
+    # and here we are merging this table with the plotting table we just made
     # (this is an awesome function!)
 filt_major_taxa_proportions_tab_for_plot.g2 <- merge(filt_major_taxa_proportions_tab_for_plot.g, sample_info_for_merge)
 
-  # and now we're ready to make some summary figures with our wonderfully
+    # and now we're ready to make some summary figures with our wonderfully
     # constructed table
 
-  ## a good color scheme can be hard to find, i included the viridis package
+    ## a good color scheme can be hard to find, i included the viridis package
     ## here because it's color-blind friendly and sometimes it's been really
     ## helpful for me, though this is not demonstrated in all of the following :/ 
 
-  # one common way to look at this is with stacked bar charts for each taxon per sample:
+    # one common way to look at this is with stacked bar charts for each taxon per sample:
 ggplot(filt_major_taxa_proportions_tab_for_plot.g2, aes(x=Sample, y=Proportion, fill=Major_Taxa)) +
     geom_bar(width=0.6, stat="identity") +
     theme_bw() +
@@ -1042,17 +1042,17 @@ ggplot(filt_major_taxa_proportions_tab_for_plot.g2, aes(Major_Taxa, Proportion))
 Don't forget to keep in mind again that this was a very coarse level of resolution as we are using taxonomic classifications at the phylum and class ranks. This could partly be why things may look more similar between the rocks and water samples than we might expect, and why when looking at the ASV level – like we did with the exploratory visualizations above – we can see more clearly that these seem to host distinct communities. But let's look at this for a second anyway. The biofilm sample (green triangles) clearly stands out as having the greatest proportion of seqs classified as coming from Alphaproteobacteria and those that were Unclassified. Three of the four "glassy" basalts (black plus signs) seem to have the greatest proportion of Gammaproteobacteria-derived sequences. And Cyanos, Desulfobacterota, and Firmicutes for the most part only seem to show up in one of the water samples. Another way to look at this would be to plot the water and rock samples separately, which might help tighten up some taxa boxplots if they have a different distribution between the two sample types. 
 
 ```R
-  # let's set some helpful variables first:
+    # let's set some helpful variables first:
 bw_sample_IDs <- row.names(sample_info_tab)[sample_info_tab$type == "water"]
 rock_sample_IDs <- row.names(sample_info_tab)[sample_info_tab$type == "rock"]
 
-  # first we need to subset our plotting table to include just the rock samples to plot
+    # first we need to subset our plotting table to include just the rock samples to plot
 filt_major_taxa_proportions_rocks_only_tab_for_plot.g <- filt_major_taxa_proportions_tab_for_plot.g2[filt_major_taxa_proportions_tab_for_plot.g2$Sample %in% rock_sample_IDs, ]
-  # and then just the water samples
+    # and then just the water samples
 filt_major_taxa_proportions_water_samples_only_tab_for_plot.g <- filt_major_taxa_proportions_tab_for_plot.g2[filt_major_taxa_proportions_tab_for_plot.g2$Sample %in% bw_sample_IDs, ]
 
-  # and now we can use the same code as above just with whatever minor alterations we want
-  # rock samples
+    # and now we can use the same code as above just with whatever minor alterations we want
+    # rock samples
 ggplot(filt_major_taxa_proportions_rocks_only_tab_for_plot.g, aes(Major_Taxa, Proportion)) +
     scale_y_continuous(limits=c(0,50)) + # adding a setting for the y axis range so the rock and water plots are on the same scale
     geom_jitter(aes(color=factor(char), shape=factor(char)), size=2, width=0.15, height=0) +
@@ -1061,7 +1061,7 @@ ggplot(filt_major_taxa_proportions_rocks_only_tab_for_plot.g, aes(Major_Taxa, Pr
     theme(axis.text.x=element_text(angle=45, hjust=1), legend.position="top", legend.title=element_blank()) + # moved legend to top 
     labs(x="Major Taxa", y="% of 16S rRNA gene copies recovered", title="Rock samples only")
 
-# water samples
+    # water samples
 ggplot(filt_major_taxa_proportions_water_samples_only_tab_for_plot.g, aes(Major_Taxa, Proportion)) +
     scale_y_continuous(limits=c(0,50)) + # adding a setting for the y axis range so the rock and water plots are on the same scale
     geom_jitter(aes(color=factor(char)), size=2, width=0.15, height=0) +
@@ -1085,18 +1085,18 @@ This shows us more clearly for instance that one of the two water samples had ~1
 Last taxonomic summary we'll go through in will just be some pie charts. This is mostly because I think it's worth showing an example of using the `pivot_wider()` function to return our tables into "wide" format.
 
 ```R
-  # notice we're leaving off the "char" and "color" columns, in the code, and be sure to peak at the tables after making them
+    # notice we're leaving off the "char" and "color" columns, in the code, and be sure to peak at the tables after making them
 rock_sample_major_taxa_proportion_tab <- filt_major_taxa_proportions_rocks_only_tab_for_plot.g[, c(1:3)] %>% pivot_wider(names_from = Major_Taxa, values_from = Proportion) %>% column_to_rownames("Sample") %>% t() %>% data.frame()
 water_sample_major_taxa_proportion_tab <- filt_major_taxa_proportions_water_samples_only_tab_for_plot.g[, c(1:3)] %>% pivot_wider(names_from = Major_Taxa, values_from = Proportion) %>% column_to_rownames("Sample") %>% t() %>% data.frame()
 
-# summing each taxa across all samples for both groups 
+    # summing each taxa across all samples for both groups 
 rock_sample_summed_major_taxa_proportions_vec <- rowSums(rock_sample_major_taxa_proportion_tab)
 water_sample_summed_major_taxa_proportions_vec <- rowSums(water_sample_major_taxa_proportion_tab)
 
 rock_sample_major_taxa_summary_tab <- data.frame("Major_Taxa"=names(rock_sample_summed_major_taxa_proportions_vec), "Proportion"=rock_sample_summed_major_taxa_proportions_vec, row.names=NULL)
 water_sample_major_taxa_summary_tab <- data.frame("Major_Taxa"=names(water_sample_summed_major_taxa_proportions_vec), "Proportion"=water_sample_summed_major_taxa_proportions_vec, row.names=NULL)
 
-# plotting just rocks
+    # plotting just rocks
 ggplot(data.frame(rock_sample_major_taxa_summary_tab), aes(x="Rock samples", y=Proportion, fill=Major_Taxa)) + 
     geom_bar(width=1, stat="identity") +
     coord_polar("y") +
@@ -1105,7 +1105,7 @@ ggplot(data.frame(rock_sample_major_taxa_summary_tab), aes(x="Rock samples", y=P
     theme_void() +
     theme(plot.title = element_text(hjust=0.5), legend.title=element_blank())
 
-# and plotting just water samples
+    # and plotting just water samples
 ggplot(data.frame(water_sample_major_taxa_summary_tab), aes(x="Bottom water samples", y=Proportion, fill=Major_Taxa)) + 
     geom_bar(width=1, stat="identity") +
     coord_polar("y") +
@@ -1128,8 +1128,8 @@ As we saw earlier, we have some information about our samples in our sample info
 
 ```R
 anova(betadisper(euc_dist, sample_info_tab$type)) # 0.002
-  ## don't worry if the numbers vary a little, this might happen due to different versions being used 
-  ## from when this was initially put together, and due to variation in the permutations
+    ## don't worry if the numbers vary a little, this might happen due to different versions being used 
+    ## from when this was initially put together, and due to variation in the permutations
 ```
 
 Checking by all sample types, we get a significant result (0.002) from the `betadisper` test. This tells us that there is a difference between group dispersions, which means that we can't trust the results of an adonis (permutational anova) test on this, because the assumption of homogenous within-group disperions is not met. This isn't all that surprising considering how different the water and biofilm samples are from the rocks.  
@@ -1137,30 +1137,30 @@ Checking by all sample types, we get a significant result (0.002) from the `beta
 But a more interesting and specific question is "Do the rocks differ based on their level of exterior alteration?" So let's try this looking at just the basalt rocks, based on their characteristics of glassy and altered.
 
 ```R
-  # first we'll need to go back to our transformed table, and generate a
+    # first we'll need to go back to our transformed table, and generate a
     # distance matrix only incorporating the basalt samples
-      # and to help with that I'm making a variable that holds all basalt rock
-      # names (just removing the single calcium carbonate sample, R7)
+    # and to help with that I'm making a variable that holds all basalt rock
+    # names (just removing the single calcium carbonate sample, R7)
 basalt_sample_IDs <- rock_sample_IDs[!rock_sample_IDs %in% "R7"]
 
-  # new distance matrix of only basalts
+    # new distance matrix of only basalts
 basalt_euc_dist <- dist(t(vst_trans_count_tab[ , colnames(vst_trans_count_tab) %in% basalt_sample_IDs]))
 
-  # and now making a sample info table with just the basalts
+    # and now making a sample info table with just the basalts
 basalt_sample_info_tab <- sample_info_tab[row.names(sample_info_tab) %in% basalt_sample_IDs, ]
 
-  # running betadisper on just these based on level of alteration as shown in the images above:
+    # running betadisper on just these based on level of alteration as shown in the images above:
 anova(betadisper(basalt_euc_dist, basalt_sample_info_tab$char)) # 0.7
-  ## don't worry if the numbers vary a little, this might happen due to different versions being used 
-  ## from when this was initially put together, and due to variation in the permutations
+    ## don't worry if the numbers vary a little, this might happen due to different versions being used 
+    ## from when this was initially put together, and due to variation in the permutations
 ```
 
 Looking at just the two basalt groups, glassy vs the more highly altered with thick outer rinds, we do not find a significant difference between their within-group dispersions (0.7). So we can now test if the groups host statistically different communities based on adonis, having met this assumption.
 
 ```R
 adonis(basalt_euc_dist~basalt_sample_info_tab$char) # 0.003
-  ## don't worry if the numbers vary a little, this might happen due to different versions being used 
-  ## from when this was initially put together, and due to variation in the permutations
+    ## don't worry if the numbers vary a little, this might happen due to different versions being used 
+    ## from when this was initially put together, and due to variation in the permutations
 ```
 
 And with a significance level of 0.003, this gives us our **first statistical evidence** that there is actually a difference in microbial communities hosted by the more highly altered basalts as compared to the glassier less altered basalts, pretty cool!  
@@ -1168,16 +1168,16 @@ And with a significance level of 0.003, this gives us our **first statistical ev
 It can be useful to incorporate this statistic into a visualization. So let's make a new PCoA of just the basalts, and slap our proud significance on there. 
 
 ```R
-  # making our phyloseq object with transformed table
+    # making our phyloseq object with transformed table
 basalt_vst_count_phy <- otu_table(vst_trans_count_tab[, colnames(vst_trans_count_tab) %in% basalt_sample_IDs], taxa_are_rows=T)
 basalt_sample_info_tab_phy <- sample_data(basalt_sample_info_tab)
 basalt_vst_physeq <- phyloseq(basalt_vst_count_phy, basalt_sample_info_tab_phy)
 
-  # generating and visualizing the PCoA with phyloseq
+    # generating and visualizing the PCoA with phyloseq
 basalt_vst_pcoa <- ordinate(basalt_vst_physeq, method="MDS", distance="euclidean")
 basalt_eigen_vals <- basalt_vst_pcoa$values$Eigenvalues # allows us to scale the axes according to their magnitude of separating apart the samples
 
-  # and making our new ordination of just basalts with our adonis statistic
+    # and making our new ordination of just basalts with our adonis statistic
 plot_ordination(basalt_vst_physeq, basalt_vst_pcoa, color="char") + 
     labs(col="type") + geom_point(size=1) + 
     geom_text(aes(label=rownames(basalt_sample_info_tab), hjust=0.3, vjust=-0.4)) + 
@@ -1203,14 +1203,14 @@ Now that we've found a statistical difference between our two rock samples, this
 We are going to take advantage of another *phyloseq* convenience, and use the `phyloseq_to_deseq2` function to make our *DESeq2* object. 
 
 ```R
-  # first making a basalt-only phyloseq object of non-transformed values (as that is what DESeq2 operates on
+    # first making a basalt-only phyloseq object of non-transformed values (as that is what DESeq2 operates on
 basalt_count_phy <- otu_table(count_tab[, colnames(count_tab) %in% basalt_sample_IDs], taxa_are_rows=T)
 basalt_count_physeq <- phyloseq(basalt_count_phy, basalt_sample_info_tab_phy)
   
-  # now converting our phyloseq object to a deseq object
+    # now converting our phyloseq object to a deseq object
 basalt_deseq <- phyloseq_to_deseq2(basalt_count_physeq, ~char)
 
-  # and running deseq standard analysis:
+    # and running deseq standard analysis:
 basalt_deseq <- DESeq(basalt_deseq)
 ```
 
@@ -1219,28 +1219,28 @@ The `DESeq()` function is doing a lot of things. Be sure you look into it and un
 We can now access the results. In our setup here, we only have 2 groups, so what is being contrasted is pretty straightforward. Normally, you will tell the `results` function which groups you would like to be contrasted (all were done at the `DESeq2` function call, but we parse it by specifying now). We will also provide the p-value we wish to use to filter the results with later, as recommended by the `?results` help page, with the "alpha" argument.
 
 ```R
-  # pulling out our results table, we specify the object, the p-value we are going to use to filter our results, and what contrast we want to consider by first naming the column, then the two groups we care about
+    # pulling out our results table, we specify the object, the p-value we are going to use to filter our results, and what contrast we want to consider by first naming the column, then the two groups we care about
 deseq_res_altered_vs_glassy <- results(basalt_deseq, alpha=0.01, contrast=c("char", "altered", "glassy"))
 
-  # we can get a glimpse at what this table currently holds with the summary command
+    # we can get a glimpse at what this table currently holds with the summary command
 summary(deseq_res_altered_vs_glassy) 
     # this tells us out of ~1,800 ASVs, with adj-p < 0.01, there are 7 increased when comparing altered basalts to glassy basalts, and about 6 decreased
     # "decreased" in this case means at a lower count abundance in the altered basalts than in the glassy basalts, and "increased" means greater proportion in altered than in glassy
     # remember, this is done with a drastically reduced dataset, which is hindering the capabilities here quite a bit i'm sure
 
-  # let's subset this table to only include these that pass our specified significance level
+    # let's subset this table to only include these that pass our specified significance level
 sigtab_res_deseq_altered_vs_glassy <- deseq_res_altered_vs_glassy[which(deseq_res_altered_vs_glassy$padj < 0.01), ]
 
-  # now we can see this table only contains those we consider significantly differentially abundant
+    # now we can see this table only contains those we consider significantly differentially abundant
 summary(sigtab_res_deseq_altered_vs_glassy) 
 
-  # next let's stitch that together with these ASV's taxonomic annotations for a quick look at both together
+    # next let's stitch that together with these ASV's taxonomic annotations for a quick look at both together
 sigtab_deseq_altered_vs_glassy_with_tax <- cbind(as(sigtab_res_deseq_altered_vs_glassy, "data.frame"), as(tax_table(ASV_physeq)[row.names(sigtab_res_deseq_altered_vs_glassy), ], "matrix"))
 
-  # and now let's sort that table by the baseMean column
+    # and now let's sort that table by the baseMean column
 sigtab_deseq_altered_vs_glassy_with_tax[order(sigtab_deseq_altered_vs_glassy_with_tax$baseMean, decreasing=T), ]
 
-  # this puts a sequence derived from a Rhizobiales at the second to highest (first is unclassified) that was detected in ~7 log2fold greater abundance in the glassy basalts than in the highly altered basalts
+    # this puts a sequence derived from a Rhizobiales at the second to highest (first is unclassified) that was detected in ~7 log2fold greater abundance in the glassy basalts than in the highly altered basalts
 ```
 
 If you glance through the taxonomy of our significant table here, you'll see several have the same designations. It's possible this is one of those cases where the single-nucleotide resolution approach more inhibits our cause than helps it. You can imagine that with organisms having multiple copies of the 16S rRNA gene, which may not be identical, this could be muddying what we're looking for here by splitting the signal up and weaking it. Another way to look at this would be to sum the ASVs by the same genus designations, or to go back and cluster them into some form of OTU (after identifying ASVs) – in which case we'd still be using the ASV units, but then clustering them at some arbitrary level to see if that level of resolution is more revealing for the system we're looking at.
