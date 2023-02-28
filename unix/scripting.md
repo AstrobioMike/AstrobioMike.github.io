@@ -40,7 +40,7 @@ This intro page covers just the fundamentals of scripting at the command line. L
 ---
 <br>
 # Binder available
-If wanting to follow along, we can work in our own Unix-like environment, or if we don't have one or just want a temporary setup to run through this tutorial, we can open a [Binder](https://mybinder.org/){:target="_blank"} by clicking this badge – [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/AstrobioMike/binder-conda-intro/master?urlpath=lab){:target="_blank"}. After the screen loads, we can click the folder icon at the top-left to save some space, and then click the "Terminal" icon under "Other" at the bottom to launch our command-line environment:
+If wanting to follow along, we can work in our own Unix-like environment, or if we don't have one or just want a temporary setup to run through this tutorial, we can open a [Binder](https://mybinder.org/){:target="_blank"} by clicking this badge – [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/AstrobioMike/binder-unix-intro/master?urlpath=lab){:target="_blank"}. After the screen loads, we can click the folder icon at the top-left to save some space, and then click the "Terminal" icon under "Other" at the bottom to launch our command-line environment:
 
 <center><img src="../images/binder-app-launch2.png" width="90%"></center>
 <br>
