@@ -71,12 +71,12 @@ cat what-time-is-it.sh
 <center><img src="../images/my_PATH_what_time_script2.png"></center>
 
 <br>
-Ok great, so we just wrote a program that tells us what time it is according to our computer. That `cat >> what-time-is-it.sh << 'EOF'` line is say to put whatever we type that follows into that file we are just creating, up until we type "EOF". Then for the little example script: **`#!/bin/bash`** tells the computer which program to use when executing the script; the **`current_time`** line is us setting a variable, called "current_time", and storing within it the time that we use some *unix* magic to cut out of what the command **`date`** outputs; and then we are having it **`echo`** out the sentences (print to the terminal) and inserting the variable **`$current_time`**. Note the **`$`** here is just calling the variable in the same way as when we did **`echo $PATH`** above. The last little part **`chmod +x what_time_is_it.sh`** is changing the properties of the file so that the computer knows it's a program and will let us execute it more conveniently. 
+Ok great, so we just wrote a program that tells us what time it is according to our computer. That `cat >> what-time-is-it.sh << 'EOF'` line is say to put whatever we type that follows into that file we are just creating, up until we type "EOF". Then for the little example script: **`#!/bin/bash`** tells the computer which program to use when executing the script; the **`current_time`** line is us setting a variable, called "current_time", and storing within it the time that we use some *unix* magic to cut out of what the command **`date`** outputs; and then we are having it **`echo`** out the sentences (print to the terminal) and inserting the variable **`$current_time`**. Note the **`$`** here is just calling the variable in the same way as when we did **`echo $PATH`** above. The last little part **`chmod +x what-time-is-it.sh`** is changing the properties of the file so that the computer knows it's a program and will let us execute it more conveniently. 
 
 Let's give it shot now. At the moment, the "what-time-is-it.sh" script is *not* in our PATH. It exists only in the directory we are sitting in, and that directory is *not* in the list of directories that pops up when we run **`echo $PATH`**. So right now, to execute the program, we need to tell the computer where it is with its [relative or absolute path](/unix/getting-started#absolute-vs-relative-path){:target="_blank"}. *Executing* a file is different than *doing something to it* like we did with the **`cat`** command). And to *execute* a program, we need to be a bit more explicit even if it's sitting in our current working directory. Here we'll use the relative path, which looks like this:
 
 ```bash
-./what_time_is_it.sh
+./what-time-is-it.sh
 ```
 
 <center><img src="../images/what_time_is_it_path2.png"></center>
@@ -127,7 +127,7 @@ echo $PATH | tr ":" "\n"
 <center><img src="../images/temp_view_PATH_tail2.png"></center>
 
 <br>
-Beautiful, and to see the benefits, we can now run our **`what_time_is_it.sh`** program without pointing to its location. Here is in the directory it sits (without needing to have the `./` like we needed above):
+Beautiful, and to see the benefits, we can now run our **`what-time-is-it.sh`** program without pointing to its location. Here is in the directory it sits (without needing to have the `./` like we needed above):
 
 <center><img src="../images/what_time_cr_dir2.png"></center>
 
@@ -158,7 +158,7 @@ source ~/.bash_profile
 ---
 <br>
 
-And that's it! The **`PATH`** variable is just a special variable that contains all of the directories that are automatically searched when we try to call a program. Feel free to delete the **`what_time_is_it.sh`** script, but consider keeping the **`my-bin`** directory as a place to put things if you want them to be available from anywhere. Now that this directory is already in your PATH, you won't have to worry about that part anymore and anything you put in there will be accessible from anywhere on that computer.  
+And that's it! The **`PATH`** variable is just a special variable that contains all of the directories that are automatically searched when we try to call a program. Feel free to delete the **`what-time-is-it.sh`** script, but consider keeping the **`my-bin`** directory as a place to put things if you want them to be available from anywhere. Now that this directory is already in your PATH, you won't have to worry about that part anymore and anything you put in there will be accessible from anywhere on that computer.  
 
 # One last important note
 We can add any directories to our PATH that we'd like, **but we must be sure to always include the `$PATH` variable like that in the list as we edit it**, otherwise we might get stuck with no regular commands working anymore (like **`ls`**, **`pwd`**, **`wc`**, etc.). If that happens, don't despair! We can open that **`~/.bash_profile`** in any regular text editor (we may have to select "show hidden files" or something like that in the Finder window in order to see it), and then just delete whatever was added that messed things up. Then we'll be able to launch a new terminal again that works just fine and try again! 
