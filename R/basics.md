@@ -34,12 +34,11 @@ This module is designed for those that are either completely new to R, or have s
 Before we get started, we need an R environment to work in. You can work on your own computer if you'd like, or you can work in a "Binder" that's been created for this page, see below. 
 
 ## On your computer
-It is possible your computer already has R, if you are unsure, you can check by opening a terminal window ([a unix-like terminal](/unix/getting_unix_env){:target="_blank"}) and typing **`R`**. If this launches R rather than giving an error message, you should be good to go (enter **`q()`** to exit the R environment). If you do not have R, you can download it from here for Mac: [https://cran.r-project.org/bin/macosx/](https://cran.r-project.org/bin/macosx/){:target="_blank"}. And if you have a relatively newer Mac, you may also need to install XQuartz which you can get from here: [https://www.xquartz.org/](https://www.xquartz.org/){:target="_blank"}. 
+It is possible your computer already has R, if you are unsure, you can check by opening a terminal window ([a unix-like terminal](/unix/getting_unix_env){:target="_blank"}) and typing **`R`** and hitting `enter` or `return`. If this launches R rather than giving an error message, you should be good to go (enter **`q()`** to exit the R environment). If you do not have R, one way you can install it is with conda as detailed on [this page](/R/managing-r-and-rstudio-with-conda){:target="_blank"}.
 
-Lastly, I highly, *highly*, **highly** recommend installing the free version of [RStudio](https://www.rstudio.com/){:target="_blank"} if you don't already have it. RStudio is an interface for R that not only makes everything you will do in R easier and more organized, but it's also invaluable for reproducibility of your analyses as it makes it second-nature to generate and save R scripts of everything you're doing, while you're doing it – which is very helpful when you want to look back and see what worked out of the 20 things you just tried 🙂. You can download an RStudio installer from [here](https://www.rstudio.com/products/rstudio/download/#download){:target="_blank"}. See the next section for the typical layout of RStudio.  
 
 ## With Binder
-[Binder](https://mybinder.org/){:target="_blank"} is an incredible project with incredible people behind hit. I'm still pretty new to it, but the general idea is it makes it easier to setup and share specific working environments in support of open science. What this means for us here is that we can just click this little badge – [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/AstrobioMike/binder-R-basics/master?urlpath=rstudio){:target="_blank"} – and it'll open up the proper R environment with all our needed example files in a web-browser ready to rock... how awesome is that?!? So yeah, if you want to work in the binder, click it already! 
+[Binder](https://mybinder.org/){:target="_blank"} is an incredible project with incredible people behind hit. I'm still pretty new to it, but the general idea is it makes it easier to setup and share specific working environments in support of open science. What this means for us here is that we can just click this little badge – [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/AstrobioMike/binder-R-basics/v2?urlpath=rstudio){:target="_blank"} – and it'll open up the proper R environment with all our needed example files in a web-browser ready to rock... how awesome is that?!? So yeah, if you want to work in the binder, click it already! 
 
 When that page finishes loading (it may take a couple minutes), you will see a screen like this:
 
@@ -54,8 +53,9 @@ If we then click the icon with the green plus sign at the top-left, and then "R 
 
 ---
 <br>
+
 # RStudio layout
-RStudio has 4 main panes, as numbered above: 1) console; 2) source; 3) Environment; and 4) Files, Plots, Packages, etc. 
+Whether you are using the binder from above, or installed R and RStudio with conda as described on [this page](/R/managing-r-and-rstudio-with-conda){:target="_blank"}, we now want to be working in RStudio. The typical RStudio has 4 main panes, as numbered above: 1) console; 2) source; 3) Environment; and 4) Files, Plots, Packages, etc. (If you don't have 4 panes, click the icon with the green plus sign at the top-left, then "R Script", and it should open the text editor pane.)
 
 1. The "console" is where you can run commands just as though you were working in an R environment at a command line, and it is also where results will print out. 
 2. The "source" pane acts as a sort-of interactive text editor within which you can write out and save all of your commands, and then call them when you'd like. This is one of the reasons R Studio is great, you're constantly building up your notes file as you work, without any added effort needed. If you want to run a command written in the source file, while on the line of the command press **`Cmd + Enter`** or **`Ctrl + Enter`**, or you can highlight a section and do the same to run that section. 
@@ -646,7 +646,138 @@ less -S KEGG_annotated.tsv
 <br>
 
 ---
+<br>
+
+# BONUS - filtering and piping with the tidyverse
+
+The [tidyverse](https://www.tidyverse.org/){:target="_blank"} is a collection of R packages for data science. It groups together many incredible useful packages into just one package for us to install and load. There is lots [to learn](https://www.tidyverse.org/learn/){:target="_blank"} about the tidyverse, but here we are just going to look at two things: how we can "pipe" commands together, and how we can filter or subset tables in a more intuitive fashion that we saw above. 
+
+If you are using the binder from above, or a conda-created environment made following the [managing R and RStudio with conda page](/R/managing-r-and-rstudio-with-conda){:target="_blank"}, you will already have the tidyverse package available and can just load it in R by running this:
+
+```R
+library(tidyverse)
+```
+
+If you don't have it available, consider creating doing the conda installation as detailed here, or you will likely be able to install it with the one-line command on [this page](https://www.tidyverse.org/){:target="_blank"}. 
+
+Now that we have that loaded, we're going to look at doing some filtering the tidyverse way.
+
+We'll be using the iris dataset, which we have loaded and get get some info on like so:
+
+```R
+dim(iris)
+# [1] 150   5
+
+head(iris)
+#   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+# 1          5.1         3.5          1.4         0.2  setosa
+# 2          4.9         3.0          1.4         0.2  setosa
+# 3          4.7         3.2          1.3         0.2  setosa
+# 4          4.6         3.1          1.5         0.2  setosa
+# 5          5.0         3.6          1.4         0.2  setosa
+# 6          5.4         3.9          1.7         0.4  setosa
+```
+
+This is a dataset of informatoin about flowers that has 150 rows.
+
+Let's say we wanted to subset down to only include rows where the Sepal.Length was fewer than 4.5 (not sure what units these are, probably mm ¯\\\_(ツ)\_/¯). The way we could do this with base R would look something like this:
+
+```R
+iris[iris["Sepal.Length"] < 4.5, ]
+#    Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+# 9           4.4         2.9          1.4         0.2  setosa
+# 14          4.3         3.0          1.1         0.1  setosa
+# 39          4.4         3.0          1.3         0.2  setosa
+# 43          4.4         3.2          1.3         0.2  setosa
+```
+
+Where we are givig our subsetting brackets, then building a true/false vector of what we want based on the expression in front of the comma, `iris["Sepal.Length"] < 4.5`, saying which rows we want to keep (those that yield true from that expression), and implcitly saying we all columns by leaving the argument after the comma blank.
+
+Which is fine, it gets the job done. But it's kind of annoying to read and annoying to type, and it's the simplest case of how many things we might want to be filtering on. 
+
+Here is the tidyverse way:
+
+```R
+iris %>% filter(Sepal.Length < 4.5)
+#   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+# 1          4.4         2.9          1.4         0.2  setosa
+# 2          4.3         3.0          1.1         0.1  setosa
+# 3          4.4         3.0          1.3         0.2  setosa
+# 4          4.4         3.2          1.3         0.2  setosa
+```
+
+We've introduced two concepts there: the `filter()` function that comes packaged with tidyverse; and the "pipe" `%>%` which allows us to string together objects and commands in an arguably more inuitive fashion.
+
+We also could run this as:
+
+```R
+filter(iris, Sepal.Length < 4.5)
+```
+
+And get the samet thing, but as we want to stick more things together, it's generally more intuitive for most people to start with the initial object first, and then keep "piping" it (with the `%>%` characters) into more functions (similar to how things work at a [unix-like command line](/unix/unix-intro){:target="_blank"}).
+
+Now let's say we want to filter for Sepal.Lengh being greater than 6, Petal.Length being greater than or equal to 4.8, and only get those that are of the species *versicolor*:
+
+```R
+iris %>% filter(Sepal.Length > 6, Petal.Length >= 4.8, Species == "versicolor")
+#   Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
+# 1          6.9         3.1          4.9         1.5 versicolor
+# 2          6.3         2.5          4.9         1.5 versicolor
+# 3          6.8         2.8          4.8         1.4 versicolor
+# 4          6.7         3.0          5.0         1.7 versicolor
+```
+
+That above would be start to get pretty ugly to write out in a base R fashion. 
+
+Say we also wanted to then just take the Sepal.Length and Petal.Length columns, we could pipe the end of that into the `select()` function, which let's us filter columns, like so:
+
+```R
+iris %>% filter(Sepal.Length > 6, Petal.Length >= 4.8, Species == "versicolor") %>% 
+    select(Sepal.Length, Petal.Length)
+#   Sepal.Length Petal.Length
+# 1          6.9          4.9
+# 2          6.3          4.9
+# 3          6.8          4.8
+# 4          6.7          5.0
+```
+
+> Note that we can return after the `%>%` symbol in R, to keep lines shorter and commands easier to read.
+
+Or say we just wanted to know how many there were after our length and species filtering:
+
+```R
+iris %>% filter(Sepal.Length > 6, Petal.Length >= 4.8, Species == "versicolor") %>% nrow()
+# [1] 4
+```
+
+Or if we wanted to pull just the Petal.Length column out as a vector, to then maybe summarize it, we could use the `pull()` function (which pulls out the wanted column and converts it to a vector), and then pipe that into the `summary()` function:
+
+```R
+iris %>% filter(Sepal.Length > 6, Petal.Length >= 4.8, Species == "versicolor") %>% 
+    pull(Sepal.Length) %>% summary()
+  #  Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  # 6.300   6.600   6.750   6.675   6.825   6.900
+```
+
+Or if we wanted to save that as a new object, we can still put the new object name and assignment opoerator in front of the whole thing. Like here is doing the filtering above, then storing it in a new object called:
+
+```R
+filtered_sepal_length <- iris %>% filter(Sepal.Length > 6, Petal.Length >= 4.8, Species == "versicolor") %>% 
+    pull(Sepal.Length)
+
+filtered_sepal_length
+# [1] 6.9 6.3 6.8 6.7
+```
+
+<br>
+
+---
+<br>
+
+The wonderful `%>%` pipe comes from the [magrittr package](https://magrittr.tidyverse.org/){:target="_blank"}), and the filtering functions covered above come from the [dplyr package](https://dplyr.tidyverse.org/){:target="_blank"} (both components included with tidyverse). The above are probably the most commonly used, but there are more awesome functions that come from dplyr, which you can learn more about at [its page here](https://dplyr.tidyverse.org/){:target="_blank"} if wanted 🙂
+
+---
 ---
 <br>
 <h1>Congrats on getting through the basics of R!</h1>
-R was not immediately intuitive to me, but it is extremely powerful and *many* statistical tools are designed to work within it. So it is well worth the time getting to know it if working with big data and/or running complex statistical analyses are a part of your work 🙂
+R was not immediately intuitive to me (though the tidyverse helps a lot with that!), but it is extremely powerful, *many* statistical tools are developed to work within it, and it is great for figure generation in addition to just exploring our data. So it's likely worth the time getting to know R a bit if data science a part of your work 🙂

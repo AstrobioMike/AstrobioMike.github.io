@@ -9,9 +9,10 @@ permalink: /R/managing-r-and-rstudio-with-conda
 
 {% include _side_tab_R.html %}
 
-I like to have a system-wide R installation, setting it up following steps like those linked in this [R Intro section](/R/basics#on-your-computer){:target="_blank"}. But it's also convenient/necessary to have contained environments of R, either for holding different versions or for helping with reproducibility. 
+/unix/conda-intro
 
-[Conda](https://conda.io/docs/){:target="_blank"} can help us with this, though sometimes it can lead to issues I've hit with some packages in R, it is always improving and wonderful people are hard at work packaging lots of common libraries into conda-installable packages. 
+
+There was once a time when [conda](https://conda.io/docs/){:target="_blank"} wasn't really a viable way to manage R environments, but thanks to the work of many, that time has mostly completely passed. Now, it's generally easier, and easier for reproducibility, to create new environments with the wanted version of R and any needed packages, rather than installing a system-wide R and working in there hoping no conflicts arise. This page covers a little bit of how we can do that. 
 
 > If you aren't yet already familiar with `conda`, I recommend running through the [intro to conda page](/unix/conda-intro){:target="_blank"} first, and having it installed as demonstrated there is required to follow below 🙂
 

@@ -9,6 +9,16 @@ permalink: /R/installing_packages
 
 {% include _side_tab_R.html %}
 
+---
+
+> **NOTICE**  
+> This page was initially put together before [conda](/unix/conda-intro){:target="_blank"} became a viable way to manage R environments. Now that that is possible, it's generally easier to create new environments with the wanted version of R and needed packages that way, rather than installing a system-wide R and installing packages in there as done below. You can learn about installing and managing R and RStudio with conda on [this page](/R/managing-r-and-rstudio-with-conda){:target="_blank"}. I'd start there (or [here first](/unix/conda-intro){:target="_blank"} if new to conda), though the below may still be helpful if a specific package you need isn't available through conda.
+
+<br>
+
+---
+<br>
+
 Part of what makes R so valuable is that there is an enormous community of people developing software packages for it. People share bundles of code that perform specific tasks through what are known as "packages". Packages are typically maintained at the [Comprehensive R Archive Network (CRAN)](https://cran.r-project.org/web/packages/){:target="_blank"} and/or at [Bioconductor](https://www.bioconductor.org/){:target="_blank"}. To use a package, we fist need to install, if we don't have it yet, and then load it. Here we'll cover the 3 main ways for installing packages.
 
 > Keep in mind that the best way to install something is generally going to be the way the package documentation recommends. So that's the first place we should start whenever possible. For instance, the dada2 package has it's recommended method of installation right at the top of [its documentation](https://benjjneb.github.io/dada2/){:target="_blank"}. 
