@@ -20,7 +20,15 @@ The term "Unix" encompasses a family of operating systems that share a common an
 
 Many successful offshoots of Unix have been developed, which is why we might see the term "Unix-like", in order to encompass all the systems that aren't technically "Unix". 
 
-None of this really matters, but just noting for any who are curious (you can see a few more terms [here](https://astrobiomike.github.io/unix/){:target="_blank"} if wanted).
+Here are some terms that are often used interchangeably – not because it's important to remember them or any differences (it's not for must of us), but just to have them laid out somewhere in case you here people saying them.
+
+| Term     | What it is          |
+|:-------------:|------------------|
+| **`shell`** | what we use to talk to the computer; anything where we are pointing and clicking with a mouse is a **G**raphical **U**ser **I**nterface (**GUI**) shell; something with text only is a **C**ommand **L**ine **I**nterface (**CLI**) shell |  
+| **`command line/terminal`** | a text-based environment capable of taking input and providing output |  
+| **`bash`** | the most common programming language used at a Unix command-line |  
+| **`Unix`** | a family of operating systems (we also use the term "Unix-like" because one of the most popular operating systems derived from Unix is specifically named as [*not* being Unix](https://en.wikipedia.org/wiki/GNU){:target="_blank"}) |  
+
 
 <hr style="height:10px; visibility:hidden;" />
 
