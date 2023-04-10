@@ -40,8 +40,8 @@ For a while, this was also kind of a huge pain to install on some systems. But t
 ## Conda install
 
 ```bash
-conda create -y -c conda-forge -c bioconda -c defaults entrez
-conda activate entrez
+conda create -y -n edirect -c conda-forge -c bioconda -c defaults -c defaults entrez-direct
+conda activate edirect
 ```
 
 <hr style="height:25px; visibility:hidden;" />
