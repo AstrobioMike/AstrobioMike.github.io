@@ -132,7 +132,7 @@ head words.txt
 <challengeBlock>
 <center><b>QUICK QUESTION!</b></center>
 
-Notice that we used <htmlCode><b>>></b></htmlCode> as the redirector inside the loop, and not <htmlCode><b>></b></htmlCode>. Why do you think this is? What would have happened if we used <htmlCode><b>>></b></htmlCode> at that same location? 
+Notice that we used <htmlCode><b>>></b></htmlCode> as the redirector inside the loop, and not <htmlCode><b>></b></htmlCode>. Why do you think this is? What would have happened if we used <htmlCode><b>></b></htmlCode> at that same location? 
 <br>
 
 <div class="wrap-collabsible">
