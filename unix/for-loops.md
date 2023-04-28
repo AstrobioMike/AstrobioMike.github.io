@@ -130,9 +130,9 @@ head words.txt
 ```
 
 <challengeBlock>
-<center><b>QUICK PRACTICE!</b></center>
+<center><b>QUICK QUESTION!</b></center>
 
-Notice that we used <htmlCode><b>>></b></htmlCode> as the redirector inside the loop, and not <htmlCode><b>></b></htmlCode>. Why do you think this is? Try running the loop with the <htmlCode><b>></b></htmlCode> redirector instead and writing out to a new file (instead of "words.txt", call it anything else).
+Notice that we used <htmlCode><b>>></b></htmlCode> as the redirector inside the loop, and not <htmlCode><b>></b></htmlCode>. Why do you think this is? What would have happened if we used <htmlCode><b>>></b></htmlCode> at that same location? 
 <br>
 
 <div class="wrap-collabsible">
@@ -141,41 +141,17 @@ Notice that we used <htmlCode><b>>></b></htmlCode> as the redirector inside the 
   <div class="collapsible-content">
     <div class="content-inner">
 
+We can do it and take a look like so:
+
 <pre>for item in car truck ukulele
 do
   echo $item
   echo $item > test.txt
 done</pre>
 
-Since <htmlCode><b>></b></htmlCode> overwrites a file, each time we go through the loop it would overwrite the file and at the end we'd be left with just the last iteration, and we'd have a file holding only "ukulele".
-
 <pre>head test.txt</pre>
 
-    </div>
-  </div>
-</div>
-</challengeBlock>
-
-<challengeBlock>
-<center><b>QUICK PRACTICE AGAIN!</b></center>
-
-Can you think of where we could put the <htmlCode><b>></b></htmlCode> so that it wouldn't overwrite the file with each iteration of the loop?
-<br>
-
-<div class="wrap-collabsible">
-  <input id="q2" class="toggle" type="checkbox">
-  <label for="q2" class="lbl-toggle">Solution</label>
-  <div class="collapsible-content">
-    <div class="content-inner">
-
-<pre>for item in car truck ukulele
-do
-  echo $item
-done > test.txt</pre>
-
-We didn't need to write to the file inside the loop in this case (though sometimes it's helpful to do so), so we can wait until the loop finishes and then write all the information to a file at once! But notice we took out one of the <htmlCode><b>echo</b></htmlCode> commands, otherwise as written two would have been sent to the output file on each iteration.
-
-<pre>head test.txt</pre>
+Since <htmlCode><b>></b></htmlCode> overwrites a file, each time we go through the loop it would overwrite the file just adding the word of the current iteration and at the end we'd be left with just the last one in our file.
 
     </div>
   </div>
