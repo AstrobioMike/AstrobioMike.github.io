@@ -141,7 +141,7 @@ Notice that we used <htmlCode><b>>></b></htmlCode> as the redirector inside the 
   <div class="collapsible-content">
     <div class="content-inner">
 
-We can do it and take a look like so:
+We can test it and take a look like so:
 
 <pre>for item in car truck ukulele
 do
