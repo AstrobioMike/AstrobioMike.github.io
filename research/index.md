@@ -73,6 +73,13 @@ I'm a bioinformatician with [NASA GeneLab](https://genelab.nasa.gov/){:target="_
 
 #### **Space Biology**
 
+<a name="Nguyen_et_al_biofilm_2023"></a>
+<div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1016/j.bioflm.2023.100108"></div>  
+
+Nguyen, H.N., Sharp, G.M., Stahl-Rommel, S., Justiniano, Y-A.V., Castro, C.L., Nelman-Gonzalez, M.N., et al. (2023). [Microbial isolation and characterization from two flex lines from the urine processor assembly onboard the International Space Station](https://doi.org/10.1016/j.bioflm.2023.100108){:target="_blank"}. *Biofilm*.  
+[PDF download](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10020673/pdf/main.pdf){:target="_blank"}  
+
+
 <a name="Lee_et_al_iScience_2021"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1016/j.isci.2021.102114"></div>  
 
@@ -130,24 +137,32 @@ Momper, L.M., Jungbluth, S.P., **Lee, M.D.**, and Amend, J.P. (2017). [Energy an
 <hr style="height:10px; visibility:hidden;" />
 #### **Marine Microbes**
 
+<a name="Webb_et_al_2023"></a>
+<div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="doi.org/10.1038/s43705-023-00214-y"></div>  
+
+Webb, E.A., Held, N.A., Zhao, Y., Graham, E.D., Conover, A.E., Semones, J., **Lee, M.D.**, Feng, Y., Fu, F-X., Saito, M.A., and Hutchins, D.A. (2023). [Importance of mobile genetic element immunity in numerically abundant Trichodesmium clades](https://doi.org/10.1038/s43705-023-00214-y){:target="_blank"}. *ISME Comunications*.  
+[PDF download](https://www.nature.com/articles/s43705-023-00214-y.pdf){:target="_blank"}
+
+
+
 <a name="Walworth_et_al_2022"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="doi.org/10.1021/acs.jproteome.1c00517"></div>  
 
-Walworth, N.G., Saito, M.A., **Lee, M.D.**, McIlvin, M.R., Moran, D.M., Kellogg, R.M., Fu, F-X., Hutchins, D.A., and Webb, E.A. (2022). [Why environmental biomarkers work: transcriptome–proteome correlations and modeling of multistressor experiments in the marine bacterium *Trichodesmium*](https://doi.org/10.1021/acs.jproteome.1c00517){:target="_blank"}. *Journal of Proteome Research*  
+Walworth, N.G., Saito, M.A., **Lee, M.D.**, McIlvin, M.R., Moran, D.M., Kellogg, R.M., Fu, F-X., Hutchins, D.A., and Webb, E.A. (2022). [Why environmental biomarkers work: transcriptome–proteome correlations and modeling of multistressor experiments in the marine bacterium *Trichodesmium*](https://doi.org/10.1021/acs.jproteome.1c00517){:target="_blank"}. *Journal of Proteome Research*.  
 [PDF download](Walworth-et-al-2022.pdf){:target="_blank"}
 
 
 <a name="Qu_et_al_2022"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="doi.org/10.1111/1758-2229.13041"></div>  
 
-Qu, P., Fu, F-X., Wang, X-W., Kling, J.D., Elghazzawy, M., Huh, M., Zhou, Q-Q., Want, C., Wing Kwan Mak, E., **Lee, M.D.**, Yang, N., and Hutchins, D. (2022). [Two co-dominant nitrogen-fixing cyanobacteria demonstrate distinct acclimation and adaptation responses to cope with ocean warming](https://doi.org/10.1111/1758-2229.13041){:target="_blank"}. *Environmental Microbiology Reports*  
+Qu, P., Fu, F-X., Wang, X-W., Kling, J.D., Elghazzawy, M., Huh, M., Zhou, Q-Q., Want, C., Wing Kwan Mak, E., **Lee, M.D.**, Yang, N., and Hutchins, D. (2022). [Two co-dominant nitrogen-fixing cyanobacteria demonstrate distinct acclimation and adaptation responses to cope with ocean warming](https://doi.org/10.1111/1758-2229.13041){:target="_blank"}. *Environmental Microbiology Reports*.  
 [PDF download](Qu-et-al-2022.pdf){:target="_blank"}
 
 
 <a name="Maza_et_al_2022"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="doi.org/10.1038/s41396-021-01161-z"></div>  
 
-Maza-Márquez, P., **Lee, M.D.**, Detweiler, A.M., and Bebout, B.M. (2022). [Millimeter-scale vertical partitioning of nitrogen cycling in hypersaline mats reveals prominence of genes encoding multi-heme and prismane proteins](https://doi.org/10.1038/s41396-021-01161-z){:target="_blank"}. *ISMEJ*  
+Maza-Márquez, P., **Lee, M.D.**, Detweiler, A.M., and Bebout, B.M. (2022). [Millimeter-scale vertical partitioning of nitrogen cycling in hypersaline mats reveals prominence of genes encoding multi-heme and prismane proteins](https://doi.org/10.1038/s41396-021-01161-z){:target="_blank"}. *ISMEJ*.  
 [PDF download](https://doi.org/10.1038/s41396-021-01161-z){:target="_blank"}
 
 
