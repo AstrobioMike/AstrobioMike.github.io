@@ -98,6 +98,13 @@ O'Rourke, A. and **Lee, M.D.**, Nierman, W.C., Everroad, R.C., and Dupont, C.L. 
 <hr style="height:10px; visibility:hidden;" />
 #### **Astrobiology**
 
+<a name="Zajkowski_et_al_2023"></a>
+<div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="doi.org/10.1002/prot.26558"></div>  
+
+Zajkowski, T., **Lee, M.D.**, Sharma, S., Vallota-Eastman, A., Kuska, M., Malczewska, M., and Rothschild, L.J. (2023). [Conserved functions of prion candidates suggest a primeval role of protein self-templating](https://doi.org/10.1002/prot.26558){:target="_blank"}. *Proteins: Structure, Function, Bioinformatics*.  
+[PDF download](/research/Zajkowski-et-al-2023.pdf){:target="_blank"}  
+
+
 <a name="Zajkowski_et_al_2021"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="doi.org/10.1093/molbev/msab010"></div>  
 
