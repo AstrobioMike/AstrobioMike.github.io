@@ -144,12 +144,18 @@ Momper, L.M., Jungbluth, S.P., **Lee, M.D.**, and Amend, J.P. (2017). [Energy an
 <hr style="height:10px; visibility:hidden;" />
 #### **Marine Microbes**
 
+<a name="Kling_et_al_2023"></a>
+<div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="doi.org/10.1073/pnas.2315701120"></div>  
+
+Kling, J.D., **Lee, M.D.**, Walworth, N.G., Webb, E.A., Coelho, J.T., Wilburn, P., Anderson, S.I., Zhou, Q., Wang, C., Phan, M.D., Fu, F-X., Kremer, C.T., Litchman, E., Rynearson, T.A., and Hutchins, D.A. (2023). [Dual thermal ecotypes coexist within a nearly genetically identical population of the unicellular marine cyanobacterium Synechococcus](https://doi.org/10.1073/pnas.2315701120){:target="_blank"}. *PNAS*.  
+[PDF download](https://www.pnas.org/doi/epdf/10.1073/pnas.2315701120){:target="_blank"}
+
+
 <a name="Webb_et_al_2023"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="doi.org/10.1038/s43705-023-00214-y"></div>  
 
-Webb, E.A., Held, N.A., Zhao, Y., Graham, E.D., Conover, A.E., Semones, J., **Lee, M.D.**, Feng, Y., Fu, F-X., Saito, M.A., and Hutchins, D.A. (2023). [Importance of mobile genetic element immunity in numerically abundant Trichodesmium clades](https://doi.org/10.1038/s43705-023-00214-y){:target="_blank"}. *ISME Comunications*.  
+Webb, E.A., Held, N.A., Zhao, Y., Graham, E.D., Conover, A.E., Semones, J., **Lee, M.D.**, Feng, Y., Fu, F-X., Saito, M.A., and Hutchins, D.A. (2023). [Importance of mobile genetic element immunity in numerically abundant *Trichodesmium* clades](https://doi.org/10.1038/s43705-023-00214-y){:target="_blank"}. *ISME Comunications*.  
 [PDF download](https://www.nature.com/articles/s43705-023-00214-y.pdf){:target="_blank"}
-
 
 
 <a name="Walworth_et_al_2022"></a>
@@ -288,6 +294,13 @@ Walworth, N.G., Fu, F.-X., Webb, E.A., Saito, M.A., Moran, D., McIlvin, M.R., **
 
 <hr style="height:10px; visibility:hidden;" />
 #### **Software, platforms, workflows, and education**
+
+<a name="Teichman_2023_biostats"></a>
+<div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1093/biostatistics/kxad025"></div>  
+
+Teichman, S., **Lee, M.D.**, and Willis, A.D. (2020). [Analyzing microbial evolution through gene and genome phylogenies](https://doi.org/10.1093/biostatistics/kxad025){:target="_blank"}. *Biostatistics*.  
+[PDF download](https://academic.oup.com/biostatistics/advance-article-pdf/doi/10.1093/biostatistics/kxad025/52661924/kxad025.pdf){:target="_blank"}  
+
 
 <a name="Lee_2022_bit"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.12688/f1000research.79530.1"></div>  
