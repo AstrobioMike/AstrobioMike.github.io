@@ -9,8 +9,6 @@ permalink: /R/managing-r-and-rstudio-with-conda
 
 {% include _side_tab_R.html %}
 
-/unix/conda-intro
-
 
 There was once a time when [conda](https://conda.io/docs/){:target="_blank"} wasn't really a viable way to manage R environments, but thanks to the work of many, that time has mostly completely passed. Now, it's generally easier, and easier for reproducibility, to create new environments with the wanted version of R and any needed packages, rather than installing a system-wide R and working in there hoping no conflicts arise. This page covers a little bit of how we can do that. 
 
@@ -69,7 +67,7 @@ rstudio
 > sudo apt-get update
 > sudo apt-get install libgl1-mesa-glx libegl1-mesa libxrandr2 libxrandr2 libxss1 libxcursor1 libxcomposite1 libasound2 libxi6 libxtst6
 > ```
-> So if the above failed to work I would try that. I don't have a Windows computer to test on unfortunately, but I found this when looking around thanks to this [page](https://nbisweden.github.io/workshop-scRNAseq/conda_instructions.html){:target="_blank"}.
+> So if the above failed to work I would try that. I don't have a Windows computer to test on unfortunately, but I found this when looking around thanks to this [page](https://nbisweden.github.io/workshop-scRNAseq/other/conda.html){:target="_blank"}.
 
 > **Mac NOTE**  
 > You made need to install xcode command line tools for RStudio to open properly. To prompt to begin that, from the terminal, execute this:
