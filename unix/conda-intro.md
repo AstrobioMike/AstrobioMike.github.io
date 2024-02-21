@@ -73,7 +73,7 @@ bash Miniconda3-latest-*.sh
 
 1. We will be asked to review the licence agreement. **After pressing return/enter, we can view it and hit the `space` bar to advance. At the bottom, we need to type in `yes` to accept.** 
 2. It will then ask if the location is ok, **hitting enter will place it in our current home directory**, which is usually great. 
-3. At the end it will ask if we want to initialize Miniconda3. There might be reasons to not want to do this, but until we hit one of those reasons, it probably makes things easier to **say `yes` to that**.  
+3. At the end it will ask if we want to update our shell profile to automatically initialize conda. There might be reasons to not want to do this, but until we hit one of those reasons, for most users it's easist just to **say `yes` to that**.  
 
 Great! Now we have conda installed. We just need to reload our current shell session, which we can usually do like so:
 
