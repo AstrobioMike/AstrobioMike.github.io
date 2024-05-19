@@ -149,11 +149,19 @@ esearch -db protein -query '"nosZ"[Protein name]' | esummary | xtract -pattern \
         DocumentSummary -element AccessionVersion > nosZ-accs.txt
 ```
 
-**Getting a single protein sequence by accesssion**
+**Getting a single protein sequence by accession**
 
 ```bash
 efetch -db protein -format fasta -id ABA21534.1
 ```
+
+**Getting a single nucleotide sequence by accession** 
+
+```bash
+efetch -db nucleotide -format fasta -id NC_006572.1
+```
+
+
 <hr style="height:15px; visibility:hidden;" />
 
 **Getting many protein sequences by accession**  
