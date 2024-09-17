@@ -11,28 +11,28 @@ permalink: /research/
 
 #### Bioinformatician exploring microbial ecology and evolution
 
-*Email:*   MikeLee@bmsis.org
-{% include icon-twitter.html username=site.twitter_username %}
-{% include icon-github.html username=site.github_username %}
-{% include icon-google-scholar.html %}
-{:target="_blank"}
+*Email:*   MikeLee@bmsis.org  
+{% include icon-twitter.html username=site.twitter_username %}  
+{% include icon-github.html username=site.github_username %}  
+{% include icon-google-scholar.html %}  
+{:target="_blank"}  
 
-**Current positions**
-*NASA GeneLab Bioinformatician*
-*BMSIS Research Scientist*
+**Current positions**  
+*NASA GeneLab Bioinformatician*  
+*BMSIS Research Scientist*  
 
 
-**Affiliations**
-[*NASA*](https://www.nasa.gov/){:target="_blank"}
-[*NASA GeneLab*](https://genelab.nasa.gov/){:target="_blank"}
-[*Blue Marble Space Institute of Science*](https://www.bmsis.org/){:target="_blank"}
+**Affiliations**  
+[*NASA*](https://www.nasa.gov/){:target="_blank"}  
+[*NASA GeneLab*](https://genelab.nasa.gov/){:target="_blank"}  
+[*Blue Marble Space Institute of Science*](https://www.bmsis.org/){:target="_blank"}  
 
-**Education**
+**Education**  
 * A.S. General Science ([Ocean County College](https://www.ocean.edu/){:target="_blank"}, NJ, USA, 2011)
 * B.S. Biology ([Kean University](https://www.kean.edu/){:target="_blank"}, NJ, USA, 2013)
 * Ph.D. Biology ([University of Southern California](https://www.usc.edu/){:target="_blank"}, CA, USA, 2018)
 
-**Research summary**
+**Research summary**  
 I'm a bioinformatician with [NASA GeneLab](https://genelab.nasa.gov/){:target="_blank"} and a research scientist with [Blue Marble Space Institute of Science](https://www.bmsis.org/){:target="_blank"} located at NASA's Ames Research Center in northern California, USA. I focus primarily on microbial ecology and evolution in all kinds of different systems ranging from the bottoms of our oceans up to the International Space Station 👽
 
 *Publication groupings*:
