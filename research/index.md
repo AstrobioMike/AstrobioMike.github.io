@@ -17,10 +17,11 @@ permalink: /research/
 {% include icon-google-scholar.html %}  
 {:target="_blank"}  
 
-**Affiliations**  
+**Primary affiliations**  
 [*National Biodefense Analysis and Countermeasures Center*](https://www.dhs.gov/science-and-technology/national-biodefense-analysis-and-countermeasures-center){:target="_blank"}  
 [*Blue Marble Space Institute of Science*](https://www.bmsis.org/){:target="_blank"}  
 [*NASA Ames Research Center*](https://www.nasa.gov/ames/){:target="_blank"} (2018-2024)  
+[*University of Southern California*](https://www.usc.edu/){:target="_blank"} (2013-2018)
 
 **Current positions**  
 *NBACC Principle Investigator*  
