@@ -32,9 +32,10 @@ permalink: /research/
 * Ph.D. Biology ([University of Southern California](https://www.usc.edu/){:target="_blank"}, CA, USA, 2018)
 
 **Research summary**  
-I'm a microbial ecologist and bioinformatician. During my PhD at USC, I worked in various environments including: the deep biosphere, 3 km down at the bottom of the Pacific Ocean; the surface ocean focusing on the co-evolution between *Trichodesmium* and its perpetually associated microbial consortia; and the global distribution and evolutionary aspects of *Synechococcus*. Following my PhD, I was at the NASA Ames Research Center from 2018-2024, initially as a post doc working on Space Biology, then as a contractor focusing on Astrobiology, and then I joined [NASA GeneLab](https://genelab.nasa.gov/){:target="_blank"} full-time for a few years. My current role is as a principle investigator in bioinformatics at the National Biodefense Analysis and Countermeasures Center (NBACC).  
+I'm a microbial ecologist and bioinformatician. I've been lucky enough to spend my science life exploring microbial ecology and evolution in all kinds of different systems ranging from the bottoms of our oceans up to the International Space Station 👽  
 
-I've been lucky enough to spend my science life exploring microbial ecology and evolution in all kinds of different systems ranging from the bottoms of our oceans up to the International Space Station 👽  
+During my PhD at USC, I worked in various environments including: the deep biosphere, 3 km down at the bottom of the Pacific Ocean; the surface ocean focusing on the co-evolution between *Trichodesmium* and its perpetually associated microbial consortia; and more work with the surface ocean with interest in the global distribution and evolutionary aspects of *Synechococcus*. Following my PhD, I was at the NASA Ames Research Center from 2018-2024, initially as a post doc working on Space Biology, then as a contractor focusing on Astrobiology, and then I joined [NASA GeneLab](https://genelab.nasa.gov/){:target="_blank"} full-time for a few years. My current role is as a principle investigator in bioinformatics at the National Biodefense Analysis and Countermeasures Center (NBACC) at Fort Detrick in Maryland.  
+
 
 
 *Publication groupings*:
