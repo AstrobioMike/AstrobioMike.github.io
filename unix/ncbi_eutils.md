@@ -39,7 +39,7 @@ For a while, this was also kind of a huge pain to install on some systems. But t
 <hr style="height:15px; visibility:hidden;" />
 ## Conda install
 
-> **NOTE:** If you are on a new silicon Mac with with an Apple M chip, but you installed a conda for the Intel x86_64 architecture (as I recommended for reasons explained [here](/unix/conda-intro#getting-and-installing-conda){:taret="_blank"}), this is one case where it's better to install the arm64 version of edirect. So use second example to install below. 
+> **NOTE:** If you are on a new silicon Mac with with an Apple M chip, but you installed a conda for the Intel x86_64 architecture (as I recommended for reasons explained [here](/unix/conda-intro#getting-and-installing-conda){:taret="_blank"}), this is one case where it's better to install the arm64 version of edirect. So use the second example to install below. 
 
 ```bash
 conda create -y -n edirect -c conda-forge -c bioconda -c defaults -c defaults entrez-direct
