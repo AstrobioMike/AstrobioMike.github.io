@@ -77,6 +77,12 @@ During my PhD at USC, I worked in various environments including: the deep biosp
 
 #### **Space Biology**
 
+<a name="Gonzalez_et_al_2024"></a>
+<div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="doi.org/10.1038/s41522-024-00545-1"></div>
+
+Gonzalez, E., **Lee, M.D.**, Tierney, B.T., Lipieta, N., Mishra, M., Beckett, L., and Brereton, N.J. (2024). [Spaceflight alters host-gut microbiota interactions](https://doi.org/10.1038/s41522-024-00545-1){:target="_blank"}. *npj Biofilms and Microbiomes*.  
+[PDF download](/research/Gonzalez-et-al-2024.pdf){:target="_blank"}
+
 <a name="Nguyen_et_al_biofilm_2023"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="10.1016/j.bioflm.2023.100108"></div>
 
