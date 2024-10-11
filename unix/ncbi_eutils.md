@@ -39,8 +39,14 @@ For a while, this was also kind of a huge pain to install on some systems. But t
 <hr style="height:15px; visibility:hidden;" />
 ## Conda install
 
+> **NOTE:** If you are on a new silicon Mac with with an Apple M chip, but you installed a conda for the Intel x86_64 architecture (as I recommended for reasons explained [here](/unix/conda-intro#getting-and-installing-conda){:taret="_blank"}), this is one case where it's better to install the arm64 version of edirect. So use second example to install below. 
+
 ```bash
 conda create -y -n edirect -c conda-forge -c bioconda -c defaults -c defaults entrez-direct
+conda activate edirect
+
+## or if on a new Apple M chip Mac as noted above
+conda create -y --subdir osx-arm64 -n edirect -c conda-forge -c bioconda -c defaults -c defaults entrez-direct
 conda activate edirect
 ```
 
@@ -54,8 +60,7 @@ conda activate edirect
 
 ```bash
 esearch -db assembly -query '"Alteromonas"[Organism] AND latest[filter] AND \
-        (all[filter] NOT anomalous[filter] AND all[filter] NOT "derived from \
-        surveillance project"[filter])' | esummary | xtract -pattern \
+        (all[filter] NOT anomalous[filter])' | esummary | xtract -pattern \
         DocumentSummary -element AssemblyAccession > Alteromonas-assembly-accs.txt
 ```
 
@@ -67,8 +72,7 @@ esearch -db assembly -query '"Alteromonas"[Organism] AND latest[filter] AND \
 
 ```bash
 esearch -db assembly -query '"Bacteria"[Organism] AND "latest refseq"[filter] AND \
-        (all[filter] NOT anomalous[filter] AND all[filter] NOT "derived from \
-        surveillance project"[filter])' | esummary | xtract -pattern DocumentSummary \
+        (all[filter] NOT anomalous[filter])' | esummary | xtract -pattern DocumentSummary \
         -def "NA" -element AssemblyAccession,Taxid,assembly-status -block Stat \
         -if Stat@category -equals contig_count -or Stat@category -equals contig_l50 \
         -or Stat@category -equals contig_n50 -or Stat@category -equals total_length \
