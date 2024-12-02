@@ -9,12 +9,12 @@ permalink: /research/
 
 ## Michael D. Lee, Ph.D.
 
-#### Principle investigator in bioinformatics exploring microbial ecology
+#### Principal investigator in bioinformatics exploring microbial ecology
 
 *Email:*   MikeLee@bmsis.org  
-{% include icon-twitter.html username=site.twitter_username %}  
-{% include icon-github.html username=site.github_username %}  
 {% include icon-google-scholar.html %}  
+{% include icon-github.html username=site.github_username %}  
+{% include icon-twitter.html username=site.twitter_username %}  
 {:target="_blank"}  
 
 **Primary affiliations**  
@@ -24,8 +24,8 @@ permalink: /research/
 [*University of Southern California*](https://www.usc.edu/){:target="_blank"} (2013-2018)
 
 **Current positions**  
-*NBACC Principle Investigator*  
-*BMSIS Research Scientist*  
+*[NBACC](https://www.dhs.gov/science-and-technology/national-biodefense-analysis-and-countermeasures-center){:target="_blank"} Principal Investigator*  
+*[BMSIS](https://www.bmsis.org/){:target="_blank"} Research Scientist*  
 
 **Education**  
 * A.S. General Science ([Ocean County College](https://www.ocean.edu/){:target="_blank"}, NJ, USA, 2011)
@@ -35,7 +35,9 @@ permalink: /research/
 **Research summary**  
 I'm a microbial ecologist and bioinformatician who has been lucky enough to spend my science-life exploring microbial ecology and evolution in all kinds of different environments ranging from the bottoms of our oceans up to the International Space Station 👽  
 
-During my PhD at USC, I worked in various environments including: the deep biosphere, 3 km down at the bottom of the Pacific Ocean; the surface ocean focusing on the co-evolution between *Trichodesmium* and its perpetually associated microbial consortia; and more work with the surface ocean with interest in the global distribution and evolutionary aspects of *Synechococcus*. Following my PhD, I was at the NASA Ames Research Center from 2018-2024, initially as a post doc working on Space Biology, then as a contractor focusing on Astrobiology, and then I joined [NASA GeneLab](https://genelab.nasa.gov/){:target="_blank"} full-time for a few years. My current role is as a principle investigator in bioinformatics at the [National Biodefense Analysis and Countermeasures Center (NBACC)](https://www.dhs.gov/science-and-technology/national-biodefense-analysis-and-countermeasures-center){:target="_blank"} at Fort Detrick in Maryland.  
+During my PhD at USC, I worked in various environments including: the deep biosphere, 3 km down at the bottom of the Pacific Ocean; the surface ocean focusing on the co-evolution between *Trichodesmium* and its perpetually associated microbial consortia; and more work with the surface ocean with interest in the global distribution and evolutionary aspects of *Synechococcus*. Following my PhD, I was at the NASA Ames Research Center from 2018-2024, initially as a post doc working on Space Biology, then as a contractor focusing on Astrobiology, and then I joined [NASA GeneLab](https://genelab.nasa.gov/){:target="_blank"} full-time for a few years.  
+
+My current role is as a principal investigator in bioinformatics at the [National Biodefense Analysis and Countermeasures Center (NBACC)](https://www.dhs.gov/science-and-technology/national-biodefense-analysis-and-countermeasures-center){:target="_blank"} at Fort Detrick in Maryland.  
 
 
 
