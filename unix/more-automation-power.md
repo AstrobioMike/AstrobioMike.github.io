@@ -524,8 +524,8 @@ Now that function will always be there when we sign in. If we wanted to get rid 
 ---
 <br>
 
-# A quick function I find helpful
-There are tons of individual-specific things we can do with functions to make our time at the command-line more efficient and easier. Here is just a standard one I typically setup on any machine I will be working on regularly. 
+# A few quick functions I find helpful
+There are tons of individual-specific things we can do with functions to make our time at the command-line more efficient and easier. Here are just a standard few I typically setup on any machine I will be working on regularly. 
 
 ## Getting indexed column headers
 Sometimes I want to use `cut` or `awk` on specific columns in a tsv or csv that has lots of columns, and I find myself trying to count the column names to find which numbers I need to pass to the program I want to use. E.g.,  here is peeking at the first 2 lines of a tsv with about 40 columns:
@@ -579,6 +579,27 @@ Now we can always use them quickly with a single command instead of typing out t
 
 <center><img src="../images/unix-things-i-like-to-set-column-headers3.png" width="100%"></center>
 <br>
+
+
+## Printing out my standard blast commands
+It's usually easiest to look up a command-line blast I previously ran whenever I run a new one. So I added a function to print out what I usually do. This includes: an example of the base blast command (if I'm not making a blast db); adding a column of the percent of the query that aligned; and adding a header).
+
+```
+blast-typical() {
+
+    cat << 'EOF'
+
+blastn -task blastn -query queries.fa -subject refs.fa -outfmt "6 qseqid qlen sseqid slen qstart qend sstart send length pident evalue bitscore" -max_hsps 1 -max_target_seqs 1 > blast-results.tmp
+awk -F '\t' ' { pct_qaln = ($5 / $2) * 100 } { printf "%s\t%.2f\n", $0, pct_qaln } ' blast-results.tmp > blast-results2.tmp
+printf "qseqid\tqlen\tsseqid\tslen\tqstart\tqend\tsstart\tsend\tlength\tpident\tevalue\tbitscore\tpct_qaln\n" > blast-results.tsv
+cat blast-results2.tmp >> blast-results.tsv
+rm blast-results.tmp blast-results2.tmp
+
+EOF
+}
+```
+
+After adding that to the `~/.bash_functions` file and sourcing it or our bashrc like we did above, or launching a new terminal, running `blast-typical` at the command line will print out my usual steps so I can copy/paste them and modify as needed. 
 
 
 <hr style="height:10px; visibility:hidden;" />
