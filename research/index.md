@@ -156,6 +156,13 @@ Momper, L.M., Jungbluth, S.P., **Lee, M.D.**, and Amend, J.P. (2017). [Energy an
 <hr style="height:10px; visibility:hidden;" />
 #### **Marine Microbes**
 
+<a name="Brumfield_et_al_2025"></a>
+<div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="doi.org/10.1128/mbio.00516-25"></div>
+
+Brumfield, K.D., Enke, S., Swan, B.K., Carrasquilla, L., **Lee, M.D.**, Stern, D.B., et al. (2025). [Hybridization capture sequencing for *Vibrio* spp. and associated virulence factors](https://doi.org/10.1128/mbio.00516-25){:target="_blank"}. *mBio*.  
+[PDF download](https://journals.asm.org/doi/reader/10.1128/mbio.00516-25){:target="_blank"}
+
+
 <a name="Kling_et_al_2023"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="doi.org/10.1073/pnas.2315701120"></div>
 
@@ -377,7 +384,7 @@ Jochum, M., **Lee, M.D.**, Curry, K., Zaksas, V., Vitalis, E., Treangen, T., Aag
 <a name="Sapoval_et_al_2021"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="doi.org/10.1101/gr.268961.120"></div>
 
-Sapoval, N., Mahmoud, M., Jochum, M., Liu, Y., Elworth, R.A.L., Wang, Q., Albin, D., Ogilvie, H., **Lee, M.D.**, Villapol, S., Hernandez, K., Berry, I.M., Foox, J., Beheshti, A., Ternus, K., Aagaard, K., Posada, D., Mason, C., Sedlazeck, F.J., and Trangen, T.J. (2021). [Hidden genomic diversity of SARS-CoV-2: implications for qRT- PCR diagnostics and transmission](https://doi.org/10.1101/gr.268961.120){:target="_blank"}. *Genome Research*.  
+Sapoval, N., Mahmoud, M., Jochum, M., Liu, Y., Elworth, R.A.L., Wang, Q., et al. (2021). [Hidden genomic diversity of SARS-CoV-2: implications for qRT- PCR diagnostics and transmission](https://doi.org/10.1101/gr.268961.120){:target="_blank"}. *Genome Research*.  
 [PDF download](https://genome.cshlp.org/content/early/2021/02/18/gr.268961.120.full.pdf+html){:target="_blank"}
 
 
@@ -387,7 +394,7 @@ Sapoval, N., Mahmoud, M., Jochum, M., Liu, Y., Elworth, R.A.L., Wang, Q., Albin,
 <a name="Day_et_al_2021"></a>
 <div style="float: right; padding-left: 15px" class='altmetric-embed' data-badge-type='donut' data-link-target='_blank' data-doi="doi.org/10.1371/journal.pone.0247534"></div>
 
-Day, J.A.,Diener, C., Otwell, A.E., Tams, K.E., Bebout, B.M., Detweiler, A.M., **Lee, M.D.**, Scott, M.T., Ta, W., Ha, M., Carreon, S.A., Tong, K., Ali, A.A., Gibbons, S.M., and Baliga, N.S.  (2021). [Lettuce (*Lactuca sativa*) productivity influenced by microbial inocula under nitrogen-limited conditions in aquaponics](https://doi.org/10.1371/journal.pone.0247534){:target="_blank"}. *PLOS ONE*.  
+Day, J.A., Diener, C., Otwell, A.E., Tams, K.E., Bebout, B.M., Detweiler, A.M., et al. (2021). [Lettuce (*Lactuca sativa*) productivity influenced by microbial inocula under nitrogen-limited conditions in aquaponics](https://doi.org/10.1371/journal.pone.0247534){:target="_blank"}. *PLOS ONE*.  
 [PDF download](https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0247534&type=printable){:target="_blank"}
 
 
