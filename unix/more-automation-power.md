@@ -399,30 +399,6 @@ gdrive about
 
 Most likely quickly giving me an example of whatever I am trying to do 🙂
 
-<hr style="height:10px; visibility:hidden;" />
-
-## My typical BLAST command example
-
-I use BLAST quite a bit, and I most often run it in a similar way where I'll want to do things like: 
-
-- specifying the output format
-- setting options like `-max_hsps 1` and `-max_target_seqs 1`
-- and sorting the output and adding a header
-
-So, similar to above, I have a plain text file that holds a template of how I typically run things – which is a little long and cumbersome to type out from scratch each time. And I create an alias that prints that out to the terminal, so I can quickly copy and paste it, and then just modify it for my current files. If that file were located at `~/notes/my-typical-blast.txt`, here's what I would put in my `~/.bash_aliases` file:
-
-```bash
-alias blast-typical="cat ~/notes/my-typical-blast.txt"
-```
-
-And now I can always pull that up quickly with just running `blast-typical` to print this to my terminal:
-
-```
-blastp -query XXX -db XXX -outfmt \"6 qseqid qlen sseqid slen length pident evalue bitscore\" -max_hsps 1 -max_target_seqs 1 | sort -nrk 8 > blast_out.tmp && cat <(printf \"qseqid\tqlen\tsseqid\tslen\tlength\tpident\tevalue\tbitscore\n\") blast_out.tmp > blast-out.tsv && rm blast_out.tmp
-```
-
-Again, these 2 specific things probably won't be useful to anyone in their exact state, but they are just meant to show another way I use aliases that has been helpful for me  🙂
-
 
 <hr style="height:10px; visibility:hidden;" />
 
@@ -527,6 +503,7 @@ Now that function will always be there when we sign in. If we wanted to get rid 
 # A few quick functions I find helpful
 There are tons of individual-specific things we can do with functions to make our time at the command-line more efficient and easier. Here are just a standard few I typically setup on any machine I will be working on regularly. 
 
+
 ## Getting indexed column headers
 Sometimes I want to use `cut` or `awk` on specific columns in a tsv or csv that has lots of columns, and I find myself trying to count the column names to find which numbers I need to pass to the program I want to use. E.g.,  here is peeking at the first 2 lines of a tsv with about 40 columns:
 
@@ -600,6 +577,25 @@ EOF
 ```
 
 After adding that to the `~/.bash_functions` file and sourcing it or our bashrc like we did above, or launching a new terminal, running `blast-typical` at the command line will print out my usual steps so I can copy/paste them and modify as needed. 
+
+## Conda activate and deactivate helper function
+I am lazy, so I tire very quickly of fully typing out `conda deactivate` and `conda activate blabla` over and over again. So I put this helper function into my `~/.bash_functions` file:
+
+```bash
+cda() {
+
+    if [ -n "$CONDA_DEFAULT_ENV" ] && [ "$CONDA_DEFAULT_ENV" != "base" ]; then
+        conda deactivate
+    fi
+
+    if [ -n "$1" ]; then
+        conda activate "$1"
+    fi
+
+}
+```
+
+And that let's me just type `cda blabla` and it will deactivate the current environment (unless I'm already in base) and then activate the wanted environment I specified 👍
 
 
 <hr style="height:10px; visibility:hidden;" />
